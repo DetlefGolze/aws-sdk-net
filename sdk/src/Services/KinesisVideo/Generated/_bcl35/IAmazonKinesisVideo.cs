@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.KinesisVideo.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.KinesisVideo
 {
     /// <summary>
-    /// Interface for accessing KinesisVideo
+    /// <para>Interface for accessing KinesisVideo</para>
     ///
     /// 
     /// </summary>
@@ -52,7 +53,7 @@ namespace Amazon.KinesisVideo
         /// 
         ///  
         /// <para>
-        ///  <code>CreateSignalingChannel</code> is an asynchronous operation.
+        ///  <c>CreateSignalingChannel</c> is an asynchronous operation.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateSignalingChannel service method.</param>
@@ -73,25 +74,25 @@ namespace Amazon.KinesisVideo
         /// The value for this input parameter is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -143,7 +144,7 @@ namespace Amazon.KinesisVideo
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateStream</code> is an asynchronous operation.
+        ///  <c>CreateStream</c> is an asynchronous operation.
         /// </para>
         ///  
         /// <para>
@@ -152,7 +153,7 @@ namespace Amazon.KinesisVideo
         /// </para>
         ///  
         /// <para>
-        /// You must have permissions for the <code>KinesisVideo:CreateStream</code> action.
+        /// You must have permissions for the <c>KinesisVideo:CreateStream</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateStream service method.</param>
@@ -175,25 +176,25 @@ namespace Amazon.KinesisVideo
         /// Not implemented.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -241,11 +242,11 @@ namespace Amazon.KinesisVideo
         /// 
         ///  
         /// <para>
-        /// When you invoke this API, the sync status is set to <code>DELETING</code>. A deletion
-        /// process starts, in which active edge jobs are stopped and all media is deleted from
-        /// the edge device. The time to delete varies, depending on the total amount of stored
-        /// media. If the deletion process fails, the sync status changes to <code>DELETE_FAILED</code>.
-        /// You will need to re-try the deletion.
+        /// When you invoke this API, the sync status is set to <c>DELETING</c>. A deletion process
+        /// starts, in which active edge jobs are stopped and all media is deleted from the edge
+        /// device. The time to delete varies, depending on the total amount of stored media.
+        /// If the deletion process fails, the sync status changes to <c>DELETE_FAILED</c>. You
+        /// will need to re-try the deletion.
         /// </para>
         ///  
         /// <para>
@@ -308,7 +309,7 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Deletes a specified signaling channel. <code>DeleteSignalingChannel</code> is an asynchronous
+        /// Deletes a specified signaling channel. <c>DeleteSignalingChannel</c> is an asynchronous
         /// operation. If you don't specify the channel's current version, the most recent version
         /// is deleted.
         /// </summary>
@@ -326,25 +327,25 @@ namespace Amazon.KinesisVideo
         /// The value for this input parameter is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -407,12 +408,11 @@ namespace Amazon.KinesisVideo
         ///  To ensure that you have the latest version of the stream before deleting it, you
         /// can specify the stream version. Kinesis Video Streams assigns a version to each stream.
         /// When you update a stream, Kinesis Video Streams assigns a new version number. To get
-        /// the latest stream version, use the <code>DescribeStream</code> API. 
+        /// the latest stream version, use the <c>DescribeStream</c> API. 
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permission for the <code>KinesisVideo:DeleteStream</code>
-        /// action.
+        /// This operation requires permission for the <c>KinesisVideo:DeleteStream</c> action.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteStream service method.</param>
@@ -429,25 +429,25 @@ namespace Amazon.KinesisVideo
         /// The caller is not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -494,7 +494,7 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Describes a stream’s edge configuration that was set using the <code>StartEdgeConfigurationUpdate</code>
+        /// Describes a stream’s edge configuration that was set using the <c>StartEdgeConfigurationUpdate</c>
         /// API and the latest status of the edge agent's recorder and uploader jobs. Use this
         /// API to get the status of the configuration to determine if the configuration is in
         /// sync with the Edge Agent. Use this API to evaluate the health of the Edge Agent.
@@ -554,7 +554,7 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Gets the <code>ImageGenerationConfiguration</code> for a given Kinesis video stream.
+        /// Gets the <c>ImageGenerationConfiguration</c> for a given Kinesis video stream.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeImageGenerationConfiguration service method.</param>
         /// 
@@ -607,8 +607,8 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Returns the most current information about the stream. The <code>streamName</code>
-        /// or <code>streamARN</code> should be provided in the input.
+        /// Returns the most current information about the stream. The <c>streamName</c> or <c>streamARN</c>
+        /// should be provided in the input.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeMappedResourceConfiguration service method.</param>
         /// 
@@ -661,16 +661,8 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// <important> 
-        /// <para>
-        /// This API is related to <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html">WebRTC
-        /// Ingestion</a> and is only available in the <code>us-west-2</code> region.
-        /// </para>
-        ///  </important> 
-        /// <para>
-        /// Returns the most current information about the channel. Specify the <code>ChannelName</code>
-        /// or <code>ChannelARN</code> in the input.
-        /// </para>
+        /// Returns the most current information about the channel. Specify the <c>ChannelName</c>
+        /// or <c>ChannelARN</c> in the input.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeMediaStorageConfiguration service method.</param>
         /// 
@@ -723,7 +715,7 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Gets the <code>NotificationConfiguration</code> for a given Kinesis video stream.
+        /// Gets the <c>NotificationConfiguration</c> for a given Kinesis video stream.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeNotificationConfiguration service method.</param>
         /// 
@@ -832,7 +824,7 @@ namespace Amazon.KinesisVideo
 
         /// <summary>
         /// Returns the most current information about the specified stream. You must specify
-        /// either the <code>StreamName</code> or the <code>StreamARN</code>.
+        /// either the <c>StreamName</c> or the <c>StreamARN</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeStream service method.</param>
         /// 
@@ -886,8 +878,8 @@ namespace Amazon.KinesisVideo
 
         /// <summary>
         /// Gets an endpoint for a specified stream for either reading or writing. Use this endpoint
-        /// in your application to read from the specified stream (using the <code>GetMedia</code>
-        /// or <code>GetMediaForFragmentList</code> operations) or write to it (using the <code>PutMedia</code>
+        /// in your application to read from the specified stream (using the <c>GetMedia</c> or
+        /// <c>GetMediaForFragmentList</c> operations) or write to it (using the <c>PutMedia</c>
         /// operation). 
         /// 
         ///  <note> 
@@ -897,7 +889,7 @@ namespace Amazon.KinesisVideo
         /// </para>
         ///  </note> 
         /// <para>
-        /// In the request, specify the stream either by <code>StreamName</code> or <code>StreamARN</code>.
+        /// In the request, specify the stream either by <c>StreamName</c> or <c>StreamARN</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetDataEndpoint service method.</param>
@@ -952,23 +944,22 @@ namespace Amazon.KinesisVideo
 
         /// <summary>
         /// Provides an endpoint for the specified signaling channel to send and receive messages.
-        /// This API uses the <code>SingleMasterChannelEndpointConfiguration</code> input parameter,
-        /// which consists of the <code>Protocols</code> and <code>Role</code> properties.
+        /// This API uses the <c>SingleMasterChannelEndpointConfiguration</c> input parameter,
+        /// which consists of the <c>Protocols</c> and <c>Role</c> properties.
         /// 
         ///  
         /// <para>
-        ///  <code>Protocols</code> is used to determine the communication mechanism. For example,
-        /// if you specify <code>WSS</code> as the protocol, this API produces a secure websocket
-        /// endpoint. If you specify <code>HTTPS</code> as the protocol, this API generates an
-        /// HTTPS endpoint. 
+        ///  <c>Protocols</c> is used to determine the communication mechanism. For example, if
+        /// you specify <c>WSS</c> as the protocol, this API produces a secure websocket endpoint.
+        /// If you specify <c>HTTPS</c> as the protocol, this API generates an HTTPS endpoint.
+        /// 
         /// </para>
         ///  
         /// <para>
-        ///  <code>Role</code> determines the messaging permissions. A <code>MASTER</code> role
-        /// results in this API generating an endpoint that a client can use to communicate with
-        /// any of the viewers on the channel. A <code>VIEWER</code> role results in this API
-        /// generating an endpoint that a client can use to communicate only with a <code>MASTER</code>.
-        /// 
+        ///  <c>Role</c> determines the messaging permissions. A <c>MASTER</c> role results in
+        /// this API generating an endpoint that a client can use to communicate with any of the
+        /// viewers on the channel. A <c>VIEWER</c> role results in this API generating an endpoint
+        /// that a client can use to communicate only with a <c>MASTER</c>. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSignalingChannelEndpoint service method.</param>
@@ -985,25 +976,25 @@ namespace Amazon.KinesisVideo
         /// The value for this input parameter is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -1049,7 +1040,7 @@ namespace Amazon.KinesisVideo
         /// 
         ///  
         /// <para>
-        /// In the request, you must specify the Edge Agent <code>HubDeviceArn</code>.
+        /// In the request, you must specify the Edge Agent <c>HubDeviceArn</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEdgeAgentConfigurations service method.</param>
@@ -1100,9 +1091,9 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Returns an array of <code>ChannelInfo</code> objects. Each object describes a signaling
+        /// Returns an array of <c>ChannelInfo</c> objects. Each object describes a signaling
         /// channel. To retrieve only those channels that satisfy a specific condition, you can
-        /// specify a <code>ChannelNameCondition</code>.
+        /// specify a <c>ChannelNameCondition</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSignalingChannels service method.</param>
         /// 
@@ -1152,8 +1143,8 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Returns an array of <code>StreamInfo</code> objects. Each object describes a stream.
-        /// To retrieve only streams that satisfy a specific condition, you can specify a <code>StreamNameCondition</code>.
+        /// Returns an array of <c>StreamInfo</c> objects. Each object describes a stream. To
+        /// retrieve only streams that satisfy a specific condition, you can specify a <c>StreamNameCondition</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListStreams service method.</param>
         /// 
@@ -1257,7 +1248,7 @@ namespace Amazon.KinesisVideo
         /// 
         ///  
         /// <para>
-        /// In the request, you must specify either the <code>StreamName</code> or the <code>StreamARN</code>.
+        /// In the request, you must specify either the <c>StreamName</c> or the <c>StreamARN</c>.
         /// 
         /// </para>
         /// </summary>
@@ -1272,7 +1263,7 @@ namespace Amazon.KinesisVideo
         /// The value for this input parameter is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.InvalidResourceFormatException">
-        /// The format of the <code>StreamARN</code> is invalid.
+        /// The format of the <c>StreamARN</c> is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.NotAuthorizedException">
         /// The caller is not authorized to perform this operation.
@@ -1318,19 +1309,19 @@ namespace Amazon.KinesisVideo
         /// An asynchronous API that updates a stream’s existing edge configuration. The Kinesis
         /// Video Stream will sync the stream’s edge configuration with the Edge Agent IoT Greengrass
         /// component that runs on an IoT Hub Device, setup at your premise. The time to sync
-        /// can vary and depends on the connectivity of the Hub Device. The <code>SyncStatus</code>
+        /// can vary and depends on the connectivity of the Hub Device. The <c>SyncStatus</c>
         /// will be updated as the edge configuration is acknowledged, and synced with the Edge
         /// Agent. 
         /// 
         ///  
         /// <para>
         /// If this API is invoked for the first time, a new edge configuration will be created
-        /// for the stream, and the sync status will be set to <code>SYNCING</code>. You will
-        /// have to wait for the sync status to reach a terminal state such as: <code>IN_SYNC</code>,
-        /// or <code>SYNC_FAILED</code>, before using this API again. If you invoke this API during
-        /// the syncing process, a <code>ResourceInUseException</code> will be thrown. The connectivity
-        /// of the stream’s edge configuration and the Edge Agent will be retried for 15 minutes.
-        /// After 15 minutes, the status will transition into the <code>SYNC_FAILED</code> state.
+        /// for the stream, and the sync status will be set to <c>SYNCING</c>. You will have to
+        /// wait for the sync status to reach a terminal state such as: <c>IN_SYNC</c>, or <c>SYNC_FAILED</c>,
+        /// before using this API again. If you invoke this API during the syncing process, a
+        /// <c>ResourceInUseException</c> will be thrown. The connectivity of the stream’s edge
+        /// configuration and the Edge Agent will be retried for 15 minutes. After 15 minutes,
+        /// the status will transition into the <c>SYNC_FAILED</c> state.
         /// </para>
         ///  
         /// <para>
@@ -1356,25 +1347,25 @@ namespace Amazon.KinesisVideo
         /// The Stream data retention in hours is equal to zero.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -1487,11 +1478,11 @@ namespace Amazon.KinesisVideo
         /// 
         ///  
         /// <para>
-        /// You must provide either the <code>StreamName</code> or the <code>StreamARN</code>.
+        /// You must provide either the <c>StreamName</c> or the <c>StreamARN</c>.
         /// </para>
         ///  
         /// <para>
-        /// This operation requires permission for the <code>KinesisVideo:TagStream</code> action.
+        /// This operation requires permission for the <c>KinesisVideo:TagStream</c> action.
         /// </para>
         ///  
         /// <para>
@@ -1509,7 +1500,7 @@ namespace Amazon.KinesisVideo
         /// The value for this input parameter is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.InvalidResourceFormatException">
-        /// The format of the <code>StreamARN</code> is invalid.
+        /// The format of the <c>StreamARN</c> is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.NotAuthorizedException">
         /// The caller is not authorized to perform this operation.
@@ -1617,7 +1608,7 @@ namespace Amazon.KinesisVideo
         /// 
         ///  
         /// <para>
-        /// In the request, you must provide the <code>StreamName</code> or <code>StreamARN</code>.
+        /// In the request, you must provide the <c>StreamName</c> or <c>StreamARN</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagStream service method.</param>
@@ -1631,7 +1622,7 @@ namespace Amazon.KinesisVideo
         /// The value for this input parameter is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.InvalidResourceFormatException">
-        /// The format of the <code>StreamARN</code> is invalid.
+        /// The format of the <c>StreamARN</c> is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.NotAuthorizedException">
         /// The caller is not authorized to perform this operation.
@@ -1676,16 +1667,12 @@ namespace Amazon.KinesisVideo
         /// <summary>
         /// Increases or decreases the stream's data retention period by the value that you specify.
         /// To indicate whether you want to increase or decrease the data retention period, specify
-        /// the <code>Operation</code> parameter in the request body. In the request, you must
-        /// specify either the <code>StreamName</code> or the <code>StreamARN</code>. 
+        /// the <c>Operation</c> parameter in the request body. In the request, you must specify
+        /// either the <c>StreamName</c> or the <c>StreamARN</c>. 
         /// 
-        ///  <note> 
+        ///  
         /// <para>
-        /// The retention period that you specify replaces the current value.
-        /// </para>
-        ///  </note> 
-        /// <para>
-        /// This operation requires permission for the <code>KinesisVideo:UpdateDataRetention</code>
+        /// This operation requires permission for the <c>KinesisVideo:UpdateDataRetention</c>
         /// action.
         /// </para>
         ///  
@@ -1721,25 +1708,25 @@ namespace Amazon.KinesisVideo
         /// The caller is not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -1786,8 +1773,7 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// Updates the <code>StreamInfo</code> and <code>ImageProcessingConfiguration</code>
-        /// fields.
+        /// Updates the <c>StreamInfo</c> and <c>ImageProcessingConfiguration</c> fields.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateImageGenerationConfiguration service method.</param>
         /// 
@@ -1806,25 +1792,25 @@ namespace Amazon.KinesisVideo
         /// The Stream data retention in hours is equal to zero.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -1866,31 +1852,25 @@ namespace Amazon.KinesisVideo
 
 
         /// <summary>
-        /// <important> 
-        /// <para>
-        /// This API is related to <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html">WebRTC
-        /// Ingestion</a> and is only available in the <code>us-west-2</code> region.
-        /// </para>
-        ///  </important> 
-        /// <para>
-        /// Associates a <code>SignalingChannel</code> to a stream to store the media. There are
-        /// two signaling modes that can specified :
-        /// </para>
+        /// Associates a <c>SignalingChannel</c> to a stream to store the media. There are two
+        /// signaling modes that you can specify :
+        /// 
         ///  <ul> <li> 
         /// <para>
-        /// If the <code>StorageStatus</code> is disabled, no data will be stored, and the <code>StreamARN</code>
-        /// parameter will not be needed. 
+        /// If <c>StorageStatus</c> is enabled, the data will be stored in the <c>StreamARN</c>
+        /// provided. In order for WebRTC Ingestion to work, the stream must have data retention
+        /// enabled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the <code>StorageStatus</code> is enabled, the data will be stored in the <code>StreamARN</code>
-        /// provided. 
+        /// If <c>StorageStatus</c> is disabled, no data will be stored, and the <c>StreamARN</c>
+        /// parameter will not be needed. 
         /// </para>
         ///  </li> </ul> <important> 
         /// <para>
-        /// If <code>StorageStatus</code> is enabled, direct peer-to-peer (master-viewer) connections
+        /// If <c>StorageStatus</c> is enabled, direct peer-to-peer (master-viewer) connections
         /// no longer occur. Peers connect directly to the storage session. You must call the
-        /// <code>JoinStorageSession</code> API to trigger an SDP offer send and establish a connection
+        /// <c>JoinStorageSession</c> API to trigger an SDP offer send and establish a connection
         /// between a peer and the storage session. 
         /// </para>
         ///  </important>
@@ -1912,25 +1892,25 @@ namespace Amazon.KinesisVideo
         /// The Stream data retention in hours is equal to zero.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -1991,25 +1971,25 @@ namespace Amazon.KinesisVideo
         /// The Stream data retention in hours is equal to zero.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -2056,9 +2036,9 @@ namespace Amazon.KinesisVideo
         /// 
         ///  
         /// <para>
-        /// If the <code>MessageTtlSeconds</code> value is updated (either increased or reduced),
-        /// it only applies to new messages sent via this channel after it's been updated. Existing
-        /// messages are still expired as per the previous <code>MessageTtlSeconds</code> value.
+        /// If the <c>MessageTtlSeconds</c> value is updated (either increased or reduced), it
+        /// only applies to new messages sent via this channel after it's been updated. Existing
+        /// messages are still expired as per the previous <c>MessageTtlSeconds</c> value.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateSignalingChannel service method.</param>
@@ -2075,25 +2055,25 @@ namespace Amazon.KinesisVideo
         /// The value for this input parameter is invalid.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>
@@ -2151,11 +2131,11 @@ namespace Amazon.KinesisVideo
         /// To make sure that you have the latest version of the stream before updating it, you
         /// can specify the stream version. Kinesis Video Streams assigns a version to each stream.
         /// When you update a stream, Kinesis Video Streams assigns a new version number. To get
-        /// the latest stream version, use the <code>DescribeStream</code> API. 
+        /// the latest stream version, use the <c>DescribeStream</c> API. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>UpdateStream</code> is an asynchronous operation, and takes time to complete.
+        ///  <c>UpdateStream</c> is an asynchronous operation, and takes time to complete.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateStream service method.</param>
@@ -2172,25 +2152,25 @@ namespace Amazon.KinesisVideo
         /// The caller is not authorized to perform this operation.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideo.Model.ResourceInUseException">
-        /// When the input <code>StreamARN</code> or <code>ChannelARN</code> in <code>CLOUD_STORAGE_MODE</code>
+        /// When the input <c>StreamARN</c> or <c>ChannelARN</c> in <c>CLOUD_STORAGE_MODE</c>
         /// is already mapped to a different Kinesis Video Stream resource, or if the provided
-        /// input <code>StreamARN</code> or <code>ChannelARN</code> is not in Active status, try
-        /// one of the following : 
+        /// input <c>StreamARN</c> or <c>ChannelARN</c> is not in Active status, try one of the
+        /// following : 
         /// 
         ///  <ol> <li> 
         /// <para>
-        /// The <code>DescribeMediaStorageConfiguration</code> API to determine what the stream
-        /// given channel is mapped to. 
+        /// The <c>DescribeMediaStorageConfiguration</c> API to determine what the stream given
+        /// channel is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeMappedResourceConfiguration</code> API to determine the channel
-        /// that the given stream is mapped to. 
+        /// The <c>DescribeMappedResourceConfiguration</c> API to determine the channel that the
+        /// given stream is mapped to. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API to determine
-        /// the status of the resource. 
+        /// The <c>DescribeStream</c> or <c>DescribeSignalingChannel</c> API to determine the
+        /// status of the resource. 
         /// </para>
         ///  </li> </ol>
         /// </exception>

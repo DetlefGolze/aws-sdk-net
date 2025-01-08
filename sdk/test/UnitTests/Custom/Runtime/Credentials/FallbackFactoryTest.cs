@@ -19,6 +19,7 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.SharedInterfaces;
 using Amazon.SecurityToken;
 using Amazon.SecurityToken.Model;
+using Amazon.Util;
 using AWSSDK_DotNet.CommonTest.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -42,6 +43,9 @@ namespace AWSSDK.UnitTests
         private const string AWS_USE_DUALSTACK_ENDPOINT_ENVIRONMENT_VARIABLE = "AWS_USE_DUALSTACK_ENDPOINT";
         private const string AWS_DISABLE_REQUEST_COMPRESSION = "AWS_DISABLE_REQUEST_COMPRESSION";
         private const string AWS_REQUEST_MIN_COMPRESSION_SIZE_BYTES = "AWS_REQUEST_MIN_COMPRESSION_SIZE_BYTES";
+        private const string AWS_EC2_METADATA_V1_DISABLED = "AWS_EC2_METADATA_V1_DISABLED";
+        private const string AWS_SDK_UA_APP_ID = "AWS_SDK_UA_APP_ID";
+        private const string AWS_ACCOUNT_ID_ENDPOINT_MODE = "AWS_ACCOUNT_ID_ENDPOINT_MODE";
         private const string AWS_USE_FIPS_ENDPOINT_ENVIRONMENT_VARIABLE = EnvironmentVariableInternalConfiguration.ENVIRONMENT_VARIABLE_AWS_USE_FIPS_ENDPOINT;
         private const long DefaultMinCompressionSizeBytes = 10240;
 
@@ -84,6 +88,16 @@ namespace AWSSDK.UnitTests
             .AppendLine("disable_request_compression=true")
             .AppendLine("[min_compression_size_bytes]")
             .AppendLine("request_min_compression_size_bytes=128")
+            .AppendLine("[set_sdk_ua_app_id]")
+            .AppendLine("sdk_ua_app_id=myAppId")
+            .AppendLine("[ec-metadata-v1-enabled]")
+            .AppendLine("ec2_metadata_v1_disabled=false")
+            .AppendLine("[ec-metadata-v1-disabled]")
+            .AppendLine("ec2_metadata_v1_disabled=true")
+            .AppendLine("[account_id_endpoint_mode_disabled]")
+            .AppendLine("account_id_endpoint_mode=disabled")
+            .AppendLine("[account_id_endpoint_mode_required]")
+            .AppendLine("account_id_endpoint_mode=required")
             .ToString();
 
         [DataTestMethod]
@@ -211,6 +225,37 @@ namespace AWSSDK.UnitTests
             }
         }
 
+        [DataTestMethod]
+        [DataRow(true, false, "ec-metadata-v1-enabled", true)]  // service client should supersede conflicting env var and profile values
+        [DataRow(false, true, "ec-metadata-v1-disabled", false)]
+        [DataRow(null, true, "ec-metadata-v1-enabled", true)]   // env var should supersede conflicting profile value
+        [DataRow(null, false, "ec-metadata-v1-disabled", false)]
+        [DataRow(null, null, "ec-metadata-v1-disabled", true)]    // profile should drive value
+        [DataRow(null, null, "ec-metadata-v1-enabled", false)]
+        [DataRow(null, null, "default", false)]             // should default to false when no config values specified
+        public void TestEC2MetadataV1DisabledConfigurationHierarchy(bool? ec2InstanceMetadataConfigValue, bool? envVarValue, string profileName, bool expectedEC2MetadataV1DisabledValue)
+        {
+            // Reset private _ec2MetadataV1Disabled field to its null
+            ReflectionHelpers.Invoke(typeof(EC2InstanceMetadata), "_ec2MetadataV1Disabled", new object[] { null });
+
+            if (ec2InstanceMetadataConfigValue.HasValue)
+            {
+                EC2InstanceMetadata.EC2MetadataV1Disabled = ec2InstanceMetadataConfigValue.Value;
+            }
+
+            var envVariables = new Dictionary<string, string>();
+            if (envVarValue.HasValue)
+            {
+                envVariables.Add(AWS_EC2_METADATA_V1_DISABLED, envVarValue.Value.ToString());
+            }
+
+            using (new FallbackFactoryTestFixture(ProfileText, profileName, envVariables))
+            {
+                Assert.AreEqual(expectedEC2MetadataV1DisabledValue, EC2InstanceMetadata.EC2MetadataV1Disabled);
+            }
+
+        }
+
         [TestMethod]
         public void TestEnableEndpointDiscoveryEnvVariable()
         {
@@ -334,6 +379,31 @@ namespace AWSSDK.UnitTests
         }
 
         [DataTestMethod]
+        [DataRow("test123", "test12345", "set_sdk_ua_app_id", "test123")]  // service client should supersede conflicting env var and profile values
+        [DataRow(null, "test12345", "set_sdk_ua_app_id", "test12345")]   // env var should supersede conflicting profile value
+        [DataRow(null, null, "set_sdk_ua_app_id", "myAppId")]  // Use app id configured for the profile
+        [DataRow(null, null, null, null)]  // should default to DefaultMinCompressionSizeBytes when no config values specified
+        public void TestClientAppIdConfigurationHierarchy(string clientConfigValue, string envVarValue, string profileName, string expectedValue)
+        {
+            var config = new AmazonSecurityTokenServiceConfig();
+            if (clientConfigValue != null)
+            {
+                config.ClientAppId = clientConfigValue;
+            }
+
+            var envVariables = new Dictionary<string, string>();
+            if (envVarValue != null)
+            {
+                envVariables.Add(AWS_SDK_UA_APP_ID, envVarValue);
+            }
+
+            using (new FallbackFactoryTestFixture(ProfileText, profileName, envVariables))
+            {
+                Assert.AreEqual(expectedValue, config.ClientAppId);
+            }
+        }
+
+        [DataTestMethod]
         [DataRow(true, false, "fips-disabled", true)]  // service client should supersede conflicting env var and profile values
         [DataRow(false, true, "fips-enabled", false)]
         [DataRow(null, true, "fips-disabled", true)]   // env var should supersede conflicting profile value
@@ -360,6 +430,43 @@ namespace AWSSDK.UnitTests
                 Assert.AreEqual(expectedUseFIPSEndpointValue, config.UseFIPSEndpoint);
             }
         }
+
+        /// <summary>
+        /// Tests the precedence of the account id endpoint mode configuration hierarchy.
+        /// </summary>
+        /// <param name="clientConfigValue"></param>
+        /// <param name="envVarValue"></param>
+        /// <param name="profileName"></param>
+        /// <param name="expectedAccountIdEndpointMode"></param>
+        [DataTestMethod]
+        [DataRow(AccountIdEndpointMode.REQUIRED, "PREFERRED", "account_id_endpoint_mode_required", AccountIdEndpointMode.REQUIRED)]  // service client should supersede conflicting env var and profile values
+        [DataRow(null, "", "default", AccountIdEndpointMode.PREFERRED)] // default value should be preferred
+        [DataRow(null, "REQUIRED", "account_id_endpoint_mode_disabled", AccountIdEndpointMode.REQUIRED)]   // env var should supersede conflicting profile value
+        [DataRow(null, "DISABLED", "account_id_endpoint_mode_required", AccountIdEndpointMode.DISABLED)]
+        [DataRow(null, null, "account_id_endpoint_mode_disabled", AccountIdEndpointMode.DISABLED)]    // profile should drive value
+        [DataRow(null, null, "account_id_endpoint_mode_required", AccountIdEndpointMode.REQUIRED)]
+        [DataRow(null, null, "default", AccountIdEndpointMode.PREFERRED)]             // should default to false when no config values specified
+        public void TestAccountIdEndpointMode(AccountIdEndpointMode? clientConfigValue, string envVarValue, string profileName, AccountIdEndpointMode expectedAccountIdEndpointMode)
+        {
+            var config = new AmazonSecurityTokenServiceConfig();
+            if (clientConfigValue.HasValue)
+            {
+                config.AccountIdEndpointMode = clientConfigValue.Value;
+            }
+
+            var envVariables = new Dictionary<string, string>();
+            if (!string.IsNullOrEmpty(envVarValue))
+            {
+                envVariables.Add(AWS_ACCOUNT_ID_ENDPOINT_MODE, envVarValue);
+            }
+
+            using (new FallbackFactoryTestFixture(ProfileText, profileName, envVariables))
+            {
+                Assert.AreEqual(expectedAccountIdEndpointMode, config.AccountIdEndpointMode);
+            }
+
+        }
+
 
         /// <summary>
         /// Tests that the properties in the AssumeRoleWithWebIdentityCredentialsObject are used for

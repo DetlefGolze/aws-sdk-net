@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CloudFront.Model
     /// </summary>
     public partial class Headers
     {
-        private List<string> _items = new List<string>();
+        private List<string> _items = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _quantity;
 
         /// <summary>
@@ -51,13 +52,13 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Quantity. 
         /// <para>
-        /// The number of header names in the <code>Items</code> list.
+        /// The number of header names in the <c>Items</c> list.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

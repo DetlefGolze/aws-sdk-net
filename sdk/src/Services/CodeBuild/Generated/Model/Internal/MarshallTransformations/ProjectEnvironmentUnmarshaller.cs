@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ProjectEnvironment Unmarshall(JsonUnmarshallerContext context)
         {
+            ProjectEnvironment unmarshalledObject = new ProjectEnvironment();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ProjectEnvironment unmarshalledObject = new ProjectEnvironment();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Certificate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("computeConfiguration", targetDepth))
+                {
+                    var unmarshaller = ComputeConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.ComputeConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("computeType", targetDepth))
@@ -80,6 +88,12 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<EnvironmentVariable, EnvironmentVariableUnmarshaller>(EnvironmentVariableUnmarshaller.Instance);
                     unmarshalledObject.EnvironmentVariables = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("fleet", targetDepth))
+                {
+                    var unmarshaller = ProjectFleetUnmarshaller.Instance;
+                    unmarshalledObject.Fleet = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("image", targetDepth))
@@ -113,7 +127,6 @@ namespace Amazon.CodeBuild.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

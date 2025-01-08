@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -34,9 +35,10 @@ namespace Amazon.ComputeOptimizer.Model
     public partial class LambdaFunctionMemoryRecommendationOption
     {
         private int? _memorySize;
-        private List<LambdaFunctionMemoryProjectedMetric> _projectedUtilizationMetrics = new List<LambdaFunctionMemoryProjectedMetric>();
+        private List<LambdaFunctionMemoryProjectedMetric> _projectedUtilizationMetrics = AWSConfigs.InitializeCollections ? new List<LambdaFunctionMemoryProjectedMetric>() : null;
         private int? _rank;
         private SavingsOpportunity _savingsOpportunity;
+        private LambdaSavingsOpportunityAfterDiscounts _savingsOpportunityAfterDiscounts;
 
         /// <summary>
         /// Gets and sets the property MemorySize. 
@@ -72,7 +74,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if ProjectedUtilizationMetrics property is set
         internal bool IsSetProjectedUtilizationMetrics()
         {
-            return this._projectedUtilizationMetrics != null && this._projectedUtilizationMetrics.Count > 0; 
+            return this._projectedUtilizationMetrics != null && (this._projectedUtilizationMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,7 +84,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// The top recommendation option is ranked as <code>1</code>.
+        /// The top recommendation option is ranked as <c>1</c>.
         /// </para>
         /// </summary>
         public int Rank
@@ -114,6 +116,26 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetSavingsOpportunity()
         {
             return this._savingsOpportunity != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SavingsOpportunityAfterDiscounts. 
+        /// <para>
+        ///  An object that describes the savings opportunity for the Lambda recommendation option
+        /// which includes Saving Plans discounts. Savings opportunity includes the estimated
+        /// monthly savings and percentage. 
+        /// </para>
+        /// </summary>
+        public LambdaSavingsOpportunityAfterDiscounts SavingsOpportunityAfterDiscounts
+        {
+            get { return this._savingsOpportunityAfterDiscounts; }
+            set { this._savingsOpportunityAfterDiscounts = value; }
+        }
+
+        // Check to see if SavingsOpportunityAfterDiscounts property is set
+        internal bool IsSetSavingsOpportunityAfterDiscounts()
+        {
+            return this._savingsOpportunityAfterDiscounts != null;
         }
 
     }

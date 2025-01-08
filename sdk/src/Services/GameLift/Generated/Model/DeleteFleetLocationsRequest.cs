@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -41,9 +42,9 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, GameLift sets the location status to <code>DELETING</code>, and begins
-    /// to shut down existing server processes and terminate instances in each location being
-    /// deleted. When completed, the location status changes to <code>TERMINATED</code>.
+    /// If successful, GameLift sets the location status to <c>DELETING</c>, and begins to
+    /// shut down existing server processes and terminate instances in each location being
+    /// deleted. When completed, the location status changes to <c>TERMINATED</c>.
     /// </para>
     ///  
     /// <para>
@@ -58,7 +59,7 @@ namespace Amazon.GameLift.Model
     public partial class DeleteFleetLocationsRequest : AmazonGameLiftRequest
     {
         private string _fleetId;
-        private List<string> _locations = new List<string>();
+        private List<string> _locations = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FleetId. 
@@ -67,7 +68,7 @@ namespace Amazon.GameLift.Model
         /// fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -84,7 +85,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Locations. 
         /// <para>
         /// The list of fleet locations to delete. Specify locations in the form of an Amazon
-        /// Web Services Region code, such as <code>us-west-2</code>.
+        /// Web Services Region code, such as <c>us-west-2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -97,7 +98,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Locations property is set
         internal bool IsSetLocations()
         {
-            return this._locations != null && this._locations.Count > 0; 
+            return this._locations != null && (this._locations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

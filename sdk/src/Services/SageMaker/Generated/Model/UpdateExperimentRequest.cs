@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
-        /// The name of the experiment as displayed. The name doesn't need to be unique. If <code>DisplayName</code>
-        /// isn't specified, <code>ExperimentName</code> is displayed.
+        /// The name of the experiment as displayed. The name doesn't need to be unique. If <c>DisplayName</c>
+        /// isn't specified, <c>ExperimentName</c> is displayed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=120)]

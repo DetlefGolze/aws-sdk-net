@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AWSHealth.Model
     /// </summary>
     public partial class DescribeAffectedEntitiesResponse : AmazonWebServiceResponse
     {
-        private List<AffectedEntity> _entities = new List<AffectedEntity>();
+        private List<AffectedEntity> _entities = AWSConfigs.InitializeCollections ? new List<AffectedEntity>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.AWSHealth.Model
         // Check to see if Entities property is set
         internal bool IsSetEntities()
         {
-            return this._entities != null && this._entities.Count > 0; 
+            return this._entities != null && (this._entities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the results of a search are large, only a portion of the results are returned,
-        /// and a <code>nextToken</code> pagination token is returned in the response. To retrieve
-        /// the next batch of results, reissue the search request and include the returned token.
+        /// and a <c>nextToken</c> pagination token is returned in the response. To retrieve the
+        /// next batch of results, reissue the search request and include the returned token.
         /// When all results have been returned, the response does not contain a pagination token
         /// value.
         /// </para>

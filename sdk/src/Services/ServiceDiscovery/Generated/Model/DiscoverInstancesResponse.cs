@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -33,14 +34,13 @@ namespace Amazon.ServiceDiscovery.Model
     /// </summary>
     public partial class DiscoverInstancesResponse : AmazonWebServiceResponse
     {
-        private List<HttpInstanceSummary> _instances = new List<HttpInstanceSummary>();
+        private List<HttpInstanceSummary> _instances = AWSConfigs.InitializeCollections ? new List<HttpInstanceSummary>() : null;
         private long? _instancesRevision;
 
         /// <summary>
         /// Gets and sets the property Instances. 
         /// <para>
-        /// A complex type that contains one <code>HttpInstanceSummary</code> for each registered
-        /// instance.
+        /// A complex type that contains one <c>HttpInstanceSummary</c> for each registered instance.
         /// </para>
         /// </summary>
         public List<HttpInstanceSummary> Instances
@@ -52,15 +52,15 @@ namespace Amazon.ServiceDiscovery.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InstancesRevision. 
         /// <para>
         /// The increasing revision associated to the response Instances list. If a new instance
-        /// is registered or deregistered, the <code>InstancesRevision</code> updates. The health
-        /// status updates don't update <code>InstancesRevision</code>.
+        /// is registered or deregistered, the <c>InstancesRevision</c> updates. The health status
+        /// updates don't update <c>InstancesRevision</c>.
         /// </para>
         /// </summary>
         public long InstancesRevision

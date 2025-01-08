@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeOrderableDBInstanceOptions</code>
+    /// Contains the result of a successful invocation of the <c>DescribeOrderableDBInstanceOptions</c>
     /// action.
     /// </summary>
     public partial class DescribeOrderableDBInstanceOptionsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<OrderableDBInstanceOption> _orderableDBInstanceOptions = new List<OrderableDBInstanceOption>();
+        private List<OrderableDBInstanceOption> _orderableDBInstanceOptions = AWSConfigs.InitializeCollections ? new List<OrderableDBInstanceOption>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// An optional pagination token provided by a previous OrderableDBInstanceOptions request.
         /// If this parameter is specified, the response includes only records beyond the marker,
-        /// up to the value specified by <code>MaxRecords</code>.
+        /// up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -60,7 +61,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property OrderableDBInstanceOptions. 
         /// <para>
-        /// An <code>OrderableDBInstanceOption</code> structure containing information about orderable
+        /// An <c>OrderableDBInstanceOption</c> structure containing information about orderable
         /// options for the DB instance.
         /// </para>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.RDS.Model
         // Check to see if OrderableDBInstanceOptions property is set
         internal bool IsSetOrderableDBInstanceOptions()
         {
-            return this._orderableDBInstanceOptions != null && this._orderableDBInstanceOptions.Count > 0; 
+            return this._orderableDBInstanceOptions != null && (this._orderableDBInstanceOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

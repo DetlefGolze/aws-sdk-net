@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class ListJobsResponse : AmazonWebServiceResponse
     {
-        private List<JobSummary> _jobSummaryList = new List<JobSummary>();
+        private List<JobSummary> _jobSummaryList = AWSConfigs.InitializeCollections ? new List<JobSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.Batch.Model
         // Check to see if JobSummaryList property is set
         internal bool IsSetJobSummaryList()
         {
-            return this._jobSummaryList != null && this._jobSummaryList.Count > 0; 
+            return this._jobSummaryList != null && (this._jobSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListJobs</code> request.
-        /// When the results of a <code>ListJobs</code> request exceed <code>maxResults</code>,
-        /// this value can be used to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>ListJobs</c> request. When the
+        /// results of a <c>ListJobs</c> request exceed <c>maxResults</c>, this value can be used
+        /// to retrieve the next page of results. This value is <c>null</c> when there are no
+        /// more results to return.
         /// </para>
         /// </summary>
         public string NextToken

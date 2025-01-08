@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -50,8 +51,8 @@ namespace Amazon.IdentityManagement.Model
         /// Gets and sets the property Encoding. 
         /// <para>
         /// Specifies the public key encoding format to use in the response. To retrieve the public
-        /// key in ssh-rsa format, use <code>SSH</code>. To retrieve the public key in PEM format,
-        /// use <code>PEM</code>.
+        /// key in ssh-rsa format, use <c>SSH</c>. To retrieve the public key in PEM format, use
+        /// <c>PEM</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.EC2.Model
         private DefaultRouteTablePropagationValue _defaultRouteTablePropagation;
         private DnsSupportValue _dnsSupport;
         private MulticastSupportValue _multicastSupport;
-        private List<string> _transitGatewayCidrBlocks = new List<string>();
+        private SecurityGroupReferencingSupportValue _securityGroupReferencingSupport;
+        private List<string> _transitGatewayCidrBlocks = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VpnEcmpSupportValue _vpnEcmpSupport;
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// A private Autonomous System Number (ASN) for the Amazon side of a BGP session. The
         /// range is 64512 to 65534 for 16-bit ASNs and 4200000000 to 4294967294 for 32-bit ASNs.
-        /// The default is <code>64512</code>.
+        /// The default is <c>64512</c>.
         /// </para>
         /// </summary>
         public long AmazonSideAsn
@@ -155,6 +157,34 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SecurityGroupReferencingSupport. 
+        /// <para>
+        /// Enables you to reference a security group across VPCs attached to a transit gateway
+        /// to simplify security group management. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This option is disabled by default.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about security group referencing, see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html#vpc-attachment-security">Security
+        /// group referencing</a> in the <i>Amazon Web Services Transit Gateways Guide</i>.
+        /// </para>
+        /// </summary>
+        public SecurityGroupReferencingSupportValue SecurityGroupReferencingSupport
+        {
+            get { return this._securityGroupReferencingSupport; }
+            set { this._securityGroupReferencingSupport = value; }
+        }
+
+        // Check to see if SecurityGroupReferencingSupport property is set
+        internal bool IsSetSecurityGroupReferencingSupport()
+        {
+            return this._securityGroupReferencingSupport != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TransitGatewayCidrBlocks. 
         /// <para>
         /// One or more IPv4 or IPv6 CIDR blocks for the transit gateway. Must be a size /24 CIDR
@@ -170,7 +200,7 @@ namespace Amazon.EC2.Model
         // Check to see if TransitGatewayCidrBlocks property is set
         internal bool IsSetTransitGatewayCidrBlocks()
         {
-            return this._transitGatewayCidrBlocks != null && this._transitGatewayCidrBlocks.Count > 0; 
+            return this._transitGatewayCidrBlocks != null && (this._transitGatewayCidrBlocks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

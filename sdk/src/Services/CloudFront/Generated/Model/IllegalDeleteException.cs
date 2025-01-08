@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// You cannot delete a managed policy.
+    /// Deletion is not allowed for this entity.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

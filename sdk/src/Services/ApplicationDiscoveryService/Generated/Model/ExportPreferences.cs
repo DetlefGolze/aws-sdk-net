@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
-    /// Indicates the type of data that is being exported. Only one <code>ExportPreferences</code>
+    /// Indicates the type of data that is being exported. Only one <c>ExportPreferences</c>
     /// can be enabled for a <a href="https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_StartExportTask.html">StartExportTask</a>
     /// action.
     /// </summary>

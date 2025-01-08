@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public LogConfigurationType Unmarshall(JsonUnmarshallerContext context)
         {
+            LogConfigurationType unmarshalledObject = new LogConfigurationType();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            LogConfigurationType unmarshalledObject = new LogConfigurationType();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,14 +78,25 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                     unmarshalledObject.EventSource = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("FirehoseConfiguration", targetDepth))
+                {
+                    var unmarshaller = FirehoseConfigurationTypeUnmarshaller.Instance;
+                    unmarshalledObject.FirehoseConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("LogLevel", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.LogLevel = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("S3Configuration", targetDepth))
+                {
+                    var unmarshaller = S3ConfigurationTypeUnmarshaller.Instance;
+                    unmarshalledObject.S3Configuration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

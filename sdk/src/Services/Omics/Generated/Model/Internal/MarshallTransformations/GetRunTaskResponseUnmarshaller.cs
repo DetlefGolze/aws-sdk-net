@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Omics.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,6 +52,18 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("cacheHit", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    response.CacheHit = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("cacheS3Uri", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.CacheS3Uri = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("cpus", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
@@ -61,6 +74,12 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.CreationTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("failureReason", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.FailureReason = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("gpus", targetDepth))

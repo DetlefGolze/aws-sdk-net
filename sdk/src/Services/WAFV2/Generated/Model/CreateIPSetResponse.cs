@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.WAFV2.Model
         /// <para>
         /// High-level information about an <a>IPSet</a>, returned by operations like create and
         /// list. This provides information like the ID, that you can use to retrieve and manage
-        /// an <code>IPSet</code>, and the ARN, that you provide to the <a>IPSetReferenceStatement</a>
+        /// an <c>IPSet</c>, and the ARN, that you provide to the <a>IPSetReferenceStatement</a>
         /// to use the address set in a <a>Rule</a>.
         /// </para>
         /// </summary>

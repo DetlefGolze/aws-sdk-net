@@ -33,21 +33,22 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.CloudSearchDomain
 {
     /// <summary>
-    /// Implementation for accessing CloudSearchDomain
+    /// <para>Implementation for accessing CloudSearchDomain</para>
     ///
     /// You use the AmazonCloudSearch2013 API to upload documents to a search domain and search
     /// those documents. 
     /// 
     ///  
     /// <para>
-    /// The endpoints for submitting <code>UploadDocuments</code>, <code>Search</code>, and
-    /// <code>Suggest</code> requests are domain-specific. To get the endpoints for your domain,
-    /// use the Amazon CloudSearch configuration service <code>DescribeDomains</code> action.
-    /// The domain endpoints are also displayed on the domain dashboard in the Amazon CloudSearch
-    /// console. You submit suggest requests to the search endpoint. 
+    /// The endpoints for submitting <c>UploadDocuments</c>, <c>Search</c>, and <c>Suggest</c>
+    /// requests are domain-specific. To get the endpoints for your domain, use the Amazon
+    /// CloudSearch configuration service <c>DescribeDomains</c> action. The domain endpoints
+    /// are also displayed on the domain dashboard in the Amazon CloudSearch console. You
+    /// submit suggest requests to the search endpoint. 
     /// </para>
     ///  
     /// <para>
@@ -115,25 +116,24 @@ namespace Amazon.CloudSearchDomain
         /// the search criteria depends on which query parser you use. Amazon CloudSearch supports
         /// four query parsers:
         /// 
-        ///  <ul> <li><code>simple</code>: search all <code>text</code> and <code>text-array</code>
-        /// fields for the specified string. Search for phrases, individual terms, and prefixes.
-        /// </li> <li><code>structured</code>: search specific fields, construct compound queries
-        /// using Boolean operators, and use advanced features such as term boosting and proximity
-        /// searching.</li> <li><code>lucene</code>: specify search criteria using the Apache
-        /// Lucene query parser syntax.</li> <li><code>dismax</code>: specify search criteria
-        /// using the simplified subset of the Apache Lucene query parser syntax defined by the
-        /// DisMax query parser.</li> </ul> 
+        ///  <ul> <li><c>simple</c>: search all <c>text</c> and <c>text-array</c> fields for the
+        /// specified string. Search for phrases, individual terms, and prefixes. </li> <li><c>structured</c>:
+        /// search specific fields, construct compound queries using Boolean operators, and use
+        /// advanced features such as term boosting and proximity searching.</li> <li><c>lucene</c>:
+        /// specify search criteria using the Apache Lucene query parser syntax.</li> <li><c>dismax</c>:
+        /// specify search criteria using the simplified subset of the Apache Lucene query parser
+        /// syntax defined by the DisMax query parser.</li> </ul> 
         /// <para>
         /// For more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching.html">Searching
         /// Your Data</a> in the <i>Amazon CloudSearch Developer Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The endpoint for submitting <code>Search</code> requests is domain-specific. You submit
+        /// The endpoint for submitting <c>Search</c> requests is domain-specific. You submit
         /// search requests to a domain's search endpoint. To get the search endpoint for your
-        /// domain, use the Amazon CloudSearch configuration service <code>DescribeDomains</code>
-        /// action. A domain's endpoints are also displayed on the domain dashboard in the Amazon
-        /// CloudSearch console. 
+        /// domain, use the Amazon CloudSearch configuration service <c>DescribeDomains</c> action.
+        /// A domain's endpoints are also displayed on the domain dashboard in the Amazon CloudSearch
+        /// console. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the Search service method.</param>
@@ -158,25 +158,24 @@ namespace Amazon.CloudSearchDomain
         /// the search criteria depends on which query parser you use. Amazon CloudSearch supports
         /// four query parsers:
         /// 
-        ///  <ul> <li><code>simple</code>: search all <code>text</code> and <code>text-array</code>
-        /// fields for the specified string. Search for phrases, individual terms, and prefixes.
-        /// </li> <li><code>structured</code>: search specific fields, construct compound queries
-        /// using Boolean operators, and use advanced features such as term boosting and proximity
-        /// searching.</li> <li><code>lucene</code>: specify search criteria using the Apache
-        /// Lucene query parser syntax.</li> <li><code>dismax</code>: specify search criteria
-        /// using the simplified subset of the Apache Lucene query parser syntax defined by the
-        /// DisMax query parser.</li> </ul> 
+        ///  <ul> <li><c>simple</c>: search all <c>text</c> and <c>text-array</c> fields for the
+        /// specified string. Search for phrases, individual terms, and prefixes. </li> <li><c>structured</c>:
+        /// search specific fields, construct compound queries using Boolean operators, and use
+        /// advanced features such as term boosting and proximity searching.</li> <li><c>lucene</c>:
+        /// specify search criteria using the Apache Lucene query parser syntax.</li> <li><c>dismax</c>:
+        /// specify search criteria using the simplified subset of the Apache Lucene query parser
+        /// syntax defined by the DisMax query parser.</li> </ul> 
         /// <para>
         /// For more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching.html">Searching
         /// Your Data</a> in the <i>Amazon CloudSearch Developer Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// The endpoint for submitting <code>Search</code> requests is domain-specific. You submit
+        /// The endpoint for submitting <c>Search</c> requests is domain-specific. You submit
         /// search requests to a domain's search endpoint. To get the search endpoint for your
-        /// domain, use the Amazon CloudSearch configuration service <code>DescribeDomains</code>
-        /// action. A domain's endpoints are also displayed on the domain dashboard in the Amazon
-        /// CloudSearch console. 
+        /// domain, use the Amazon CloudSearch configuration service <c>DescribeDomains</c> action.
+        /// A domain's endpoints are also displayed on the domain dashboard in the Amazon CloudSearch
+        /// console. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the Search service method.</param>
@@ -219,11 +218,11 @@ namespace Amazon.CloudSearchDomain
         /// </para>
         ///  
         /// <para>
-        /// The endpoint for submitting <code>Suggest</code> requests is domain-specific. You
-        /// submit suggest requests to a domain's search endpoint. To get the search endpoint
-        /// for your domain, use the Amazon CloudSearch configuration service <code>DescribeDomains</code>
-        /// action. A domain's endpoints are also displayed on the domain dashboard in the Amazon
-        /// CloudSearch console. 
+        /// The endpoint for submitting <c>Suggest</c> requests is domain-specific. You submit
+        /// suggest requests to a domain's search endpoint. To get the search endpoint for your
+        /// domain, use the Amazon CloudSearch configuration service <c>DescribeDomains</c> action.
+        /// A domain's endpoints are also displayed on the domain dashboard in the Amazon CloudSearch
+        /// console. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the Suggest service method.</param>
@@ -259,11 +258,11 @@ namespace Amazon.CloudSearchDomain
         /// </para>
         ///  
         /// <para>
-        /// The endpoint for submitting <code>Suggest</code> requests is domain-specific. You
-        /// submit suggest requests to a domain's search endpoint. To get the search endpoint
-        /// for your domain, use the Amazon CloudSearch configuration service <code>DescribeDomains</code>
-        /// action. A domain's endpoints are also displayed on the domain dashboard in the Amazon
-        /// CloudSearch console. 
+        /// The endpoint for submitting <c>Suggest</c> requests is domain-specific. You submit
+        /// suggest requests to a domain's search endpoint. To get the search endpoint for your
+        /// domain, use the Amazon CloudSearch configuration service <c>DescribeDomains</c> action.
+        /// A domain's endpoints are also displayed on the domain dashboard in the Amazon CloudSearch
+        /// console. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the Suggest service method.</param>
@@ -304,10 +303,10 @@ namespace Amazon.CloudSearchDomain
         /// 
         ///  
         /// <para>
-        /// The endpoint for submitting <code>UploadDocuments</code> requests is domain-specific.
-        /// To get the document endpoint for your domain, use the Amazon CloudSearch configuration
-        /// service <code>DescribeDomains</code> action. A domain's endpoints are also displayed
-        /// on the domain dashboard in the Amazon CloudSearch console. 
+        /// The endpoint for submitting <c>UploadDocuments</c> requests is domain-specific. To
+        /// get the document endpoint for your domain, use the Amazon CloudSearch configuration
+        /// service <c>DescribeDomains</c> action. A domain's endpoints are also displayed on
+        /// the domain dashboard in the Amazon CloudSearch console. 
         /// </para>
         ///  
         /// <para>
@@ -348,10 +347,10 @@ namespace Amazon.CloudSearchDomain
         /// 
         ///  
         /// <para>
-        /// The endpoint for submitting <code>UploadDocuments</code> requests is domain-specific.
-        /// To get the document endpoint for your domain, use the Amazon CloudSearch configuration
-        /// service <code>DescribeDomains</code> action. A domain's endpoints are also displayed
-        /// on the domain dashboard in the Amazon CloudSearch console. 
+        /// The endpoint for submitting <c>UploadDocuments</c> requests is domain-specific. To
+        /// get the document endpoint for your domain, use the Amazon CloudSearch configuration
+        /// service <c>DescribeDomains</c> action. A domain's endpoints are also displayed on
+        /// the domain dashboard in the Amazon CloudSearch console. 
         /// </para>
         ///  
         /// <para>
@@ -391,11 +390,11 @@ namespace Amazon.CloudSearchDomain
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

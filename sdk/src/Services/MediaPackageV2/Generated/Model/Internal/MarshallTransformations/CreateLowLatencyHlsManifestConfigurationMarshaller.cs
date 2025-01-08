@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,23 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CreateLowLatencyHlsManifestConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetChildManifestName())
             {
                 context.Writer.WritePropertyName("ChildManifestName");
                 context.Writer.Write(requestObject.ChildManifestName);
+            }
+
+            if(requestObject.IsSetFilterConfiguration())
+            {
+                context.Writer.WritePropertyName("FilterConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = FilterConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.FilterConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetManifestName())
@@ -76,6 +90,17 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
 
                 var marshaller = ScteHlsMarshaller.Instance;
                 marshaller.Marshall(requestObject.ScteHls, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetStartTag())
+            {
+                context.Writer.WritePropertyName("StartTag");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = StartTagMarshaller.Instance;
+                marshaller.Marshall(requestObject.StartTag, context);
 
                 context.Writer.WriteObjectEnd();
             }

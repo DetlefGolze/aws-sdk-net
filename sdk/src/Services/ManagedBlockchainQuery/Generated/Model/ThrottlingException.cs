@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -137,7 +138,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property QuotaCode. 
         /// <para>
-        /// The container for the <code>quotaCode</code>.
+        /// The container for the <c>quotaCode</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -156,7 +157,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property RetryAfterSeconds. 
         /// <para>
-        /// The container of the <code>retryAfterSeconds</code> value.
+        /// The container of the <c>retryAfterSeconds</c> value.
         /// </para>
         /// </summary>
         public int RetryAfterSeconds
@@ -174,7 +175,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property ServiceCode. 
         /// <para>
-        /// The container for the <code>serviceCode</code>.
+        /// The container for the <c>serviceCode</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

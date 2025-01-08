@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.KinesisVideo.Model
     /// 
     ///  
     /// <para>
-    /// In the request, you must specify the Edge Agent <code>HubDeviceArn</code>.
+    /// In the request, you must specify the Edge Agent <c>HubDeviceArn</c>.
     /// </para>
     /// </summary>
     public partial class ListEdgeAgentConfigurationsRequest : AmazonKinesisVideoRequest
@@ -85,13 +86,13 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you specify this parameter, when the result of a <code>ListEdgeAgentConfigurations</code>
-        /// operation is truncated, the call returns the <code>NextToken</code> in the response.
-        /// To get another batch of edge configurations, provide this token in your next request.
+        /// If you specify this parameter, when the result of a <c>ListEdgeAgentConfigurations</c>
+        /// operation is truncated, the call returns the <c>NextToken</c> in the response. To
+        /// get another batch of edge configurations, provide this token in your next request.
         /// 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=512)]
+        [AWSProperty(Min=0, Max=1024)]
         public string NextToken
         {
             get { return this._nextToken; }

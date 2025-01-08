@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.SageMaker.Model
     public partial class ListNotebookInstanceLifecycleConfigsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<NotebookInstanceLifecycleConfigSummary> _notebookInstanceLifecycleConfigs = new List<NotebookInstanceLifecycleConfigSummary>();
+        private List<NotebookInstanceLifecycleConfigSummary> _notebookInstanceLifecycleConfigs = AWSConfigs.InitializeCollections ? new List<NotebookInstanceLifecycleConfigSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response is truncated, SageMaker returns this token. To get the next set of
-        /// lifecycle configurations, use it in the next request. 
+        /// If the response is truncated, SageMaker AI returns this token. To get the next set
+        /// of lifecycle configurations, use it in the next request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -59,8 +60,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NotebookInstanceLifecycleConfigs. 
         /// <para>
-        /// An array of <code>NotebookInstanceLifecycleConfiguration</code> objects, each listing
-        /// a lifecycle configuration.
+        /// An array of <c>NotebookInstanceLifecycleConfiguration</c> objects, each listing a
+        /// lifecycle configuration.
         /// </para>
         /// </summary>
         public List<NotebookInstanceLifecycleConfigSummary> NotebookInstanceLifecycleConfigs
@@ -72,7 +73,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if NotebookInstanceLifecycleConfigs property is set
         internal bool IsSetNotebookInstanceLifecycleConfigs()
         {
-            return this._notebookInstanceLifecycleConfigs != null && this._notebookInstanceLifecycleConfigs.Count > 0; 
+            return this._notebookInstanceLifecycleConfigs != null && (this._notebookInstanceLifecycleConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

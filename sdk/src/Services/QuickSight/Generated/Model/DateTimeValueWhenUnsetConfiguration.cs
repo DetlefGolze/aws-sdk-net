@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration that defines the default value of a <code>DateTime</code> parameter
-    /// when a value has not been set.
+    /// The configuration that defines the default value of a <c>DateTime</c> parameter when
+    /// a value has not been set.
     /// </summary>
     public partial class DateTimeValueWhenUnsetConfiguration
     {
@@ -63,11 +64,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RECOMMENDED</code>: The recommended value.
+        ///  <c>RECOMMENDED</c>: The recommended value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NULL</code>: The <code>NULL</code> value.
+        ///  <c>NULL</c>: The <c>NULL</c> value.
         /// </para>
         ///  </li> </ul>
         /// </summary>

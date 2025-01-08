@@ -9,12 +9,13 @@
     AddCommonUsingStatements();
 #>
 
+#pragma warning disable CS0612,CS0618
 namespace <#=this.Config.Namespace #>.Model.Internal.MarshallTransformations
 {
     /// <summary>
     /// Response Unmarshaller for <#=this.UnmarshallerBaseName #> Object
     /// </summary>  
-    public class <#=this.UnmarshallerBaseName #>Unmarshaller : IUnmarshaller<<#=this.UnmarshallerBaseName #>, XmlUnmarshallerContext>
+    public class <#=this.UnmarshallerBaseName #>Unmarshaller : IUnmarshaller<<#=this.UnmarshallerBaseName #>, XmlUnmarshallerContext>, IUnmarshaller<<#=this.UnmarshallerBaseName #>, JsonUnmarshallerContext>
     {
         /// <summary>
         /// Unmarshaller the response from the service to the response class.
@@ -24,7 +25,33 @@ namespace <#=this.Config.Namespace #>.Model.Internal.MarshallTransformations
         public <#=this.UnmarshallerBaseName #> Unmarshall(XmlUnmarshallerContext context)
         {
             <#=this.UnmarshallerBaseName #> unmarshalledObject = new <#=this.UnmarshallerBaseName #>();
-			int originalDepth = context.CurrentDepth;
+<#
+    if(this.Structure != null && this.Structure.IsEvent && !this.Structure.HasImplicitEventPayloadMembers())
+    {
+        Member eventPayloadMember = this.Structure.GetExplicitEventPayloadMember();
+        if(eventPayloadMember.ModelShape.IsString)
+        {
+#>
+            using (var sr = new StreamReader(context.Stream))
+            {
+                unmarshalledObject.<#=eventPayloadMember.PropertyName#> = sr.ReadToEnd();
+            }
+<#
+        }
+        else
+        {
+#>
+            unmarshalledObject.<#=eventPayloadMember.PropertyName#> = context.Stream as MemoryStream;
+<#
+        }
+    }
+#>
+<#
+     //HasImplicitEventPayloadMembers means that the structure does not have a member with the EventPayload trait
+     if(this.Structure != null && (this.Structure.HasImplicitEventPayloadMembers() || !this.Structure.IsEvent))
+     {
+#>
+            int originalDepth = context.CurrentDepth;
             int targetDepth = originalDepth + 1;
             
             if (context.IsStartOfDocument) 
@@ -35,7 +62,10 @@ namespace <#=this.Config.Namespace #>.Model.Internal.MarshallTransformations
                 if (context.IsStartElement || context.IsAttribute)
                 {
 <#
-    if(this.Structure != null)
+    }
+#>
+<#
+    if(this.Structure != null && (!this.Structure.IsEvent ||  this.Structure.HasImplicitEventPayloadMembers()))
     {
         // For every member, generate code to add the unmarshalled member to the response object
         foreach (var member in this.Structure.Members)
@@ -46,6 +76,10 @@ namespace <#=this.Config.Namespace #>.Model.Internal.MarshallTransformations
 #>
 					if (context.TestExpression("<#=member.MarshallName#>/<#=listMarshallName#>", targetDepth))
 					{
+                        if (unmarshalledObject.<#=member.PropertyName#> == null)
+                        {
+                            unmarshalledObject.<#=member.PropertyName#> = new <#=member.DetermineType()#>();
+                        }
 						var unmarshaller = <#= member.DetermineTypeUnmarshallerInstantiate() #>;
 						unmarshalledObject.<#=member.PropertyName#>.Add(unmarshaller.Unmarshall(context));
 						continue;
@@ -54,8 +88,19 @@ namespace <#=this.Config.Namespace #>.Model.Internal.MarshallTransformations
 			}
 			else
 			{
+            if(!member.IsXmlAttribute)
+            {
 #>
 					if (context.TestExpression("<#=member.MarshallName#>", targetDepth))
+<#
+            }
+            else
+            {
+#>
+                    if (context.TestExpression("@<#=member.MarshallName#>", targetDepth - 1))
+<#
+            }
+#>
 					{
 						var unmarshaller = <#= member.DetermineTypeUnmarshallerInstantiate() #>;
 						unmarshalledObject.<#=member.PropertyName#> = unmarshaller.Unmarshall(context);
@@ -73,6 +118,16 @@ namespace <#=this.Config.Namespace #>.Model.Internal.MarshallTransformations
                 }
             }          
             return unmarshalledObject;
+        }
+        
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>  
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public <#=this.UnmarshallerBaseName #> Unmarshall(JsonUnmarshallerContext context)
+        {
+            throw new NotImplementedException();
         }
 
 <#

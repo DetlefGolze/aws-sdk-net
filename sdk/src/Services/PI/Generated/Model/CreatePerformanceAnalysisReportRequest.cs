@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.PI.Model
         private string _identifier;
         private ServiceType _serviceType;
         private DateTime? _startTime;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property EndTime. 
@@ -67,8 +68,8 @@ namespace Amazon.PI.Model
         /// </para>
         ///  
         /// <para>
-        /// To use an Amazon RDS instance as a data source, you specify its <code>DbiResourceId</code>
-        /// value. For example, specify <code>db-ADECBTYHKTSAUMUZQYPDS2GW4A</code>.
+        /// To use an Amazon RDS instance as a data source, you specify its <c>DbiResourceId</c>
+        /// value. For example, specify <c>db-ADECBTYHKTSAUMUZQYPDS2GW4A</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]
@@ -88,7 +89,7 @@ namespace Amazon.PI.Model
         /// Gets and sets the property ServiceType. 
         /// <para>
         /// The Amazon Web Services service for which Performance Insights will return metrics.
-        /// Valid value is <code>RDS</code>.
+        /// Valid value is <c>RDS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -139,7 +140,7 @@ namespace Amazon.PI.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

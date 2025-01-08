@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Account.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.Account.Model
     public partial class ListRegionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Region> _regions = new List<Region>();
+        private List<Region> _regions = AWSConfigs.InitializeCollections ? new List<Region>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If there is more data to be returned, this will be populated. It should be passed
-        /// into the <code>next-token</code> request parameter of <code>list-regions</code>.
+        /// into the <c>next-token</c> request parameter of <c>list-regions</c>.
         /// </para>
         /// </summary>
         public string NextToken
@@ -59,7 +60,7 @@ namespace Amazon.Account.Model
         /// Gets and sets the property Regions. 
         /// <para>
         /// This is a list of Regions for a given account, or if the filtered parameter was used,
-        /// a list of Regions that match the filter criteria set in the <code>filter</code> parameter.
+        /// a list of Regions that match the filter criteria set in the <c>filter</c> parameter.
         /// </para>
         /// </summary>
         public List<Region> Regions
@@ -71,7 +72,7 @@ namespace Amazon.Account.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

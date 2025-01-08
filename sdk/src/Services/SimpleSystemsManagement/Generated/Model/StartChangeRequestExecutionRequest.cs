@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -42,11 +43,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         private string _clientToken;
         private string _documentName;
         private string _documentVersion;
-        private Dictionary<string, List<string>> _parameters = new Dictionary<string, List<string>>();
-        private List<Runbook> _runbooks = new List<Runbook>();
+        private Dictionary<string, List<string>> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
+        private List<Runbook> _runbooks = AWSConfigs.InitializeCollections ? new List<Runbook>() : null;
         private DateTime? _scheduledEndTime;
         private DateTime? _scheduledTime;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoApprove. 
@@ -56,16 +57,16 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>AutoApprovable</code> is enabled in a change template, then setting <code>AutoApprove</code>
-        /// to <code>true</code> in <code>StartChangeRequestExecution</code> creates a change
-        /// request that bypasses approver review.
+        /// If <c>AutoApprovable</c> is enabled in a change template, then setting <c>AutoApprove</c>
+        /// to <c>true</c> in <c>StartChangeRequestExecution</c> creates a change request that
+        /// bypasses approver review.
         /// </para>
         ///  <note> 
         /// <para>
         /// Change Calendar restrictions are not bypassed in this scenario. If the state of an
-        /// associated calendar is <code>CLOSED</code>, change freeze approvers must still grant
-        /// permission for this change request to run. If they don't, the change won't be processed
-        /// until the calendar state is again <code>OPEN</code>. 
+        /// associated calendar is <c>CLOSED</c>, change freeze approvers must still grant permission
+        /// for this change request to run. If they don't, the change won't be processed until
+        /// the calendar state is again <c>OPEN</c>. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -194,7 +195,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -219,7 +220,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Runbooks property is set
         internal bool IsSetRunbooks()
         {
-            return this._runbooks != null && this._runbooks.Count > 0; 
+            return this._runbooks != null && (this._runbooks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -276,11 +277,11 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Key=Environment,Value=Production</code> 
+        ///  <c>Key=Environment,Value=Production</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Key=Region,Value=us-east-2</code> 
+        ///  <c>Key=Region,Value=us-east-2</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -294,7 +295,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

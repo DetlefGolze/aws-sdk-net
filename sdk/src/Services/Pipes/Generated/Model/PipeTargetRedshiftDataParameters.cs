@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
     /// These are custom parameters to be used when the target is a Amazon Redshift cluster
-    /// to invoke the Amazon Redshift Data API ExecuteStatement.
+    /// to invoke the Amazon Redshift Data API BatchExecuteStatement.
     /// </summary>
     public partial class PipeTargetRedshiftDataParameters
     {
         private string _database;
         private string _dbUser;
         private string _secretManagerArn;
-        private List<string> _sqls = new List<string>();
+        private List<string> _sqls = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _statementName;
         private bool? _withEvent;
 
@@ -83,7 +84,7 @@ namespace Amazon.Pipes.Model
         /// Gets and sets the property SecretManagerArn. 
         /// <para>
         /// The name or ARN of the secret that enables access to the database. Required when authenticating
-        /// using SageMaker.
+        /// using Secrets Manager.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1600)]
@@ -105,7 +106,7 @@ namespace Amazon.Pipes.Model
         /// The SQL statement text to run.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1)]
+        [AWSProperty(Required=true, Min=1, Max=40)]
         public List<string> Sqls
         {
             get { return this._sqls; }
@@ -115,7 +116,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Sqls property is set
         internal bool IsSetSqls()
         {
-            return this._sqls != null && this._sqls.Count > 0; 
+            return this._sqls != null && (this._sqls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

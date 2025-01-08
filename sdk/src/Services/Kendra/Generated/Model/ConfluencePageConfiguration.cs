@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,21 +34,21 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class ConfluencePageConfiguration
     {
-        private List<ConfluencePageToIndexFieldMapping> _pageFieldMappings = new List<ConfluencePageToIndexFieldMapping>();
+        private List<ConfluencePageToIndexFieldMapping> _pageFieldMappings = AWSConfigs.InitializeCollections ? new List<ConfluencePageToIndexFieldMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property PageFieldMappings. 
         /// <para>
         /// Maps attributes or field names of Confluence pages to Amazon Kendra index field names.
-        /// To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence
+        /// To create custom fields, use the <c>UpdateIndex</c> API before you map to Confluence
         /// fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Confluence data source field names must exist in your
         /// Confluence custom metadata.
         /// </para>
         ///  
         /// <para>
-        /// If you specify the <code>PageFieldMappings</code> parameter, you must specify at least
-        /// one field mapping.
+        /// If you specify the <c>PageFieldMappings</c> parameter, you must specify at least one
+        /// field mapping.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=12)]
@@ -60,7 +61,7 @@ namespace Amazon.Kendra.Model
         // Check to see if PageFieldMappings property is set
         internal bool IsSetPageFieldMappings()
         {
-            return this._pageFieldMappings != null && this._pageFieldMappings.Count > 0; 
+            return this._pageFieldMappings != null && (this._pageFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

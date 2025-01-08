@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Information about a body part detected by <a>DetectProtectiveEquipment</a> that contains
-    /// PPE. An array of <code>ProtectiveEquipmentBodyPart</code> objects is returned for
-    /// each person detected by <code>DetectProtectiveEquipment</code>.
+    /// PPE. An array of <c>ProtectiveEquipmentBodyPart</c> objects is returned for each person
+    /// detected by <c>DetectProtectiveEquipment</c>.
     /// </summary>
     public partial class ProtectiveEquipmentBodyPart
     {
         private float? _confidence;
-        private List<EquipmentDetection> _equipmentDetections = new List<EquipmentDetection>();
+        private List<EquipmentDetection> _equipmentDetections = AWSConfigs.InitializeCollections ? new List<EquipmentDetection>() : null;
         private BodyPart _name;
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if EquipmentDetections property is set
         internal bool IsSetEquipmentDetections()
         {
-            return this._equipmentDetections != null && this._equipmentDetections.Count > 0; 
+            return this._equipmentDetections != null && (this._equipmentDetections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

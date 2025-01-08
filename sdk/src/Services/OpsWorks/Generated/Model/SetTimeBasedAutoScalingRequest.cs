@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property AutoScalingSchedule. 
         /// <para>
-        /// An <code>AutoScalingSchedule</code> with the instance schedule.
+        /// An <c>AutoScalingSchedule</c> with the instance schedule.
         /// </para>
         /// </summary>
         public WeeklyAutoScalingSchedule AutoScalingSchedule

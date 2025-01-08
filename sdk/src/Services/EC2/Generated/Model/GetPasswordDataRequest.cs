@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// The Windows password is generated at boot by the <code>EC2Config</code> service or
-    /// <code>EC2Launch</code> scripts (Windows Server 2016 and later). This usually only
-    /// happens the first time an instance is launched. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_WinAMI.html">EC2Config</a>
-    /// and <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2launch.html">EC2Launch</a>
+    /// The Windows password is generated at boot by the <c>EC2Config</c> service or <c>EC2Launch</c>
+    /// scripts (Windows Server 2016 and later). This usually only happens the first time
+    /// an instance is launched. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingConfig_WinAMI.html">EC2Config</a>
+    /// and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2launch.html">EC2Launch</a>
     /// in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     ///  
     /// <para>
-    /// For the <code>EC2Config</code> service, the password is not generated for rebundled
-    /// AMIs unless <code>Ec2SetPassword</code> is enabled before bundling.
+    /// For the <c>EC2Config</c> service, the password is not generated for rebundled AMIs
+    /// unless <c>Ec2SetPassword</c> is enabled before bundling.
     /// </para>
     ///  
     /// <para>

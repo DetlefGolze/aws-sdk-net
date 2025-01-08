@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// <summary>
         /// Gets and sets the property Language. 
         /// <para>
-        /// The language used to define the entity. <code>GRAPHQL</code> is the only valid value.
+        /// The language used to define the entity. <c>GRAPHQL</c> is the only valid value.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

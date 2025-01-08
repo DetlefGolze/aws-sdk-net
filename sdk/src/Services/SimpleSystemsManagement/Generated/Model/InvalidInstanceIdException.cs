@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Amazon Web Services Systems Manager Agent(SSM Agent) isn't running. Verify that SSM
+    /// Amazon Web Services Systems Manager Agent (SSM Agent) isn't running. Verify that SSM
     /// Agent is running.
     /// </para>
     ///  </li> <li> 
@@ -46,9 +47,9 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The managed node isn't in valid state. Valid states are: <code>Running</code>, <code>Pending</code>,
-    /// <code>Stopped</code>, and <code>Stopping</code>. Invalid states are: <code>Shutting-down</code>
-    /// and <code>Terminated</code>.
+    /// The managed node isn't in a valid state. Valid states are: <c>Running</c>, <c>Pending</c>,
+    /// <c>Stopped</c>, and <c>Stopping</c>. Invalid states are: <c>Shutting-down</c> and
+    /// <c>Terminated</c>.
     /// </para>
     ///  </li> </ul>
     /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property CreateStatus. 
         /// <para>
-        /// Retrieves the status of the configuration operation for an account in Amazon Security
-        /// Lake.
+        /// Retrieves the status of the <c>CreateDatalake</c> API call for an account in Amazon
+        /// Security Lake.
         /// </para>
         /// </summary>
         public DataLakeStatus CreateStatus
@@ -176,8 +177,7 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property UpdateStatus. 
         /// <para>
-        /// The status of the last <code>UpdateDataLake </code>or <code>DeleteDataLake</code>
-        /// API request.
+        /// The status of the last <c>UpdateDataLake </c>or <c>DeleteDataLake</c> API request.
         /// </para>
         /// </summary>
         public DataLakeUpdateStatus UpdateStatus

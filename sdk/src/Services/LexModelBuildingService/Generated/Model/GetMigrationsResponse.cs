@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -33,15 +34,14 @@ namespace Amazon.LexModelBuildingService.Model
     /// </summary>
     public partial class GetMigrationsResponse : AmazonWebServiceResponse
     {
-        private List<MigrationSummary> _migrationSummaries = new List<MigrationSummary>();
+        private List<MigrationSummary> _migrationSummaries = AWSConfigs.InitializeCollections ? new List<MigrationSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property MigrationSummaries. 
         /// <para>
         /// An array of summaries for migrations from Amazon Lex V1 to Amazon Lex V2. To see details
-        /// of the migration, use the <code>migrationId</code> from the summary in a call to the
-        /// operation.
+        /// of the migration, use the <c>migrationId</c> from the summary in a call to the operation.
         /// </para>
         /// </summary>
         public List<MigrationSummary> MigrationSummaries
@@ -53,7 +53,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if MigrationSummaries property is set
         internal bool IsSetMigrationSummaries()
         {
-            return this._migrationSummaries != null && this._migrationSummaries.Count > 0; 
+            return this._migrationSummaries != null && (this._migrationSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

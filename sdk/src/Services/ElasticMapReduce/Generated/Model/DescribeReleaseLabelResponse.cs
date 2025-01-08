@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -33,17 +34,16 @@ namespace Amazon.ElasticMapReduce.Model
     /// </summary>
     public partial class DescribeReleaseLabelResponse : AmazonWebServiceResponse
     {
-        private List<SimplifiedApplication> _applications = new List<SimplifiedApplication>();
-        private List<OSRelease> _availableOSReleases = new List<OSRelease>();
+        private List<SimplifiedApplication> _applications = AWSConfigs.InitializeCollections ? new List<SimplifiedApplication>() : null;
+        private List<OSRelease> _availableOSReleases = AWSConfigs.InitializeCollections ? new List<OSRelease>() : null;
         private string _nextToken;
         private string _releaseLabel;
 
         /// <summary>
         /// Gets and sets the property Applications. 
         /// <para>
-        /// The list of applications available for the target release label. <code>Name</code>
-        /// is the name of the application. <code>Version</code> is the concise version of the
-        /// application.
+        /// The list of applications available for the target release label. <c>Name</c> is the
+        /// name of the application. <c>Version</c> is the concise version of the application.
         /// </para>
         /// </summary>
         public List<SimplifiedApplication> Applications
@@ -55,7 +55,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Applications property is set
         internal bool IsSetApplications()
         {
-            return this._applications != null && this._applications.Count > 0; 
+            return this._applications != null && (this._applications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if AvailableOSReleases property is set
         internal bool IsSetAvailableOSReleases()
         {
-            return this._availableOSReleases != null && this._availableOSReleases.Count > 0; 
+            return this._availableOSReleases != null && (this._availableOSReleases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

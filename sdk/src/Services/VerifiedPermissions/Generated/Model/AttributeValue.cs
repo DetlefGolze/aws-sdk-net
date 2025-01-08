@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.VerifiedPermissions.Model
     ///  
     /// <para>
     /// This data type is used as a member of the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_ContextDefinition.html">ContextDefinition</a>
-    /// structure which is uses as a request parameter for the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html">IsAuthorized</a>
+    /// structure which is uses as a request parameter for the <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorized.html">IsAuthorized</a>,
+    /// <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_BatchIsAuthorized.html">BatchIsAuthorized</a>,
     /// and <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_IsAuthorizedWithToken.html">IsAuthorizedWithToken</a>
     /// operations.
     /// </para>
@@ -47,21 +49,23 @@ namespace Amazon.VerifiedPermissions.Model
     public partial class AttributeValue
     {
         private bool? _boolean;
+        private string _decimal;
         private EntityIdentifier _entityIdentifier;
+        private string _ipaddr;
         private long? _long;
-        private Dictionary<string, AttributeValue> _record = new Dictionary<string, AttributeValue>();
-        private List<AttributeValue> _set = new List<AttributeValue>();
+        private Dictionary<string, AttributeValue> _record = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
+        private List<AttributeValue> _set = AWSConfigs.InitializeCollections ? new List<AttributeValue>() : null;
         private string _string;
 
         /// <summary>
         /// Gets and sets the property Boolean. 
         /// <para>
-        /// An attribute value of <a href="https://docs.cedarpolicy.com/syntax-datatypes.html#boolean">Boolean</a>
+        /// An attribute value of <a href="https://docs.cedarpolicy.com/policies/syntax-datatypes.html#boolean">Boolean</a>
         /// type.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>{"boolean": true}</code> 
+        /// Example: <c>{"boolean": true}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -78,14 +82,38 @@ namespace Amazon.VerifiedPermissions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Decimal. 
+        /// <para>
+        /// An attribute value of <a href="https://docs.cedarpolicy.com/policies/syntax-datatypes.html#datatype-decimal">decimal</a>
+        /// type.
+        /// </para>
+        ///  
+        /// <para>
+        /// Example: <c>{"decimal": "1.1"}</c> 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=3, Max=23)]
+        public string Decimal
+        {
+            get { return this._decimal; }
+            set { this._decimal = value; }
+        }
+
+        // Check to see if Decimal property is set
+        internal bool IsSetDecimal()
+        {
+            return this._decimal != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EntityIdentifier. 
         /// <para>
         /// An attribute value of type <a href="https://docs.aws.amazon.com/verifiedpermissions/latest/apireference/API_EntityIdentifier.html">EntityIdentifier</a>.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>"entityIdentifier": { "entityId": "&lt;id&gt;", "entityType": "&lt;entity
-        /// type&gt;"}</code> 
+        /// Example: <c>"entityIdentifier": { "entityId": "&lt;id&gt;", "entityType": "&lt;entity
+        /// type&gt;"}</c> 
         /// </para>
         /// </summary>
         public EntityIdentifier EntityIdentifier
@@ -101,14 +129,38 @@ namespace Amazon.VerifiedPermissions.Model
         }
 
         /// <summary>
-        /// Gets and sets the property Long. 
+        /// Gets and sets the property Ipaddr. 
         /// <para>
-        /// An attribute value of <a href="https://docs.cedarpolicy.com/syntax-datatypes.html#long">Long</a>
+        /// An attribute value of <a href="https://docs.cedarpolicy.com/policies/syntax-datatypes.html#datatype-ipaddr">ipaddr</a>
         /// type.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>{"long": 0}</code> 
+        /// Example: <c>{"ip": "192.168.1.100"}</c> 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=1, Max=44)]
+        public string Ipaddr
+        {
+            get { return this._ipaddr; }
+            set { this._ipaddr = value; }
+        }
+
+        // Check to see if Ipaddr property is set
+        internal bool IsSetIpaddr()
+        {
+            return this._ipaddr != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Long. 
+        /// <para>
+        /// An attribute value of <a href="https://docs.cedarpolicy.com/policies/syntax-datatypes.html#long">Long</a>
+        /// type.
+        /// </para>
+        ///  
+        /// <para>
+        /// Example: <c>{"long": 0}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -127,12 +179,12 @@ namespace Amazon.VerifiedPermissions.Model
         /// <summary>
         /// Gets and sets the property Record. 
         /// <para>
-        /// An attribute value of <a href="https://docs.cedarpolicy.com/syntax-datatypes.html#record">Record</a>
+        /// An attribute value of <a href="https://docs.cedarpolicy.com/policies/syntax-datatypes.html#record">Record</a>
         /// type.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>{"record": { "keyName": {} } }</code> 
+        /// Example: <c>{"record": { "keyName": {} } }</c> 
         /// </para>
         /// </summary>
         public Dictionary<string, AttributeValue> Record
@@ -144,18 +196,18 @@ namespace Amazon.VerifiedPermissions.Model
         // Check to see if Record property is set
         internal bool IsSetRecord()
         {
-            return this._record != null && this._record.Count > 0; 
+            return this._record != null && (this._record.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Set. 
         /// <para>
-        /// An attribute value of <a href="https://docs.cedarpolicy.com/syntax-datatypes.html#set">Set</a>
+        /// An attribute value of <a href="https://docs.cedarpolicy.com/policies/syntax-datatypes.html#set">Set</a>
         /// type.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>{"set": [ {} ] }</code> 
+        /// Example: <c>{"set": [ {} ] }</c> 
         /// </para>
         /// </summary>
         public List<AttributeValue> Set
@@ -167,18 +219,18 @@ namespace Amazon.VerifiedPermissions.Model
         // Check to see if Set property is set
         internal bool IsSetSet()
         {
-            return this._set != null && this._set.Count > 0; 
+            return this._set != null && (this._set.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property String. 
         /// <para>
-        /// An attribute value of <a href="https://docs.cedarpolicy.com/syntax-datatypes.html#string">String</a>
+        /// An attribute value of <a href="https://docs.cedarpolicy.com/policies/syntax-datatypes.html#string">String</a>
         /// type.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>{"string": "abc"}</code> 
+        /// Example: <c>{"string": "abc"}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

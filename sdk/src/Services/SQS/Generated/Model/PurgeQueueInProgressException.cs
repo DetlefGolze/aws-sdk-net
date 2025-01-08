@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
-    /// Indicates that the specified queue previously received a <code>PurgeQueue</code> request
+    /// Indicates that the specified queue previously received a <c>PurgeQueue</c> request
     /// within the last 60 seconds (the time it can take to delete the messages in the queue).
     /// </summary>
     #if !NETSTANDARD

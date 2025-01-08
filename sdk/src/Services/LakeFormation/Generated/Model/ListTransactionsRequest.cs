@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -108,7 +109,7 @@ namespace Amazon.LakeFormation.Model
         /// Gets and sets the property StatusFilter. 
         /// <para>
         ///  A filter indicating the status of transactions to return. Options are ALL | COMPLETED
-        /// | COMMITTED | ABORTED | ACTIVE. The default is <code>ALL</code>.
+        /// | COMMITTED | ABORTED | ACTIVE. The default is <c>ALL</c>.
         /// </para>
         /// </summary>
         public TransactionStatusFilter StatusFilter

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -40,10 +41,10 @@ namespace Amazon.SecurityHub.Model
         private AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails _filter;
         private string _id;
         private int? _noncurrentVersionExpirationInDays;
-        private List<AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails> _noncurrentVersionTransitions = new List<AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails>();
+        private List<AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails> _noncurrentVersionTransitions = AWSConfigs.InitializeCollections ? new List<AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails>() : null;
         private string _prefix;
         private string _status;
-        private List<AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails> _transitions = new List<AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails>();
+        private List<AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails> _transitions = AWSConfigs.InitializeCollections ? new List<AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails>() : null;
 
         /// <summary>
         /// Gets and sets the property AbortIncompleteMultipartUpload. 
@@ -71,9 +72,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string ExpirationDate
@@ -110,13 +110,13 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property ExpiredObjectDeleteMarker. 
         /// <para>
         /// Whether Amazon S3 removes a delete marker that has no noncurrent versions. If set
-        /// to <code>true</code>, the delete marker is expired. If set to <code>false</code>,
-        /// the policy takes no action.
+        /// to <c>true</c>, the delete marker is expired. If set to <c>false</c>, the policy takes
+        /// no action.
         /// </para>
         ///  
         /// <para>
-        /// If you provide <code>ExpiredObjectDeleteMarker</code>, you cannot provide <code>ExpirationInDays</code>
-        /// or <code>ExpirationDate</code>.
+        /// If you provide <c>ExpiredObjectDeleteMarker</c>, you cannot provide <c>ExpirationInDays</c>
+        /// or <c>ExpirationDate</c>.
         /// </para>
         /// </summary>
         public bool ExpiredObjectDeleteMarker
@@ -202,7 +202,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if NoncurrentVersionTransitions property is set
         internal bool IsSetNoncurrentVersionTransitions()
         {
-            return this._noncurrentVersionTransitions != null && this._noncurrentVersionTransitions.Count > 0; 
+            return this._noncurrentVersionTransitions != null && (this._noncurrentVersionTransitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Transitions property is set
         internal bool IsSetTransitions()
         {
-            return this._transitions != null && this._transitions.Count > 0; 
+            return this._transitions != null && (this._transitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

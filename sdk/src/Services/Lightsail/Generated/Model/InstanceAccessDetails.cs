@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -35,9 +36,10 @@ namespace Amazon.Lightsail.Model
     {
         private string _certKey;
         private DateTime? _expiresAt;
-        private List<HostKeyAttributes> _hostKeys = new List<HostKeyAttributes>();
+        private List<HostKeyAttributes> _hostKeys = AWSConfigs.InitializeCollections ? new List<HostKeyAttributes>() : null;
         private string _instanceName;
         private string _ipAddress;
+        private List<string> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _password;
         private PasswordData _passwordData;
         private string _privateKey;
@@ -48,7 +50,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property CertKey. 
         /// <para>
         /// For SSH access, the public key to use when accessing your instance For OpenSSH clients
-        /// (e.g., command line SSH), you should save this value to <code>tempkey-cert.pub</code>.
+        /// (command line SSH), you should save this value to <c>tempkey-cert.pub</c>.
         /// </para>
         /// </summary>
         public string CertKey
@@ -96,7 +98,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if HostKeys property is set
         internal bool IsSetHostKeys()
         {
-            return this._hostKeys != null && this._hostKeys.Count > 0; 
+            return this._hostKeys != null && (this._hostKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -136,6 +138,24 @@ namespace Amazon.Lightsail.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Ipv6Addresses. 
+        /// <para>
+        /// The IPv6 address of the Amazon Lightsail instance.
+        /// </para>
+        /// </summary>
+        public List<string> Ipv6Addresses
+        {
+            get { return this._ipv6Addresses; }
+            set { this._ipv6Addresses = value; }
+        }
+
+        // Check to see if Ipv6Addresses property is set
+        internal bool IsSetIpv6Addresses()
+        {
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Password. 
         /// <para>
         /// For RDP access, the password for your Amazon Lightsail instance. Password will be
@@ -144,8 +164,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you create an instance using any key pair other than the default (<code>LightsailDefaultKeyPair</code>),
-        /// <code>password</code> will always be an empty string.
+        /// If you create an instance using any key pair other than the default (<c>LightsailDefaultKeyPair</c>),
+        /// <c>password</c> will always be an empty string.
         /// </para>
         ///  
         /// <para>
@@ -171,8 +191,8 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property PasswordData. 
         /// <para>
         /// For a Windows Server-based instance, an object with the data you can use to retrieve
-        /// your password. This is only needed if <code>password</code> is empty and the instance
-        /// is not new (and therefore the password is not ready yet). When you create an instance,
+        /// your password. This is only needed if <c>password</c> is empty and the instance is
+        /// not new (and therefore the password is not ready yet). When you create an instance,
         /// it can take up to 15 minutes for the instance to be ready.
         /// </para>
         /// </summary>
@@ -191,8 +211,8 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property PrivateKey. 
         /// <para>
-        /// For SSH access, the temporary private key. For OpenSSH clients (e.g., command line
-        /// SSH), you should save this value to <code>tempkey</code>).
+        /// For SSH access, the temporary private key. For OpenSSH clients (command line SSH),
+        /// you should save this value to <c>tempkey</c>).
         /// </para>
         /// </summary>
         public string PrivateKey

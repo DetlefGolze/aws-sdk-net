@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,10 +38,21 @@ namespace Amazon.EC2.Model
     /// For more information about tags, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tag
     /// your Amazon EC2 resources</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// We strongly recommend using only paginated requests. Unpaginated requests are susceptible
+    /// to throttling and timeouts.
+    /// </para>
+    ///  </important> <note> 
+    /// <para>
+    /// The order of the elements in the response, including those within nested structures,
+    /// might vary. Applications should not assume the elements appear in a particular order.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeTagsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -52,7 +64,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates DescribeTagsRequest with the parameterized properties
         /// </summary>
-        /// <param name="filters">The filters. <ul> <li>  <code>key</code> - The tag key. </li> <li>  <code>resource-id</code> - The ID of the resource. </li> <li>  <code>resource-type</code> - The resource type (<code>customer-gateway</code> | <code>dedicated-host</code> | <code>dhcp-options</code> | <code>elastic-ip</code> | <code>fleet</code> | <code>fpga-image</code> | <code>host-reservation</code> | <code>image</code> | <code>instance</code> | <code>internet-gateway</code> | <code>key-pair</code> | <code>launch-template</code> | <code>natgateway</code> | <code>network-acl</code> | <code>network-interface</code> | <code>placement-group</code> | <code>reserved-instances</code> | <code>route-table</code> | <code>security-group</code> | <code>snapshot</code> | <code>spot-instances-request</code> | <code>subnet</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-endpoint</code> | <code>vpc-endpoint-service</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>). </li> <li>  <code>tag</code>:&lt;key&gt; - The key/value combination of the tag. For example, specify "tag:Owner" for the filter name and "TeamA" for the filter value to find resources with the tag "Owner=TeamA". </li> <li>  <code>value</code> - The tag value. </li> </ul></param>
+        /// <param name="filters">The filters. <ul> <li>  <c>key</c> - The tag key. </li> <li>  <c>resource-id</c> - The ID of the resource. </li> <li>  <c>resource-type</c> - The resource type. For a list of possible values, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TagSpecification.html">TagSpecification</a>. </li> <li>  <c>tag</c>:&lt;key&gt; - The key/value combination of the tag. For example, specify "tag:Owner" for the filter name and "TeamA" for the filter value to find resources with the tag "Owner=TeamA". </li> <li>  <c>value</c> - The tag value. </li> </ul></param>
         public DescribeTagsRequest(List<Filter> filters)
         {
             _filters = filters;
@@ -65,33 +77,25 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>key</code> - The tag key.
+        ///  <c>key</c> - The tag key.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>resource-id</code> - The ID of the resource.
+        ///  <c>resource-id</c> - The ID of the resource.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>resource-type</code> - The resource type (<code>customer-gateway</code> | <code>dedicated-host</code>
-        /// | <code>dhcp-options</code> | <code>elastic-ip</code> | <code>fleet</code> | <code>fpga-image</code>
-        /// | <code>host-reservation</code> | <code>image</code> | <code>instance</code> | <code>internet-gateway</code>
-        /// | <code>key-pair</code> | <code>launch-template</code> | <code>natgateway</code> |
-        /// <code>network-acl</code> | <code>network-interface</code> | <code>placement-group</code>
-        /// | <code>reserved-instances</code> | <code>route-table</code> | <code>security-group</code>
-        /// | <code>snapshot</code> | <code>spot-instances-request</code> | <code>subnet</code>
-        /// | <code>volume</code> | <code>vpc</code> | <code>vpc-endpoint</code> | <code>vpc-endpoint-service</code>
-        /// | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>).
+        ///  <c>resource-type</c> - The resource type. For a list of possible values, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TagSpecification.html">TagSpecification</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of the tag. For example,
-        /// specify "tag:Owner" for the filter name and "TeamA" for the filter value to find resources
+        ///  <c>tag</c>:&lt;key&gt; - The key/value combination of the tag. For example, specify
+        /// "tag:Owner" for the filter name and "TeamA" for the filter value to find resources
         /// with the tag "Owner=TeamA".
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>value</code> - The tag value.
+        ///  <c>value</c> - The tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -104,7 +108,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

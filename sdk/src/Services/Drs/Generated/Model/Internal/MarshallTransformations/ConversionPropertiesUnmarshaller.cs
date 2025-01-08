@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Drs.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Drs.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ConversionProperties Unmarshall(JsonUnmarshallerContext context)
         {
+            ConversionProperties unmarshalledObject = new ConversionProperties();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ConversionProperties unmarshalledObject = new ConversionProperties();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,12 @@ namespace Amazon.Drs.Model.Internal.MarshallTransformations
                     unmarshalledObject.VolumeToConversionMap = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("volumeToProductCodes", targetDepth))
+                {
+                    var unmarshaller = new DictionaryUnmarshaller<string, List<ProductCode>, StringUnmarshaller, ListUnmarshaller<ProductCode, ProductCodeUnmarshaller>>(StringUnmarshaller.Instance, new ListUnmarshaller<ProductCode, ProductCodeUnmarshaller>(ProductCodeUnmarshaller.Instance));
+                    unmarshalledObject.VolumeToProductCodes = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("volumeToVolumeSize", targetDepth))
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, long, StringUnmarshaller, LongUnmarshaller>(StringUnmarshaller.Instance, LongUnmarshaller.Instance);
@@ -95,7 +103,6 @@ namespace Amazon.Drs.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

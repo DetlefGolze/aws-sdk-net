@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <para>
         /// The version of the application to which you want to add the output configuration.
         /// You can use the <a>DescribeApplication</a> operation to get the current application
-        /// version. If the version specified is not the current version, the <code>ConcurrentModificationException</code>
+        /// version. If the version specified is not the current version, the <c>ConcurrentModificationException</c>
         /// is returned. 
         /// </para>
         /// </summary>

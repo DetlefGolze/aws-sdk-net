@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAlertManagerDefinition operation.
-    /// Deletes an alert manager definition.
+    /// Deletes the alert manager definition from a workspace.
     /// </summary>
     public partial class DeleteAlertManagerDefinitionRequest : AmazonPrometheusServiceRequest
     {
@@ -40,8 +41,8 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency
-        /// of the request.
+        /// A unique identifier that you can provide to ensure the idempotency of the request.
+        /// Case-sensitive.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -60,7 +61,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property WorkspaceId. 
         /// <para>
-        /// The ID of the workspace in which to delete the alert manager definition.
+        /// The ID of the workspace to delete the alert manager definition from.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

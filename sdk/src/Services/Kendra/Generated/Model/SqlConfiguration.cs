@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -55,8 +56,8 @@ namespace Amazon.Kendra.Model
         /// </para>
         ///  
         /// <para>
-        /// For MySQL databases, you must enable the <code>ansi_quotes</code> option when you
-        /// set this field to <code>DOUBLE_QUOTES</code>.
+        /// For MySQL databases, you must enable the <c>ansi_quotes</c> option when you set this
+        /// field to <c>DOUBLE_QUOTES</c>.
         /// </para>
         /// </summary>
         public QueryIdentifiersEnclosingOption QueryIdentifiersEnclosingOption

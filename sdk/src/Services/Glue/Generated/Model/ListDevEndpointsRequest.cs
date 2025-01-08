@@ -26,26 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the ListDevEndpoints operation.
-    /// Retrieves the names of all <code>DevEndpoint</code> resources in this Amazon Web Services
+    /// Retrieves the names of all <c>DevEndpoint</c> resources in this Amazon Web Services
     /// account, or the resources with the specified tag. This operation allows you to see
     /// which resources are available in your account, and their names.
     /// 
     ///  
     /// <para>
-    /// This operation takes the optional <code>Tags</code> field, which you can use as a
-    /// filter on the response so that tagged resources can be retrieved as a group. If you
-    /// choose to use tags filtering, only resources with the tag are retrieved.
+    /// This operation takes the optional <c>Tags</c> field, which you can use as a filter
+    /// on the response so that tagged resources can be retrieved as a group. If you choose
+    /// to use tags filtering, only resources with the tag are retrieved.
     /// </para>
     /// </summary>
     public partial class ListDevEndpointsRequest : AmazonGlueRequest
     {
         private int? _maxResults;
         private string _nextToken;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -100,7 +101,7 @@ namespace Amazon.Glue.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

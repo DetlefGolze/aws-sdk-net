@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAdditionalEncryptionContext())
@@ -111,6 +113,12 @@ namespace Amazon.WorkSpacesWeb.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("customerManagedKey");
                     context.Writer.Write(publicRequest.CustomerManagedKey);
+                }
+
+                if(publicRequest.IsSetDeepLinkAllowed())
+                {
+                    context.Writer.WritePropertyName("deepLinkAllowed");
+                    context.Writer.Write(publicRequest.DeepLinkAllowed);
                 }
 
                 if(publicRequest.IsSetDisconnectTimeoutInMinutes())

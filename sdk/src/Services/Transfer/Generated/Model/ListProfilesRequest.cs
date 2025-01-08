@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the ListProfiles operation.
     /// Returns a list of the profiles for your system. If you want to limit the results to
-    /// a certain number, supply a value for the <code>MaxResults</code> parameter. If you
-    /// ran the command previously and received a value for <code>NextToken</code>, you can
-    /// supply that value to continue listing profiles from where you left off.
+    /// a certain number, supply a value for the <c>MaxResults</c> parameter. If you ran the
+    /// command previously and received a value for <c>NextToken</c>, you can supply that
+    /// value to continue listing profiles from where you left off.
     /// </summary>
     public partial class ListProfilesRequest : AmazonTransferRequest
     {
@@ -44,7 +45,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of profiles to return.
+        /// The maximum number of items to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -63,9 +64,9 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When there are additional results that were not returned, a <code>NextToken</code>
-        /// parameter is returned. You can use that value for a subsequent call to <code>ListProfiles</code>
-        /// to continue listing results.
+        /// When there are additional results that were not returned, a <c>NextToken</c> parameter
+        /// is returned. You can use that value for a subsequent call to <c>ListProfiles</c> to
+        /// continue listing results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]
@@ -84,8 +85,8 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property ProfileType. 
         /// <para>
-        /// Indicates whether to list only <code>LOCAL</code> type profiles or only <code>PARTNER</code>
-        /// type profiles. If not supplied in the request, the command lists all types of profiles.
+        /// Indicates whether to list only <c>LOCAL</c> type profiles or only <c>PARTNER</c> type
+        /// profiles. If not supplied in the request, the command lists all types of profiles.
         /// </para>
         /// </summary>
         public ProfileType ProfileType

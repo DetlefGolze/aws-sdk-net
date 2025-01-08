@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Account.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Account.Model
         /// <summary>
         /// Gets and sets the property RegionName. 
         /// <para>
-        /// The Region code of a given Region (for example, <code>us-east-1</code>).
+        /// The Region code of a given Region (for example, <c>us-east-1</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkDocs.Model
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.WorkDocs.Model
         // Check to see if AuthenticationToken property is set
         internal bool IsSetAuthenticationToken()
         {
-            return this._authenticationToken != null;
+            return !string.IsNullOrEmpty(this._authenticationToken);
         }
 
         /// <summary>
@@ -90,8 +91,8 @@ namespace Amazon.WorkDocs.Model
         /// <summary>
         /// Gets and sets the property Fields. 
         /// <para>
-        /// A comma-separated list of values. Specify <code>NAME</code> to include the names of
-        /// the parent folders.
+        /// A comma-separated list of values. Specify <c>NAME</c> to include the names of the
+        /// parent folders.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

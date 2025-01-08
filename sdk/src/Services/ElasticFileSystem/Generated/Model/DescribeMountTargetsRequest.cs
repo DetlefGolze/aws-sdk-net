@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.ElasticFileSystem.Model
     /// 
     ///  
     /// <para>
-    /// This operation requires permissions for the <code>elasticfilesystem:DescribeMountTargets</code>
-    /// action, on either the file system ID that you specify in <code>FileSystemId</code>,
-    /// or on the file system of the mount target that you specify in <code>MountTargetId</code>.
+    /// This operation requires permissions for the <c>elasticfilesystem:DescribeMountTargets</c>
+    /// action, on either the file system ID that you specify in <c>FileSystemId</c>, or on
+    /// the file system of the mount target that you specify in <c>MountTargetId</c>.
     /// </para>
     /// </summary>
     public partial class DescribeMountTargetsRequest : AmazonElasticFileSystemRequest
@@ -57,7 +58,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Instantiates DescribeMountTargetsRequest with the parameterized properties
         /// </summary>
-        /// <param name="fileSystemId">(Optional) ID of the file system whose mount targets you want to list (String). It must be included in your request if an <code>AccessPointId</code> or <code>MountTargetId</code> is not included. Accepts either a file system ID or ARN as input.</param>
+        /// <param name="fileSystemId">(Optional) ID of the file system whose mount targets you want to list (String). It must be included in your request if an <c>AccessPointId</c> or <c>MountTargetId</c> is not included. Accepts either a file system ID or ARN as input.</param>
         public DescribeMountTargetsRequest(string fileSystemId)
         {
             _fileSystemId = fileSystemId;
@@ -67,7 +68,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property AccessPointId. 
         /// <para>
         /// (Optional) The ID of the access point whose mount targets that you want to list. It
-        /// must be included in your request if a <code>FileSystemId</code> or <code>MountTargetId</code>
+        /// must be included in your request if a <c>FileSystemId</c> or <c>MountTargetId</c>
         /// is not included in your request. Accepts either an access point ID or ARN as input.
         /// </para>
         /// </summary>
@@ -88,7 +89,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property FileSystemId. 
         /// <para>
         /// (Optional) ID of the file system whose mount targets you want to list (String). It
-        /// must be included in your request if an <code>AccessPointId</code> or <code>MountTargetId</code>
+        /// must be included in your request if an <c>AccessPointId</c> or <c>MountTargetId</c>
         /// is not included. Accepts either a file system ID or ARN as input.
         /// </para>
         /// </summary>
@@ -108,7 +109,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// (Optional) Opaque pagination token returned from a previous <code>DescribeMountTargets</code>
+        /// (Optional) Opaque pagination token returned from a previous <c>DescribeMountTargets</c>
         /// operation (String). If present, it specifies to continue the list from where the previous
         /// returning call left off.
         /// </para>
@@ -151,8 +152,8 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property MountTargetId. 
         /// <para>
         /// (Optional) ID of the mount target that you want to have described (String). It must
-        /// be included in your request if <code>FileSystemId</code> is not included. Accepts
-        /// either a mount target ID or ARN as input.
+        /// be included in your request if <c>FileSystemId</c> is not included. Accepts either
+        /// a mount target ID or ARN as input.
         /// </para>
         /// </summary>
         [AWSProperty(Min=13, Max=45)]

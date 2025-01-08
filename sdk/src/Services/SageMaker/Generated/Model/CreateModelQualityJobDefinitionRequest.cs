@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateModelQualityJobDefinition operation.
     /// Creates a definition for a job that monitors model quality and drift. For information
     /// about model monitor, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html">Amazon
-    /// SageMaker Model Monitor</a>.
+    /// SageMaker AI Model Monitor</a>.
     /// </summary>
     public partial class CreateModelQualityJobDefinitionRequest : AmazonSageMakerRequest
     {
@@ -45,7 +46,7 @@ namespace Amazon.SageMaker.Model
         private MonitoringNetworkConfig _networkConfig;
         private string _roleArn;
         private MonitoringStoppingCondition _stoppingCondition;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property JobDefinitionName. 
@@ -175,8 +176,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to
-        /// perform tasks on your behalf.
+        /// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker AI can assume
+        /// to perform tasks on your behalf.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -225,7 +226,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -45,11 +46,11 @@ namespace Amazon.APIGateway.Model
         private string _description;
         private string _documentationVersion;
         private DateTime? _lastUpdatedDate;
-        private Dictionary<string, MethodSetting> _methodSettings = new Dictionary<string, MethodSetting>();
+        private Dictionary<string, MethodSetting> _methodSettings = AWSConfigs.InitializeCollections ? new Dictionary<string, MethodSetting>() : null;
         private string _stageName;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private bool? _tracingEnabled;
-        private Dictionary<string, string> _variables = new Dictionary<string, string>();
+        private Dictionary<string, string> _variables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _webAclArn;
 
         /// <summary>
@@ -73,7 +74,8 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property CacheClusterEnabled. 
         /// <para>
-        /// Specifies whether a cache cluster is enabled for the stage.
+        /// Specifies whether a cache cluster is enabled for the stage. To activate a method-level
+        /// cache, set <c>CachingEnabled</c> to <c>true</c> for a method. 
         /// </para>
         /// </summary>
         public bool CacheClusterEnabled
@@ -255,10 +257,9 @@ namespace Amazon.APIGateway.Model
         /// <summary>
         /// Gets and sets the property MethodSettings. 
         /// <para>
-        /// A map that defines the method settings for a Stage resource. Keys (designated as <code>/{method_setting_key</code>
-        /// below) are method paths defined as <code>{resource_path}/{http_method}</code> for
-        /// an individual method override, or <code>/\*/\*</code> for overriding all methods in
-        /// the stage. 
+        /// A map that defines the method settings for a Stage resource. Keys (designated as <c>/{method_setting_key</c>
+        /// below) are method paths defined as <c>{resource_path}/{http_method}</c> for an individual
+        /// method override, or <c>/\*/\*</c> for overriding all methods in the stage. 
         /// </para>
         /// </summary>
         public Dictionary<string, MethodSetting> MethodSettings
@@ -270,7 +271,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if MethodSettings property is set
         internal bool IsSetMethodSettings()
         {
-            return this._methodSettings != null && this._methodSettings.Count > 0; 
+            return this._methodSettings != null && (this._methodSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -308,7 +309,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -333,7 +334,7 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Variables. 
         /// <para>
         /// A map that defines the stage variables for a Stage resource. Variable names can have
-        /// alphanumeric and underscore characters, and the values must match <code>[A-Za-z0-9-._~:/?#&amp;=,]+</code>.
+        /// alphanumeric and underscore characters, and the values must match <c>[A-Za-z0-9-._~:/?#&amp;=,]+</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Variables
@@ -345,7 +346,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Variables property is set
         internal bool IsSetVariables()
         {
-            return this._variables != null && this._variables.Count > 0; 
+            return this._variables != null && (this._variables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

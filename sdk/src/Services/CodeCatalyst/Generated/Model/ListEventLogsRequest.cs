@@ -26,12 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
     /// Container for the parameters to the ListEventLogs operation.
-    /// Retrieves a list of events that occurred during a specified time period in a space.
-    /// You can use these events to audit user and system activity in a space.
+    /// Retrieves a list of events that occurred during a specific time in a space. You can
+    /// use these events to audit user and system activity in a space. For more information,
+    /// see <a href="https://docs.aws.amazon.com/codecatalyst/latest/userguide/ipa-monitoring.html">Monitoring</a>
+    /// in the <i>Amazon CodeCatalyst User Guide</i>.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// ListEventLogs guarantees events for the last 30 days in a given space. You can also
+    /// view and retrieve a list of management events over the last 90 days for Amazon CodeCatalyst
+    /// in the CloudTrail console by viewing Event history, or by creating a trail to create
+    /// and maintain a record of events that extends past 90 days. For more information, see
+    /// <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events.html">Working
+    /// with CloudTrail Event History</a> and <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-getting-started.html">Working
+    /// with CloudTrail trails</a>.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class ListEventLogsRequest : AmazonCodeCatalystRequest
     {
@@ -85,7 +100,7 @@ namespace Amazon.CodeCatalyst.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to show in a single call to this API. If the number
-        /// of results is larger than the number you specified, the response will include a <code>NextToken</code>
+        /// of results is larger than the number you specified, the response will include a <c>NextToken</c>
         /// element, which you can use to obtain additional results.
         /// </para>
         /// </summary>

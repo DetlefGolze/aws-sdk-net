@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAddressTransfers operation.
     /// Describes an Elastic IP address transfer. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#transfer-EIPs-intro">Transfer
-    /// Elastic IP addresses</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.
+    /// Elastic IP addresses</a> in the <i>Amazon VPC User Guide</i>.
     /// 
     ///  
     /// <para>
@@ -41,12 +42,12 @@ namespace Amazon.EC2.Model
     /// During those seven days, the source account can view the pending transfer by using
     /// this action. After seven days, the transfer expires and ownership of the Elastic IP
     /// address returns to the source account. Accepted transfers are visible to the source
-    /// account for three days after the transfers have been accepted.
+    /// account for 14 days after the transfers have been accepted.
     /// </para>
     /// </summary>
     public partial class DescribeAddressTransfersRequest : AmazonEC2Request
     {
-        private List<string> _allocationIds = new List<string>();
+        private List<string> _allocationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -65,7 +66,7 @@ namespace Amazon.EC2.Model
         // Check to see if AllocationIds property is set
         internal bool IsSetAllocationIds()
         {
-            return this._allocationIds != null && this._allocationIds.Count > 0; 
+            return this._allocationIds != null && (this._allocationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

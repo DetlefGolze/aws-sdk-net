@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// Invitation object returned after emailing users to invite them to join the Amazon
-    /// Chime <code>Team</code> account.
+    /// Chime <c>Team</c> account.
     /// </summary>
     public partial class Invite
     {

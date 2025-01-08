@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// The <code>ResourceConfig</code> to update <code>KeepAlivePeriodInSeconds</code>. Other
-    /// fields in the <code>ResourceConfig</code> cannot be updated.
+    /// The <c>ResourceConfig</c> to update <c>KeepAlivePeriodInSeconds</c>. Other fields
+    /// in the <c>ResourceConfig</c> cannot be updated.
     /// </summary>
     public partial class ResourceConfigForUpdate
     {
@@ -39,8 +40,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property KeepAlivePeriodInSeconds. 
         /// <para>
-        /// The <code>KeepAlivePeriodInSeconds</code> value specified in the <code>ResourceConfig</code>
-        /// to update.
+        /// The <c>KeepAlivePeriodInSeconds</c> value specified in the <c>ResourceConfig</c> to
+        /// update.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=3600)]

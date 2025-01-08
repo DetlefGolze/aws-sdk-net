@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.AppConfig.Model
         private string _kmsKeyIdentifier;
         private string _name;
         private string _retrievalRoleArn;
-        private List<Validator> _validators = new List<Validator>();
+        private List<Validator> _validators = AWSConfigs.InitializeCollections ? new List<Validator>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -104,12 +105,13 @@ namespace Amazon.AppConfig.Model
         /// <para>
         /// The identifier for a Key Management Service key to encrypt new configuration data
         /// versions in the AppConfig hosted configuration store. This attribute is only used
-        /// for <code>hosted</code> configuration types. The identifier can be an KMS key ID,
-        /// alias, or the Amazon Resource Name (ARN) of the key ID or alias. To encrypt data managed
+        /// for <c>hosted</c> configuration types. The identifier can be an KMS key ID, alias,
+        /// or the Amazon Resource Name (ARN) of the key ID or alias. To encrypt data managed
         /// in other configuration stores, see the documentation for how to specify an KMS key
         /// for that particular service.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=0, Max=2048)]
         public string KmsKeyIdentifier
         {
             get { return this._kmsKeyIdentifier; }
@@ -128,7 +130,7 @@ namespace Amazon.AppConfig.Model
         /// The name of the configuration profile.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=64)]
+        [AWSProperty(Min=1, Max=128)]
         public string Name
         {
             get { return this._name; }
@@ -145,7 +147,7 @@ namespace Amazon.AppConfig.Model
         /// Gets and sets the property RetrievalRoleArn. 
         /// <para>
         /// The ARN of an IAM role with permission to access the configuration at the specified
-        /// <code>LocationUri</code>.
+        /// <c>LocationUri</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -177,7 +179,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Validators property is set
         internal bool IsSetValidators()
         {
-            return this._validators != null && this._validators.Count > 0; 
+            return this._validators != null && (this._validators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

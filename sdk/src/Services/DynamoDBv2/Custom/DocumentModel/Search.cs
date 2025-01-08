@@ -20,6 +20,8 @@ using System.Linq;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using System.Globalization;
+using Amazon.Runtime.Telemetry.Tracing;
+
 #if AWS_ASYNC_API
 using System.Threading.Tasks;
 #endif
@@ -30,6 +32,9 @@ namespace Amazon.DynamoDBv2.DocumentModel
     /// <summary>
     /// Search response object
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.DynamoDBv2.Custom.Internal.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public partial class Search
     {
         #region Internal constructors
@@ -43,6 +48,8 @@ namespace Amazon.DynamoDBv2.DocumentModel
         {
             SearchMethod = searchMethod;
             Reset();
+            TracerProvider = SourceTable?.DDBClient?.Config?.TelemetryProvider?.TracerProvider
+                ?? AWSConfigs.TelemetryProvider.TracerProvider;
         }
 
         #endregion
@@ -205,6 +212,8 @@ namespace Amazon.DynamoDBv2.DocumentModel
 
         #region Private/internal members
 
+        internal TracerProvider TracerProvider { get; private set; }
+
         internal List<Document> GetNextSetHelper()
         {
             List<Document> ret = new List<Document>();
@@ -220,16 +229,26 @@ namespace Amazon.DynamoDBv2.DocumentModel
                             Limit = Limit,
                             TableName = TableName,
                             AttributesToGet = AttributesToGet,
-                            ScanFilter = Filter.ToConditions(SourceTable),
                             Select = EnumMapper.Convert(Select),
                             ConsistentRead = IsConsistentRead
                         };
+
                         if (!string.IsNullOrEmpty(this.IndexName))
                             scanReq.IndexName = this.IndexName;
                         if (this.FilterExpression != null && this.FilterExpression.IsSet)
                             this.FilterExpression.ApplyExpression(scanReq, SourceTable);
-                        if (scanReq.ScanFilter != null && scanReq.ScanFilter.Count > 1)
-                            scanReq.ConditionalOperator = EnumMapper.Convert(ConditionalOperator);
+
+
+                        var scanFilter = Filter.ToConditions(SourceTable);
+                        if (scanFilter != null && scanFilter.Count > 0)
+                        {
+                            scanReq.ScanFilter = scanFilter;
+
+                            if (scanFilter.Count > 1)
+                            {
+                                scanReq.ConditionalOperator = EnumMapper.Convert(ConditionalOperator);
+                            }
+                        }
                         Common.ConvertAttributesToGetToProjectionExpression(scanReq);
 
                         if (this.TotalSegments != 0)
@@ -273,8 +292,16 @@ namespace Amazon.DynamoDBv2.DocumentModel
 
                         Dictionary<string, Condition> keyConditions, filterConditions;
                         SplitQueryFilter(Filter, SourceTable, queryReq.IndexName, out keyConditions, out filterConditions);
-                        queryReq.KeyConditions = keyConditions;
-                        queryReq.QueryFilter = filterConditions;
+                        
+                        if (keyConditions?.Count > 0)
+                        {
+                            queryReq.KeyConditions = keyConditions;
+                        }
+
+                        if (filterConditions?.Count > 0)
+                        {
+                            queryReq.QueryFilter = filterConditions;
+                        }
                         Common.ConvertAttributesToGetToProjectionExpression(queryReq);
 
                         if (queryReq.QueryFilter != null && queryReq.QueryFilter.Count > 1)
@@ -322,10 +349,14 @@ namespace Amazon.DynamoDBv2.DocumentModel
                             Limit = Limit,
                             TableName = TableName,
                             AttributesToGet = AttributesToGet,
-                            ScanFilter = Filter.ToConditions(SourceTable),
                             Select = EnumMapper.Convert(Select),
                             ConsistentRead = IsConsistentRead
                         };
+
+                        var scanFilter = Filter.ToConditions(SourceTable);
+                        if (scanFilter?.Count > 0)
+                            scanReq.ScanFilter = scanFilter;
+
                         if (!string.IsNullOrEmpty(this.IndexName))
                             scanReq.IndexName = this.IndexName;
                         if (this.FilterExpression != null && this.FilterExpression.IsSet)
@@ -375,8 +406,8 @@ namespace Amazon.DynamoDBv2.DocumentModel
 
                         Dictionary<string, Condition> keyConditions, filterConditions;
                         SplitQueryFilter(Filter, SourceTable, queryReq.IndexName, out keyConditions, out filterConditions);
-                        queryReq.KeyConditions = keyConditions;
-                        queryReq.QueryFilter = filterConditions;
+                        queryReq.KeyConditions = keyConditions?.Count > 0 ? keyConditions : null;
+                        queryReq.QueryFilter = filterConditions?.Count > 0 ? filterConditions : null;
                         Common.ConvertAttributesToGetToProjectionExpression(queryReq);
 
                         if (queryReq.QueryFilter != null && queryReq.QueryFilter.Count > 1)

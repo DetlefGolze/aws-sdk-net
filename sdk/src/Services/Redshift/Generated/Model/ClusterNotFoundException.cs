@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
-    /// The <code>ClusterIdentifier</code> parameter does not refer to an existing cluster.
+    /// The <c>ClusterIdentifier</c> parameter does not refer to an existing cluster.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

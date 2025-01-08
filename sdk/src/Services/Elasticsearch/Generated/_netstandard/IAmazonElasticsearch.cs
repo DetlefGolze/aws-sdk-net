@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Elasticsearch.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Elasticsearch
 {
     /// <summary>
-    /// Interface for accessing Elasticsearch
+    /// <para>Interface for accessing Elasticsearch</para>
     ///
     /// Amazon Elasticsearch Configuration Service 
     /// <para>
@@ -205,14 +206,50 @@ namespace Amazon.Elasticsearch
 
         #endregion
                 
+        #region  CancelDomainConfigChange
+
+
+
+        /// <summary>
+        /// Cancels a pending configuration change on an Amazon OpenSearch Service domain.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelDomainConfigChange service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CancelDomainConfigChange service method, as returned by Elasticsearch.</returns>
+        /// <exception cref="Amazon.Elasticsearch.Model.BaseException">
+        /// An error occurred while processing the request.
+        /// </exception>
+        /// <exception cref="Amazon.Elasticsearch.Model.DisabledOperationException">
+        /// An error occured because the client wanted to access a not supported operation. Gives
+        /// http status code of 409.
+        /// </exception>
+        /// <exception cref="Amazon.Elasticsearch.Model.InternalException">
+        /// The request processing has failed because of an unknown error, exception or failure
+        /// (the failure is internal to the service) . Gives http status code of 500.
+        /// </exception>
+        /// <exception cref="Amazon.Elasticsearch.Model.ResourceNotFoundException">
+        /// An exception for accessing or deleting a resource that does not exist. Gives http
+        /// status code of 400.
+        /// </exception>
+        /// <exception cref="Amazon.Elasticsearch.Model.ValidationException">
+        /// An exception for missing / invalid input fields. Gives http status code of 400.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/es-2015-01-01/CancelDomainConfigChange">REST API Reference for CancelDomainConfigChange Operation</seealso>
+        Task<CancelDomainConfigChangeResponse> CancelDomainConfigChangeAsync(CancelDomainConfigChangeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  CancelElasticsearchServiceSoftwareUpdate
 
 
 
         /// <summary>
         /// Cancels a scheduled service software update for an Amazon ES domain. You can only
-        /// perform this operation before the <code>AutomatedUpdateDate</code> and when the <code>UpdateStatus</code>
-        /// is in the <code>PENDING_UPDATE</code> state.
+        /// perform this operation before the <c>AutomatedUpdateDate</c> and when the <c>UpdateStatus</c>
+        /// is in the <c>PENDING_UPDATE</c> state.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CancelElasticsearchServiceSoftwareUpdate service method.</param>
         /// <param name="cancellationToken">
@@ -763,8 +800,8 @@ namespace Amazon.Elasticsearch
 
         /// <summary>
         /// Describe Elasticsearch Limits for a given InstanceType and ElasticsearchVersion.
-        /// When modifying existing Domain, specify the <code> <a>DomainName</a> </code> to know
-        /// what Limits are supported for modifying.
+        /// When modifying existing Domain, specify the <c> <a>DomainName</a> </c> to know what
+        /// Limits are supported for modifying.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeElasticsearchInstanceTypeLimits service method.</param>
         /// <param name="cancellationToken">
@@ -1032,7 +1069,7 @@ namespace Amazon.Elasticsearch
 
         /// <summary>
         /// Returns a list of upgrade compatible Elastisearch versions. You can optionally pass
-        /// a <code> <a>DomainName</a> </code> to get all upgrade compatible Elasticsearch versions
+        /// a <c> <a>DomainName</a> </c> to get all upgrade compatible Elasticsearch versions
         /// for that specific domain.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCompatibleElasticsearchVersions service method.</param>

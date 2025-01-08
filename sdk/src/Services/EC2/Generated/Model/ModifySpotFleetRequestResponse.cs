@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Return. 
         /// <para>
-        /// If the request succeeds, the response returns <code>true</code>. If the request fails,
-        /// no response is returned, and instead an error message is returned.
+        /// If the request succeeds, the response returns <c>true</c>. If the request fails, no
+        /// response is returned, and instead an error message is returned.
         /// </para>
         /// </summary>
         public bool Return

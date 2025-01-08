@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.GreengrassV2.Model
     /// </summary>
     public partial class ListInstalledComponentsResponse : AmazonWebServiceResponse
     {
-        private List<InstalledComponent> _installedComponents = new List<InstalledComponent>();
+        private List<InstalledComponent> _installedComponents = AWSConfigs.InitializeCollections ? new List<InstalledComponent>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -43,14 +44,14 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Greengrass nucleus v2.7.0 or later is required to get an accurate <code>lastStatusChangeTimestamp</code>
+        /// Greengrass nucleus v2.7.0 or later is required to get an accurate <c>lastStatusChangeTimestamp</c>
         /// response. This response can be inaccurate in earlier Greengrass nucleus versions.
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// Greengrass nucleus v2.8.0 or later is required to get an accurate <code>lastInstallationSource</code>
-        /// and <code>lastReportedTimestamp</code> response. This response can be inaccurate or
-        /// null in earlier Greengrass nucleus versions.
+        /// Greengrass nucleus v2.8.0 or later is required to get an accurate <c>lastInstallationSource</c>
+        /// and <c>lastReportedTimestamp</c> response. This response can be inaccurate or null
+        /// in earlier Greengrass nucleus versions.
         /// </para>
         ///  </note>
         /// </summary>
@@ -63,7 +64,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if InstalledComponents property is set
         internal bool IsSetInstalledComponents()
         {
-            return this._installedComponents != null && this._installedComponents.Count > 0; 
+            return this._installedComponents != null && (this._installedComponents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property AttributeName. 
         /// <para>
-        /// Represents the finding attribute, such as <code>accountId</code>, that sorts the findings.
+        /// Represents the finding attribute, such as <c>accountId</c>, that sorts the findings.
         /// </para>
         /// </summary>
         public string AttributeName

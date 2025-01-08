@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubStrategyRecommendations.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
     public partial class StartImportFileTaskRequest : AmazonMigrationHubStrategyRecommendationsRequest
     {
         private DataSourceType _dataSourceType;
-        private List<Group> _groupId = new List<Group>();
+        private List<Group> _groupId = AWSConfigs.InitializeCollections ? new List<Group>() : null;
         private string _name;
         private string _s3Bucket;
         private string _s3bucketForReportData;
@@ -65,8 +66,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// Gets and sets the property GroupId. 
         /// <para>
         /// Groups the resources in the import file together with a unique name. This ID can be
-        /// as filter in <code>ListApplicationComponents</code> and <code>ListServers</code>.
-        /// 
+        /// as filter in <c>ListApplicationComponents</c> and <c>ListServers</c>. 
         /// </para>
         /// </summary>
         public List<Group> GroupId
@@ -78,7 +78,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         // Check to see if GroupId property is set
         internal bool IsSetGroupId()
         {
-            return this._groupId != null && this._groupId.Count > 0; 
+            return this._groupId != null && (this._groupId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// Gets and sets the property S3Bucket. 
         /// <para>
         ///  The S3 bucket where the import file is located. The bucket name is required to begin
-        /// with <code>migrationhub-strategy-</code>.
+        /// with <c>migrationhub-strategy-</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=63)]

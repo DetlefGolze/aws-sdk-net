@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
-    /// A group of fields that describe the current status of components that are no longer
-    /// active.
+    /// A group of fields that describe the current status of components.
     /// </summary>
     public partial class ComponentState
     {

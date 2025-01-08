@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property TargetType. 
         /// <para>
-        /// The type of resource for which you are configuring logging. Must be <code>THING_Group</code>.
+        /// The type of resource for which you are configuring logging. Must be <c>THING_Group</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

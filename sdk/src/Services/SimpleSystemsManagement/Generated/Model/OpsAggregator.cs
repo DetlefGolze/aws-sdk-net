@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// One or more aggregators for viewing counts of OpsData using different dimensions such
-    /// as <code>Source</code>, <code>CreatedTime</code>, or <code>Source and CreatedTime</code>,
-    /// to name a few.
+    /// as <c>Source</c>, <c>CreatedTime</c>, or <c>Source and CreatedTime</c>, to name a
+    /// few.
     /// </summary>
     public partial class OpsAggregator
     {
-        private List<OpsAggregator> _aggregators = new List<OpsAggregator>();
+        private List<OpsAggregator> _aggregators = AWSConfigs.InitializeCollections ? new List<OpsAggregator>() : null;
         private string _aggregatorType;
         private string _attributeName;
-        private List<OpsFilter> _filters = new List<OpsFilter>();
+        private List<OpsFilter> _filters = AWSConfigs.InitializeCollections ? new List<OpsFilter>() : null;
         private string _typeName;
-        private Dictionary<string, string> _values = new Dictionary<string, string>();
+        private Dictionary<string, string> _values = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Aggregators. 
@@ -58,14 +59,13 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Aggregators property is set
         internal bool IsSetAggregators()
         {
-            return this._aggregators != null && this._aggregators.Count > 0; 
+            return this._aggregators != null && (this._aggregators.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AggregatorType. 
         /// <para>
-        /// Either a <code>Range</code> or <code>Count</code> aggregator for limiting an OpsData
-        /// summary.
+        /// Either a <c>Range</c> or <c>Count</c> aggregator for limiting an OpsData summary.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -116,7 +116,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

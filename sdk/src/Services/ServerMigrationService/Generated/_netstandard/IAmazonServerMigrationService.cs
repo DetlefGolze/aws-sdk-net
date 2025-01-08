@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ServerMigrationService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ServerMigrationService
 {
     /// <summary>
-    /// Interface for accessing ServerMigrationService
+    /// <para>Interface for accessing ServerMigrationService</para>
     ///
     /// <important> 
     /// <para>

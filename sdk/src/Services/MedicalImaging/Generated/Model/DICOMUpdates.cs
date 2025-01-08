@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
-    /// The object containing <code>removableAttributes</code> and <code>updatableAttributes</code>.
+    /// The object containing <c>removableAttributes</c> and <c>updatableAttributes</c>.
     /// </summary>
     public partial class DICOMUpdates
     {
@@ -39,7 +40,7 @@ namespace Amazon.MedicalImaging.Model
         /// <summary>
         /// Gets and sets the property RemovableAttributes. 
         /// <para>
-        /// The DICOM tags to be removed from <code>ImageSetMetadata</code>.
+        /// The DICOM tags to be removed from <c>ImageSetMetadata</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=10000)]
@@ -58,7 +59,7 @@ namespace Amazon.MedicalImaging.Model
         /// <summary>
         /// Gets and sets the property UpdatableAttributes. 
         /// <para>
-        /// The DICOM tags that need to be updated in <code>ImageSetMetadata</code>.
+        /// The DICOM tags that need to be updated in <c>ImageSetMetadata</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=10000)]

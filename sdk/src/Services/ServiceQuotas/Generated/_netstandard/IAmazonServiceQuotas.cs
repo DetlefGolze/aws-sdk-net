@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ServiceQuotas.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ServiceQuotas
 {
     /// <summary>
-    /// Interface for accessing ServiceQuotas
+    /// <para>Interface for accessing ServiceQuotas</para>
     ///
     /// With Service Quotas, you can view and manage your quotas easily as your Amazon Web
     /// Services workloads grow. Quotas, also referred to as limits, are the maximum number

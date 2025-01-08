@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDBClusterParameterGroups operation.
-    /// Returns a list of <code>DBClusterParameterGroup</code> descriptions. If a <code>DBClusterParameterGroupName</code>
+    /// Returns a list of <c>DBClusterParameterGroup</c> descriptions. If a <c>DBClusterParameterGroupName</c>
     /// parameter is specified, the list contains only the description of the specified cluster
     /// parameter group.
     /// </summary>
     public partial class DescribeDBClusterParameterGroupsRequest : AmazonDocDBRequest
     {
         private string _dbClusterParameterGroupName;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
 
@@ -52,7 +53,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If provided, must match the name of an existing <code>DBClusterParameterGroup</code>.
+        /// If provided, must match the name of an existing <c>DBClusterParameterGroup</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -83,7 +84,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.DocDB.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -110,8 +111,8 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         ///  The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token (marker) is included
-        /// in the response so that the remaining results can be retrieved.
+        /// the specified <c>MaxRecords</c> value, a pagination token (marker) is included in
+        /// the response so that the remaining results can be retrieved.
         /// </para>
         ///  
         /// <para>

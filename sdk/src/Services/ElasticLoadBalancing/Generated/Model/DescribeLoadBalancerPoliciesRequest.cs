@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
@@ -39,13 +40,13 @@ namespace Amazon.ElasticLoadBalancing.Model
     /// balancer, the action returns the description of that policy. If you don't specify
     /// a load balancer name, the action returns descriptions of the specified sample policies,
     /// or descriptions of all sample policies. The names of the sample policies have the
-    /// <code>ELBSample-</code> prefix.
+    /// <c>ELBSample-</c> prefix.
     /// </para>
     /// </summary>
     public partial class DescribeLoadBalancerPoliciesRequest : AmazonElasticLoadBalancingRequest
     {
         private string _loadBalancerName;
-        private List<string> _policyNames = new List<string>();
+        private List<string> _policyNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LoadBalancerName. 
@@ -80,7 +81,7 @@ namespace Amazon.ElasticLoadBalancing.Model
         // Check to see if PolicyNames property is set
         internal bool IsSetPolicyNames()
         {
-            return this._policyNames != null && this._policyNames.Count > 0; 
+            return this._policyNames != null && (this._policyNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

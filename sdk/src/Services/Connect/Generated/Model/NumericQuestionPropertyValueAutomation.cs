@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -38,9 +39,8 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  Duration labels, such as <code>NON_TALK_TIME</code>, <code>CONTACT_DURATION</code>,
-    /// <code>AGENT_INTERACTION_DURATION</code>, <code>CUSTOMER_HOLD_TIME</code> have a minimum
-    /// value of 0 and maximum value of 28800.
+    ///  Duration labels, such as <c>NON_TALK_TIME</c>, <c>CONTACT_DURATION</c>, <c>AGENT_INTERACTION_DURATION</c>,
+    /// <c>CUSTOMER_HOLD_TIME</c> have a minimum value of 0 and maximum value of 63072000.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -48,8 +48,7 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>NUMBER_OF_INTERRUPTIONS</code> has a minimum value of 0 and maximum value of
-    /// 1000.
+    ///  <c>NUMBER_OF_INTERRUPTIONS</c> has a minimum value of 0 and maximum value of 1000.
     /// </para>
     ///  </li> </ul>
     /// </summary>

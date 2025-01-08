@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -34,11 +35,14 @@ namespace Amazon.MediaLive.Model
     /// </summary>
     public partial class CreateChannelRequest : AmazonMediaLiveRequest
     {
+        private AnywhereSettings _anywhereSettings;
         private CdiInputSpecification _cdiInputSpecification;
         private ChannelClass _channelClass;
-        private List<OutputDestination> _destinations = new List<OutputDestination>();
+        private ChannelEngineVersionRequest _channelEngineVersion;
+        private List<OutputDestination> _destinations = AWSConfigs.InitializeCollections ? new List<OutputDestination>() : null;
+        private bool? _dryRun;
         private EncoderSettings _encoderSettings;
-        private List<InputAttachment> _inputAttachments = new List<InputAttachment>();
+        private List<InputAttachment> _inputAttachments = AWSConfigs.InitializeCollections ? new List<InputAttachment>() : null;
         private InputSpecification _inputSpecification;
         private LogLevel _logLevel;
         private MaintenanceCreateSettings _maintenance;
@@ -46,8 +50,24 @@ namespace Amazon.MediaLive.Model
         private string _requestId;
         private string _reserved;
         private string _roleArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private VpcOutputSettings _vpc;
+
+        /// <summary>
+        /// Gets and sets the property AnywhereSettings. The Elemental Anywhere settings for this
+        /// channel.
+        /// </summary>
+        public AnywhereSettings AnywhereSettings
+        {
+            get { return this._anywhereSettings; }
+            set { this._anywhereSettings = value; }
+        }
+
+        // Check to see if AnywhereSettings property is set
+        internal bool IsSetAnywhereSettings()
+        {
+            return this._anywhereSettings != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CdiInputSpecification. Specification of CDI inputs for
@@ -82,6 +102,22 @@ namespace Amazon.MediaLive.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ChannelEngineVersion. The desired engine version for this
+        /// channel.
+        /// </summary>
+        public ChannelEngineVersionRequest ChannelEngineVersion
+        {
+            get { return this._channelEngineVersion; }
+            set { this._channelEngineVersion = value; }
+        }
+
+        // Check to see if ChannelEngineVersion property is set
+        internal bool IsSetChannelEngineVersion()
+        {
+            return this._channelEngineVersion != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Destinations.
         /// </summary>
         public List<OutputDestination> Destinations
@@ -93,7 +129,22 @@ namespace Amazon.MediaLive.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DryRun.
+        /// </summary>
+        public bool DryRun
+        {
+            get { return this._dryRun.GetValueOrDefault(); }
+            set { this._dryRun = value; }
+        }
+
+        // Check to see if DryRun property is set
+        internal bool IsSetDryRun()
+        {
+            return this._dryRun.HasValue; 
         }
 
         /// <summary>
@@ -123,7 +174,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if InputAttachments property is set
         internal bool IsSetInputAttachments()
         {
-            return this._inputAttachments != null && this._inputAttachments.Count > 0; 
+            return this._inputAttachments != null && (this._inputAttachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -248,7 +299,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

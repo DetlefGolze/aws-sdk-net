@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -46,10 +47,10 @@ namespace Amazon.SimpleEmail.Model
     /// </summary>
     public partial class ReceiptRule
     {
-        private List<ReceiptAction> _actions = new List<ReceiptAction>();
+        private List<ReceiptAction> _actions = AWSConfigs.InitializeCollections ? new List<ReceiptAction>() : null;
         private bool? _enabled;
         private string _name;
-        private List<string> _recipients = new List<string>();
+        private List<string> _recipients = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _scanEnabled;
         private TlsPolicy _tlsPolicy;
 
@@ -69,13 +70,13 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// If <code>true</code>, the receipt rule is active. The default value is <code>false</code>.
+        /// If <c>true</c>, the receipt rule is active. The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool Enabled
@@ -139,14 +140,14 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if Recipients property is set
         internal bool IsSetRecipients()
         {
-            return this._recipients != null && this._recipients.Count > 0; 
+            return this._recipients != null && (this._recipients.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ScanEnabled. 
         /// <para>
-        /// If <code>true</code>, then messages that this receipt rule applies to are scanned
-        /// for spam and viruses. The default value is <code>false</code>.
+        /// If <c>true</c>, then messages that this receipt rule applies to are scanned for spam
+        /// and viruses. The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool ScanEnabled
@@ -166,8 +167,8 @@ namespace Amazon.SimpleEmail.Model
         /// <para>
         /// Specifies whether Amazon SES should require that incoming email is delivered over
         /// a connection encrypted with Transport Layer Security (TLS). If this parameter is set
-        /// to <code>Require</code>, Amazon SES bounces emails that are not received over TLS.
-        /// The default is <code>Optional</code>.
+        /// to <c>Require</c>, Amazon SES bounces emails that are not received over TLS. The default
+        /// is <c>Optional</c>.
         /// </para>
         /// </summary>
         public TlsPolicy TlsPolicy

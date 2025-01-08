@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -43,6 +44,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         private bool? _sharedRoutesEnabled;
         private PoolStatus _status;
         private string _twoWayChannelArn;
+        private string _twoWayChannelRole;
         private bool? _twoWayEnabled;
 
         /// <summary>
@@ -159,10 +161,10 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// Gets and sets the property SelfManagedOptOutsEnabled. 
         /// <para>
         /// When an end recipient sends a message that begins with HELP or STOP to one of your
-        /// dedicated numbers, Amazon Pinpoint automatically replies with a customizable message
-        /// and adds the end recipient to the OptOutList. When set to true you're responsible
-        /// for responding to HELP and STOP requests. You're also responsible for tracking and
-        /// honoring opt-out requests.
+        /// dedicated numbers, AWS End User Messaging SMS and Voice automatically replies with
+        /// a customizable message and adds the end recipient to the OptOutList. When set to true
+        /// you're responsible for responding to HELP and STOP requests. You're also responsible
+        /// for tracking and honoring opt-out requests.
         /// </para>
         /// </summary>
         public bool SelfManagedOptOutsEnabled
@@ -230,6 +232,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetTwoWayChannelArn()
         {
             return this._twoWayChannelArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TwoWayChannelRole. 
+        /// <para>
+        /// An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string TwoWayChannelRole
+        {
+            get { return this._twoWayChannelRole; }
+            set { this._twoWayChannelRole = value; }
+        }
+
+        // Check to see if TwoWayChannelRole property is set
+        internal bool IsSetTwoWayChannelRole()
+        {
+            return this._twoWayChannelRole != null;
         }
 
         /// <summary>

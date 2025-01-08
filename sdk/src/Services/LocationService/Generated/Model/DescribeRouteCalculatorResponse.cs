@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.LocationService.Model
         private string _dataSource;
         private string _description;
         private PricingPlan _pricingPlan;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _updateTime;
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Format example: <code>arn:aws:geo:region:account-id:route-calculator/ExampleCalculator</code>
+        /// Format example: <c>arn:aws:geo:region:account-id:route-calculator/ExampleCalculator</c>
         /// 
         /// </para>
         ///  </li> </ul>
@@ -91,11 +92,11 @@ namespace Amazon.LocationService.Model
         /// Gets and sets the property CreateTime. 
         /// <para>
         /// The timestamp when the route calculator resource was created in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. 
+        /// 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For example, <code>2020–07-2T12:15:20.000Z+01:00</code> 
+        /// For example, <c>2020–07-2T12:15:20.000Z+01:00</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -120,15 +121,15 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Esri</code> 
+        ///  <c>Esri</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Grab</code> 
+        ///  <c>Grab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Here</code> 
+        ///  <c>Here</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -171,7 +172,7 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property PricingPlan. 
         /// <para>
-        /// Always returns <code>RequestBasedUsage</code>.
+        /// Always returns <c>RequestBasedUsage</c>.
         /// </para>
         /// </summary>
         [Obsolete("Deprecated. Always returns RequestBasedUsage.")]
@@ -203,18 +204,18 @@ namespace Amazon.LocationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UpdateTime. 
         /// <para>
         /// The timestamp when the route calculator resource was last updated in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. 
+        /// 8601</a> format: <c>YYYY-MM-DDThh:mm:ss.sssZ</c>. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For example, <code>2020–07-2T12:15:20.000Z+01:00</code> 
+        /// For example, <c>2020–07-2T12:15:20.000Z+01:00</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

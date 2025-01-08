@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class BatchGetSecurityControlsResponse : AmazonWebServiceResponse
     {
-        private List<SecurityControl> _securityControls = new List<SecurityControl>();
-        private List<UnprocessedSecurityControl> _unprocessedIds = new List<UnprocessedSecurityControl>();
+        private List<SecurityControl> _securityControls = AWSConfigs.InitializeCollections ? new List<SecurityControl>() : null;
+        private List<UnprocessedSecurityControl> _unprocessedIds = AWSConfigs.InitializeCollections ? new List<UnprocessedSecurityControl>() : null;
 
         /// <summary>
         /// Gets and sets the property SecurityControls. 
         /// <para>
         ///  An array that returns the identifier, Amazon Resource Name (ARN), and other details
         /// about a security control. The same information is returned whether the request includes
-        /// <code>SecurityControlId</code> or <code>SecurityControlArn</code>. 
+        /// <c>SecurityControlId</c> or <c>SecurityControlArn</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -54,13 +55,13 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SecurityControls property is set
         internal bool IsSetSecurityControls()
         {
-            return this._securityControls != null && this._securityControls.Count > 0; 
+            return this._securityControls != null && (this._securityControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UnprocessedIds. 
         /// <para>
-        ///  A security control (identified with <code>SecurityControlId</code>, <code>SecurityControlArn</code>,
+        ///  A security control (identified with <c>SecurityControlId</c>, <c>SecurityControlArn</c>,
         /// or a mix of both parameters) for which details cannot be returned. 
         /// </para>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if UnprocessedIds property is set
         internal bool IsSetUnprocessedIds()
         {
-            return this._unprocessedIds != null && this._unprocessedIds.Count > 0; 
+            return this._unprocessedIds != null && (this._unprocessedIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

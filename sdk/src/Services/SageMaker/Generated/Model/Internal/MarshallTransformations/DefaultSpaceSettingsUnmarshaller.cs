@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,22 +53,41 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DefaultSpaceSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            DefaultSpaceSettings unmarshalledObject = new DefaultSpaceSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DefaultSpaceSettings unmarshalledObject = new DefaultSpaceSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("CustomFileSystemConfigs", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<CustomFileSystemConfig, CustomFileSystemConfigUnmarshaller>(CustomFileSystemConfigUnmarshaller.Instance);
+                    unmarshalledObject.CustomFileSystemConfigs = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("CustomPosixUserConfig", targetDepth))
+                {
+                    var unmarshaller = CustomPosixUserConfigUnmarshaller.Instance;
+                    unmarshalledObject.CustomPosixUserConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ExecutionRole", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ExecutionRole = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("JupyterLabAppSettings", targetDepth))
+                {
+                    var unmarshaller = JupyterLabAppSettingsUnmarshaller.Instance;
+                    unmarshalledObject.JupyterLabAppSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("JupyterServerAppSettings", targetDepth))
@@ -88,8 +108,13 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.SecurityGroups = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SpaceStorageSettings", targetDepth))
+                {
+                    var unmarshaller = DefaultSpaceStorageSettingsUnmarshaller.Instance;
+                    unmarshalledObject.SpaceStorageSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateImage operation.
-    /// Updates the properties of a SageMaker image. To change the image's tags, use the <a
-    /// href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html">AddTags</a>
+    /// Updates the properties of a SageMaker AI image. To change the image's tags, use the
+    /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AddTags.html">AddTags</a>
     /// and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DeleteTags.html">DeleteTags</a>
     /// APIs.
     /// </summary>
     public partial class UpdateImageRequest : AmazonSageMakerRequest
     {
-        private List<string> _deleteProperties = new List<string>();
+        private List<string> _deleteProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
         private string _displayName;
         private string _imageName;
@@ -46,7 +47,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DeleteProperties. 
         /// <para>
-        /// A list of properties to delete. Only the <code>Description</code> and <code>DisplayName</code>
+        /// A list of properties to delete. Only the <c>Description</c> and <c>DisplayName</c>
         /// properties can be deleted.
         /// </para>
         /// </summary>
@@ -60,7 +61,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if DeleteProperties property is set
         internal bool IsSetDeleteProperties()
         {
-            return this._deleteProperties != null && this._deleteProperties.Count > 0; 
+            return this._deleteProperties != null && (this._deleteProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -123,8 +124,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The new ARN for the IAM role that enables Amazon SageMaker to perform tasks on your
-        /// behalf.
+        /// The new ARN for the IAM role that enables Amazon SageMaker AI to perform tasks on
+        /// your behalf.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]

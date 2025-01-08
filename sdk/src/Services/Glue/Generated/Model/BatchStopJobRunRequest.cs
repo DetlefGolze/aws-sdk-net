@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Glue.Model
     public partial class BatchStopJobRunRequest : AmazonGlueRequest
     {
         private string _jobName;
-        private List<string> _jobRunIds = new List<string>();
+        private List<string> _jobRunIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property JobName. 
@@ -59,7 +60,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property JobRunIds. 
         /// <para>
-        /// A list of the <code>JobRunIds</code> that should be stopped for that job definition.
+        /// A list of the <c>JobRunIds</c> that should be stopped for that job definition.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=25)]
@@ -72,7 +73,7 @@ namespace Amazon.Glue.Model
         // Check to see if JobRunIds property is set
         internal bool IsSetJobRunIds()
         {
-            return this._jobRunIds != null && this._jobRunIds.Count > 0; 
+            return this._jobRunIds != null && (this._jobRunIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

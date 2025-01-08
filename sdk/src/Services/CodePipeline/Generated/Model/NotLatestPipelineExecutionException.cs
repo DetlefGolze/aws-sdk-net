@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// The stage has failed in a later run of the pipeline and the <code>pipelineExecutionId</code>
+    /// The stage has failed in a later run of the pipeline and the <c>pipelineExecutionId</c>
     /// associated with the request is out of date.
     /// </summary>
     #if !NETSTANDARD

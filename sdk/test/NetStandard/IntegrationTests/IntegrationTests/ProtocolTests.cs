@@ -1,5 +1,3 @@
-using Amazon.CloudSearch;
-using Amazon.CloudSearch.Model;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using Amazon.ElasticTranscoder;
@@ -51,7 +49,7 @@ namespace Amazon.DNXCore.IntegrationTests
 
                 Assert.NotNull(domains);
                 Assert.NotNull(domains.Infos);
-                Assert.NotEqual(0, domains.Infos.Count);
+                Assert.NotEmpty(domains.Infos);
 
                 await client.DeprecateDomainAsync(new DeprecateDomainRequest
                 {
@@ -65,29 +63,7 @@ namespace Amazon.DNXCore.IntegrationTests
                 Assert.NotNull(ure);
                 Assert.NotNull(ure.Message);
                 Assert.NotNull(ure.ErrorCode);
-                Assert.Equal(ure.ErrorType, ErrorType.Unknown);
-            }
-        }
-
-        [Fact]
-        public async Task TestRestJson()
-        {
-            using (var client = UtilityMethods.CreateClient<AmazonElasticTranscoderClient>())
-            {
-                var presets = (await client.ListPresetsAsync(new ListPresetsRequest())).Presets;
-                Assert.NotNull(presets);
-                Assert.NotEqual(0, presets.Count);
-
-                var fakeId = "1111111111111-abcde1";
-                var aete = await AssertExtensions.ExpectExceptionAsync<Amazon.ElasticTranscoder.Model.ResourceNotFoundException>(client.DeletePipelineAsync(new DeletePipelineRequest
-                {
-                    Id = fakeId
-                }));
-                Assert.NotNull(aete);
-                Assert.NotNull(aete.Message);
-                Assert.True(aete.Message.IndexOf(fakeId, StringComparison.OrdinalIgnoreCase) >= 0);
-                //Assert.NotNull(aete.ErrorCode);
-                Assert.Equal(aete.ErrorType, ErrorType.Unknown);
+                Assert.Equal(ErrorType.Unknown, ure.ErrorType);
             }
         }
 
@@ -101,7 +77,7 @@ namespace Amazon.DNXCore.IntegrationTests
                 {
                     var buckets = (await client.ListBucketsAsync(new ListBucketsRequest())).Buckets;
                     Assert.NotNull(buckets);
-                    Assert.NotEqual(0, buckets.Count);
+                    Assert.NotEmpty(buckets);
                     Assert.Equal(1, buckets
                         .Count(b =>
                             string.Equals(bucketName, b.BucketName, StringComparison.OrdinalIgnoreCase)));
@@ -114,48 +90,12 @@ namespace Amazon.DNXCore.IntegrationTests
                     Assert.NotNull(as3e);
                     Assert.NotNull(as3e.Message);
                     //Assert.NotNull(aete.ErrorCode);
-                    Assert.Equal(as3e.ErrorType, ErrorType.Sender);
+                    Assert.Equal(ErrorType.Sender, as3e.ErrorType);
                 }
                 finally
                 {
                     await UtilityMethods.DeleteBucketWithObjectsAsync(client, bucketName);
                 }
-            }
-        }
-
-        [Fact]
-        public async Task TestQuery()
-        {
-            var digits = DateTime.Now.Ticks.ToString();
-            var domainName = string.Format("net-sdk-test-{0}", digits.Substring(digits.Length - 15));
-
-            using (var client = UtilityMethods.CreateClient<AmazonCloudSearchClient>())
-            {
-                await client.CreateDomainAsync(new CreateDomainRequest
-                {
-                    DomainName = domainName
-                });
-
-                try
-                {
-                    var domains = (await client.ListDomainNamesAsync(new ListDomainNamesRequest())).DomainNames;
-                    Assert.NotNull(domains);
-                    Assert.NotEqual(0, domains.Count);
-                }
-                finally
-                {
-                    await client.DeleteDomainAsync(new DeleteDomainRequest
-                    {
-                        DomainName = domainName
-                    });
-                }
-                
-
-                var fakeDomain = new string('a', 30); // service defines valid domains as 28 characters long
-                await AssertExtensions.ExpectExceptionAsync(client.DeleteDomainAsync(new DeleteDomainRequest
-                {
-                    DomainName = fakeDomain
-                }));
             }
         }
     }

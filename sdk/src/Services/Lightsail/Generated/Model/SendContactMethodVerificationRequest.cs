@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Protocol. 
         /// <para>
-        /// The protocol to verify, such as <code>Email</code> or <code>SMS</code> (text messaging).
+        /// The protocol to verify, such as <c>Email</c> or <c>SMS</c> (text messaging).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

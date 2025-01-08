@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ContainerProperties Unmarshall(JsonUnmarshallerContext context)
         {
+            ContainerProperties unmarshalledObject = new ContainerProperties();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ContainerProperties unmarshalledObject = new ContainerProperties();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -154,6 +156,12 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     unmarshalledObject.ReadonlyRootFilesystem = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("repositoryCredentials", targetDepth))
+                {
+                    var unmarshaller = RepositoryCredentialsUnmarshaller.Instance;
+                    unmarshalledObject.RepositoryCredentials = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("resourceRequirements", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<ResourceRequirement, ResourceRequirementUnmarshaller>(ResourceRequirementUnmarshaller.Instance);
@@ -197,7 +205,6 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

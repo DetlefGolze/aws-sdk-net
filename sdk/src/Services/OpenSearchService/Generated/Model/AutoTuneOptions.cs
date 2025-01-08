@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.OpenSearchService.Model
     public partial class AutoTuneOptions
     {
         private AutoTuneDesiredState _desiredState;
-        private List<AutoTuneMaintenanceSchedule> _maintenanceSchedules = new List<AutoTuneMaintenanceSchedule>();
+        private List<AutoTuneMaintenanceSchedule> _maintenanceSchedules = AWSConfigs.InitializeCollections ? new List<AutoTuneMaintenanceSchedule>() : null;
         private RollbackOnDisable _rollbackOnDisable;
         private bool? _useOffPeakWindow;
 
@@ -78,15 +79,15 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if MaintenanceSchedules property is set
         internal bool IsSetMaintenanceSchedules()
         {
-            return this._maintenanceSchedules != null && this._maintenanceSchedules.Count > 0; 
+            return this._maintenanceSchedules != null && (this._maintenanceSchedules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RollbackOnDisable. 
         /// <para>
-        /// When disabling Auto-Tune, specify <code>NO_ROLLBACK</code> to retain all prior Auto-Tune
-        /// settings or <code>DEFAULT_ROLLBACK</code> to revert to the OpenSearch Service defaults.
-        /// If you specify <code>DEFAULT_ROLLBACK</code>, you must include a <code>MaintenanceSchedule</code>
+        /// When disabling Auto-Tune, specify <c>NO_ROLLBACK</c> to retain all prior Auto-Tune
+        /// settings or <c>DEFAULT_ROLLBACK</c> to revert to the OpenSearch Service defaults.
+        /// If you specify <c>DEFAULT_ROLLBACK</c>, you must include a <c>MaintenanceSchedule</c>
         /// in the request. Otherwise, OpenSearch Service is unable to perform the rollback.
         /// </para>
         /// </summary>

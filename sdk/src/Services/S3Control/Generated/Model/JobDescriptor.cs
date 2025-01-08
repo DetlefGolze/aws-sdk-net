@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// A container element for the job configuration and status information returned by a
-    /// <code>Describe Job</code> request.
+    /// <c>Describe Job</c> request.
     /// </summary>
     public partial class JobDescriptor
     {
         private bool? _confirmationRequired;
         private DateTime? _creationTime;
         private string _description;
-        private List<JobFailure> _failureReasons = new List<JobFailure>();
+        private List<JobFailure> _failureReasons = AWSConfigs.InitializeCollections ? new List<JobFailure>() : null;
         private S3GeneratedManifestDescriptor _generatedManifestDescriptor;
         private string _jobArn;
         private string _jobId;
@@ -94,7 +95,7 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// The description for this job, if one was provided in this job's <code>Create Job</code>
+        /// The description for this job, if one was provided in this job's <c>Create Job</c>
         /// request.
         /// </para>
         /// </summary>
@@ -126,7 +127,7 @@ namespace Amazon.S3Control.Model
         // Check to see if FailureReasons property is set
         internal bool IsSetFailureReasons()
         {
-            return this._failureReasons != null && this._failureReasons.Count > 0; 
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -282,7 +283,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property Report. 
         /// <para>
         /// Contains the configuration information for the job-completion report if you requested
-        /// one in the <code>Create Job</code> request.
+        /// one in the <c>Create Job</c> request.
         /// </para>
         /// </summary>
         public JobReport Report
@@ -358,9 +359,9 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property SuspendedCause. 
         /// <para>
         /// The reason why the specified job was suspended. A job is only suspended if you create
-        /// it through the Amazon S3 console. When you create the job, it enters the <code>Suspended</code>
+        /// it through the Amazon S3 console. When you create the job, it enters the <c>Suspended</c>
         /// state to await confirmation before running. After you confirm the job, it automatically
-        /// exits the <code>Suspended</code> state.
+        /// exits the <c>Suspended</c> state.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.FMS.Model
     public partial class ListThirdPartyFirewallFirewallPoliciesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ThirdPartyFirewallFirewallPolicy> _thirdPartyFirewallFirewallPolicies = new List<ThirdPartyFirewallFirewallPolicy>();
+        private List<ThirdPartyFirewallFirewallPolicy> _thirdPartyFirewallFirewallPolicies = AWSConfigs.InitializeCollections ? new List<ThirdPartyFirewallFirewallPolicy>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The value that you will use for <code>NextToken</code> in the next <code>ListThirdPartyFirewallFirewallPolicies</code>
+        /// The value that you will use for <c>NextToken</c> in the next <c>ListThirdPartyFirewallFirewallPolicies</c>
         /// request.
         /// </para>
         /// </summary>
@@ -59,10 +60,10 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property ThirdPartyFirewallFirewallPolicies. 
         /// <para>
-        /// A list that contains one <code>ThirdPartyFirewallFirewallPolicies</code> element for
-        /// each third-party firewall policies that the specified third-party firewall vendor
-        /// is associated with. Each <code>ThirdPartyFirewallFirewallPolicies</code> element contains
-        /// the firewall policy name and ID.
+        /// A list that contains one <c>ThirdPartyFirewallFirewallPolicies</c> element for each
+        /// third-party firewall policies that the specified third-party firewall vendor is associated
+        /// with. Each <c>ThirdPartyFirewallFirewallPolicies</c> element contains the firewall
+        /// policy name and ID.
         /// </para>
         /// </summary>
         public List<ThirdPartyFirewallFirewallPolicy> ThirdPartyFirewallFirewallPolicies
@@ -74,7 +75,7 @@ namespace Amazon.FMS.Model
         // Check to see if ThirdPartyFirewallFirewallPolicies property is set
         internal bool IsSetThirdPartyFirewallFirewallPolicies()
         {
-            return this._thirdPartyFirewallFirewallPolicies != null && this._thirdPartyFirewallFirewallPolicies.Count > 0; 
+            return this._thirdPartyFirewallFirewallPolicies != null && (this._thirdPartyFirewallFirewallPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

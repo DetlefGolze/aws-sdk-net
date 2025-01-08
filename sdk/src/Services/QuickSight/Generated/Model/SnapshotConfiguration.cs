@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.QuickSight.Model
     public partial class SnapshotConfiguration
     {
         private SnapshotDestinationConfiguration _destinationConfiguration;
-        private List<SnapshotFileGroup> _fileGroups = new List<SnapshotFileGroup>();
+        private List<SnapshotFileGroup> _fileGroups = AWSConfigs.InitializeCollections ? new List<SnapshotFileGroup>() : null;
         private Parameters _parameters;
 
         /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FileGroups. 
         /// <para>
-        /// A list of <code>SnapshotJobResultFileGroup</code> objects that contain information
-        /// about the snapshot that is generated. This list can hold a maximum of 6 <code>FileGroup</code>
+        /// A list of <c>SnapshotJobResultFileGroup</c> objects that contain information about
+        /// the snapshot that is generated. This list can hold a maximum of 6 <c>FileGroup</c>
         /// configurations.
         /// </para>
         /// </summary>
@@ -74,7 +75,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if FileGroups property is set
         internal bool IsSetFileGroups()
         {
-            return this._fileGroups != null && this._fileGroups.Count > 0; 
+            return this._fileGroups != null && (this._fileGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

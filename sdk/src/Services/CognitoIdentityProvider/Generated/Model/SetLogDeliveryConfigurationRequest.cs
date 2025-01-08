@@ -26,24 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the SetLogDeliveryConfiguration operation.
-    /// Sets up or modifies the detailed activity logging configuration of a user pool.
+    /// Sets up or modifies the logging configuration of a user pool. User pools can export
+    /// user notification logs and advanced security features user activity logs.
     /// </summary>
     public partial class SetLogDeliveryConfigurationRequest : AmazonCognitoIdentityProviderRequest
     {
-        private List<LogConfigurationType> _logConfigurations = new List<LogConfigurationType>();
+        private List<LogConfigurationType> _logConfigurations = AWSConfigs.InitializeCollections ? new List<LogConfigurationType>() : null;
         private string _userPoolId;
 
         /// <summary>
         /// Gets and sets the property LogConfigurations. 
         /// <para>
-        /// A collection of all of the detailed activity logging configurations for a user pool.
+        /// A collection of the logging configurations for a user pool.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=1)]
+        [AWSProperty(Required=true, Min=0, Max=2)]
         public List<LogConfigurationType> LogConfigurations
         {
             get { return this._logConfigurations; }
@@ -53,13 +55,13 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if LogConfigurations property is set
         internal bool IsSetLogConfigurations()
         {
-            return this._logConfigurations != null && this._logConfigurations.Count > 0; 
+            return this._logConfigurations != null && (this._logConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The ID of the user pool where you want to configure detailed activity logging .
+        /// The ID of the user pool where you want to configure logging.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

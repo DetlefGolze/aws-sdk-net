@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
     /// Container for the parameters to the ListServiceNetworks operation.
-    /// Lists the service networks owned by the caller account or shared with the caller account.
-    /// Also includes the account ID in the ARN to show which account owns the service network.
+    /// Lists the service networks owned by or shared with this account. The account ID in
+    /// the ARN shows which account owns the service network.
     /// </summary>
     public partial class ListServiceNetworksRequest : AmazonVPCLatticeRequest
     {

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -87,6 +88,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     response.InputDevices = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("inputNetworkLocation", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.InputNetworkLocation = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("inputPartnerIds", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
@@ -103,6 +110,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<MediaConnectFlow, MediaConnectFlowUnmarshaller>(MediaConnectFlowUnmarshaller.Instance);
                     response.MediaConnectFlows = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("multicastSettings", targetDepth))
+                {
+                    var unmarshaller = MulticastSettingsUnmarshaller.Instance;
+                    response.MulticastSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("name", targetDepth))
@@ -127,6 +140,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<InputSource, InputSourceUnmarshaller>(InputSourceUnmarshaller.Instance);
                     response.Sources = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("srtSettings", targetDepth))
+                {
+                    var unmarshaller = SrtSettingsUnmarshaller.Instance;
+                    response.SrtSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("state", targetDepth))

@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeUserImportJob operation.
-    /// Describes the user import job.
+    /// Describes a user import job. For more information about user CSV import, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html">Importing
+    /// users from a CSV file</a>.
     /// </summary>
     public partial class DescribeUserImportJobRequest : AmazonCognitoIdentityProviderRequest
     {
@@ -40,7 +42,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property JobId. 
         /// <para>
-        /// The job ID for the user import job.
+        /// The Id of the user import job that you want to describe.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]
@@ -59,7 +61,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool that the users are being imported into.
+        /// The ID of the user pool that's associated with the import job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

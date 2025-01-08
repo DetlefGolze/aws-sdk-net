@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
-    /// A summary of findings metrics in an account.
+    /// A summary of findings metrics for an account on a specified date.
     /// </summary>
     public partial class AccountFindingsMetric
     {
@@ -42,7 +43,7 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property ClosedFindings. 
         /// <para>
-        /// The number of closed findings of each severity in an account on the specified date.
+        /// The number of closed findings of each severity on the specified date.
         /// </para>
         /// </summary>
         public FindingMetricsValuePerSeverity ClosedFindings
@@ -60,7 +61,7 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property Date. 
         /// <para>
-        /// The date from which the finding metrics were retrieved.
+        /// The date from which the findings metrics were retrieved.
         /// </para>
         /// </summary>
         public DateTime Date
@@ -78,7 +79,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property MeanTimeToClose. 
         /// <para>
-        /// The average time it takes to close findings of each severity in days.
+        /// The average time in days it takes to close findings of each severity as of a specified
+        /// date.
         /// </para>
         /// </summary>
         public FindingMetricsValuePerSeverity MeanTimeToClose
@@ -96,7 +98,7 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property NewFindings. 
         /// <para>
-        /// The number of new findings of each severity in account on the specified date.
+        /// The number of new findings of each severity on the specified date.
         /// </para>
         /// </summary>
         public FindingMetricsValuePerSeverity NewFindings
@@ -114,7 +116,7 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property OpenFindings. 
         /// <para>
-        /// The number of open findings of each severity in an account as of the specified date.
+        /// The number of open findings of each severity as of the specified date.
         /// </para>
         /// </summary>
         public FindingMetricsValuePerSeverity OpenFindings

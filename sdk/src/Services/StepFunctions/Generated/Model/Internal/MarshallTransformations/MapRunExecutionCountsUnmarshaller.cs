@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public MapRunExecutionCounts Unmarshall(JsonUnmarshallerContext context)
         {
+            MapRunExecutionCounts unmarshalledObject = new MapRunExecutionCounts();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            MapRunExecutionCounts unmarshalledObject = new MapRunExecutionCounts();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,10 +78,22 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                     unmarshalledObject.Failed = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("failuresNotRedrivable", targetDepth))
+                {
+                    var unmarshaller = LongUnmarshaller.Instance;
+                    unmarshalledObject.FailuresNotRedrivable = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("pending", targetDepth))
                 {
                     var unmarshaller = LongUnmarshaller.Instance;
                     unmarshalledObject.Pending = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("pendingRedrive", targetDepth))
+                {
+                    var unmarshaller = LongUnmarshaller.Instance;
+                    unmarshalledObject.PendingRedrive = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("resultsWritten", targetDepth))
@@ -113,7 +127,6 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.QuickSight.Model
     {
         private FilterVisualScope _scope;
         private string _sheetId;
-        private List<string> _visualIds = new List<string>();
+        private List<string> _visualIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Scope. 
@@ -44,11 +45,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALL_VISUALS</code> 
+        ///  <c>ALL_VISUALS</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SELECTED_VISUALS</code> 
+        ///  <c>SELECTED_VISUALS</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -100,7 +101,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if VisualIds property is set
         internal bool IsSetVisualIds()
         {
-            return this._visualIds != null && this._visualIds.Count > 0; 
+            return this._visualIds != null && (this._visualIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

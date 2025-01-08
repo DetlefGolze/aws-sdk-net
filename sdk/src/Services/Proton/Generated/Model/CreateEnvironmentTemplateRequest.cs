@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -47,9 +48,9 @@ namespace Amazon.Proton.Model
     /// Register and publish a <i>customer managed</i> environment template that connects
     /// Proton to your existing provisioned infrastructure that you manage. Proton <i>doesn't</i>
     /// manage your existing provisioned infrastructure. To create an environment template
-    /// for customer provisioned and managed infrastructure, include the <code>provisioning</code>
-    /// parameter and set the value to <code>CUSTOMER_MANAGED</code>. For more information,
-    /// see <a href="https://docs.aws.amazon.com/proton/latest/userguide/template-create.html">Register
+    /// for customer provisioned and managed infrastructure, include the <c>provisioning</c>
+    /// parameter and set the value to <c>CUSTOMER_MANAGED</c>. For more information, see
+    /// <a href="https://docs.aws.amazon.com/proton/latest/userguide/template-create.html">Register
     /// and publish an environment template</a> in the <i>Proton User Guide</i>.
     /// </para>
     ///  </li> </ul>
@@ -61,7 +62,7 @@ namespace Amazon.Proton.Model
         private string _encryptionKey;
         private string _name;
         private Provisioning _provisioning;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -180,7 +181,7 @@ namespace Amazon.Proton.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

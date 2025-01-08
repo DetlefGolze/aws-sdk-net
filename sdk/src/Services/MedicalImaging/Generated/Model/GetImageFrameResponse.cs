@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.MedicalImaging.Model
         /// Gets and sets the property ContentType. 
         /// <para>
         /// The format in which the image frame information is returned to the customer. Default
-        /// is <code>application/octet-stream</code>.
+        /// is <c>application/octet-stream</c>.
         /// </para>
         /// </summary>
         public string ContentType
@@ -52,7 +53,7 @@ namespace Amazon.MedicalImaging.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
@@ -87,6 +88,9 @@ namespace Amazon.MedicalImaging.Model
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of all managed and unmanaged resources.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

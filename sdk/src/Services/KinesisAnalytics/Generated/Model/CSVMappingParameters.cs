@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -36,11 +37,11 @@ namespace Amazon.KinesisAnalytics.Model
     /// 
     ///  
     /// <para>
-    ///  <code>"name1", "address1"</code> 
+    ///  <c>"name1", "address1"</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code>"name2", "address2"</code> 
+    ///  <c>"name2", "address2"</c> 
     /// </para>
     /// </summary>
     public partial class CSVMappingParameters

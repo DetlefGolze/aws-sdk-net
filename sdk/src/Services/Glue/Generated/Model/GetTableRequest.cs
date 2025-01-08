@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the GetTable operation.
-    /// Retrieves the <code>Table</code> definition in a Data Catalog for a specified table.
+    /// Retrieves the <c>Table</c> definition in a Data Catalog for a specified table.
     /// </summary>
     public partial class GetTableRequest : AmazonGlueRequest
     {
         private string _catalogId;
         private string _databaseName;
+        private bool? _includeStatusDetails;
         private string _name;
         private DateTime? _queryAsOfTime;
         private string _transactionId;
@@ -81,6 +83,25 @@ namespace Amazon.Glue.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IncludeStatusDetails. 
+        /// <para>
+        /// Specifies whether to include status details related to a request to create or update
+        /// an Glue Data Catalog view.
+        /// </para>
+        /// </summary>
+        public bool IncludeStatusDetails
+        {
+            get { return this._includeStatusDetails.GetValueOrDefault(); }
+            set { this._includeStatusDetails = value; }
+        }
+
+        // Check to see if IncludeStatusDetails property is set
+        internal bool IsSetIncludeStatusDetails()
+        {
+            return this._includeStatusDetails.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// The name of the table for which to retrieve the definition. For Hive compatibility,
@@ -104,7 +125,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property QueryAsOfTime. 
         /// <para>
         /// The time as of when to read the table contents. If not set, the most recent transaction
-        /// commit time will be used. Cannot be specified along with <code>TransactionId</code>.
+        /// commit time will be used. Cannot be specified along with <c>TransactionId</c>.
         /// </para>
         /// </summary>
         public DateTime QueryAsOfTime

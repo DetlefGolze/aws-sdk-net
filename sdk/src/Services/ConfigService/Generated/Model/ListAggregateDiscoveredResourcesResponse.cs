@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ConfigService.Model
     public partial class ListAggregateDiscoveredResourcesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<AggregateResourceIdentifier> _resourceIdentifiers = new List<AggregateResourceIdentifier>();
+        private List<AggregateResourceIdentifier> _resourceIdentifiers = AWSConfigs.InitializeCollections ? new List<AggregateResourceIdentifier>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response.
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response.
         /// </para>
         /// </summary>
         public string NextToken
@@ -58,7 +59,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ResourceIdentifiers. 
         /// <para>
-        /// Returns a list of <code>ResourceIdentifiers</code> objects.
+        /// Returns a list of <c>ResourceIdentifiers</c> objects.
         /// </para>
         /// </summary>
         public List<AggregateResourceIdentifier> ResourceIdentifiers
@@ -70,7 +71,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ResourceIdentifiers property is set
         internal bool IsSetResourceIdentifiers()
         {
-            return this._resourceIdentifiers != null && this._resourceIdentifiers.Count > 0; 
+            return this._resourceIdentifiers != null && (this._resourceIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

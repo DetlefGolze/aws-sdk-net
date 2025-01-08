@@ -26,38 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CopyImage operation.
-    /// Initiates the copy of an AMI. You can copy an AMI from one Region to another, or from
-    /// a Region to an Outpost. You can't copy an AMI from an Outpost to a Region, from one
-    /// Outpost to another, or within the same Outpost. To copy an AMI to another partition,
+    /// Initiates an AMI copy operation. You can copy an AMI from one Region to another, or
+    /// from a Region to an Outpost. You can't copy an AMI from an Outpost to a Region, from
+    /// one Outpost to another, or within the same Outpost. To copy an AMI to another partition,
     /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateStoreImageTask.html">CreateStoreImageTask</a>.
     /// 
     ///  
     /// <para>
-    /// To copy an AMI from one Region to another, specify the source Region using the <b>SourceRegion</b>
-    /// parameter, and specify the destination Region using its endpoint. Copies of encrypted
-    /// backing snapshots for the AMI are encrypted. Copies of unencrypted backing snapshots
-    /// remain unencrypted, unless you set <code>Encrypted</code> during the copy operation.
-    /// You cannot create an unencrypted copy of an encrypted backing snapshot.
+    /// When you copy an AMI from one Region to another, the destination Region is the current
+    /// Region.
     /// </para>
     ///  
     /// <para>
-    /// To copy an AMI from a Region to an Outpost, specify the source Region using the <b>SourceRegion</b>
-    /// parameter, and specify the ARN of the destination Outpost using <b>DestinationOutpostArn</b>.
-    /// Backing snapshots copied to an Outpost are encrypted by default using the default
-    /// encryption key for the Region, or a different key that you specify in the request
-    /// using <b>KmsKeyId</b>. Outposts do not support unencrypted snapshots. For more information,
-    /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami">
-    /// Amazon EBS local snapshots on Outposts</a> in the <i>Amazon EC2 User Guide</i>.
+    /// When you copy an AMI from a Region to an Outpost, specify the ARN of the Outpost as
+    /// the destination. Backing snapshots copied to an Outpost are encrypted by default using
+    /// the default encryption key for the Region or the key that you specify. Outposts do
+    /// not support unencrypted snapshots.
     /// </para>
     ///  
     /// <para>
-    /// For more information about the prerequisites and limits when copying an AMI, see <a
-    /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html">Copy an
-    /// AMI</a> in the <i>Amazon EC2 User Guide</i>.
+    /// For information about the prerequisites when copying an AMI, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html">Copy
+    /// an AMI</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CopyImageRequest : AmazonEC2Request
@@ -71,6 +65,7 @@ namespace Amazon.EC2.Model
         private string _name;
         private string _sourceImageId;
         private string _sourceRegion;
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -103,7 +98,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// System tags (prefixed with <code>aws:</code>)
+        /// System tags (prefixed with <c>aws:</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -155,9 +150,9 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#copy-amis">
-        /// Copy AMIs from an Amazon Web Services Region to an Outpost</a> in the <i>Amazon EC2
-        /// User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/ebs/latest/userguide/snapshots-outposts.html#copy-amis">Copy
+        /// AMIs from an Amazon Web Services Region to an Outpost</a> in the <i>Amazon EBS User
+        /// Guide</i>.
         /// </para>
         /// </summary>
         public string DestinationOutpostArn
@@ -178,9 +173,9 @@ namespace Amazon.EC2.Model
         /// Specifies whether the destination snapshots of the copied image should be encrypted.
         /// You can encrypt a copy of an unencrypted snapshot, but you cannot create an unencrypted
         /// copy of an encrypted snapshot. The default KMS key for Amazon EBS is used unless you
-        /// specify a non-default Key Management Service (KMS) KMS key using <code>KmsKeyId</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
-        /// EBS encryption</a> in the <i>Amazon EC2 User Guide</i>.
+        /// specify a non-default Key Management Service (KMS) KMS key using <c>KmsKeyId</c>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html">Use
+        /// encryption with EBS-backed AMIs</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public bool Encrypted
@@ -201,7 +196,7 @@ namespace Amazon.EC2.Model
         /// The identifier of the symmetric Key Management Service (KMS) KMS key to use when creating
         /// encrypted volumes. If this parameter is not specified, your Amazon Web Services managed
         /// KMS key for Amazon EBS is used. If you specify a KMS key, you must also set the encrypted
-        /// state to <code>true</code>.
+        /// state to <c>true</c>.
         /// </para>
         ///  
         /// <para>
@@ -305,6 +300,42 @@ namespace Amazon.EC2.Model
         internal bool IsSetSourceRegion()
         {
             return this._sourceRegion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TagSpecifications. 
+        /// <para>
+        /// The tags to apply to the new AMI and new snapshots. You can tag the AMI, the snapshots,
+        /// or both.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// To tag the new AMI, the value for <c>ResourceType</c> must be <c>image</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// To tag the new snapshots, the value for <c>ResourceType</c> must be <c>snapshot</c>.
+        /// The same tag is applied to all the new snapshots.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// If you specify other values for <c>ResourceType</c>, the request fails.
+        /// </para>
+        ///  
+        /// <para>
+        /// To tag an AMI or snapshot after it has been created, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html">CreateTags</a>.
+        /// </para>
+        /// </summary>
+        public List<TagSpecification> TagSpecifications
+        {
+            get { return this._tagSpecifications; }
+            set { this._tagSpecifications = value; }
+        }
+
+        // Check to see if TagSpecifications property is set
+        internal bool IsSetTagSpecifications()
+        {
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

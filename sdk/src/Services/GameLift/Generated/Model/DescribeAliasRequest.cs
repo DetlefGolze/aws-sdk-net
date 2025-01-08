@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAlias operation.
     /// Retrieves properties for an alias. This operation returns all alias metadata and settings.
-    /// To get an alias's target fleet ID only, use <code>ResolveAlias</code>. 
+    /// To get an alias's target fleet ID only, use <c>ResolveAlias</c>. 
     /// 
     ///  
     /// <para>

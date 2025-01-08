@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -33,10 +34,10 @@ namespace Amazon.Pipes.Model
     /// </summary>
     public partial class BatchContainerOverrides
     {
-        private List<string> _command = new List<string>();
-        private List<BatchEnvironmentVariable> _environment = new List<BatchEnvironmentVariable>();
+        private List<string> _command = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<BatchEnvironmentVariable> _environment = AWSConfigs.InitializeCollections ? new List<BatchEnvironmentVariable>() : null;
         private string _instanceType;
-        private List<BatchResourceRequirement> _resourceRequirements = new List<BatchResourceRequirement>();
+        private List<BatchResourceRequirement> _resourceRequirements = AWSConfigs.InitializeCollections ? new List<BatchResourceRequirement>() : null;
 
         /// <summary>
         /// Gets and sets the property Command. 
@@ -54,7 +55,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Command property is set
         internal bool IsSetCommand()
         {
-            return this._command != null && this._command.Count > 0; 
+            return this._command != null && (this._command.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.Pipes.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Environment variables cannot start with "<code>Batch</code>". This naming convention
-        /// is reserved for variables that Batch sets.
+        /// Environment variables cannot start with "<c>Batch</c>". This naming convention is
+        /// reserved for variables that Batch sets.
         /// </para>
         ///  </note>
         /// </summary>
@@ -80,7 +81,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Environment property is set
         internal bool IsSetEnvironment()
         {
-            return this._environment != null && this._environment.Count > 0; 
+            return this._environment != null && (this._environment.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -111,8 +112,8 @@ namespace Amazon.Pipes.Model
         /// Gets and sets the property ResourceRequirements. 
         /// <para>
         /// The type and amount of resources to assign to a container. This overrides the settings
-        /// in the job definition. The supported resources include <code>GPU</code>, <code>MEMORY</code>,
-        /// and <code>VCPU</code>.
+        /// in the job definition. The supported resources include <c>GPU</c>, <c>MEMORY</c>,
+        /// and <c>VCPU</c>.
         /// </para>
         /// </summary>
         public List<BatchResourceRequirement> ResourceRequirements
@@ -124,7 +125,7 @@ namespace Amazon.Pipes.Model
         // Check to see if ResourceRequirements property is set
         internal bool IsSetResourceRequirements()
         {
-            return this._resourceRequirements != null && this._resourceRequirements.Count > 0; 
+            return this._resourceRequirements != null && (this._resourceRequirements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AdvancedSecurityOptions Unmarshall(JsonUnmarshallerContext context)
         {
+            AdvancedSecurityOptions unmarshalledObject = new AdvancedSecurityOptions();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AdvancedSecurityOptions unmarshalledObject = new AdvancedSecurityOptions();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,12 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     unmarshalledObject.InternalUserDatabaseEnabled = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("JWTOptions", targetDepth))
+                {
+                    var unmarshaller = JWTOptionsOutputUnmarshaller.Instance;
+                    unmarshalledObject.JWTOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SAMLOptions", targetDepth))
                 {
                     var unmarshaller = SAMLOptionsOutputUnmarshaller.Instance;
@@ -95,7 +103,6 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

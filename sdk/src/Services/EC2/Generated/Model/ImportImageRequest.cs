@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -46,9 +47,9 @@ namespace Amazon.EC2.Model
     ///  <important> 
     /// <para>
     /// Amazon Web Services VM Import/Export strongly recommends specifying a value for either
-    /// the <code>--license-type</code> or <code>--usage-operation</code> parameter when you
-    /// create a new VM Import task. This ensures your operating system is licensed appropriately
-    /// and your billing is optimized.
+    /// the <c>--license-type</c> or <c>--usage-operation</c> parameter when you create a
+    /// new VM Import task. This ensures your operating system is licensed appropriately and
+    /// your billing is optimized.
     /// </para>
     ///  </important> 
     /// <para>
@@ -63,15 +64,15 @@ namespace Amazon.EC2.Model
         private ClientData _clientData;
         private string _clientToken;
         private string _description;
-        private List<ImageDiskContainer> _diskContainers = new List<ImageDiskContainer>();
+        private List<ImageDiskContainer> _diskContainers = AWSConfigs.InitializeCollections ? new List<ImageDiskContainer>() : null;
         private bool? _encrypted;
         private string _hypervisor;
         private string _kmsKeyId;
-        private List<ImportImageLicenseConfigurationRequest> _licenseSpecifications = new List<ImportImageLicenseConfigurationRequest>();
+        private List<ImportImageLicenseConfigurationRequest> _licenseSpecifications = AWSConfigs.InitializeCollections ? new List<ImportImageLicenseConfigurationRequest>() : null;
         private string _licenseType;
         private string _platform;
         private string _roleName;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _usageOperation;
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>i386</code> | <code>x86_64</code> 
+        /// Valid values: <c>i386</c> | <c>x86_64</c> 
         /// </para>
         /// </summary>
         public string Architecture
@@ -103,8 +104,8 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>uefi-preferred</code> boot mode isn't supported for importing images. For
-        /// more information, see <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/prerequisites.html#vmimport-boot-modes">Boot
+        /// The <c>uefi-preferred</c> boot mode isn't supported for importing images. For more
+        /// information, see <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/prerequisites.html#vmimport-boot-modes">Boot
         /// modes</a> in the <i>VM Import/Export User Guide</i>.
         /// </para>
         ///  </note>
@@ -190,14 +191,14 @@ namespace Amazon.EC2.Model
         // Check to see if DiskContainers property is set
         internal bool IsSetDiskContainers()
         {
-            return this._diskContainers != null && this._diskContainers.Count > 0; 
+            return this._diskContainers != null && (this._diskContainers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Encrypted. 
         /// <para>
         /// Specifies whether the destination AMI of the imported image should be encrypted. The
-        /// default KMS key for EBS is used unless you specify a non-default KMS key using <code>KmsKeyId</code>.
+        /// default KMS key for EBS is used unless you specify a non-default KMS key using <c>KmsKeyId</c>.
         /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html">Amazon
         /// EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
         /// </para>
@@ -221,7 +222,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>xen</code> 
+        /// Valid values: <c>xen</c> 
         /// </para>
         /// </summary>
         public string Hypervisor
@@ -241,8 +242,8 @@ namespace Amazon.EC2.Model
         /// <para>
         /// An identifier for the symmetric KMS key to use when creating the encrypted AMI. This
         /// parameter is only required if you want to use a non-default KMS key; if this parameter
-        /// is not specified, the default KMS key for EBS is used. If a <code>KmsKeyId</code>
-        /// is specified, the <code>Encrypted</code> flag must also be set. 
+        /// is not specified, the default KMS key for EBS is used. If a <c>KmsKeyId</c> is specified,
+        /// the <c>Encrypted</c> flag must also be set. 
         /// </para>
         ///  
         /// <para>
@@ -258,22 +259,22 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed
-        /// by the Region of the key, the Amazon Web Services account ID of the key owner, the
-        /// <code>key</code> namespace, and then the key ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+        /// ARN using key ID. The ID ARN contains the <c>arn:aws:kms</c> namespace, followed by
+        /// the Region of the key, the Amazon Web Services account ID of the key owner, the <c>key</c>
+        /// namespace, and then the key ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace,
-        /// followed by the Region of the key, the Amazon Web Services account ID of the key owner,
-        /// the <code>alias</code> namespace, and then the key alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.
+        /// ARN using key alias. The alias ARN contains the <c>arn:aws:kms</c> namespace, followed
+        /// by the Region of the key, the Amazon Web Services account ID of the key owner, the
+        /// <c>alias</c> namespace, and then the key alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Amazon Web Services parses <code>KmsKeyId</code> asynchronously, meaning that the
-        /// action you call may appear to complete even though you provided an invalid identifier.
-        /// This action will eventually report failure. 
+        /// Amazon Web Services parses <c>KmsKeyId</c> asynchronously, meaning that the action
+        /// you call may appear to complete even though you provided an invalid identifier. This
+        /// action will eventually report failure. 
         /// </para>
         ///  
         /// <para>
@@ -311,7 +312,7 @@ namespace Amazon.EC2.Model
         // Check to see if LicenseSpecifications property is set
         internal bool IsSetLicenseSpecifications()
         {
-            return this._licenseSpecifications != null && this._licenseSpecifications.Count > 0; 
+            return this._licenseSpecifications != null && (this._licenseSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -321,17 +322,17 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify <code>AWS</code> to replace the source-system license with an Amazon Web Services
-        /// license or <code>BYOL</code> to retain the source-system license. Leaving this parameter
-        /// undefined is the same as choosing <code>AWS</code> when importing a Windows Server
-        /// operating system, and the same as choosing <code>BYOL</code> when importing a Windows
-        /// client operating system (such as Windows 10) or a Linux operating system.
+        /// Specify <c>AWS</c> to replace the source-system license with an Amazon Web Services
+        /// license or <c>BYOL</c> to retain the source-system license. Leaving this parameter
+        /// undefined is the same as choosing <c>AWS</c> when importing a Windows Server operating
+        /// system, and the same as choosing <c>BYOL</c> when importing a Windows client operating
+        /// system (such as Windows 10) or a Linux operating system.
         /// </para>
         ///  
         /// <para>
-        /// To use <code>BYOL</code>, you must have existing licenses with rights to use these
-        /// licenses in a third party cloud, such as Amazon Web Services. For more information,
-        /// see <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#prerequisites-image">Prerequisites</a>
+        /// To use <c>BYOL</c>, you must have existing licenses with rights to use these licenses
+        /// in a third party cloud, such as Amazon Web Services. For more information, see <a
+        /// href="https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#prerequisites-image">Prerequisites</a>
         /// in the VM Import/Export User Guide.
         /// </para>
         /// </summary>
@@ -356,7 +357,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>Windows</code> | <code>Linux</code> 
+        /// Valid values: <c>Windows</c> | <c>Linux</c> 
         /// </para>
         /// </summary>
         public string Platform
@@ -404,7 +405,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

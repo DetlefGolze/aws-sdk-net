@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>ModifyDBParameterGroup</code>
-    /// or <code>ResetDBParameterGroup</code> action.
+    /// Contains the result of a successful invocation of the <c>ModifyDBParameterGroup</c>
+    /// or <c>ResetDBParameterGroup</c> operation.
     /// </summary>
     public partial class ModifyDBParameterGroupResponse : AmazonWebServiceResponse
     {

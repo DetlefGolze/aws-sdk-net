@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -33,27 +34,28 @@ namespace Amazon.Connect.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>CLAIMED</code> means the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html">ClaimedPhoneNumber</a>
+    ///  <c>CLAIMED</c> means the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html">ClaimPhoneNumber</a>
     /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>
     /// operation succeeded.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>IN_PROGRESS</code> means a <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html">ClaimedPhoneNumber</a>
-    /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>
+    ///  <c>IN_PROGRESS</c> means a <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html">ClaimPhoneNumber</a>,
+    /// <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>,
+    /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html">UpdatePhoneNumberMetadata</a>
     /// operation is still in progress and has not yet completed. You can call <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html">DescribePhoneNumber</a>
     /// at a later time to verify if the previous operation has completed.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>FAILED</code> indicates that the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html">ClaimedPhoneNumber</a>
+    ///  <c>FAILED</c> indicates that the previous <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html">ClaimPhoneNumber</a>
     /// or <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html">UpdatePhoneNumber</a>
     /// operation has failed. It will include a message indicating the failure reason. A common
-    /// reason for a failure may be that the <code>TargetArn</code> value you are claiming
-    /// or updating a phone number to has reached its limit of total claimed numbers. If you
-    /// received a <code>FAILED</code> status from a <code>ClaimPhoneNumber</code> API call,
-    /// you have one day to retry claiming the phone number before the number is released
-    /// back to the inventory for other customers to claim.
+    /// reason for a failure may be that the <c>TargetArn</c> value you are claiming or updating
+    /// a phone number to has reached its limit of total claimed numbers. If you received
+    /// a <c>FAILED</c> status from a <c>ClaimPhoneNumber</c> API call, you have one day to
+    /// retry claiming the phone number before the number is released back to the inventory
+    /// for other customers to claim.
     /// </para>
     ///  </li> </ul>
     /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KendraRanking.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.KendraRanking.Model
     /// </summary>
     public partial class RescoreRequest : AmazonKendraRankingRequest
     {
-        private List<Document> _documents = new List<Document>();
+        private List<Document> _documents = AWSConfigs.InitializeCollections ? new List<Document>() : null;
         private string _rescoreExecutionPlanId;
         private string _searchQuery;
 
@@ -56,15 +57,14 @@ namespace Amazon.KendraRanking.Model
         // Check to see if Documents property is set
         internal bool IsSetDocuments()
         {
-            return this._documents != null && this._documents.Count > 0; 
+            return this._documents != null && (this._documents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RescoreExecutionPlanId. 
         /// <para>
         /// The identifier of the rescore execution plan. A rescore execution plan is an Amazon
-        /// Kendra Intelligent Ranking resource used for provisioning the <code>Rescore</code>
-        /// API.
+        /// Kendra Intelligent Ranking resource used for provisioning the <c>Rescore</c> API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]

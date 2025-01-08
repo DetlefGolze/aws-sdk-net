@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class Rule
     {
-        private List<Action> _actions = new List<Action>();
-        private List<RuleCondition> _conditions = new List<RuleCondition>();
+        private List<Action> _actions = AWSConfigs.InitializeCollections ? new List<Action>() : null;
+        private List<RuleCondition> _conditions = AWSConfigs.InitializeCollections ? new List<RuleCondition>() : null;
         private bool? _isDefault;
         private string _priority;
         private string _ruleArn;
@@ -43,8 +44,8 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// Gets and sets the property Actions. 
         /// <para>
         /// The actions. Each rule must include exactly one of the following types of actions:
-        /// <code>forward</code>, <code>redirect</code>, or <code>fixed-response</code>, and it
-        /// must be the last action to be performed.
+        /// <c>forward</c>, <c>redirect</c>, or <c>fixed-response</c>, and it must be the last
+        /// action to be performed.
         /// </para>
         /// </summary>
         public List<Action> Actions
@@ -56,15 +57,15 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Conditions. 
         /// <para>
-        /// The conditions. Each rule can include zero or one of the following conditions: <code>http-request-method</code>,
-        /// <code>host-header</code>, <code>path-pattern</code>, and <code>source-ip</code>, and
-        /// zero or more of the following conditions: <code>http-header</code> and <code>query-string</code>.
+        /// The conditions. Each rule can include zero or one of the following conditions: <c>http-request-method</c>,
+        /// <c>host-header</c>, <c>path-pattern</c>, and <c>source-ip</c>, and zero or more of
+        /// the following conditions: <c>http-header</c> and <c>query-string</c>.
         /// </para>
         /// </summary>
         public List<RuleCondition> Conditions
@@ -76,7 +77,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Conditions property is set
         internal bool IsSetConditions()
         {
-            return this._conditions != null && this._conditions.Count > 0; 
+            return this._conditions != null && (this._conditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>arn:aws:rds:us-east-1::cert:rds-ca-2019</code> 
+        /// Example: <c>arn:aws:rds:us-east-1::cert:rds-ca-2019</c> 
         /// </para>
         /// </summary>
         public string CertificateArn
@@ -69,7 +70,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>rds-ca-2019</code> 
+        /// Example: <c>rds-ca-2019</c> 
         /// </para>
         /// </summary>
         public string CertificateIdentifier
@@ -91,7 +92,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>CA</code> 
+        /// Example: <c>CA</c> 
         /// </para>
         /// </summary>
         public string CertificateType
@@ -131,7 +132,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>2019-07-31T17:57:09Z</code> 
+        /// Example: <c>2019-07-31T17:57:09Z</c> 
         /// </para>
         /// </summary>
         public DateTime ValidFrom
@@ -153,7 +154,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>2024-07-31T17:57:09Z</code> 
+        /// Example: <c>2024-07-31T17:57:09Z</c> 
         /// </para>
         /// </summary>
         public DateTime ValidTill

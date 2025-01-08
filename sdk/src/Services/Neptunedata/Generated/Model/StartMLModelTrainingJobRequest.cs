@@ -26,12 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
     /// Container for the parameters to the StartMLModelTrainingJob operation.
     /// Creates a new Neptune ML model training job. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-api-modeltraining.html">Model
-    /// training using the <code>modeltraining</code> command</a>.
+    /// training using the <c>modeltraining</c> command</a>.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#startmlmodeltrainingjob">neptune-db:StartMLModelTrainingJob</a>
+    /// IAM action in that cluster.
+    /// </para>
     /// </summary>
     public partial class StartMLModelTrainingJobRequest : AmazonNeptunedataRequest
     {
@@ -46,8 +55,8 @@ namespace Amazon.Neptunedata.Model
         private string _previousModelTrainingJobId;
         private string _s3OutputEncryptionKMSKey;
         private string _sagemakerIamRoleArn;
-        private List<string> _securityGroupIds = new List<string>();
-        private List<string> _subnets = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _trainingInstanceType;
         private int? _trainingInstanceVolumeSizeInGB;
         private int? _trainingTimeOutInSeconds;
@@ -116,7 +125,7 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property EnableManagedSpotTraining. 
         /// <para>
         /// Optimizes the cost of training machine-learning models by using Amazon Elastic Compute
-        /// Cloud spot instances. The default is <code>False</code>.
+        /// Cloud spot instances. The default is <c>False</c>.
         /// </para>
         /// </summary>
         public bool EnableManagedSpotTraining
@@ -155,8 +164,8 @@ namespace Amazon.Neptunedata.Model
         /// Maximum total number of training jobs to start for the hyperparameter tuning job.
         /// The default is 2. Neptune ML automatically tunes the hyperparameters of the machine
         /// learning model. To obtain a model that performs well, use at least 10 jobs (in other
-        /// words, set <code>maxHPONumberOfTrainingJobs</code> to 10). In general, the more tuning
-        /// runs, the better the results.
+        /// words, set <c>maxHPONumberOfTrainingJobs</c> to 10). In general, the more tuning runs,
+        /// the better the results.
         /// </para>
         /// </summary>
         public int MaxHPONumberOfTrainingJobs
@@ -282,7 +291,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -300,15 +309,15 @@ namespace Amazon.Neptunedata.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TrainingInstanceType. 
         /// <para>
         /// The type of ML instance used for model training. All Neptune ML models support CPU,
-        /// GPU, and multiGPU training. The default is <code>ml.p3.2xlarge</code>. Choosing the
-        /// right instance type for training depends on the task type, graph size, and your budget.
+        /// GPU, and multiGPU training. The default is <c>ml.p3.2xlarge</c>. Choosing the right
+        /// instance type for training depends on the task type, graph size, and your budget.
         /// </para>
         /// </summary>
         public string TrainingInstanceType

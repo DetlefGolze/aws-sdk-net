@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleDB.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SimpleDB.Model
     /// </summary>
     public partial class GetAttributesRequest : AmazonSimpleDBRequest
     {
-        private List<string> _attributeNames = new List<string>();
+        private List<string> _attributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _consistentRead;
         private string _domainName;
         private string _itemName;
@@ -76,15 +77,14 @@ namespace Amazon.SimpleDB.Model
         // Check to see if AttributeNames property is set
         internal bool IsSetAttributeNames()
         {
-            return this._attributeNames != null && this._attributeNames.Count > 0; 
+            return this._attributeNames != null && (this._attributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ConsistentRead. Determines whether or not strong consistency
-        /// should be enforced when data is read from SimpleDB. If <code>true</code>, any data
-        /// previously written to SimpleDB will be returned. Otherwise, results will be consistent
-        /// eventually, and the client may not see data that was written immediately before your
-        /// read.
+        /// should be enforced when data is read from SimpleDB. If <c>true</c>, any data previously
+        /// written to SimpleDB will be returned. Otherwise, results will be consistent eventually,
+        /// and the client may not see data that was written immediately before your read.
         /// </summary>
         public bool ConsistentRead
         {

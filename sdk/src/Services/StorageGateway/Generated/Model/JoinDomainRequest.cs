@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.StorageGateway.Model
     /// </summary>
     public partial class JoinDomainRequest : AmazonStorageGatewayRequest
     {
-        private List<string> _domainControllers = new List<string>();
+        private List<string> _domainControllers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _domainName;
         private string _gatewayARN;
         private string _organizationalUnit;
@@ -61,7 +62,7 @@ namespace Amazon.StorageGateway.Model
         /// Gets and sets the property DomainControllers. 
         /// <para>
         /// List of IPv4 addresses, NetBIOS names, or host names of your domain server. If you
-        /// need to specify the port number include it after the colon (“:”). For example, <code>mydc.mydomain.com:389</code>.
+        /// need to specify the port number include it after the colon (“:”). For example, <c>mydc.mydomain.com:389</c>.
         /// </para>
         /// </summary>
         public List<string> DomainControllers
@@ -73,7 +74,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if DomainControllers property is set
         internal bool IsSetDomainControllers()
         {
-            return this._domainControllers != null && this._domainControllers.Count > 0; 
+            return this._domainControllers != null && (this._domainControllers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property GatewayARN. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the gateway. Use the <code>ListGateways</code> operation
+        /// The Amazon Resource Name (ARN) of the gateway. Use the <c>ListGateways</c> operation
         /// to return a list of gateways for your account and Amazon Web Services Region.
         /// </para>
         /// </summary>
@@ -159,8 +160,8 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property TimeoutInSeconds. 
         /// <para>
-        /// Specifies the time in seconds, in which the <code>JoinDomain</code> operation must
-        /// complete. The default is 20 seconds.
+        /// Specifies the time in seconds, in which the <c>JoinDomain</c> operation must complete.
+        /// The default is 20 seconds.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=3600)]

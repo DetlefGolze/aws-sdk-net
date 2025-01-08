@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the ResetInstanceAttribute operation.
-    /// Resets an attribute of an instance to its default value. To reset the <code>kernel</code>
-    /// or <code>ramdisk</code>, the instance must be in a stopped state. To reset the <code>sourceDestCheck</code>,
+    /// Resets an attribute of an instance to its default value. To reset the <c>kernel</c>
+    /// or <c>ramdisk</c>, the instance must be in a stopped state. To reset the <c>sourceDestCheck</c>,
     /// the instance can be either running or stopped.
     /// 
     ///  
     /// <para>
-    /// The <code>sourceDestCheck</code> attribute controls whether source/destination checking
-    /// is enabled. The default value is <code>true</code>, which means checking is enabled.
-    /// This value must be <code>false</code> for a NAT instance to perform NAT. For more
-    /// information, see <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html">NAT
-    /// Instances</a> in the <i>Amazon VPC User Guide</i>.
+    /// The <c>sourceDestCheck</c> attribute controls whether source/destination checking
+    /// is enabled. The default value is <c>true</c>, which means checking is enabled. This
+    /// value must be <c>false</c> for a NAT instance to perform NAT. For more information,
+    /// see <a href="https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_NAT_Instance.html">NAT
+    /// instances</a> in the <i>Amazon VPC User Guide</i>.
     /// </para>
     /// </summary>
     public partial class ResetInstanceAttributeRequest : AmazonEC2Request
@@ -57,7 +58,7 @@ namespace Amazon.EC2.Model
         /// Instantiates ResetInstanceAttributeRequest with the parameterized properties
         /// </summary>
         /// <param name="instanceId">The ID of the instance.</param>
-        /// <param name="attribute">The attribute to reset. <important> You can only reset the following attributes: <code>kernel</code> | <code>ramdisk</code> | <code>sourceDestCheck</code>. </important></param>
+        /// <param name="attribute">The attribute to reset. <important> You can only reset the following attributes: <c>kernel</c> | <c>ramdisk</c> | <c>sourceDestCheck</c>. </important></param>
         public ResetInstanceAttributeRequest(string instanceId, InstanceAttributeName attribute)
         {
             _instanceId = instanceId;
@@ -71,8 +72,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// You can only reset the following attributes: <code>kernel</code> | <code>ramdisk</code>
-        /// | <code>sourceDestCheck</code>.
+        /// You can only reset the following attributes: <c>kernel</c> | <c>ramdisk</c> | <c>sourceDestCheck</c>.
         /// </para>
         ///  </important>
         /// </summary>

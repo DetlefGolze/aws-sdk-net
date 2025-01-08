@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
     /// Container for the parameters to the GetTags operation.
     /// Returns a list of tags that are associated with a resource group, specified by an
-    /// ARN.
+    /// Amazon resource name (ARN).
     /// 
     ///  
     /// <para>
@@ -43,7 +44,7 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:GetTags</code> 
+    ///  <c>resource-groups:GetTags</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -54,7 +55,7 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The ARN of the resource group whose tags you want to retrieve.
+        /// The Amazon resource name (ARN) of the resource group whose tags you want to retrieve.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=12, Max=1600)]

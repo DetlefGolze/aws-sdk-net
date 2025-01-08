@@ -69,6 +69,7 @@ namespace ServiceClientGenerator
         public const string LocationNameKey = "locationName";
         public const string QueryNameKey = "queryName";
         public const string XmlNamespaceUriKey = "uri";
+        public const string XmlNamespacePrefixKey = "prefix";
         public const string XmlNamespaceKey = "xmlNamespace";
         public const string EndpointDiscoveryIdKey = "endpointdiscoveryid";
 
@@ -549,6 +550,7 @@ namespace ServiceClientGenerator
                     if ((ServiceId == "S3" || ServiceId == "S3 Control") && (
                         param.Key == "UseArnRegion" ||
                         param.Key == "DisableMultiRegionAccessPoints" ||
+                        param.Key == "DisableS3ExpressSessionAuth" ||
                         param.Key == "Accelerate" ||
                         param.Key == "ForcePathStyle"))
                     {

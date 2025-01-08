@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -49,13 +50,13 @@ namespace Amazon.ConfigService.Model
     {
         private int? _limit;
         private string _nextToken;
-        private List<string> _organizationConfigRuleNames = new List<string>();
+        private List<string> _organizationConfigRuleNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of <code>OrganizationConfigRuleStatuses</code> returned on each
-        /// page. If you do no specify a number, Config uses the default. The default is 100.
+        /// The maximum number of <c>OrganizationConfigRuleStatuses</c> returned on each page.
+        /// If you do no specify a number, Config uses the default. The default is 100.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -74,8 +75,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response. 
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -107,7 +108,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if OrganizationConfigRuleNames property is set
         internal bool IsSetOrganizationConfigRuleNames()
         {
-            return this._organizationConfigRuleNames != null && this._organizationConfigRuleNames.Count > 0; 
+            return this._organizationConfigRuleNames != null && (this._organizationConfigRuleNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

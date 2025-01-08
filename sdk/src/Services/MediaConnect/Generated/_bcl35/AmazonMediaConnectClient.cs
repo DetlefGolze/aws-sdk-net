@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.MediaConnect
 {
     /// <summary>
-    /// Implementation for accessing MediaConnect
+    /// <para>Implementation for accessing MediaConnect</para>
     ///
     /// API for AWS Elemental MediaConnect
     /// </summary>
@@ -1472,6 +1473,163 @@ namespace Amazon.MediaConnect
         public virtual DescribeFlowResponse EndDescribeFlow(IAsyncResult asyncResult)
         {
             return EndInvoke<DescribeFlowResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DescribeFlowSourceMetadata
+
+        /// <summary>
+        /// Displays details of the flow's source stream. The response contains information about
+        /// the contents of the stream and its programs.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeFlowSourceMetadata service method.</param>
+        /// 
+        /// <returns>The response from the DescribeFlowSourceMetadata service method, as returned by MediaConnect.</returns>
+        /// <exception cref="Amazon.MediaConnect.Model.BadRequestException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.ForbiddenException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.InternalServerErrorException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.NotFoundException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.ServiceUnavailableException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.TooManyRequestsException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceMetadata">REST API Reference for DescribeFlowSourceMetadata Operation</seealso>
+        public virtual DescribeFlowSourceMetadataResponse DescribeFlowSourceMetadata(DescribeFlowSourceMetadataRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeFlowSourceMetadataRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeFlowSourceMetadataResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeFlowSourceMetadataResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeFlowSourceMetadata operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeFlowSourceMetadata operation on AmazonMediaConnectClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeFlowSourceMetadata
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceMetadata">REST API Reference for DescribeFlowSourceMetadata Operation</seealso>
+        public virtual IAsyncResult BeginDescribeFlowSourceMetadata(DescribeFlowSourceMetadataRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeFlowSourceMetadataRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeFlowSourceMetadataResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeFlowSourceMetadata operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeFlowSourceMetadata.</param>
+        /// 
+        /// <returns>Returns a  DescribeFlowSourceMetadataResult from MediaConnect.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceMetadata">REST API Reference for DescribeFlowSourceMetadata Operation</seealso>
+        public virtual DescribeFlowSourceMetadataResponse EndDescribeFlowSourceMetadata(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DescribeFlowSourceMetadataResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DescribeFlowSourceThumbnail
+
+        /// <summary>
+        /// Displays the thumbnail details of a flow's source stream.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeFlowSourceThumbnail service method.</param>
+        /// 
+        /// <returns>The response from the DescribeFlowSourceThumbnail service method, as returned by MediaConnect.</returns>
+        /// <exception cref="Amazon.MediaConnect.Model.BadRequestException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.ForbiddenException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.InternalServerErrorException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.NotFoundException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.ServiceUnavailableException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <exception cref="Amazon.MediaConnect.Model.TooManyRequestsException">
+        /// Exception raised by AWS Elemental MediaConnect. See the error message and documentation
+        /// for the operation for more information on the cause of this exception.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceThumbnail">REST API Reference for DescribeFlowSourceThumbnail Operation</seealso>
+        public virtual DescribeFlowSourceThumbnailResponse DescribeFlowSourceThumbnail(DescribeFlowSourceThumbnailRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeFlowSourceThumbnailRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeFlowSourceThumbnailResponseUnmarshaller.Instance;
+
+            return Invoke<DescribeFlowSourceThumbnailResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DescribeFlowSourceThumbnail operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DescribeFlowSourceThumbnail operation on AmazonMediaConnectClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDescribeFlowSourceThumbnail
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceThumbnail">REST API Reference for DescribeFlowSourceThumbnail Operation</seealso>
+        public virtual IAsyncResult BeginDescribeFlowSourceThumbnail(DescribeFlowSourceThumbnailRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DescribeFlowSourceThumbnailRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DescribeFlowSourceThumbnailResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DescribeFlowSourceThumbnail operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDescribeFlowSourceThumbnail.</param>
+        /// 
+        /// <returns>Returns a  DescribeFlowSourceThumbnailResult from MediaConnect.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeFlowSourceThumbnail">REST API Reference for DescribeFlowSourceThumbnail Operation</seealso>
+        public virtual DescribeFlowSourceThumbnailResponse EndDescribeFlowSourceThumbnail(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DescribeFlowSourceThumbnailResponse>(asyncResult);
         }
 
         #endregion
@@ -4197,11 +4355,11 @@ namespace Amazon.MediaConnect
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

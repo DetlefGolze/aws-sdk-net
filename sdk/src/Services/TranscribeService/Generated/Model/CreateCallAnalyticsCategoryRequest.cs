@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -40,12 +41,11 @@ namespace Amazon.TranscribeService.Model
     /// </para>
     ///  
     /// <para>
-    /// When creating a new category, you can use the <code>InputType</code> parameter to
-    /// label the category as a <code>POST_CALL</code> or a <code>REAL_TIME</code> category.
-    /// <code>POST_CALL</code> categories can only be applied to post-call transcriptions
-    /// and <code>REAL_TIME</code> categories can only be applied to real-time transcriptions.
-    /// If you do not include <code>InputType</code>, your category is created as a <code>POST_CALL</code>
-    /// category by default.
+    /// When creating a new category, you can use the <c>InputType</c> parameter to label
+    /// the category as a <c>POST_CALL</c> or a <c>REAL_TIME</c> category. <c>POST_CALL</c>
+    /// categories can only be applied to post-call transcriptions and <c>REAL_TIME</c> categories
+    /// can only be applied to real-time transcriptions. If you do not include <c>InputType</c>,
+    /// your category is created as a <c>POST_CALL</c> category by default.
     /// </para>
     ///  
     /// <para>
@@ -67,15 +67,15 @@ namespace Amazon.TranscribeService.Model
     {
         private string _categoryName;
         private InputType _inputType;
-        private List<Rule> _rules = new List<Rule>();
+        private List<Rule> _rules = AWSConfigs.InitializeCollections ? new List<Rule>() : null;
 
         /// <summary>
         /// Gets and sets the property CategoryName. 
         /// <para>
         /// A unique name, chosen by you, for your Call Analytics category. It's helpful to use
         /// a detailed naming system that will make sense to you in the future. For example, it's
-        /// better to use <code>sentiment-positive-last30seconds</code> for a category over a
-        /// generic name like <code>test-category</code>.
+        /// better to use <c>sentiment-positive-last30seconds</c> for a category over a generic
+        /// name like <c>test-category</c>.
         /// </para>
         ///  
         /// <para>
@@ -103,18 +103,18 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// Specifying <code>POST_CALL</code> assigns your category to post-call transcriptions;
-        /// categories with this input type cannot be applied to streaming (real-time) transcriptions.
+        /// Specifying <c>POST_CALL</c> assigns your category to post-call transcriptions; categories
+        /// with this input type cannot be applied to streaming (real-time) transcriptions.
         /// </para>
         ///  
         /// <para>
-        /// Specifying <code>REAL_TIME</code> assigns your category to streaming transcriptions;
-        /// categories with this input type cannot be applied to post-call transcriptions.
+        /// Specifying <c>REAL_TIME</c> assigns your category to streaming transcriptions; categories
+        /// with this input type cannot be applied to post-call transcriptions.
         /// </para>
         ///  
         /// <para>
-        /// If you do not include <code>InputType</code>, your category is created as a post-call
-        /// category by default.
+        /// If you do not include <c>InputType</c>, your category is created as a post-call category
+        /// by default.
         /// </para>
         /// </summary>
         public InputType InputType
@@ -149,7 +149,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

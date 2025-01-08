@@ -26,26 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateContinuousBackups operation.
-    /// <code>UpdateContinuousBackups</code> enables or disables point in time recovery for
-    /// the specified table. A successful <code>UpdateContinuousBackups</code> call returns
-    /// the current <code>ContinuousBackupsDescription</code>. Continuous backups are <code>ENABLED</code>
-    /// on all tables at table creation. If point in time recovery is enabled, <code>PointInTimeRecoveryStatus</code>
+    /// <c>UpdateContinuousBackups</c> enables or disables point in time recovery for the
+    /// specified table. A successful <c>UpdateContinuousBackups</c> call returns the current
+    /// <c>ContinuousBackupsDescription</c>. Continuous backups are <c>ENABLED</c> on all
+    /// tables at table creation. If point in time recovery is enabled, <c>PointInTimeRecoveryStatus</c>
     /// will be set to ENABLED.
     /// 
     ///  
     /// <para>
     ///  Once continuous backups and point in time recovery are enabled, you can restore to
-    /// any point in time within <code>EarliestRestorableDateTime</code> and <code>LatestRestorableDateTime</code>.
+    /// any point in time within <c>EarliestRestorableDateTime</c> and <c>LatestRestorableDateTime</c>.
     /// 
     /// </para>
     ///  
     /// <para>
-    ///  <code>LatestRestorableDateTime</code> is typically 5 minutes before the current time.
-    /// You can restore your table to any point in time during the last 35 days. 
+    ///  <c>LatestRestorableDateTime</c> is typically 5 minutes before the current time. You
+    /// can restore your table to any point in time during the last 35 days. 
     /// </para>
     /// </summary>
     public partial class UpdateContinuousBackupsRequest : AmazonDynamoDBRequest
@@ -75,10 +76,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the table.
+        /// The name of the table. You can also provide the Amazon Resource Name (ARN) of the
+        /// table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }

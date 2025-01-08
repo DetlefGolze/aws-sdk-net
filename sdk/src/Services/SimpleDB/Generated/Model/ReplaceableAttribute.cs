@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleDB.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.SimpleDB.Model
         /// </summary>
         /// <param name="name">The name of the replaceable attribute.</param>
         /// <param name="value">The value of the replaceable attribute.</param>
-        /// <param name="replace">A flag specifying whether or not to replace the attribute/value pair or to add a new attribute/value pair. The default setting is <code>false</code>.</param>
+        /// <param name="replace">A flag specifying whether or not to replace the attribute/value pair or to add a new attribute/value pair. The default setting is <c>false</c>.</param>
         public ReplaceableAttribute(string name, string value, bool replace)
         {
             _name = name;
@@ -74,7 +75,7 @@ namespace Amazon.SimpleDB.Model
         /// <summary>
         /// Gets and sets the property Replace. A flag specifying whether or not to replace the
         /// attribute/value pair or to add a new attribute/value pair. The default setting is
-        /// <code>false</code>.
+        /// <c>false</c>.
         /// </summary>
         public bool Replace
         {

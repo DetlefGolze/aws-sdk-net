@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -97,8 +98,8 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property SkipAppResign. 
         /// <para>
-        /// When set to <code>true</code>, for private devices, Device Farm does not sign your
-        /// app again. For public devices, Device Farm always signs your apps again.
+        /// When set to <c>true</c>, for private devices, Device Farm does not sign your app again.
+        /// For public devices, Device Farm always signs your apps again.
         /// </para>
         ///  
         /// <para>

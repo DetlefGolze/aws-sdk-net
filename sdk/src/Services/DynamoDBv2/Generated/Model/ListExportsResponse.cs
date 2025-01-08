@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.DynamoDBv2.Model
     /// </summary>
     public partial class ListExportsResponse : AmazonWebServiceResponse
     {
-        private List<ExportSummary> _exportSummaries = new List<ExportSummary>();
+        private List<ExportSummary> _exportSummaries = AWSConfigs.InitializeCollections ? new List<ExportSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ExportSummaries. 
         /// <para>
-        /// A list of <code>ExportSummary</code> objects.
+        /// A list of <c>ExportSummary</c> objects.
         /// </para>
         /// </summary>
         public List<ExportSummary> ExportSummaries
@@ -51,15 +52,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExportSummaries property is set
         internal bool IsSetExportSummaries()
         {
-            return this._exportSummaries != null && this._exportSummaries.Count > 0; 
+            return this._exportSummaries != null && (this._exportSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If this value is returned, there are additional results to be displayed. To retrieve
-        /// them, call <code>ListExports</code> again, with <code>NextToken</code> set to this
-        /// value.
+        /// them, call <c>ListExports</c> again, with <c>NextToken</c> set to this value.
         /// </para>
         /// </summary>
         public string NextToken

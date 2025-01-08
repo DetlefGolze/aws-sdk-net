@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.Route53Resolver.Model
     {
         private int? _maxResults;
         private string _nextToken;
-        private List<ResolverEndpoint> _resolverEndpoints = new List<ResolverEndpoint>();
+        private List<ResolverEndpoint> _resolverEndpoints = AWSConfigs.InitializeCollections ? new List<ResolverEndpoint>() : null;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The value that you specified for <code>MaxResults</code> in the request.
+        /// The value that you specified for <c>MaxResults</c> in the request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -59,10 +60,10 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If more than <code>MaxResults</code> IP addresses match the specified criteria, you
-        /// can submit another <code>ListResolverEndpoint</code> request to get the next group
-        /// of results. In the next request, specify the value of <code>NextToken</code> from
-        /// the previous response. 
+        /// If more than <c>MaxResults</c> IP addresses match the specified criteria, you can
+        /// submit another <c>ListResolverEndpoint</c> request to get the next group of results.
+        /// In the next request, specify the value of <c>NextToken</c> from the previous response.
+        /// 
         /// </para>
         /// </summary>
         public string NextToken
@@ -93,7 +94,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if ResolverEndpoints property is set
         internal bool IsSetResolverEndpoints()
         {
-            return this._resolverEndpoints != null && this._resolverEndpoints.Count > 0; 
+            return this._resolverEndpoints != null && (this._resolverEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

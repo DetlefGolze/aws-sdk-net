@@ -27,15 +27,16 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AssociateSoftwareToken operation.
     /// Begins setup of time-based one-time password (TOTP) multi-factor authentication (MFA)
     /// for a user, with a unique private key that Amazon Cognito generates and returns in
-    /// the API response. You can authorize an <code>AssociateSoftwareToken</code> request
-    /// with either the user's access token, or a session string from a challenge response
-    /// that you received from Amazon Cognito.
+    /// the API response. You can authorize an <c>AssociateSoftwareToken</c> request with
+    /// either the user's access token, or a session string from a challenge response that
+    /// you received from Amazon Cognito.
     /// 
     ///  <note> 
     /// <para>
@@ -44,12 +45,12 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// VerifySoftwareToken</a> API request. If you don't verify the software token and your
     /// user pool doesn't require MFA, the user can then authenticate with user name and password
     /// credentials alone. If your user pool requires TOTP MFA, Amazon Cognito generates an
-    /// <code>MFA_SETUP</code> or <code>SOFTWARE_TOKEN_SETUP</code> challenge each time your
-    /// user signs. Complete setup with <code>AssociateSoftwareToken</code> and <code>VerifySoftwareToken</code>.
+    /// <c>MFA_SETUP</c> or <c>SOFTWARE_TOKEN_SETUP</c> challenge each time your user signs
+    /// in. Complete setup with <c>AssociateSoftwareToken</c> and <c>VerifySoftwareToken</c>.
     /// </para>
     ///  
     /// <para>
-    /// After you set up software token MFA for your user, Amazon Cognito generates a <code>SOFTWARE_TOKEN_MFA</code>
+    /// After you set up software token MFA for your user, Amazon Cognito generates a <c>SOFTWARE_TOKEN_MFA</c>
     /// challenge when they authenticate. Respond to this challenge with your user's TOTP.
     /// </para>
     ///  </note> <note> 
@@ -58,9 +59,13 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
-    ///  </note>
+    ///  </note> 
+    /// <para>
+    /// Authorize this action with a signed-in user's access token. It must include the scope
+    /// <c>aws.cognito.signin.user.admin</c>.
+    /// </para>
     /// </summary>
     public partial class AssociateSoftwareTokenRequest : AmazonCognitoIdentityProviderRequest
     {
@@ -71,7 +76,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property AccessToken. 
         /// <para>
         /// A valid access token that Amazon Cognito issued to the user whose software token you
-        /// want to generate.
+        /// want to generate. You can provide either an access token or a session ID in the request.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -90,8 +95,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Session. 
         /// <para>
-        /// The session that should be passed both ways in challenge-response calls to the service.
-        /// This allows authentication of the user as part of the MFA setup process.
+        /// The session identifier that maintains the state of authentication requests and challenge
+        /// responses. In <c>AssociateSoftwareToken</c>, this is the session ID from a successful
+        /// sign-in. You can provide either an access token or a session ID in the request.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=20, Max=2048)]

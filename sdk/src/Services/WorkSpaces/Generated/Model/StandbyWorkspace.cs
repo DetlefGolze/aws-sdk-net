@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -33,10 +34,29 @@ namespace Amazon.WorkSpaces.Model
     /// </summary>
     public partial class StandbyWorkspace
     {
+        private DataReplication _dataReplication;
         private string _directoryId;
         private string _primaryWorkspaceId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeEncryptionKey;
+
+        /// <summary>
+        /// Gets and sets the property DataReplication. 
+        /// <para>
+        /// Indicates whether data replication is enabled, and if enabled, the type of data replication.
+        /// </para>
+        /// </summary>
+        public DataReplication DataReplication
+        {
+            get { return this._dataReplication; }
+            set { this._dataReplication = value; }
+        }
+
+        // Check to see if DataReplication property is set
+        internal bool IsSetDataReplication()
+        {
+            return this._dataReplication != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DirectoryId. 
@@ -91,7 +111,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

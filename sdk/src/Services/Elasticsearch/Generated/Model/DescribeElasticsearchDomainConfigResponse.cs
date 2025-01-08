@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeElasticsearchDomainConfig</code> request. Contains the
-    /// configuration information of the requested domain.
+    /// The result of a <c>DescribeElasticsearchDomainConfig</c> request. Contains the configuration
+    /// information of the requested domain.
     /// </summary>
     public partial class DescribeElasticsearchDomainConfigResponse : AmazonWebServiceResponse
     {
@@ -39,7 +40,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property DomainConfig. 
         /// <para>
-        /// The configuration information of the domain requested in the <code>DescribeElasticsearchDomainConfig</code>
+        /// The configuration information of the domain requested in the <c>DescribeElasticsearchDomainConfig</c>
         /// request.
         /// </para>
         /// </summary>

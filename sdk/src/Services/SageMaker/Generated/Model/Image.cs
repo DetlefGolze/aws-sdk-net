@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A SageMaker image. A SageMaker image represents a set of container images that are
-    /// derived from a common base container image. Each of these container images is represented
-    /// by a SageMaker <code>ImageVersion</code>.
+    /// A SageMaker AI image. A SageMaker AI image represents a set of container images that
+    /// are derived from a common base container image. Each of these container images is
+    /// represented by a SageMaker AI <c>ImageVersion</c>.
     /// </summary>
     public partial class Image
     {

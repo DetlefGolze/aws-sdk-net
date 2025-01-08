@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration for a <code>HistogramVisual</code>.
+    /// The configuration for a <c>HistogramVisual</c>.
     /// </summary>
     public partial class HistogramConfiguration
     {
         private HistogramBinOptions _binOptions;
         private DataLabelOptions _dataLabels;
         private HistogramFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private TooltipOptions _tooltip;
         private VisualPalette _visualPalette;
         private AxisDisplayOptions _xAxisDisplayOptions;
@@ -94,6 +96,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetFieldWells()
         {
             return this._fieldWells != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
         /// <summary>

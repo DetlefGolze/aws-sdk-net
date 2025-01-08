@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the ResetCacheParameterGroup operation.
     /// Modifies the parameters of a cache parameter group to the engine or system default
     /// value. You can reset specific parameters by submitting a list of parameter names.
-    /// To reset the entire cache parameter group, specify the <code>ResetAllParameters</code>
-    /// and <code>CacheParameterGroupName</code> parameters.
+    /// To reset the entire cache parameter group, specify the <c>ResetAllParameters</c> and
+    /// <c>CacheParameterGroupName</c> parameters.
     /// </summary>
     public partial class ResetCacheParameterGroupRequest : AmazonElastiCacheRequest
     {
         private string _cacheParameterGroupName;
-        private List<ParameterNameValue> _parameterNameValues = new List<ParameterNameValue>();
+        private List<ParameterNameValue> _parameterNameValues = AWSConfigs.InitializeCollections ? new List<ParameterNameValue>() : null;
         private bool? _resetAllParameters;
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace Amazon.ElastiCache.Model
         /// Instantiates ResetCacheParameterGroupRequest with the parameterized properties
         /// </summary>
         /// <param name="cacheParameterGroupName">The name of the cache parameter group to reset.</param>
-        /// <param name="parameterNameValues">An array of parameter names to reset to their default values. If <code>ResetAllParameters</code> is <code>true</code>, do not use <code>ParameterNameValues</code>. If <code>ResetAllParameters</code> is <code>false</code>, you must specify the name of at least one parameter to reset.</param>
+        /// <param name="parameterNameValues">An array of parameter names to reset to their default values. If <c>ResetAllParameters</c> is <c>true</c>, do not use <c>ParameterNameValues</c>. If <c>ResetAllParameters</c> is <c>false</c>, you must specify the name of at least one parameter to reset.</param>
         public ResetCacheParameterGroupRequest(string cacheParameterGroupName, List<ParameterNameValue> parameterNameValues)
         {
             _cacheParameterGroupName = cacheParameterGroupName;
@@ -79,9 +80,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property ParameterNameValues. 
         /// <para>
-        /// An array of parameter names to reset to their default values. If <code>ResetAllParameters</code>
-        /// is <code>true</code>, do not use <code>ParameterNameValues</code>. If <code>ResetAllParameters</code>
-        /// is <code>false</code>, you must specify the name of at least one parameter to reset.
+        /// An array of parameter names to reset to their default values. If <c>ResetAllParameters</c>
+        /// is <c>true</c>, do not use <c>ParameterNameValues</c>. If <c>ResetAllParameters</c>
+        /// is <c>false</c>, you must specify the name of at least one parameter to reset.
         /// </para>
         /// </summary>
         public List<ParameterNameValue> ParameterNameValues
@@ -93,19 +94,19 @@ namespace Amazon.ElastiCache.Model
         // Check to see if ParameterNameValues property is set
         internal bool IsSetParameterNameValues()
         {
-            return this._parameterNameValues != null && this._parameterNameValues.Count > 0; 
+            return this._parameterNameValues != null && (this._parameterNameValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResetAllParameters. 
         /// <para>
-        /// If <code>true</code>, all parameters in the cache parameter group are reset to their
-        /// default values. If <code>false</code>, only the parameters listed by <code>ParameterNameValues</code>
+        /// If <c>true</c>, all parameters in the cache parameter group are reset to their default
+        /// values. If <c>false</c>, only the parameters listed by <c>ParameterNameValues</c>
         /// are reset to their default values.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>true</code> | <code>false</code> 
+        /// Valid values: <c>true</c> | <c>false</c> 
         /// </para>
         /// </summary>
         public bool ResetAllParameters

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        ///  If the status of the endpoint is <code>Failed</code>, or the status is <code>InService</code>
+        ///  If the status of the endpoint is <c>Failed</c>, or the status is <c>InService</c>
         /// but update operation fails, this provides the reason why it failed. 
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.RedshiftServerless.Model
     public partial class ListRecoveryPointsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RecoveryPoint> _recoveryPoints = new List<RecoveryPoint>();
+        private List<RecoveryPoint> _recoveryPoints = AWSConfigs.InitializeCollections ? new List<RecoveryPoint>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if RecoveryPoints property is set
         internal bool IsSetRecoveryPoints()
         {
-            return this._recoveryPoints != null && this._recoveryPoints.Count > 0; 
+            return this._recoveryPoints != null && (this._recoveryPoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

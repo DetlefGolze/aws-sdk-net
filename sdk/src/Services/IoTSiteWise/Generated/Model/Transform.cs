@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
     /// Contains an asset transform property. A transform is a one-to-one mapping of a property's
     /// data points from one form to another. For example, you can use a transform to convert
     /// a Celsius data stream to Fahrenheit by applying the transformation expression to each
-    /// data point of the Celsius stream. A transform can only have a data type of <code>DOUBLE</code>
-    /// and consume properties with data types of <code>INTEGER</code> or <code>DOUBLE</code>.
+    /// data point of the Celsius stream. A transform can only have a data type of <c>DOUBLE</c>
+    /// and consume properties with data types of <c>INTEGER</c> or <c>DOUBLE</c>.
     /// 
     ///  
     /// <para>
@@ -45,7 +46,7 @@ namespace Amazon.IoTSiteWise.Model
     {
         private string _expression;
         private TransformProcessingConfig _processingConfig;
-        private List<ExpressionVariable> _variables = new List<ExpressionVariable>();
+        private List<ExpressionVariable> _variables = AWSConfigs.InitializeCollections ? new List<ExpressionVariable>() : null;
 
         /// <summary>
         /// Gets and sets the property Expression. 
@@ -109,7 +110,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Variables property is set
         internal bool IsSetVariables()
         {
-            return this._variables != null && this._variables.Count > 0; 
+            return this._variables != null && (this._variables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

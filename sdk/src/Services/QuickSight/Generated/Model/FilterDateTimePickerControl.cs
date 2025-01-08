@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,11 +34,30 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class FilterDateTimePickerControl
     {
+        private CommitMode _commitMode;
         private DateTimePickerControlDisplayOptions _displayOptions;
         private string _filterControlId;
         private string _sourceFilterId;
         private string _title;
         private SheetControlDateTimePickerType _type;
+
+        /// <summary>
+        /// Gets and sets the property CommitMode. 
+        /// <para>
+        /// The visibility configurationof the Apply button on a <c>DateTimePickerControl</c>.
+        /// </para>
+        /// </summary>
+        public CommitMode CommitMode
+        {
+            get { return this._commitMode; }
+            set { this._commitMode = value; }
+        }
+
+        // Check to see if CommitMode property is set
+        internal bool IsSetCommitMode()
+        {
+            return this._commitMode != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DisplayOptions. 
@@ -60,7 +80,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FilterControlId. 
         /// <para>
-        /// The ID of the <code>FilterDateTimePickerControl</code>.
+        /// The ID of the <c>FilterDateTimePickerControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -79,7 +99,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceFilterId. 
         /// <para>
-        /// The source filter ID of the <code>FilterDateTimePickerControl</code>.
+        /// The source filter ID of the <c>FilterDateTimePickerControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -98,7 +118,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>FilterDateTimePickerControl</code>.
+        /// The title of the <c>FilterDateTimePickerControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -117,16 +137,15 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The date time picker type of a <code>FilterDateTimePickerControl</code>. Choose one
-        /// of the following options:
+        /// The type of the <c>FilterDropDownControl</c>. Choose one of the following options:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SINGLE_VALUED</code>: The filter condition is a fixed date.
+        ///  <c>MULTI_SELECT</c>: The user can select multiple entries from a dropdown menu.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DATE_RANGE</code>: The filter condition is a date time range.
+        ///  <c>SINGLE_SELECT</c>: The user can select a single entry from a dropdown menu.
         /// </para>
         ///  </li> </ul>
         /// </summary>

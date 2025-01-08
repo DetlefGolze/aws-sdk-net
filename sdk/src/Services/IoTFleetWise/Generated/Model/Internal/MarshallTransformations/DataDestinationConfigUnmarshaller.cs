@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DataDestinationConfig Unmarshall(JsonUnmarshallerContext context)
         {
+            DataDestinationConfig unmarshalledObject = new DataDestinationConfig();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DataDestinationConfig unmarshalledObject = new DataDestinationConfig();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("mqttTopicConfig", targetDepth))
+                {
+                    var unmarshaller = MqttTopicConfigUnmarshaller.Instance;
+                    unmarshalledObject.MqttTopicConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("s3Config", targetDepth))
                 {
                     var unmarshaller = S3ConfigUnmarshaller.Instance;
@@ -77,7 +85,6 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

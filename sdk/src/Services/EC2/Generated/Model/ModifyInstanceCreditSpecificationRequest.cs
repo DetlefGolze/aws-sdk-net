@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the ModifyInstanceCreditSpecification operation.
     /// Modifies the credit option for CPU usage on a running or stopped burstable performance
-    /// instance. The credit options are <code>standard</code> and <code>unlimited</code>.
+    /// instance. The credit options are <c>standard</c> and <c>unlimited</c>.
     /// 
     ///  
     /// <para>
@@ -42,7 +43,7 @@ namespace Amazon.EC2.Model
     public partial class ModifyInstanceCreditSpecificationRequest : AmazonEC2Request
     {
         private string _clientToken;
-        private List<InstanceCreditSpecificationRequest> _instanceCreditSpecifications = new List<InstanceCreditSpecificationRequest>();
+        private List<InstanceCreditSpecificationRequest> _instanceCreditSpecifications = AWSConfigs.InitializeCollections ? new List<InstanceCreditSpecificationRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -80,7 +81,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceCreditSpecifications property is set
         internal bool IsSetInstanceCreditSpecifications()
         {
-            return this._instanceCreditSpecifications != null && this._instanceCreditSpecifications.Count > 0; 
+            return this._instanceCreditSpecifications != null && (this._instanceCreditSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

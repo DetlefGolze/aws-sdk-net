@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property ProvisionedConcurrency. 
         /// <para>
         /// The updated amount of provisioned concurrency to allocate for the serverless endpoint.
-        /// Should be less than or equal to <code>MaxConcurrency</code>.
+        /// Should be less than or equal to <c>MaxConcurrency</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=200)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -35,16 +36,16 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class BatchGetStandardsControlAssociationsRequest : AmazonSecurityHubRequest
     {
-        private List<StandardsControlAssociationId> _standardsControlAssociationIds = new List<StandardsControlAssociationId>();
+        private List<StandardsControlAssociationId> _standardsControlAssociationIds = AWSConfigs.InitializeCollections ? new List<StandardsControlAssociationId>() : null;
 
         /// <summary>
         /// Gets and sets the property StandardsControlAssociationIds. 
         /// <para>
         ///  An array with one or more objects that includes a security control (identified with
-        /// <code>SecurityControlId</code>, <code>SecurityControlArn</code>, or a mix of both
-        /// parameters) and the Amazon Resource Name (ARN) of a standard. This field is used to
-        /// query the enablement status of a control in a specified standard. The security control
-        /// ID or ARN is the same across standards. 
+        /// <c>SecurityControlId</c>, <c>SecurityControlArn</c>, or a mix of both parameters)
+        /// and the Amazon Resource Name (ARN) of a standard. This field is used to query the
+        /// enablement status of a control in a specified standard. The security control ID or
+        /// ARN is the same across standards. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -57,7 +58,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StandardsControlAssociationIds property is set
         internal bool IsSetStandardsControlAssociationIds()
         {
-            return this._standardsControlAssociationIds != null && this._standardsControlAssociationIds.Count > 0; 
+            return this._standardsControlAssociationIds != null && (this._standardsControlAssociationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,22 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateEnvironment operation.
-    /// Creates an Amazon Managed Workflows for Apache Airflow (MWAA) environment.
+    /// Creates an Amazon Managed Workflows for Apache Airflow (Amazon MWAA) environment.
     /// </summary>
     public partial class CreateEnvironmentRequest : AmazonMWAARequest
     {
-        private Dictionary<string, string> _airflowConfigurationOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _airflowConfigurationOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _airflowVersion;
         private string _dagS3Path;
+        private EndpointManagement _endpointManagement;
         private string _environmentClass;
         private string _executionRoleArn;
         private string _kmsKey;
         private LoggingConfigurationInput _loggingConfiguration;
+        private int? _maxWebservers;
         private int? _maxWorkers;
+        private int? _minWebservers;
         private int? _minWorkers;
         private string _name;
         private NetworkConfiguration _networkConfiguration;
@@ -53,7 +57,7 @@ namespace Amazon.MWAA.Model
         private string _sourceBucketArn;
         private string _startupScriptS3ObjectVersion;
         private string _startupScriptS3Path;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private WebserverAccessMode _webserverAccessMode;
         private string _weeklyMaintenanceWindowStart;
 
@@ -75,16 +79,20 @@ namespace Amazon.MWAA.Model
         // Check to see if AirflowConfigurationOptions property is set
         internal bool IsSetAirflowConfigurationOptions()
         {
-            return this._airflowConfigurationOptions != null && this._airflowConfigurationOptions.Count > 0; 
+            return this._airflowConfigurationOptions != null && (this._airflowConfigurationOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AirflowVersion. 
         /// <para>
         /// The Apache Airflow version for your environment. If no value is specified, it defaults
-        /// to the latest version. Valid values: <code>1.10.12</code>, <code>2.0.2</code>, <code>2.2.2</code>,
-        /// <code>2.4.3</code>, and <code>2.5.1</code>. For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html">Apache
-        /// Airflow versions on Amazon Managed Workflows for Apache Airflow (MWAA)</a>.
+        /// to the latest version. For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/airflow-versions.html">Apache
+        /// Airflow versions on Amazon Managed Workflows for Apache Airflow (Amazon MWAA)</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: <c>1.10.12</c>, <c>2.0.2</c>, <c>2.2.2</c>, <c>2.4.3</c>, <c>2.5.1</c>,
+        /// <c>2.6.3</c>, <c>2.7.2</c>, <c>2.8.1</c>, <c>2.9.2</c>, <c>2.10.1</c>, and <c>2.10.3</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]
@@ -103,7 +111,7 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property DagS3Path. 
         /// <para>
-        /// The relative path to the DAGs folder on your Amazon S3 bucket. For example, <code>dags</code>.
+        /// The relative path to the DAGs folder on your Amazon S3 bucket. For example, <c>dags</c>.
         /// For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-folder.html">Adding
         /// or updating DAGs</a>.
         /// </para>
@@ -122,10 +130,37 @@ namespace Amazon.MWAA.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EndpointManagement. 
+        /// <para>
+        /// Defines whether the VPC endpoints configured for the environment are created, and
+        /// managed, by the customer or by Amazon MWAA. If set to <c>SERVICE</c>, Amazon MWAA
+        /// will create and manage the required VPC endpoints in your VPC. If set to <c>CUSTOMER</c>,
+        /// you must create, and manage, the VPC endpoints for your VPC. If you choose to create
+        /// an environment in a shared VPC, you must set this value to <c>CUSTOMER</c>. In a shared
+        /// VPC deployment, the environment will remain in <c>PENDING</c> status until you create
+        /// the VPC endpoints. If you do not take action to create the endpoints within 72 hours,
+        /// the status will change to <c>CREATE_FAILED</c>. You can delete the failed environment
+        /// and create a new one.
+        /// </para>
+        /// </summary>
+        public EndpointManagement EndpointManagement
+        {
+            get { return this._endpointManagement; }
+            set { this._endpointManagement = value; }
+        }
+
+        // Check to see if EndpointManagement property is set
+        internal bool IsSetEndpointManagement()
+        {
+            return this._endpointManagement != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EnvironmentClass. 
         /// <para>
-        /// The environment class type. Valid values: <code>mw1.small</code>, <code>mw1.medium</code>,
-        /// <code>mw1.large</code>. For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html">Amazon
+        /// The environment class type. Valid values: <c>mw1.micro</c>, <c>mw1.small</c>, <c>mw1.medium</c>,
+        /// <c>mw1.large</c>, <c>mw1.xlarge</c>, and <c>mw1.2xlarge</c>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/environment-class.html">Amazon
         /// MWAA environment class</a>.
         /// </para>
         /// </summary>
@@ -148,8 +183,8 @@ namespace Amazon.MWAA.Model
         /// The Amazon Resource Name (ARN) of the execution role for your environment. An execution
         /// role is an Amazon Web Services Identity and Access Management (IAM) role that grants
         /// MWAA permission to access Amazon Web Services services and resources used by your
-        /// environment. For example, <code>arn:aws:iam::123456789:role/my-execution-role</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html">Amazon
+        /// environment. For example, <c>arn:aws:iam::123456789:role/my-execution-role</c>. For
+        /// more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-create-role.html">Amazon
         /// MWAA Execution role</a>.
         /// </para>
         /// </summary>
@@ -207,13 +242,45 @@ namespace Amazon.MWAA.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MaxWebservers. 
+        /// <para>
+        ///  The maximum number of web servers that you want to run in your environment. Amazon
+        /// MWAA scales the number of Apache Airflow web servers up to the number you specify
+        /// for <c>MaxWebservers</c> when you interact with your Apache Airflow environment using
+        /// Apache Airflow REST API, or the Apache Airflow CLI. For example, in scenarios where
+        /// your workload requires network calls to the Apache Airflow REST API with a high transaction-per-second
+        /// (TPS) rate, Amazon MWAA will increase the number of web servers up to the number set
+        /// in <c>MaxWebserers</c>. As TPS rates decrease Amazon MWAA disposes of the additional
+        /// web servers, and scales down to the number set in <c>MinxWebserers</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: For environments larger than mw1.micro, accepts values from <c>2</c>
+        /// to <c>5</c>. Defaults to <c>2</c> for all environment sizes except mw1.micro, which
+        /// defaults to <c>1</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public int MaxWebservers
+        {
+            get { return this._maxWebservers.GetValueOrDefault(); }
+            set { this._maxWebservers = value; }
+        }
+
+        // Check to see if MaxWebservers property is set
+        internal bool IsSetMaxWebservers()
+        {
+            return this._maxWebservers.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MaxWorkers. 
         /// <para>
         /// The maximum number of workers that you want to run in your environment. MWAA scales
-        /// the number of Apache Airflow workers up to the number you specify in the <code>MaxWorkers</code>
-        /// field. For example, <code>20</code>. When there are no more tasks running, and no
-        /// more in the queue, MWAA disposes of the extra workers leaving the one worker that
-        /// is included with your environment, or the number you specify in <code>MinWorkers</code>.
+        /// the number of Apache Airflow workers up to the number you specify in the <c>MaxWorkers</c>
+        /// field. For example, <c>20</c>. When there are no more tasks running, and no more in
+        /// the queue, MWAA disposes of the extra workers leaving the one worker that is included
+        /// with your environment, or the number you specify in <c>MinWorkers</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -230,13 +297,43 @@ namespace Amazon.MWAA.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MinWebservers. 
+        /// <para>
+        ///  The minimum number of web servers that you want to run in your environment. Amazon
+        /// MWAA scales the number of Apache Airflow web servers up to the number you specify
+        /// for <c>MaxWebservers</c> when you interact with your Apache Airflow environment using
+        /// Apache Airflow REST API, or the Apache Airflow CLI. As the transaction-per-second
+        /// rate, and the network load, decrease, Amazon MWAA disposes of the additional web servers,
+        /// and scales down to the number set in <c>MinxWebserers</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: For environments larger than mw1.micro, accepts values from <c>2</c>
+        /// to <c>5</c>. Defaults to <c>2</c> for all environment sizes except mw1.micro, which
+        /// defaults to <c>1</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public int MinWebservers
+        {
+            get { return this._minWebservers.GetValueOrDefault(); }
+            set { this._minWebservers = value; }
+        }
+
+        // Check to see if MinWebservers property is set
+        internal bool IsSetMinWebservers()
+        {
+            return this._minWebservers.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MinWorkers. 
         /// <para>
         /// The minimum number of workers that you want to run in your environment. MWAA scales
-        /// the number of Apache Airflow workers up to the number you specify in the <code>MaxWorkers</code>
+        /// the number of Apache Airflow workers up to the number you specify in the <c>MaxWorkers</c>
         /// field. When there are no more tasks running, and no more in the queue, MWAA disposes
-        /// of the extra workers leaving the worker count you specify in the <code>MinWorkers</code>
-        /// field. For example, <code>2</code>.
+        /// of the extra workers leaving the worker count you specify in the <c>MinWorkers</c>
+        /// field. For example, <c>2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -255,7 +352,7 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the Amazon MWAA environment. For example, <code>MyMWAAEnvironment</code>.
+        /// The name of the Amazon MWAA environment. For example, <c>MyMWAAEnvironment</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=80)]
@@ -316,9 +413,9 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property PluginsS3Path. 
         /// <para>
-        /// The relative path to the <code>plugins.zip</code> file on your Amazon S3 bucket. For
-        /// example, <code>plugins.zip</code>. If specified, then the <code>plugins.zip</code>
-        /// version is required. For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html">Installing
+        /// The relative path to the <c>plugins.zip</c> file on your Amazon S3 bucket. For example,
+        /// <c>plugins.zip</c>. If specified, then the <c>plugins.zip</c> version is required.
+        /// For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html">Installing
         /// custom plugins</a>.
         /// </para>
         /// </summary>
@@ -338,8 +435,8 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property RequirementsS3ObjectVersion. 
         /// <para>
-        /// The version of the <code>requirements.txt</code> file on your Amazon S3 bucket. You
-        /// must specify a version each time a requirements.txt file is updated. For more information,
+        /// The version of the <c>requirements.txt</c> file on your Amazon S3 bucket. You must
+        /// specify a version each time a requirements.txt file is updated. For more information,
         /// see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html">How
         /// S3 Versioning works</a>.
         /// </para>
@@ -360,9 +457,9 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property RequirementsS3Path. 
         /// <para>
-        /// The relative path to the <code>requirements.txt</code> file on your Amazon S3 bucket.
-        /// For example, <code>requirements.txt</code>. If specified, then a version is required.
-        /// For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html">Installing
+        /// The relative path to the <c>requirements.txt</c> file on your Amazon S3 bucket. For
+        /// example, <c>requirements.txt</c>. If specified, then a version is required. For more
+        /// information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/working-dags-dependencies.html">Installing
         /// Python dependencies</a>.
         /// </para>
         /// </summary>
@@ -386,11 +483,13 @@ namespace Amazon.MWAA.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// v2 - Accepts between 2 to 5. Defaults to 2.
+        /// v2 - For environments larger than mw1.micro, accepts values from <c>2</c> to <c>5</c>.
+        /// Defaults to <c>2</c> for all environment sizes except mw1.micro, which defaults to
+        /// <c>1</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// v1 - Accepts 1.
+        /// v1 - Accepts <c>1</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -411,7 +510,7 @@ namespace Amazon.MWAA.Model
         /// Gets and sets the property SourceBucketArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Amazon S3 bucket where your DAG code and supporting
-        /// files are stored. For example, <code>arn:aws:s3:::my-airflow-bucket-unique-name</code>.
+        /// files are stored. For example, <c>arn:aws:s3:::my-airflow-bucket-unique-name</c>.
         /// For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/mwaa-s3-bucket.html">Create
         /// an Amazon S3 bucket for Amazon MWAA</a>.
         /// </para>
@@ -443,7 +542,7 @@ namespace Amazon.MWAA.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo</code> 
+        ///  <c>3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo</c> 
         /// </para>
         ///  
         /// <para>
@@ -468,7 +567,7 @@ namespace Amazon.MWAA.Model
         /// Gets and sets the property StartupScriptS3Path. 
         /// <para>
         /// The relative path to the startup shell script in your Amazon S3 bucket. For example,
-        /// <code>s3://mwaa-environment/startup.sh</code>.
+        /// <c>s3://mwaa-environment/startup.sh</c>.
         /// </para>
         ///  
         /// <para>
@@ -495,8 +594,8 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The key-value tag pairs you want to associate to your environment. For example, <code>"Environment":
-        /// "Staging"</code>. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
+        /// The key-value tag pairs you want to associate to your environment. For example, <c>"Environment":
+        /// "Staging"</c>. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
         /// Amazon Web Services resources</a>.
         /// </para>
         /// </summary>
@@ -510,13 +609,14 @@ namespace Amazon.MWAA.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property WebserverAccessMode. 
         /// <para>
-        /// The Apache Airflow <i>Web server</i> access mode. For more information, see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html">Apache
+        /// Defines the access mode for the Apache Airflow <i>web server</i>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-networking.html">Apache
         /// Airflow access modes</a>.
         /// </para>
         /// </summary>
@@ -537,8 +637,8 @@ namespace Amazon.MWAA.Model
         /// <para>
         /// The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard
         /// time to start weekly maintenance updates of your environment in the following format:
-        /// <code>DAY:HH:MM</code>. For example: <code>TUE:03:30</code>. You can specify a start
-        /// time in 30 minute increments only.
+        /// <c>DAY:HH:MM</c>. For example: <c>TUE:03:30</c>. You can specify a start time in 30
+        /// minute increments only.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=9)]

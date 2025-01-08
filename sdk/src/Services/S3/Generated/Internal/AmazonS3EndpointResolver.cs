@@ -18,6 +18,8 @@
  */
 
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using Amazon.S3.Model;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
@@ -84,8 +86,16 @@ namespace Amazon.S3.Internal
             var regionEndpoint = config.RegionEndpoint;
             if (regionEndpoint == null && !string.IsNullOrEmpty(config.ServiceURL))
             {
-                var regionName = AWSSDKUtils.DetermineRegion(config.ServiceURL);
-                result.Region = RegionEndpoint.GetBySystemName(regionName).SystemName;
+                // Use the specified signing region if it was provided alongside a custom ServiceURL
+                if (!string.IsNullOrEmpty(config.AuthenticationRegion))
+                {
+                    result.Region = config.AuthenticationRegion;
+                }
+                else // try to extract a region from the custom ServiceURL
+                {
+                    var regionName = AWSSDKUtils.DetermineRegion(config.ServiceURL);
+                    result.Region = RegionEndpoint.GetBySystemName(regionName).SystemName;
+                }
             }
 
             // To support legacy endpoint overridding rules in the endpoints.json
@@ -112,84 +122,121 @@ namespace Amazon.S3.Internal
             if (requestContext.RequestName == "AbortMultipartUploadRequest") {
                 var request = (AbortMultipartUploadRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "CompleteMultipartUploadRequest") {
                 var request = (CompleteMultipartUploadRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "CopyObjectRequest") {
+                result.DisableS3ExpressSessionAuth = true;
                 var request = (CopyObjectRequest)requestContext.OriginalRequest;
                 result.Bucket = request.DestinationBucket;
+                result.Key = request.DestinationKey;
+                result.CopySource = request.SourceKey;
                 return result;
             }
             if (requestContext.RequestName == "CopyPartRequest") {
+                result.DisableS3ExpressSessionAuth = true;
                 var request = (CopyPartRequest)requestContext.OriginalRequest;
                 result.Bucket = request.DestinationBucket;
                 return result;
             }
+            if (requestContext.RequestName == "CreateBucketMetadataTableConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
+                var request = (CreateBucketMetadataTableConfigurationRequest)requestContext.OriginalRequest;
+                result.Bucket = request.BucketName;
+                return result;
+            }
+            if (requestContext.RequestName == "CreateSessionRequest") {
+                result.DisableS3ExpressSessionAuth = true;
+                var request = (CreateSessionRequest)requestContext.OriginalRequest;
+                result.Bucket = request.BucketName;
+                return result;
+            }
             if (requestContext.RequestName == "DeleteBucketRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketAnalyticsConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketAnalyticsConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketEncryptionRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketEncryptionRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketIntelligentTieringConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketIntelligentTieringConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketInventoryConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketInventoryConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
+            if (requestContext.RequestName == "DeleteBucketMetadataTableConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
+                var request = (DeleteBucketMetadataTableConfigurationRequest)requestContext.OriginalRequest;
+                result.Bucket = request.BucketName;
+                return result;
+            }
             if (requestContext.RequestName == "DeleteBucketMetricsConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketMetricsConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketOwnershipControlsRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketOwnershipControlsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketPolicyRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketPolicyRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketReplicationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketReplicationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketTaggingRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketTaggingRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteBucketWebsiteRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteBucketWebsiteRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteCORSConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteCORSConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "DeleteLifecycleConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeleteLifecycleConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
@@ -197,6 +244,7 @@ namespace Amazon.S3.Internal
             if (requestContext.RequestName == "DeleteObjectRequest") {
                 var request = (DeleteObjectRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "DeleteObjectsRequest") {
@@ -210,106 +258,133 @@ namespace Amazon.S3.Internal
                 return result;
             }
             if (requestContext.RequestName == "DeletePublicAccessBlockRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (DeletePublicAccessBlockRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetACLRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetACLRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketAccelerateConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketAccelerateConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketAnalyticsConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketAnalyticsConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketEncryptionRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketEncryptionRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketIntelligentTieringConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketIntelligentTieringConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketInventoryConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketInventoryConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketLocationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketLocationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketLoggingRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketLoggingRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
+            if (requestContext.RequestName == "GetBucketMetadataTableConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
+                var request = (GetBucketMetadataTableConfigurationRequest)requestContext.OriginalRequest;
+                result.Bucket = request.BucketName;
+                return result;
+            }
             if (requestContext.RequestName == "GetBucketMetricsConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketMetricsConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketNotificationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketNotificationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketOwnershipControlsRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketOwnershipControlsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketPolicyRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketPolicyRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketPolicyStatusRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketPolicyStatusRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketReplicationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketReplicationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketRequestPaymentRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketRequestPaymentRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketTaggingRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketTaggingRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketVersioningRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketVersioningRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetBucketWebsiteRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetBucketWebsiteRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetCORSConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetCORSConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "GetLifecycleConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetLifecycleConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
@@ -317,6 +392,7 @@ namespace Amazon.S3.Internal
             if (requestContext.RequestName == "GetObjectRequest") {
                 var request = (GetObjectRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "GetObjectAttributesRequest") {
@@ -337,6 +413,7 @@ namespace Amazon.S3.Internal
             if (requestContext.RequestName == "GetObjectMetadataRequest") {
                 var request = (GetObjectMetadataRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "GetObjectRetentionRequest") {
@@ -355,6 +432,7 @@ namespace Amazon.S3.Internal
                 return result;
             }
             if (requestContext.RequestName == "GetPublicAccessBlockRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (GetPublicAccessBlockRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
@@ -367,19 +445,23 @@ namespace Amazon.S3.Internal
             if (requestContext.RequestName == "InitiateMultipartUploadRequest") {
                 var request = (InitiateMultipartUploadRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "ListBucketAnalyticsConfigurationsRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (ListBucketAnalyticsConfigurationsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "ListBucketIntelligentTieringConfigurationsRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (ListBucketIntelligentTieringConfigurationsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "ListBucketInventoryConfigurationsRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (ListBucketInventoryConfigurationsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
@@ -389,123 +471,151 @@ namespace Amazon.S3.Internal
                 result.Bucket = request.BucketName;
                 return result;
             }
+            if (requestContext.RequestName == "ListDirectoryBucketsRequest") {
+                result.UseS3ExpressControlEndpoint = true;
+                return result;
+            }
             if (requestContext.RequestName == "ListMultipartUploadsRequest") {
                 var request = (ListMultipartUploadsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Prefix = request.Prefix;
                 return result;
             }
             if (requestContext.RequestName == "ListObjectsRequest") {
                 var request = (ListObjectsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Prefix = request.Prefix;
                 return result;
             }
             if (requestContext.RequestName == "ListObjectsV2Request") {
                 var request = (ListObjectsV2Request)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Prefix = request.Prefix;
                 return result;
             }
             if (requestContext.RequestName == "ListPartsRequest") {
                 var request = (ListPartsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "ListVersionsRequest") {
                 var request = (ListVersionsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Prefix = request.Prefix;
                 return result;
             }
             if (requestContext.RequestName == "PutACLRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutACLRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketRequest") {
                 result.DisableAccessPoints = true;
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketAccelerateConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketAccelerateConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketAnalyticsConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketAnalyticsConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketEncryptionRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketEncryptionRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketIntelligentTieringConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketIntelligentTieringConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketInventoryConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketInventoryConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketLoggingRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketLoggingRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketMetricsConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketMetricsConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketNotificationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketNotificationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketOwnershipControlsRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketOwnershipControlsRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketPolicyRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketPolicyRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketReplicationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketReplicationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketRequestPaymentRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketRequestPaymentRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketTaggingRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketTaggingRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketVersioningRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketVersioningRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutBucketWebsiteRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutBucketWebsiteRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutCORSConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutCORSConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
             }
             if (requestContext.RequestName == "PutLifecycleConfigurationRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutLifecycleConfigurationRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
@@ -513,6 +623,7 @@ namespace Amazon.S3.Internal
             if (requestContext.RequestName == "PutObjectRequest") {
                 var request = (PutObjectRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "PutObjectLegalHoldRequest") {
@@ -536,6 +647,7 @@ namespace Amazon.S3.Internal
                 return result;
             }
             if (requestContext.RequestName == "PutPublicAccessBlockRequest") {
+                result.UseS3ExpressControlEndpoint = true;
                 var request = (PutPublicAccessBlockRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
                 return result;
@@ -553,6 +665,7 @@ namespace Amazon.S3.Internal
             if (requestContext.RequestName == "UploadPartRequest") {
                 var request = (UploadPartRequest)requestContext.OriginalRequest;
                 result.Bucket = request.BucketName;
+                result.Key = request.Key;
                 return result;
             }
             if (requestContext.RequestName == "WriteGetObjectResponseRequest") {

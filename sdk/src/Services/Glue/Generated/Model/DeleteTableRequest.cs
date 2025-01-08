@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.Glue.Model
     /// </para>
     ///  
     /// <para>
-    /// To ensure the immediate deletion of all related resources, before calling <code>DeleteTable</code>,
-    /// use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code>
-    /// or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.
+    /// To ensure the immediate deletion of all related resources, before calling <c>DeleteTable</c>,
+    /// use <c>DeleteTableVersion</c> or <c>BatchDeleteTableVersion</c>, and <c>DeletePartition</c>
+    /// or <c>BatchDeletePartition</c>, to delete any resources that belong to the table.
     /// </para>
     ///  </note>
     /// </summary>

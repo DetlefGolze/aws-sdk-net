@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
@@ -92,6 +94,12 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("enhancedImageMetadataEnabled");
                     context.Writer.Write(publicRequest.EnhancedImageMetadataEnabled);
+                }
+
+                if(publicRequest.IsSetExecutionRole())
+                {
+                    context.Writer.WritePropertyName("executionRole");
+                    context.Writer.Write(publicRequest.ExecutionRole);
                 }
 
                 if(publicRequest.IsSetImageRecipeArn())
@@ -140,6 +148,22 @@ namespace Amazon.Imagebuilder.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestTagsValue);
                     }
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetWorkflows())
+                {
+                    context.Writer.WritePropertyName("workflows");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestWorkflowsListValue in publicRequest.Workflows)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = WorkflowConfigurationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestWorkflowsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 writer.WriteObjectEnd();

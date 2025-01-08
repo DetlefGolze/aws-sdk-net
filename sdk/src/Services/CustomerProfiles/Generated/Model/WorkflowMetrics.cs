@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property AppflowIntegration. 
         /// <para>
-        /// Workflow execution metrics for <code>APPFLOW_INTEGRATION</code> workflow.
+        /// Workflow execution metrics for <c>APPFLOW_INTEGRATION</c> workflow.
         /// </para>
         /// </summary>
         public AppflowIntegrationWorkflowMetrics AppflowIntegration

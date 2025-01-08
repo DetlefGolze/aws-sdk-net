@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property CopySourceArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of a data source that has the credential pair that
-        /// you want to use. When <code>CopySourceArn</code> is not null, the credential pair
-        /// from the data source in the ARN is used as the credentials for the <code>DataSourceCredentials</code>
+        /// you want to use. When <c>CopySourceArn</c> is not null, the credential pair from the
+        /// data source in the ARN is used as the credentials for the <c>DataSourceCredentials</c>
         /// structure.
         /// </para>
         /// </summary>
@@ -62,8 +63,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property CredentialPair. 
         /// <para>
-        /// Credential pair. For more information, see <code> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CredentialPair.html">CredentialPair</a>
-        /// </code>.
+        /// Credential pair. For more information, see <c> <a href="https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CredentialPair.html">CredentialPair</a>
+        /// </c>.
         /// </para>
         /// </summary>
         public CredentialPair CredentialPair

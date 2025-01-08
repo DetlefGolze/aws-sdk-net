@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Priority. 
         /// <para>
         /// If you define more than one rule in a web ACL, WAF evaluates each request against
-        /// the rules in order based on the value of <code>Priority</code>.
+        /// the rules in order based on the value of <c>Priority</c>.
         /// </para>
         /// </summary>
         public int Priority

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -34,19 +35,20 @@ namespace Amazon.IoTTwinMaker.Model
     /// 
     ///  
     /// <para>
-    /// You must specify a value for either <code>componentName</code>, <code>componentTypeId</code>,
-    /// <code>entityId</code>, or <code>workspaceId</code>.
+    /// You must specify a value for either <c>componentName</c>, <c>componentTypeId</c>,
+    /// <c>entityId</c>, or <c>workspaceId</c>.
     /// </para>
     /// </summary>
     public partial class GetPropertyValueRequest : AmazonIoTTwinMakerRequest
     {
         private string _componentName;
+        private string _componentPath;
         private string _componentTypeId;
         private string _entityId;
         private int? _maxResults;
         private string _nextToken;
         private string _propertyGroupName;
-        private List<string> _selectedProperties = new List<string>();
+        private List<string> _selectedProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private TabularConditions _tabularConditions;
         private string _workspaceId;
 
@@ -67,6 +69,26 @@ namespace Amazon.IoTTwinMaker.Model
         internal bool IsSetComponentName()
         {
             return this._componentName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ComponentPath. 
+        /// <para>
+        /// This string specifies the path to the composite component, starting from the top-level
+        /// component.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2048)]
+        public string ComponentPath
+        {
+            get { return this._componentPath; }
+            set { this._componentPath = value; }
+        }
+
+        // Check to see if ComponentPath property is set
+        internal bool IsSetComponentPath()
+        {
+            return this._componentPath != null;
         }
 
         /// <summary>
@@ -184,7 +206,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if SelectedProperties property is set
         internal bool IsSetSelectedProperties()
         {
-            return this._selectedProperties != null && this._selectedProperties.Count > 0; 
+            return this._selectedProperties != null && (this._selectedProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

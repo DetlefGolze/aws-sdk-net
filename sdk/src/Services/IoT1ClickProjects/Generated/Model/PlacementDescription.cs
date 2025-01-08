@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT1ClickProjects.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.IoT1ClickProjects.Model
     /// </summary>
     public partial class PlacementDescription
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _createdDate;
         private string _placementName;
         private string _projectName;
@@ -55,7 +56,7 @@ namespace Amazon.IoT1ClickProjects.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,8 +120,7 @@ namespace Amazon.IoT1ClickProjects.Model
         /// Gets and sets the property UpdatedDate. 
         /// <para>
         /// The date when the placement was last updated, in UNIX epoch time format. If the placement
-        /// was not updated, then <code>createdDate</code> and <code>updatedDate</code> are the
-        /// same.
+        /// was not updated, then <c>createdDate</c> and <c>updatedDate</c> are the same.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

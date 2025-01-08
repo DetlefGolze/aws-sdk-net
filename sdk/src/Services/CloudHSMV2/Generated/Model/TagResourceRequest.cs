@@ -26,16 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Adds or overwrites one or more tags for the specified AWS CloudHSM cluster.
+    /// Adds or overwrites one or more tags for the specified CloudHSM cluster.
+    /// 
+    ///  
+    /// <para>
+    ///  <b>Cross-account use:</b> No. You cannot perform this operation on an CloudHSM resource
+    /// in a different Amazon Web Services account.
+    /// </para>
     /// </summary>
     public partial class TagResourceRequest : AmazonCloudHSMV2Request
     {
         private string _resourceId;
-        private List<Tag> _tagList = new List<Tag>();
+        private List<Tag> _tagList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceId. 
@@ -73,7 +80,7 @@ namespace Amazon.CloudHSMV2.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

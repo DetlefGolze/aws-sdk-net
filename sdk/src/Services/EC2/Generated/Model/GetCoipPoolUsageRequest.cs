@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class GetCoipPoolUsageRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _poolId;
@@ -46,21 +47,21 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>coip-address-usage.allocation-id</code> - The allocation ID of the address.
+        ///  <c>coip-address-usage.allocation-id</c> - The allocation ID of the address.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>coip-address-usage.aws-account-id</code> - The ID of the Amazon Web Services
-        /// account that is using the customer-owned IP address.
+        ///  <c>coip-address-usage.aws-account-id</c> - The ID of the Amazon Web Services account
+        /// that is using the customer-owned IP address.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>coip-address-usage.aws-service</code> - The Amazon Web Services service that
-        /// is using the customer-owned IP address.
+        ///  <c>coip-address-usage.aws-service</c> - The Amazon Web Services service that is using
+        /// the customer-owned IP address.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>coip-address-usage.co-ip</code> - The customer-owned IP address.
+        ///  <c>coip-address-usage.co-ip</c> - The customer-owned IP address.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -73,14 +74,14 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1000)]

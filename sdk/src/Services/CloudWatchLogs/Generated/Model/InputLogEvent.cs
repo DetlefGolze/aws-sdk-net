@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.CloudWatchLogs.Model
         /// <summary>
         /// Gets and sets the property Timestamp. 
         /// <para>
-        /// The time the event occurred, expressed as the number of milliseconds after <code>Jan
-        /// 1, 1970 00:00:00 UTC</code>.
+        /// The time the event occurred, expressed as the number of milliseconds after <c>Jan
+        /// 1, 1970 00:00:00 UTC</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]

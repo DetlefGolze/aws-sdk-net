@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DocDB.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -76,6 +77,12 @@ namespace Amazon.DocDB.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.CACertificateIdentifier = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("CertificateDetails", targetDepth))
+                    {
+                        var unmarshaller = CertificateDetailsUnmarshaller.Instance;
+                        unmarshalledObject.CertificateDetails = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("CopyTagsToSnapshot", targetDepth))
@@ -129,6 +136,10 @@ namespace Amazon.DocDB.Model.Internal.MarshallTransformations
                     if (context.TestExpression("EnabledCloudwatchLogsExports/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.EnabledCloudwatchLogsExports == null)
+                        {
+                            unmarshalledObject.EnabledCloudwatchLogsExports = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.EnabledCloudwatchLogsExports.Add(item);
                         continue;
@@ -175,6 +186,18 @@ namespace Amazon.DocDB.Model.Internal.MarshallTransformations
                         unmarshalledObject.PendingModifiedValues = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("PerformanceInsightsEnabled", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        unmarshalledObject.PerformanceInsightsEnabled = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("PerformanceInsightsKMSKeyId", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.PerformanceInsightsKMSKeyId = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("PreferredBackupWindow", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -202,6 +225,10 @@ namespace Amazon.DocDB.Model.Internal.MarshallTransformations
                     if (context.TestExpression("StatusInfos/DBInstanceStatusInfo", targetDepth))
                     {
                         var unmarshaller = DBInstanceStatusInfoUnmarshaller.Instance;
+                        if (unmarshalledObject.StatusInfos == null)
+                        {
+                            unmarshalledObject.StatusInfos = new List<DBInstanceStatusInfo>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.StatusInfos.Add(item);
                         continue;
@@ -215,6 +242,10 @@ namespace Amazon.DocDB.Model.Internal.MarshallTransformations
                     if (context.TestExpression("VpcSecurityGroups/VpcSecurityGroupMembership", targetDepth))
                     {
                         var unmarshaller = VpcSecurityGroupMembershipUnmarshaller.Instance;
+                        if (unmarshalledObject.VpcSecurityGroups == null)
+                        {
+                            unmarshalledObject.VpcSecurityGroups = new List<VpcSecurityGroupMembership>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.VpcSecurityGroups.Add(item);
                         continue;

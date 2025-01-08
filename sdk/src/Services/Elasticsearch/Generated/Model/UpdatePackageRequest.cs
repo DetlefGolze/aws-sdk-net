@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property CommitMessage. 
         /// <para>
-        /// An info message for the new version which will be shown as part of <code>GetPackageVersionHistoryResponse</code>.
+        /// An info message for the new version which will be shown as part of <c>GetPackageVersionHistoryResponse</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=160)]

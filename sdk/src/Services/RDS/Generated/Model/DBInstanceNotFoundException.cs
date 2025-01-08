@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// <code>DBInstanceIdentifier</code> doesn't refer to an existing DB instance.
+    /// <c>DBInstanceIdentifier</c> doesn't refer to an existing DB instance.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

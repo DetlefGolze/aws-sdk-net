@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
-    /// The configuration for the current transcription operation. Must contain <code>EngineTranscribeSettings</code>
-    /// or <code>EngineTranscribeMedicalSettings</code>.
+    /// The configuration for the current transcription operation. Must contain <c>EngineTranscribeSettings</c>
+    /// or <c>EngineTranscribeMedicalSettings</c>.
     /// </summary>
     public partial class TranscriptionConfiguration
     {

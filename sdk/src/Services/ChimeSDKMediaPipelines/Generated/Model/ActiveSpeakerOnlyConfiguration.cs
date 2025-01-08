@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
-    /// Defines the configuration for an <code>ActiveSpeakerOnly</code> video tile.
+    /// Defines the configuration for an <c>ActiveSpeakerOnly</c> video tile.
     /// </summary>
     public partial class ActiveSpeakerOnlyConfiguration
     {
@@ -38,7 +39,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property ActiveSpeakerPosition. 
         /// <para>
-        /// The position of the <code>ActiveSpeakerOnly</code> video tile.
+        /// The position of the <c>ActiveSpeakerOnly</c> video tile.
         /// </para>
         /// </summary>
         public ActiveSpeakerPosition ActiveSpeakerPosition

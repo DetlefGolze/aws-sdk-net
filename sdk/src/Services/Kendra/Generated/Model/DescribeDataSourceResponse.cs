@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -134,8 +135,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        /// When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code>
-        /// field contains a description of the error that caused the data source to fail.
+        /// When the <c>Status</c> field value is <c>FAILED</c>, the <c>ErrorMessage</c> field
+        /// contains a description of the error that caused the data source to fail.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -233,8 +234,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the role with permission to access the data source
-        /// and required resources.
+        /// The Amazon Resource Name (ARN) of the IAM role with permission to access the data
+        /// source and required resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1284)]
@@ -271,8 +272,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current status of the data source connector. When the status is <code>ACTIVE</code>
-        /// the data source is ready to use. When the status is <code>FAILED</code>, the <code>ErrorMessage</code>
+        /// The current status of the data source connector. When the status is <c>ACTIVE</c>
+        /// the data source is ready to use. When the status is <c>FAILED</c>, the <c>ErrorMessage</c>
         /// field contains the reason that the data source failed.
         /// </para>
         /// </summary>
@@ -291,7 +292,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the data source. For example, <code>SHAREPOINT</code>.
+        /// The type of the data source. For example, <c>SHAREPOINT</c>.
         /// </para>
         /// </summary>
         public DataSourceType Type

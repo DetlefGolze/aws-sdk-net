@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -35,21 +36,21 @@ namespace Amazon.ConnectCases.Model
     /// 
     ///  <note> 
     /// <para>
-    /// For <code>customer_id</code> you must provide the full customer profile ARN in this
-    /// format: <code> arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles
-    /// domain name/profiles/profile ID</code>. 
+    /// For <c>customer_id</c> you must provide the full customer profile ARN in this format:
+    /// <c> arn:aws:profile:your AWS Region:your AWS account ID:domains/profiles domain name/profiles/profile
+    /// ID</c>. 
     /// </para>
     ///  </note>
     /// </summary>
     public partial class SearchCasesRequest : AmazonConnectCasesRequest
     {
         private string _domainId;
-        private List<FieldIdentifier> _fields = new List<FieldIdentifier>();
+        private List<FieldIdentifier> _fields = AWSConfigs.InitializeCollections ? new List<FieldIdentifier>() : null;
         private CaseFilter _filter;
         private int? _maxResults;
         private string _nextToken;
         private string _searchTerm;
-        private List<Sort> _sorts = new List<Sort>();
+        private List<Sort> _sorts = AWSConfigs.InitializeCollections ? new List<Sort>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainId. 
@@ -86,7 +87,7 @@ namespace Amazon.ConnectCases.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -183,7 +184,7 @@ namespace Amazon.ConnectCases.Model
         // Check to see if Sorts property is set
         internal bool IsSetSorts()
         {
-            return this._sorts != null && this._sorts.Count > 0; 
+            return this._sorts != null && (this._sorts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

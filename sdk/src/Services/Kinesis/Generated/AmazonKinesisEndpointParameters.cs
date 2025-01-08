@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the kinesis-2013-12-02.normal.json service model.
  */
 
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Runtime.Endpoints;
 
@@ -100,6 +101,15 @@ namespace Amazon.Kinesis.Endpoints
         { 
             get { return (string)this["ConsumerARN"]; }
             set { this["ConsumerARN"] = value; } 
+        }
+
+        /// <summary>
+        /// ResourceARN parameter
+        /// </summary>
+        public string ResourceARN 
+        { 
+            get { return (string)this["ResourceARN"]; }
+            set { this["ResourceARN"] = value; } 
         }
     }
 }

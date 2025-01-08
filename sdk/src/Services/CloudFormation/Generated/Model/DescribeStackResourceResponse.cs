@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property StackResourceDetail. 
         /// <para>
-        /// A <code>StackResourceDetail</code> structure containing the description of the specified
+        /// A <c>StackResourceDetail</c> structure containing the description of the specified
         /// resource in the specified stack.
         /// </para>
         /// </summary>

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -73,6 +74,14 @@ namespace Amazon.CloudTrail.Model
         public IListImportsPaginator ListImports(ListImportsRequest request) 
         {
             return new ListImportsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListInsightsMetricData operation
+        ///</summary>
+        public IListInsightsMetricDataPaginator ListInsightsMetricData(ListInsightsMetricDataRequest request) 
+        {
+            return new ListInsightsMetricDataPaginator(this.client, request);
         }
 
         /// <summary>

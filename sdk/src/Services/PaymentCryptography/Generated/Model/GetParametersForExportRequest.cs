@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -37,8 +38,9 @@ namespace Amazon.PaymentCryptography.Model
     /// <para>
     /// The signing key certificate signs the wrapped key under export within the TR-34 key
     /// payload. The export token and signing key certificate must be in place and operational
-    /// before calling <a>ExportKey</a>. The export token expires in 7 days. You can use the
-    /// same export token to export multiple keys from your service account.
+    /// before calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ExportKey.html">ExportKey</a>.
+    /// The export token expires in 7 days. You can use the same export token to export multiple
+    /// keys from your service account.
     /// </para>
     ///  
     /// <para>
@@ -51,11 +53,13 @@ namespace Amazon.PaymentCryptography.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a>ExportKey</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ExportKey.html">ExportKey</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>GetParametersForImport</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_GetParametersForImport.html">GetParametersForImport</a>
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -68,7 +72,7 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property KeyMaterialType. 
         /// <para>
         /// The key block format type (for example, TR-34 or TR-31) to use during key material
-        /// export. Export token is only required for a TR-34 key export, <code>TR34_KEY_BLOCK</code>.
+        /// export. Export token is only required for a TR-34 key export, <c>TR34_KEY_BLOCK</c>.
         /// Export token is not required for TR-31 key export.
         /// </para>
         /// </summary>
@@ -89,8 +93,8 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property SigningKeyAlgorithm. 
         /// <para>
         /// The signing key algorithm to generate a signing key certificate. This certificate
-        /// signs the wrapped key under export within the TR-34 key block cryptogram. <code>RSA_2048</code>
-        /// is the only signing key algorithm allowed.
+        /// signs the wrapped key under export within the TR-34 key block. <c>RSA_2048</c> is
+        /// the only signing key algorithm allowed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

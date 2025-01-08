@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property Lambda. 
         /// <para>
-        /// The status of Amazon Inspector scanning for AWS Lambda function.
+        /// The status of Amazon Inspector scanning for Amazon Web Services Lambda function.
         /// </para>
         /// </summary>
         public Status Lambda

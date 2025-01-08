@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
-    /// A replication object consisting of a <code>RegionReplicationStatus</code> object and
-    /// includes a Region, KMSKeyId, status, and status message.
+    /// A replication object consisting of a <c>RegionReplicationStatus</c> object and includes
+    /// a Region, KMSKeyId, status, and status message.
     /// </summary>
     public partial class ReplicationStatusType
     {
@@ -43,7 +44,7 @@ namespace Amazon.SecretsManager.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// Can be an <code>ARN</code>, <code>Key ID</code>, or <code>Alias</code>. 
+        /// Can be an <c>ARN</c>, <c>Key ID</c>, or <c>Alias</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]
@@ -100,7 +101,7 @@ namespace Amazon.SecretsManager.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status can be <code>InProgress</code>, <code>Failed</code>, or <code>InSync</code>.
+        /// The status can be <c>InProgress</c>, <c>Failed</c>, or <c>InSync</c>.
         /// </para>
         /// </summary>
         public StatusType Status

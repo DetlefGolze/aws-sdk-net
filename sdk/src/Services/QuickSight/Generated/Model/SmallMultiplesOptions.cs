@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -47,8 +48,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// The default is <code>Auto</code>, which automatically adjusts the columns in the grid
-        /// to fit the overall layout and size of the given chart.
+        /// The default is <c>Auto</c>, which automatically adjusts the columns in the grid to
+        /// fit the overall layout and size of the given chart.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -72,8 +73,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// The default value is <code>Auto</code>, which automatically adjusts the rows in the
-        /// grid to fit the overall layout and size of the given chart.
+        /// The default value is <c>Auto</c>, which automatically adjusts the rows in the grid
+        /// to fit the overall layout and size of the given chart.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]

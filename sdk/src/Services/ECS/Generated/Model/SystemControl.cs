@@ -26,35 +26,61 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// A list of namespaced kernel parameters to set in the container. This parameter maps
-    /// to <code>Sysctls</code> in the <a href="https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate">Create
-    /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.35/">Docker
-    /// Remote API</a> and the <code>--sysctl</code> option to <a href="https://docs.docker.com/engine/reference/run/#security-configuration">docker
-    /// run</a>.
+    /// to <c>Sysctls</c> in the docker container create command and the <c>--sysctl</c> option
+    /// to docker run. For example, you can configure <c>net.ipv4.tcp_keepalive_time</c> setting
+    /// to maintain longer lived connections.
     /// 
     ///  
     /// <para>
-    /// We don't recommend that you specify network-related <code>systemControls</code> parameters
-    /// for multiple containers in a single task. This task also uses either the <code>awsvpc</code>
-    /// or <code>host</code> network mode. It does it for the following reasons.
+    /// We don't recommend that you specify network-related <c>systemControls</c> parameters
+    /// for multiple containers in a single task that also uses either the <c>awsvpc</c> or
+    /// <c>host</c> network mode. Doing this has the following disadvantages:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// For tasks that use the <code>awsvpc</code> network mode, if you set <code>systemControls</code>
+    /// For tasks that use the <c>awsvpc</c> network mode including Fargate, if you set <c>systemControls</c>
     /// for any container, it applies to all containers in the task. If you set different
-    /// <code>systemControls</code> for multiple containers in a single task, the container
-    /// that's started last determines which <code>systemControls</code> take effect.
+    /// <c>systemControls</c> for multiple containers in a single task, the container that's
+    /// started last determines which <c>systemControls</c> take effect.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For tasks that use the <code>host</code> network mode, the <code>systemControls</code>
-    /// parameter applies to the container instance's kernel parameter and that of all containers
-    /// of any tasks running on that container instance.
+    /// For tasks that use the <c>host</c> network mode, the network namespace <c>systemControls</c>
+    /// aren't supported.
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    /// If you're setting an IPC resource namespace to use for the containers in the task,
+    /// the following conditions apply to your system controls. For more information, see
+    /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_definition_ipcmode">IPC
+    /// mode</a>.
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// For tasks that use the <c>host</c> IPC mode, IPC namespace <c>systemControls</c> aren't
+    /// supported.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For tasks that use the <c>task</c> IPC mode, IPC namespace <c>systemControls</c> values
+    /// apply to all containers within a task.
+    /// </para>
+    ///  </li> </ul> <note> 
+    /// <para>
+    /// This parameter is not supported for Windows containers.
+    /// </para>
+    ///  </note> <note> 
+    /// <para>
+    /// This parameter is only supported for tasks that are hosted on Fargate if the tasks
+    /// are using platform version <c>1.4.0</c> or later (Linux). This isn't supported for
+    /// Windows containers on Fargate.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class SystemControl
     {
@@ -64,7 +90,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Namespace. 
         /// <para>
-        /// The namespaced kernel parameter to set a <code>value</code> for.
+        /// The namespaced kernel parameter to set a <c>value</c> for.
         /// </para>
         /// </summary>
         public string Namespace
@@ -82,18 +108,17 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The namespaced kernel parameter to set a <code>value</code> for.
+        /// The namespaced kernel parameter to set a <c>value</c> for.
         /// </para>
         ///  
         /// <para>
-        /// Valid IPC namespace values: <code>"kernel.msgmax" | "kernel.msgmnb" | "kernel.msgmni"
-        /// | "kernel.sem" | "kernel.shmall" | "kernel.shmmax" | "kernel.shmmni" | "kernel.shm_rmid_forced"</code>,
-        /// and <code>Sysctls</code> that start with <code>"fs.mqueue.*"</code> 
+        /// Valid IPC namespace values: <c>"kernel.msgmax" | "kernel.msgmnb" | "kernel.msgmni"
+        /// | "kernel.sem" | "kernel.shmall" | "kernel.shmmax" | "kernel.shmmni" | "kernel.shm_rmid_forced"</c>,
+        /// and <c>Sysctls</c> that start with <c>"fs.mqueue.*"</c> 
         /// </para>
         ///  
         /// <para>
-        /// Valid network namespace values: <code>Sysctls</code> that start with <code>"net.*"</code>
-        /// 
+        /// Valid network namespace values: <c>Sysctls</c> that start with <c>"net.*"</c> 
         /// </para>
         ///  
         /// <para>

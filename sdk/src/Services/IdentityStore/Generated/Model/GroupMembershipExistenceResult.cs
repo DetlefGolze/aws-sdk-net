@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.IdentityStore.Model
         /// <summary>
         /// Gets and sets the property MemberId. 
         /// <para>
-        /// An object that contains the identifier of a group member. Setting the <code>UserID</code>
+        /// An object that contains the identifier of a group member. Setting the <c>UserID</c>
         /// field to the specific identifier for a user indicates that the user is a member of
         /// the group.
         /// </para>

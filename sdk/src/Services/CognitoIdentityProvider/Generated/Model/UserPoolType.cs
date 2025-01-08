@@ -26,18 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// A container for information about the user pool.
+    /// The configuration of a user pool.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>,
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>.
+    /// </para>
     /// </summary>
     public partial class UserPoolType
     {
         private AccountRecoverySettingType _accountRecoverySetting;
         private AdminCreateUserConfigType _adminCreateUserConfig;
-        private List<string> _aliasAttributes = new List<string>();
+        private List<string> _aliasAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _arn;
-        private List<string> _autoVerifiedAttributes = new List<string>();
+        private List<string> _autoVerifiedAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _creationDate;
         private string _customDomain;
         private DeletionProtectionType _deletionProtection;
@@ -54,25 +62,26 @@ namespace Amazon.CognitoIdentityProvider.Model
         private UserPoolMfaType _mfaConfiguration;
         private string _name;
         private UserPoolPolicyType _policies;
-        private List<SchemaAttributeType> _schemaAttributes = new List<SchemaAttributeType>();
+        private List<SchemaAttributeType> _schemaAttributes = AWSConfigs.InitializeCollections ? new List<SchemaAttributeType>() : null;
         private string _smsAuthenticationMessage;
         private SmsConfigurationType _smsConfiguration;
         private string _smsConfigurationFailure;
         private string _smsVerificationMessage;
         private StatusType _status;
         private UserAttributeUpdateSettingsType _userAttributeUpdateSettings;
-        private List<string> _usernameAttributes = new List<string>();
+        private List<string> _usernameAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private UsernameConfigurationType _usernameConfiguration;
         private UserPoolAddOnsType _userPoolAddOns;
-        private Dictionary<string, string> _userPoolTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _userPoolTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private UserPoolTierType _userPoolTier;
         private VerificationMessageTemplateType _verificationMessageTemplate;
 
         /// <summary>
         /// Gets and sets the property AccountRecoverySetting. 
         /// <para>
         /// The available verified method a user can use to recover their password when they call
-        /// <code>ForgotPassword</code>. You can use this setting to define a preferred method
-        /// when a user has more than one method available. With this setting, SMS doesn't qualify
+        /// <c>ForgotPassword</c>. You can use this setting to define a preferred method when
+        /// a user has more than one method available. With this setting, SMS doesn't qualify
         /// for a valid password recovery mechanism if the user also has SMS multi-factor authentication
         /// (MFA) activated. In the absence of this setting, Amazon Cognito uses the legacy behavior
         /// to determine the recovery method where SMS is preferred through email.
@@ -93,7 +102,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property AdminCreateUserConfig. 
         /// <para>
-        /// The configuration for <code>AdminCreateUser</code> requests.
+        /// The configuration for <c>AdminCreateUser</c> requests.
         /// </para>
         /// </summary>
         public AdminCreateUserConfigType AdminCreateUserConfig
@@ -111,7 +120,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property AliasAttributes. 
         /// <para>
-        /// The attributes that are aliased in a user pool.
+        /// Attributes supported as an alias for this user pool. An alias is an attribute that
+        /// users can enter as an alternative username. Possible values: <b>phone_number</b>,
+        /// <b>email</b>, or <b>preferred_username</b>.
         /// </para>
         /// </summary>
         public List<string> AliasAttributes
@@ -123,13 +134,13 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if AliasAttributes property is set
         internal bool IsSetAliasAttributes()
         {
-            return this._aliasAttributes != null && this._aliasAttributes.Count > 0; 
+            return this._aliasAttributes != null && (this._aliasAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) for the user pool.
+        /// The Amazon Resource Name (ARN) of the user pool.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -160,14 +171,15 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if AutoVerifiedAttributes property is set
         internal bool IsSetAutoVerifiedAttributes()
         {
-            return this._autoVerifiedAttributes != null && this._autoVerifiedAttributes.Count > 0; 
+            return this._autoVerifiedAttributes != null && (this._autoVerifiedAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was created.
+        /// The date and time when the item was created. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -187,7 +199,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <para>
         /// A custom domain name that you provide to Amazon Cognito. This parameter applies only
         /// if you use a custom domain to host the sign-up and sign-in pages for your application.
-        /// An example of a custom domain name might be <code>auth.example.com</code>.
+        /// An example of a custom domain name might be <c>auth.example.com</c>.
         /// </para>
         ///  
         /// <para>
@@ -211,16 +223,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property DeletionProtection. 
         /// <para>
-        /// When active, <code>DeletionProtection</code> prevents accidental deletion of your
-        /// user pool. Before you can delete a user pool that you have protected against deletion,
-        /// you must deactivate this feature.
+        /// When active, <c>DeletionProtection</c> prevents accidental deletion of your user pool.
+        /// Before you can delete a user pool that you have protected against deletion, you must
+        /// deactivate this feature.
         /// </para>
         ///  
         /// <para>
-        /// When you try to delete a protected user pool in a <code>DeleteUserPool</code> API
-        /// request, Amazon Cognito returns an <code>InvalidParameterException</code> error. To
-        /// delete a protected user pool, send a new <code>DeleteUserPool</code> request after
-        /// you deactivate deletion protection in an <code>UpdateUserPool</code> API request.
+        /// When you try to delete a protected user pool in a <c>DeleteUserPool</c> API request,
+        /// Amazon Cognito returns an <c>InvalidParameterException</c> error. To delete a protected
+        /// user pool, send a new <c>DeleteUserPool</c> request after you deactivate deletion
+        /// protection in an <c>UpdateUserPool</c> API request.
         /// </para>
         /// </summary>
         public DeletionProtectionType DeletionProtection
@@ -243,8 +255,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you provide a value for any <code>DeviceConfiguration</code> field, you activate
-        /// the Amazon Cognito device-remembering feature.
+        /// When you provide a value for any <c>DeviceConfiguration</c> field, you activate the
+        /// Amazon Cognito device-remembering feature.
         /// </para>
         ///  </note>
         /// </summary>
@@ -302,7 +314,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property EmailConfigurationFailure. 
         /// <para>
-        /// Deprecated. Review error codes from API requests with <code>EventSource:cognito-idp.amazonaws.com</code>
+        /// Deprecated. Review error codes from API requests with <c>EventSource:cognito-idp.amazonaws.com</c>
         /// in CloudTrail for information about problems with user pool email configuration.
         /// </para>
         /// </summary>
@@ -397,7 +409,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LambdaConfig. 
         /// <para>
-        /// The Lambda triggers associated with the user pool.
+        /// A collection of user pool Lambda triggers. Amazon Cognito invokes triggers at several
+        /// possible stages of user pool operations. Triggers can modify the outcome of the operations
+        /// that invoked them.
         /// </para>
         /// </summary>
         public LambdaConfigType LambdaConfig
@@ -415,8 +429,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LastModifiedDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was modified.
+        /// The date and time when the item was modified. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime LastModifiedDate
@@ -438,17 +453,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>OFF</code> - MFA tokens aren't required and can't be specified during user
-        /// registration.
+        ///  <c>OFF</c> - MFA tokens aren't required and can't be specified during user registration.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ON</code> - MFA tokens are required for all user registrations. You can only
-        /// specify required when you're initially creating a user pool.
+        ///  <c>ON</c> - MFA tokens are required for all user registrations. You can only specify
+        /// required when you're initially creating a user pool.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OPTIONAL</code> - Users have the option when registering to create an MFA token.
+        ///  <c>OPTIONAL</c> - Users have the option when registering to create an MFA token.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -486,7 +500,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Policies. 
         /// <para>
-        /// The policies associated with the user pool.
+        /// A list of user pool policies. Contains the policy that sets password-complexity requirements.
         /// </para>
         /// </summary>
         public UserPoolPolicyType Policies
@@ -505,15 +519,14 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property SchemaAttributes. 
         /// <para>
         /// A list of the user attributes and their properties in your user pool. The attribute
-        /// schema contains standard attributes, custom attributes with a <code>custom:</code>
-        /// prefix, and developer attributes with a <code>dev:</code> prefix. For more information,
-        /// see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html">User
+        /// schema contains standard attributes, custom attributes with a <c>custom:</c> prefix,
+        /// and developer attributes with a <c>dev:</c> prefix. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html">User
         /// pool attributes</a>.
         /// </para>
         ///  
         /// <para>
-        /// Developer-only attributes are a legacy feature of user pools, are read-only to all
-        /// app clients. You can create and update developer-only attributes only with IAM-authenticated
+        /// Developer-only attributes are a legacy feature of user pools, and are read-only to
+        /// all app clients. You can create and update developer-only attributes only with IAM-authenticated
         /// API operations. Use app client read/write permissions instead.
         /// </para>
         /// </summary>
@@ -527,7 +540,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if SchemaAttributes property is set
         internal bool IsSetSchemaAttributes()
         {
-            return this._schemaAttributes != null && this._schemaAttributes.Count > 0; 
+            return this._schemaAttributes != null && (this._schemaAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -552,11 +565,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property SmsConfiguration. 
         /// <para>
-        /// The SMS configuration with the settings that your Amazon Cognito user pool must use
-        /// to send an SMS message from your Amazon Web Services account through Amazon Simple
-        /// Notification Service. To send SMS messages with Amazon SNS in the Amazon Web Services
-        /// Region that you want, the Amazon Cognito user pool uses an Identity and Access Management
-        /// (IAM) role in your Amazon Web Services account.
+        /// User pool configuration for delivery of SMS messages with Amazon Simple Notification
+        /// Service. To send SMS messages with Amazon SNS in the Amazon Web Services Region that
+        /// you want, the Amazon Cognito user pool uses an Identity and Access Management (IAM)
+        /// role in your Amazon Web Services account.
         /// </para>
         /// </summary>
         public SmsConfigurationType SmsConfiguration
@@ -631,7 +643,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of a user pool.
+        /// This parameter is no longer used.
         /// </para>
         /// </summary>
         [Obsolete("This property is no longer available.")]
@@ -650,7 +662,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserAttributeUpdateSettings. 
         /// <para>
-        /// The settings for updates to user attributes. These settings include the property <code>AttributesRequireVerificationBeforeUpdate</code>,
+        /// The settings for updates to user attributes. These settings include the property <c>AttributesRequireVerificationBeforeUpdate</c>,
         /// a user-pool setting that tells Amazon Cognito how to handle changes to the value of
         /// your users' email address and phone number attributes. For more information, see <a
         /// href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates">
@@ -685,16 +697,24 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UsernameAttributes property is set
         internal bool IsSetUsernameAttributes()
         {
-            return this._usernameAttributes != null && this._usernameAttributes.Count > 0; 
+            return this._usernameAttributes != null && (this._usernameAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UsernameConfiguration. 
         /// <para>
-        /// Case sensitivity of the username input for the selected sign-in option. For example,
-        /// when case sensitivity is set to <code>False</code>, users can sign in using either
-        /// "username" or "Username". This configuration is immutable once it has been set. For
-        /// more information, see <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html">UsernameConfigurationType</a>.
+        /// Case sensitivity of the username input for the selected sign-in option. When case
+        /// sensitivity is set to <c>False</c> (case insensitive), users can sign in with any
+        /// combination of capital and lowercase letters. For example, <c>username</c>, <c>USERNAME</c>,
+        /// or <c>UserName</c>, or for email, <c>email@example.com</c> or <c>EMaiL@eXamplE.Com</c>.
+        /// For most use cases, set case sensitivity to <c>False</c> (case insensitive) as a best
+        /// practice. When usernames and email addresses are case insensitive, Amazon Cognito
+        /// treats any variation in case as the same user, and prevents a case variation from
+        /// being assigned to the same attribute for a different user.
+        /// </para>
+        ///  
+        /// <para>
+        /// This configuration is immutable after you set it. For more information, see <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html">UsernameConfigurationType</a>.
         /// </para>
         /// </summary>
         public UsernameConfigurationType UsernameConfiguration
@@ -713,9 +733,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property UserPoolAddOns. 
         /// <para>
         /// User pool add-ons. Contains settings for activation of advanced security features.
-        /// To log user security information but take no action, set to <code>AUDIT</code>. To
-        /// configure automatic security responses to risky traffic to your user pool, set to
-        /// <code>ENFORCED</code>.
+        /// To log user security information but take no action, set to <c>AUDIT</c>. To configure
+        /// automatic security responses to risky traffic to your user pool, set to <c>ENFORCED</c>.
         /// </para>
         ///  
         /// <para>
@@ -752,13 +771,35 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if UserPoolTags property is set
         internal bool IsSetUserPoolTags()
         {
-            return this._userPoolTags != null && this._userPoolTags.Count > 0; 
+            return this._userPoolTags != null && (this._userPoolTags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UserPoolTier. 
+        /// <para>
+        /// The user pool <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-sign-in-feature-plans.html">feature
+        /// plan</a>, or tier. This parameter determines the eligibility of the user pool for
+        /// features like managed login, access-token customization, and threat protection. Defaults
+        /// to <c>ESSENTIALS</c>.
+        /// </para>
+        /// </summary>
+        public UserPoolTierType UserPoolTier
+        {
+            get { return this._userPoolTier; }
+            set { this._userPoolTier = value; }
+        }
+
+        // Check to see if UserPoolTier property is set
+        internal bool IsSetUserPoolTier()
+        {
+            return this._userPoolTier != null;
         }
 
         /// <summary>
         /// Gets and sets the property VerificationMessageTemplate. 
         /// <para>
-        /// The template for verification messages.
+        /// The template for the verification message that your user pool delivers to users who
+        /// set an email address or phone number attribute.
         /// </para>
         /// </summary>
         public VerificationMessageTemplateType VerificationMessageTemplate

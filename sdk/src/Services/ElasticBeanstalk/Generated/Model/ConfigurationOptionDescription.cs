@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.ElasticBeanstalk.Model
         private string _awsNamespace;
         private OptionRestrictionRegex _regex;
         private bool? _userDefined;
-        private List<string> _valueOptions = new List<string>();
+        private List<string> _valueOptions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ConfigurationOptionValueType _valueType;
 
         /// <summary>
@@ -58,20 +59,19 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NoInterruption</code> : There is no interruption to the environment or application
+        ///  <c>NoInterruption</c> : There is no interruption to the environment or application
         /// availability.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RestartEnvironment</code> : The environment is entirely restarted, all AWS
-        /// resources are deleted and recreated, and the environment is unavailable during the
-        /// process.
+        ///  <c>RestartEnvironment</c> : The environment is entirely restarted, all AWS resources
+        /// are deleted and recreated, and the environment is unavailable during the process.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RestartApplicationServer</code> : The environment is available the entire time.
-        /// However, a short application outage occurs when the application servers on the running
-        /// Amazon EC2 instances are restarted.
+        ///  <c>RestartApplicationServer</c> : The environment is available the entire time. However,
+        /// a short application outage occurs when the application servers on the running Amazon
+        /// EC2 instances are restarted.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -222,22 +222,22 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>true</code> : This configuration option was defined by the user. It is a valid
-        /// choice for specifying if this as an <code>Option to Remove</code> when updating configuration
-        /// settings. 
+        ///  <c>true</c> : This configuration option was defined by the user. It is a valid choice
+        /// for specifying if this as an <c>Option to Remove</c> when updating configuration settings.
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>false</code> : This configuration was not defined by the user.
+        ///  <c>false</c> : This configuration was not defined by the user.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  Constraint: You can remove only <code>UserDefined</code> options from a configuration.
+        ///  Constraint: You can remove only <c>UserDefined</c> options from a configuration.
         /// 
         /// </para>
         ///  
         /// <para>
-        ///  Valid Values: <code>true</code> | <code>false</code> 
+        ///  Valid Values: <c>true</c> | <c>false</c> 
         /// </para>
         /// </summary>
         public bool UserDefined
@@ -267,7 +267,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if ValueOptions property is set
         internal bool IsSetValueOptions()
         {
-            return this._valueOptions != null && this._valueOptions.Count > 0; 
+            return this._valueOptions != null && (this._valueOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -278,23 +278,20 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Scalar</code> : Values for this option are a single selection from the possible
-        /// values, or an unformatted string, or numeric value governed by the <code>MIN/MAX/Regex</code>
-        /// constraints.
+        ///  <c>Scalar</c> : Values for this option are a single selection from the possible values,
+        /// or an unformatted string, or numeric value governed by the <c>MIN/MAX/Regex</c> constraints.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>List</code> : Values for this option are multiple selections from the possible
-        /// values.
+        ///  <c>List</c> : Values for this option are multiple selections from the possible values.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Boolean</code> : Values for this option are either <code>true</code> or <code>false</code>
-        /// .
+        ///  <c>Boolean</c> : Values for this option are either <c>true</c> or <c>false</c> .
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Json</code> : Values for this option are a JSON representation of a <code>ConfigDocument</code>.
+        ///  <c>Json</c> : Values for this option are a JSON representation of a <c>ConfigDocument</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>

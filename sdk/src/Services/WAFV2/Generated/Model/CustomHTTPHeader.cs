@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -45,9 +46,9 @@ namespace Amazon.WAFV2.Model
         ///  
         /// <para>
         /// For custom request header insertion, when WAF inserts the header into the request,
-        /// it prefixes this name <code>x-amzn-waf-</code>, to avoid confusion with the headers
-        /// that are already in the request. For example, for the header name <code>sample</code>,
-        /// WAF inserts the header <code>x-amzn-waf-sample</code>.
+        /// it prefixes this name <c>x-amzn-waf-</c>, to avoid confusion with the headers that
+        /// are already in the request. For example, for the header name <c>sample</c>, WAF inserts
+        /// the header <c>x-amzn-waf-sample</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
     /// Container for the parameters to the ListIdentityPolicies operation.
     /// Returns a list of sending authorization policies that are attached to the given identity
     /// (an email address or a domain). This operation returns only a list. To get the actual
-    /// policy content, use <code>GetIdentityPolicies</code>.
+    /// policy content, use <c>GetIdentityPolicies</c>.
     /// 
     ///  <note> 
     /// <para>
@@ -60,7 +61,7 @@ namespace Amazon.SimpleEmail.Model
         /// <para>
         /// The identity that is associated with the policy for which the policies are listed.
         /// You can specify an identity by using its name or by using its Amazon Resource Name
-        /// (ARN). Examples: <code>user@example.com</code>, <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
+        /// (ARN). Examples: <c>user@example.com</c>, <c>example.com</c>, <c>arn:aws:ses:us-east-1:123456789012:identity/example.com</c>.
         /// </para>
         ///  
         /// <para>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(LoggingConfig requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCloudWatchConfig())
             {
                 context.Writer.WritePropertyName("cloudWatchConfig");
@@ -83,6 +86,12 @@ namespace Amazon.Bedrock.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("textDataDeliveryEnabled");
                 context.Writer.Write(requestObject.TextDataDeliveryEnabled);
+            }
+
+            if(requestObject.IsSetVideoDataDeliveryEnabled())
+            {
+                context.Writer.WritePropertyName("videoDataDeliveryEnabled");
+                context.Writer.Write(requestObject.VideoDataDeliveryEnabled);
             }
 
         }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,10 +52,22 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("actions", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ActionIdentifier, ActionIdentifierUnmarshaller>(ActionIdentifierUnmarshaller.Instance);
+                    response.Actions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("createdDate", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.CreatedDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("effect", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.Effect = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("lastUpdatedDate", targetDepth))
@@ -119,6 +132,10 @@ namespace Amazon.VerifiedPermissions.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("AccessDeniedException"))
                 {
                     return AccessDeniedExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("ConflictException"))
+                {
+                    return ConflictExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InternalServerException"))
                 {

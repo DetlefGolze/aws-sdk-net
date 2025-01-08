@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.DatabaseMigrationService.Model
     /// </summary>
     public partial class DescribeFleetAdvisorSchemaObjectSummaryResponse : AmazonWebServiceResponse
     {
-        private List<FleetAdvisorSchemaObjectResponse> _fleetAdvisorSchemaObjects = new List<FleetAdvisorSchemaObjectResponse>();
+        private List<FleetAdvisorSchemaObjectResponse> _fleetAdvisorSchemaObjects = AWSConfigs.InitializeCollections ? new List<FleetAdvisorSchemaObjectResponse>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property FleetAdvisorSchemaObjects. 
         /// <para>
-        /// A collection of <code>FleetAdvisorSchemaObjectResponse</code> objects.
+        /// A collection of <c>FleetAdvisorSchemaObjectResponse</c> objects.
         /// </para>
         /// </summary>
         public List<FleetAdvisorSchemaObjectResponse> FleetAdvisorSchemaObjects
@@ -51,16 +52,15 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if FleetAdvisorSchemaObjects property is set
         internal bool IsSetFleetAdvisorSchemaObjects()
         {
-            return this._fleetAdvisorSchemaObjects != null && this._fleetAdvisorSchemaObjects.Count > 0; 
+            return this._fleetAdvisorSchemaObjects != null && (this._fleetAdvisorSchemaObjects.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>NextToken</code> is returned, there are more results available. The value
-        /// of <code>NextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. 
+        /// If <c>NextToken</c> is returned, there are more results available. The value of <c>NextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. 
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -49,14 +50,14 @@ namespace Amazon.DirectoryService.Model
         private string _name;
         private string _password;
         private string _shortName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DirectoryVpcSettings _vpcSettings;
 
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
         /// A description for the directory. This label will appear on the Amazon Web Services
-        /// console <code>Directory Details</code> page after the directory is created.
+        /// console <c>Directory Details</c> page after the directory is created.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=128)]
@@ -75,8 +76,8 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Edition. 
         /// <para>
-        /// Managed Microsoft AD is available in two editions: <code>Standard</code> and <code>Enterprise</code>.
-        /// <code>Enterprise</code> is the default.
+        /// Managed Microsoft AD is available in two editions: <c>Standard</c> and <c>Enterprise</c>.
+        /// <c>Enterprise</c> is the default.
         /// </para>
         /// </summary>
         public DirectoryEdition Edition
@@ -94,7 +95,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The fully qualified domain name for the Managed Microsoft AD directory, such as <code>corp.example.com</code>.
+        /// The fully qualified domain name for the Managed Microsoft AD directory, such as <c>corp.example.com</c>.
         /// This name will resolve inside your VPC only. It does not need to be publicly resolvable.
         /// </para>
         /// </summary>
@@ -114,7 +115,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Password. 
         /// <para>
-        /// The password for the default administrative user named <code>Admin</code>.
+        /// The password for the default administrative user named <c>Admin</c>.
         /// </para>
         ///  
         /// <para>
@@ -138,9 +139,9 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property ShortName. 
         /// <para>
-        /// The NetBIOS name for your domain, such as <code>CORP</code>. If you don't specify
-        /// a NetBIOS name, it will default to the first part of your directory DNS. For example,
-        /// <code>CORP</code> for the directory DNS <code>corp.example.com</code>. 
+        /// The NetBIOS name for your domain, such as <c>CORP</c>. If you don't specify a NetBIOS
+        /// name, it will default to the first part of your directory DNS. For example, <c>CORP</c>
+        /// for the directory DNS <c>corp.example.com</c>. 
         /// </para>
         /// </summary>
         public string ShortName
@@ -170,7 +171,7 @@ namespace Amazon.DirectoryService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.IoTFleetWise.Model
         /// Gets and sets the property FullyQualifiedName. 
         /// <para>
         /// The fully qualified name of the branch. For example, the fully qualified name of a
-        /// branch might be <code>Vehicle.Body.Engine</code>.
+        /// branch might be <c>Vehicle.Body.Engine</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

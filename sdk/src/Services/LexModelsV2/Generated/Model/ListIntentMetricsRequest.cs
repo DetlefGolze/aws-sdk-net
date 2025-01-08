@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -34,17 +35,16 @@ namespace Amazon.LexModelsV2.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>metrics</code> – A list of <a href="https://docs.aws.amazon.com/lexv2/latest/APIReference/API_AnalyticsIntentMetric.html">AnalyticsIntentMetric</a>
-    /// objects. In each object, use the <code>name</code> field to specify the metric to
-    /// calculate, the <code>statistic</code> field to specify whether to calculate the <code>Sum</code>,
-    /// <code>Average</code>, or <code>Max</code> number, and the <code>order</code> field
-    /// to specify whether to sort the results in <code>Ascending</code> or <code>Descending</code>
-    /// order.
+    ///  <c>metrics</c> – A list of <a href="https://docs.aws.amazon.com/lexv2/latest/APIReference/API_AnalyticsIntentMetric.html">AnalyticsIntentMetric</a>
+    /// objects. In each object, use the <c>name</c> field to specify the metric to calculate,
+    /// the <c>statistic</c> field to specify whether to calculate the <c>Sum</c>, <c>Average</c>,
+    /// or <c>Max</c> number, and the <c>order</c> field to specify whether to sort the results
+    /// in <c>Ascending</c> or <c>Descending</c> order.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>startDateTime</code> and <code>endDateTime</code> – Define a time range for
-    /// which you want to retrieve results.
+    ///  <c>startDateTime</c> and <c>endDateTime</c> – Define a time range for which you want
+    /// to retrieve results.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -52,31 +52,31 @@ namespace Amazon.LexModelsV2.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Use the <code>filters</code> field to filter the results, the <code>groupBy</code>
-    /// field to specify categories by which to group the results, and the <code>binBy</code>
-    /// field to specify time intervals by which to group the results.
+    /// Use the <c>filters</c> field to filter the results, the <c>groupBy</c> field to specify
+    /// categories by which to group the results, and the <c>binBy</c> field to specify time
+    /// intervals by which to group the results.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Use the <code>maxResults</code> field to limit the number of results to return in
-    /// a single response and the <code>nextToken</code> field to return the next batch of
-    /// results if the response does not return the full set of results.
+    /// Use the <c>maxResults</c> field to limit the number of results to return in a single
+    /// response and the <c>nextToken</c> field to return the next batch of results if the
+    /// response does not return the full set of results.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// Note that an <code>order</code> field exists in both <code>binBy</code> and <code>metrics</code>.
-    /// You can specify only one <code>order</code> in a given request.
+    /// Note that an <c>order</c> field exists in both <c>binBy</c> and <c>metrics</c>. You
+    /// can specify only one <c>order</c> in a given request.
     /// </para>
     /// </summary>
     public partial class ListIntentMetricsRequest : AmazonLexModelsV2Request
     {
-        private List<AnalyticsBinBySpecification> _binBy = new List<AnalyticsBinBySpecification>();
+        private List<AnalyticsBinBySpecification> _binBy = AWSConfigs.InitializeCollections ? new List<AnalyticsBinBySpecification>() : null;
         private string _botId;
         private DateTime? _endDateTime;
-        private List<AnalyticsIntentFilter> _filters = new List<AnalyticsIntentFilter>();
-        private List<AnalyticsIntentGroupBySpecification> _groupBy = new List<AnalyticsIntentGroupBySpecification>();
+        private List<AnalyticsIntentFilter> _filters = AWSConfigs.InitializeCollections ? new List<AnalyticsIntentFilter>() : null;
+        private List<AnalyticsIntentGroupBySpecification> _groupBy = AWSConfigs.InitializeCollections ? new List<AnalyticsIntentGroupBySpecification>() : null;
         private int? _maxResults;
-        private List<AnalyticsIntentMetric> _metrics = new List<AnalyticsIntentMetric>();
+        private List<AnalyticsIntentMetric> _metrics = AWSConfigs.InitializeCollections ? new List<AnalyticsIntentMetric>() : null;
         private string _nextToken;
         private DateTime? _startDateTime;
 
@@ -97,7 +97,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BinBy property is set
         internal bool IsSetBinBy()
         {
-            return this._binBy != null && this._binBy.Count > 0; 
+            return this._binBy != null && (this._binBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -167,12 +167,12 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IntentName</code> – The name of the intent.
+        ///  <c>IntentName</c> – The name of the intent.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IntentEndState</code> – The final state of the intent. The possible end states
-        /// are detailed in <a href="https://docs.aws.amazon.com/analytics-key-definitions-intents">Key
+        ///  <c>IntentEndState</c> – The final state of the intent. The possible end states are
+        /// detailed in <a href="https://docs.aws.amazon.com/analytics-key-definitions-intents">Key
         /// definitions</a> in the user guide.
         /// </para>
         ///  </li> </ul>
@@ -187,7 +187,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if GroupBy property is set
         internal bool IsSetGroupBy()
         {
-            return this._groupBy != null && this._groupBy.Count > 0; 
+            return this._groupBy != null && (this._groupBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

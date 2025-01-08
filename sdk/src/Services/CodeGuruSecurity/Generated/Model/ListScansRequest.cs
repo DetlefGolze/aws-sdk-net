@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
     /// Container for the parameters to the ListScans operation.
-    /// Returns a list of all the standard scans in an account. Does not return express scans.
+    /// Returns a list of all scans in an account. Does not return <c>EXPRESS</c> scans.
     /// </summary>
     public partial class ListScansRequest : AmazonCodeGuruSecurityRequest
     {
@@ -41,9 +42,9 @@ namespace Amazon.CodeGuruSecurity.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return in the response. Use this parameter when paginating
-        /// results. If additional results exist beyond the number you specify, the <code>nextToken</code>
-        /// element is returned in the response. Use <code>nextToken</code> in a subsequent request
-        /// to retrieve additional results.
+        /// results. If additional results exist beyond the number you specify, the <c>nextToken</c>
+        /// element is returned in the response. Use <c>nextToken</c> in a subsequent request
+        /// to retrieve additional results. If not specified, returns 100 results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -63,7 +64,7 @@ namespace Amazon.CodeGuruSecurity.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
-        /// of this parameter to null for the first request. For subsequent calls, use the <code>nextToken</code>
+        /// of this parameter to null for the first request. For subsequent calls, use the <c>nextToken</c>
         /// value returned from the previous request to continue listing results after the first
         /// page.
         /// </para>

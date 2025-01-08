@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Braket
 {
     /// <summary>
-    /// Implementation for accessing Braket
+    /// <para>Implementation for accessing Braket</para>
     ///
     /// The Amazon Braket API Reference provides information about the operations and structures
     /// supported in Amazon Braket.
@@ -444,6 +445,9 @@ namespace Amazon.Braket
         /// <exception cref="Amazon.Braket.Model.ConflictException">
         /// An error occurred due to a conflict.
         /// </exception>
+        /// <exception cref="Amazon.Braket.Model.DeviceOfflineException">
+        /// The specified device is currently offline.
+        /// </exception>
         /// <exception cref="Amazon.Braket.Model.DeviceRetiredException">
         /// The specified device has been retired.
         /// </exception>
@@ -484,6 +488,9 @@ namespace Amazon.Braket
         /// </exception>
         /// <exception cref="Amazon.Braket.Model.ConflictException">
         /// An error occurred due to a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.Braket.Model.DeviceOfflineException">
+        /// The specified device is currently offline.
         /// </exception>
         /// <exception cref="Amazon.Braket.Model.DeviceRetiredException">
         /// The specified device has been retired.
@@ -1213,11 +1220,11 @@ namespace Amazon.Braket
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

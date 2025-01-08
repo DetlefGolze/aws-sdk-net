@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.AuditManager.Model
     /// </summary>
     public partial class ListAssessmentsResponse : AmazonWebServiceResponse
     {
-        private List<AssessmentMetadataItem> _assessmentMetadata = new List<AssessmentMetadataItem>();
+        private List<AssessmentMetadataItem> _assessmentMetadata = AWSConfigs.InitializeCollections ? new List<AssessmentMetadataItem>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AssessmentMetadata. 
         /// <para>
-        /// The metadata that the <code>ListAssessments</code> API returns for each assessment.
+        /// The metadata that the <c>ListAssessments</c> API returns for each assessment.
         /// </para>
         /// </summary>
         public List<AssessmentMetadataItem> AssessmentMetadata
@@ -51,7 +52,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if AssessmentMetadata property is set
         internal bool IsSetAssessmentMetadata()
         {
-            return this._assessmentMetadata != null && this._assessmentMetadata.Count > 0; 
+            return this._assessmentMetadata != null && (this._assessmentMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -258,7 +259,7 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             }
                             if(publicRequest.LaunchTemplateData.InstanceMarketOptions.SpotOptions.IsSetValidUntilUtc())
                             {
-                                request.Parameters.Add("LaunchTemplateData" + "." + "InstanceMarketOptions" + "." + "SpotOptions" + "." + "ValidUntil", StringUtils.FromDateTimeToISO8601(publicRequest.LaunchTemplateData.InstanceMarketOptions.SpotOptions.ValidUntilUtc));
+                                request.Parameters.Add("LaunchTemplateData" + "." + "InstanceMarketOptions" + "." + "SpotOptions" + "." + "ValidUntil", StringUtils.FromDateTimeToISO8601WithOptionalMs(publicRequest.LaunchTemplateData.InstanceMarketOptions.SpotOptions.ValidUntilUtc));
                             }
                         }
                     }
@@ -337,6 +338,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                 request.Parameters.Add("LaunchTemplateData" + "." + "InstanceRequirements" + "." + "BaselineEbsBandwidthMbps" + "." + "Min", StringUtils.FromInt(publicRequest.LaunchTemplateData.InstanceRequirements.BaselineEbsBandwidthMbps.Min));
                             }
                         }
+                        if(publicRequest.LaunchTemplateData.InstanceRequirements.IsSetBaselinePerformanceFactors())
+                        {
+                            if(publicRequest.LaunchTemplateData.InstanceRequirements.BaselinePerformanceFactors.IsSetCpu())
+                            {
+                                if(publicRequest.LaunchTemplateData.InstanceRequirements.BaselinePerformanceFactors.Cpu.IsSetReferences())
+                                {
+                                    int publicRequestLaunchTemplateDataInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex = 1;
+                                    foreach(var publicRequestLaunchTemplateDataInstanceRequirementsBaselinePerformanceFactorsCpulistValue in publicRequest.LaunchTemplateData.InstanceRequirements.BaselinePerformanceFactors.Cpu.References)
+                                    {
+                                        if(publicRequestLaunchTemplateDataInstanceRequirementsBaselinePerformanceFactorsCpulistValue.IsSetInstanceFamily())
+                                        {
+                                            request.Parameters.Add("LaunchTemplateData" + "." + "InstanceRequirements" + "." + "BaselinePerformanceFactors" + "." + "Cpu" + "." + "Reference" + "." + publicRequestLaunchTemplateDataInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex + "." + "InstanceFamily", StringUtils.FromString(publicRequestLaunchTemplateDataInstanceRequirementsBaselinePerformanceFactorsCpulistValue.InstanceFamily));
+                                        }
+                                        publicRequestLaunchTemplateDataInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex++;
+                                    }
+                                }
+                            }
+                        }
                         if(publicRequest.LaunchTemplateData.InstanceRequirements.IsSetBurstablePerformance())
                         {
                             request.Parameters.Add("LaunchTemplateData" + "." + "InstanceRequirements" + "." + "BurstablePerformance", StringUtils.FromString(publicRequest.LaunchTemplateData.InstanceRequirements.BurstablePerformance));
@@ -380,6 +399,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                 request.Parameters.Add("LaunchTemplateData" + "." + "InstanceRequirements" + "." + "LocalStorageType" + "." + publicRequestLaunchTemplateDataInstanceRequirementslistValueIndex, StringUtils.FromString(publicRequestLaunchTemplateDataInstanceRequirementslistValue));
                                 publicRequestLaunchTemplateDataInstanceRequirementslistValueIndex++;
                             }
+                        }
+                        if(publicRequest.LaunchTemplateData.InstanceRequirements.IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice())
+                        {
+                            request.Parameters.Add("LaunchTemplateData" + "." + "InstanceRequirements" + "." + "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice", StringUtils.FromInt(publicRequest.LaunchTemplateData.InstanceRequirements.MaxSpotPriceAsPercentageOfOptimalOnDemandPrice));
                         }
                         if(publicRequest.LaunchTemplateData.InstanceRequirements.IsSetMemoryGiBPerVCpu())
                         {
@@ -534,6 +557,21 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             {
                                 request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "AssociatePublicIpAddress", StringUtils.FromBool(publicRequestLaunchTemplateDatalistValue.AssociatePublicIpAddress));
                             }
+                            if(publicRequestLaunchTemplateDatalistValue.IsSetConnectionTrackingSpecification())
+                            {
+                                if(publicRequestLaunchTemplateDatalistValue.ConnectionTrackingSpecification.IsSetTcpEstablishedTimeout())
+                                {
+                                    request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "TcpEstablishedTimeout", StringUtils.FromInt(publicRequestLaunchTemplateDatalistValue.ConnectionTrackingSpecification.TcpEstablishedTimeout));
+                                }
+                                if(publicRequestLaunchTemplateDatalistValue.ConnectionTrackingSpecification.IsSetUdpStreamTimeout())
+                                {
+                                    request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "UdpStreamTimeout", StringUtils.FromInt(publicRequestLaunchTemplateDatalistValue.ConnectionTrackingSpecification.UdpStreamTimeout));
+                                }
+                                if(publicRequestLaunchTemplateDatalistValue.ConnectionTrackingSpecification.IsSetUdpTimeout())
+                                {
+                                    request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "ConnectionTrackingSpecification" + "." + "UdpTimeout", StringUtils.FromInt(publicRequestLaunchTemplateDatalistValue.ConnectionTrackingSpecification.UdpTimeout));
+                                }
+                            }
                             if(publicRequestLaunchTemplateDatalistValue.IsSetDeleteOnTermination())
                             {
                                 request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "DeleteOnTermination", StringUtils.FromBool(publicRequestLaunchTemplateDatalistValue.DeleteOnTermination));
@@ -545,6 +583,20 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                             if(publicRequestLaunchTemplateDatalistValue.IsSetDeviceIndex())
                             {
                                 request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "DeviceIndex", StringUtils.FromInt(publicRequestLaunchTemplateDatalistValue.DeviceIndex));
+                            }
+                            if(publicRequestLaunchTemplateDatalistValue.IsSetEnaSrdSpecification())
+                            {
+                                if(publicRequestLaunchTemplateDatalistValue.EnaSrdSpecification.IsSetEnaSrdEnabled())
+                                {
+                                    request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "EnaSrdSpecification" + "." + "EnaSrdEnabled", StringUtils.FromBool(publicRequestLaunchTemplateDatalistValue.EnaSrdSpecification.EnaSrdEnabled));
+                                }
+                                if(publicRequestLaunchTemplateDatalistValue.EnaSrdSpecification.IsSetEnaSrdUdpSpecification())
+                                {
+                                    if(publicRequestLaunchTemplateDatalistValue.EnaSrdSpecification.EnaSrdUdpSpecification.IsSetEnaSrdUdpEnabled())
+                                    {
+                                        request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "EnaSrdSpecification" + "." + "EnaSrdUdpSpecification" + "." + "EnaSrdUdpEnabled", StringUtils.FromBool(publicRequestLaunchTemplateDatalistValue.EnaSrdSpecification.EnaSrdUdpSpecification.EnaSrdUdpEnabled));
+                                    }
+                                }
                             }
                             if(publicRequestLaunchTemplateDatalistValue.IsSetGroups())
                             {
@@ -648,6 +700,20 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                 request.Parameters.Add("LaunchTemplateData" + "." + "NetworkInterface" + "." + publicRequestLaunchTemplateDatalistValueIndex + "." + "SubnetId", StringUtils.FromString(publicRequestLaunchTemplateDatalistValue.SubnetId));
                             }
                             publicRequestLaunchTemplateDatalistValueIndex++;
+                        }
+                    }
+                    if(publicRequest.LaunchTemplateData.IsSetNetworkPerformanceOptions())
+                    {
+                        if(publicRequest.LaunchTemplateData.NetworkPerformanceOptions.IsSetBandwidthWeighting())
+                        {
+                            request.Parameters.Add("LaunchTemplateData" + "." + "NetworkPerformanceOptions" + "." + "BandwidthWeighting", StringUtils.FromString(publicRequest.LaunchTemplateData.NetworkPerformanceOptions.BandwidthWeighting));
+                        }
+                    }
+                    if(publicRequest.LaunchTemplateData.IsSetOperator())
+                    {
+                        if(publicRequest.LaunchTemplateData.Operator.IsSetPrincipal())
+                        {
+                            request.Parameters.Add("LaunchTemplateData" + "." + "Operator" + "." + "Principal", StringUtils.FromString(publicRequest.LaunchTemplateData.Operator.Principal));
                         }
                     }
                     if(publicRequest.LaunchTemplateData.IsSetPlacement())

@@ -26,27 +26,38 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the RegisterCompute operation.
-    /// Registers a compute resource to an Amazon GameLift Anywhere fleet. With Anywhere fleets
-    /// you can incorporate your own computing hardware into an Amazon GameLift game hosting
-    /// solution.
+    /// Registers a compute resource in an Amazon GameLift Anywhere fleet. 
     /// 
     ///  
     /// <para>
-    /// To register a compute to a fleet, give the compute a name (must be unique within the
-    /// fleet) and specify the compute resource's DNS name or IP address. Provide the Anywhere
-    /// fleet ID and a fleet location to associate with the compute being registered. You
-    /// can optionally include the path to a TLS certificate on the compute resource.
+    /// For an Anywhere fleet that's running the Amazon GameLift Agent, the Agent handles
+    /// all compute registry tasks for you. For an Anywhere fleet that doesn't use the Agent,
+    /// call this operation to register fleet computes.
     /// </para>
     ///  
     /// <para>
-    /// If successful, this operation returns the compute details, including an Amazon GameLift
-    /// SDK endpoint. Game server processes that run on the compute use this endpoint to communicate
-    /// with the Amazon GameLift service. Each server process includes the SDK endpoint in
-    /// its call to the Amazon GameLift server SDK action <code>InitSDK()</code>.
+    /// To register a compute, give the compute a name (must be unique within the fleet) and
+    /// specify the compute resource's DNS name or IP address. Provide a fleet ID and a fleet
+    /// location to associate with the compute being registered. You can optionally include
+    /// the path to a TLS certificate on the compute resource.
+    /// </para>
+    ///  
+    /// <para>
+    /// If successful, this operation returns compute details, including an Amazon GameLift
+    /// SDK endpoint or Agent endpoint. Game server processes running on the compute can use
+    /// this endpoint to communicate with the Amazon GameLift service. Each server process
+    /// includes the SDK endpoint in its call to the Amazon GameLift server SDK action <c>InitSDK()</c>.
+    /// 
+    /// </para>
+    ///  
+    /// <para>
+    /// To view compute details, call <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeCompute.html">DescribeCompute</a>
+    /// with the compute name. 
     /// </para>
     ///  
     /// <para>
@@ -144,7 +155,7 @@ namespace Amazon.GameLift.Model
         /// fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -161,10 +172,10 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property IpAddress. 
         /// <para>
         /// The IP address of the compute resource. Amazon GameLift requires either a DNS name
-        /// or IP address.
+        /// or IP address. When registering an Anywhere fleet, an IP address is required.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string IpAddress
         {
             get { return this._ipAddress; }
@@ -181,7 +192,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The name of a custom location to associate with the compute resource being registered.
-        /// 
+        /// This parameter is required when registering a compute for an Anywhere fleet.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.GameLift.Model
     /// Retrieves current usage data for a fleet location. Utilization data provides a snapshot
     /// of current game hosting activity at the requested location. Use this operation to
     /// retrieve utilization information for a fleet's remote location or home Region (you
-    /// can also retrieve home Region utilization by calling <code>DescribeFleetUtilization</code>).
+    /// can also retrieve home Region utilization by calling <c>DescribeFleetUtilization</c>).
     /// 
     ///  
     /// <para>
@@ -41,8 +42,8 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, a <code>FleetUtilization</code> object is returned for the requested
-    /// fleet location. 
+    /// If successful, a <c>FleetUtilization</c> object is returned for the requested fleet
+    /// location. 
     /// </para>
     ///  
     /// <para>
@@ -52,6 +53,11 @@ namespace Amazon.GameLift.Model
     /// <para>
     ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
     /// up Amazon GameLift fleets</a> 
+    /// </para>
+    ///  
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-regions.html">
+    /// Amazon GameLift service locations</a> for managed hosting
     /// </para>
     ///  
     /// <para>
@@ -71,7 +77,7 @@ namespace Amazon.GameLift.Model
         /// either the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -88,7 +94,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The fleet location to retrieve utilization information for. Specify a location in
-        /// the form of an Amazon Web Services Region code, such as <code>us-west-2</code>.
+        /// the form of an Amazon Web Services Region code, such as <c>us-west-2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

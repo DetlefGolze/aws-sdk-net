@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,24 +34,25 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class Service
     {
-        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private AvailabilityZoneRebalancing _availabilityZoneRebalancing;
+        private List<CapacityProviderStrategyItem> _capacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
         private string _clusterArn;
         private DateTime? _createdAt;
         private string _createdBy;
         private DeploymentConfiguration _deploymentConfiguration;
         private DeploymentController _deploymentController;
-        private List<Deployment> _deployments = new List<Deployment>();
+        private List<Deployment> _deployments = AWSConfigs.InitializeCollections ? new List<Deployment>() : null;
         private int? _desiredCount;
         private bool? _enableecsManagedTags;
         private bool? _enableExecuteCommand;
-        private List<ServiceEvent> _events = new List<ServiceEvent>();
+        private List<ServiceEvent> _events = AWSConfigs.InitializeCollections ? new List<ServiceEvent>() : null;
         private int? _healthCheckGracePeriodSeconds;
         private LaunchType _launchType;
-        private List<LoadBalancer> _loadBalancers = new List<LoadBalancer>();
+        private List<LoadBalancer> _loadBalancers = AWSConfigs.InitializeCollections ? new List<LoadBalancer>() : null;
         private NetworkConfiguration _networkConfiguration;
         private int? _pendingCount;
-        private List<PlacementConstraint> _placementConstraints = new List<PlacementConstraint>();
-        private List<PlacementStrategy> _placementStrategy = new List<PlacementStrategy>();
+        private List<PlacementConstraint> _placementConstraints = AWSConfigs.InitializeCollections ? new List<PlacementConstraint>() : null;
+        private List<PlacementStrategy> _placementStrategy = AWSConfigs.InitializeCollections ? new List<PlacementStrategy>() : null;
         private string _platformFamily;
         private string _platformVersion;
         private PropagateTags _propagateTags;
@@ -59,11 +61,35 @@ namespace Amazon.ECS.Model
         private SchedulingStrategy _schedulingStrategy;
         private string _serviceArn;
         private string _serviceName;
-        private List<ServiceRegistry> _serviceRegistries = new List<ServiceRegistry>();
+        private List<ServiceRegistry> _serviceRegistries = AWSConfigs.InitializeCollections ? new List<ServiceRegistry>() : null;
         private string _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _taskDefinition;
-        private List<TaskSet> _taskSets = new List<TaskSet>();
+        private List<TaskSet> _taskSets = AWSConfigs.InitializeCollections ? new List<TaskSet>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AvailabilityZoneRebalancing. 
+        /// <para>
+        /// Indicates whether to use Availability Zone rebalancing for the service.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-rebalancing.html">Balancing
+        /// an Amazon ECS service across Availability Zones</a> in the <i>Amazon Elastic Container
+        /// Service Developer Guide</i>.
+        /// </para>
+        /// </summary>
+        public AvailabilityZoneRebalancing AvailabilityZoneRebalancing
+        {
+            get { return this._availabilityZoneRebalancing; }
+            set { this._availabilityZoneRebalancing = value; }
+        }
+
+        // Check to see if AvailabilityZoneRebalancing property is set
+        internal bool IsSetAvailabilityZoneRebalancing()
+        {
+            return this._availabilityZoneRebalancing != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CapacityProviderStrategy. 
@@ -81,7 +107,7 @@ namespace Amazon.ECS.Model
         // Check to see if CapacityProviderStrategy property is set
         internal bool IsSetCapacityProviderStrategy()
         {
-            return this._capacityProviderStrategy != null && this._capacityProviderStrategy.Count > 0; 
+            return this._capacityProviderStrategy != null && (this._capacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -190,15 +216,15 @@ namespace Amazon.ECS.Model
         // Check to see if Deployments property is set
         internal bool IsSetDeployments()
         {
-            return this._deployments != null && this._deployments.Count > 0; 
+            return this._deployments != null && (this._deployments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DesiredCount. 
         /// <para>
         /// The desired number of instantiations of the task definition to keep running on the
-        /// service. This value is specified when the service is created with <a>CreateService</a>,
-        /// and it can be modified with <a>UpdateService</a>.
+        /// service. This value is specified when the service is created with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html">CreateService</a>
+        /// , and it can be modified with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html">UpdateService</a>.
         /// </para>
         /// </summary>
         public int DesiredCount
@@ -238,7 +264,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property EnableExecuteCommand. 
         /// <para>
         /// Determines whether the execute command functionality is turned on for the service.
-        /// If <code>true</code>, the execute command functionality is turned on for all containers
+        /// If <c>true</c>, the execute command functionality is turned on for all containers
         /// in tasks as part of the service.
         /// </para>
         /// </summary>
@@ -269,7 +295,7 @@ namespace Amazon.ECS.Model
         // Check to see if Events property is set
         internal bool IsSetEvents()
         {
-            return this._events != null && this._events.Count > 0; 
+            return this._events != null && (this._events.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -327,14 +353,14 @@ namespace Amazon.ECS.Model
         // Check to see if LoadBalancers property is set
         internal bool IsSetLoadBalancers()
         {
-            return this._loadBalancers != null && this._loadBalancers.Count > 0; 
+            return this._loadBalancers != null && (this._loadBalancers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NetworkConfiguration. 
         /// <para>
         /// The VPC subnet and security group configuration for tasks that receive their own elastic
-        /// network interface by using the <code>awsvpc</code> networking mode.
+        /// network interface by using the <c>awsvpc</c> networking mode.
         /// </para>
         /// </summary>
         public NetworkConfiguration NetworkConfiguration
@@ -352,7 +378,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property PendingCount. 
         /// <para>
-        /// The number of tasks in the cluster that are in the <code>PENDING</code> state.
+        /// The number of tasks in the cluster that are in the <c>PENDING</c> state.
         /// </para>
         /// </summary>
         public int PendingCount
@@ -382,7 +408,7 @@ namespace Amazon.ECS.Model
         // Check to see if PlacementConstraints property is set
         internal bool IsSetPlacementConstraints()
         {
-            return this._placementConstraints != null && this._placementConstraints.Count > 0; 
+            return this._placementConstraints != null && (this._placementConstraints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -400,7 +426,7 @@ namespace Amazon.ECS.Model
         // Check to see if PlacementStrategy property is set
         internal bool IsSetPlacementStrategy()
         {
-            return this._placementStrategy != null && this._placementStrategy.Count > 0; 
+            return this._placementStrategy != null && (this._placementStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -411,8 +437,8 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        ///  All tasks that run as part of this service must use the same <code>platformFamily</code>
-        /// value as the service (for example, <code>LINUX</code>).
+        ///  All tasks that run as part of this service must use the same <c>platformFamily</c>
+        /// value as the service (for example, <c>LINUX</c>).
         /// </para>
         /// </summary>
         public string PlatformFamily
@@ -431,8 +457,8 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property PlatformVersion. 
         /// <para>
         /// The platform version to run your service on. A platform version is only specified
-        /// for tasks that are hosted on Fargate. If one isn't specified, the <code>LATEST</code>
-        /// platform version is used. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
+        /// for tasks that are hosted on Fargate. If one isn't specified, the <c>LATEST</c> platform
+        /// version is used. For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html">Fargate
         /// Platform Versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -490,7 +516,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property RunningCount. 
         /// <para>
-        /// The number of tasks in the cluster that are in the <code>RUNNING</code> state.
+        /// The number of tasks in the cluster that are in the <c>RUNNING</c> state.
         /// </para>
         /// </summary>
         public int RunningCount
@@ -516,21 +542,21 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>REPLICA</code>-The replica scheduling strategy places and maintains the desired
-        /// number of tasks across your cluster. By default, the service scheduler spreads tasks
-        /// across Availability Zones. You can use task placement strategies and constraints to
-        /// customize task placement decisions.
+        ///  <c>REPLICA</c>-The replica scheduling strategy places and maintains the desired number
+        /// of tasks across your cluster. By default, the service scheduler spreads tasks across
+        /// Availability Zones. You can use task placement strategies and constraints to customize
+        /// task placement decisions.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DAEMON</code>-The daemon scheduling strategy deploys exactly one task on each
-        /// active container instance. This task meets all of the task placement constraints that
-        /// you specify in your cluster. The service scheduler also evaluates the task placement
-        /// constraints for running tasks. It stop tasks that don't meet the placement constraints.
+        ///  <c>DAEMON</c>-The daemon scheduling strategy deploys exactly one task on each active
+        /// container instance. This task meets all of the task placement constraints that you
+        /// specify in your cluster. The service scheduler also evaluates the task placement constraints
+        /// for running tasks. It stop tasks that don't meet the placement constraints.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Fargate tasks don't support the <code>DAEMON</code> scheduling strategy.
+        /// Fargate tasks don't support the <c>DAEMON</c> scheduling strategy.
         /// </para>
         ///  </note> </li> </ul>
         /// </summary>
@@ -604,14 +630,14 @@ namespace Amazon.ECS.Model
         // Check to see if ServiceRegistries property is set
         internal bool IsSetServiceRegistries()
         {
-            return this._serviceRegistries != null && this._serviceRegistries.Count > 0; 
+            return this._serviceRegistries != null && (this._serviceRegistries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the service. The valid values are <code>ACTIVE</code>, <code>DRAINING</code>,
-        /// or <code>INACTIVE</code>.
+        /// The status of the service. The valid values are <c>ACTIVE</c>, <c>DRAINING</c>, or
+        /// <c>INACTIVE</c>.
         /// </para>
         /// </summary>
         public string Status
@@ -666,10 +692,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -683,14 +709,15 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskDefinition. 
         /// <para>
         /// The task definition to use for tasks in the service. This value is specified when
-        /// the service is created with <a>CreateService</a>, and it can be modified with <a>UpdateService</a>.
+        /// the service is created with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html">CreateService</a>,
+        /// and it can be modified with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html">UpdateService</a>.
         /// </para>
         /// </summary>
         public string TaskDefinition
@@ -708,7 +735,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property TaskSets. 
         /// <para>
-        /// Information about a set of Amazon ECS tasks in either an CodeDeploy or an <code>EXTERNAL</code>
+        /// Information about a set of Amazon ECS tasks in either an CodeDeploy or an <c>EXTERNAL</c>
         /// deployment. An Amazon ECS task set includes details such as the desired number of
         /// tasks, how many tasks are running, and whether the task set serves production traffic.
         /// </para>
@@ -722,7 +749,7 @@ namespace Amazon.ECS.Model
         // Check to see if TaskSets property is set
         internal bool IsSetTaskSets()
         {
-            return this._taskSets != null && this._taskSets.Count > 0; 
+            return this._taskSets != null && (this._taskSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

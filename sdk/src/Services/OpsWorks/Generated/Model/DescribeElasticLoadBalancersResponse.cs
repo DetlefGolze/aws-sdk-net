@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>DescribeElasticLoadBalancers</code> request.
+    /// Contains the response to a <c>DescribeElasticLoadBalancers</c> request.
     /// </summary>
     public partial class DescribeElasticLoadBalancersResponse : AmazonWebServiceResponse
     {
-        private List<ElasticLoadBalancer> _elasticLoadBalancers = new List<ElasticLoadBalancer>();
+        private List<ElasticLoadBalancer> _elasticLoadBalancers = AWSConfigs.InitializeCollections ? new List<ElasticLoadBalancer>() : null;
 
         /// <summary>
         /// Gets and sets the property ElasticLoadBalancers. 
         /// <para>
-        /// A list of <code>ElasticLoadBalancer</code> objects that describe the specified Elastic
-        /// Load Balancing instances.
+        /// A list of <c>ElasticLoadBalancer</c> objects that describe the specified Elastic Load
+        /// Balancing instances.
         /// </para>
         /// </summary>
         public List<ElasticLoadBalancer> ElasticLoadBalancers
@@ -51,7 +52,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if ElasticLoadBalancers property is set
         internal bool IsSetElasticLoadBalancers()
         {
-            return this._elasticLoadBalancers != null && this._elasticLoadBalancers.Count > 0; 
+            return this._elasticLoadBalancers != null && (this._elasticLoadBalancers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

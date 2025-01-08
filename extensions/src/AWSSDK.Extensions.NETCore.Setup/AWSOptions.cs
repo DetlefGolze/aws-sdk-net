@@ -27,6 +27,9 @@ namespace Amazon.Extensions.NETCore.Setup
     /// <summary>
     /// The options used to construct AWS service clients like the Amazon.S3.AmazonS3Client.
     /// </summary>
+#if NET8_0_OR_GREATER
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode(Amazon.Extensions.NETCore.Setup.InternalConstants.RequiresUnreferencedCodeMessage)]
+#endif
     public class AWSOptions
     {
         /// <summary>
@@ -55,6 +58,11 @@ namespace Amazon.Extensions.NETCore.Setup
         /// The session name for the assumed session using the SessionRoleArn.
         /// </summary>
         public string SessionName { get; set; } = "DefaultSessionName";
+
+        /// <summary>
+        /// A unique identifier that is used by third parties for the assumed session using the SessionRoleArn.
+        /// </summary>
+        public string ExternalId { get; set; }
 
         /// <summary>
         /// AWS Credentials used for creating service clients. If this is set it overrides the Profile property.

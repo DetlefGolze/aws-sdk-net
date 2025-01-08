@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the GetDetector operation.
-    /// Retrieves an Amazon GuardDuty detector specified by the detectorId.
+    /// Retrieves a GuardDuty detector specified by the detectorId.
     /// 
     ///  
     /// <para>
@@ -48,6 +49,12 @@ namespace Amazon.GuardDuty.Model
         /// Gets and sets the property DetectorId. 
         /// <para>
         /// The unique ID of the detector that you want to get.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]

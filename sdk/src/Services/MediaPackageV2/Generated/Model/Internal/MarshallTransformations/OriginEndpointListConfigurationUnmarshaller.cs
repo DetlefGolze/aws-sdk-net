@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public OriginEndpointListConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            OriginEndpointListConfiguration unmarshalledObject = new OriginEndpointListConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            OriginEndpointListConfiguration unmarshalledObject = new OriginEndpointListConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,10 +96,22 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreatedAt = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DashManifests", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ListDashManifestConfiguration, ListDashManifestConfigurationUnmarshaller>(ListDashManifestConfigurationUnmarshaller.Instance);
+                    unmarshalledObject.DashManifests = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Description", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.Description = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ForceEndpointErrorConfiguration", targetDepth))
+                {
+                    var unmarshaller = ForceEndpointErrorConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.ForceEndpointErrorConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("HlsManifests", targetDepth))
@@ -125,7 +139,6 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

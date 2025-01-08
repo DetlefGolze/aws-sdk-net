@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectWisdomService.Model
 {
     /// <summary>
     /// Container for the parameters to the NotifyRecommendationsReceived operation.
     /// Removes the specified recommendations from the specified assistant's queue of newly
     /// available recommendations. You can use this API in conjunction with <a href="https://docs.aws.amazon.com/wisdom/latest/APIReference/API_GetRecommendations.html">GetRecommendations</a>
-    /// and a <code>waitTimeSeconds</code> input for long-polling behavior and avoiding duplicate
+    /// and a <c>waitTimeSeconds</c> input for long-polling behavior and avoiding duplicate
     /// recommendations.
     /// </summary>
     public partial class NotifyRecommendationsReceivedRequest : AmazonConnectWisdomServiceRequest
     {
         private string _assistantId;
-        private List<string> _recommendationIds = new List<string>();
+        private List<string> _recommendationIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sessionId;
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.ConnectWisdomService.Model
         /// The identifiers of the recommendations.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=0, Max=25)]
         public List<string> RecommendationIds
         {
             get { return this._recommendationIds; }
@@ -77,7 +78,7 @@ namespace Amazon.ConnectWisdomService.Model
         // Check to see if RecommendationIds property is set
         internal bool IsSetRecommendationIds()
         {
-            return this._recommendationIds != null && this._recommendationIds.Count > 0; 
+            return this._recommendationIds != null && (this._recommendationIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

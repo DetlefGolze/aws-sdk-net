@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CopySourceImageSetInformation requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetDICOMCopies())
+            {
+                context.Writer.WritePropertyName("DICOMCopies");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = MetadataCopiesMarshaller.Instance;
+                marshaller.Marshall(requestObject.DICOMCopies, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetLatestVersionId())
             {
                 context.Writer.WritePropertyName("latestVersionId");

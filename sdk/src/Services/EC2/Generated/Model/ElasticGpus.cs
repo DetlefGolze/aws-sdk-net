@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
+    /// <note> 
+    /// <para>
+    /// Amazon Elastic Graphics reached end of life on January 8, 2024.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Describes an Elastic Graphics accelerator.
+    /// </para>
     /// </summary>
     public partial class ElasticGpus
     {
@@ -39,7 +47,7 @@ namespace Amazon.EC2.Model
         private ElasticGpuState _elasticGpuState;
         private string _elasticGpuType;
         private string _instanceId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
@@ -164,7 +172,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

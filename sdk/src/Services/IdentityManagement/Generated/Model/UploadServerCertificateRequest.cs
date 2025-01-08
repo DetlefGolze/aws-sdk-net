@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.IdentityManagement.Model
     ///  <note> 
     /// <para>
     /// Because the body of the public key certificate, private key, and the certificate chain
-    /// can be large, you should use POST rather than GET when calling <code>UploadServerCertificate</code>.
+    /// can be large, you should use POST rather than GET when calling <c>UploadServerCertificate</c>.
     /// For information about setting up signatures and authorization through the API, see
     /// <a href="https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html">Signing
     /// Amazon Web Services API requests</a> in the <i>Amazon Web Services General Reference</i>.
@@ -74,7 +75,7 @@ namespace Amazon.IdentityManagement.Model
         private string _path;
         private string _privateKey;
         private string _serverCertificateName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -85,8 +86,8 @@ namespace Amazon.IdentityManagement.Model
         /// Instantiates UploadServerCertificateRequest with the parameterized properties
         /// </summary>
         /// <param name="serverCertificateName">The name for the server certificate. Do not include the path in this value. The name of the certificate cannot contain any spaces. This parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-</param>
-        /// <param name="certificateBody">The contents of the public key certificate in PEM-encoded format. The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> used to validate this parameter is a string of characters consisting of the following: <ul> <li> Any printable ASCII character ranging from the space character (<code>\u0020</code>) through the end of the ASCII character range </li> <li> The printable characters in the Basic Latin and Latin-1 Supplement character set (through <code>\u00FF</code>) </li> <li> The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and carriage return (<code>\u000D</code>) </li> </ul></param>
-        /// <param name="privateKey">The contents of the private key in PEM-encoded format. The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> used to validate this parameter is a string of characters consisting of the following: <ul> <li> Any printable ASCII character ranging from the space character (<code>\u0020</code>) through the end of the ASCII character range </li> <li> The printable characters in the Basic Latin and Latin-1 Supplement character set (through <code>\u00FF</code>) </li> <li> The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and carriage return (<code>\u000D</code>) </li> </ul></param>
+        /// <param name="certificateBody">The contents of the public key certificate in PEM-encoded format. The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> used to validate this parameter is a string of characters consisting of the following: <ul> <li> Any printable ASCII character ranging from the space character (<c>\u0020</c>) through the end of the ASCII character range </li> <li> The printable characters in the Basic Latin and Latin-1 Supplement character set (through <c>\u00FF</c>) </li> <li> The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return (<c>\u000D</c>) </li> </ul></param>
+        /// <param name="privateKey">The contents of the private key in PEM-encoded format. The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> used to validate this parameter is a string of characters consisting of the following: <ul> <li> Any printable ASCII character ranging from the space character (<c>\u0020</c>) through the end of the ASCII character range </li> <li> The printable characters in the Basic Latin and Latin-1 Supplement character set (through <c>\u00FF</c>) </li> <li> The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return (<c>\u000D</c>) </li> </ul></param>
         public UploadServerCertificateRequest(string serverCertificateName, string certificateBody, string privateKey)
         {
             _serverCertificateName = serverCertificateName;
@@ -106,18 +107,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -147,18 +148,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -187,15 +188,14 @@ namespace Amazon.IdentityManagement.Model
         /// parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex pattern</a>)
         /// a string of characters consisting of either a forward slash (/) by itself or a string
         /// that must begin and end with forward slashes. In addition, it can contain any ASCII
-        /// character from the ! (<code>\u0021</code>) through the DEL character (<code>\u007F</code>),
-        /// including most punctuation characters, digits, and upper and lowercased letters.
+        /// character from the ! (<c>\u0021</c>) through the DEL character (<c>\u007F</c>), including
+        /// most punctuation characters, digits, and upper and lowercased letters.
         /// </para>
         ///  <note> 
         /// <para>
         ///  If you are uploading a server certificate specifically for use with Amazon CloudFront
-        /// distributions, you must specify a path using the <code>path</code> parameter. The
-        /// path must begin with <code>/cloudfront</code> and must include a trailing slash (for
-        /// example, <code>/cloudfront/test/</code>).
+        /// distributions, you must specify a path using the <c>path</c> parameter. The path must
+        /// begin with <c>/cloudfront</c> and must include a trailing slash (for example, <c>/cloudfront/test/</c>).
         /// </para>
         ///  </note>
         /// </summary>
@@ -224,18 +224,18 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Any printable ASCII character ranging from the space character (<code>\u0020</code>)
-        /// through the end of the ASCII character range
+        /// Any printable ASCII character ranging from the space character (<c>\u0020</c>) through
+        /// the end of the ASCII character range
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The printable characters in the Basic Latin and Latin-1 Supplement character set (through
-        /// <code>\u00FF</code>)
+        /// <c>\u00FF</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The special characters tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
-        /// and carriage return (<code>\u000D</code>)
+        /// The special characters tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage
+        /// return (<c>\u000D</c>)
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -303,7 +303,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

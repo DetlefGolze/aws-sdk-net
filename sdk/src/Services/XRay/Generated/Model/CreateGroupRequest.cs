@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.XRay.Model
         private string _filterExpression;
         private string _groupName;
         private InsightsConfiguration _insightsConfiguration;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property FilterExpression. 
@@ -141,7 +142,7 @@ namespace Amazon.XRay.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Don't use <code>aws:</code> as a prefix for keys; it's reserved for Amazon Web Services
+        /// Don't use <c>aws:</c> as a prefix for keys; it's reserved for Amazon Web Services
         /// use.
         /// </para>
         ///  </li> </ul>
@@ -156,7 +157,7 @@ namespace Amazon.XRay.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

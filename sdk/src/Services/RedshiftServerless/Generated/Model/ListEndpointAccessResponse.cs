@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.RedshiftServerless.Model
     /// </summary>
     public partial class ListEndpointAccessResponse : AmazonWebServiceResponse
     {
-        private List<EndpointAccess> _endpoints = new List<EndpointAccess>();
+        private List<EndpointAccess> _endpoints = AWSConfigs.InitializeCollections ? new List<EndpointAccess>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.RedshiftServerless.Model
         // Check to see if Endpoints property is set
         internal bool IsSetEndpoints()
         {
-            return this._endpoints != null && this._endpoints.Count > 0; 
+            return this._endpoints != null && (this._endpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// When <c>nextToken</c> is returned, there are more results available. The value of
+        /// <c>nextToken</c> is a unique pagination token for each page. Make the call again using
+        /// the returned token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken

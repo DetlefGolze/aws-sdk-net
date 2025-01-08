@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -66,12 +67,17 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property CompatibleRuntime. 
         /// <para>
-        /// A runtime identifier. For example, <code>go1.x</code>.
+        /// A runtime identifier.
         /// </para>
         ///  
         /// <para>
-        /// The following list includes deprecated runtimes. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy">Runtime
-        /// deprecation policy</a>.
+        /// The following list includes deprecated runtimes. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels">Runtime
+        /// use after deprecation</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For a list of all currently supported runtimes, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported">Supported
+        /// runtimes</a>.
         /// </para>
         /// </summary>
         public Runtime CompatibleRuntime

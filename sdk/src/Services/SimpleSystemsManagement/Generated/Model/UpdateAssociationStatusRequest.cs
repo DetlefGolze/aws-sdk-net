@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,10 +36,9 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// 
     ///  
     /// <para>
-    ///  <code>UpdateAssociationStatus</code> is primarily used by the Amazon Web Services
-    /// Systems Manager Agent (SSM Agent) to report status updates about your associations
-    /// and is only used for associations created with the <code>InstanceId</code> legacy
-    /// parameter.
+    ///  <c>UpdateAssociationStatus</c> is primarily used by the Amazon Web Services Systems
+    /// Manager Agent (SSM Agent) to report status updates about your associations and is
+    /// only used for associations created with the <c>InstanceId</c> legacy parameter.
     /// </para>
     /// </summary>
     public partial class UpdateAssociationStatusRequest : AmazonSimpleSystemsManagementRequest

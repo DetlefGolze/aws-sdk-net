@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTopics operation.
     /// Returns a list of the requester's topics. Each call returns a limited list of topics,
-    /// up to 100. If there are more topics, a <code>NextToken</code> is also returned. Use
-    /// the <code>NextToken</code> parameter in a new <code>ListTopics</code> call to get
-    /// further results.
+    /// up to 100. If there are more topics, a <c>NextToken</c> is also returned. Use the
+    /// <c>NextToken</c> parameter in a new <c>ListTopics</c> call to get further results.
     /// 
     ///  
     /// <para>
@@ -52,7 +52,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Instantiates ListTopicsRequest with the parameterized properties
         /// </summary>
-        /// <param name="nextToken">Token returned by the previous <code>ListTopics</code> request.</param>
+        /// <param name="nextToken">Token returned by the previous <c>ListTopics</c> request.</param>
         public ListTopicsRequest(string nextToken)
         {
             _nextToken = nextToken;
@@ -61,7 +61,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Token returned by the previous <code>ListTopics</code> request.
+        /// Token returned by the previous <c>ListTopics</c> request.
         /// </para>
         /// </summary>
         public string NextToken

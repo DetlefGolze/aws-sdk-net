@@ -26,18 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the PutStorageLensConfigurationTagging operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Put or replace tags on an existing Amazon S3 Storage Lens configuration. For more
     /// information about S3 Storage Lens, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html">Assessing
     /// your storage activity and usage with Amazon S3 Storage Lens </a> in the <i>Amazon
     /// S3 User Guide</i>.
-    /// 
+    /// </para>
     ///  <note> 
     /// <para>
-    /// To use this action, you must have permission to perform the <code>s3:PutStorageLensConfigurationTagging</code>
+    /// To use this action, you must have permission to perform the <c>s3:PutStorageLensConfigurationTagging</c>
     /// action. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html">Setting
     /// permissions to use Amazon S3 Storage Lens</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
@@ -47,7 +54,7 @@ namespace Amazon.S3Control.Model
     {
         private string _accountId;
         private string _configId;
-        private List<StorageLensTag> _tags = new List<StorageLensTag>();
+        private List<StorageLensTag> _tags = AWSConfigs.InitializeCollections ? new List<StorageLensTag>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -65,7 +72,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>
@@ -108,7 +115,7 @@ namespace Amazon.S3Control.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

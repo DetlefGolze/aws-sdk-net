@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -48,9 +49,11 @@ namespace Amazon.ManagedBlockchainQuery.Model
     {
         private string _blockHash;
         private string _blockNumber;
+        private ConfirmationStatus _confirmationStatus;
         private string _contractAddress;
         private string _cumulativeGasUsed;
         private string _effectiveGasPrice;
+        private ExecutionStatus _executionStatus;
         private string _from;
         private string _gasUsed;
         private QueryNetwork _network;
@@ -58,7 +61,6 @@ namespace Amazon.ManagedBlockchainQuery.Model
         private string _signaturer;
         private string _signatures;
         private int? _signaturev;
-        private QueryTransactionStatus _status;
         private string _to;
         private string _transactionFee;
         private string _transactionHash;
@@ -102,6 +104,24 @@ namespace Amazon.ManagedBlockchainQuery.Model
         internal bool IsSetBlockNumber()
         {
             return this._blockNumber != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConfirmationStatus. 
+        /// <para>
+        /// Specifies whether the transaction has reached Finality.
+        /// </para>
+        /// </summary>
+        public ConfirmationStatus ConfirmationStatus
+        {
+            get { return this._confirmationStatus; }
+            set { this._confirmationStatus = value; }
+        }
+
+        // Check to see if ConfirmationStatus property is set
+        internal bool IsSetConfirmationStatus()
+        {
+            return this._confirmationStatus != null;
         }
 
         /// <summary>
@@ -159,6 +179,24 @@ namespace Amazon.ManagedBlockchainQuery.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ExecutionStatus. 
+        /// <para>
+        /// Identifies whether the transaction has succeeded or failed.
+        /// </para>
+        /// </summary>
+        public ExecutionStatus ExecutionStatus
+        {
+            get { return this._executionStatus; }
+            set { this._executionStatus = value; }
+        }
+
+        // Check to see if ExecutionStatus property is set
+        internal bool IsSetExecutionStatus()
+        {
+            return this._executionStatus != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property From. 
         /// <para>
         /// The initiator of the transaction. It is either in the form a public key or a contract
@@ -198,7 +236,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property Network. 
         /// <para>
-        /// The blockchain network where the transaction occured.
+        /// The blockchain network where the transaction occurred.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -288,25 +326,6 @@ namespace Amazon.ManagedBlockchainQuery.Model
         }
 
         /// <summary>
-        /// Gets and sets the property Status. 
-        /// <para>
-        /// The status of the transaction.
-        /// </para>
-        /// </summary>
-        [AWSProperty(Required=true)]
-        public QueryTransactionStatus Status
-        {
-            get { return this._status; }
-            set { this._status = value; }
-        }
-
-        // Check to see if Status property is set
-        internal bool IsSetStatus()
-        {
-            return this._status != null;
-        }
-
-        /// <summary>
         /// Gets and sets the property To. 
         /// <para>
         /// The identifier of the transaction. It is generated whenever a transaction is verified
@@ -347,8 +366,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property TransactionHash. 
         /// <para>
-        /// The hash of the transaction. It is generated whenever a transaction is verified and
-        /// added to the blockchain.
+        /// The hash of a transaction. It is generated when a transaction is created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -367,8 +385,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property TransactionId. 
         /// <para>
-        /// The unique identifier of the transaction. It is generated whenever a transaction is
-        /// verified and added to the blockchain.
+        /// The identifier of a Bitcoin transaction. It is generated when a transaction is created.
         /// </para>
         /// </summary>
         public string TransactionId
@@ -405,7 +422,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property TransactionTimestamp. 
         /// <para>
-        /// The <code>Timestamp</code> of the transaction. 
+        /// The <c>Timestamp</c> of the transaction. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

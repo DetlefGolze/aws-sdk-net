@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -38,15 +39,15 @@ namespace Amazon.LexModelBuildingService.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>{ "resourceType": BOT | BOTALIAS | BOTCHANNEL | INTENT,</code> 
+    ///  <c>{ "resourceType": BOT | BOTALIAS | BOTCHANNEL | INTENT,</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code>"resourceReference": {</code> 
+    ///  <c>"resourceReference": {</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code>"name": <i>string</i>, "version": <i>string</i> } }</code> 
+    ///  <c>"name": <i>string</i>, "version": <i>string</i> } }</c> 
     /// </para>
     /// </summary>
     #if !NETSTANDARD

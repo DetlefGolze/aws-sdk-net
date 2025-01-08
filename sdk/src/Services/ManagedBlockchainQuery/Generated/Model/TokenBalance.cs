@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -86,8 +87,8 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedTime. 
         /// <para>
-        /// The <code>timestamp</code> of the last transaction at which the balance for the token
-        /// in the wallet was updated.
+        /// The <c>Timestamp</c> of the last transaction at which the balance for the token in
+        /// the wallet was updated.
         /// </para>
         /// </summary>
         public BlockchainInstant LastUpdatedTime

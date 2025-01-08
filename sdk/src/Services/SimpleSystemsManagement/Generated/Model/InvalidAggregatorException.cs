@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// The specified aggregator isn't valid for inventory groups. Verify that the aggregator
-    /// uses a valid inventory type such as <code>AWS:Application</code> or <code>AWS:InstanceInformation</code>.
+    /// The specified aggregator isn't valid for the group type. Verify that the aggregator
+    /// you provided is supported.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

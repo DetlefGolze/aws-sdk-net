@@ -26,22 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Specifies summary attributes to return from a call to <a>DetectProtectiveEquipment</a>.
     /// You can specify which types of PPE to summarize. You can also specify a minimum confidence
-    /// value for detections. Summary information is returned in the <code>Summary</code>
-    /// (<a>ProtectiveEquipmentSummary</a>) field of the response from <code>DetectProtectiveEquipment</code>.
-    /// The summary includes which persons in an image were detected wearing the requested
-    /// types of person protective equipment (PPE), which persons were detected as not wearing
-    /// PPE, and the persons in which a determination could not be made. For more information,
-    /// see <a>ProtectiveEquipmentSummary</a>.
+    /// value for detections. Summary information is returned in the <c>Summary</c> (<a>ProtectiveEquipmentSummary</a>)
+    /// field of the response from <c>DetectProtectiveEquipment</c>. The summary includes
+    /// which persons in an image were detected wearing the requested types of person protective
+    /// equipment (PPE), which persons were detected as not wearing PPE, and the persons in
+    /// which a determination could not be made. For more information, see <a>ProtectiveEquipmentSummary</a>.
     /// </summary>
     public partial class ProtectiveEquipmentSummarizationAttributes
     {
         private float? _minConfidence;
-        private List<string> _requiredEquipmentTypes = new List<string>();
+        private List<string> _requiredEquipmentTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property MinConfidence. 
@@ -53,7 +53,7 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify a <code>MinConfidence</code> value that is between 50-100% as <code>DetectProtectiveEquipment</code>
+        /// Specify a <c>MinConfidence</c> value that is between 50-100% as <c>DetectProtectiveEquipment</c>
         /// returns predictions only where the detection confidence is between 50% - 100%. If
         /// you specify a value that is less than 50%, the results are the same specifying a value
         /// of 50%.
@@ -81,8 +81,8 @@ namespace Amazon.Rekognition.Model
         /// <para>
         /// An array of personal protective equipment types for which you want summary information.
         /// If a person is detected wearing a required requipment type, the person's ID is added
-        /// to the <code>PersonsWithRequiredEquipment</code> array field returned in <a>ProtectiveEquipmentSummary</a>
-        /// by <code>DetectProtectiveEquipment</code>. 
+        /// to the <c>PersonsWithRequiredEquipment</c> array field returned in <a>ProtectiveEquipmentSummary</a>
+        /// by <c>DetectProtectiveEquipment</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -95,7 +95,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if RequiredEquipmentTypes property is set
         internal bool IsSetRequiredEquipmentTypes()
         {
-            return this._requiredEquipmentTypes != null && this._requiredEquipmentTypes.Count > 0; 
+            return this._requiredEquipmentTypes != null && (this._requiredEquipmentTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

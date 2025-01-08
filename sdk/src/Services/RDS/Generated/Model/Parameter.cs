@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a request parameter in the <code>ModifyDBParameterGroup</code>
-    /// and <code>ResetDBParameterGroup</code> actions.
+    /// This data type is used as a request parameter in the <c>ModifyDBParameterGroup</c>
+    /// and <c>ResetDBParameterGroup</c> actions.
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <code>DescribeEngineDefaultParameters</code>
-    /// and <code>DescribeDBParameters</code> actions.
+    /// This data type is used as a response element in the <c>DescribeEngineDefaultParameters</c>
+    /// and <c>DescribeDBParameters</c> actions.
     /// </para>
     /// </summary>
     public partial class Parameter
@@ -50,7 +51,7 @@ namespace Amazon.RDS.Model
         private string _parameterName;
         private string _parameterValue;
         private string _source;
-        private List<string> _supportedEngineModes = new List<string>();
+        private List<string> _supportedEngineModes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -150,9 +151,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property IsModifiable. 
         /// <para>
-        /// Indicates whether (<code>true</code>) or not (<code>false</code>) the parameter can
-        /// be modified. Some parameters have security or operational implications that prevent
-        /// them from being changed.
+        /// Indicates whether (<c>true</c>) or not (<c>false</c>) the parameter can be modified.
+        /// Some parameters have security or operational implications that prevent them from being
+        /// changed.
         /// </para>
         /// </summary>
         public bool IsModifiable
@@ -254,7 +255,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedEngineModes property is set
         internal bool IsSetSupportedEngineModes()
         {
-            return this._supportedEngineModes != null && this._supportedEngineModes.Count > 0; 
+            return this._supportedEngineModes != null && (this._supportedEngineModes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

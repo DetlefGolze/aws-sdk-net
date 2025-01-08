@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Configuration information for the Amazon SageMaker Debugger hook parameters, metric
     /// and tensor collections, and storage paths. To learn more about how to configure the
-    /// <code>DebugHookConfig</code> parameter, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html">Use
+    /// <c>DebugHookConfig</c> parameter, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html">Use
     /// the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug
     /// Your Training Job</a>.
     /// </summary>
     public partial class DebugHookConfig
     {
-        private List<CollectionConfiguration> _collectionConfigurations = new List<CollectionConfiguration>();
-        private Dictionary<string, string> _hookParameters = new Dictionary<string, string>();
+        private List<CollectionConfiguration> _collectionConfigurations = AWSConfigs.InitializeCollections ? new List<CollectionConfiguration>() : null;
+        private Dictionary<string, string> _hookParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _localPath;
         private string _s3OutputPath;
 
@@ -46,8 +47,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property CollectionConfigurations. 
         /// <para>
         /// Configuration information for Amazon SageMaker Debugger tensor collections. To learn
-        /// more about how to configure the <code>CollectionConfiguration</code> parameter, see
-        /// <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html">Use
+        /// more about how to configure the <c>CollectionConfiguration</c> parameter, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html">Use
         /// the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug
         /// Your Training Job</a>. 
         /// </para>
@@ -62,7 +62,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if CollectionConfigurations property is set
         internal bool IsSetCollectionConfigurations()
         {
-            return this._collectionConfigurations != null && this._collectionConfigurations.Count > 0; 
+            return this._collectionConfigurations != null && (this._collectionConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,13 +81,13 @@ namespace Amazon.SageMaker.Model
         // Check to see if HookParameters property is set
         internal bool IsSetHookParameters()
         {
-            return this._hookParameters != null && this._hookParameters.Count > 0; 
+            return this._hookParameters != null && (this._hookParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LocalPath. 
         /// <para>
-        /// Path to local storage location for metrics and tensors. Defaults to <code>/opt/ml/output/tensors/</code>.
+        /// Path to local storage location for metrics and tensors. Defaults to <c>/opt/ml/output/tensors/</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]

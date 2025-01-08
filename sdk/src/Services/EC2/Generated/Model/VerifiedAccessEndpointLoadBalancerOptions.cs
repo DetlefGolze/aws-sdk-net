@@ -26,18 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Describes a load balancer when creating an Amazon Web Services Verified Access endpoint
-    /// using the <code>load-balancer</code> type.
+    /// using the <c>load-balancer</c> type.
     /// </summary>
     public partial class VerifiedAccessEndpointLoadBalancerOptions
     {
         private string _loadBalancerArn;
         private int? _port;
+        private List<VerifiedAccessEndpointPortRange> _portRanges = AWSConfigs.InitializeCollections ? new List<VerifiedAccessEndpointPortRange>() : null;
         private VerifiedAccessEndpointProtocol _protocol;
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LoadBalancerArn. 
@@ -77,6 +79,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PortRanges. 
+        /// <para>
+        /// The port ranges.
+        /// </para>
+        /// </summary>
+        public List<VerifiedAccessEndpointPortRange> PortRanges
+        {
+            get { return this._portRanges; }
+            set { this._portRanges = value; }
+        }
+
+        // Check to see if PortRanges property is set
+        internal bool IsSetPortRanges()
+        {
+            return this._portRanges != null && (this._portRanges.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Protocol. 
         /// <para>
         /// The IP protocol.
@@ -109,7 +129,7 @@ namespace Amazon.EC2.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetFirewallDomainListId())
@@ -77,6 +79,18 @@ namespace Amazon.Route53Resolver.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("FirewallRuleGroupId");
                     context.Writer.Write(publicRequest.FirewallRuleGroupId);
+                }
+
+                if(publicRequest.IsSetFirewallThreatProtectionId())
+                {
+                    context.Writer.WritePropertyName("FirewallThreatProtectionId");
+                    context.Writer.Write(publicRequest.FirewallThreatProtectionId);
+                }
+
+                if(publicRequest.IsSetQtype())
+                {
+                    context.Writer.WritePropertyName("Qtype");
+                    context.Writer.Write(publicRequest.Qtype);
                 }
 
                 writer.WriteObjectEnd();

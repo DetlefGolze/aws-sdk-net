@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the results of a successful invocation of the <code>DescribeEventSubscriptions</code>
+    /// Contains the results of a successful invocation of the <c>DescribeEventSubscriptions</c>
     /// action.
     /// </summary>
     public partial class EventSubscription
@@ -37,10 +38,10 @@ namespace Amazon.RDS.Model
         private string _customerAwsId;
         private string _custSubscriptionId;
         private bool? _enabled;
-        private List<string> _eventCategoriesList = new List<string>();
+        private List<string> _eventCategoriesList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _eventSubscriptionArn;
         private string _snsTopicArn;
-        private List<string> _sourceIdsList = new List<string>();
+        private List<string> _sourceIdsList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sourceType;
         private string _status;
         private string _subscriptionCreationTime;
@@ -85,8 +86,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// A Boolean value indicating if the subscription is enabled. True indicates the subscription
-        /// is enabled.
+        /// Specifies whether the subscription is enabled. True indicates the subscription is
+        /// enabled.
         /// </para>
         /// </summary>
         public bool Enabled
@@ -116,7 +117,7 @@ namespace Amazon.RDS.Model
         // Check to see if EventCategoriesList property is set
         internal bool IsSetEventCategoriesList()
         {
-            return this._eventCategoriesList != null && this._eventCategoriesList.Count > 0; 
+            return this._eventCategoriesList != null && (this._eventCategoriesList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,7 +171,7 @@ namespace Amazon.RDS.Model
         // Check to see if SourceIdsList property is set
         internal bool IsSetSourceIdsList()
         {
-            return this._sourceIdsList != null && this._sourceIdsList.Count > 0; 
+            return this._sourceIdsList != null && (this._sourceIdsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -70,8 +71,9 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// For text and image classification, as well as time-series forecasting problem types,
-        /// the supported value is 1. For tabular problem types, the maximum value is 750.
+        /// For text and image classification, time-series forecasting, as well as text generation
+        /// (LLMs fine-tuning) problem types, the supported value is 1. For tabular problem types,
+        /// the maximum value is 750.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=750)]
@@ -98,8 +100,13 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// For job V2s (jobs created by calling <code>CreateAutoMLJobV2</code>), this field controls
+        /// For job V2s (jobs created by calling <c>CreateAutoMLJobV2</c>), this field controls
         /// the runtime of the job candidate.
+        /// </para>
+        ///  
+        /// <para>
+        /// For <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TextClassificationJobConfig.html">TextGenerationJobConfig</a>
+        /// problem types, the maximum time defaults to 72 hours (259200 seconds).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

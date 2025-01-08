@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.AppFabric
 {
     /// <summary>
-    /// Implementation for accessing AppFabric
+    /// <para>Implementation for accessing AppFabric</para>
     ///
     /// Amazon Web Services AppFabric quickly connects software as a service (SaaS) applications
     /// across your organization. This allows IT and security teams to easily manage and secure
@@ -294,7 +295,7 @@ namespace Amazon.AppFabric
         /// 
         ///  
         /// <para>
-        /// This action polls data from the tasks that are kicked off by the <code>StartUserAccessTasks</code>
+        /// This action polls data from the tasks that are kicked off by the <c>StartUserAccessTasks</c>
         /// action.
         /// </para>
         /// </summary>
@@ -1539,8 +1540,8 @@ namespace Amazon.AppFabric
         /// 
         ///  
         /// <para>
-        /// If the app authorization was in a <code>connected</code> state, updating the app authorization
-        /// will set it back to a <code>PendingConnect</code> state.
+        /// If the app authorization was in a <c>connected</c> state, updating the app authorization
+        /// will set it back to a <c>PendingConnect</c> state.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAppAuthorization service method.</param>
@@ -1643,11 +1644,11 @@ namespace Amazon.AppFabric
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

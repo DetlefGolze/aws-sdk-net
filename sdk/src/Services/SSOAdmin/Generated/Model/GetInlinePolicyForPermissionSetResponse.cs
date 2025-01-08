@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.SSOAdmin.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// For <code>Length Constraints</code>, if a valid ARN is provided for a permission set,
-        /// it is possible for an empty inline policy to be returned.
+        /// For <c>Length Constraints</c>, if a valid ARN is provided for a permission set, it
+        /// is possible for an empty inline policy to be returned.
         /// </para>
         ///  </note>
         /// </summary>

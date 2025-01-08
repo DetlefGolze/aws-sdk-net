@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the ec2-2016-11-15.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -44,6 +45,26 @@ namespace Amazon.EC2.Model
         /// Paginator for DescribeByoipCidrs operation
         ///</summary>
         IDescribeByoipCidrsPaginator DescribeByoipCidrs(DescribeByoipCidrsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeCapacityBlockExtensionHistory operation
+        ///</summary>
+        IDescribeCapacityBlockExtensionHistoryPaginator DescribeCapacityBlockExtensionHistory(DescribeCapacityBlockExtensionHistoryRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeCapacityBlockExtensionOfferings operation
+        ///</summary>
+        IDescribeCapacityBlockExtensionOfferingsPaginator DescribeCapacityBlockExtensionOfferings(DescribeCapacityBlockExtensionOfferingsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeCapacityBlockOfferings operation
+        ///</summary>
+        IDescribeCapacityBlockOfferingsPaginator DescribeCapacityBlockOfferings(DescribeCapacityBlockOfferingsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeCapacityReservationBillingRequests operation
+        ///</summary>
+        IDescribeCapacityReservationBillingRequestsPaginator DescribeCapacityReservationBillingRequests(DescribeCapacityReservationBillingRequestsRequest request);
 
         /// <summary>
         /// Paginator for DescribeCapacityReservationFleets operation
@@ -186,6 +207,11 @@ namespace Amazon.EC2.Model
         IDescribeInstanceEventWindowsPaginator DescribeInstanceEventWindows(DescribeInstanceEventWindowsRequest request);
 
         /// <summary>
+        /// Paginator for DescribeInstanceImageMetadata operation
+        ///</summary>
+        IDescribeInstanceImageMetadataPaginator DescribeInstanceImageMetadata(DescribeInstanceImageMetadataRequest request);
+
+        /// <summary>
         /// Paginator for DescribeInstances operation
         ///</summary>
         IDescribeInstancesPaginator DescribeInstances(DescribeInstancesRequest request);
@@ -194,6 +220,11 @@ namespace Amazon.EC2.Model
         /// Paginator for DescribeInstanceStatus operation
         ///</summary>
         IDescribeInstanceStatusPaginator DescribeInstanceStatus(DescribeInstanceStatusRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeInstanceTopology operation
+        ///</summary>
+        IDescribeInstanceTopologyPaginator DescribeInstanceTopology(DescribeInstanceTopologyRequest request);
 
         /// <summary>
         /// Paginator for DescribeInstanceTypeOfferings operation
@@ -279,6 +310,11 @@ namespace Amazon.EC2.Model
         /// Paginator for DescribeLocalGatewayVirtualInterfaces operation
         ///</summary>
         IDescribeLocalGatewayVirtualInterfacesPaginator DescribeLocalGatewayVirtualInterfaces(DescribeLocalGatewayVirtualInterfacesRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeMacHosts operation
+        ///</summary>
+        IDescribeMacHostsPaginator DescribeMacHosts(DescribeMacHostsRequest request);
 
         /// <summary>
         /// Paginator for DescribeManagedPrefixLists operation
@@ -384,6 +420,11 @@ namespace Amazon.EC2.Model
         /// Paginator for DescribeSecurityGroups operation
         ///</summary>
         IDescribeSecurityGroupsPaginator DescribeSecurityGroups(DescribeSecurityGroupsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeSecurityGroupVpcAssociations operation
+        ///</summary>
+        IDescribeSecurityGroupVpcAssociationsPaginator DescribeSecurityGroupVpcAssociations(DescribeSecurityGroupVpcAssociationsRequest request);
 
         /// <summary>
         /// Paginator for DescribeSnapshots operation
@@ -644,6 +685,11 @@ namespace Amazon.EC2.Model
         /// Paginator for GetNetworkInsightsAccessScopeAnalysisFindings operation
         ///</summary>
         IGetNetworkInsightsAccessScopeAnalysisFindingsPaginator GetNetworkInsightsAccessScopeAnalysisFindings(GetNetworkInsightsAccessScopeAnalysisFindingsRequest request);
+
+        /// <summary>
+        /// Paginator for GetSecurityGroupsForVpc operation
+        ///</summary>
+        IGetSecurityGroupsForVpcPaginator GetSecurityGroupsForVpc(GetSecurityGroupsForVpcRequest request);
 
         /// <summary>
         /// Paginator for GetSpotPlacementScores operation

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ARCZonalShift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -64,6 +65,9 @@ namespace Amazon.ARCZonalShift.Model.Internal.MarshallTransformations
             
             if (publicRequest.IsSetNextToken())
                 request.Parameters.Add("nextToken", StringUtils.FromString(publicRequest.NextToken));
+            
+            if (publicRequest.IsSetResourceIdentifier())
+                request.Parameters.Add("resourceIdentifier", StringUtils.FromString(publicRequest.ResourceIdentifier));
             
             if (publicRequest.IsSetStatus())
                 request.Parameters.Add("status", StringUtils.FromString(publicRequest.Status));

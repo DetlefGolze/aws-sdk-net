@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
-    /// The unit of data in a delivery stream.
+    /// The unit of data in a Firehose stream.
     /// </summary>
     public partial class Record
     {

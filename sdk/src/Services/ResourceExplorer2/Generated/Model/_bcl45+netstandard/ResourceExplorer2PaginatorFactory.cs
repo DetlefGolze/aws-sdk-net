@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -41,6 +42,30 @@ namespace Amazon.ResourceExplorer2.Model
         public IListIndexesPaginator ListIndexes(ListIndexesRequest request) 
         {
             return new ListIndexesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListIndexesForMembers operation
+        ///</summary>
+        public IListIndexesForMembersPaginator ListIndexesForMembers(ListIndexesForMembersRequest request) 
+        {
+            return new ListIndexesForMembersPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListManagedViews operation
+        ///</summary>
+        public IListManagedViewsPaginator ListManagedViews(ListManagedViewsRequest request) 
+        {
+            return new ListManagedViewsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListResources operation
+        ///</summary>
+        public IListResourcesPaginator ListResources(ListResourcesRequest request) 
+        {
+            return new ListResourcesPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.ElastiCache.Model
     /// </summary>
     public partial class StartMigrationRequest : AmazonElastiCacheRequest
     {
-        private List<CustomerNodeEndpoint> _customerNodeEndpointList = new List<CustomerNodeEndpoint>();
+        private List<CustomerNodeEndpoint> _customerNodeEndpointList = AWSConfigs.InitializeCollections ? new List<CustomerNodeEndpoint>() : null;
         private string _replicationGroupId;
 
         /// <summary>
         /// Gets and sets the property CustomerNodeEndpointList. 
         /// <para>
-        /// List of endpoints from which data should be migrated. For Redis (cluster mode disabled),
-        /// list should have only one element.
+        /// List of endpoints from which data should be migrated. For Valkey or Redis OSS (cluster
+        /// mode disabled), the list should have only one element.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -54,7 +55,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CustomerNodeEndpointList property is set
         internal bool IsSetCustomerNodeEndpointList()
         {
-            return this._customerNodeEndpointList != null && this._customerNodeEndpointList.Count > 0; 
+            return this._customerNodeEndpointList != null && (this._customerNodeEndpointList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

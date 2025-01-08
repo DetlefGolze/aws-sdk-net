@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.ECS.Model
     public partial class DescribeContainerInstancesRequest : AmazonECSRequest
     {
         private string _cluster;
-        private List<string> _containerInstances = new List<string>();
-        private List<string> _include = new List<string>();
+        private List<string> _containerInstances = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _include = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Cluster. 
@@ -76,14 +77,14 @@ namespace Amazon.ECS.Model
         // Check to see if ContainerInstances property is set
         internal bool IsSetContainerInstances()
         {
-            return this._containerInstances != null && this._containerInstances.Count > 0; 
+            return this._containerInstances != null && (this._containerInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Include. 
         /// <para>
         /// Specifies whether you want to see the resource tags for the container instance. If
-        /// <code>TAGS</code> is specified, the tags are included in the response. If <code>CONTAINER_INSTANCE_HEALTH</code>
+        /// <c>TAGS</c> is specified, the tags are included in the response. If <c>CONTAINER_INSTANCE_HEALTH</c>
         /// is specified, the container instance health is included in the response. If this field
         /// is omitted, tags and container instance health status aren't included in the response.
         /// </para>
@@ -97,7 +98,7 @@ namespace Amazon.ECS.Model
         // Check to see if Include property is set
         internal bool IsSetInclude()
         {
-            return this._include != null && this._include.Count > 0; 
+            return this._include != null && (this._include.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

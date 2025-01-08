@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// A logical rule statement used to negate the results of another rule statement. You
-    /// provide one <a>Statement</a> within the <code>NotStatement</code>.
+    /// provide one <a>Statement</a> within the <c>NotStatement</c>.
     /// </summary>
     public partial class NotStatement
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -50,9 +51,9 @@ namespace Amazon.KeyManagementService.Model
     /// </para>
     ///  
     /// <para>
-    /// You cannot use <code>UpdateAlias</code> to change an alias name. To change an alias
-    /// name, use <a>DeleteAlias</a> to delete the old alias and <a>CreateAlias</a> to create
-    /// a new alias.
+    /// You cannot use <c>UpdateAlias</c> to change an alias name. To change an alias name,
+    /// use <a>DeleteAlias</a> to delete the old alias and <a>CreateAlias</a> to create a
+    /// new alias.
     /// </para>
     ///  
     /// <para>
@@ -112,7 +113,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>ListAliases</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class UpdateAliasRequest : AmazonKeyManagementServiceRequest
     {
@@ -122,9 +128,9 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property AliasName. 
         /// <para>
-        /// Identifies the alias that is changing its KMS key. This value must begin with <code>alias/</code>
-        /// followed by the alias name, such as <code>alias/ExampleAlias</code>. You cannot use
-        /// <code>UpdateAlias</code> to change the alias name.
+        /// Identifies the alias that is changing its KMS key. This value must begin with <c>alias/</c>
+        /// followed by the alias name, such as <c>alias/ExampleAlias</c>. You cannot use <c>UpdateAlias</c>
+        /// to change the alias name.
         /// </para>
         ///  <important> 
         /// <para>
@@ -171,11 +177,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 

@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateApp operation.
     /// Creates a running app for the specified UserProfile. This operation is automatically
-    /// invoked by Amazon SageMaker Studio upon access to the associated Domain, and when
-    /// new kernel configurations are selected by the user. A user may have multiple Apps
-    /// active simultaneously.
+    /// invoked by Amazon SageMaker AI upon access to the associated Domain, and when new
+    /// kernel configurations are selected by the user. A user may have multiple Apps active
+    /// simultaneously.
     /// </summary>
     public partial class CreateAppRequest : AmazonSageMakerRequest
     {
@@ -42,7 +43,7 @@ namespace Amazon.SageMaker.Model
         private string _domainId;
         private ResourceSpec _resourceSpec;
         private string _spaceName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _userProfileName;
 
         /// <summary>
@@ -105,16 +106,16 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ResourceSpec. 
         /// <para>
-        /// The instance type and the Amazon Resource Name (ARN) of the SageMaker image created
+        /// The instance type and the Amazon Resource Name (ARN) of the SageMaker AI image created
         /// on the instance.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The value of <code>InstanceType</code> passed as part of the <code>ResourceSpec</code>
-        /// in the <code>CreateApp</code> call overrides the value passed as part of the <code>ResourceSpec</code>
-        /// configured for the user profile or the domain. If <code>InstanceType</code> is not
-        /// specified in any of those three <code>ResourceSpec</code> values for a <code>KernelGateway</code>
-        /// app, the <code>CreateApp</code> call fails with a request validation error.
+        /// The value of <c>InstanceType</c> passed as part of the <c>ResourceSpec</c> in the
+        /// <c>CreateApp</c> call overrides the value passed as part of the <c>ResourceSpec</c>
+        /// configured for the user profile or the domain. If <c>InstanceType</c> is not specified
+        /// in any of those three <c>ResourceSpec</c> values for a <c>KernelGateway</c> app, the
+        /// <c>CreateApp</c> call fails with a request validation error.
         /// </para>
         ///  </note>
         /// </summary>
@@ -133,8 +134,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SpaceName. 
         /// <para>
-        /// The name of the space. If this value is not set, then <code>UserProfileName</code>
-        /// must be set.
+        /// The name of the space. If this value is not set, then <c>UserProfileName</c> must
+        /// be set.
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]
@@ -166,14 +167,13 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserProfileName. 
         /// <para>
-        /// The user profile name. If this value is not set, then <code>SpaceName</code> must
-        /// be set.
+        /// The user profile name. If this value is not set, then <c>SpaceName</c> must be set.
         /// </para>
         /// </summary>
         [AWSProperty(Max=63)]

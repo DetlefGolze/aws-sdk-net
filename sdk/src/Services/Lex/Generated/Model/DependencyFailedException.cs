@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.Lex.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If a fulfillment Lambda function returns a <code>Delegate</code> dialog action without
-    /// removing any slot values.
+    /// If a fulfillment Lambda function returns a <c>Delegate</c> dialog action without removing
+    /// any slot values.
     /// </para>
     ///  </li> </ul>
     /// </summary>

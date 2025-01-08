@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.PersonalizeRuntime
 {
     /// <summary>
-    /// Implementation for accessing PersonalizeRuntime
+    /// <para>Implementation for accessing PersonalizeRuntime</para>
     ///
     /// 
     /// </summary>
@@ -249,6 +250,55 @@ namespace Amazon.PersonalizeRuntime
         #endregion
 
 
+        #region  GetActionRecommendations
+
+        internal virtual GetActionRecommendationsResponse GetActionRecommendations(GetActionRecommendationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetActionRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetActionRecommendationsResponseUnmarshaller.Instance;
+
+            return Invoke<GetActionRecommendationsResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Returns a list of recommended actions in sorted in descending order by prediction
+        /// score. Use the <c>GetActionRecommendations</c> API if you have a custom campaign that
+        /// deploys a solution version trained with a PERSONALIZED_ACTIONS recipe. 
+        /// 
+        ///  
+        /// <para>
+        /// For more information about PERSONALIZED_ACTIONS recipes, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/nexts-best-action-recipes.html">PERSONALIZED_ACTIONS
+        /// recipes</a>. For more information about getting action recommendations, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/get-action-recommendations.html">Getting
+        /// action recommendations</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetActionRecommendations service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetActionRecommendations service method, as returned by PersonalizeRuntime.</returns>
+        /// <exception cref="Amazon.PersonalizeRuntime.Model.InvalidInputException">
+        /// Provide a valid value for the field or parameter.
+        /// </exception>
+        /// <exception cref="Amazon.PersonalizeRuntime.Model.ResourceNotFoundException">
+        /// The specified resource does not exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/personalize-runtime-2018-05-22/GetActionRecommendations">REST API Reference for GetActionRecommendations Operation</seealso>
+        public virtual Task<GetActionRecommendationsResponse> GetActionRecommendationsAsync(GetActionRecommendationsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetActionRecommendationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetActionRecommendationsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<GetActionRecommendationsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  GetPersonalizedRanking
 
         internal virtual GetPersonalizedRankingResponse GetPersonalizedRanking(GetPersonalizedRankingRequest request)
@@ -316,11 +366,11 @@ namespace Amazon.PersonalizeRuntime
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// USER_PERSONALIZATION - <code>userId</code> required, <code>itemId</code> not used
+        /// USER_PERSONALIZATION - <c>userId</c> required, <c>itemId</c> not used
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// RELATED_ITEMS - <code>itemId</code> required, <code>userId</code> not used
+        /// RELATED_ITEMS - <c>itemId</c> required, <c>userId</c> not used
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -368,11 +418,11 @@ namespace Amazon.PersonalizeRuntime
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

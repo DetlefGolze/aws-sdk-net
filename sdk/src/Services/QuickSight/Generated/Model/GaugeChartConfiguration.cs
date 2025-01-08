@@ -26,23 +26,44 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of a <code>GaugeChartVisual</code>.
+    /// The configuration of a <c>GaugeChartVisual</c>.
     /// </summary>
     public partial class GaugeChartConfiguration
     {
+        private GaugeChartColorConfiguration _colorConfiguration;
         private DataLabelOptions _dataLabels;
         private GaugeChartFieldWells _fieldWells;
         private GaugeChartOptions _gaugeChartOptions;
+        private VisualInteractionOptions _interactions;
         private TooltipOptions _tooltipOptions;
         private VisualPalette _visualPalette;
 
         /// <summary>
+        /// Gets and sets the property ColorConfiguration. 
+        /// <para>
+        /// The color configuration of a <c>GaugeChartVisual</c>.
+        /// </para>
+        /// </summary>
+        public GaugeChartColorConfiguration ColorConfiguration
+        {
+            get { return this._colorConfiguration; }
+            set { this._colorConfiguration = value; }
+        }
+
+        // Check to see if ColorConfiguration property is set
+        internal bool IsSetColorConfiguration()
+        {
+            return this._colorConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DataLabels. 
         /// <para>
-        /// The data label configuration of a <code>GaugeChartVisual</code>.
+        /// The data label configuration of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public DataLabelOptions DataLabels
@@ -60,7 +81,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FieldWells. 
         /// <para>
-        /// The field well configuration of a <code>GaugeChartVisual</code>.
+        /// The field well configuration of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public GaugeChartFieldWells FieldWells
@@ -78,7 +99,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property GaugeChartOptions. 
         /// <para>
-        /// The options that determine the presentation of the <code>GaugeChartVisual</code>.
+        /// The options that determine the presentation of the <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public GaugeChartOptions GaugeChartOptions
@@ -94,9 +115,27 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TooltipOptions. 
         /// <para>
-        /// The tooltip configuration of a <code>GaugeChartVisual</code>.
+        /// The tooltip configuration of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public TooltipOptions TooltipOptions
@@ -114,7 +153,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property VisualPalette. 
         /// <para>
-        /// The visual palette configuration of a <code>GaugeChartVisual</code>.
+        /// The visual palette configuration of a <c>GaugeChartVisual</c>.
         /// </para>
         /// </summary>
         public VisualPalette VisualPalette

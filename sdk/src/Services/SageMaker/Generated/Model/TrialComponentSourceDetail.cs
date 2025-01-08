@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Detailed information about the source of a trial component. Either <code>ProcessingJob</code>
-    /// or <code>TrainingJob</code> is returned.
+    /// Detailed information about the source of a trial component. Either <c>ProcessingJob</c>
+    /// or <c>TrainingJob</c> is returned.
     /// </summary>
     public partial class TrialComponentSourceDetail
     {

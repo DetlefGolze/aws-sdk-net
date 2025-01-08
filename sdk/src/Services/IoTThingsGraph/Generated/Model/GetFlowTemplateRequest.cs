@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
     /// Container for the parameters to the GetFlowTemplate operation.
-    /// Gets the latest version of the <code>DefinitionDocument</code> and <code>FlowTemplateSummary</code>
+    /// Gets the latest version of the <c>DefinitionDocument</c> and <c>FlowTemplateSummary</c>
     /// for the specified workflow.
     /// </summary>
     public partial class GetFlowTemplateRequest : AmazonIoTThingsGraphRequest
@@ -49,7 +50,7 @@ namespace Amazon.IoTThingsGraph.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>urn:tdm:REGION/ACCOUNT ID/default:workflow:WORKFLOWNAME</code> 
+        ///  <c>urn:tdm:REGION/ACCOUNT ID/default:workflow:WORKFLOWNAME</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=160)]

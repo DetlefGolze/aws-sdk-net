@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -139,9 +140,9 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property VersionDescription. 
         /// <para>
-        /// A description of the theme version that you're updating Every time that you call <code>UpdateTheme</code>,
+        /// A description of the theme version that you're updating Every time that you call <c>UpdateTheme</c>,
         /// you create a new version of the theme. Each version of the theme maintains a description
-        /// of the version in <code>VersionDescription</code>.
+        /// of the version in <c>VersionDescription</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -33,12 +34,14 @@ namespace Amazon.EKS.Model
     /// </summary>
     public partial class Cluster
     {
+        private AccessConfigResponse _accessConfig;
         private string _arn;
         private Certificate _certificateAuthority;
         private string _clientRequestToken;
+        private ComputeConfigResponse _computeConfig;
         private ConnectorConfigResponse _connectorConfig;
         private DateTime? _createdAt;
-        private List<EncryptionConfig> _encryptionConfig = new List<EncryptionConfig>();
+        private List<EncryptionConfig> _encryptionConfig = AWSConfigs.InitializeCollections ? new List<EncryptionConfig>() : null;
         private string _endpoint;
         private ClusterHealth _health;
         private string _id;
@@ -48,11 +51,33 @@ namespace Amazon.EKS.Model
         private string _name;
         private OutpostConfigResponse _outpostConfig;
         private string _platformVersion;
+        private RemoteNetworkConfigResponse _remoteNetworkConfig;
         private VpcConfigResponse _resourcesVpcConfig;
         private string _roleArn;
         private ClusterStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private StorageConfigResponse _storageConfig;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private UpgradePolicyResponse _upgradePolicy;
         private string _version;
+        private ZonalShiftConfigResponse _zonalShiftConfig;
+
+        /// <summary>
+        /// Gets and sets the property AccessConfig. 
+        /// <para>
+        /// The access configuration for the cluster.
+        /// </para>
+        /// </summary>
+        public AccessConfigResponse AccessConfig
+        {
+            get { return this._accessConfig; }
+            set { this._accessConfig = value; }
+        }
+
+        // Check to see if AccessConfig property is set
+        internal bool IsSetAccessConfig()
+        {
+            return this._accessConfig != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -75,7 +100,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property CertificateAuthority. 
         /// <para>
-        /// The <code>certificate-authority-data</code> for your cluster.
+        /// The <c>certificate-authority-data</c> for your cluster.
         /// </para>
         /// </summary>
         public Certificate CertificateAuthority
@@ -93,8 +118,8 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -107,6 +132,28 @@ namespace Amazon.EKS.Model
         internal bool IsSetClientRequestToken()
         {
             return this._clientRequestToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ComputeConfig. 
+        /// <para>
+        /// Indicates the current configuration of the compute capability on your EKS Auto Mode
+        /// cluster. For example, if the capability is enabled or disabled. If the compute capability
+        /// is enabled, EKS Auto Mode will create and delete EC2 Managed Instances in your Amazon
+        /// Web Services account. For more information, see EKS Auto Mode compute capability in
+        /// the EKS User Guide.
+        /// </para>
+        /// </summary>
+        public ComputeConfigResponse ComputeConfig
+        {
+            get { return this._computeConfig; }
+            set { this._computeConfig = value; }
+        }
+
+        // Check to see if ComputeConfig property is set
+        internal bool IsSetComputeConfig()
+        {
+            return this._computeConfig != null;
         }
 
         /// <summary>
@@ -130,7 +177,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The Unix epoch timestamp in seconds for when the cluster was created.
+        /// The Unix epoch timestamp at object creation.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -161,7 +208,7 @@ namespace Amazon.EKS.Model
         // Check to see if EncryptionConfig property is set
         internal bool IsSetEncryptionConfig()
         {
-            return this._encryptionConfig != null && this._encryptionConfig.Count > 0; 
+            return this._encryptionConfig != null && (this._encryptionConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -185,9 +232,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Health. 
         /// <para>
-        /// An object representing the health of your local Amazon EKS cluster on an Amazon Web
-        /// Services Outpost. This object isn't available for clusters on the Amazon Web Services
-        /// cloud.
+        /// An object representing the health of your Amazon EKS cluster.
         /// </para>
         /// </summary>
         public ClusterHealth Health
@@ -278,7 +323,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the cluster.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         public string Name
@@ -316,8 +361,11 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property PlatformVersion. 
         /// <para>
-        /// The platform version of your Amazon EKS cluster. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html">Platform
-        /// Versions</a> in the <i> <i>Amazon EKS User Guide</i> </i>.
+        /// The platform version of your Amazon EKS cluster. For more information about clusters
+        /// deployed on the Amazon Web Services Cloud, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html">Platform
+        /// versions</a> in the <i> <i>Amazon EKS User Guide</i> </i>. For more information about
+        /// local clusters deployed on an Outpost, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/eks-outposts-platform-versions.html">Amazon
+        /// EKS local cluster platform versions</a> in the <i> <i>Amazon EKS User Guide</i> </i>.
         /// </para>
         /// </summary>
         public string PlatformVersion
@@ -333,13 +381,32 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RemoteNetworkConfig. 
+        /// <para>
+        /// The configuration in the cluster for EKS Hybrid Nodes. You can't change or update
+        /// this configuration after the cluster is created.
+        /// </para>
+        /// </summary>
+        public RemoteNetworkConfigResponse RemoteNetworkConfig
+        {
+            get { return this._remoteNetworkConfig; }
+            set { this._remoteNetworkConfig = value; }
+        }
+
+        // Check to see if RemoteNetworkConfig property is set
+        internal bool IsSetRemoteNetworkConfig()
+        {
+            return this._remoteNetworkConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourcesVpcConfig. 
         /// <para>
         /// The VPC configuration used by the cluster control plane. Amazon EKS VPC resources
         /// have specific requirements to work properly with Kubernetes. For more information,
         /// see <a href="https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html">Cluster
-        /// VPC Considerations</a> and <a href="https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html">Cluster
-        /// Security Group Considerations</a> in the <i>Amazon EKS User Guide</i>.
+        /// VPC considerations</a> and <a href="https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html">Cluster
+        /// security group considerations</a> in the <i>Amazon EKS User Guide</i>.
         /// </para>
         /// </summary>
         public VpcConfigResponse ResourcesVpcConfig
@@ -392,11 +459,33 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StorageConfig. 
+        /// <para>
+        /// Indicates the current configuration of the block storage capability on your EKS Auto
+        /// Mode cluster. For example, if the capability is enabled or disabled. If the block
+        /// storage capability is enabled, EKS Auto Mode will create and delete EBS volumes in
+        /// your Amazon Web Services account. For more information, see EKS Auto Mode block storage
+        /// capability in the EKS User Guide.
+        /// </para>
+        /// </summary>
+        public StorageConfigResponse StorageConfig
+        {
+            get { return this._storageConfig; }
+            set { this._storageConfig = value; }
+        }
+
+        // Check to see if StorageConfig property is set
+        internal bool IsSetStorageConfig()
+        {
+            return this._storageConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata that you apply to the cluster to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both. Cluster tags do
-        /// not propagate to any other resources associated with the cluster.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -409,7 +498,30 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UpgradePolicy. 
+        /// <para>
+        /// This value indicates if extended support is enabled or disabled for the cluster.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/eks/latest/userguide/extended-support-control.html">Learn
+        /// more about EKS Extended Support in the EKS User Guide.</a> 
+        /// </para>
+        /// </summary>
+        public UpgradePolicyResponse UpgradePolicy
+        {
+            get { return this._upgradePolicy; }
+            set { this._upgradePolicy = value; }
+        }
+
+        // Check to see if UpgradePolicy property is set
+        internal bool IsSetUpgradePolicy()
+        {
+            return this._upgradePolicy != null;
         }
 
         /// <summary>
@@ -428,6 +540,24 @@ namespace Amazon.EKS.Model
         internal bool IsSetVersion()
         {
             return this._version != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ZonalShiftConfig. 
+        /// <para>
+        /// The configuration for zonal shift for the cluster.
+        /// </para>
+        /// </summary>
+        public ZonalShiftConfigResponse ZonalShiftConfig
+        {
+            get { return this._zonalShiftConfig; }
+            set { this._zonalShiftConfig = value; }
+        }
+
+        // Check to see if ZonalShiftConfig property is set
+        internal bool IsSetZonalShiftConfig()
+        {
+            return this._zonalShiftConfig != null;
         }
 
     }

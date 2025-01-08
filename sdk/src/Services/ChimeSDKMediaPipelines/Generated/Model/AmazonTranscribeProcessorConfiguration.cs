@@ -26,10 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
     /// A structure that contains the configuration settings for an Amazon Transcribe processor.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// Calls to this API must include a <c>LanguageCode</c>, <c>IdentifyLanguage</c>, or
+    /// <c>IdentifyMultipleLanguages</c> parameter. If you include more than one of those
+    /// parameters, your transcription job fails.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class AmazonTranscribeProcessorConfiguration
     {
@@ -38,6 +47,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         private bool? _enablePartialResultsStabilization;
         private bool? _filterPartialResults;
         private bool? _identifyLanguage;
+        private bool? _identifyMultipleLanguages;
         private CallAnalyticsLanguageCode _languageCode;
         private string _languageModelName;
         private string _languageOptions;
@@ -58,13 +68,13 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// </para>
         ///  
         /// <para>
-        /// Content identification is performed at the segment level; PII specified in <code>PiiEntityTypes</code>
+        /// Content identification is performed at the segment level; PII specified in <c>PiiEntityTypes</c>
         /// is flagged upon complete transcription of an audio segment.
         /// </para>
         ///  
         /// <para>
-        /// You can’t set <code>ContentIdentificationType</code> and <code>ContentRedactionType</code>
-        /// in the same request. If you set both, your request returns a <code>BadRequestException</code>.
+        /// You can’t set <c>ContentIdentificationType</c> and <c>ContentRedactionType</c> in
+        /// the same request. If you set both, your request returns a <c>BadRequestException</c>.
         /// </para>
         ///  
         /// <para>
@@ -98,7 +108,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         ///  
         /// <para>
         /// You can’t set ContentRedactionType and ContentIdentificationType in the same request.
-        /// If you set both, your request returns a <code>BadRequestException</code>.
+        /// If you set both, your request returns a <c>BadRequestException</c>.
         /// </para>
         ///  
         /// <para>
@@ -146,8 +156,8 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property FilterPartialResults. 
         /// <para>
-        /// If true, <code>TranscriptEvents</code> with <code>IsPartial: true</code> are filtered
-        /// out of the insights target.
+        /// If true, <c>TranscriptEvents</c> with <c>IsPartial: true</c> are filtered out of the
+        /// insights target.
         /// </para>
         /// </summary>
         public bool FilterPartialResults
@@ -181,13 +191,38 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IdentifyMultipleLanguages. 
+        /// <para>
+        /// Turns language identification on or off for multiple languages.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Calls to this API must include a <c>LanguageCode</c>, <c>IdentifyLanguage</c>, or
+        /// <c>IdentifyMultipleLanguages</c> parameter. If you include more than one of those
+        /// parameters, your transcription job fails.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public bool IdentifyMultipleLanguages
+        {
+            get { return this._identifyMultipleLanguages.GetValueOrDefault(); }
+            set { this._identifyMultipleLanguages = value; }
+        }
+
+        // Check to see if IdentifyMultipleLanguages property is set
+        internal bool IsSetIdentifyMultipleLanguages()
+        {
+            return this._identifyMultipleLanguages.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property LanguageCode. 
         /// <para>
         /// The language code that represents the language spoken in your audio.
         /// </para>
         ///  
         /// <para>
-        /// If you're unsure of the language spoken in your audio, consider using <code>IdentifyLanguage</code>
+        /// If you're unsure of the language spoken in your audio, consider using <c>IdentifyLanguage</c>
         /// to enable automatic language identification.
         /// </para>
         ///  
@@ -261,7 +296,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property PartialResultsStability. 
         /// <para>
-        /// The level of stability to use when you enable partial results stabilization (<code>EnablePartialResultsStabilization</code>).
+        /// The level of stability to use when you enable partial results stabilization (<c>EnablePartialResultsStabilization</c>).
         /// </para>
         ///  
         /// <para>
@@ -290,24 +325,23 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// Gets and sets the property PiiEntityTypes. 
         /// <para>
         /// The types of personally identifiable information (PII) to redact from a transcript.
-        /// You can include as many types as you'd like, or you can select <code>ALL</code>.
+        /// You can include as many types as you'd like, or you can select <c>ALL</c>.
         /// </para>
         ///  
         /// <para>
-        /// To include <code>PiiEntityTypes</code> in your Call Analytics request, you must also
-        /// include <code>ContentIdentificationType</code> or <code>ContentRedactionType</code>,
-        /// but you can't include both.
+        /// To include <c>PiiEntityTypes</c> in your Call Analytics request, you must also include
+        /// <c>ContentIdentificationType</c> or <c>ContentRedactionType</c>, but you can't include
+        /// both.
         /// </para>
         ///  
         /// <para>
-        /// Values must be comma-separated and can include: <code>ADDRESS</code>, <code>BANK_ACCOUNT_NUMBER</code>,
-        /// <code>BANK_ROUTING</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>,
-        /// <code>CREDIT_DEBIT_NUMBER</code>, <code>EMAIL</code>, <code>NAME</code>, <code>PHONE</code>,
-        /// <code>PIN</code>, <code>SSN</code>, or <code>ALL</code>.
+        /// Values must be comma-separated and can include: <c>ADDRESS</c>, <c>BANK_ACCOUNT_NUMBER</c>,
+        /// <c>BANK_ROUTING</c>, <c>CREDIT_DEBIT_CVV</c>, <c>CREDIT_DEBIT_EXPIRY</c>, <c>CREDIT_DEBIT_NUMBER</c>,
+        /// <c>EMAIL</c>, <c>NAME</c>, <c>PHONE</c>, <c>PIN</c>, <c>SSN</c>, or <c>ALL</c>.
         /// </para>
         ///  
         /// <para>
-        /// If you leave this parameter empty, the default behavior is equivalent to <code>ALL</code>.
+        /// If you leave this parameter empty, the default behavior is equivalent to <c>ALL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=300)]

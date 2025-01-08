@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property MlUserDataEncryption. 
         /// <para>
-        /// An <code>MLUserDataEncryption</code> object containing the encryption mode and customer-provided
+        /// An <c>MLUserDataEncryption</c> object containing the encryption mode and customer-provided
         /// KMS key ID.
         /// </para>
         /// </summary>

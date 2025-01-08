@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.QuickSight.Model
         private string _columnName;
         private string _format;
         private ColumnDataType _newColumnType;
+        private ColumnDataSubType _subType;
 
         /// <summary>
         /// Gets and sets the property ColumnName. 
@@ -93,6 +95,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetNewColumnType()
         {
             return this._newColumnType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubType. 
+        /// <para>
+        /// The sub data type of the new column. Sub types are only available for decimal columns
+        /// that are part of a SPICE dataset.
+        /// </para>
+        /// </summary>
+        public ColumnDataSubType SubType
+        {
+            get { return this._subType; }
+            set { this._subType = value; }
+        }
+
+        // Check to see if SubType property is set
+        internal bool IsSetSubType()
+        {
+            return this._subType != null;
         }
 
     }

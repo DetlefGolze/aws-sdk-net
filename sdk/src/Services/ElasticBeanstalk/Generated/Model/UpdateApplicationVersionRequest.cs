@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ElasticBeanstalk.Model
     /// 
     ///  <note> 
     /// <para>
-    /// If a property (for example, <code>description</code>) is not provided, the value remains
+    /// If a property (for example, <c>description</c>) is not provided, the value remains
     /// unchanged. To clear properties, specify an empty string.
     /// </para>
     ///  </note>
@@ -53,8 +54,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Instantiates UpdateApplicationVersionRequest with the parameterized properties
         /// </summary>
-        /// <param name="applicationName">The name of the application associated with this version.  If no application is found with this name, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error.</param>
-        /// <param name="versionLabel">The name of the version to update. If no application version is found with this label, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </param>
+        /// <param name="applicationName">The name of the application associated with this version.  If no application is found with this name, <c>UpdateApplication</c> returns an <c>InvalidParameterValue</c> error.</param>
+        /// <param name="versionLabel">The name of the version to update. If no application version is found with this label, <c>UpdateApplication</c> returns an <c>InvalidParameterValue</c> error. </param>
         public UpdateApplicationVersionRequest(string applicationName, string versionLabel)
         {
             _applicationName = applicationName;
@@ -68,8 +69,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        ///  If no application is found with this name, <code>UpdateApplication</code> returns
-        /// an <code>InvalidParameterValue</code> error.
+        ///  If no application is found with this name, <c>UpdateApplication</c> returns an <c>InvalidParameterValue</c>
+        /// error.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -111,8 +112,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// If no application version is found with this label, <code>UpdateApplication</code>
-        /// returns an <code>InvalidParameterValue</code> error. 
+        /// If no application version is found with this label, <c>UpdateApplication</c> returns
+        /// an <c>InvalidParameterValue</c> error. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

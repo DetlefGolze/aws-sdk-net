@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,12 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.AvailabilityZone = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("Ipv6Address", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.Ipv6Address = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("NetworkInterfaceId", targetDepth))

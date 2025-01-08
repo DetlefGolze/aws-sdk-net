@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeConnectorProfiles operation.
-    /// Returns a list of <code>connector-profile</code> details matching the provided <code>connector-profile</code>
-    /// names and <code>connector-types</code>. Both input lists are optional, and you can
-    /// use them to filter the result. 
+    /// Returns a list of <c>connector-profile</c> details matching the provided <c>connector-profile</c>
+    /// names and <c>connector-types</c>. Both input lists are optional, and you can use them
+    /// to filter the result. 
     /// 
     ///  
     /// <para>
-    /// If no names or <code>connector-types</code> are provided, returns all connector profiles
+    /// If no names or <c>connector-types</c> are provided, returns all connector profiles
     /// in a paginated form. If there is no match, this operation returns an empty list.
     /// </para>
     /// </summary>
     public partial class DescribeConnectorProfilesRequest : AmazonAppflowRequest
     {
         private string _connectorLabel;
-        private List<string> _connectorProfileNames = new List<string>();
+        private List<string> _connectorProfileNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ConnectorType _connectorType;
         private int? _maxResults;
         private string _nextToken;
@@ -51,7 +52,7 @@ namespace Amazon.Appflow.Model
         /// <summary>
         /// Gets and sets the property ConnectorLabel. 
         /// <para>
-        /// The name of the connector. The name is unique for each <code>ConnectorRegistration</code>
+        /// The name of the connector. The name is unique for each <c>ConnectorRegistration</c>
         /// in your Amazon Web Services account. Only needed if calling for CUSTOMCONNECTOR connector
         /// type/.
         /// </para>
@@ -72,7 +73,7 @@ namespace Amazon.Appflow.Model
         /// <summary>
         /// Gets and sets the property ConnectorProfileNames. 
         /// <para>
-        ///  The name of the connector profile. The name is unique for each <code>ConnectorProfile</code>
+        ///  The name of the connector profile. The name is unique for each <c>ConnectorProfile</c>
         /// in the Amazon Web Services account. 
         /// </para>
         /// </summary>
@@ -86,7 +87,7 @@ namespace Amazon.Appflow.Model
         // Check to see if ConnectorProfileNames property is set
         internal bool IsSetConnectorProfileNames()
         {
-            return this._connectorProfileNames != null && this._connectorProfileNames.Count > 0; 
+            return this._connectorProfileNames != null && (this._connectorProfileNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -111,8 +112,7 @@ namespace Amazon.Appflow.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         ///  Specifies the maximum number of items that should be returned in the result set.
-        /// The default for <code>maxResults</code> is 20 (for all paginated API operations).
-        /// 
+        /// The default for <c>maxResults</c> is 20 (for all paginated API operations). 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

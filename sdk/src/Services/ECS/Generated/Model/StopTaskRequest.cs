@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -34,18 +35,24 @@ namespace Amazon.ECS.Model
     /// 
     ///  
     /// <para>
-    /// When <a>StopTask</a> is called on a task, the equivalent of <code>docker stop</code>
-    /// is issued to the containers running in the task. This results in a <code>SIGTERM</code>
-    /// value and a default 30-second timeout, after which the <code>SIGKILL</code> value
-    /// is sent and the containers are forcibly stopped. If the container handles the <code>SIGTERM</code>
-    /// value gracefully and exits within 30 seconds from receiving it, no <code>SIGKILL</code>
-    /// value is sent.
+    /// When you call <c>StopTask</c> on a task, the equivalent of <c>docker stop</c> is issued
+    /// to the containers running in the task. This results in a <c>SIGTERM</c> value and
+    /// a default 30-second timeout, after which the <c>SIGKILL</c> value is sent and the
+    /// containers are forcibly stopped. If the container handles the <c>SIGTERM</c> value
+    /// gracefully and exits within 30 seconds from receiving it, no <c>SIGKILL</c> value
+    /// is sent.
+    /// </para>
+    ///  
+    /// <para>
+    /// For Windows containers, POSIX signals do not work and runtime stops the container
+    /// by sending a <c>CTRL_SHUTDOWN_EVENT</c>. For more information, see <a href="https://github.com/moby/moby/issues/25982">Unable
+    /// to react to graceful shutdown of (Windows) container #25982</a> on GitHub.
     /// </para>
     ///  <note> 
     /// <para>
     /// The default 30-second timeout can be configured on the Amazon ECS container agent
-    /// with the <code>ECS_CONTAINER_STOP_TIMEOUT</code> variable. For more information, see
-    /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
+    /// with the <c>ECS_CONTAINER_STOP_TIMEOUT</c> variable. For more information, see <a
+    /// href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-config.html">Amazon
     /// ECS Container Agent Configuration</a> in the <i>Amazon Elastic Container Service Developer
     /// Guide</i>.
     /// </para>
@@ -81,8 +88,8 @@ namespace Amazon.ECS.Model
         /// <para>
         /// An optional message specified when a task is stopped. For example, if you're using
         /// a custom scheduler, you can use this parameter to specify the reason for stopping
-        /// the task here, and the message appears in subsequent <a>DescribeTasks</a> API operations
-        /// on this task. Up to 255 characters are allowed in this message.
+        /// the task here, and the message appears in subsequent <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DescribeTasks.html">DescribeTasks</a>&gt;
+        /// API operations on this task.
         /// </para>
         /// </summary>
         public string Reason

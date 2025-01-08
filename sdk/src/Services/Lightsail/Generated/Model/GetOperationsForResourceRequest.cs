@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
     /// Container for the parameters to the GetOperationsForResource operation.
-    /// Gets operations for a specific resource (e.g., an instance or a static IP).
+    /// Gets operations for a specific resource (an instance or a static IP).
     /// </summary>
     public partial class GetOperationsForResourceRequest : AmazonLightsailRequest
     {
@@ -44,9 +45,9 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get a page token, perform an initial <code>GetOperationsForResource</code> request.
-        /// If your results are paginated, the response will return a next page token that you
-        /// can specify as the page token in a subsequent request.
+        /// To get a page token, perform an initial <c>GetOperationsForResource</c> request. If
+        /// your results are paginated, the response will return a next page token that you can
+        /// specify as the page token in a subsequent request.
         /// </para>
         /// </summary>
         public string PageToken

@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSM.Model
 {
     /// <summary>
-    /// Contains the output of the <code>ListHsms</code> operation.
+    /// Contains the output of the <c>ListHsms</c> operation.
     /// </summary>
     public partial class ListHsmsResponse : AmazonWebServiceResponse
     {
-        private List<string> _hsmList = new List<string>();
+        private List<string> _hsmList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.CloudHSM.Model
         // Check to see if HsmList property is set
         internal bool IsSetHsmList()
         {
-            return this._hsmList != null && this._hsmList.Count > 0; 
+            return this._hsmList != null && (this._hsmList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If not null, more results are available. Pass this value to <code>ListHsms</code>
-        /// to retrieve the next set of items.
+        /// If not null, more results are available. Pass this value to <c>ListHsms</c> to retrieve
+        /// the next set of items.
         /// </para>
         /// </summary>
         public string NextToken

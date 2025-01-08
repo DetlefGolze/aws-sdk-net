@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
     /// For a SQL-based Kinesis Data Analytics application, describes updates to a specific
-    /// input configuration (identified by the <code>InputId</code> of an application).
+    /// input configuration (identified by the <c>InputId</c> of an application).
     /// </summary>
     public partial class InputUpdate
     {

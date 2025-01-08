@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -183,11 +184,11 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AUTOMATIC</code> 
+        ///  <c>AUTOMATIC</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CUSTOM</code>: Checks the custom seasonality value.
+        ///  <c>CUSTOM</c>: Checks the custom seasonality value.
         /// </para>
         ///  </li> </ul>
         /// </summary>

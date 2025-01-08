@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// The key-signing key (KSK) status isn't valid or another KSK has the status <code>INTERNAL_FAILURE</code>.
+    /// The key-signing key (KSK) status isn't valid or another KSK has the status <c>INTERNAL_FAILURE</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

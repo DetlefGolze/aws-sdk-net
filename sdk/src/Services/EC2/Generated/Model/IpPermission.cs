@@ -26,27 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// Describes a set of permissions for a security group rule.
+    /// Describes the permissions for a security group rule.
     /// </summary>
     public partial class IpPermission
     {
         private int? _fromPort;
         private string _ipProtocol;
-        private List<IpRange> _ipv4Ranges = new List<IpRange>();
-        private List<Ipv6Range> _ipv6Ranges = new List<Ipv6Range>();
-        private List<PrefixListId> _prefixListIds = new List<PrefixListId>();
+        private List<IpRange> _ipv4Ranges = AWSConfigs.InitializeCollections ? new List<IpRange>() : null;
+        private List<Ipv6Range> _ipv6Ranges = AWSConfigs.InitializeCollections ? new List<Ipv6Range>() : null;
+        private List<PrefixListId> _prefixListIds = AWSConfigs.InitializeCollections ? new List<PrefixListId>() : null;
         private int? _toPort;
-        private List<UserIdGroupPair> _userIdGroupPairs = new List<UserIdGroupPair>();
+        private List<UserIdGroupPair> _userIdGroupPairs = AWSConfigs.InitializeCollections ? new List<UserIdGroupPair>() : null;
 
         /// <summary>
         /// Gets and sets the property FromPort. 
         /// <para>
         /// If the protocol is TCP or UDP, this is the start of the port range. If the protocol
-        /// is ICMP or ICMPv6, this is the type number. A value of -1 indicates all ICMP/ICMPv6
-        /// types. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.
+        /// is ICMP or ICMPv6, this is the ICMP type or -1 (all ICMP types).
         /// </para>
         /// </summary>
         public int FromPort
@@ -64,18 +64,18 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property IpProtocol. 
         /// <para>
-        /// The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>)
-        /// or number (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
+        /// The IP protocol name (<c>tcp</c>, <c>udp</c>, <c>icmp</c>, <c>icmpv6</c>) or number
+        /// (see <a href="http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">Protocol
         /// Numbers</a>).
         /// </para>
         ///  
         /// <para>
-        /// Use <code>-1</code> to specify all protocols. When authorizing security group rules,
-        /// specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>,
-        /// <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless
-        /// of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>,
-        /// you must specify a port range. For <code>icmpv6</code>, the port range is optional;
-        /// if you omit the port range, traffic for all types and codes is allowed.
+        /// Use <c>-1</c> to specify all protocols. When authorizing security group rules, specifying
+        /// <c>-1</c> or a protocol number other than <c>tcp</c>, <c>udp</c>, <c>icmp</c>, or
+        /// <c>icmpv6</c> allows traffic on all ports, regardless of any port range you specify.
+        /// For <c>tcp</c>, <c>udp</c>, and <c>icmp</c>, you must specify a port range. For <c>icmpv6</c>,
+        /// the port range is optional; if you omit the port range, traffic for all types and
+        /// codes is allowed.
         /// </para>
         /// </summary>
         public string IpProtocol
@@ -93,7 +93,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Ipv4Ranges. 
         /// <para>
-        /// The IPv4 ranges.
+        /// The IPv4 address ranges.
         /// </para>
         /// </summary>
         public List<IpRange> Ipv4Ranges
@@ -105,13 +105,13 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv4Ranges property is set
         internal bool IsSetIpv4Ranges()
         {
-            return this._ipv4Ranges != null && this._ipv4Ranges.Count > 0; 
+            return this._ipv4Ranges != null && (this._ipv4Ranges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Ipv6Ranges. 
         /// <para>
-        /// The IPv6 ranges.
+        /// The IPv6 address ranges.
         /// </para>
         /// </summary>
         public List<Ipv6Range> Ipv6Ranges
@@ -123,7 +123,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Ranges property is set
         internal bool IsSetIpv6Ranges()
         {
-            return this._ipv6Ranges != null && this._ipv6Ranges.Count > 0; 
+            return this._ipv6Ranges != null && (this._ipv6Ranges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -141,15 +141,15 @@ namespace Amazon.EC2.Model
         // Check to see if PrefixListIds property is set
         internal bool IsSetPrefixListIds()
         {
-            return this._prefixListIds != null && this._prefixListIds.Count > 0; 
+            return this._prefixListIds != null && (this._prefixListIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ToPort. 
         /// <para>
         /// If the protocol is TCP or UDP, this is the end of the port range. If the protocol
-        /// is ICMP or ICMPv6, this is the code. A value of -1 indicates all ICMP/ICMPv6 codes.
-        /// If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.
+        /// is ICMP or ICMPv6, this is the ICMP code or -1 (all ICMP codes). If the start port
+        /// is -1 (all ICMP types), then the end port must be -1 (all ICMP codes).
         /// </para>
         /// </summary>
         public int ToPort
@@ -179,7 +179,7 @@ namespace Amazon.EC2.Model
         // Check to see if UserIdGroupPairs property is set
         internal bool IsSetUserIdGroupPairs()
         {
-            return this._userIdGroupPairs != null && this._userIdGroupPairs.Count > 0; 
+            return this._userIdGroupPairs != null && (this._userIdGroupPairs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdatePublicSharingSettings operation.
-    /// Use the <code>UpdatePublicSharingSettings</code> operation to turn on or turn off
-    /// the public sharing settings of an Amazon QuickSight dashboard.
+    /// Use the <c>UpdatePublicSharingSettings</c> operation to turn on or turn off the public
+    /// sharing settings of an Amazon QuickSight dashboard.
     /// 
     ///  
     /// <para>

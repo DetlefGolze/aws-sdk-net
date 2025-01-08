@@ -26,27 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A set of filters to narrow the set of lineage entities connected to the <code>StartArn</code>(s)
-    /// returned by the <code>QueryLineage</code> API action.
+    /// A set of filters to narrow the set of lineage entities connected to the <c>StartArn</c>(s)
+    /// returned by the <c>QueryLineage</c> API action.
     /// </summary>
     public partial class QueryFilters
     {
         private DateTime? _createdAfter;
         private DateTime? _createdBefore;
-        private List<string> _lineageTypes = new List<string>();
+        private List<string> _lineageTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _modifiedAfter;
         private DateTime? _modifiedBefore;
-        private Dictionary<string, string> _properties = new Dictionary<string, string>();
-        private List<string> _types = new List<string>();
+        private Dictionary<string, string> _properties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _types = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatedAfter. 
         /// <para>
-        /// Filter the lineage entities connected to the <code>StartArn</code>(s) after the create
-        /// date.
+        /// Filter the lineage entities connected to the <c>StartArn</c>(s) after the create date.
         /// </para>
         /// </summary>
         public DateTime CreatedAfter
@@ -64,7 +64,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property CreatedBefore. 
         /// <para>
-        /// Filter the lineage entities connected to the <code>StartArn</code>(s) by created date.
+        /// Filter the lineage entities connected to the <c>StartArn</c>(s) by created date.
         /// </para>
         /// </summary>
         public DateTime CreatedBefore
@@ -82,8 +82,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property LineageTypes. 
         /// <para>
-        /// Filter the lineage entities connected to the <code>StartArn</code>(s) by the type
-        /// of the lineage entity.
+        /// Filter the lineage entities connected to the <c>StartArn</c>(s) by the type of the
+        /// lineage entity.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4)]
@@ -96,14 +96,14 @@ namespace Amazon.SageMaker.Model
         // Check to see if LineageTypes property is set
         internal bool IsSetLineageTypes()
         {
-            return this._lineageTypes != null && this._lineageTypes.Count > 0; 
+            return this._lineageTypes != null && (this._lineageTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ModifiedAfter. 
         /// <para>
-        /// Filter the lineage entities connected to the <code>StartArn</code>(s) after the last
-        /// modified date.
+        /// Filter the lineage entities connected to the <c>StartArn</c>(s) after the last modified
+        /// date.
         /// </para>
         /// </summary>
         public DateTime ModifiedAfter
@@ -121,8 +121,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ModifiedBefore. 
         /// <para>
-        /// Filter the lineage entities connected to the <code>StartArn</code>(s) before the last
-        /// modified date.
+        /// Filter the lineage entities connected to the <c>StartArn</c>(s) before the last modified
+        /// date.
         /// </para>
         /// </summary>
         public DateTime ModifiedBefore
@@ -140,9 +140,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property Properties. 
         /// <para>
-        /// Filter the lineage entities connected to the <code>StartArn</code>(s) by a set if
-        /// property key value pairs. If multiple pairs are provided, an entity is included in
-        /// the results if it matches any of the provided pairs.
+        /// Filter the lineage entities connected to the <c>StartArn</c>(s) by a set if property
+        /// key value pairs. If multiple pairs are provided, an entity is included in the results
+        /// if it matches any of the provided pairs.
         /// </para>
         /// </summary>
         [AWSProperty(Max=5)]
@@ -155,14 +155,14 @@ namespace Amazon.SageMaker.Model
         // Check to see if Properties property is set
         internal bool IsSetProperties()
         {
-            return this._properties != null && this._properties.Count > 0; 
+            return this._properties != null && (this._properties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Types. 
         /// <para>
-        /// Filter the lineage entities connected to the <code>StartArn</code> by type. For example:
-        /// <code>DataSet</code>, <code>Model</code>, <code>Endpoint</code>, or <code>ModelDeployment</code>.
+        /// Filter the lineage entities connected to the <c>StartArn</c> by type. For example:
+        /// <c>DataSet</c>, <c>Model</c>, <c>Endpoint</c>, or <c>ModelDeployment</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=5)]
@@ -175,7 +175,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Types property is set
         internal bool IsSetTypes()
         {
-            return this._types != null && this._types.Count > 0; 
+            return this._types != null && (this._types.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

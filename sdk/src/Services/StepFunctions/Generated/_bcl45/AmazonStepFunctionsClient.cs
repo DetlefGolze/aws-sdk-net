@@ -33,15 +33,16 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.StepFunctions
 {
     /// <summary>
-    /// Implementation for accessing StepFunctions
+    /// <para>Implementation for accessing StepFunctions</para>
     ///
     /// Step Functions 
     /// <para>
-    /// Step Functions is a service that lets you coordinate the components of distributed
-    /// applications and microservices using visual workflows.
+    /// Step Functions coordinates the components of distributed applications and microservices
+    /// using visual workflows.
     /// </para>
     ///  
     /// <para>
@@ -62,6 +63,14 @@ namespace Amazon.StepFunctions
     /// information about Step Functions, see the <i> <a href="https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html">Step
     /// Functions Developer Guide</a> </i>.
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// If you use the Step Functions API actions using Amazon Web Services SDK integrations,
+    /// make sure the API actions are in camel case and parameter names are in Pascal case.
+    /// For example, you could use Step Functions API action <c>startSyncExecution</c> and
+    /// specify its parameter as <c>StateMachineArn</c>.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class AmazonStepFunctionsClient : AmazonServiceClient, IAmazonStepFunctions
     {
@@ -292,7 +301,7 @@ namespace Amazon.StepFunctions
         /// <summary>
         /// Creates an activity. An activity is a task that you write in any programming language
         /// and host on any machine that has access to Step Functions. Activities must poll Step
-        /// Functions using the <code>GetActivityTask</code> API action and respond using <code>SendTask*</code>
+        /// Functions using the <c>GetActivityTask</c> API action and respond using <c>SendTask*</c>
         /// API actions. This function lets Step Functions know the existence of your activity
         /// and returns an identifier for use in a state machine and when polling from the activity.
         /// 
@@ -303,24 +312,39 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> <note> 
         /// <para>
-        ///  <code>CreateActivity</code> is an idempotent API. Subsequent requests won’t create
-        /// a duplicate resource if it was already created. <code>CreateActivity</code>'s idempotency
-        /// check is based on the activity <code>name</code>. If a following request has different
-        /// <code>tags</code> values, Step Functions will ignore these differences and treat it
-        /// as an idempotent request of the previous. In this case, <code>tags</code> will not
-        /// be updated, even if they are different.
+        ///  <c>CreateActivity</c> is an idempotent API. Subsequent requests won’t create a duplicate
+        /// resource if it was already created. <c>CreateActivity</c>'s idempotency check is based
+        /// on the activity <c>name</c>. If a following request has different <c>tags</c> values,
+        /// Step Functions will ignore these differences and treat it as an idempotent request
+        /// of the previous. In this case, <c>tags</c> will not be updated, even if they are different.
         /// </para>
         ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateActivity service method.</param>
         /// 
         /// <returns>The response from the CreateActivity service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.ActivityAlreadyExistsException">
+        /// Activity already exists. <c>EncryptionConfiguration</c> may not be updated.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ActivityLimitExceededException">
         /// The maximum number of activities has been reached. Existing activities must be deleted
         /// before a new activity can be created.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidEncryptionConfigurationException">
+        /// Received when <c>encryptionConfiguration</c> is specified but various conditions exist
+        /// which make the configuration invalid. For example, if <c>type</c> is set to <c>CUSTOMER_MANAGED_KMS_KEY</c>,
+        /// but <c>kmsKeyId</c> is null, or <c>kmsDataKeyReusePeriodSeconds</c> is not between
+        /// 60 and 900, or the KMS key is not symmetric or inactive.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TooManyTagsException">
         /// You've exceeded the number of tags allowed for a resource. See the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/limits.html">
@@ -340,7 +364,7 @@ namespace Amazon.StepFunctions
         /// <summary>
         /// Creates an activity. An activity is a task that you write in any programming language
         /// and host on any machine that has access to Step Functions. Activities must poll Step
-        /// Functions using the <code>GetActivityTask</code> API action and respond using <code>SendTask*</code>
+        /// Functions using the <c>GetActivityTask</c> API action and respond using <c>SendTask*</c>
         /// API actions. This function lets Step Functions know the existence of your activity
         /// and returns an identifier for use in a state machine and when polling from the activity.
         /// 
@@ -351,12 +375,11 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> <note> 
         /// <para>
-        ///  <code>CreateActivity</code> is an idempotent API. Subsequent requests won’t create
-        /// a duplicate resource if it was already created. <code>CreateActivity</code>'s idempotency
-        /// check is based on the activity <code>name</code>. If a following request has different
-        /// <code>tags</code> values, Step Functions will ignore these differences and treat it
-        /// as an idempotent request of the previous. In this case, <code>tags</code> will not
-        /// be updated, even if they are different.
+        ///  <c>CreateActivity</c> is an idempotent API. Subsequent requests won’t create a duplicate
+        /// resource if it was already created. <c>CreateActivity</c>'s idempotency check is based
+        /// on the activity <c>name</c>. If a following request has different <c>tags</c> values,
+        /// Step Functions will ignore these differences and treat it as an idempotent request
+        /// of the previous. In this case, <c>tags</c> will not be updated, even if they are different.
         /// </para>
         ///  </note>
         /// </summary>
@@ -366,12 +389,28 @@ namespace Amazon.StepFunctions
         /// </param>
         /// 
         /// <returns>The response from the CreateActivity service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.ActivityAlreadyExistsException">
+        /// Activity already exists. <c>EncryptionConfiguration</c> may not be updated.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ActivityLimitExceededException">
         /// The maximum number of activities has been reached. Existing activities must be deleted
         /// before a new activity can be created.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidEncryptionConfigurationException">
+        /// Received when <c>encryptionConfiguration</c> is specified but various conditions exist
+        /// which make the configuration invalid. For example, if <c>type</c> is set to <c>CUSTOMER_MANAGED_KMS_KEY</c>,
+        /// but <c>kmsKeyId</c> is null, or <c>kmsDataKeyReusePeriodSeconds</c> is not between
+        /// 60 and 900, or the KMS key is not symmetric or inactive.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TooManyTagsException">
         /// You've exceeded the number of tags allowed for a resource. See the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/limits.html">
@@ -394,16 +433,24 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Creates a state machine. A state machine consists of a collection of states that can
-        /// do work (<code>Task</code> states), determine to which states to transition next (<code>Choice</code>
-        /// states), stop an execution with an error (<code>Fail</code> states), and so on. State
-        /// machines are specified using a JSON-based, structured language. For more information,
-        /// see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon
+        /// do work (<c>Task</c> states), determine to which states to transition next (<c>Choice</c>
+        /// states), stop an execution with an error (<c>Fail</c> states), and so on. State machines
+        /// are specified using a JSON-based, structured language. For more information, see <a
+        /// href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon
         /// States Language</a> in the Step Functions User Guide.
         /// 
         ///  
         /// <para>
-        /// If you set the <code>publish</code> parameter of this API action to <code>true</code>,
-        /// it publishes version <code>1</code> as the first revision of the state machine.
+        /// If you set the <c>publish</c> parameter of this API action to <c>true</c>, it publishes
+        /// version <c>1</c> as the first revision of the state machine.
+        /// </para>
+        ///  
+        /// <para>
+        ///  For additional control over security, you can encrypt your data using a <b>customer-managed
+        /// key</b> for Step Functions state machines. You can configure a symmetric KMS key and
+        /// data key reuse period when creating or updating a <b>State Machine</b>. The execution
+        /// history and state machine definition will be encrypted with the key applied to the
+        /// State Machine. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -412,15 +459,14 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> <note> 
         /// <para>
-        ///  <code>CreateStateMachine</code> is an idempotent API. Subsequent requests won’t create
-        /// a duplicate resource if it was already created. <code>CreateStateMachine</code>'s
-        /// idempotency check is based on the state machine <code>name</code>, <code>definition</code>,
-        /// <code>type</code>, <code>LoggingConfiguration</code>, and <code>TracingConfiguration</code>.
-        /// The check is also based on the <code>publish</code> and <code>versionDescription</code>
-        /// parameters. If a following request has a different <code>roleArn</code> or <code>tags</code>,
-        /// Step Functions will ignore these differences and treat it as an idempotent request
-        /// of the previous. In this case, <code>roleArn</code> and <code>tags</code> will not
-        /// be updated, even if they are different.
+        ///  <c>CreateStateMachine</c> is an idempotent API. Subsequent requests won’t create
+        /// a duplicate resource if it was already created. <c>CreateStateMachine</c>'s idempotency
+        /// check is based on the state machine <c>name</c>, <c>definition</c>, <c>type</c>, <c>LoggingConfiguration</c>,
+        /// <c>TracingConfiguration</c>, and <c>EncryptionConfiguration</c> The check is also
+        /// based on the <c>publish</c> and <c>versionDescription</c> parameters. If a following
+        /// request has a different <c>roleArn</c> or <c>tags</c>, Step Functions will ignore
+        /// these differences and treat it as an idempotent request of the previous. In this case,
+        /// <c>roleArn</c> and <c>tags</c> will not be updated, even if they are different.
         /// </para>
         ///  </note>
         /// </summary>
@@ -430,7 +476,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -443,15 +489,28 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidDefinitionException">
         /// The provided Amazon States Language definition is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidEncryptionConfigurationException">
+        /// Received when <c>encryptionConfiguration</c> is specified but various conditions exist
+        /// which make the configuration invalid. For example, if <c>type</c> is set to <c>CUSTOMER_MANAGED_KMS_KEY</c>,
+        /// but <c>kmsKeyId</c> is null, or <c>kmsDataKeyReusePeriodSeconds</c> is not between
+        /// 60 and 900, or the KMS key is not symmetric or inactive.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidLoggingConfigurationException">
-        /// 
+        /// Configuration is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTracingConfigurationException">
-        /// Your <code>tracingConfiguration</code> key does not match, or <code>enabled</code>
-        /// has not been set to <code>true</code> or <code>false</code>.
+        /// Your <c>tracingConfiguration</c> key does not match, or <c>enabled</c> has not been
+        /// set to <c>true</c> or <c>false</c>.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineAlreadyExistsException">
         /// A state machine with the same name but a different definition or role ARN already
@@ -465,7 +524,7 @@ namespace Amazon.StepFunctions
         /// be deleted before a new state machine can be created.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineTypeNotSupportedException">
-        /// 
+        /// State machine type is not supported.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TooManyTagsException">
         /// You've exceeded the number of tags allowed for a resource. See the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/limits.html">
@@ -487,16 +546,24 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Creates a state machine. A state machine consists of a collection of states that can
-        /// do work (<code>Task</code> states), determine to which states to transition next (<code>Choice</code>
-        /// states), stop an execution with an error (<code>Fail</code> states), and so on. State
-        /// machines are specified using a JSON-based, structured language. For more information,
-        /// see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon
+        /// do work (<c>Task</c> states), determine to which states to transition next (<c>Choice</c>
+        /// states), stop an execution with an error (<c>Fail</c> states), and so on. State machines
+        /// are specified using a JSON-based, structured language. For more information, see <a
+        /// href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon
         /// States Language</a> in the Step Functions User Guide.
         /// 
         ///  
         /// <para>
-        /// If you set the <code>publish</code> parameter of this API action to <code>true</code>,
-        /// it publishes version <code>1</code> as the first revision of the state machine.
+        /// If you set the <c>publish</c> parameter of this API action to <c>true</c>, it publishes
+        /// version <c>1</c> as the first revision of the state machine.
+        /// </para>
+        ///  
+        /// <para>
+        ///  For additional control over security, you can encrypt your data using a <b>customer-managed
+        /// key</b> for Step Functions state machines. You can configure a symmetric KMS key and
+        /// data key reuse period when creating or updating a <b>State Machine</b>. The execution
+        /// history and state machine definition will be encrypted with the key applied to the
+        /// State Machine. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -505,15 +572,14 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> <note> 
         /// <para>
-        ///  <code>CreateStateMachine</code> is an idempotent API. Subsequent requests won’t create
-        /// a duplicate resource if it was already created. <code>CreateStateMachine</code>'s
-        /// idempotency check is based on the state machine <code>name</code>, <code>definition</code>,
-        /// <code>type</code>, <code>LoggingConfiguration</code>, and <code>TracingConfiguration</code>.
-        /// The check is also based on the <code>publish</code> and <code>versionDescription</code>
-        /// parameters. If a following request has a different <code>roleArn</code> or <code>tags</code>,
-        /// Step Functions will ignore these differences and treat it as an idempotent request
-        /// of the previous. In this case, <code>roleArn</code> and <code>tags</code> will not
-        /// be updated, even if they are different.
+        ///  <c>CreateStateMachine</c> is an idempotent API. Subsequent requests won’t create
+        /// a duplicate resource if it was already created. <c>CreateStateMachine</c>'s idempotency
+        /// check is based on the state machine <c>name</c>, <c>definition</c>, <c>type</c>, <c>LoggingConfiguration</c>,
+        /// <c>TracingConfiguration</c>, and <c>EncryptionConfiguration</c> The check is also
+        /// based on the <c>publish</c> and <c>versionDescription</c> parameters. If a following
+        /// request has a different <c>roleArn</c> or <c>tags</c>, Step Functions will ignore
+        /// these differences and treat it as an idempotent request of the previous. In this case,
+        /// <c>roleArn</c> and <c>tags</c> will not be updated, even if they are different.
         /// </para>
         ///  </note>
         /// </summary>
@@ -526,7 +592,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -539,15 +605,28 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidDefinitionException">
         /// The provided Amazon States Language definition is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidEncryptionConfigurationException">
+        /// Received when <c>encryptionConfiguration</c> is specified but various conditions exist
+        /// which make the configuration invalid. For example, if <c>type</c> is set to <c>CUSTOMER_MANAGED_KMS_KEY</c>,
+        /// but <c>kmsKeyId</c> is null, or <c>kmsDataKeyReusePeriodSeconds</c> is not between
+        /// 60 and 900, or the KMS key is not symmetric or inactive.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidLoggingConfigurationException">
-        /// 
+        /// Configuration is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTracingConfigurationException">
-        /// Your <code>tracingConfiguration</code> key does not match, or <code>enabled</code>
-        /// has not been set to <code>true</code> or <code>false</code>.
+        /// Your <c>tracingConfiguration</c> key does not match, or <c>enabled</c> has not been
+        /// set to <c>true</c> or <c>false</c>.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineAlreadyExistsException">
         /// A state machine with the same name but a different definition or role ARN already
@@ -561,7 +640,7 @@ namespace Amazon.StepFunctions
         /// be deleted before a new state machine can be created.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineTypeNotSupportedException">
-        /// 
+        /// State machine type is not supported.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TooManyTagsException">
         /// You've exceeded the number of tags allowed for a resource. See the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/limits.html">
@@ -595,16 +674,15 @@ namespace Amazon.StepFunctions
         ///  
         /// <para>
         /// You can also map an alias to split <a>StartExecution</a> requests between two versions
-        /// of a state machine. To do this, add a second <code>RoutingConfig</code> object in
-        /// the <code>routingConfiguration</code> parameter. You must also specify the percentage
-        /// of execution run requests each version should receive in both <code>RoutingConfig</code>
-        /// objects. Step Functions randomly chooses which version runs a given execution based
-        /// on the percentage you specify.
+        /// of a state machine. To do this, add a second <c>RoutingConfig</c> object in the <c>routingConfiguration</c>
+        /// parameter. You must also specify the percentage of execution run requests each version
+        /// should receive in both <c>RoutingConfig</c> objects. Step Functions randomly chooses
+        /// which version runs a given execution based on the percentage you specify.
         /// </para>
         ///  
         /// <para>
-        /// To create an alias that points to a single version, specify a single <code>RoutingConfig</code>
-        /// object with a <code>weight</code> set to 100.
+        /// To create an alias that points to a single version, specify a single <c>RoutingConfig</c>
+        /// object with a <c>weight</c> set to 100.
         /// </para>
         ///  
         /// <para>
@@ -613,11 +691,10 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateStateMachineAlias</code> is an idempotent API. Step Functions bases the
-        /// idempotency check on the <code>stateMachineArn</code>, <code>description</code>, <code>name</code>,
-        /// and <code>routingConfiguration</code> parameters. Requests that contain the same values
-        /// for these parameters return a successful idempotent response without creating a duplicate
-        /// resource.
+        ///  <c>CreateStateMachineAlias</c> is an idempotent API. Step Functions bases the idempotency
+        /// check on the <c>stateMachineArn</c>, <c>description</c>, <c>name</c>, and <c>routingConfiguration</c>
+        /// parameters. Requests that contain the same values for these parameters return a successful
+        /// idempotent response without creating a duplicate resource.
         /// </para>
         ///  
         /// <para>
@@ -647,7 +724,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -698,16 +775,15 @@ namespace Amazon.StepFunctions
         ///  
         /// <para>
         /// You can also map an alias to split <a>StartExecution</a> requests between two versions
-        /// of a state machine. To do this, add a second <code>RoutingConfig</code> object in
-        /// the <code>routingConfiguration</code> parameter. You must also specify the percentage
-        /// of execution run requests each version should receive in both <code>RoutingConfig</code>
-        /// objects. Step Functions randomly chooses which version runs a given execution based
-        /// on the percentage you specify.
+        /// of a state machine. To do this, add a second <c>RoutingConfig</c> object in the <c>routingConfiguration</c>
+        /// parameter. You must also specify the percentage of execution run requests each version
+        /// should receive in both <c>RoutingConfig</c> objects. Step Functions randomly chooses
+        /// which version runs a given execution based on the percentage you specify.
         /// </para>
         ///  
         /// <para>
-        /// To create an alias that points to a single version, specify a single <code>RoutingConfig</code>
-        /// object with a <code>weight</code> set to 100.
+        /// To create an alias that points to a single version, specify a single <c>RoutingConfig</c>
+        /// object with a <c>weight</c> set to 100.
         /// </para>
         ///  
         /// <para>
@@ -716,11 +792,10 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateStateMachineAlias</code> is an idempotent API. Step Functions bases the
-        /// idempotency check on the <code>stateMachineArn</code>, <code>description</code>, <code>name</code>,
-        /// and <code>routingConfiguration</code> parameters. Requests that contain the same values
-        /// for these parameters return a successful idempotent response without creating a duplicate
-        /// resource.
+        ///  <c>CreateStateMachineAlias</c> is an idempotent API. Step Functions bases the idempotency
+        /// check on the <c>stateMachineArn</c>, <c>description</c>, <c>name</c>, and <c>routingConfiguration</c>
+        /// parameters. Requests that contain the same values for these parameters return a successful
+        /// idempotent response without creating a duplicate resource.
         /// </para>
         ///  
         /// <para>
@@ -753,7 +828,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -846,8 +921,10 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Deletes a state machine. This is an asynchronous operation: It sets the state machine's
-        /// status to <code>DELETING</code> and begins the deletion process. 
+        /// Deletes a state machine. This is an asynchronous operation. It sets the state machine's
+        /// status to <c>DELETING</c> and begins the deletion process. A state machine is deleted
+        /// only when all its executions are completed. On the next state transition, the state
+        /// machine's executions are terminated.
         /// 
         ///  
         /// <para>
@@ -861,25 +938,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine</code> 
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -889,9 +966,9 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  <note> 
         /// <para>
-        /// For <code>EXPRESS</code> state machines, the deletion happens eventually (usually
-        /// in less than a minute). Running executions may emit logs after <code>DeleteStateMachine</code>
-        /// API is called.
+        /// For <c>EXPRESS</c> state machines, the deletion happens eventually (usually in less
+        /// than a minute). Running executions may emit logs after <c>DeleteStateMachine</c> API
+        /// is called.
         /// </para>
         ///  </note>
         /// </summary>
@@ -916,8 +993,10 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Deletes a state machine. This is an asynchronous operation: It sets the state machine's
-        /// status to <code>DELETING</code> and begins the deletion process. 
+        /// Deletes a state machine. This is an asynchronous operation. It sets the state machine's
+        /// status to <c>DELETING</c> and begins the deletion process. A state machine is deleted
+        /// only when all its executions are completed. On the next state transition, the state
+        /// machine's executions are terminated.
         /// 
         ///  
         /// <para>
@@ -931,25 +1010,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine</code> 
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -959,9 +1038,9 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  <note> 
         /// <para>
-        /// For <code>EXPRESS</code> state machines, the deletion happens eventually (usually
-        /// in less than a minute). Running executions may emit logs after <code>DeleteStateMachine</code>
-        /// API is called.
+        /// For <c>EXPRESS</c> state machines, the deletion happens eventually (usually in less
+        /// than a minute). Running executions may emit logs after <c>DeleteStateMachine</c> API
+        /// is called.
         /// </para>
         ///  </note>
         /// </summary>
@@ -1029,7 +1108,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -1096,7 +1175,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -1162,7 +1241,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -1224,7 +1303,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -1322,13 +1401,15 @@ namespace Amazon.StepFunctions
         /// <summary>
         /// Provides information about a state machine execution, such as the state machine associated
         /// with the execution, the execution input and output, and relevant execution metadata.
-        /// Use this API action to return the Map Run Amazon Resource Name (ARN) if the execution
-        /// was dispatched by a Map Run.
+        /// If you've <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redriven</a>
+        /// an execution, you can use this API action to return information about the redrives
+        /// of that execution. In addition, you can use this API action to return the Map Run
+        /// Amazon Resource Name (ARN) if the execution was dispatched by a Map Run.
         /// 
         ///  
         /// <para>
         /// If you specify a version or alias ARN when you call the <a>StartExecution</a> API
-        /// action, <code>DescribeExecution</code> returns that ARN.
+        /// action, <c>DescribeExecution</c> returns that ARN.
         /// </para>
         ///  <note> 
         /// <para>
@@ -1337,7 +1418,7 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> 
         /// <para>
-        /// Executions of an <code>EXPRESS</code> state machinearen't supported by <code>DescribeExecution</code>
+        /// Executions of an <c>EXPRESS</c> state machine aren't supported by <c>DescribeExecution</c>
         /// unless a Map Run dispatched them.
         /// </para>
         /// </summary>
@@ -1349,6 +1430,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecution">REST API Reference for DescribeExecution Operation</seealso>
         public virtual DescribeExecutionResponse DescribeExecution(DescribeExecutionRequest request)
@@ -1364,13 +1455,15 @@ namespace Amazon.StepFunctions
         /// <summary>
         /// Provides information about a state machine execution, such as the state machine associated
         /// with the execution, the execution input and output, and relevant execution metadata.
-        /// Use this API action to return the Map Run Amazon Resource Name (ARN) if the execution
-        /// was dispatched by a Map Run.
+        /// If you've <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redriven</a>
+        /// an execution, you can use this API action to return information about the redrives
+        /// of that execution. In addition, you can use this API action to return the Map Run
+        /// Amazon Resource Name (ARN) if the execution was dispatched by a Map Run.
         /// 
         ///  
         /// <para>
         /// If you specify a version or alias ARN when you call the <a>StartExecution</a> API
-        /// action, <code>DescribeExecution</code> returns that ARN.
+        /// action, <c>DescribeExecution</c> returns that ARN.
         /// </para>
         ///  <note> 
         /// <para>
@@ -1379,7 +1472,7 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> 
         /// <para>
-        /// Executions of an <code>EXPRESS</code> state machinearen't supported by <code>DescribeExecution</code>
+        /// Executions of an <c>EXPRESS</c> state machine aren't supported by <c>DescribeExecution</c>
         /// unless a Map Run dispatched them.
         /// </para>
         /// </summary>
@@ -1394,6 +1487,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecution">REST API Reference for DescribeExecution Operation</seealso>
         public virtual Task<DescribeExecutionResponse> DescribeExecutionAsync(DescribeExecutionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1411,8 +1514,10 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Provides information about a Map Run's configuration, progress, and results. For more
-        /// information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html">Examining
+        /// Provides information about a Map Run's configuration, progress, and results. If you've
+        /// <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-map-run.html">redriven</a>
+        /// a Map Run, this API action also returns information about the redrives of that Map
+        /// Run. For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html">Examining
         /// Map Run</a> in the <i>Step Functions Developer Guide</i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeMapRun service method.</param>
@@ -1436,8 +1541,10 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Provides information about a Map Run's configuration, progress, and results. For more
-        /// information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html">Examining
+        /// Provides information about a Map Run's configuration, progress, and results. If you've
+        /// <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-map-run.html">redriven</a>
+        /// a Map Run, this API action also returns information about the redrives of that Map
+        /// Run. For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-examine-map-run.html">Examining
         /// Map Run</a> in the <i>Step Functions Developer Guide</i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeMapRun service method.</param>
@@ -1483,25 +1590,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following qualified state machine ARN refers to an alias named <code>PROD</code>.
+        /// The following qualified state machine ARN refers to an alias named <c>PROD</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</c>
         /// 
         /// </para>
         ///  <note> 
@@ -1511,16 +1618,16 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// This API action returns the details for a state machine version if the <code>stateMachineArn</code>
+        /// This API action returns the details for a state machine version if the <c>stateMachineArn</c>
         /// you specify is a state machine version ARN.
         /// </para>
         ///  <note> 
@@ -1535,6 +1642,16 @@ namespace Amazon.StepFunctions
         /// <returns>The response from the DescribeStateMachine service method, as returned by StepFunctions.</returns>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineDoesNotExistException">
         /// The specified state machine does not exist.
@@ -1566,25 +1683,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following qualified state machine ARN refers to an alias named <code>PROD</code>.
+        /// The following qualified state machine ARN refers to an alias named <c>PROD</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</c>
         /// 
         /// </para>
         ///  <note> 
@@ -1594,16 +1711,16 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// This API action returns the details for a state machine version if the <code>stateMachineArn</code>
+        /// This API action returns the details for a state machine version if the <c>stateMachineArn</c>
         /// you specify is a state machine version ARN.
         /// </para>
         ///  <note> 
@@ -1621,6 +1738,16 @@ namespace Amazon.StepFunctions
         /// <returns>The response from the DescribeStateMachine service method, as returned by StepFunctions.</returns>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineDoesNotExistException">
         /// The specified state machine does not exist.
@@ -1756,7 +1883,7 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> 
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeStateMachineForExecution service method.</param>
@@ -1767,6 +1894,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineForExecution">REST API Reference for DescribeStateMachineForExecution Operation</seealso>
         public virtual DescribeStateMachineForExecutionResponse DescribeStateMachineForExecution(DescribeStateMachineForExecutionRequest request)
@@ -1792,7 +1929,7 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> 
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeStateMachineForExecution service method.</param>
@@ -1806,6 +1943,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineForExecution">REST API Reference for DescribeStateMachineForExecution Operation</seealso>
         public virtual Task<DescribeStateMachineForExecutionResponse> DescribeStateMachineForExecutionAsync(DescribeStateMachineForExecutionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1828,7 +1975,7 @@ namespace Amazon.StepFunctions
         /// the service holds the HTTP connection open and responds as soon as a task becomes
         /// available (i.e. an execution of a task of this type is needed.) The maximum time the
         /// service holds on to the request before responding is 60 seconds. If no task is available
-        /// within 60 seconds, the poll returns a <code>taskToken</code> with a null string.
+        /// within 60 seconds, the poll returns a <c>taskToken</c> with a null string.
         /// 
         ///  <note> 
         /// <para>
@@ -1841,8 +1988,8 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// Polling with <code>GetActivityTask</code> can cause latency in some implementations.
-        /// See <a href="https://docs.aws.amazon.com/step-functions/latest/dg/bp-activity-pollers.html">Avoid
+        /// Polling with <c>GetActivityTask</c> can cause latency in some implementations. See
+        /// <a href="https://docs.aws.amazon.com/step-functions/latest/dg/bp-activity-pollers.html">Avoid
         /// Latency When Polling for Activity Tasks</a> in the Step Functions Developer Guide.
         /// </para>
         ///  </important>
@@ -1858,6 +2005,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTask">REST API Reference for GetActivityTask Operation</seealso>
         public virtual GetActivityTaskResponse GetActivityTask(GetActivityTaskRequest request)
@@ -1876,7 +2033,7 @@ namespace Amazon.StepFunctions
         /// the service holds the HTTP connection open and responds as soon as a task becomes
         /// available (i.e. an execution of a task of this type is needed.) The maximum time the
         /// service holds on to the request before responding is 60 seconds. If no task is available
-        /// within 60 seconds, the poll returns a <code>taskToken</code> with a null string.
+        /// within 60 seconds, the poll returns a <c>taskToken</c> with a null string.
         /// 
         ///  <note> 
         /// <para>
@@ -1889,8 +2046,8 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// Polling with <code>GetActivityTask</code> can cause latency in some implementations.
-        /// See <a href="https://docs.aws.amazon.com/step-functions/latest/dg/bp-activity-pollers.html">Avoid
+        /// Polling with <c>GetActivityTask</c> can cause latency in some implementations. See
+        /// <a href="https://docs.aws.amazon.com/step-functions/latest/dg/bp-activity-pollers.html">Avoid
         /// Latency When Polling for Activity Tasks</a> in the Step Functions Developer Guide.
         /// </para>
         ///  </important>
@@ -1910,6 +2067,16 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTask">REST API Reference for GetActivityTask Operation</seealso>
         public virtual Task<GetActivityTaskResponse> GetActivityTaskAsync(GetActivityTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -1927,20 +2094,20 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Returns the history of the specified execution as a list of events. By default, the
-        /// results are returned in ascending order of the <code>timeStamp</code> of the events.
-        /// Use the <code>reverseOrder</code> parameter to get the latest events first.
+        /// results are returned in ascending order of the <c>timeStamp</c> of the events. Use
+        /// the <c>reverseOrder</c> parameter to get the latest events first.
         /// 
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetExecutionHistory service method.</param>
@@ -1955,6 +2122,16 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTokenException">
         /// The provided token is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistory">REST API Reference for GetExecutionHistory Operation</seealso>
         public virtual GetExecutionHistoryResponse GetExecutionHistory(GetExecutionHistoryRequest request)
         {
@@ -1968,20 +2145,20 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Returns the history of the specified execution as a list of events. By default, the
-        /// results are returned in ascending order of the <code>timeStamp</code> of the events.
-        /// Use the <code>reverseOrder</code> parameter to get the latest events first.
+        /// results are returned in ascending order of the <c>timeStamp</c> of the events. Use
+        /// the <c>reverseOrder</c> parameter to get the latest events first.
         /// 
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetExecutionHistory service method.</param>
@@ -1998,6 +2175,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTokenException">
         /// The provided token is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistory">REST API Reference for GetExecutionHistory Operation</seealso>
         public virtual Task<GetExecutionHistoryResponse> GetExecutionHistoryAsync(GetExecutionHistoryRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2019,11 +2206,11 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2054,11 +2241,11 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2094,7 +2281,9 @@ namespace Amazon.StepFunctions
         /// <summary>
         /// Lists all executions of a state machine or a Map Run. You can list all executions
         /// related to a state machine by specifying a state machine Amazon Resource Name (ARN),
-        /// or those related to a Map Run by specifying a Map Run ARN.
+        /// or those related to a Map Run by specifying a Map Run ARN. Using this API action,
+        /// you can also list all <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redriven</a>
+        /// executions.
         /// 
         ///  
         /// <para>
@@ -2108,11 +2297,11 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2121,7 +2310,7 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> 
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListExecutions service method.</param>
@@ -2140,7 +2329,7 @@ namespace Amazon.StepFunctions
         /// The specified state machine does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineTypeNotSupportedException">
-        /// 
+        /// State machine type is not supported.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
         /// The input does not satisfy the constraints specified by an Amazon Web Services service.
@@ -2159,7 +2348,9 @@ namespace Amazon.StepFunctions
         /// <summary>
         /// Lists all executions of a state machine or a Map Run. You can list all executions
         /// related to a state machine by specifying a state machine Amazon Resource Name (ARN),
-        /// or those related to a Map Run by specifying a Map Run ARN.
+        /// or those related to a Map Run by specifying a Map Run ARN. Using this API action,
+        /// you can also list all <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redriven</a>
+        /// executions.
         /// 
         ///  
         /// <para>
@@ -2173,11 +2364,11 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2186,7 +2377,7 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> 
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListExecutions service method.</param>
@@ -2208,7 +2399,7 @@ namespace Amazon.StepFunctions
         /// The specified state machine does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineTypeNotSupportedException">
-        /// 
+        /// State machine type is not supported.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
         /// The input does not satisfy the constraints specified by an Amazon Web Services service.
@@ -2230,8 +2421,8 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Lists all Map Runs that were started by a given state machine execution. Use this
-        /// API action to obtain Map Run ARNs, and then call <code>DescribeMapRun</code> to obtain
-        /// more information, if needed.
+        /// API action to obtain Map Run ARNs, and then call <c>DescribeMapRun</c> to obtain more
+        /// information, if needed.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListMapRuns service method.</param>
         /// 
@@ -2258,8 +2449,8 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Lists all Map Runs that were started by a given state machine execution. Use this
-        /// API action to obtain Map Run ARNs, and then call <code>DescribeMapRun</code> to obtain
-        /// more information, if needed.
+        /// API action to obtain Map Run ARNs, and then call <c>DescribeMapRun</c> to obtain more
+        /// information, if needed.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListMapRuns service method.</param>
         /// <param name="cancellationToken">
@@ -2299,15 +2490,15 @@ namespace Amazon.StepFunctions
         ///  
         /// <para>
         /// To list aliases that reference a state machine <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>,
-        /// you can specify the version ARN in the <code>stateMachineArn</code> parameter.
+        /// you can specify the version ARN in the <c>stateMachineArn</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  
         /// <para>
@@ -2368,15 +2559,15 @@ namespace Amazon.StepFunctions
         ///  
         /// <para>
         /// To list aliases that reference a state machine <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>,
-        /// you can specify the version ARN in the <code>stateMachineArn</code> parameter.
+        /// you can specify the version ARN in the <c>stateMachineArn</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  
         /// <para>
@@ -2441,11 +2632,11 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2476,11 +2667,11 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  <note> 
         /// <para>
@@ -2523,11 +2714,11 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  
         /// <para>
@@ -2576,11 +2767,11 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         ///  
         /// <para>
@@ -2631,8 +2822,8 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <code>_
-        /// . : / = + - @</code>.
+        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <c>_
+        /// . : / = + - @</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
@@ -2660,8 +2851,8 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <code>_
-        /// . : / = + - @</code>.
+        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <c>_
+        /// . : / = + - @</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
@@ -2704,13 +2895,12 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        ///  <code>PublishStateMachineVersion</code> is an idempotent API. It doesn't create a
-        /// duplicate state machine version if it already exists for the current revision. Step
-        /// Functions bases <code>PublishStateMachineVersion</code>'s idempotency check on the
-        /// <code>stateMachineArn</code>, <code>name</code>, and <code>revisionId</code> parameters.
-        /// Requests with the same parameters return a successful idempotent response. If you
-        /// don't specify a <code>revisionId</code>, Step Functions checks for a previously published
-        /// version of the state machine's current revision.
+        ///  <c>PublishStateMachineVersion</c> is an idempotent API. It doesn't create a duplicate
+        /// state machine version if it already exists for the current revision. Step Functions
+        /// bases <c>PublishStateMachineVersion</c>'s idempotency check on the <c>stateMachineArn</c>,
+        /// <c>name</c>, and <c>revisionId</c> parameters. Requests with the same parameters return
+        /// a successful idempotent response. If you don't specify a <c>revisionId</c>, Step Functions
+        /// checks for a previously published version of the state machine's current revision.
         /// </para>
         ///  
         /// <para>
@@ -2732,7 +2922,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -2783,13 +2973,12 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        ///  <code>PublishStateMachineVersion</code> is an idempotent API. It doesn't create a
-        /// duplicate state machine version if it already exists for the current revision. Step
-        /// Functions bases <code>PublishStateMachineVersion</code>'s idempotency check on the
-        /// <code>stateMachineArn</code>, <code>name</code>, and <code>revisionId</code> parameters.
-        /// Requests with the same parameters return a successful idempotent response. If you
-        /// don't specify a <code>revisionId</code>, Step Functions checks for a previously published
-        /// version of the state machine's current revision.
+        ///  <c>PublishStateMachineVersion</c> is an idempotent API. It doesn't create a duplicate
+        /// state machine version if it already exists for the current revision. Step Functions
+        /// bases <c>PublishStateMachineVersion</c>'s idempotency check on the <c>stateMachineArn</c>,
+        /// <c>name</c>, and <c>revisionId</c> parameters. Requests with the same parameters return
+        /// a successful idempotent response. If you don't specify a <c>revisionId</c>, Step Functions
+        /// checks for a previously published version of the state machine's current revision.
         /// </para>
         ///  
         /// <para>
@@ -2814,7 +3003,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -2853,12 +3042,226 @@ namespace Amazon.StepFunctions
 
         #endregion
         
+        #region  RedriveExecution
+
+
+        /// <summary>
+        /// Restarts unsuccessful executions of Standard workflows that didn't complete successfully
+        /// in the last 14 days. These include failed, aborted, or timed out executions. When
+        /// you <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redrive</a>
+        /// an execution, it continues the failed execution from the unsuccessful step and uses
+        /// the same input. Step Functions preserves the results and execution history of the
+        /// successful steps, and doesn't rerun these steps when you redrive an execution. Redriven
+        /// executions use the same state machine definition and execution ARN as the original
+        /// execution attempt.
+        /// 
+        ///  
+        /// <para>
+        /// For workflows that include an <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html">Inline
+        /// Map</a> or <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-parallel-state.html">Parallel</a>
+        /// state, <c>RedriveExecution</c> API action reschedules and redrives only the iterations
+        /// and branches that failed or aborted.
+        /// </para>
+        ///  
+        /// <para>
+        /// To redrive a workflow that includes a Distributed Map state whose Map Run failed,
+        /// you must redrive the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/use-dist-map-orchestrate-large-scale-parallel-workloads.html#dist-map-orchestrate-parallel-workloads-key-terms">parent
+        /// workflow</a>. The parent workflow redrives all the unsuccessful states, including
+        /// a failed Map Run. If a Map Run was not started in the original execution attempt,
+        /// the redriven parent workflow starts the Map Run.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
+        /// </para>
+        ///  
+        /// <para>
+        /// However, you can restart the unsuccessful executions of Express child workflows in
+        /// a Distributed Map by redriving its Map Run. When you redrive a Map Run, the Express
+        /// child workflows are rerun using the <a>StartExecution</a> API action. For more information,
+        /// see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-map-run.html">Redriving
+        /// Map Runs</a>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// You can redrive executions if your original execution meets the following conditions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The execution status isn't <c>SUCCEEDED</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Your workflow execution has not exceeded the redrivable period of 14 days. Redrivable
+        /// period refers to the time during which you can redrive a given execution. This period
+        /// starts from the day a state machine completes its execution.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The workflow execution has not exceeded the maximum open time of one year. For more
+        /// information about state machine quotas, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/limits-overview.html#service-limits-state-machine-executions">Quotas
+        /// related to state machine executions</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The execution event history count is less than 24,999. Redriven executions append
+        /// their event history to the existing event history. Make sure your workflow execution
+        /// contains less than 24,999 events to accommodate the <c>ExecutionRedriven</c> history
+        /// event and at least one other history event.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RedriveExecution service method.</param>
+        /// 
+        /// <returns>The response from the RedriveExecution service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.ExecutionDoesNotExistException">
+        /// The specified execution does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ExecutionLimitExceededException">
+        /// The maximum number of running executions has been reached. Running executions must
+        /// end or be stopped before a new execution can be started.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ExecutionNotRedrivableException">
+        /// The execution Amazon Resource Name (ARN) that you specified for <c>executionArn</c>
+        /// cannot be redriven.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
+        /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
+        /// The input does not satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/RedriveExecution">REST API Reference for RedriveExecution Operation</seealso>
+        public virtual RedriveExecutionResponse RedriveExecution(RedriveExecutionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RedriveExecutionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RedriveExecutionResponseUnmarshaller.Instance;
+
+            return Invoke<RedriveExecutionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Restarts unsuccessful executions of Standard workflows that didn't complete successfully
+        /// in the last 14 days. These include failed, aborted, or timed out executions. When
+        /// you <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-executions.html">redrive</a>
+        /// an execution, it continues the failed execution from the unsuccessful step and uses
+        /// the same input. Step Functions preserves the results and execution history of the
+        /// successful steps, and doesn't rerun these steps when you redrive an execution. Redriven
+        /// executions use the same state machine definition and execution ARN as the original
+        /// execution attempt.
+        /// 
+        ///  
+        /// <para>
+        /// For workflows that include an <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html">Inline
+        /// Map</a> or <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-parallel-state.html">Parallel</a>
+        /// state, <c>RedriveExecution</c> API action reschedules and redrives only the iterations
+        /// and branches that failed or aborted.
+        /// </para>
+        ///  
+        /// <para>
+        /// To redrive a workflow that includes a Distributed Map state whose Map Run failed,
+        /// you must redrive the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/use-dist-map-orchestrate-large-scale-parallel-workloads.html#dist-map-orchestrate-parallel-workloads-key-terms">parent
+        /// workflow</a>. The parent workflow redrives all the unsuccessful states, including
+        /// a failed Map Run. If a Map Run was not started in the original execution attempt,
+        /// the redriven parent workflow starts the Map Run.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
+        /// </para>
+        ///  
+        /// <para>
+        /// However, you can restart the unsuccessful executions of Express child workflows in
+        /// a Distributed Map by redriving its Map Run. When you redrive a Map Run, the Express
+        /// child workflows are rerun using the <a>StartExecution</a> API action. For more information,
+        /// see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/redrive-map-run.html">Redriving
+        /// Map Runs</a>.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// You can redrive executions if your original execution meets the following conditions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The execution status isn't <c>SUCCEEDED</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Your workflow execution has not exceeded the redrivable period of 14 days. Redrivable
+        /// period refers to the time during which you can redrive a given execution. This period
+        /// starts from the day a state machine completes its execution.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The workflow execution has not exceeded the maximum open time of one year. For more
+        /// information about state machine quotas, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/limits-overview.html#service-limits-state-machine-executions">Quotas
+        /// related to state machine executions</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The execution event history count is less than 24,999. Redriven executions append
+        /// their event history to the existing event history. Make sure your workflow execution
+        /// contains less than 24,999 events to accommodate the <c>ExecutionRedriven</c> history
+        /// event and at least one other history event.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RedriveExecution service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the RedriveExecution service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.ExecutionDoesNotExistException">
+        /// The specified execution does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ExecutionLimitExceededException">
+        /// The maximum number of running executions has been reached. Running executions must
+        /// end or be stopped before a new execution can be started.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ExecutionNotRedrivableException">
+        /// The execution Amazon Resource Name (ARN) that you specified for <c>executionArn</c>
+        /// cannot be redriven.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
+        /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
+        /// The input does not satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/RedriveExecution">REST API Reference for RedriveExecution Operation</seealso>
+        public virtual Task<RedriveExecutionResponse> RedriveExecutionAsync(RedriveExecutionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RedriveExecutionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RedriveExecutionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<RedriveExecutionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  SendTaskFailure
 
 
         /// <summary>
-        /// Used by activity workers and task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
-        /// pattern to report that the task identified by the <code>taskToken</code> failed.
+        /// Used by activity workers, Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
+        /// pattern, and optionally Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// run</a> pattern to report that the task identified by the <c>taskToken</c> failed.
+        /// 
+        ///  
+        /// <para>
+        /// For an execution with encryption enabled, Step Functions will encrypt the error and
+        /// cause fields using the KMS key for the execution role.
+        /// </para>
+        ///  
+        /// <para>
+        /// A caller can mark a task as fail without using any KMS permissions in the execution
+        /// role if the caller provides a null value for both <c>error</c> and <c>cause</c> fields
+        /// because no data needs to be encrypted.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SendTaskFailure service method.</param>
         /// 
@@ -2866,11 +3269,22 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTokenException">
         /// The provided token is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskDoesNotExistException">
-        /// 
+        /// The activity does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskTimedOutException">
-        /// 
+        /// The task token has either expired or the task associated with the token has already
+        /// been closed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure">REST API Reference for SendTaskFailure Operation</seealso>
         public virtual SendTaskFailureResponse SendTaskFailure(SendTaskFailureRequest request)
@@ -2884,8 +3298,21 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Used by activity workers and task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
-        /// pattern to report that the task identified by the <code>taskToken</code> failed.
+        /// Used by activity workers, Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
+        /// pattern, and optionally Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// run</a> pattern to report that the task identified by the <c>taskToken</c> failed.
+        /// 
+        ///  
+        /// <para>
+        /// For an execution with encryption enabled, Step Functions will encrypt the error and
+        /// cause fields using the KMS key for the execution role.
+        /// </para>
+        ///  
+        /// <para>
+        /// A caller can mark a task as fail without using any KMS permissions in the execution
+        /// role if the caller provides a null value for both <c>error</c> and <c>cause</c> fields
+        /// because no data needs to be encrypted.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SendTaskFailure service method.</param>
         /// <param name="cancellationToken">
@@ -2896,11 +3323,22 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTokenException">
         /// The provided token is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskDoesNotExistException">
-        /// 
+        /// The activity does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskTimedOutException">
-        /// 
+        /// The task token has either expired or the task associated with the token has already
+        /// been closed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure">REST API Reference for SendTaskFailure Operation</seealso>
         public virtual Task<SendTaskFailureResponse> SendTaskFailureAsync(SendTaskFailureRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2918,23 +3356,24 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Used by activity workers and task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
-        /// pattern to report to Step Functions that the task represented by the specified <code>taskToken</code>
-        /// is still making progress. This action resets the <code>Heartbeat</code> clock. The
-        /// <code>Heartbeat</code> threshold is specified in the state machine's Amazon States
-        /// Language definition (<code>HeartbeatSeconds</code>). This action does not in itself
-        /// create an event in the execution history. However, if the task times out, the execution
-        /// history contains an <code>ActivityTimedOut</code> entry for activities, or a <code>TaskTimedOut</code>
-        /// entry for for tasks using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// Used by activity workers and Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
+        /// pattern, and optionally Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// run</a> pattern to report to Step Functions that the task represented by the specified
+        /// <c>taskToken</c> is still making progress. This action resets the <c>Heartbeat</c>
+        /// clock. The <c>Heartbeat</c> threshold is specified in the state machine's Amazon States
+        /// Language definition (<c>HeartbeatSeconds</c>). This action does not in itself create
+        /// an event in the execution history. However, if the task times out, the execution history
+        /// contains an <c>ActivityTimedOut</c> entry for activities, or a <c>TaskTimedOut</c>
+        /// entry for tasks using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
         /// run</a> or <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
         /// pattern.
         /// 
         ///  <note> 
         /// <para>
-        /// The <code>Timeout</code> of a task, defined in the state machine's Amazon States Language
+        /// The <c>Timeout</c> of a task, defined in the state machine's Amazon States Language
         /// definition, is its maximum allowed duration, regardless of the number of <a>SendTaskHeartbeat</a>
-        /// requests received. Use <code>HeartbeatSeconds</code> to configure the timeout interval
-        /// for heartbeats.
+        /// requests received. Use <c>HeartbeatSeconds</c> to configure the timeout interval for
+        /// heartbeats.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2945,10 +3384,11 @@ namespace Amazon.StepFunctions
         /// The provided token is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskDoesNotExistException">
-        /// 
+        /// The activity does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskTimedOutException">
-        /// 
+        /// The task token has either expired or the task associated with the token has already
+        /// been closed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeat">REST API Reference for SendTaskHeartbeat Operation</seealso>
         public virtual SendTaskHeartbeatResponse SendTaskHeartbeat(SendTaskHeartbeatRequest request)
@@ -2962,23 +3402,24 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Used by activity workers and task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
-        /// pattern to report to Step Functions that the task represented by the specified <code>taskToken</code>
-        /// is still making progress. This action resets the <code>Heartbeat</code> clock. The
-        /// <code>Heartbeat</code> threshold is specified in the state machine's Amazon States
-        /// Language definition (<code>HeartbeatSeconds</code>). This action does not in itself
-        /// create an event in the execution history. However, if the task times out, the execution
-        /// history contains an <code>ActivityTimedOut</code> entry for activities, or a <code>TaskTimedOut</code>
-        /// entry for for tasks using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// Used by activity workers and Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
+        /// pattern, and optionally Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// run</a> pattern to report to Step Functions that the task represented by the specified
+        /// <c>taskToken</c> is still making progress. This action resets the <c>Heartbeat</c>
+        /// clock. The <c>Heartbeat</c> threshold is specified in the state machine's Amazon States
+        /// Language definition (<c>HeartbeatSeconds</c>). This action does not in itself create
+        /// an event in the execution history. However, if the task times out, the execution history
+        /// contains an <c>ActivityTimedOut</c> entry for activities, or a <c>TaskTimedOut</c>
+        /// entry for tasks using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
         /// run</a> or <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
         /// pattern.
         /// 
         ///  <note> 
         /// <para>
-        /// The <code>Timeout</code> of a task, defined in the state machine's Amazon States Language
+        /// The <c>Timeout</c> of a task, defined in the state machine's Amazon States Language
         /// definition, is its maximum allowed duration, regardless of the number of <a>SendTaskHeartbeat</a>
-        /// requests received. Use <code>HeartbeatSeconds</code> to configure the timeout interval
-        /// for heartbeats.
+        /// requests received. Use <c>HeartbeatSeconds</c> to configure the timeout interval for
+        /// heartbeats.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2992,10 +3433,11 @@ namespace Amazon.StepFunctions
         /// The provided token is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskDoesNotExistException">
-        /// 
+        /// The activity does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskTimedOutException">
-        /// 
+        /// The task token has either expired or the task associated with the token has already
+        /// been closed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeat">REST API Reference for SendTaskHeartbeat Operation</seealso>
         public virtual Task<SendTaskHeartbeatResponse> SendTaskHeartbeatAsync(SendTaskHeartbeatRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -3013,8 +3455,9 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Used by activity workers and task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
-        /// pattern to report that the task identified by the <code>taskToken</code> completed
+        /// Used by activity workers, Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
+        /// pattern, and optionally Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// run</a> pattern to report that the task identified by the <c>taskToken</c> completed
         /// successfully.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SendTaskSuccess service method.</param>
@@ -3026,11 +3469,22 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTokenException">
         /// The provided token is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskDoesNotExistException">
-        /// 
+        /// The activity does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskTimedOutException">
-        /// 
+        /// The task token has either expired or the task associated with the token has already
+        /// been closed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess">REST API Reference for SendTaskSuccess Operation</seealso>
         public virtual SendTaskSuccessResponse SendTaskSuccess(SendTaskSuccessRequest request)
@@ -3044,8 +3498,9 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Used by activity workers and task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
-        /// pattern to report that the task identified by the <code>taskToken</code> completed
+        /// Used by activity workers, Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">callback</a>
+        /// pattern, and optionally Task states using the <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync">job
+        /// run</a> pattern to report that the task identified by the <c>taskToken</c> completed
         /// successfully.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SendTaskSuccess service method.</param>
@@ -3060,11 +3515,22 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTokenException">
         /// The provided token is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskDoesNotExistException">
-        /// 
+        /// The activity does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.TaskTimedOutException">
-        /// 
+        /// The task token has either expired or the task associated with the token has already
+        /// been closed.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess">REST API Reference for SendTaskSuccess Operation</seealso>
         public virtual Task<SendTaskSuccessResponse> SendTaskSuccessAsync(SendTaskSuccessRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -3096,25 +3562,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following qualified state machine ARN refers to an alias named <code>PROD</code>.
+        /// The following qualified state machine ARN refers to an alias named <c>PROD</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</c>
         /// 
         /// </para>
         ///  <note> 
@@ -3124,11 +3590,11 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -3139,22 +3605,20 @@ namespace Amazon.StepFunctions
         ///  
         /// <para>
         /// To start executions of a state machine <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>,
-        /// call <code>StartExecution</code> and provide the version ARN or the ARN of an <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html">alias</a>
+        /// call <c>StartExecution</c> and provide the version ARN or the ARN of an <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html">alias</a>
         /// that points to the version.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>StartExecution</code> is idempotent for <code>STANDARD</code> workflows. For
-        /// a <code>STANDARD</code> workflow, if you call <code>StartExecution</code> with the
-        /// same name and input as a running execution, the call succeeds and return the same
-        /// response as the original request. If the execution is closed or if the input is different,
-        /// it returns a <code>400 ExecutionAlreadyExists</code> error. You can reuse names after
-        /// 90 days. 
+        ///  <c>StartExecution</c> is idempotent for <c>STANDARD</c> workflows. For a <c>STANDARD</c>
+        /// workflow, if you call <c>StartExecution</c> with the same name and input as a running
+        /// execution, the call succeeds and return the same response as the original request.
+        /// If the execution is closed or if the input is different, it returns a <c>400 ExecutionAlreadyExists</c>
+        /// error. You can reuse names after 90 days. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartExecution</code> isn't idempotent for <code>EXPRESS</code> workflows.
-        /// 
+        ///  <c>StartExecution</c> isn't idempotent for <c>EXPRESS</c> workflows. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3162,12 +3626,11 @@ namespace Amazon.StepFunctions
         /// 
         /// <returns>The response from the StartExecution service method, as returned by StepFunctions.</returns>
         /// <exception cref="Amazon.StepFunctions.Model.ExecutionAlreadyExistsException">
-        /// The execution has the same <code>name</code> as another execution (but a different
-        /// <code>input</code>).
+        /// The execution has the same <c>name</c> as another execution (but a different <c>input</c>).
         /// 
         ///  <note> 
         /// <para>
-        /// Executions with the same <code>name</code> and <code>input</code> are considered idempotent.
+        /// Executions with the same <c>name</c> and <c>input</c> are considered idempotent.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3183,6 +3646,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineDeletingException">
         /// The specified state machine is being deleted.
@@ -3219,25 +3692,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following qualified state machine ARN refers to an alias named <code>PROD</code>.
+        /// The following qualified state machine ARN refers to an alias named <c>PROD</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</c>
         /// 
         /// </para>
         ///  <note> 
@@ -3247,11 +3720,11 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -3262,22 +3735,20 @@ namespace Amazon.StepFunctions
         ///  
         /// <para>
         /// To start executions of a state machine <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>,
-        /// call <code>StartExecution</code> and provide the version ARN or the ARN of an <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html">alias</a>
+        /// call <c>StartExecution</c> and provide the version ARN or the ARN of an <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html">alias</a>
         /// that points to the version.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>StartExecution</code> is idempotent for <code>STANDARD</code> workflows. For
-        /// a <code>STANDARD</code> workflow, if you call <code>StartExecution</code> with the
-        /// same name and input as a running execution, the call succeeds and return the same
-        /// response as the original request. If the execution is closed or if the input is different,
-        /// it returns a <code>400 ExecutionAlreadyExists</code> error. You can reuse names after
-        /// 90 days. 
+        ///  <c>StartExecution</c> is idempotent for <c>STANDARD</c> workflows. For a <c>STANDARD</c>
+        /// workflow, if you call <c>StartExecution</c> with the same name and input as a running
+        /// execution, the call succeeds and return the same response as the original request.
+        /// If the execution is closed or if the input is different, it returns a <c>400 ExecutionAlreadyExists</c>
+        /// error. You can reuse names after 90 days. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>StartExecution</code> isn't idempotent for <code>EXPRESS</code> workflows.
-        /// 
+        ///  <c>StartExecution</c> isn't idempotent for <c>EXPRESS</c> workflows. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3288,12 +3759,11 @@ namespace Amazon.StepFunctions
         /// 
         /// <returns>The response from the StartExecution service method, as returned by StepFunctions.</returns>
         /// <exception cref="Amazon.StepFunctions.Model.ExecutionAlreadyExistsException">
-        /// The execution has the same <code>name</code> as another execution (but a different
-        /// <code>input</code>).
+        /// The execution has the same <c>name</c> as another execution (but a different <c>input</c>).
         /// 
         ///  <note> 
         /// <para>
-        /// Executions with the same <code>name</code> and <code>input</code> are considered idempotent.
+        /// Executions with the same <c>name</c> and <c>input</c> are considered idempotent.
         /// </para>
         ///  </note>
         /// </exception>
@@ -3309,6 +3779,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineDeletingException">
         /// The specified state machine is being deleted.
@@ -3335,16 +3815,16 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Starts a Synchronous Express state machine execution. <code>StartSyncExecution</code>
-        /// is not available for <code>STANDARD</code> workflows.
+        /// Starts a Synchronous Express state machine execution. <c>StartSyncExecution</c> is
+        /// not available for <c>STANDARD</c> workflows.
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>StartSyncExecution</code> will return a <code>200 OK</code> response, even
-        /// if your execution fails, because the status code in the API response doesn't reflect
-        /// function errors. Error codes are reserved for errors that prevent your execution from
-        /// running, such as permissions errors, limit errors, or issues with your state machine
-        /// code and configuration. 
+        ///  <c>StartSyncExecution</c> will return a <c>200 OK</c> response, even if your execution
+        /// fails, because the status code in the API response doesn't reflect function errors.
+        /// Error codes are reserved for errors that prevent your execution from running, such
+        /// as permissions errors, limit errors, or issues with your state machine code and configuration.
+        /// 
         /// </para>
         ///  </note> <note> 
         /// <para>
@@ -3364,6 +3844,16 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineDeletingException">
         /// The specified state machine is being deleted.
         /// </exception>
@@ -3371,7 +3861,7 @@ namespace Amazon.StepFunctions
         /// The specified state machine does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineTypeNotSupportedException">
-        /// 
+        /// State machine type is not supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartSyncExecution">REST API Reference for StartSyncExecution Operation</seealso>
         public virtual StartSyncExecutionResponse StartSyncExecution(StartSyncExecutionRequest request)
@@ -3385,16 +3875,16 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Starts a Synchronous Express state machine execution. <code>StartSyncExecution</code>
-        /// is not available for <code>STANDARD</code> workflows.
+        /// Starts a Synchronous Express state machine execution. <c>StartSyncExecution</c> is
+        /// not available for <c>STANDARD</c> workflows.
         /// 
         ///  <note> 
         /// <para>
-        ///  <code>StartSyncExecution</code> will return a <code>200 OK</code> response, even
-        /// if your execution fails, because the status code in the API response doesn't reflect
-        /// function errors. Error codes are reserved for errors that prevent your execution from
-        /// running, such as permissions errors, limit errors, or issues with your state machine
-        /// code and configuration. 
+        ///  <c>StartSyncExecution</c> will return a <c>200 OK</c> response, even if your execution
+        /// fails, because the status code in the API response doesn't reflect function errors.
+        /// Error codes are reserved for errors that prevent your execution from running, such
+        /// as permissions errors, limit errors, or issues with your state machine code and configuration.
+        /// 
         /// </para>
         ///  </note> <note> 
         /// <para>
@@ -3417,6 +3907,16 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidNameException">
         /// The provided name is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineDeletingException">
         /// The specified state machine is being deleted.
         /// </exception>
@@ -3424,7 +3924,7 @@ namespace Amazon.StepFunctions
         /// The specified state machine does not exist.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.StateMachineTypeNotSupportedException">
-        /// 
+        /// State machine type is not supported.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartSyncExecution">REST API Reference for StartSyncExecution Operation</seealso>
         public virtual Task<StartSyncExecutionResponse> StartSyncExecutionAsync(StartSyncExecutionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -3446,7 +3946,18 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
+        /// </para>
+        ///  
+        /// <para>
+        /// For an execution with encryption enabled, Step Functions will encrypt the error and
+        /// cause fields using the KMS key for the execution role.
+        /// </para>
+        ///  
+        /// <para>
+        /// A caller can stop an execution without using any KMS permissions in the execution
+        /// role if the caller provides a null value for both <c>error</c> and <c>cause</c> fields
+        /// because no data needs to be encrypted.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopExecution service method.</param>
@@ -3457,6 +3968,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
         /// The input does not satisfy the constraints specified by an Amazon Web Services service.
@@ -3477,7 +3998,18 @@ namespace Amazon.StepFunctions
         /// 
         ///  
         /// <para>
-        /// This API action is not supported by <code>EXPRESS</code> state machines.
+        /// This API action is not supported by <c>EXPRESS</c> state machines.
+        /// </para>
+        ///  
+        /// <para>
+        /// For an execution with encryption enabled, Step Functions will encrypt the error and
+        /// cause fields using the KMS key for the execution role.
+        /// </para>
+        ///  
+        /// <para>
+        /// A caller can stop an execution without using any KMS permissions in the execution
+        /// role if the caller provides a null value for both <c>error</c> and <c>cause</c> fields
+        /// because no data needs to be encrypted.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopExecution service method.</param>
@@ -3491,6 +4023,16 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
         /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsInvalidStateException">
+        /// The KMS key is not in valid state, for example: Disabled or Deleted.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
         /// The input does not satisfy the constraints specified by an Amazon Web Services service.
@@ -3522,8 +4064,8 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <code>_
-        /// . : / = + - @</code>.
+        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <c>_
+        /// . : / = + - @</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
@@ -3562,8 +4104,8 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  
         /// <para>
-        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <code>_
-        /// . : / = + - @</code>.
+        /// Tags may only contain Unicode letters, digits, white space, or these symbols: <c>_
+        /// . : / = + - @</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
@@ -3590,6 +4132,219 @@ namespace Amazon.StepFunctions
             options.ResponseUnmarshaller = TagResourceResponseUnmarshaller.Instance;
             
             return InvokeAsync<TagResourceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  TestState
+
+
+        /// <summary>
+        /// Accepts the definition of a single state and executes it. You can test a state without
+        /// creating a state machine or updating an existing state machine. Using this API, you
+        /// can test the following:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// A state's <a href="https://docs.aws.amazon.com/step-functions/latest/dg/test-state-isolation.html#test-state-input-output-dataflow">input
+        /// and output processing</a> data flow
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// An <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-services.html">Amazon
+        /// Web Services service integration</a> request and response
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// An <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-third-party-apis.html">HTTP
+        /// Task</a> request and response
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can call this API on only one state at a time. The states that you can test include
+        /// the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-task-state.html#task-types">All
+        /// Task types</a> except <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html">Activity</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-pass-state.html">Pass</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-wait-state.html">Wait</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-choice-state.html">Choice</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-succeed-state.html">Succeed</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-fail-state.html">Fail</a>
+        /// 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// The <c>TestState</c> API assumes an IAM role which must contain the required IAM permissions
+        /// for the resources your state is accessing. For information about the permissions a
+        /// state might need, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/test-state-isolation.html#test-state-permissions">IAM
+        /// permissions to test a state</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The <c>TestState</c> API can run for up to five minutes. If the execution of a state
+        /// exceeds this duration, it fails with the <c>States.Timeout</c> error.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>TestState</c> doesn't support <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html">Activity
+        /// tasks</a>, <c>.sync</c> or <c>.waitForTaskToken</c> <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html">service
+        /// integration patterns</a>, <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-parallel-state.html">Parallel</a>,
+        /// or <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html">Map</a>
+        /// states.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TestState service method.</param>
+        /// 
+        /// <returns>The response from the TestState service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
+        /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidDefinitionException">
+        /// The provided Amazon States Language definition is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidExecutionInputException">
+        /// The provided JSON input data is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
+        /// The input does not satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/TestState">REST API Reference for TestState Operation</seealso>
+        public virtual TestStateResponse TestState(TestStateRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TestStateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TestStateResponseUnmarshaller.Instance;
+
+            return Invoke<TestStateResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Accepts the definition of a single state and executes it. You can test a state without
+        /// creating a state machine or updating an existing state machine. Using this API, you
+        /// can test the following:
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// A state's <a href="https://docs.aws.amazon.com/step-functions/latest/dg/test-state-isolation.html#test-state-input-output-dataflow">input
+        /// and output processing</a> data flow
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// An <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-services.html">Amazon
+        /// Web Services service integration</a> request and response
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// An <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-third-party-apis.html">HTTP
+        /// Task</a> request and response
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// You can call this API on only one state at a time. The states that you can test include
+        /// the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-task-state.html#task-types">All
+        /// Task types</a> except <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html">Activity</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-pass-state.html">Pass</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-wait-state.html">Wait</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-choice-state.html">Choice</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-succeed-state.html">Succeed</a>
+        /// 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-fail-state.html">Fail</a>
+        /// 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// The <c>TestState</c> API assumes an IAM role which must contain the required IAM permissions
+        /// for the resources your state is accessing. For information about the permissions a
+        /// state might need, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/test-state-isolation.html#test-state-permissions">IAM
+        /// permissions to test a state</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The <c>TestState</c> API can run for up to five minutes. If the execution of a state
+        /// exceeds this duration, it fails with the <c>States.Timeout</c> error.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>TestState</c> doesn't support <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-activities.html">Activity
+        /// tasks</a>, <c>.sync</c> or <c>.waitForTaskToken</c> <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html">service
+        /// integration patterns</a>, <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-parallel-state.html">Parallel</a>,
+        /// or <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-map-state.html">Map</a>
+        /// states.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TestState service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the TestState service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidArnException">
+        /// The provided Amazon Resource Name (ARN) is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidDefinitionException">
+        /// The provided Amazon States Language definition is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidExecutionInputException">
+        /// The provided JSON input data is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
+        /// The input does not satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/TestState">REST API Reference for TestState Operation</seealso>
+        public virtual Task<TestStateResponse> TestStateAsync(TestStateRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TestStateRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TestStateResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<TestStateResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3712,18 +4467,18 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Updates an existing state machine by modifying its <code>definition</code>, <code>roleArn</code>,
-        /// or <code>loggingConfiguration</code>. Running executions will continue to use the
-        /// previous <code>definition</code> and <code>roleArn</code>. You must include at least
-        /// one of <code>definition</code> or <code>roleArn</code> or you will receive a <code>MissingRequiredParameter</code>
+        /// Updates an existing state machine by modifying its <c>definition</c>, <c>roleArn</c>,
+        /// <c>loggingConfiguration</c>, or <c>EncryptionConfiguration</c>. Running executions
+        /// will continue to use the previous <c>definition</c> and <c>roleArn</c>. You must include
+        /// at least one of <c>definition</c> or <c>roleArn</c> or you will receive a <c>MissingRequiredParameter</c>
         /// error.
         /// 
         ///  
         /// <para>
         /// A qualified state machine ARN refers to a <i>Distributed Map state</i> defined within
-        /// a state machine. For example, the qualified state machine ARN <code>arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel</code>
-        /// refers to a <i>Distributed Map state</i> with a label <code>mapStateLabel</code> in
-        /// the state machine named <code>stateMachineName</code>.
+        /// a state machine. For example, the qualified state machine ARN <c>arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel</c>
+        /// refers to a <i>Distributed Map state</i> with a label <c>mapStateLabel</c> in the
+        /// state machine named <c>stateMachineName</c>.
         /// </para>
         ///  
         /// <para>
@@ -3737,25 +4492,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following qualified state machine ARN refers to an alias named <code>PROD</code>.
+        /// The following qualified state machine ARN refers to an alias named <c>PROD</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</c>
         /// 
         /// </para>
         ///  <note> 
@@ -3765,17 +4520,17 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// After you update your state machine, you can set the <code>publish</code> parameter
-        /// to <code>true</code> in the same action to publish a new <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>.
+        /// After you update your state machine, you can set the <c>publish</c> parameter to <c>true</c>
+        /// in the same action to publish a new <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>.
         /// This way, you can opt-in to strict versioning of your state machine.
         /// </para>
         ///  <note> 
@@ -3785,10 +4540,9 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// All <code>StartExecution</code> calls within a few seconds use the updated <code>definition</code>
-        /// and <code>roleArn</code>. Executions started immediately after you call <code>UpdateStateMachine</code>
-        /// may use the previous state machine <code>definition</code> and <code>roleArn</code>.
-        /// 
+        /// All <c>StartExecution</c> calls within a few seconds use the updated <c>definition</c>
+        /// and <c>roleArn</c>. Executions started immediately after you call <c>UpdateStateMachine</c>
+        /// may use the previous state machine <c>definition</c> and <c>roleArn</c>. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3798,7 +4552,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -3811,16 +4565,29 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidDefinitionException">
         /// The provided Amazon States Language definition is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidEncryptionConfigurationException">
+        /// Received when <c>encryptionConfiguration</c> is specified but various conditions exist
+        /// which make the configuration invalid. For example, if <c>type</c> is set to <c>CUSTOMER_MANAGED_KMS_KEY</c>,
+        /// but <c>kmsKeyId</c> is null, or <c>kmsDataKeyReusePeriodSeconds</c> is not between
+        /// 60 and 900, or the KMS key is not symmetric or inactive.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidLoggingConfigurationException">
-        /// 
+        /// Configuration is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTracingConfigurationException">
-        /// Your <code>tracingConfiguration</code> key does not match, or <code>enabled</code>
-        /// has not been set to <code>true</code> or <code>false</code>.
+        /// Your <c>tracingConfiguration</c> key does not match, or <c>enabled</c> has not been
+        /// set to <c>true</c> or <c>false</c>.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.MissingRequiredParameterException">
-        /// Request is missing a required parameter. This error occurs if both <code>definition</code>
-        /// and <code>roleArn</code> are not specified.
+        /// Request is missing a required parameter. This error occurs if both <c>definition</c>
+        /// and <c>roleArn</c> are not specified.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ServiceQuotaExceededException">
         /// The request would cause a service quota to be exceeded.
@@ -3851,18 +4618,18 @@ namespace Amazon.StepFunctions
 
 
         /// <summary>
-        /// Updates an existing state machine by modifying its <code>definition</code>, <code>roleArn</code>,
-        /// or <code>loggingConfiguration</code>. Running executions will continue to use the
-        /// previous <code>definition</code> and <code>roleArn</code>. You must include at least
-        /// one of <code>definition</code> or <code>roleArn</code> or you will receive a <code>MissingRequiredParameter</code>
+        /// Updates an existing state machine by modifying its <c>definition</c>, <c>roleArn</c>,
+        /// <c>loggingConfiguration</c>, or <c>EncryptionConfiguration</c>. Running executions
+        /// will continue to use the previous <c>definition</c> and <c>roleArn</c>. You must include
+        /// at least one of <c>definition</c> or <c>roleArn</c> or you will receive a <c>MissingRequiredParameter</c>
         /// error.
         /// 
         ///  
         /// <para>
         /// A qualified state machine ARN refers to a <i>Distributed Map state</i> defined within
-        /// a state machine. For example, the qualified state machine ARN <code>arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel</code>
-        /// refers to a <i>Distributed Map state</i> with a label <code>mapStateLabel</code> in
-        /// the state machine named <code>stateMachineName</code>.
+        /// a state machine. For example, the qualified state machine ARN <c>arn:partition:states:region:account-id:stateMachine:stateMachineName/mapStateLabel</c>
+        /// refers to a <i>Distributed Map state</i> with a label <c>mapStateLabel</c> in the
+        /// state machine named <c>stateMachineName</c>.
         /// </para>
         ///  
         /// <para>
@@ -3876,25 +4643,25 @@ namespace Amazon.StepFunctions
         ///  <ul> <li> 
         /// <para>
         /// The following qualified state machine ARN refers to a <i>Distributed Map state</i>
-        /// with a label <code>mapStateLabel</code> in a state machine named <code>myStateMachine</code>.
+        /// with a label <c>mapStateLabel</c> in a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</code>
+        ///  <c>arn:partition:states:region:account-id:stateMachine:myStateMachine/mapStateLabel</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
         /// If you provide a qualified state machine ARN that refers to a <i>Distributed Map state</i>,
-        /// the request fails with <code>ValidationException</code>.
+        /// the request fails with <c>ValidationException</c>.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following qualified state machine ARN refers to an alias named <code>PROD</code>.
+        /// The following qualified state machine ARN refers to an alias named <c>PROD</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine:PROD&gt;</c>
         /// 
         /// </para>
         ///  <note> 
@@ -3904,17 +4671,17 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// The following unqualified state machine ARN refers to a state machine named <code>myStateMachine</code>.
+        /// The following unqualified state machine ARN refers to a state machine named <c>myStateMachine</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</code>
+        ///  <c>arn:&lt;partition&gt;:states:&lt;region&gt;:&lt;account-id&gt;:stateMachine:&lt;myStateMachine&gt;</c>
         /// 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// After you update your state machine, you can set the <code>publish</code> parameter
-        /// to <code>true</code> in the same action to publish a new <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>.
+        /// After you update your state machine, you can set the <c>publish</c> parameter to <c>true</c>
+        /// in the same action to publish a new <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-version.html">version</a>.
         /// This way, you can opt-in to strict versioning of your state machine.
         /// </para>
         ///  <note> 
@@ -3924,10 +4691,9 @@ namespace Amazon.StepFunctions
         /// </para>
         ///  </note> <note> 
         /// <para>
-        /// All <code>StartExecution</code> calls within a few seconds use the updated <code>definition</code>
-        /// and <code>roleArn</code>. Executions started immediately after you call <code>UpdateStateMachine</code>
-        /// may use the previous state machine <code>definition</code> and <code>roleArn</code>.
-        /// 
+        /// All <c>StartExecution</c> calls within a few seconds use the updated <c>definition</c>
+        /// and <c>roleArn</c>. Executions started immediately after you call <c>UpdateStateMachine</c>
+        /// may use the previous state machine <c>definition</c> and <c>roleArn</c>. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -3940,7 +4706,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -3953,16 +4719,29 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.InvalidDefinitionException">
         /// The provided Amazon States Language definition is not valid.
         /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.InvalidEncryptionConfigurationException">
+        /// Received when <c>encryptionConfiguration</c> is specified but various conditions exist
+        /// which make the configuration invalid. For example, if <c>type</c> is set to <c>CUSTOMER_MANAGED_KMS_KEY</c>,
+        /// but <c>kmsKeyId</c> is null, or <c>kmsDataKeyReusePeriodSeconds</c> is not between
+        /// 60 and 900, or the KMS key is not symmetric or inactive.
+        /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidLoggingConfigurationException">
-        /// 
+        /// Configuration is not valid.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.InvalidTracingConfigurationException">
-        /// Your <code>tracingConfiguration</code> key does not match, or <code>enabled</code>
-        /// has not been set to <code>true</code> or <code>false</code>.
+        /// Your <c>tracingConfiguration</c> key does not match, or <c>enabled</c> has not been
+        /// set to <c>true</c> or <c>false</c>.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsAccessDeniedException">
+        /// Either your KMS key policy or API caller does not have the required permissions.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.KmsThrottlingException">
+        /// Received when KMS returns <c>ThrottlingException</c> for a KMS call that Step Functions
+        /// makes on behalf of the caller.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.MissingRequiredParameterException">
-        /// Request is missing a required parameter. This error occurs if both <code>definition</code>
-        /// and <code>roleArn</code> are not specified.
+        /// Request is missing a required parameter. This error occurs if both <c>definition</c>
+        /// and <c>roleArn</c> are not specified.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ServiceQuotaExceededException">
         /// The request would cause a service quota to be exceeded.
@@ -3998,25 +4777,24 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Updates the configuration of an existing state machine <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html">alias</a>
-        /// by modifying its <code>description</code> or <code>routingConfiguration</code>.
+        /// by modifying its <c>description</c> or <c>routingConfiguration</c>.
         /// 
         ///  
         /// <para>
-        /// You must specify at least one of the <code>description</code> or <code>routingConfiguration</code>
+        /// You must specify at least one of the <c>description</c> or <c>routingConfiguration</c>
         /// parameters to update a state machine alias.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>UpdateStateMachineAlias</code> is an idempotent API. Step Functions bases the
-        /// idempotency check on the <code>stateMachineAliasArn</code>, <code>description</code>,
-        /// and <code>routingConfiguration</code> parameters. Requests with the same parameters
-        /// return an idempotent response.
+        ///  <c>UpdateStateMachineAlias</c> is an idempotent API. Step Functions bases the idempotency
+        /// check on the <c>stateMachineAliasArn</c>, <c>description</c>, and <c>routingConfiguration</c>
+        /// parameters. Requests with the same parameters return an idempotent response.
         /// </para>
         ///  </note> <note> 
         /// <para>
         /// This operation is eventually consistent. All <a>StartExecution</a> requests made within
         /// a few seconds use the latest alias configuration. Executions started immediately after
-        /// calling <code>UpdateStateMachineAlias</code> may use the previous routing configuration.
+        /// calling <c>UpdateStateMachineAlias</c> may use the previous routing configuration.
         /// </para>
         ///  </note> 
         /// <para>
@@ -4046,7 +4824,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -4058,6 +4836,9 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ResourceNotFoundException">
         /// Could not find the referenced resource.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.StateMachineDeletingException">
+        /// The specified state machine is being deleted.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
         /// The input does not satisfy the constraints specified by an Amazon Web Services service.
@@ -4075,25 +4856,24 @@ namespace Amazon.StepFunctions
 
         /// <summary>
         /// Updates the configuration of an existing state machine <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-alias.html">alias</a>
-        /// by modifying its <code>description</code> or <code>routingConfiguration</code>.
+        /// by modifying its <c>description</c> or <c>routingConfiguration</c>.
         /// 
         ///  
         /// <para>
-        /// You must specify at least one of the <code>description</code> or <code>routingConfiguration</code>
+        /// You must specify at least one of the <c>description</c> or <c>routingConfiguration</c>
         /// parameters to update a state machine alias.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>UpdateStateMachineAlias</code> is an idempotent API. Step Functions bases the
-        /// idempotency check on the <code>stateMachineAliasArn</code>, <code>description</code>,
-        /// and <code>routingConfiguration</code> parameters. Requests with the same parameters
-        /// return an idempotent response.
+        ///  <c>UpdateStateMachineAlias</c> is an idempotent API. Step Functions bases the idempotency
+        /// check on the <c>stateMachineAliasArn</c>, <c>description</c>, and <c>routingConfiguration</c>
+        /// parameters. Requests with the same parameters return an idempotent response.
         /// </para>
         ///  </note> <note> 
         /// <para>
         /// This operation is eventually consistent. All <a>StartExecution</a> requests made within
         /// a few seconds use the latest alias configuration. Executions started immediately after
-        /// calling <code>UpdateStateMachineAlias</code> may use the previous routing configuration.
+        /// calling <c>UpdateStateMachineAlias</c> may use the previous routing configuration.
         /// </para>
         ///  </note> 
         /// <para>
@@ -4126,7 +4906,7 @@ namespace Amazon.StepFunctions
         /// <exception cref="Amazon.StepFunctions.Model.ConflictException">
         /// Updating or deleting a resource can cause an inconsistent state. This error occurs
         /// when there're concurrent requests for <a>DeleteStateMachineVersion</a>, <a>PublishStateMachineVersion</a>,
-        /// or <a>UpdateStateMachine</a> with the <code>publish</code> parameter set to <code>true</code>.
+        /// or <a>UpdateStateMachine</a> with the <c>publish</c> parameter set to <c>true</c>.
         /// 
         ///  
         /// <para>
@@ -4138,6 +4918,9 @@ namespace Amazon.StepFunctions
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ResourceNotFoundException">
         /// Could not find the referenced resource.
+        /// </exception>
+        /// <exception cref="Amazon.StepFunctions.Model.StateMachineDeletingException">
+        /// The specified state machine is being deleted.
         /// </exception>
         /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
         /// The input does not satisfy the constraints specified by an Amazon Web Services service.
@@ -4154,6 +4937,147 @@ namespace Amazon.StepFunctions
 
         #endregion
         
+        #region  ValidateStateMachineDefinition
+
+
+        /// <summary>
+        /// Validates the syntax of a state machine definition specified in <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon
+        /// States Language</a> (ASL), a JSON-based, structured language.
+        /// 
+        ///  
+        /// <para>
+        /// You can validate that a state machine definition is correct without creating a state
+        /// machine resource.
+        /// </para>
+        ///  
+        /// <para>
+        /// Suggested uses for <c>ValidateStateMachineDefinition</c>:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Integrate automated checks into your code review or Continuous Integration (CI) process
+        /// to check state machine definitions before starting deployments.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Run validation from a Git pre-commit hook to verify the definition before committing
+        /// to your source repository.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Validation will look for problems in your state machine definition and return a <b>result</b>
+        /// and a list of <b>diagnostic elements</b>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The <b>result</b> value will be <c>OK</c> when your workflow definition can be successfully
+        /// created or updated. Note the result can be <c>OK</c> even when diagnostic warnings
+        /// are present in the response. The <b>result</b> value will be <c>FAIL</c> when the
+        /// workflow definition contains errors that would prevent you from creating or updating
+        /// your state machine. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The list of <a href="https://docs.aws.amazon.com/step-functions/latest/apireference/API_ValidateStateMachineDefinitionDiagnostic.html">ValidateStateMachineDefinitionDiagnostic</a>
+        /// data elements can contain zero or more <b>WARNING</b> and/or <b>ERROR</b> elements.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The <b>ValidateStateMachineDefinition API</b> might add new diagnostics in the future,
+        /// adjust diagnostic codes, or change the message wording. Your automated processes should
+        /// only rely on the value of the <b>result</b> field value (OK, FAIL). Do <b>not</b>
+        /// rely on the exact order, count, or wording of diagnostic messages.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ValidateStateMachineDefinition service method.</param>
+        /// 
+        /// <returns>The response from the ValidateStateMachineDefinition service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
+        /// The input does not satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ValidateStateMachineDefinition">REST API Reference for ValidateStateMachineDefinition Operation</seealso>
+        public virtual ValidateStateMachineDefinitionResponse ValidateStateMachineDefinition(ValidateStateMachineDefinitionRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ValidateStateMachineDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ValidateStateMachineDefinitionResponseUnmarshaller.Instance;
+
+            return Invoke<ValidateStateMachineDefinitionResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Validates the syntax of a state machine definition specified in <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-amazon-states-language.html">Amazon
+        /// States Language</a> (ASL), a JSON-based, structured language.
+        /// 
+        ///  
+        /// <para>
+        /// You can validate that a state machine definition is correct without creating a state
+        /// machine resource.
+        /// </para>
+        ///  
+        /// <para>
+        /// Suggested uses for <c>ValidateStateMachineDefinition</c>:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Integrate automated checks into your code review or Continuous Integration (CI) process
+        /// to check state machine definitions before starting deployments.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Run validation from a Git pre-commit hook to verify the definition before committing
+        /// to your source repository.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Validation will look for problems in your state machine definition and return a <b>result</b>
+        /// and a list of <b>diagnostic elements</b>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The <b>result</b> value will be <c>OK</c> when your workflow definition can be successfully
+        /// created or updated. Note the result can be <c>OK</c> even when diagnostic warnings
+        /// are present in the response. The <b>result</b> value will be <c>FAIL</c> when the
+        /// workflow definition contains errors that would prevent you from creating or updating
+        /// your state machine. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The list of <a href="https://docs.aws.amazon.com/step-functions/latest/apireference/API_ValidateStateMachineDefinitionDiagnostic.html">ValidateStateMachineDefinitionDiagnostic</a>
+        /// data elements can contain zero or more <b>WARNING</b> and/or <b>ERROR</b> elements.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The <b>ValidateStateMachineDefinition API</b> might add new diagnostics in the future,
+        /// adjust diagnostic codes, or change the message wording. Your automated processes should
+        /// only rely on the value of the <b>result</b> field value (OK, FAIL). Do <b>not</b>
+        /// rely on the exact order, count, or wording of diagnostic messages.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ValidateStateMachineDefinition service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ValidateStateMachineDefinition service method, as returned by StepFunctions.</returns>
+        /// <exception cref="Amazon.StepFunctions.Model.ValidationException">
+        /// The input does not satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ValidateStateMachineDefinition">REST API Reference for ValidateStateMachineDefinition Operation</seealso>
+        public virtual Task<ValidateStateMachineDefinitionResponse> ValidateStateMachineDefinitionAsync(ValidateStateMachineDefinitionRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ValidateStateMachineDefinitionRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ValidateStateMachineDefinitionResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ValidateStateMachineDefinitionResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region DetermineServiceOperationEndpoint
 
         /// <summary>
@@ -4163,11 +5087,11 @@ namespace Amazon.StepFunctions
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

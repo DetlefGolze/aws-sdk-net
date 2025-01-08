@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Rekognition.Model
         private VideoJobStatus _jobStatus;
         private string _jobTag;
         private string _nextToken;
-        private List<PersonMatch> _persons = new List<PersonMatch>();
+        private List<PersonMatch> _persons = AWSConfigs.InitializeCollections ? new List<PersonMatch>() : null;
         private string _statusMessage;
         private Video _video;
         private VideoMetadata _videoMetadata;
@@ -125,10 +126,10 @@ namespace Amazon.Rekognition.Model
         /// <para>
         /// An array of persons, <a>PersonMatch</a>, in the video whose face(s) match the face(s)
         /// in an Amazon Rekognition collection. It also includes time information for when persons
-        /// are matched in the video. You specify the input collection in an initial call to <code>StartFaceSearch</code>.
-        /// Each <code>Persons</code> element includes a time the person was matched, face match
-        /// details (<code>FaceMatches</code>) for matching faces in the collection, and person
-        /// information (<code>Person</code>) for the matched person. 
+        /// are matched in the video. You specify the input collection in an initial call to <c>StartFaceSearch</c>.
+        /// Each <c>Persons</c> element includes a time the person was matched, face match details
+        /// (<c>FaceMatches</c>) for matching faces in the collection, and person information
+        /// (<c>Person</c>) for the matched person. 
         /// </para>
         /// </summary>
         public List<PersonMatch> Persons
@@ -140,13 +141,13 @@ namespace Amazon.Rekognition.Model
         // Check to see if Persons property is set
         internal bool IsSetPersons()
         {
-            return this._persons != null && this._persons.Count > 0; 
+            return this._persons != null && (this._persons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        /// If the job fails, <code>StatusMessage</code> provides a descriptive error message.
+        /// If the job fails, <c>StatusMessage</c> provides a descriptive error message.
         /// </para>
         /// </summary>
         public string StatusMessage
@@ -179,8 +180,8 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property VideoMetadata. 
         /// <para>
-        /// Information about a video that Amazon Rekognition analyzed. <code>Videometadata</code>
-        /// is returned in every page of paginated responses from a Amazon Rekognition Video operation.
+        /// Information about a video that Amazon Rekognition analyzed. <c>Videometadata</c> is
+        /// returned in every page of paginated responses from a Amazon Rekognition Video operation.
         /// 
         /// </para>
         /// </summary>

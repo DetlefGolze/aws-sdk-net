@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
     /// Specifies whether the domain should encrypt data at rest, and if so, the Key Management
-    /// Service (KMS) key to use. Can be used only to create a new domain, not update an existing
-    /// one.
+    /// Service (KMS) key to use. Can only be used when creating a new domain or enabling
+    /// encryption at rest for the first time on an existing domain. You can't modify this
+    /// parameter after it's already been specified.
     /// </summary>
     public partial class EncryptionAtRestOptions
     {
@@ -59,7 +61,7 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The KMS key ID. Takes the form <code>1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a</code>.
+        /// The KMS key ID. Takes the form <c>1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=500)]

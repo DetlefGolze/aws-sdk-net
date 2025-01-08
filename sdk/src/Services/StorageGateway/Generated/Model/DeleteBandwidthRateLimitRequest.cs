@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.StorageGateway.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>UPLOAD</code> | <code>DOWNLOAD</code> | <code>ALL</code> 
+        /// Valid Values: <c>UPLOAD</c> | <c>DOWNLOAD</c> | <c>ALL</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=25)]

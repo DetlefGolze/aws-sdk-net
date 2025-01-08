@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -38,8 +39,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Shutdown. 
         /// <para>
-        /// A <code>ShutdownEventConfiguration</code> object that specifies the Shutdown event
-        /// configuration.
+        /// A <c>ShutdownEventConfiguration</c> object that specifies the Shutdown event configuration.
         /// </para>
         /// </summary>
         public ShutdownEventConfiguration Shutdown

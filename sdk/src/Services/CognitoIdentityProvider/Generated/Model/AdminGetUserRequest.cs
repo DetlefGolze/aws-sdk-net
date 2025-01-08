@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminGetUser operation.
-    /// Gets the specified user by user name in a user pool as an administrator. Works on
-    /// any user.
+    /// Given the username, returns details about a user profile in a user pool. This operation
+    /// contributes to your monthly active user (MAU) count for the purpose of billing. You
+    /// can specify alias attributes in the <c>Username</c> parameter.
     /// 
     ///  <note> 
     /// <para>
@@ -63,7 +65,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name of the user you want to retrieve.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -82,7 +87,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool where you want to get information about the user.
+        /// The ID of the user pool where you want to get information about the user.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.PaymentCryptography.Model
         /// The value of the tag.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=256)]
+        [AWSProperty(Required=true, Min=1, Max=256)]
         public string Value
         {
             get { return this._value; }

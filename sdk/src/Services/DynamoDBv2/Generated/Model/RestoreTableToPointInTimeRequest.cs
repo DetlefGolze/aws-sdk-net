@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// Container for the parameters to the RestoreTableToPointInTime operation.
-    /// Restores the specified table to the specified point in time within <code>EarliestRestorableDateTime</code>
-    /// and <code>LatestRestorableDateTime</code>. You can restore your table to any point
-    /// in time during the last 35 days. Any number of users can execute up to 4 concurrent
-    /// restores (any type of restore) in a given account. 
+    /// Restores the specified table to the specified point in time within <c>EarliestRestorableDateTime</c>
+    /// and <c>LatestRestorableDateTime</c>. You can restore your table to any point in time
+    /// during the last 35 days. Any number of users can execute up to 50 concurrent restores
+    /// (any type of restore) in a given account. 
     /// 
     ///  
     /// <para>
-    ///  When you restore using point in time recovery, DynamoDB restores your table data
-    /// to the state based on the selected date and time (day:hour:minute:second) to a new
-    /// table. 
+    /// When you restore using point in time recovery, DynamoDB restores your table data to
+    /// the state based on the selected date and time (day:hour:minute:second) to a new table.
+    /// 
     /// </para>
     ///  
     /// <para>
-    ///  Along with data, the following are also included on the new restored table using
-    /// point in time recovery: 
+    /// Along with data, the following are also included on the new restored table using point
+    /// in time recovery: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -104,8 +105,9 @@ namespace Amazon.DynamoDBv2.Model
     public partial class RestoreTableToPointInTimeRequest : AmazonDynamoDBRequest
     {
         private BillingMode _billingModeOverride;
-        private List<GlobalSecondaryIndex> _globalSecondaryIndexOverride = new List<GlobalSecondaryIndex>();
-        private List<LocalSecondaryIndex> _localSecondaryIndexOverride = new List<LocalSecondaryIndex>();
+        private List<GlobalSecondaryIndex> _globalSecondaryIndexOverride = AWSConfigs.InitializeCollections ? new List<GlobalSecondaryIndex>() : null;
+        private List<LocalSecondaryIndex> _localSecondaryIndexOverride = AWSConfigs.InitializeCollections ? new List<LocalSecondaryIndex>() : null;
+        private OnDemandThroughput _onDemandThroughputOverride;
         private ProvisionedThroughput _provisionedThroughputOverride;
         private DateTime? _restoreDateTime;
         private string _sourceTableArn;
@@ -149,7 +151,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if GlobalSecondaryIndexOverride property is set
         internal bool IsSetGlobalSecondaryIndexOverride()
         {
-            return this._globalSecondaryIndexOverride != null && this._globalSecondaryIndexOverride.Count > 0; 
+            return this._globalSecondaryIndexOverride != null && (this._globalSecondaryIndexOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -169,7 +171,22 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if LocalSecondaryIndexOverride property is set
         internal bool IsSetLocalSecondaryIndexOverride()
         {
-            return this._localSecondaryIndexOverride != null && this._localSecondaryIndexOverride.Count > 0; 
+            return this._localSecondaryIndexOverride != null && (this._localSecondaryIndexOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughputOverride.
+        /// </summary>
+        public OnDemandThroughput OnDemandThroughputOverride
+        {
+            get { return this._onDemandThroughputOverride; }
+            set { this._onDemandThroughputOverride = value; }
+        }
+
+        // Check to see if OnDemandThroughputOverride property is set
+        internal bool IsSetOnDemandThroughputOverride()
+        {
+            return this._onDemandThroughputOverride != null;
         }
 
         /// <summary>
@@ -214,6 +231,7 @@ namespace Amazon.DynamoDBv2.Model
         /// The DynamoDB table that will be restored. This value is an Amazon Resource Name (ARN).
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
         public string SourceTableArn
         {
             get { return this._sourceTableArn; }
@@ -285,8 +303,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property UseLatestRestorableTime. 
         /// <para>
-        /// Restore the table to the latest possible time. <code>LatestRestorableDateTime</code>
-        /// is typically 5 minutes before the current time. 
+        /// Restore the table to the latest possible time. <c>LatestRestorableDateTime</c> is
+        /// typically 5 minutes before the current time. 
         /// </para>
         /// </summary>
         public bool UseLatestRestorableTime

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.Elasticsearch.Model
     public partial class StorageTypeLimit
     {
         private string _limitName;
-        private List<string> _limitValues = new List<string>();
+        private List<string> _limitValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LimitName. 
         /// <para>
-        ///  Name of storage limits that are applicable for given storage type. If <code> <a>StorageType</a>
-        /// </code> is ebs, following storage options are applicable <ol> <li>MinimumVolumeSize</li>
+        ///  Name of storage limits that are applicable for given storage type. If <c> <a>StorageType</a>
+        /// </c> is ebs, following storage options are applicable <ol> <li>MinimumVolumeSize</li>
         /// Minimum amount of volume size that is applicable for given storage type.It can be
         /// empty if it is not applicable. <li>MaximumVolumeSize</li> Maximum amount of volume
         /// size that is applicable for given storage type.It can be empty if it is not applicable.
@@ -68,7 +69,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property LimitValues. 
         /// <para>
-        ///  Values for the <code> <a>StorageTypeLimit$LimitName</a> </code> . 
+        ///  Values for the <c> <a>StorageTypeLimit$LimitName</a> </c> . 
         /// </para>
         /// </summary>
         public List<string> LimitValues
@@ -80,7 +81,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if LimitValues property is set
         internal bool IsSetLimitValues()
         {
-            return this._limitValues != null && this._limitValues.Count > 0; 
+            return this._limitValues != null && (this._limitValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

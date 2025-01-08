@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ServiceCatalog.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.ServiceCatalog.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAcceptLanguage())
@@ -73,6 +75,17 @@ namespace Amazon.ServiceCatalog.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.AcceptLanguage);
                 }
 
+                if(publicRequest.IsSetIdempotencyToken())
+                {
+                    context.Writer.WritePropertyName("IdempotencyToken");
+                    context.Writer.Write(publicRequest.IdempotencyToken);
+                }
+
+                else if(!(publicRequest.IsSetIdempotencyToken()))
+                {
+                    context.Writer.WritePropertyName("IdempotencyToken");
+                    context.Writer.Write(Guid.NewGuid().ToString());
+                }
                 if(publicRequest.IsSetProductId())
                 {
                     context.Writer.WritePropertyName("ProductId");

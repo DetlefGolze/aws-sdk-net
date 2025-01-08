@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for response returned by <code>GetPackageVersionHistory</code> operation.
+    /// Container for response returned by <c>GetPackageVersionHistory</c> operation.
     /// </summary>
     public partial class GetPackageVersionHistoryResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
         private string _packageID;
-        private List<PackageVersionHistory> _packageVersionHistoryList = new List<PackageVersionHistory>();
+        private List<PackageVersionHistory> _packageVersionHistoryList = AWSConfigs.InitializeCollections ? new List<PackageVersionHistory>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// When <c>nextToken</c> is returned, there are more results available. The value of
+        /// <c>nextToken</c> is a unique pagination token for each page. Send the request again
+        /// using the returned token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -90,7 +91,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if PackageVersionHistoryList property is set
         internal bool IsSetPackageVersionHistoryList()
         {
-            return this._packageVersionHistoryList != null && this._packageVersionHistoryList.Count > 0; 
+            return this._packageVersionHistoryList != null && (this._packageVersionHistoryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.Pipes.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Environment variables cannot start with "<code>Batch</code>". This naming convention
-    /// is reserved for variables that Batch sets.
+    /// Environment variables cannot start with "<c>Batch</c>". This naming convention is
+    /// reserved for variables that Batch sets.
     /// </para>
     ///  </note>
     /// </summary>

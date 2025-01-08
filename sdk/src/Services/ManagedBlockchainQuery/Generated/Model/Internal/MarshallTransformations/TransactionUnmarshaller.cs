@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Transaction Unmarshall(JsonUnmarshallerContext context)
         {
+            Transaction unmarshalledObject = new Transaction();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Transaction unmarshalledObject = new Transaction();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.BlockNumber = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("confirmationStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ConfirmationStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("contractAddress", targetDepth))
@@ -92,6 +100,12 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.EffectiveGasPrice = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("executionStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ExecutionStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("from", targetDepth))
@@ -136,12 +150,6 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
                     unmarshalledObject.SignatureV = unmarshaller.Unmarshall(context);
                     continue;
                 }
-                if (context.TestExpression("status", targetDepth))
-                {
-                    var unmarshaller = StringUnmarshaller.Instance;
-                    unmarshalledObject.Status = unmarshaller.Unmarshall(context);
-                    continue;
-                }
                 if (context.TestExpression("to", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -179,7 +187,6 @@ namespace Amazon.ManagedBlockchainQuery.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

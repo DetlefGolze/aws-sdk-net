@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// An array containing the properties of the Transfer Family user for the <code>ServerID</code>
+        /// An array containing the properties of the Transfer Family user for the <c>ServerID</c>
         /// value that you specified.
         /// </para>
         /// </summary>

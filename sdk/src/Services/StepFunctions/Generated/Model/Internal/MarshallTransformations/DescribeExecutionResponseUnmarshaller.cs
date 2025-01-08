@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -105,6 +106,30 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                     response.OutputDetails = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("redriveCount", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    response.RedriveCount = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("redriveDate", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    response.RedriveDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("redriveStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.RedriveStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("redriveStatusReason", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.RedriveStatusReason = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("startDate", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -177,6 +202,18 @@ namespace Amazon.StepFunctions.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidArn"))
                 {
                     return InvalidArnExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("KmsAccessDeniedException"))
+                {
+                    return KmsAccessDeniedExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("KmsInvalidStateException"))
+                {
+                    return KmsInvalidStateExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("KmsThrottlingException"))
+                {
+                    return KmsThrottlingExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
             }
             return new AmazonStepFunctionsException(errorResponse.Message, errorResponse.InnerException, errorResponse.Type, errorResponse.Code, errorResponse.RequestId, errorResponse.StatusCode);

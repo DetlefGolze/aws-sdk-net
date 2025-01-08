@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -39,6 +40,21 @@ namespace Amazon.Lambda.Model
         /// Gets and sets the property Destination. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the destination resource.
+        /// </para>
+        ///  
+        /// <para>
+        /// To retain records of unsuccessful <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">asynchronous
+        /// invocations</a>, you can configure an Amazon SNS topic, Amazon SQS queue, Amazon S3
+        /// bucket, Lambda function, or Amazon EventBridge event bus as the destination.
+        /// </para>
+        ///  
+        /// <para>
+        /// To retain records of failed invocations from <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html">Kinesis</a>,
+        /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html">DynamoDB</a>,
+        /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-smaa-onfailure-destination">self-managed
+        /// Kafka</a> or <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-onfailure-destination">Amazon
+        /// MSK</a>, you can configure an Amazon SNS topic, Amazon SQS queue, or Amazon S3 bucket
+        /// as the destination.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=350)]

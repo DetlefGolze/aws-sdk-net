@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
-    /// Represents the account settings return values from the <code>GetAccountSettings</code>
-    /// request.
+    /// Represents the account settings return values from the <c>GetAccountSettings</c> request.
     /// </summary>
     public partial class GetAccountSettingsResponse : AmazonWebServiceResponse
     {

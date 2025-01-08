@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -61,9 +62,9 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property Expression. 
         /// <para>
-        /// The expression of the query. For example, <code>SELECT resourceId, resourceType, supplementaryConfiguration.BucketVersioningConfiguration.status
+        /// The expression of the query. For example, <c>SELECT resourceId, resourceType, supplementaryConfiguration.BucketVersioningConfiguration.status
         /// WHERE resourceType = 'AWS::S3::Bucket' AND supplementaryConfiguration.BucketVersioningConfiguration.status
-        /// = 'Off'.</code> 
+        /// = 'Off'.</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]

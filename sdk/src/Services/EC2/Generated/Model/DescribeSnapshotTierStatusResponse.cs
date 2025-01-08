@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeSnapshotTierStatusResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SnapshotTierStatus> _snapshotTierStatuses = new List<SnapshotTierStatus>();
+        private List<SnapshotTierStatus> _snapshotTierStatuses = AWSConfigs.InitializeCollections ? new List<SnapshotTierStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if SnapshotTierStatuses property is set
         internal bool IsSetSnapshotTierStatuses()
         {
-            return this._snapshotTierStatuses != null && this._snapshotTierStatuses.Count > 0; 
+            return this._snapshotTierStatuses != null && (this._snapshotTierStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,8 +34,93 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class SpaceSettings
     {
+        private AppType _appType;
+        private SpaceCodeEditorAppSettings _codeEditorAppSettings;
+        private List<CustomFileSystem> _customFileSystems = AWSConfigs.InitializeCollections ? new List<CustomFileSystem>() : null;
+        private SpaceJupyterLabAppSettings _jupyterLabAppSettings;
         private JupyterServerAppSettings _jupyterServerAppSettings;
         private KernelGatewayAppSettings _kernelGatewayAppSettings;
+        private SpaceStorageSettings _spaceStorageSettings;
+
+        /// <summary>
+        /// Gets and sets the property AppType. 
+        /// <para>
+        /// The type of app created within the space.
+        /// </para>
+        ///  
+        /// <para>
+        /// If using the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateSpace.html">
+        /// UpdateSpace</a> API, you can't change the app type of your space by specifying a different
+        /// value for this field.
+        /// </para>
+        /// </summary>
+        public AppType AppType
+        {
+            get { return this._appType; }
+            set { this._appType = value; }
+        }
+
+        // Check to see if AppType property is set
+        internal bool IsSetAppType()
+        {
+            return this._appType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CodeEditorAppSettings. 
+        /// <para>
+        /// The Code Editor application settings.
+        /// </para>
+        /// </summary>
+        public SpaceCodeEditorAppSettings CodeEditorAppSettings
+        {
+            get { return this._codeEditorAppSettings; }
+            set { this._codeEditorAppSettings = value; }
+        }
+
+        // Check to see if CodeEditorAppSettings property is set
+        internal bool IsSetCodeEditorAppSettings()
+        {
+            return this._codeEditorAppSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomFileSystems. 
+        /// <para>
+        /// A file system, created by you, that you assign to a space for an Amazon SageMaker
+        /// AI Domain. Permitted users can access this file system in Amazon SageMaker AI Studio.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=5)]
+        public List<CustomFileSystem> CustomFileSystems
+        {
+            get { return this._customFileSystems; }
+            set { this._customFileSystems = value; }
+        }
+
+        // Check to see if CustomFileSystems property is set
+        internal bool IsSetCustomFileSystems()
+        {
+            return this._customFileSystems != null && (this._customFileSystems.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property JupyterLabAppSettings. 
+        /// <para>
+        /// The settings for the JupyterLab application.
+        /// </para>
+        /// </summary>
+        public SpaceJupyterLabAppSettings JupyterLabAppSettings
+        {
+            get { return this._jupyterLabAppSettings; }
+            set { this._jupyterLabAppSettings = value; }
+        }
+
+        // Check to see if JupyterLabAppSettings property is set
+        internal bool IsSetJupyterLabAppSettings()
+        {
+            return this._jupyterLabAppSettings != null;
+        }
 
         /// <summary>
         /// Gets and sets the property JupyterServerAppSettings.
@@ -64,6 +150,24 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetKernelGatewayAppSettings()
         {
             return this._kernelGatewayAppSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SpaceStorageSettings. 
+        /// <para>
+        /// The storage settings for a space.
+        /// </para>
+        /// </summary>
+        public SpaceStorageSettings SpaceStorageSettings
+        {
+            get { return this._spaceStorageSettings; }
+            set { this._spaceStorageSettings = value; }
+        }
+
+        // Check to see if SpaceStorageSettings property is set
+        internal bool IsSetSpaceStorageSettings()
+        {
+            return this._spaceStorageSettings != null;
         }
 
     }

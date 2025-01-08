@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Glue.Model
     public partial class FindMatchesMetrics
     {
         private double? _areaUnderPRCurve;
-        private List<ColumnImportance> _columnImportances = new List<ColumnImportance>();
+        private List<ColumnImportance> _columnImportances = AWSConfigs.InitializeCollections ? new List<ColumnImportance>() : null;
         private ConfusionMatrix _confusionMatrix;
         private double? _f1;
         private double? _precision;
@@ -73,7 +74,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property ColumnImportances. 
         /// <para>
-        /// A list of <code>ColumnImportance</code> structures containing column importance metrics,
+        /// A list of <c>ColumnImportance</c> structures containing column importance metrics,
         /// sorted in order of descending importance.
         /// </para>
         /// </summary>
@@ -87,7 +88,7 @@ namespace Amazon.Glue.Model
         // Check to see if ColumnImportances property is set
         internal bool IsSetColumnImportances()
         {
-            return this._columnImportances != null && this._columnImportances.Count > 0; 
+            return this._columnImportances != null && (this._columnImportances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

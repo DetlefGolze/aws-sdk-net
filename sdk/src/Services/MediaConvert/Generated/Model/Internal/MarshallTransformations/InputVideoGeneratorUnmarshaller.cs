@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,26 +53,50 @@ namespace Amazon.MediaConvert.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public InputVideoGenerator Unmarshall(JsonUnmarshallerContext context)
         {
+            InputVideoGenerator unmarshalledObject = new InputVideoGenerator();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            InputVideoGenerator unmarshalledObject = new InputVideoGenerator();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("channels", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.Channels = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("duration", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.Duration = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("framerateDenominator", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.FramerateDenominator = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("framerateNumerator", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.FramerateNumerator = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("sampleRate", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.SampleRate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

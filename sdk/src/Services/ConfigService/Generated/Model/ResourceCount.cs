@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The resource type (for example, <code>"AWS::EC2::Instance"</code>).
+        /// The resource type (for example, <c>"AWS::EC2::Instance"</c>).
         /// </para>
         /// </summary>
         public ResourceType ResourceType

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.EntityResolution.Model
     /// Assigns one or more tags (key-value pairs) to the specified Entity Resolution resource.
     /// Tags can help you organize and categorize your resources. You can also use them to
     /// scope user permissions by granting a user permission to access or change only resources
-    /// with certain tag values. In Entity Resolution, <code>SchemaMapping</code> and <code>MatchingWorkflow</code>
+    /// with certain tag values. In Entity Resolution, <c>SchemaMapping</c> and <c>MatchingWorkflow</c>
     /// can be tagged. Tags don't have any semantic meaning to Amazon Web Services and are
-    /// interpreted strictly as strings of characters. You can use the <code>TagResource</code>
+    /// interpreted strictly as strings of characters. You can use the <c>TagResource</c>
     /// action with a resource that already has tags. If you specify a new tag key, this tag
     /// is appended to the list of tags associated with the resource. If you specify a tag
     /// key that is already associated with the resource, the new tag value that you specify
@@ -44,7 +45,7 @@ namespace Amazon.EntityResolution.Model
     public partial class TagResourceRequest : AmazonEntityResolutionRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -81,7 +82,7 @@ namespace Amazon.EntityResolution.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

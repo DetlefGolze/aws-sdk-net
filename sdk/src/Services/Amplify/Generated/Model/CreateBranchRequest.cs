@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.Amplify.Model
     public partial class CreateBranchRequest : AmazonAmplifyRequest
     {
         private string _appId;
+        private Backend _backend;
         private string _backendEnvironmentArn;
         private string _basicAuthCredentials;
         private string _branchName;
@@ -46,11 +48,11 @@ namespace Amazon.Amplify.Model
         private bool? _enableNotification;
         private bool? _enablePerformanceMode;
         private bool? _enablePullRequestPreview;
-        private Dictionary<string, string> _environmentVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _environmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _framework;
         private string _pullRequestEnvironmentName;
         private Stage _stage;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _ttl;
 
         /// <summary>
@@ -73,10 +75,40 @@ namespace Amazon.Amplify.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Backend. 
+        /// <para>
+        /// The backend for a <c>Branch</c> of an Amplify app. Use for a backend created from
+        /// an CloudFormation stack.
+        /// </para>
+        ///  
+        /// <para>
+        /// This field is available to Amplify Gen 2 apps only. When you deploy an application
+        /// with Amplify Gen 2, you provision the app's backend infrastructure using Typescript
+        /// code.
+        /// </para>
+        /// </summary>
+        public Backend Backend
+        {
+            get { return this._backend; }
+            set { this._backend = value; }
+        }
+
+        // Check to see if Backend property is set
+        internal bool IsSetBackend()
+        {
+            return this._backend != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property BackendEnvironmentArn. 
         /// <para>
-        ///  The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify
+        /// The Amazon Resource Name (ARN) for a backend environment that is part of a Gen 1 Amplify
         /// app. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This field is available to Amplify Gen 1 apps only where the backend is created using
+        /// Amplify Studio or the Amplify command line interface (CLI).
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000)]
@@ -96,7 +128,7 @@ namespace Amazon.Amplify.Model
         /// Gets and sets the property BasicAuthCredentials. 
         /// <para>
         ///  The basic authorization credentials for the branch. You must base64-encode the authorization
-        /// credentials and provide them in the format <code>user:password</code>.
+        /// credentials and provide them in the format <c>user:password</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Max=2000)]
@@ -115,7 +147,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property BranchName. 
         /// <para>
-        ///  The name for the branch. 
+        /// The name for the branch. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -153,7 +185,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        ///  The description for the branch. 
+        /// The description for the branch. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=1000)]
@@ -299,7 +331,7 @@ namespace Amazon.Amplify.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -343,7 +375,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property Stage. 
         /// <para>
-        ///  Describes the current stage for the branch. 
+        /// Describes the current stage for the branch. 
         /// </para>
         /// </summary>
         public Stage Stage
@@ -374,7 +406,7 @@ namespace Amazon.Amplify.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

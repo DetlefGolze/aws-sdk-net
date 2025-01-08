@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateGlobalReplicationGroup operation.
-    /// Global Datastore for Redis offers fully managed, fast, reliable and secure cross-region
-    /// replication. Using Global Datastore for Redis, you can create cross-region read replica
-    /// clusters for ElastiCache for Redis to enable low-latency reads and disaster recovery
-    /// across regions. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastore.html">Replication
+    /// Global Datastore offers fully managed, fast, reliable and secure cross-region replication.
+    /// Using Global Datastore with Valkey or Redis OSS, you can create cross-region read
+    /// replica clusters for ElastiCache to enable low-latency reads and disaster recovery
+    /// across regions. For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Redis-Global-Datastore.html">Replication
     /// Across Regions Using Global Datastore</a>. 
     /// 
     ///  <ul> <li> 
@@ -84,7 +85,7 @@ namespace Amazon.ElastiCache.Model
         ///  
         /// <para>
         /// For a full list of Amazon Regions and their respective Global datastore iD prefixes,
-        /// see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores-CLI.html">Using
+        /// see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Redis-Global-Datastores-CLI.html">Using
         /// the Amazon CLI with Global datastores </a>.
         /// </para>
         /// </summary>

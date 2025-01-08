@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -35,19 +36,33 @@ namespace Amazon.Neptunedata.Model
     ///  
     /// <para>
     /// With the Neptune Streams feature, you can generate a complete sequence of change-log
-    /// entries that record every change made to your graph data as it happens. <code>GetSparqlStream</code>
+    /// entries that record every change made to your graph data as it happens. <c>GetSparqlStream</c>
     /// lets you collect these change-log entries for an RDF graph.
     /// </para>
     ///  
     /// <para>
     /// The Neptune streams feature needs to be enabled on your Neptune DBcluster. To enable
     /// streams, set the <a href="https://docs.aws.amazon.com/neptune/latest/userguide/parameters.html#parameters-db-cluster-parameters-neptune_streams">neptune_streams</a>
-    /// DB cluster parameter to <code>1</code>.
+    /// DB cluster parameter to <c>1</c>.
     /// </para>
     ///  
     /// <para>
     /// See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/streams.html">Capturing
     /// graph changes in real time using Neptune streams</a>.
+    /// </para>
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#getstreamrecords">neptune-db:GetStreamRecords</a>
+    /// IAM action in that cluster.
+    /// </para>
+    ///  
+    /// <para>
+    /// Note that the <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html#iam-neptune-condition-keys">neptune-db:QueryLanguage:Sparql</a>
+    /// IAM condition key can be used in the policy document to restrict the use of SPARQL
+    /// queries (see <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-data-condition-keys.html">Condition
+    /// keys available in Neptune IAM data-access policy statements</a>).
     /// </para>
     /// </summary>
     public partial class GetSparqlStreamRequest : AmazonNeptunedataRequest
@@ -62,9 +77,8 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property CommitNum. 
         /// <para>
         /// The commit number of the starting record to read from the change-log stream. This
-        /// parameter is required when <code>iteratorType</code> is<code>AT_SEQUENCE_NUMBER</code>
-        /// or <code>AFTER_SEQUENCE_NUMBER</code>, and ignored when <code>iteratorType</code>
-        /// is <code>TRIM_HORIZON</code> or <code>LATEST</code>.
+        /// parameter is required when <c>iteratorType</c> is<c>AT_SEQUENCE_NUMBER</c> or <c>AFTER_SEQUENCE_NUMBER</c>,
+        /// and ignored when <c>iteratorType</c> is <c>TRIM_HORIZON</c> or <c>LATEST</c>.
         /// </para>
         /// </summary>
         public long CommitNum
@@ -94,7 +108,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if Encoding property is set
         internal bool IsSetEncoding()
         {
-            return this._encoding != null;
+            return !string.IsNullOrEmpty(this._encoding);
         }
 
         /// <summary>
@@ -104,27 +118,26 @@ namespace Amazon.Neptunedata.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AT_SEQUENCE_NUMBER</code>   –   Indicates that reading should start from the
-        /// event sequence number specified jointly by the <code>commitNum</code> and <code>opNum</code>
+        ///  <c>AT_SEQUENCE_NUMBER</c>   –   Indicates that reading should start from the event
+        /// sequence number specified jointly by the <c>commitNum</c> and <c>opNum</c> parameters.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AFTER_SEQUENCE_NUMBER</c>   –   Indicates that reading should start right after
+        /// the event sequence number specified jointly by the <c>commitNum</c> and <c>opNum</c>
         /// parameters.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AFTER_SEQUENCE_NUMBER</code>   –   Indicates that reading should start right
-        /// after the event sequence number specified jointly by the <code>commitNum</code> and
-        /// <code>opNum</code> parameters.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>TRIM_HORIZON</code>   –   Indicates that reading should start at the last untrimmed
+        ///  <c>TRIM_HORIZON</c>   –   Indicates that reading should start at the last untrimmed
         /// record in the system, which is the oldest unexpired (not yet deleted) record in the
         /// change-log stream.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LATEST</code>   –   Indicates that reading should start at the most recent
-        /// record in the system, which is the latest unexpired (not yet deleted) record in the
-        /// change-log stream.
+        ///  <c>LATEST</c>   –   Indicates that reading should start at the most recent record
+        /// in the system, which is the latest unexpired (not yet deleted) record in the change-log
+        /// stream.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -145,12 +158,12 @@ namespace Amazon.Neptunedata.Model
         /// <para>
         /// Specifies the maximum number of records to return. There is also a size limit of 10
         /// MB on the response that can't be modified and that takes precedence over the number
-        /// of records specified in the <code>limit</code> parameter. The response does include
-        /// a threshold-breaching record if the 10 MB limit was reached.
+        /// of records specified in the <c>limit</c> parameter. The response does include a threshold-breaching
+        /// record if the 10 MB limit was reached.
         /// </para>
         ///  
         /// <para>
-        /// The range for <code>limit</code> is 1 to 100,000, with a default of 10.
+        /// The range for <c>limit</c> is 1 to 100,000, with a default of 10.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100000)]
@@ -170,7 +183,7 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property OpNum. 
         /// <para>
         /// The operation sequence number within the specified commit to start reading from in
-        /// the change-log stream data. The default is <code>1</code>.
+        /// the change-log stream data. The default is <c>1</c>.
         /// </para>
         /// </summary>
         public long OpNum

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
     /// The specified repository contains images. To delete a repository that contains images,
-    /// you must force the deletion with the <code>force</code> parameter.
+    /// you must force the deletion with the <c>force</c> parameter.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

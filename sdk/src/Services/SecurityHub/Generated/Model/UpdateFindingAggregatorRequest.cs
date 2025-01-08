@@ -26,30 +26,36 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateFindingAggregator operation.
-    /// Updates the finding aggregation configuration. Used to update the Region linking mode
-    /// and the list of included or excluded Regions. You cannot use <code>UpdateFindingAggregator</code>
-    /// to change the aggregation Region.
-    /// 
+    /// <note> 
+    /// <para>
+    /// The <i>aggregation Region</i> is now called the <i>home Region</i>.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Updates cross-Region aggregation settings. You can use this operation to update the
+    /// Region linking mode and the list of included or excluded Amazon Web Services Regions.
+    /// However, you can't use this operation to change the home Region.
+    /// </para>
     ///  
     /// <para>
-    /// You must run <code>UpdateFindingAggregator</code> from the current aggregation Region.
-    /// 
+    /// You can invoke this operation from the current home Region only. 
     /// </para>
     /// </summary>
     public partial class UpdateFindingAggregatorRequest : AmazonSecurityHubRequest
     {
         private string _findingAggregatorArn;
         private string _regionLinkingMode;
-        private List<string> _regions = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FindingAggregatorArn. 
         /// <para>
-        /// The ARN of the finding aggregator. To obtain the ARN, use <code>ListFindingAggregators</code>.
+        /// The ARN of the finding aggregator. To obtain the ARN, use <c>ListFindingAggregators</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -83,24 +89,27 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ALL_REGIONS</code> - Indicates to aggregate findings from all of the Regions
-        /// where Security Hub is enabled. When you choose this option, Security Hub also automatically
-        /// aggregates findings from new Regions as Security Hub supports them and you opt into
-        /// them. 
+        ///  <c>ALL_REGIONS</c> - Aggregates findings from all of the Regions where Security Hub
+        /// is enabled. When you choose this option, Security Hub also automatically aggregates
+        /// findings from new Regions as Security Hub supports them and you opt into them. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL_REGIONS_EXCEPT_SPECIFIED</code> - Indicates to aggregate findings from
-        /// all of the Regions where Security Hub is enabled, except for the Regions listed in
-        /// the <code>Regions</code> parameter. When you choose this option, Security Hub also
-        /// automatically aggregates findings from new Regions as Security Hub supports them and
-        /// you opt into them. 
+        ///  <c>ALL_REGIONS_EXCEPT_SPECIFIED</c> - Aggregates findings from all of the Regions
+        /// where Security Hub is enabled, except for the Regions listed in the <c>Regions</c>
+        /// parameter. When you choose this option, Security Hub also automatically aggregates
+        /// findings from new Regions as Security Hub supports them and you opt into them. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SPECIFIED_REGIONS</code> - Indicates to aggregate findings only from the Regions
-        /// listed in the <code>Regions</code> parameter. Security Hub does not automatically
-        /// aggregate findings from new Regions. 
+        ///  <c>SPECIFIED_REGIONS</c> - Aggregates findings only from the Regions listed in the
+        /// <c>Regions</c> parameter. Security Hub does not automatically aggregate findings from
+        /// new Regions. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>NO_REGIONS</c> - Aggregates no data because no Regions are selected as linked
+        /// Regions. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -120,14 +129,19 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Regions. 
         /// <para>
-        /// If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then
-        /// this is a space-separated list of Regions that do not aggregate findings to the aggregation
+        /// If <c>RegionLinkingMode</c> is <c>ALL_REGIONS_EXCEPT_SPECIFIED</c>, then this is a
+        /// space-separated list of Regions that don't replicate and send findings to the home
         /// Region.
         /// </para>
         ///  
         /// <para>
-        /// If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is
-        /// a space-separated list of Regions that do aggregate findings to the aggregation Region.
+        /// If <c>RegionLinkingMode</c> is <c>SPECIFIED_REGIONS</c>, then this is a space-separated
+        /// list of Regions that do replicate and send findings to the home Region.
+        /// </para>
+        ///  
+        /// <para>
+        /// An <c>InvalidInputException</c> error results if you populate this field while <c>RegionLinkingMode</c>
+        /// is <c>NO_REGIONS</c>.
         /// </para>
         /// </summary>
         public List<string> Regions
@@ -139,7 +153,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

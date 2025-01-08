@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// Determines whether the locale is enabled for the bot. If the value is <code>false</code>,
+        /// Determines whether the locale is enabled for the bot. If the value is <c>false</c>,
         /// the locale isn't available for use.
         /// </para>
         /// </summary>

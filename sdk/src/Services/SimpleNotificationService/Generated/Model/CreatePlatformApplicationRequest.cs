@@ -26,73 +26,81 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
     /// Container for the parameters to the CreatePlatformApplication operation.
     /// Creates a platform application object for one of the supported push notification services,
     /// such as APNS and GCM (Firebase Cloud Messaging), to which devices and mobile apps
-    /// may register. You must specify <code>PlatformPrincipal</code> and <code>PlatformCredential</code>
-    /// attributes when using the <code>CreatePlatformApplication</code> action.
+    /// may register. You must specify <c>PlatformPrincipal</c> and <c>PlatformCredential</c>
+    /// attributes when using the <c>CreatePlatformApplication</c> action.
     /// 
     ///  
     /// <para>
-    ///  <code>PlatformPrincipal</code> and <code>PlatformCredential</code> are received from
-    /// the notification service.
+    ///  <c>PlatformPrincipal</c> and <c>PlatformCredential</c> are received from the notification
+    /// service.
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// For <code>ADM</code>, <code>PlatformPrincipal</code> is <code>client id</code> and
-    /// <code>PlatformCredential</code> is <code>client secret</code>.
+    /// For ADM, <c>PlatformPrincipal</c> is <c>client id</c> and <c>PlatformCredential</c>
+    /// is <c>client secret</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For <code>Baidu</code>, <code>PlatformPrincipal</code> is <code>API key</code> and
-    /// <code>PlatformCredential</code> is <code>secret key</code>.
+    /// For APNS and <c>APNS_SANDBOX</c> using certificate credentials, <c>PlatformPrincipal</c>
+    /// is <c>SSL certificate</c> and <c>PlatformCredential</c> is <c>private key</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For <code>APNS</code> and <code>APNS_SANDBOX</code> using certificate credentials,
-    /// <code>PlatformPrincipal</code> is <code>SSL certificate</code> and <code>PlatformCredential</code>
-    /// is <code>private key</code>.
+    /// For APNS and <c>APNS_SANDBOX</c> using token credentials, <c>PlatformPrincipal</c>
+    /// is <c>signing key ID</c> and <c>PlatformCredential</c> is <c>signing key</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For <code>APNS</code> and <code>APNS_SANDBOX</code> using token credentials, <code>PlatformPrincipal</code>
-    /// is <code>signing key ID</code> and <code>PlatformCredential</code> is <code>signing
-    /// key</code>.
+    /// For Baidu, <c>PlatformPrincipal</c> is <c>API key</c> and <c>PlatformCredential</c>
+    /// is <c>secret key</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For <code>GCM</code> (Firebase Cloud Messaging), there is no <code>PlatformPrincipal</code>
-    /// and the <code>PlatformCredential</code> is <code>API key</code>.
+    /// For GCM (Firebase Cloud Messaging) using key credentials, there is no <c>PlatformPrincipal</c>.
+    /// The <c>PlatformCredential</c> is <c>API key</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For <code>MPNS</code>, <code>PlatformPrincipal</code> is <code>TLS certificate</code>
-    /// and <code>PlatformCredential</code> is <code>private key</code>.
+    /// For GCM (Firebase Cloud Messaging) using token credentials, there is no <c>PlatformPrincipal</c>.
+    /// The <c>PlatformCredential</c> is a JSON formatted private key file. When using the
+    /// Amazon Web Services CLI, the file must be in string format and special characters
+    /// must be ignored. To format the file correctly, Amazon SNS recommends using the following
+    /// command: <c>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// For <code>WNS</code>, <code>PlatformPrincipal</code> is <code>Package Security Identifier</code>
-    /// and <code>PlatformCredential</code> is <code>secret key</code>.
+    /// For MPNS, <c>PlatformPrincipal</c> is <c>TLS certificate</c> and <c>PlatformCredential</c>
+    /// is <c>private key</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For WNS, <c>PlatformPrincipal</c> is <c>Package Security Identifier</c> and <c>PlatformCredential</c>
+    /// is <c>secret key</c>.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// You can use the returned <code>PlatformApplicationArn</code> as an attribute for the
-    /// <code>CreatePlatformEndpoint</code> action.
+    /// You can use the returned <c>PlatformApplicationArn</c> as an attribute for the <c>CreatePlatformEndpoint</c>
+    /// action.
     /// </para>
     /// </summary>
     public partial class CreatePlatformApplicationRequest : AmazonSimpleNotificationServiceRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _name;
         private string _platform;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
-        /// For a list of attributes, see <a href="https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html">SetPlatformApplicationAttributes</a>.
+        /// For a list of attributes, see <a href="https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html">
+        /// <c>SetPlatformApplicationAttributes</c> </a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -105,7 +113,7 @@ namespace Amazon.SimpleNotificationService.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

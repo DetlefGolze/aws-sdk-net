@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     response.DataCaptureConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("EnableNetworkIsolation", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    response.EnableNetworkIsolation = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("EndpointConfigArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -79,6 +86,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.EndpointConfigName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ExecutionRoleArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ExecutionRoleArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ExplainerConfig", targetDepth))
@@ -103,6 +116,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<ProductionVariant, ProductionVariantUnmarshaller>(ProductionVariantUnmarshaller.Instance);
                     response.ShadowProductionVariants = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("VpcConfig", targetDepth))
+                {
+                    var unmarshaller = VpcConfigUnmarshaller.Instance;
+                    response.VpcConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

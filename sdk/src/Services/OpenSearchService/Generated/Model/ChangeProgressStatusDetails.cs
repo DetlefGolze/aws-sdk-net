@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -34,9 +35,12 @@ namespace Amazon.OpenSearchService.Model
     public partial class ChangeProgressStatusDetails
     {
         private string _changeId;
-        private List<ChangeProgressStage> _changeProgressStages = new List<ChangeProgressStage>();
-        private List<string> _completedProperties = new List<string>();
-        private List<string> _pendingProperties = new List<string>();
+        private List<ChangeProgressStage> _changeProgressStages = AWSConfigs.InitializeCollections ? new List<ChangeProgressStage>() : null;
+        private List<string> _completedProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private ConfigChangeStatus _configChangeStatus;
+        private InitiatedBy _initiatedBy;
+        private DateTime? _lastUpdatedTime;
+        private List<string> _pendingProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _startTime;
         private OverallChangeStatus _status;
         private int? _totalNumberOfStages;
@@ -76,7 +80,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if ChangeProgressStages property is set
         internal bool IsSetChangeProgressStages()
         {
-            return this._changeProgressStages != null && this._changeProgressStages.Count > 0; 
+            return this._changeProgressStages != null && (this._changeProgressStages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -94,7 +98,61 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if CompletedProperties property is set
         internal bool IsSetCompletedProperties()
         {
-            return this._completedProperties != null && this._completedProperties.Count > 0; 
+            return this._completedProperties != null && (this._completedProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConfigChangeStatus. 
+        /// <para>
+        /// The current status of the configuration change.
+        /// </para>
+        /// </summary>
+        public ConfigChangeStatus ConfigChangeStatus
+        {
+            get { return this._configChangeStatus; }
+            set { this._configChangeStatus = value; }
+        }
+
+        // Check to see if ConfigChangeStatus property is set
+        internal bool IsSetConfigChangeStatus()
+        {
+            return this._configChangeStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InitiatedBy. 
+        /// <para>
+        /// The IAM principal who initiated the configuration change.
+        /// </para>
+        /// </summary>
+        public InitiatedBy InitiatedBy
+        {
+            get { return this._initiatedBy; }
+            set { this._initiatedBy = value; }
+        }
+
+        // Check to see if InitiatedBy property is set
+        internal bool IsSetInitiatedBy()
+        {
+            return this._initiatedBy != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastUpdatedTime. 
+        /// <para>
+        /// The last time that the status of the configuration change was updated.
+        /// </para>
+        /// </summary>
+        public DateTime LastUpdatedTime
+        {
+            get { return this._lastUpdatedTime.GetValueOrDefault(); }
+            set { this._lastUpdatedTime = value; }
+        }
+
+        // Check to see if LastUpdatedTime property is set
+        internal bool IsSetLastUpdatedTime()
+        {
+            return this._lastUpdatedTime.HasValue; 
         }
 
         /// <summary>
@@ -112,7 +170,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if PendingProperties property is set
         internal bool IsSetPendingProperties()
         {
-            return this._pendingProperties != null && this._pendingProperties.Count > 0; 
+            return this._pendingProperties != null && (this._pendingProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

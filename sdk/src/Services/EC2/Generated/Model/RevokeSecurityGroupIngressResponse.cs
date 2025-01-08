@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,12 +35,13 @@ namespace Amazon.EC2.Model
     public partial class RevokeSecurityGroupIngressResponse : AmazonWebServiceResponse
     {
         private bool? _return;
-        private List<IpPermission> _unknownIpPermissions = new List<IpPermission>();
+        private List<RevokedSecurityGroupRule> _revokedSecurityGroupRules = AWSConfigs.InitializeCollections ? new List<RevokedSecurityGroupRule>() : null;
+        private List<IpPermission> _unknownIpPermissions = AWSConfigs.InitializeCollections ? new List<IpPermission>() : null;
 
         /// <summary>
         /// Gets and sets the property Return. 
         /// <para>
-        /// Returns <code>true</code> if the request succeeds; otherwise, returns an error.
+        /// Returns <c>true</c> if the request succeeds; otherwise, returns an error.
         /// </para>
         /// </summary>
         public bool Return
@@ -55,9 +57,27 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RevokedSecurityGroupRules. 
+        /// <para>
+        /// Details about the revoked security group rules.
+        /// </para>
+        /// </summary>
+        public List<RevokedSecurityGroupRule> RevokedSecurityGroupRules
+        {
+            get { return this._revokedSecurityGroupRules; }
+            set { this._revokedSecurityGroupRules = value; }
+        }
+
+        // Check to see if RevokedSecurityGroupRules property is set
+        internal bool IsSetRevokedSecurityGroupRules()
+        {
+            return this._revokedSecurityGroupRules != null && (this._revokedSecurityGroupRules.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property UnknownIpPermissions. 
         /// <para>
-        /// The inbound rules that were unknown to the service. In some cases, <code>unknownIpPermissionSet</code>
+        /// The inbound rules that were unknown to the service. In some cases, <c>unknownIpPermissionSet</c>
         /// might be in a different format from the request parameter. 
         /// </para>
         /// </summary>
@@ -70,7 +90,7 @@ namespace Amazon.EC2.Model
         // Check to see if UnknownIpPermissions property is set
         internal bool IsSetUnknownIpPermissions()
         {
-            return this._unknownIpPermissions != null && this._unknownIpPermissions.Count > 0; 
+            return this._unknownIpPermissions != null && (this._unknownIpPermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

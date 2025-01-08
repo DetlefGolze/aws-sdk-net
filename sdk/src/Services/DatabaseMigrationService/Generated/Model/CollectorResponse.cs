@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -102,7 +103,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property CollectorVersion. 
         /// <para>
         /// The version of your Fleet Advisor collector, in semantic versioning format, for example
-        /// <code>1.0.2</code> 
+        /// <c>1.0.2</c> 
         /// </para>
         /// </summary>
         public string CollectorVersion
@@ -120,7 +121,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property CreatedDate. 
         /// <para>
-        /// The timestamp when you created the collector, in the following format: <code>2022-01-24T19:04:02.596113Z</code>
+        /// The timestamp when you created the collector, in the following format: <c>2022-01-24T19:04:02.596113Z</c>
         /// 
         /// </para>
         /// </summary>
@@ -173,7 +174,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property LastDataReceived. 
         /// <para>
         /// The timestamp of the last time the collector received data, in the following format:
-        /// <code>2022-01-24T19:04:02.596113Z</code> 
+        /// <c>2022-01-24T19:04:02.596113Z</c> 
         /// </para>
         /// </summary>
         public string LastDataReceived
@@ -191,7 +192,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ModifiedDate. 
         /// <para>
-        /// The timestamp when DMS last modified the collector, in the following format: <code>2022-01-24T19:04:02.596113Z</code>
+        /// The timestamp when DMS last modified the collector, in the following format: <c>2022-01-24T19:04:02.596113Z</c>
         /// 
         /// </para>
         /// </summary>
@@ -210,7 +211,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property RegisteredDate. 
         /// <para>
-        /// The timestamp when DMS registered the collector, in the following format: <code>2022-01-24T19:04:02.596113Z</code>
+        /// The timestamp when DMS registered the collector, in the following format: <c>2022-01-24T19:04:02.596113Z</c>
         /// 
         /// </para>
         /// </summary>

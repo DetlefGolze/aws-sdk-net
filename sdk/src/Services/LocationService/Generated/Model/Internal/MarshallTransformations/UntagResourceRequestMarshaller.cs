@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LocationService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.LocationService.Model.Internal.MarshallTransformations
             request.ResourcePath = "/tags/{ResourceArn}";
             request.UseQueryString = true;
             
-            request.HostPrefix = $"metadata.";
+            request.HostPrefix = $"cp.metadata.";
 
             return request;
         }

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Outposts.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Outposts.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ComputeAttributes Unmarshall(JsonUnmarshallerContext context)
         {
+            ComputeAttributes unmarshalledObject = new ComputeAttributes();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ComputeAttributes unmarshalledObject = new ComputeAttributes();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,6 +78,18 @@ namespace Amazon.Outposts.Model.Internal.MarshallTransformations
                     unmarshalledObject.InstanceFamilies = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("InstanceTypeCapacities", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<AssetInstanceTypeCapacity, AssetInstanceTypeCapacityUnmarshaller>(AssetInstanceTypeCapacityUnmarshaller.Instance);
+                    unmarshalledObject.InstanceTypeCapacities = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("MaxVcpus", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.MaxVcpus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("State", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -83,7 +97,6 @@ namespace Amazon.Outposts.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

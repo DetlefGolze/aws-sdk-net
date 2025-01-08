@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.AutoScaling.Model
     /// </summary>
     public partial class EnterStandbyResponse : AmazonWebServiceResponse
     {
-        private List<Activity> _activities = new List<Activity>();
+        private List<Activity> _activities = AWSConfigs.InitializeCollections ? new List<Activity>() : null;
 
         /// <summary>
         /// Gets and sets the property Activities. 
         /// <para>
-        /// The activities related to moving instances into <code>Standby</code> mode.
+        /// The activities related to moving instances into <c>Standby</c> mode.
         /// </para>
         /// </summary>
         public List<Activity> Activities
@@ -50,7 +51,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if Activities property is set
         internal bool IsSetActivities()
         {
-            return this._activities != null && this._activities.Count > 0; 
+            return this._activities != null && (this._activities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

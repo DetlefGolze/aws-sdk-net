@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.Lambda.Model
     /// </summary>
     public partial class GetLayerVersionByArnResponse : AmazonWebServiceResponse
     {
-        private List<string> _compatibleArchitectures = new List<string>();
-        private List<string> _compatibleRuntimes = new List<string>();
+        private List<string> _compatibleArchitectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _compatibleRuntimes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LayerVersionContentOutput _content;
         private string _createdDate;
         private string _description;
@@ -60,7 +61,7 @@ namespace Amazon.Lambda.Model
         // Check to see if CompatibleArchitectures property is set
         internal bool IsSetCompatibleArchitectures()
         {
-            return this._compatibleArchitectures != null && this._compatibleArchitectures.Count > 0; 
+            return this._compatibleArchitectures != null && (this._compatibleArchitectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -70,8 +71,13 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  
         /// <para>
-        /// The following list includes deprecated runtimes. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy">Runtime
-        /// deprecation policy</a>.
+        /// The following list includes deprecated runtimes. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels">Runtime
+        /// use after deprecation</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For a list of all currently supported runtimes, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported">Supported
+        /// runtimes</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=15)]
@@ -84,7 +90,7 @@ namespace Amazon.Lambda.Model
         // Check to see if CompatibleRuntimes property is set
         internal bool IsSetCompatibleRuntimes()
         {
-            return this._compatibleRuntimes != null && this._compatibleRuntimes.Count > 0; 
+            return this._compatibleRuntimes != null && (this._compatibleRuntimes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

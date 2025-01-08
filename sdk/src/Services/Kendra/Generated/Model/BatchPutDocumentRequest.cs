@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.Kendra.Model
     /// 
     ///  
     /// <para>
-    /// The <code>BatchPutDocument</code> API enables you to ingest inline documents or a
-    /// set of documents stored in an Amazon S3 bucket. Use this API to ingest your text and
-    /// unstructured text into an index, add custom attributes to the documents, and to attach
-    /// an access control list to the documents added to the index.
+    /// The <c>BatchPutDocument</c> API enables you to ingest inline documents or a set of
+    /// documents stored in an Amazon S3 bucket. Use this API to ingest your text and unstructured
+    /// text into an index, add custom attributes to the documents, and to attach an access
+    /// control list to the documents added to the index.
     /// </para>
     ///  
     /// <para>
     /// The documents are indexed asynchronously. You can see the progress of the batch using
     /// Amazon Web Services CloudWatch. Any error messages related to processing the batch
-    /// are sent to your Amazon Web Services CloudWatch log. You can also use the <code>BatchGetDocumentStatus</code>
+    /// are sent to your Amazon Web Services CloudWatch log. You can also use the <c>BatchGetDocumentStatus</c>
     /// API to monitor the progress of indexing your documents.
     /// </para>
     ///  
@@ -55,7 +56,7 @@ namespace Amazon.Kendra.Model
     public partial class BatchPutDocumentRequest : AmazonKendraRequest
     {
         private CustomDocumentEnrichmentConfiguration _customDocumentEnrichmentConfiguration;
-        private List<Document> _documents = new List<Document>();
+        private List<Document> _documents = AWSConfigs.InitializeCollections ? new List<Document>() : null;
         private string _indexId;
         private string _roleArn;
 
@@ -63,7 +64,7 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property CustomDocumentEnrichmentConfiguration. 
         /// <para>
         /// Configuration information for altering your document metadata and content during the
-        /// document ingestion process when you use the <code>BatchPutDocument</code> API.
+        /// document ingestion process when you use the <c>BatchPutDocument</c> API.
         /// </para>
         ///  
         /// <para>
@@ -116,14 +117,14 @@ namespace Amazon.Kendra.Model
         // Check to see if Documents property is set
         internal bool IsSetDocuments()
         {
-            return this._documents != null && this._documents.Count > 0; 
+            return this._documents != null && (this._documents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IndexId. 
         /// <para>
         /// The identifier of the index to add the documents to. You need to create the index
-        /// first using the <code>CreateIndex</code> API.
+        /// first using the <c>CreateIndex</c> API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]

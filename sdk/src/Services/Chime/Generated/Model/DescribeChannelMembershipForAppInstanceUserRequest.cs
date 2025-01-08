@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeChannelMembershipForAppInstanceUser operation.
-    /// Returns the details of a channel based on the membership of the specified <code>AppInstanceUser</code>.
+    /// Returns the details of a channel based on the membership of the specified <c>AppInstanceUser</c>.
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code>
+    /// The <c>x-amz-chime-bearer</c> request header is mandatory. Use the <c>AppInstanceUserArn</c>
     /// of the user that makes the API call as the value in the header.
     /// </para>
     ///  </note> <important> 
@@ -98,7 +99,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+        /// The <c>AppInstanceUserArn</c> of the user that makes the API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]
@@ -111,7 +112,7 @@ namespace Amazon.Chime.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
     }

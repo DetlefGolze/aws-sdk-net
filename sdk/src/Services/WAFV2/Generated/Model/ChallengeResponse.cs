@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property ResponseCode. 
         /// <para>
         /// The HTTP response code indicating the status of the challenge token in the web request.
-        /// If the token is missing, invalid, or expired, this code is <code>202 Request Accepted</code>.
+        /// If the token is missing, invalid, or expired, this code is <c>202 Request Accepted</c>.
         /// </para>
         /// </summary>
         public int ResponseCode

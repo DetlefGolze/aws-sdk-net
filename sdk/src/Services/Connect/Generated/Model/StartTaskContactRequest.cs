@@ -26,15 +26,72 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the StartTaskContact operation.
-    /// Initiates a flow to start a new task.
+    /// Initiates a flow to start a new task contact. For more information about task contacts,
+    /// see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html">Concepts:
+    /// Tasks in Amazon Connect</a> in the <i>Amazon Connect Administrator Guide</i>. 
+    /// 
+    ///  
+    /// <para>
+    /// When using <c>PreviousContactId</c> and <c>RelatedContactId</c> input parameters,
+    /// note the following:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <c>PreviousContactId</c> 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// Any updates to user-defined task contact attributes on any contact linked through
+    /// the same <c>PreviousContactId</c> will affect every contact in the chain.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// There can be a maximum of 12 linked task contacts in a chain. That is, 12 task contacts
+    /// can be created that share the same <c>PreviousContactId</c>.
+    /// </para>
+    ///  </li> </ul> </li> <li> 
+    /// <para>
+    ///  <c>RelatedContactId</c> 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// Copies contact attributes from the related task contact to the new contact.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Any update on attributes in a new task contact does not update attributes on previous
+    /// contact.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// There’s no limit on the number of task contacts that can be created that use the same
+    /// <c>RelatedContactId</c>.
+    /// </para>
+    ///  </li> </ul> </li> </ul> 
+    /// <para>
+    /// In addition, when calling StartTaskContact include only one of these parameters: <c>ContactFlowID</c>,
+    /// <c>QuickConnectID</c>, or <c>TaskTemplateID</c>. Only one parameter is required as
+    /// long as the task template has a flow configured to run it. If more than one parameter
+    /// is specified, or only the <c>TaskTemplateID</c> is specified but it does not have
+    /// a flow configured, the request returns an error because Amazon Connect cannot identify
+    /// the unique flow to run when the task is created.
+    /// </para>
+    ///  
+    /// <para>
+    /// A <c>ServiceQuotaExceededException</c> occurs when the number of open tasks exceeds
+    /// the active tasks quota or there are already 12 tasks referencing the same <c>PreviousContactId</c>.
+    /// For more information about service quotas for task contacts, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html">Amazon
+    /// Connect service quotas</a> in the <i>Amazon Connect Administrator Guide</i>. 
+    /// </para>
     /// </summary>
     public partial class StartTaskContactRequest : AmazonConnectRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _clientToken;
         private string _contactFlowId;
         private string _description;
@@ -42,9 +99,10 @@ namespace Amazon.Connect.Model
         private string _name;
         private string _previousContactId;
         private string _quickConnectId;
-        private Dictionary<string, Reference> _references = new Dictionary<string, Reference>();
+        private Dictionary<string, Reference> _references = AWSConfigs.InitializeCollections ? new Dictionary<string, Reference>() : null;
         private string _relatedContactId;
         private DateTime? _scheduledTime;
+        private Dictionary<string, SegmentAttributeValue> _segmentAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, SegmentAttributeValue>() : null;
         private string _taskTemplateId;
 
         /// <summary>
@@ -68,7 +126,7 @@ namespace Amazon.Connect.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,10 +155,10 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property ContactFlowId. 
         /// <para>
         /// The identifier of the flow for initiating the tasks. To see the ContactFlowId in the
-        /// Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>,
-        /// <b>Contact Flows</b>. Choose the flow. On the flow page, under the name of the flow,
-        /// choose <b>Show additional flow information</b>. The ContactFlowId is the last part
-        /// of the ARN, shown here in bold: 
+        /// Amazon Connect admin website, on the navigation menu go to <b>Routing</b>, <b>Flows</b>.
+        /// Choose the flow. On the flow page, under the name of the flow, choose <b>Show additional
+        /// flow information</b>. The ContactFlowId is the last part of the ARN, shown here in
+        /// bold: 
         /// </para>
         ///  
         /// <para>
@@ -127,7 +185,7 @@ namespace Amazon.Connect.Model
         /// A description of the task that is shown to an agent in the Contact Control Panel (CCP).
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=4096)]
+        [AWSProperty(Sensitive=true, Min=0, Max=4096)]
         public string Description
         {
             get { return this._description; }
@@ -166,7 +224,7 @@ namespace Amazon.Connect.Model
         /// The name of a task that is shown to an agent in the Contact Control Panel (CCP).
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=512)]
+        [AWSProperty(Required=true, Sensitive=true, Min=0, Max=1024)]
         public string Name
         {
             get { return this._name; }
@@ -182,7 +240,10 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property PreviousContactId. 
         /// <para>
-        /// The identifier of the previous chat, voice, or task contact. 
+        /// The identifier of the previous chat, voice, or task contact. Any updates to user-defined
+        /// attributes to task contacts linked using the same <c>PreviousContactID</c> will affect
+        /// every contact in the chain. There can be a maximum of 12 linked task contacts in a
+        /// chain.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -201,7 +262,10 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property QuickConnectId. 
         /// <para>
-        /// The identifier for the quick connect.
+        /// The identifier for the quick connect. Tasks that are created by using <c>QuickConnectId</c>
+        /// will use the flow that is defined on agent or queue quick connect. For more information
+        /// about quick connects, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/quick-connects.html">Create
+        /// quick connects</a>.
         /// </para>
         /// </summary>
         public string QuickConnectId
@@ -219,7 +283,10 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property References. 
         /// <para>
-        /// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
+        /// A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Tasks
+        /// can have the following reference types at the time of creation: <c>URL</c> | <c>NUMBER</c>
+        /// | <c>STRING</c> | <c>DATE</c> | <c>EMAIL</c>. <c>ATTACHMENT</c> is not a supported
+        /// reference type during task creation.
         /// </para>
         /// </summary>
         public Dictionary<string, Reference> References
@@ -231,14 +298,19 @@ namespace Amazon.Connect.Model
         // Check to see if References property is set
         internal bool IsSetReferences()
         {
-            return this._references != null && this._references.Count > 0; 
+            return this._references != null && (this._references.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RelatedContactId. 
         /// <para>
         /// The contactId that is <a href="https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks">related</a>
-        /// to this contact.
+        /// to this contact. Linking tasks together by using <c>RelatedContactID</c> copies over
+        /// contact attributes from the related task contact to the new task contact. All updates
+        /// to user-defined attributes in the new task contact are limited to the individual contact
+        /// ID, unlike what happens when tasks are linked by using <c>PreviousContactID</c>. There
+        /// are no limits to the number of contacts that can be linked by using <c>RelatedContactId</c>.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -275,9 +347,54 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SegmentAttributes. 
+        /// <para>
+        /// A set of system defined key-value pairs stored on individual contact segments (unique
+        /// contact ID) using an attribute map. The attributes are standard Amazon Connect attributes.
+        /// They can be accessed in flows.
+        /// </para>
+        ///  
+        /// <para>
+        /// Attribute keys can include only alphanumeric, -, and _.
+        /// </para>
+        ///  
+        /// <para>
+        /// This field can be used to set Contact Expiry as a duration in minutes and set a UserId
+        /// for the User who created a task.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// To set contact expiry, a ValueMap must be specified containing the integer number
+        /// of minutes the contact will be active for before expiring, with <c>SegmentAttributes</c>
+        /// like { <c> "connect:ContactExpiry": {"ValueMap" : { "ExpiryDuration": { "ValueInteger":
+        /// 135}}}}</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// To set the created by user, a valid AgentResourceId must be supplied, with <c>SegmentAttributes</c>
+        /// like { <c>"connect:CreatedByUser" { "ValueString": "arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/agent/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"}}}</c>.
+        /// 
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public Dictionary<string, SegmentAttributeValue> SegmentAttributes
+        {
+            get { return this._segmentAttributes; }
+            set { this._segmentAttributes = value; }
+        }
+
+        // Check to see if SegmentAttributes property is set
+        internal bool IsSetSegmentAttributes()
+        {
+            return this._segmentAttributes != null && (this._segmentAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property TaskTemplateId. 
         /// <para>
-        /// A unique identifier for the task template.
+        /// A unique identifier for the task template. For more information about task templates,
+        /// see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/task-templates.html">Create
+        /// task templates</a> in the <i>Amazon Connect Administrator Guide</i>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=500)]

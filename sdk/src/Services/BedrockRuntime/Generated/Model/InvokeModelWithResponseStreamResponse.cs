@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BedrockRuntime.Model
 {
     /// <summary>
@@ -35,12 +36,14 @@ namespace Amazon.BedrockRuntime.Model
     {
         private ResponseStream _body;
         private string _contentType;
+        private PerformanceConfigLatency _performanceConfigLatency;
 
         /// <summary>
         /// Gets and sets the property Body. 
         /// <para>
-        /// Inference response from the model in the format specified by Content-Type. To see
-        /// the format and content of this field for different models, refer to <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html">Inference
+        /// Inference response from the model in the format specified by the <c>contentType</c>
+        /// header. To see the format and content of this field for different models, refer to
+        /// <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html">Inference
         /// parameters</a>.
         /// </para>
         /// </summary>
@@ -73,7 +76,25 @@ namespace Amazon.BedrockRuntime.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
+        }
+
+        /// <summary>
+        /// Gets and sets the property PerformanceConfigLatency. 
+        /// <para>
+        /// Model performance settings for the request.
+        /// </para>
+        /// </summary>
+        public PerformanceConfigLatency PerformanceConfigLatency
+        {
+            get { return this._performanceConfigLatency; }
+            set { this._performanceConfigLatency = value; }
+        }
+
+        // Check to see if PerformanceConfigLatency property is set
+        internal bool IsSetPerformanceConfigLatency()
+        {
+            return !string.IsNullOrEmpty(this._performanceConfigLatency);
         }
 
     }

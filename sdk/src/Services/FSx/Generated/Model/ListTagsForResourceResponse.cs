@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The response object for <code>ListTagsForResource</code> operation.
+    /// The response object for <c>ListTagsForResource</c> operation.
     /// </summary>
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// This is present if there are more tags than returned in the response (String). You
-        /// can use the <code>NextToken</code> value in the later request to fetch the tags. 
+        /// can use the <c>NextToken</c> value in the later request to fetch the tags. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -72,7 +73,7 @@ namespace Amazon.FSx.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

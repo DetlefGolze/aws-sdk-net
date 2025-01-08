@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.KinesisAnalyticsV2.Model
     /// </summary>
     public partial class SourceSchema
     {
-        private List<RecordColumn> _recordColumns = new List<RecordColumn>();
+        private List<RecordColumn> _recordColumns = AWSConfigs.InitializeCollections ? new List<RecordColumn>() : null;
         private string _recordEncoding;
         private RecordFormat _recordFormat;
 
         /// <summary>
         /// Gets and sets the property RecordColumns. 
         /// <para>
-        /// A list of <code>RecordColumn</code> objects. 
+        /// A list of <c>RecordColumn</c> objects. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1000)]
@@ -55,7 +56,7 @@ namespace Amazon.KinesisAnalyticsV2.Model
         // Check to see if RecordColumns property is set
         internal bool IsSetRecordColumns()
         {
-            return this._recordColumns != null && this._recordColumns.Count > 0; 
+            return this._recordColumns != null && (this._recordColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

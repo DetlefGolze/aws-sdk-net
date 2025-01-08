@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateCertificateAuthority operation.
     /// Updates the status or configuration of a private certificate authority (CA). Your
-    /// private CA must be in the <code>ACTIVE</code> or <code>DISABLED</code> state before
-    /// you can update it. You can disable a private CA that is in the <code>ACTIVE</code>
-    /// state or make a CA that is in the <code>DISABLED</code> state active again.
+    /// private CA must be in the <c>ACTIVE</c> or <c>DISABLED</c> state before you can update
+    /// it. You can disable a private CA that is in the <c>ACTIVE</c> state or make a CA that
+    /// is in the <c>DISABLED</c> state active again.
     /// 
     ///  <note> 
     /// <para>
@@ -59,8 +60,8 @@ namespace Amazon.ACMPCA.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>
-        /// </code> 
+        ///  <c>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=200)]
@@ -79,27 +80,26 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property RevocationConfiguration. 
         /// <para>
-        /// Contains information to enable Online Certificate Status Protocol (OCSP) support,
-        /// to enable a certificate revocation list (CRL), to enable both, or to enable neither.
-        /// If this parameter is not supplied, existing capibilites remain unchanged. For more
-        /// information, see the <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_OcspConfiguration.html">OcspConfiguration</a>
+        /// Contains information to enable support for Online Certificate Status Protocol (OCSP),
+        /// certificate revocation list (CRL), both protocols, or neither. If you don't supply
+        /// this parameter, existing capibilites remain unchanged. For more information, see the
+        /// <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_OcspConfiguration.html">OcspConfiguration</a>
         /// and <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_CrlConfiguration.html">CrlConfiguration</a>
         /// types.
         /// </para>
-        ///  <note> 
+        ///  
         /// <para>
         /// The following requirements apply to revocation configurations.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A configuration disabling CRLs or OCSP must contain only the <code>Enabled=False</code>
-        /// parameter, and will fail if other parameters such as <code>CustomCname</code> or <code>ExpirationInDays</code>
+        /// A configuration disabling CRLs or OCSP must contain only the <c>Enabled=False</c>
+        /// parameter, and will fail if other parameters such as <c>CustomCname</c> or <c>ExpirationInDays</c>
         /// are included.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// In a CRL configuration, the <code>S3BucketName</code> parameter must conform to <a
-        /// href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Amazon
+        /// In a CRL configuration, the <c>S3BucketName</c> parameter must conform to <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Amazon
         /// S3 bucket naming rules</a>.
         /// </para>
         ///  </li> <li> 
@@ -113,7 +113,19 @@ namespace Amazon.ACMPCA.Model
         /// In a CRL or OCSP configuration, the value of a CNAME parameter must not include a
         /// protocol prefix such as "http://" or "https://".
         /// </para>
-        ///  </li> </ul> </note>
+        ///  </li> </ul> <important> 
+        /// <para>
+        ///  If you update the <c>S3BucketName</c> of <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_CrlConfiguration.html">CrlConfiguration</a>,
+        /// you can break revocation for existing certificates. In other words, if you call <a
+        /// href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_UpdateCertificateAuthority.html">UpdateCertificateAuthority</a>
+        /// to update the CRL configuration's S3 bucket name, Amazon Web Services Private CA only
+        /// writes CRLs to the new S3 bucket. Certificates issued prior to this point will have
+        /// the old S3 bucket name in your CRL Distribution Point (CDP) extension, essentially
+        /// breaking revocation. If you must update the S3 bucket, you'll need to reissue old
+        /// certificates to keep the revocation working. Alternatively, you can use a <a href="https://docs.aws.amazon.com/privateca/latest/APIReference/API_CrlConfiguration.html#privateca-Type-CrlConfiguration-CustomCname">CustomCname</a>
+        /// in your CRL configuration if you might need to change the S3 bucket name in the future.
+        /// </para>
+        ///  </important>
         /// </summary>
         public RevocationConfiguration RevocationConfiguration
         {

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(MSKSourceConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAuthenticationConfiguration())
             {
                 context.Writer.WritePropertyName("AuthenticationConfiguration");
@@ -60,6 +63,12 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("MSKClusterARN");
                 context.Writer.Write(requestObject.MSKClusterARN);
+            }
+
+            if(requestObject.IsSetReadFromTimestamp())
+            {
+                context.Writer.WritePropertyName("ReadFromTimestamp");
+                context.Writer.Write(requestObject.ReadFromTimestamp);
             }
 
             if(requestObject.IsSetTopicName())

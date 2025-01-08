@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -49,19 +50,26 @@ namespace Amazon.Kendra.Model
     ///  
     /// <para>
     /// You call the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html">BatchPutDocument</a>
-    /// API to apply the updated access control configuration, with the <code>AccessControlConfigurationId</code>
+    /// API to apply the updated access control configuration, with the <c>AccessControlConfigurationId</c>
     /// included in the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_Document.html">Document</a>
     /// object. If you use an S3 bucket as a data source, you synchronize your data source
-    /// to apply the <code>AccessControlConfigurationId</code> in the <code>.metadata.json</code>
-    /// file. Amazon Kendra currently only supports access control configuration for S3 data
-    /// sources and documents indexed using the <code>BatchPutDocument</code> API.
+    /// to apply the <c>AccessControlConfigurationId</c> in the <c>.metadata.json</c> file.
+    /// Amazon Kendra currently only supports access control configuration for S3 data sources
+    /// and documents indexed using the <c>BatchPutDocument</c> API.
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// You can't configure access control using <c>CreateAccessControlConfiguration</c> for
+    /// an Amazon Kendra Gen AI Enterprise Edition index. Amazon Kendra will return a <c>ValidationException</c>
+    /// error for a <c>Gen_AI_ENTERPRISE_EDITION</c> index.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class UpdateAccessControlConfigurationRequest : AmazonKendraRequest
     {
-        private List<Principal> _accessControlList = new List<Principal>();
+        private List<Principal> _accessControlList = AWSConfigs.InitializeCollections ? new List<Principal>() : null;
         private string _description;
-        private List<HierarchicalPrincipal> _hierarchicalAccessControlList = new List<HierarchicalPrincipal>();
+        private List<HierarchicalPrincipal> _hierarchicalAccessControlList = AWSConfigs.InitializeCollections ? new List<HierarchicalPrincipal>() : null;
         private string _id;
         private string _indexId;
         private string _name;
@@ -83,7 +91,7 @@ namespace Amazon.Kendra.Model
         // Check to see if AccessControlList property is set
         internal bool IsSetAccessControlList()
         {
-            return this._accessControlList != null && this._accessControlList.Count > 0; 
+            return this._accessControlList != null && (this._accessControlList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -122,7 +130,7 @@ namespace Amazon.Kendra.Model
         // Check to see if HierarchicalAccessControlList property is set
         internal bool IsSetHierarchicalAccessControlList()
         {
-            return this._hierarchicalAccessControlList != null && this._hierarchicalAccessControlList.Count > 0; 
+            return this._hierarchicalAccessControlList != null && (this._hierarchicalAccessControlList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

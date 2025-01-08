@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// Gets and sets the property RunId. 
         /// <para>
         /// UUID that identifies the individual scan run you want to view details about. You retrieve
-        /// this when you call the <code>CreateScan</code> operation. Defaults to the latest scan
-        /// run if missing.
+        /// this when you call the <c>CreateScan</c> operation. Defaults to the latest scan run
+        /// if missing.
         /// </para>
         /// </summary>
         public string RunId

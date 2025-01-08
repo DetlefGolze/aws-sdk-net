@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.KinesisVideoArchivedMedia.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.KinesisVideoArchivedMedia
 {
     /// <summary>
-    /// Interface for accessing KinesisVideoArchivedMedia
+    /// <para>Interface for accessing KinesisVideoArchivedMedia</para>
     ///
     /// 
     /// </summary>
@@ -58,8 +59,8 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// </para>
         ///  
         /// <para>
-        /// As a prerequisite to using GetCLip API, you must obtain an endpoint using <code>GetDataEndpoint</code>,
-        /// specifying GET_CLIP for<code/> the <code>APIName</code> parameter. 
+        /// As a prerequisite to using GetCLip API, you must obtain an endpoint using <c>GetDataEndpoint</c>,
+        /// specifying GET_CLIP for<code/> the <c>APIName</c> parameter. 
         /// </para>
         ///  
         /// <para>
@@ -69,9 +70,9 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  <ul> <li> 
         /// <para>
         /// The media must contain h.264 or h.265 encoded video and, optionally, AAC or G.711
-        /// encoded audio. Specifically, the codec ID of track 1 should be <code>V_MPEG/ISO/AVC</code>
+        /// encoded audio. Specifically, the codec ID of track 1 should be <c>V_MPEG/ISO/AVC</c>
         /// (for h.264) or V_MPEGH/ISO/HEVC (for H.265). Optionally, the codec ID of track 2 should
-        /// be <code>A_AAC</code> (for AAC) or A_MS/ACM (for G.711).
+        /// be <c>A_AAC</c> (for AAC) or A_MS/ACM (for G.711).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -94,7 +95,7 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can monitor the amount of outgoing data by monitoring the <code>GetClip.OutgoingBytes</code>
+        /// You can monitor the amount of outgoing data by monitoring the <c>GetClip.OutgoingBytes</c>
         /// Amazon CloudWatch metric. For information about using CloudWatch to monitor Kinesis
         /// Video Streams, see <a href="http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/monitoring.html">Monitoring
         /// Kinesis Video Streams</a>. For pricing information, see <a href="https://aws.amazon.com/kinesis/video-streams/pricing/">Amazon
@@ -125,31 +126,31 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// No codec private data was found in at least one of tracks of the video stream.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NoDataRetentionException">
-        /// A streaming session was requested for a stream that does not retain data (that is,
-        /// has a <code>DataRetentionInHours</code> of 0).
+        /// <c>GetImages</c> was requested for a stream that does not retain data (that is, has
+        /// a <c>DataRetentionInHours</c> of 0).
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NotAuthorizedException">
         /// Status Code: 403, The caller is not authorized to perform an operation on the given
         /// stream, or the token has expired.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.ResourceNotFoundException">
-        /// <code>GetImages</code> will throw this error when Kinesis Video Streams can't find
-        /// the stream that you specified.
+        /// <c>GetImages</c> will throw this error when Kinesis Video Streams can't find the
+        /// stream that you specified.
         /// 
         ///  
         /// <para>
-        ///  <code>GetHLSStreamingSessionURL</code> and <code>GetDASHStreamingSessionURL</code>
-        /// throw this error if a session with a <code>PlaybackMode</code> of <code>ON_DEMAND</code>
-        /// or <code>LIVE_REPLAY</code>is requested for a stream that has no fragments within
-        /// the requested time range, or if a session with a <code>PlaybackMode</code> of <code>LIVE</code>
-        /// is requested for a stream that has no fragments within the last 30 seconds.
+        ///  <c>GetHLSStreamingSessionURL</c> and <c>GetDASHStreamingSessionURL</c> throw this
+        /// error if a session with a <c>PlaybackMode</c> of <c>ON_DEMAND</c> or <c>LIVE_REPLAY</c>is
+        /// requested for a stream that has no fragments within the requested time range, or if
+        /// a session with a <c>PlaybackMode</c> of <c>LIVE</c> is requested for a stream that
+        /// has no fragments within the last 30 seconds.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.UnsupportedStreamMediaTypeException">
         /// The type of the media (for example, h.264 or h.265 video or ACC or G.711 audio) could
         /// not be determined from the codec IDs of the tracks in the first fragment for a playback
-        /// session. The codec ID for track 1 should be <code>V_MPEG/ISO/AVC</code> and, optionally,
-        /// the codec ID for track 2 should be <code>A_AAC</code>.
+        /// session. The codec ID for track 1 should be <c>V_MPEG/ISO/AVC</c> and, optionally,
+        /// the codec ID for track 2 should be <c>A_AAC</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetClip">REST API Reference for GetClip Operation</seealso>
         GetClipResponse GetClip(GetClipRequest request);
@@ -191,9 +192,9 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// 
         ///  
         /// <para>
-        /// Both the <code>StreamName</code> and the <code>StreamARN</code> parameters are optional,
-        /// but you must specify either the <code>StreamName</code> or the <code>StreamARN</code>
-        /// when invoking this API operation.
+        /// Both the <c>StreamName</c> and the <c>StreamARN</c> parameters are optional, but you
+        /// must specify either the <c>StreamName</c> or the <c>StreamARN</c> when invoking this
+        /// API operation.
         /// </para>
         ///  
         /// <para>
@@ -203,9 +204,9 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  <ul> <li> 
         /// <para>
         /// The media must contain h.264 or h.265 encoded video and, optionally, AAC or G.711
-        /// encoded audio. Specifically, the codec ID of track 1 should be <code>V_MPEG/ISO/AVC</code>
+        /// encoded audio. Specifically, the codec ID of track 1 should be <c>V_MPEG/ISO/AVC</c>
         /// (for h.264) or V_MPEGH/ISO/HEVC (for H.265). Optionally, the codec ID of track 2 should
-        /// be <code>A_AAC</code> (for AAC) or A_MS/ACM (for G.711).
+        /// be <c>A_AAC</c> (for AAC) or A_MS/ACM (for G.711).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -233,16 +234,15 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  <ol> <li> 
         /// <para>
         /// Get an endpoint using <a href="http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_GetDataEndpoint.html">GetDataEndpoint</a>,
-        /// specifying <code>GET_DASH_STREAMING_SESSION_URL</code> for the <code>APIName</code>
-        /// parameter.
+        /// specifying <c>GET_DASH_STREAMING_SESSION_URL</c> for the <c>APIName</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Retrieve the MPEG-DASH URL using <code>GetDASHStreamingSessionURL</code>. Kinesis
-        /// Video Streams creates an MPEG-DASH streaming session to be used for accessing content
-        /// in a stream using the MPEG-DASH protocol. <code>GetDASHStreamingSessionURL</code>
-        /// returns an authenticated URL (that includes an encrypted session token) for the session's
-        /// MPEG-DASH <i>manifest</i> (the root resource needed for streaming with MPEG-DASH).
+        /// Retrieve the MPEG-DASH URL using <c>GetDASHStreamingSessionURL</c>. Kinesis Video
+        /// Streams creates an MPEG-DASH streaming session to be used for accessing content in
+        /// a stream using the MPEG-DASH protocol. <c>GetDASHStreamingSessionURL</c> returns an
+        /// authenticated URL (that includes an encrypted session token) for the session's MPEG-DASH
+        /// <i>manifest</i> (the root resource needed for streaming with MPEG-DASH).
         /// </para>
         ///  <note> 
         /// <para>
@@ -279,8 +279,8 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// <para>
         ///  <b>GetMP4InitFragment:</b> Retrieves the MP4 initialization fragment. The media player
         /// typically loads the initialization fragment before loading any media fragments. This
-        /// fragment contains the "<code>fytp</code>" and "<code>moov</code>" MP4 atoms, and the
-        /// child atoms that are needed to initialize the media player decoder.
+        /// fragment contains the "<c>fytp</c>" and "<c>moov</c>" MP4 atoms, and the child atoms
+        /// that are needed to initialize the media player decoder.
         /// </para>
         ///  
         /// <para>
@@ -291,8 +291,8 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  </li> <li> 
         /// <para>
         ///  <b>GetMP4MediaFragment:</b> Retrieves MP4 media fragments. These fragments contain
-        /// the "<code>moof</code>" and "<code>mdat</code>" MP4 atoms and their child atoms, containing
-        /// the encoded fragment's media frames and their timestamps. 
+        /// the "<c>moof</c>" and "<c>mdat</c>" MP4 atoms and their child atoms, containing the
+        /// encoded fragment's media frames and their timestamps. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -316,7 +316,7 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  </note> 
         /// <para>
         /// You can monitor the amount of data that the media player consumes by monitoring the
-        /// <code>GetMP4MediaFragment.OutgoingBytes</code> Amazon CloudWatch metric. For information
+        /// <c>GetMP4MediaFragment.OutgoingBytes</c> Amazon CloudWatch metric. For information
         /// about using CloudWatch to monitor Kinesis Video Streams, see <a href="http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/monitoring.html">Monitoring
         /// Kinesis Video Streams</a>. For pricing information, see <a href="https://aws.amazon.com/kinesis/video-streams/pricing/">Amazon
         /// Kinesis Video Streams Pricing</a> and <a href="https://aws.amazon.com/pricing/">Amazon
@@ -336,14 +336,13 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>x-amz-ErrorType</code> HTTP header – contains a more specific error type in
-        /// addition to what the HTTP status code provides. 
+        ///  <c>x-amz-ErrorType</c> HTTP header – contains a more specific error type in addition
+        /// to what the HTTP status code provides. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to Amazon
-        /// Web Services the support team can better diagnose the problem if given the Request
-        /// Id.
+        ///  <c>x-amz-RequestId</c> HTTP header – if you want to report an issue to Amazon Web
+        /// Services the support team can better diagnose the problem if given the Request Id.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -379,31 +378,31 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// No codec private data was found in at least one of tracks of the video stream.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NoDataRetentionException">
-        /// A streaming session was requested for a stream that does not retain data (that is,
-        /// has a <code>DataRetentionInHours</code> of 0).
+        /// <c>GetImages</c> was requested for a stream that does not retain data (that is, has
+        /// a <c>DataRetentionInHours</c> of 0).
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NotAuthorizedException">
         /// Status Code: 403, The caller is not authorized to perform an operation on the given
         /// stream, or the token has expired.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.ResourceNotFoundException">
-        /// <code>GetImages</code> will throw this error when Kinesis Video Streams can't find
-        /// the stream that you specified.
+        /// <c>GetImages</c> will throw this error when Kinesis Video Streams can't find the
+        /// stream that you specified.
         /// 
         ///  
         /// <para>
-        ///  <code>GetHLSStreamingSessionURL</code> and <code>GetDASHStreamingSessionURL</code>
-        /// throw this error if a session with a <code>PlaybackMode</code> of <code>ON_DEMAND</code>
-        /// or <code>LIVE_REPLAY</code>is requested for a stream that has no fragments within
-        /// the requested time range, or if a session with a <code>PlaybackMode</code> of <code>LIVE</code>
-        /// is requested for a stream that has no fragments within the last 30 seconds.
+        ///  <c>GetHLSStreamingSessionURL</c> and <c>GetDASHStreamingSessionURL</c> throw this
+        /// error if a session with a <c>PlaybackMode</c> of <c>ON_DEMAND</c> or <c>LIVE_REPLAY</c>is
+        /// requested for a stream that has no fragments within the requested time range, or if
+        /// a session with a <c>PlaybackMode</c> of <c>LIVE</c> is requested for a stream that
+        /// has no fragments within the last 30 seconds.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.UnsupportedStreamMediaTypeException">
         /// The type of the media (for example, h.264 or h.265 video or ACC or G.711 audio) could
         /// not be determined from the codec IDs of the tracks in the first fragment for a playback
-        /// session. The codec ID for track 1 should be <code>V_MPEG/ISO/AVC</code> and, optionally,
-        /// the codec ID for track 2 should be <code>A_AAC</code>.
+        /// session. The codec ID for track 1 should be <c>V_MPEG/ISO/AVC</c> and, optionally,
+        /// the codec ID for track 2 should be <c>A_AAC</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetDASHStreamingSessionURL">REST API Reference for GetDASHStreamingSessionURL Operation</seealso>
         GetDASHStreamingSessionURLResponse GetDASHStreamingSessionURL(GetDASHStreamingSessionURLRequest request);
@@ -445,9 +444,9 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// 
         ///  
         /// <para>
-        /// Both the <code>StreamName</code> and the <code>StreamARN</code> parameters are optional,
-        /// but you must specify either the <code>StreamName</code> or the <code>StreamARN</code>
-        /// when invoking this API operation.
+        /// Both the <c>StreamName</c> and the <c>StreamARN</c> parameters are optional, but you
+        /// must specify either the <c>StreamName</c> or the <c>StreamARN</c> when invoking this
+        /// API operation.
         /// </para>
         ///  
         /// <para>
@@ -457,10 +456,10 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  <ul> <li> 
         /// <para>
         /// For streaming video, the media must contain H.264 or H.265 encoded video and, optionally,
-        /// AAC encoded audio. Specifically, the codec ID of track 1 should be <code>V_MPEG/ISO/AVC</code>
-        /// (for H.264) or <code>V_MPEG/ISO/HEVC</code> (for H.265). Optionally, the codec ID
-        /// of track 2 should be <code>A_AAC</code>. For audio only streaming, the codec ID of
-        /// track 1 should be <code>A_AAC</code>.
+        /// AAC encoded audio. Specifically, the codec ID of track 1 should be <c>V_MPEG/ISO/AVC</c>
+        /// (for H.264) or <c>V_MPEG/ISO/HEVC</c> (for H.265). Optionally, the codec ID of track
+        /// 2 should be <c>A_AAC</c>. For audio only streaming, the codec ID of track 1 should
+        /// be <c>A_AAC</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -494,15 +493,14 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  <ol> <li> 
         /// <para>
         /// Get an endpoint using <a href="http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_GetDataEndpoint.html">GetDataEndpoint</a>,
-        /// specifying <code>GET_HLS_STREAMING_SESSION_URL</code> for the <code>APIName</code>
-        /// parameter.
+        /// specifying <c>GET_HLS_STREAMING_SESSION_URL</c> for the <c>APIName</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Retrieve the HLS URL using <code>GetHLSStreamingSessionURL</code>. Kinesis Video Streams
+        /// Retrieve the HLS URL using <c>GetHLSStreamingSessionURL</c>. Kinesis Video Streams
         /// creates an HLS streaming session to be used for accessing content in a stream using
-        /// the HLS protocol. <code>GetHLSStreamingSessionURL</code> returns an authenticated
-        /// URL (that includes an encrypted session token) for the session's HLS <i>master playlist</i>
+        /// the HLS protocol. <c>GetHLSStreamingSessionURL</c> returns an authenticated URL (that
+        /// includes an encrypted session token) for the session's HLS <i>master playlist</i>
         /// (the root resource needed for streaming with HLS).
         /// </para>
         ///  <note> 
@@ -534,29 +532,28 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  <ul> <li> 
         /// <para>
         ///  <b>GetHLSMasterPlaylist:</b> Retrieves an HLS master playlist, which contains a URL
-        /// for the <code>GetHLSMediaPlaylist</code> action for each track, and additional metadata
+        /// for the <c>GetHLSMediaPlaylist</c> action for each track, and additional metadata
         /// for the media player, including estimated bitrate and resolution.
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <b>GetHLSMediaPlaylist:</b> Retrieves an HLS media playlist, which contains a URL
-        /// to access the MP4 initialization fragment with the <code>GetMP4InitFragment</code>
-        /// action, and URLs to access the MP4 media fragments with the <code>GetMP4MediaFragment</code>
-        /// actions. The HLS media playlist also contains metadata about the stream that the player
-        /// needs to play it, such as whether the <code>PlaybackMode</code> is <code>LIVE</code>
-        /// or <code>ON_DEMAND</code>. The HLS media playlist is typically static for sessions
-        /// with a <code>PlaybackType</code> of <code>ON_DEMAND</code>. The HLS media playlist
-        /// is continually updated with new fragments for sessions with a <code>PlaybackType</code>
-        /// of <code>LIVE</code>. There is a distinct HLS media playlist for the video track and
-        /// the audio track (if applicable) that contains MP4 media URLs for the specific track.
-        /// 
+        /// to access the MP4 initialization fragment with the <c>GetMP4InitFragment</c> action,
+        /// and URLs to access the MP4 media fragments with the <c>GetMP4MediaFragment</c> actions.
+        /// The HLS media playlist also contains metadata about the stream that the player needs
+        /// to play it, such as whether the <c>PlaybackMode</c> is <c>LIVE</c> or <c>ON_DEMAND</c>.
+        /// The HLS media playlist is typically static for sessions with a <c>PlaybackType</c>
+        /// of <c>ON_DEMAND</c>. The HLS media playlist is continually updated with new fragments
+        /// for sessions with a <c>PlaybackType</c> of <c>LIVE</c>. There is a distinct HLS media
+        /// playlist for the video track and the audio track (if applicable) that contains MP4
+        /// media URLs for the specific track. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <b>GetMP4InitFragment:</b> Retrieves the MP4 initialization fragment. The media player
         /// typically loads the initialization fragment before loading any media fragments. This
-        /// fragment contains the "<code>fytp</code>" and "<code>moov</code>" MP4 atoms, and the
-        /// child atoms that are needed to initialize the media player decoder.
+        /// fragment contains the "<c>fytp</c>" and "<c>moov</c>" MP4 atoms, and the child atoms
+        /// that are needed to initialize the media player decoder.
         /// </para>
         ///  
         /// <para>
@@ -567,8 +564,8 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  </li> <li> 
         /// <para>
         ///  <b>GetMP4MediaFragment:</b> Retrieves MP4 media fragments. These fragments contain
-        /// the "<code>moof</code>" and "<code>mdat</code>" MP4 atoms and their child atoms, containing
-        /// the encoded fragment's media frames and their timestamps. 
+        /// the "<c>moof</c>" and "<c>mdat</c>" MP4 atoms and their child atoms, containing the
+        /// encoded fragment's media frames and their timestamps. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -593,9 +590,8 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// </para>
         ///  <note> 
         /// <para>
-        /// If the <code>ContainerFormat</code> is <code>MPEG_TS</code>, this API is used instead
-        /// of <code>GetMP4InitFragment</code> and <code>GetMP4MediaFragment</code> to retrieve
-        /// stream media.
+        /// If the <c>ContainerFormat</c> is <c>MPEG_TS</c>, this API is used instead of <c>GetMP4InitFragment</c>
+        /// and <c>GetMP4MediaFragment</c> to retrieve stream media.
         /// </para>
         ///  </note> 
         /// <para>
@@ -612,7 +608,7 @@ namespace Amazon.KinesisVideoArchivedMedia
         ///  
         /// <para>
         /// You can monitor the amount of data that the media player consumes by monitoring the
-        /// <code>GetMP4MediaFragment.OutgoingBytes</code> Amazon CloudWatch metric. For information
+        /// <c>GetMP4MediaFragment.OutgoingBytes</c> Amazon CloudWatch metric. For information
         /// about using CloudWatch to monitor Kinesis Video Streams, see <a href="http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/monitoring.html">Monitoring
         /// Kinesis Video Streams</a>. For pricing information, see <a href="https://aws.amazon.com/kinesis/video-streams/pricing/">Amazon
         /// Kinesis Video Streams Pricing</a> and <a href="https://aws.amazon.com/pricing/">Amazon
@@ -632,14 +628,13 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>x-amz-ErrorType</code> HTTP header – contains a more specific error type in
-        /// addition to what the HTTP status code provides. 
+        ///  <c>x-amz-ErrorType</c> HTTP header – contains a more specific error type in addition
+        /// to what the HTTP status code provides. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to Amazon
-        /// Web Services, the support team can better diagnose the problem if given the Request
-        /// Id.
+        ///  <c>x-amz-RequestId</c> HTTP header – if you want to report an issue to Amazon Web
+        /// Services, the support team can better diagnose the problem if given the Request Id.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -675,31 +670,31 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// No codec private data was found in at least one of tracks of the video stream.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NoDataRetentionException">
-        /// A streaming session was requested for a stream that does not retain data (that is,
-        /// has a <code>DataRetentionInHours</code> of 0).
+        /// <c>GetImages</c> was requested for a stream that does not retain data (that is, has
+        /// a <c>DataRetentionInHours</c> of 0).
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NotAuthorizedException">
         /// Status Code: 403, The caller is not authorized to perform an operation on the given
         /// stream, or the token has expired.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.ResourceNotFoundException">
-        /// <code>GetImages</code> will throw this error when Kinesis Video Streams can't find
-        /// the stream that you specified.
+        /// <c>GetImages</c> will throw this error when Kinesis Video Streams can't find the
+        /// stream that you specified.
         /// 
         ///  
         /// <para>
-        ///  <code>GetHLSStreamingSessionURL</code> and <code>GetDASHStreamingSessionURL</code>
-        /// throw this error if a session with a <code>PlaybackMode</code> of <code>ON_DEMAND</code>
-        /// or <code>LIVE_REPLAY</code>is requested for a stream that has no fragments within
-        /// the requested time range, or if a session with a <code>PlaybackMode</code> of <code>LIVE</code>
-        /// is requested for a stream that has no fragments within the last 30 seconds.
+        ///  <c>GetHLSStreamingSessionURL</c> and <c>GetDASHStreamingSessionURL</c> throw this
+        /// error if a session with a <c>PlaybackMode</c> of <c>ON_DEMAND</c> or <c>LIVE_REPLAY</c>is
+        /// requested for a stream that has no fragments within the requested time range, or if
+        /// a session with a <c>PlaybackMode</c> of <c>LIVE</c> is requested for a stream that
+        /// has no fragments within the last 30 seconds.
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.UnsupportedStreamMediaTypeException">
         /// The type of the media (for example, h.264 or h.265 video or ACC or G.711 audio) could
         /// not be determined from the codec IDs of the tracks in the first fragment for a playback
-        /// session. The codec ID for track 1 should be <code>V_MPEG/ISO/AVC</code> and, optionally,
-        /// the codec ID for track 2 should be <code>A_AAC</code>.
+        /// session. The codec ID for track 1 should be <c>V_MPEG/ISO/AVC</c> and, optionally,
+        /// the codec ID for track 2 should be <c>A_AAC</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetHLSStreamingSessionURL">REST API Reference for GetHLSStreamingSessionURL Operation</seealso>
         GetHLSStreamingSessionURLResponse GetHLSStreamingSessionURL(GetHLSStreamingSessionURLRequest request);
@@ -736,7 +731,7 @@ namespace Amazon.KinesisVideoArchivedMedia
 
 
         /// <summary>
-        /// Retrieves a list of Images corresponding to each timestamp for a given time range,
+        /// Retrieves a list of images corresponding to each timestamp for a given time range,
         /// sampling interval, and image format configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetImages service method.</param>
@@ -750,21 +745,25 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.InvalidArgumentException">
         /// A specified parameter exceeds its restrictions, is not supported, or can't be used.
         /// </exception>
+        /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NoDataRetentionException">
+        /// <c>GetImages</c> was requested for a stream that does not retain data (that is, has
+        /// a <c>DataRetentionInHours</c> of 0).
+        /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.NotAuthorizedException">
         /// Status Code: 403, The caller is not authorized to perform an operation on the given
         /// stream, or the token has expired.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.ResourceNotFoundException">
-        /// <code>GetImages</code> will throw this error when Kinesis Video Streams can't find
-        /// the stream that you specified.
+        /// <c>GetImages</c> will throw this error when Kinesis Video Streams can't find the
+        /// stream that you specified.
         /// 
         ///  
         /// <para>
-        ///  <code>GetHLSStreamingSessionURL</code> and <code>GetDASHStreamingSessionURL</code>
-        /// throw this error if a session with a <code>PlaybackMode</code> of <code>ON_DEMAND</code>
-        /// or <code>LIVE_REPLAY</code>is requested for a stream that has no fragments within
-        /// the requested time range, or if a session with a <code>PlaybackMode</code> of <code>LIVE</code>
-        /// is requested for a stream that has no fragments within the last 30 seconds.
+        ///  <c>GetHLSStreamingSessionURL</c> and <c>GetDASHStreamingSessionURL</c> throw this
+        /// error if a session with a <c>PlaybackMode</c> of <c>ON_DEMAND</c> or <c>LIVE_REPLAY</c>is
+        /// requested for a stream that has no fragments within the requested time range, or if
+        /// a session with a <c>PlaybackMode</c> of <c>LIVE</c> is requested for a stream that
+        /// has no fragments within the last 30 seconds.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetImages">REST API Reference for GetImages Operation</seealso>
@@ -807,10 +806,9 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// 
         ///  <note> 
         /// <para>
-        /// You must first call the <code>GetDataEndpoint</code> API to get an endpoint. Then
-        /// send the <code>GetMediaForFragmentList</code> requests to this endpoint using the
-        /// <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url parameter</a>.
-        /// 
+        /// You must first call the <c>GetDataEndpoint</c> API to get an endpoint. Then send the
+        /// <c>GetMediaForFragmentList</c> requests to this endpoint using the <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url
+        /// parameter</a>. 
         /// </para>
         ///  </note> 
         /// <para>
@@ -825,14 +823,13 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>x-amz-ErrorType</code> HTTP header – contains a more specific error type in
-        /// addition to what the HTTP status code provides. 
+        ///  <c>x-amz-ErrorType</c> HTTP header – contains a more specific error type in addition
+        /// to what the HTTP status code provides. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to Amazon
-        /// Web Services, the support team can better diagnose the problem if given the Request
-        /// Id.
+        ///  <c>x-amz-RequestId</c> HTTP header – if you want to report an issue to Amazon Web
+        /// Services, the support team can better diagnose the problem if given the Request Id.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -865,16 +862,16 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// stream, or the token has expired.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.ResourceNotFoundException">
-        /// <code>GetImages</code> will throw this error when Kinesis Video Streams can't find
-        /// the stream that you specified.
+        /// <c>GetImages</c> will throw this error when Kinesis Video Streams can't find the
+        /// stream that you specified.
         /// 
         ///  
         /// <para>
-        ///  <code>GetHLSStreamingSessionURL</code> and <code>GetDASHStreamingSessionURL</code>
-        /// throw this error if a session with a <code>PlaybackMode</code> of <code>ON_DEMAND</code>
-        /// or <code>LIVE_REPLAY</code>is requested for a stream that has no fragments within
-        /// the requested time range, or if a session with a <code>PlaybackMode</code> of <code>LIVE</code>
-        /// is requested for a stream that has no fragments within the last 30 seconds.
+        ///  <c>GetHLSStreamingSessionURL</c> and <c>GetDASHStreamingSessionURL</c> throw this
+        /// error if a session with a <c>PlaybackMode</c> of <c>ON_DEMAND</c> or <c>LIVE_REPLAY</c>is
+        /// requested for a stream that has no fragments within the requested time range, or if
+        /// a session with a <c>PlaybackMode</c> of <c>LIVE</c> is requested for a stream that
+        /// has no fragments within the last 30 seconds.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/GetMediaForFragmentList">REST API Reference for GetMediaForFragmentList Operation</seealso>
@@ -919,13 +916,13 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// <para>
         /// Listing fragments is eventually consistent. This means that even if the producer receives
         /// an acknowledgment that a fragment is persisted, the result might not be returned immediately
-        /// from a request to <code>ListFragments</code>. However, results are typically available
-        /// in less than one second.
+        /// from a request to <c>ListFragments</c>. However, results are typically available in
+        /// less than one second.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must first call the <code>GetDataEndpoint</code> API to get an endpoint. Then
-        /// send the <code>ListFragments</code> requests to this endpoint using the <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url
+        /// You must first call the <c>GetDataEndpoint</c> API to get an endpoint. Then send the
+        /// <c>ListFragments</c> requests to this endpoint using the <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url
         /// parameter</a>. 
         /// </para>
         ///  </note> <important> 
@@ -936,14 +933,13 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>x-amz-ErrorType</code> HTTP header – contains a more specific error type in
-        /// addition to what the HTTP status code provides. 
+        ///  <c>x-amz-ErrorType</c> HTTP header – contains a more specific error type in addition
+        /// to what the HTTP status code provides. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to Amazon
-        /// Web Services, the support team can better diagnose the problem if given the Request
-        /// Id.
+        ///  <c>x-amz-RequestId</c> HTTP header – if you want to report an issue to Amazon Web
+        /// Services, the support team can better diagnose the problem if given the Request Id.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -976,16 +972,16 @@ namespace Amazon.KinesisVideoArchivedMedia
         /// stream, or the token has expired.
         /// </exception>
         /// <exception cref="Amazon.KinesisVideoArchivedMedia.Model.ResourceNotFoundException">
-        /// <code>GetImages</code> will throw this error when Kinesis Video Streams can't find
-        /// the stream that you specified.
+        /// <c>GetImages</c> will throw this error when Kinesis Video Streams can't find the
+        /// stream that you specified.
         /// 
         ///  
         /// <para>
-        ///  <code>GetHLSStreamingSessionURL</code> and <code>GetDASHStreamingSessionURL</code>
-        /// throw this error if a session with a <code>PlaybackMode</code> of <code>ON_DEMAND</code>
-        /// or <code>LIVE_REPLAY</code>is requested for a stream that has no fragments within
-        /// the requested time range, or if a session with a <code>PlaybackMode</code> of <code>LIVE</code>
-        /// is requested for a stream that has no fragments within the last 30 seconds.
+        ///  <c>GetHLSStreamingSessionURL</c> and <c>GetDASHStreamingSessionURL</c> throw this
+        /// error if a session with a <c>PlaybackMode</c> of <c>ON_DEMAND</c> or <c>LIVE_REPLAY</c>is
+        /// requested for a stream that has no fragments within the requested time range, or if
+        /// a session with a <c>PlaybackMode</c> of <c>LIVE</c> is requested for a stream that
+        /// has no fragments within the last 30 seconds.
         /// </para>
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/kinesis-video-archived-media-2017-09-30/ListFragments">REST API Reference for ListFragments Operation</seealso>

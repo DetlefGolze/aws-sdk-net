@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppIntegrationsService.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.AppIntegrationsService.Model
         internal AppIntegrationsServicePaginatorFactory(IAmazonAppIntegrationsService client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ListApplicationAssociations operation
+        ///</summary>
+        public IListApplicationAssociationsPaginator ListApplicationAssociations(ListApplicationAssociationsRequest request) 
+        {
+            return new ListApplicationAssociationsPaginator(this.client, request);
         }
 
         /// <summary>

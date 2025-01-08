@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MainframeModernization.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,23 @@ namespace Amazon.MainframeModernization.Model.Internal.MarshallTransformations
                 throw new AmazonMainframeModernizationException("Request object does not have required field ExecutionId set");
             request.AddPathResource("{executionId}", StringUtils.FromString(publicRequest.ExecutionId));
             request.ResourcePath = "/applications/{applicationId}/batch-job-executions/{executionId}/cancel";
+            using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
+            {
+                JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
+                writer.WriteObjectStart();
+                var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAuthSecretsManagerArn())
+                {
+                    context.Writer.WritePropertyName("authSecretsManagerArn");
+                    context.Writer.Write(publicRequest.AuthSecretsManagerArn);
+                }
+
+                writer.WriteObjectEnd();
+                string snippet = stringWriter.ToString();
+                request.Content = System.Text.Encoding.UTF8.GetBytes(snippet);
+            }
+
 
             return request;
         }

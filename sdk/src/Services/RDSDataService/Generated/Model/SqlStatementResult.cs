@@ -26,15 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
     /// The result of a SQL statement.
     /// 
-    ///  <pre><code> &lt;note&gt; &lt;p&gt;This data structure is only used with the deprecated
-    /// &lt;code&gt;ExecuteSql&lt;/code&gt; operation. Use the &lt;code&gt;BatchExecuteStatement&lt;/code&gt;
-    /// or &lt;code&gt;ExecuteStatement&lt;/code&gt; operation instead.&lt;/p&gt; &lt;/note&gt;
-    /// </code></pre>
+    ///  <note> 
+    /// <para>
+    /// This data structure is only used with the deprecated <c>ExecuteSql</c> operation.
+    /// Use the <c>BatchExecuteStatement</c> or <c>ExecuteStatement</c> operation instead.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class SqlStatementResult
     {

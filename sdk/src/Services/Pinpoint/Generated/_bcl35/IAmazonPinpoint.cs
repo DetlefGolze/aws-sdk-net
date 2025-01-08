@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Pinpoint.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Pinpoint
 {
     /// <summary>
-    /// Interface for accessing Pinpoint
+    /// <para>Interface for accessing Pinpoint</para>
     ///
     /// Doc Engage API - Amazon Pinpoint API
     /// </summary>

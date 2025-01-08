@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Imagebuilder.Model
     public partial class CreateContainerRecipeRequest : AmazonImagebuilderRequest
     {
         private string _clientToken;
-        private List<ComponentConfiguration> _components = new List<ComponentConfiguration>();
+        private List<ComponentConfiguration> _components = AWSConfigs.InitializeCollections ? new List<ComponentConfiguration>() : null;
         private ContainerType _containerType;
         private string _description;
         private string _dockerfileTemplateData;
@@ -48,14 +49,16 @@ namespace Amazon.Imagebuilder.Model
         private string _parentImage;
         private Platform _platformOverride;
         private string _semanticVersion;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private TargetContainerRepository _targetRepository;
         private string _workingDirectory;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The client token used to make this request idempotent.
+        /// Unique, case-sensitive identifier you provide to ensure idempotency of the request.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency</a> in the <i>Amazon EC2 API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -89,7 +92,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Components property is set
         internal bool IsSetComponents()
         {
-            return this._components != null && this._components.Count > 0; 
+            return this._components != null && (this._components.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -208,7 +211,7 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// Identifies which KMS key is used to encrypt the container image.
+        /// Identifies which KMS key is used to encrypt the Dockerfile template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -334,7 +337,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

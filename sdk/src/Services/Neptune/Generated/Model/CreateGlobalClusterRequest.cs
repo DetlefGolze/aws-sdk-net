@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>neptune</code> 
+        /// Valid values: <c>neptune</c> 
         /// </para>
         /// </summary>
         public string Engine
@@ -99,7 +100,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>1.2.0.0</code> or above.
+        /// Valid values: <c>1.2.0.0</c> or above.
         /// </para>
         /// </summary>
         public string EngineVersion

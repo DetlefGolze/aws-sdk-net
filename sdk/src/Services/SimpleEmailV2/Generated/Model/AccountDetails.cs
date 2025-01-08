@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class AccountDetails
     {
-        private List<string> _additionalContactEmailAddresses = new List<string>();
+        private List<string> _additionalContactEmailAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ContactLanguage _contactLanguage;
         private MailType _mailType;
         private ReviewDetails _reviewDetails;
@@ -56,14 +57,14 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if AdditionalContactEmailAddresses property is set
         internal bool IsSetAdditionalContactEmailAddresses()
         {
-            return this._additionalContactEmailAddresses != null && this._additionalContactEmailAddresses.Count > 0; 
+            return this._additionalContactEmailAddresses != null && (this._additionalContactEmailAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ContactLanguage. 
         /// <para>
-        /// The language you would prefer for the case. The contact language can be one of <code>ENGLISH</code>
-        /// or <code>JAPANESE</code>.
+        /// The language you would prefer for the case. The contact language can be one of <c>ENGLISH</c>
+        /// or <c>JAPANESE</c>.
         /// </para>
         /// </summary>
         public ContactLanguage ContactLanguage
@@ -85,13 +86,13 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>MARKETING</code> – Most of your sending traffic is to keep your customers informed
+        ///  <c>MARKETING</c> – Most of your sending traffic is to keep your customers informed
         /// of your latest offering.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TRANSACTIONAL</code> – Most of your sending traffic is to communicate during
-        /// a transaction with a customer.
+        ///  <c>TRANSACTIONAL</c> – Most of your sending traffic is to communicate during a transaction
+        /// with a customer.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -131,7 +132,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// A description of the types of email that you plan to send.
         /// </para>
         /// </summary>
-        [AWSProperty(Sensitive=true, Min=1, Max=5000)]
+        [AWSProperty(Sensitive=true, Max=5000)]
         public string UseCaseDescription
         {
             get { return this._useCaseDescription; }

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTokenBalances operation.
-    /// This action returns the following for a given a blockchain network:
+    /// This action returns the following for a given blockchain network:
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// Lists all token balances owned by an address (either a contact address or a wallet
+    /// Lists all token balances owned by an address (either a contract address or a wallet
     /// address).
     /// </para>
     ///  </li> <li> 
@@ -47,8 +48,8 @@ namespace Amazon.ManagedBlockchainQuery.Model
     /// </para>
     ///  </li> </ul> <note> 
     /// <para>
-    /// You must always specify the network property of the <code>tokenFilter</code> when
-    /// using this operation.
+    /// You must always specify the network property of the <c>tokenFilter</c> when using
+    /// this operation.
     /// </para>
     ///  </note>
     /// </summary>
@@ -64,6 +65,22 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <para>
         /// The maximum number of token balances to return.
         /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>100</c> 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Even if additional results can be retrieved, the request can return less results than
+        /// <c>maxResults</c> or an empty array of results.
+        /// </para>
+        ///  
+        /// <para>
+        /// To retrieve the next set of results, make another request with the returned <c>nextToken</c>
+        /// value. The value of <c>nextToken</c> is <c>null</c> when there are no more results
+        /// to return
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=1, Max=250)]
         public int MaxResults
@@ -101,8 +118,8 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// Gets and sets the property OwnerFilter. 
         /// <para>
         /// The contract or wallet address on the blockchain network by which to filter the request.
-        /// You must specify the <code>address</code> property of the <code>ownerFilter</code>
-        /// when listing balances of tokens owned by the address.
+        /// You must specify the <c>address</c> property of the <c>ownerFilter</c> when listing
+        /// balances of tokens owned by the address.
         /// </para>
         /// </summary>
         public OwnerFilter OwnerFilter
@@ -121,8 +138,8 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// Gets and sets the property TokenFilter. 
         /// <para>
         /// The contract address or a token identifier on the blockchain network by which to filter
-        /// the request. You must specify the contractAddress property of this container when
-        /// listing tokens minted by a contract.
+        /// the request. You must specify the <c>contractAddress</c> property of this container
+        /// when listing tokens minted by a contract.
         /// </para>
         ///  <note> 
         /// <para>

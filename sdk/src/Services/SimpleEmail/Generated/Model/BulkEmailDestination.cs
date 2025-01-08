@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SimpleEmail.Model
     public partial class BulkEmailDestination
     {
         private Destination _destination;
-        private List<MessageTag> _replacementTags = new List<MessageTag>();
+        private List<MessageTag> _replacementTags = AWSConfigs.InitializeCollections ? new List<MessageTag>() : null;
         private string _replacementTemplateData;
 
         /// <summary>
@@ -58,8 +59,8 @@ namespace Amazon.SimpleEmail.Model
         /// Gets and sets the property ReplacementTags. 
         /// <para>
         /// A list of tags, in the form of name/value pairs, to apply to an email that you send
-        /// using <code>SendBulkTemplatedEmail</code>. Tags correspond to characteristics of the
-        /// email that you define, so that you can publish email sending events.
+        /// using <c>SendBulkTemplatedEmail</c>. Tags correspond to characteristics of the email
+        /// that you define, so that you can publish email sending events.
         /// </para>
         /// </summary>
         public List<MessageTag> ReplacementTags
@@ -71,7 +72,7 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if ReplacementTags property is set
         internal bool IsSetReplacementTags()
         {
-            return this._replacementTags != null && this._replacementTags.Count > 0; 
+            return this._replacementTags != null && (this._replacementTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

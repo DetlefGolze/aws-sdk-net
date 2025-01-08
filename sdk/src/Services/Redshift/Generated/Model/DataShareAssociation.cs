@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -33,11 +34,31 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class DataShareAssociation
     {
+        private bool? _consumerAcceptedWrites;
         private string _consumerIdentifier;
         private string _consumerRegion;
         private DateTime? _createdDate;
+        private bool? _producerAllowedWrites;
         private DataShareStatus _status;
         private DateTime? _statusChangeDate;
+
+        /// <summary>
+        /// Gets and sets the property ConsumerAcceptedWrites. 
+        /// <para>
+        /// Specifies whether write operations were allowed during data share association.
+        /// </para>
+        /// </summary>
+        public bool ConsumerAcceptedWrites
+        {
+            get { return this._consumerAcceptedWrites.GetValueOrDefault(); }
+            set { this._consumerAcceptedWrites = value; }
+        }
+
+        // Check to see if ConsumerAcceptedWrites property is set
+        internal bool IsSetConsumerAcceptedWrites()
+        {
+            return this._consumerAcceptedWrites.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property ConsumerIdentifier. 
@@ -94,6 +115,24 @@ namespace Amazon.Redshift.Model
         internal bool IsSetCreatedDate()
         {
             return this._createdDate.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProducerAllowedWrites. 
+        /// <para>
+        /// Specifies whether write operations were allowed during data share authorization.
+        /// </para>
+        /// </summary>
+        public bool ProducerAllowedWrites
+        {
+            get { return this._producerAllowedWrites.GetValueOrDefault(); }
+            set { this._producerAllowedWrites = value; }
+        }
+
+        // Check to see if ProducerAllowedWrites property is set
+        internal bool IsSetProducerAllowedWrites()
+        {
+            return this._producerAllowedWrites.HasValue; 
         }
 
         /// <summary>

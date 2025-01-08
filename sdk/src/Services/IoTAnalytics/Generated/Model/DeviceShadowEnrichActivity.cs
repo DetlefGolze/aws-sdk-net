@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>deviceShadowEnrich</code> activity.
+        /// The name of the <c>deviceShadowEnrich</c> activity.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]

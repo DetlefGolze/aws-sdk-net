@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -34,16 +35,17 @@ namespace Amazon.ResilienceHub.Model
     public partial class BatchUpdateRecommendationStatusResponse : AmazonWebServiceResponse
     {
         private string _appArn;
-        private List<BatchUpdateRecommendationStatusFailedEntry> _failedEntries = new List<BatchUpdateRecommendationStatusFailedEntry>();
-        private List<BatchUpdateRecommendationStatusSuccessfulEntry> _successfulEntries = new List<BatchUpdateRecommendationStatusSuccessfulEntry>();
+        private List<BatchUpdateRecommendationStatusFailedEntry> _failedEntries = AWSConfigs.InitializeCollections ? new List<BatchUpdateRecommendationStatusFailedEntry>() : null;
+        private List<BatchUpdateRecommendationStatusSuccessfulEntry> _successfulEntries = AWSConfigs.InitializeCollections ? new List<BatchUpdateRecommendationStatusSuccessfulEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -76,7 +78,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if FailedEntries property is set
         internal bool IsSetFailedEntries()
         {
-            return this._failedEntries != null && this._failedEntries.Count > 0; 
+            return this._failedEntries != null && (this._failedEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -95,7 +97,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if SuccessfulEntries property is set
         internal bool IsSetSuccessfulEntries()
         {
-            return this._successfulEntries != null && this._successfulEntries.Count > 0; 
+            return this._successfulEntries != null && (this._successfulEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

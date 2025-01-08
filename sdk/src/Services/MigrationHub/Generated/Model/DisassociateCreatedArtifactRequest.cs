@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.MigrationHub.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// A migration user can call the <code>DisassociateCreatedArtifacts</code> operation
-    /// to disassociate a created AWS Artifact from a migration task.
+    /// A migration user can call the <c>DisassociateCreatedArtifacts</c> operation to disassociate
+    /// a created AWS Artifact from a migration task.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// The created artifact name must be provided in ARN (Amazon Resource Name) format which
-    /// will contain information about type and region; for example: <code>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</code>.
+    /// will contain information about type and region; for example: <c>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>

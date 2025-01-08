@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ECR.Model
         private ImageTagMutability _imageTagMutability;
         private string _registryId;
         private string _repositoryName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property EncryptionConfiguration. 
@@ -84,9 +85,9 @@ namespace Amazon.ECR.Model
         /// Gets and sets the property ImageTagMutability. 
         /// <para>
         /// The tag mutability setting for the repository. If this parameter is omitted, the default
-        /// setting of <code>MUTABLE</code> will be used which will allow image tags to be overwritten.
-        /// If <code>IMMUTABLE</code> is specified, all image tags within the repository will
-        /// be immutable which will prevent them from being overwritten.
+        /// setting of <c>MUTABLE</c> will be used which will allow image tags to be overwritten.
+        /// If <c>IMMUTABLE</c> is specified, all image tags within the repository will be immutable
+        /// which will prevent them from being overwritten.
         /// </para>
         /// </summary>
         public ImageTagMutability ImageTagMutability
@@ -124,8 +125,8 @@ namespace Amazon.ECR.Model
         /// Gets and sets the property RepositoryName. 
         /// <para>
         /// The name to use for the repository. The repository name may be specified on its own
-        /// (such as <code>nginx-web-app</code>) or it can be prepended with a namespace to group
-        /// the repository into a category (such as <code>project-a/nginx-web-app</code>).
+        /// (such as <c>nginx-web-app</c>) or it can be prepended with a namespace to group the
+        /// repository into a category (such as <c>project-a/nginx-web-app</c>).
         /// </para>
         ///  
         /// <para>
@@ -164,7 +165,7 @@ namespace Amazon.ECR.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

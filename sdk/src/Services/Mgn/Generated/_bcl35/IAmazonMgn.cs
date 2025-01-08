@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Mgn.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Mgn
 {
     /// <summary>
-    /// Interface for accessing Mgn
+    /// <para>Interface for accessing Mgn</para>
     ///
     /// The Application Migration Service service.
     /// </summary>
@@ -3222,6 +3223,12 @@ namespace Amazon.Mgn
 
         /// <summary>
         /// Updates multiple LaunchConfigurations by Source Server ID.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// bootMode valid values are <c>LEGACY_BIOS | UEFI</c> 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLaunchConfiguration service method.</param>
         /// 

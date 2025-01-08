@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
     /// Object to store union of Field values.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// The <c>Summary</c> system field accepts 1500 characters while all other fields accept
+    /// 500 characters.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class FieldValueUnion
     {
@@ -37,6 +45,7 @@ namespace Amazon.ConnectCases.Model
         private double? _doubleValue;
         private EmptyFieldValue _emptyValue;
         private string _stringValue;
+        private string _userArnValue;
 
         /// <summary>
         /// Gets and sets the property BooleanValue. 
@@ -98,7 +107,7 @@ namespace Amazon.ConnectCases.Model
         /// String value type.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=500)]
+        [AWSProperty(Min=0, Max=1500)]
         public string StringValue
         {
             get { return this._stringValue; }
@@ -109,6 +118,24 @@ namespace Amazon.ConnectCases.Model
         internal bool IsSetStringValue()
         {
             return this._stringValue != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UserArnValue. 
+        /// <para>
+        /// Represents the user that performed the audit.
+        /// </para>
+        /// </summary>
+        public string UserArnValue
+        {
+            get { return this._userArnValue; }
+            set { this._userArnValue = value; }
+        }
+
+        // Check to see if UserArnValue property is set
+        internal bool IsSetUserArnValue()
+        {
+            return this._userArnValue != null;
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,14 @@ namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(DeliveryOptions requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetMaxDeliverySeconds())
+            {
+                context.Writer.WritePropertyName("MaxDeliverySeconds");
+                context.Writer.Write(requestObject.MaxDeliverySeconds);
+            }
+
             if(requestObject.IsSetSendingPoolName())
             {
                 context.Writer.WritePropertyName("SendingPoolName");

@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Route53RecoveryCluster.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Route53RecoveryCluster
 {
     /// <summary>
-    /// Interface for accessing Route53RecoveryCluster
+    /// <para>Interface for accessing Route53RecoveryCluster</para>
     ///
     /// Welcome to the Routing Control (Recovery Cluster) API Reference Guide for Amazon Route
     /// 53 Application Recovery Controller.
@@ -39,16 +40,17 @@ namespace Amazon.Route53RecoveryCluster
     /// Regions. Routing controls are simple on/off switches hosted on a highly available
     /// cluster in Route 53 ARC. A cluster provides a set of five redundant Regional endpoints
     /// against which you can run API calls to get or update the state of routing controls.
-    /// To implement failover, you set one routing control On and another one Off, to reroute
-    /// traffic from one Availability Zone or Amazon Web Services Region to another. 
+    /// To implement failover, you set one routing control to ON and another one to OFF, to
+    /// reroute traffic from one Availability Zone or Amazon Web Services Region to another.
+    /// 
     /// </para>
     ///  
     /// <para>
     ///  <i>Be aware that you must specify a Regional endpoint for a cluster when you work
     /// with API cluster operations to get or update routing control states in Route 53 ARC.</i>
     /// In addition, you must specify the US West (Oregon) Region for Route 53 ARC API calls.
-    /// For example, use the parameter <code>--region us-west-2</code> with AWS CLI commands.
-    /// For more information, see <a href="https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.update.api.html">
+    /// For example, use the parameter <c>--region us-west-2</c> with AWS CLI commands. For
+    /// more information, see <a href="https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.update.api.html">
     /// Get and update routing control states using the API</a> in the Amazon Route 53 Application
     /// Recovery Controller Developer Guide.
     /// </para>
@@ -111,8 +113,8 @@ namespace Amazon.Route53RecoveryCluster
 
         /// <summary>
         /// Get the state for a routing control. A routing control is a simple on/off switch that
-        /// you can use to route traffic to cells. When a routing control state is On, traffic
-        /// flows to a cell. When the state is Off, traffic does not flow. 
+        /// you can use to route traffic to cells. When a routing control state is set to ON,
+        /// traffic flows to a cell. When the state is set to OFF, traffic does not flow. 
         /// 
         ///  
         /// <para>
@@ -215,8 +217,8 @@ namespace Amazon.Route53RecoveryCluster
         ///  
         /// <para>
         /// A routing control is a simple on/off switch in Route 53 ARC that you can use to route
-        /// traffic to cells. When a routing control state is On, traffic flows to a cell. When
-        /// the state is Off, traffic does not flow.
+        /// traffic to cells. When a routing control state is set to ON, traffic flows to a cell.
+        /// When the state is set to OFF, traffic does not flow.
         /// </para>
         ///  
         /// <para>
@@ -305,8 +307,8 @@ namespace Amazon.Route53RecoveryCluster
 
         /// <summary>
         /// Set the state of the routing control to reroute traffic. You can set the value to
-        /// be On or Off. When the state is On, traffic flows to a cell. When the state is Off,
-        /// traffic does not flow.
+        /// ON or OFF. When the state is ON, traffic flows to a cell. When the state is OFF, traffic
+        /// does not flow.
         /// 
         ///  
         /// <para>
@@ -321,7 +323,7 @@ namespace Amazon.Route53RecoveryCluster
         /// </para>
         ///  
         /// <para>
-        /// The <code>SafetyRulesToOverride</code> property enables you override one or more safety
+        /// The <c>SafetyRulesToOverride</c> property enables you override one or more safety
         /// rules and update routing control states. For more information, see <a href="https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.override-safety-rule.html">
         /// Override safety rules to reroute traffic</a> in the Amazon Route 53 Application Recovery
         /// Controller Developer Guide.
@@ -408,8 +410,8 @@ namespace Amazon.Route53RecoveryCluster
 
 
         /// <summary>
-        /// Set multiple routing control states. You can set the value for each state to be On
-        /// or Off. When the state is On, traffic flows to a cell. When it's Off, traffic does
+        /// Set multiple routing control states. You can set the value for each state to be ON
+        /// or OFF. When the state is ON, traffic flows to a cell. When it's OFF, traffic does
         /// not flow.
         /// 
         ///  
@@ -425,7 +427,7 @@ namespace Amazon.Route53RecoveryCluster
         /// </para>
         ///  
         /// <para>
-        /// The <code>SafetyRulesToOverride</code> property enables you override one or more safety
+        /// The <c>SafetyRulesToOverride</c> property enables you override one or more safety
         /// rules and update routing control states. For more information, see <a href="https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.override-safety-rule.html">
         /// Override safety rules to reroute traffic</a> in the Amazon Route 53 Application Recovery
         /// Controller Developer Guide.

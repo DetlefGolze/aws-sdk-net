@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,9 +35,11 @@ namespace Amazon.DynamoDBv2.Model
     public partial class CreateGlobalSecondaryIndexAction
     {
         private string _indexName;
-        private List<KeySchemaElement> _keySchema = new List<KeySchemaElement>();
+        private List<KeySchemaElement> _keySchema = AWSConfigs.InitializeCollections ? new List<KeySchemaElement>() : null;
+        private OnDemandThroughput _onDemandThroughput;
         private Projection _projection;
         private ProvisionedThroughput _provisionedThroughput;
+        private WarmThroughput _warmThroughput;
 
         /// <summary>
         /// Gets and sets the property IndexName. 
@@ -73,7 +76,27 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if KeySchema property is set
         internal bool IsSetKeySchema()
         {
-            return this._keySchema != null && this._keySchema.Count > 0; 
+            return this._keySchema != null && (this._keySchema.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughput. 
+        /// <para>
+        /// The maximum number of read and write units for the global secondary index being created.
+        /// If you use this parameter, you must specify <c>MaxReadRequestUnits</c>, <c>MaxWriteRequestUnits</c>,
+        /// or both.
+        /// </para>
+        /// </summary>
+        public OnDemandThroughput OnDemandThroughput
+        {
+            get { return this._onDemandThroughput; }
+            set { this._onDemandThroughput = value; }
+        }
+
+        // Check to see if OnDemandThroughput property is set
+        internal bool IsSetOnDemandThroughput()
+        {
+            return this._onDemandThroughput != null;
         }
 
         /// <summary>
@@ -119,6 +142,25 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetProvisionedThroughput()
         {
             return this._provisionedThroughput != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WarmThroughput. 
+        /// <para>
+        /// Represents the warm throughput value (in read units per second and write units per
+        /// second) when creating a secondary index.
+        /// </para>
+        /// </summary>
+        public WarmThroughput WarmThroughput
+        {
+            get { return this._warmThroughput; }
+            set { this._warmThroughput = value; }
+        }
+
+        // Check to see if WarmThroughput property is set
+        internal bool IsSetWarmThroughput()
+        {
+            return this._warmThroughput != null;
         }
 
     }

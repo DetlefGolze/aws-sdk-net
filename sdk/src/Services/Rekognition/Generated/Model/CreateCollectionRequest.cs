@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.Rekognition.Model
     ///  
     /// <para>
     /// For example, you might create collections, one for each of your application users.
-    /// A user can then index faces using the <code>IndexFaces</code> operation and persist
-    /// results in a specific collection. Then, a user can search the collection for faces
-    /// in the user-specific container. 
+    /// A user can then index faces using the <c>IndexFaces</c> operation and persist results
+    /// in a specific collection. Then, a user can search the collection for faces in the
+    /// user-specific container. 
     /// </para>
     ///  
     /// <para>
@@ -51,15 +52,15 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:CreateCollection</code>
+    /// This operation requires permissions to perform the <c>rekognition:CreateCollection</c>
     /// action. If you want to tag your collection, you also require permission to perform
-    /// the <code>rekognition:TagResource</code> operation.
+    /// the <c>rekognition:TagResource</c> operation.
     /// </para>
     /// </summary>
     public partial class CreateCollectionRequest : AmazonRekognitionRequest
     {
         private string _collectionId;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property CollectionId. 
@@ -96,7 +97,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

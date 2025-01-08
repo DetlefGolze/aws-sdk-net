@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RecycleBin.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,8 +64,25 @@ namespace Amazon.RecycleBin.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetExcludeResourceTags())
+                {
+                    context.Writer.WritePropertyName("ExcludeResourceTags");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestExcludeResourceTagsListValue in publicRequest.ExcludeResourceTags)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = ResourceTagMarshaller.Instance;
+                        marshaller.Marshall(publicRequestExcludeResourceTagsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
                 if(publicRequest.IsSetLockState())
                 {
                     context.Writer.WritePropertyName("LockState");

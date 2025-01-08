@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.WorkMail.Model
         /// <summary>
         /// Gets and sets the property Hostname. 
         /// <para>
-        /// The DNS hostname.- For example, <code>domain.example.com</code>.
+        /// The DNS hostname.- For example, <c>domain.example.com</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -59,7 +60,7 @@ namespace Amazon.WorkMail.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The RFC 1035 record type. Possible values: <code>CNAME</code>, <code>A</code>, <code>MX</code>.
+        /// The RFC 1035 record type. Possible values: <c>CNAME</c>, <c>A</c>, <c>MX</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]

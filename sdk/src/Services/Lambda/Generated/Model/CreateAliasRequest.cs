@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.Lambda.Model
     ///  
     /// <para>
     /// You can also map an alias to split invocation requests between two versions. Use the
-    /// <code>RoutingConfig</code> parameter to specify a second version and the percentage
-    /// of invocation requests that it receives.
+    /// <c>RoutingConfig</c> parameter to specify a second version and the percentage of invocation
+    /// requests that it receives.
     /// </para>
     /// </summary>
     public partial class CreateAliasRequest : AmazonLambdaRequest
@@ -71,7 +72,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function.
+        /// The name or ARN of the Lambda function.
         /// </para>
         ///  
         /// <para>
@@ -79,15 +80,15 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> - <code>MyFunction</code>.
+        ///  <b>Function name</b> - <c>MyFunction</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.
+        ///  <b>Function ARN</b> - <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.
+        ///  <b>Partial ARN</b> - <c>123456789012:function:MyFunction</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>

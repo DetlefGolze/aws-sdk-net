@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.DirectConnect.Model
     /// 
     ///  
     /// <para>
-    /// When creating an IPv6 public virtual interface (<code>addressFamily</code> is <code>ipv6</code>),
-    /// leave the <code>customer</code> and <code>amazon</code> address fields blank to use
-    /// auto-assigned IPv6 space. Custom IPv6 addresses are not supported.
+    /// When creating an IPv6 public virtual interface (<c>addressFamily</c> is <c>ipv6</c>),
+    /// leave the <c>customer</c> and <c>amazon</c> address fields blank to use auto-assigned
+    /// IPv6 space. Custom IPv6 addresses are not supported.
     /// </para>
     /// </summary>
     public partial class CreatePublicVirtualInterfaceRequest : AmazonDirectConnectRequest

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AdministrativeAction Unmarshall(JsonUnmarshallerContext context)
         {
+            AdministrativeAction unmarshalledObject = new AdministrativeAction();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AdministrativeAction unmarshalledObject = new AdministrativeAction();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -80,6 +82,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.ProgressPercent = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("RemainingTransferBytes", targetDepth))
+                {
+                    var unmarshaller = LongUnmarshaller.Instance;
+                    unmarshalledObject.RemainingTransferBytes = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("RequestTime", targetDepth))
@@ -112,8 +120,13 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     unmarshalledObject.TargetVolumeValues = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("TotalTransferBytes", targetDepth))
+                {
+                    var unmarshaller = LongUnmarshaller.Instance;
+                    unmarshalledObject.TotalTransferBytes = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAvailabilityConfigurations operation.
-    /// List all the <code>AvailabilityConfiguration</code>'s for the given WorkMail organization.
+    /// List all the <c>AvailabilityConfiguration</c>'s for the given WorkMail organization.
     /// </summary>
     public partial class ListAvailabilityConfigurationsRequest : AmazonWorkMailRequest
     {
@@ -80,8 +81,8 @@ namespace Amazon.WorkMail.Model
         /// <summary>
         /// Gets and sets the property OrganizationId. 
         /// <para>
-        /// The WorkMail organization for which the <code>AvailabilityConfiguration</code>'s will
-        /// be listed.
+        /// The WorkMail organization for which the <c>AvailabilityConfiguration</c>'s will be
+        /// listed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=34, Max=34)]

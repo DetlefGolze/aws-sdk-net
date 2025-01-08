@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.PI.Model
     {
         private string _resourceARN;
         private ServiceType _serviceType;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
@@ -63,7 +64,7 @@ namespace Amazon.PI.Model
         /// Gets and sets the property ServiceType. 
         /// <para>
         /// List the tags for the Amazon Web Services service for which Performance Insights returns
-        /// metrics. Valid value is <code>RDS</code>.
+        /// metrics. Valid value is <c>RDS</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -96,7 +97,7 @@ namespace Amazon.PI.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

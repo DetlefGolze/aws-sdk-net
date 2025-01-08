@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Omics.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,18 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                     response.Arn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("cacheBehavior", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.CacheBehavior = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("cacheId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.CacheId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("creationTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -81,6 +94,18 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                     response.Digest = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("engineVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.EngineVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("failureReason", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.FailureReason = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("id", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -91,6 +116,12 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.LogLevel = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("logLocation", targetDepth))
+                {
+                    var unmarshaller = RunLogLocationUnmarshaller.Instance;
+                    response.LogLocation = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("name", targetDepth))
@@ -147,6 +178,12 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                     response.RunId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("runOutputUri", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.RunOutputUri = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("startedBy", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -183,16 +220,34 @@ namespace Amazon.Omics.Model.Internal.MarshallTransformations
                     response.StorageCapacity = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("storageType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.StorageType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("tags", targetDepth))
                 {
                     var unmarshaller = new DictionaryUnmarshaller<string, string, StringUnmarshaller, StringUnmarshaller>(StringUnmarshaller.Instance, StringUnmarshaller.Instance);
                     response.Tags = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("uuid", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.Uuid = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("workflowId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.WorkflowId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("workflowOwnerId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.WorkflowOwnerId = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("workflowType", targetDepth))

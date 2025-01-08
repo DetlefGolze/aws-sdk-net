@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
-    /// Describes a CloudFormation stack record created as a result of the <code>create cloud
-    /// formation stack</code> action.
+    /// Describes a CloudFormation stack record created as a result of the <c>create cloud
+    /// formation stack</c> action.
     /// 
     ///  
     /// <para>
@@ -47,7 +48,7 @@ namespace Amazon.Lightsail.Model
         private ResourceLocation _location;
         private string _name;
         private ResourceType _resourceType;
-        private List<CloudFormationStackRecordSourceInfo> _sourceInfo = new List<CloudFormationStackRecordSourceInfo>();
+        private List<CloudFormationStackRecordSourceInfo> _sourceInfo = AWSConfigs.InitializeCollections ? new List<CloudFormationStackRecordSourceInfo>() : null;
         private RecordState _state;
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the CloudFormation stack record. It starts with <code>CloudFormationStackRecord</code>
+        /// The name of the CloudFormation stack record. It starts with <c>CloudFormationStackRecord</c>
         /// followed by a GUID.
         /// </para>
         /// </summary>
@@ -146,7 +147,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The Lightsail resource type (e.g., <code>CloudFormationStackRecord</code>).
+        /// The Lightsail resource type (<c>CloudFormationStackRecord</c>).
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -176,7 +177,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if SourceInfo property is set
         internal bool IsSetSourceInfo()
         {
-            return this._sourceInfo != null && this._sourceInfo.Count > 0; 
+            return this._sourceInfo != null && (this._sourceInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

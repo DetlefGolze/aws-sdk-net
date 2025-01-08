@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -47,8 +48,8 @@ namespace Amazon.EKS.Model
     /// <para>
     /// When you create a Fargate profile, you must specify a pod execution role to use with
     /// the pods that are scheduled with the profile. This role is added to the cluster's
-    /// Kubernetes <a href="https://kubernetes.io/docs/admin/authorization/rbac/">Role Based
-    /// Access Control</a> (RBAC) for authorization so that the <code>kubelet</code> that
+    /// Kubernetes <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role
+    /// Based Access Control</a> (RBAC) for authorization so that the <c>kubelet</c> that
     /// is running on the Fargate infrastructure can register with your Amazon EKS cluster
     /// so that it can appear in your cluster as a node. The pod execution role also provides
     /// IAM permissions to the Fargate infrastructure to allow read access to Amazon ECR image
@@ -63,14 +64,14 @@ namespace Amazon.EKS.Model
     /// </para>
     ///  
     /// <para>
-    /// If any Fargate profiles in a cluster are in the <code>DELETING</code> status, you
-    /// must wait for that Fargate profile to finish deleting before you can create any other
-    /// profiles in that cluster.
+    /// If any Fargate profiles in a cluster are in the <c>DELETING</c> status, you must wait
+    /// for that Fargate profile to finish deleting before you can create any other profiles
+    /// in that cluster.
     /// </para>
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html">Fargate
-    /// Profile</a> in the <i>Amazon EKS User Guide</i>.
+    /// profile</a> in the <i>Amazon EKS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateFargateProfileRequest : AmazonEKSRequest
@@ -79,15 +80,15 @@ namespace Amazon.EKS.Model
         private string _clusterName;
         private string _fargateProfileName;
         private string _podExecutionRoleArn;
-        private List<FargateProfileSelector> _selectors = new List<FargateProfileSelector>();
-        private List<string> _subnets = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<FargateProfileSelector> _selectors = AWSConfigs.InitializeCollections ? new List<FargateProfileSelector>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -105,7 +106,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the Amazon EKS cluster to apply the Fargate profile to.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -143,11 +144,11 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property PodExecutionRoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the pod execution role to use for pods that match
-        /// the selectors in the Fargate profile. The pod execution role allows Fargate infrastructure
-        /// to register with your cluster as a node, and it provides read access to Amazon ECR
-        /// image repositories. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html">Pod
-        /// Execution Role</a> in the <i>Amazon EKS User Guide</i>.
+        /// The Amazon Resource Name (ARN) of the <c>Pod</c> execution role to use for a <c>Pod</c>
+        /// that matches the selectors in the Fargate profile. The <c>Pod</c> execution role allows
+        /// Fargate infrastructure to register with your cluster as a node, and it provides read
+        /// access to Amazon ECR image repositories. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html">
+        /// <c>Pod</c> execution role</a> in the <i>Amazon EKS User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -166,9 +167,10 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Selectors. 
         /// <para>
-        /// The selectors to match for pods to use this Fargate profile. Each selector must have
-        /// an associated namespace. Optionally, you can also specify labels for a namespace.
-        /// You may specify up to five selectors in a Fargate profile.
+        /// The selectors to match for a <c>Pod</c> to use this Fargate profile. Each selector
+        /// must have an associated Kubernetes <c>namespace</c>. Optionally, you can also specify
+        /// <c>labels</c> for a <c>namespace</c>. You may specify up to five selectors in a Fargate
+        /// profile.
         /// </para>
         /// </summary>
         public List<FargateProfileSelector> Selectors
@@ -180,15 +182,15 @@ namespace Amazon.EKS.Model
         // Check to see if Selectors property is set
         internal bool IsSetSelectors()
         {
-            return this._selectors != null && this._selectors.Count > 0; 
+            return this._selectors != null && (this._selectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Subnets. 
         /// <para>
-        /// The IDs of subnets to launch your pods into. At this time, pods running on Fargate
-        /// are not assigned public IP addresses, so only private subnets (with no direct route
-        /// to an Internet Gateway) are accepted for this parameter.
+        /// The IDs of subnets to launch a <c>Pod</c> into. A <c>Pod</c> running on Fargate isn't
+        /// assigned a public IP address, so only private subnets (with no direct route to an
+        /// Internet Gateway) are accepted for this parameter.
         /// </para>
         /// </summary>
         public List<string> Subnets
@@ -200,16 +202,15 @@ namespace Amazon.EKS.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata to apply to the Fargate profile to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both. Fargate profile
-        /// tags do not propagate to any other resources associated with the Fargate profile,
-        /// such as the pods that are scheduled with it.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -222,7 +223,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

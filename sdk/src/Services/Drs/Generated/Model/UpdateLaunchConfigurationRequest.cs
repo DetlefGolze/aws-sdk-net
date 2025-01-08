@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Drs.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.Drs.Model
         private bool? _copyPrivateIp;
         private bool? _copyTags;
         private LaunchDisposition _launchDisposition;
+        private LaunchIntoInstanceProperties _launchIntoInstanceProperties;
         private Licensing _licensing;
         private string _name;
         private bool? _postLaunchEnabled;
@@ -96,6 +98,24 @@ namespace Amazon.Drs.Model
         internal bool IsSetLaunchDisposition()
         {
             return this._launchDisposition != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LaunchIntoInstanceProperties. 
+        /// <para>
+        /// Launch into existing instance properties.
+        /// </para>
+        /// </summary>
+        public LaunchIntoInstanceProperties LaunchIntoInstanceProperties
+        {
+            get { return this._launchIntoInstanceProperties; }
+            set { this._launchIntoInstanceProperties = value; }
+        }
+
+        // Check to see if LaunchIntoInstanceProperties property is set
+        internal bool IsSetLaunchIntoInstanceProperties()
+        {
+            return this._launchIntoInstanceProperties != null;
         }
 
         /// <summary>

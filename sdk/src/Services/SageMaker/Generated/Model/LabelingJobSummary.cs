@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -90,8 +91,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        /// If the <code>LabelingJobStatus</code> field is <code>Failed</code>, this field contains
-        /// a description of the error.
+        /// If the <c>LabelingJobStatus</c> field is <c>Failed</c>, this field contains a description
+        /// of the error.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -245,7 +246,7 @@ namespace Amazon.SageMaker.Model
         /// data object is sent to a worker.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=2048)]
+        [AWSProperty(Max=2048)]
         public string PreHumanTaskLambdaArn
         {
             get { return this._preHumanTaskLambdaArn; }

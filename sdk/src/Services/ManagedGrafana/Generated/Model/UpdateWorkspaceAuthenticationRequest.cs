@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedGrafana.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateWorkspaceAuthentication operation.
     /// Use this operation to define the identity provider (IdP) that this workspace authenticates
     /// users from, using SAML. You can also map SAML assertion attributes to workspace user
-    /// information and define which groups in the assertion attribute are to have the <code>Admin</code>
-    /// and <code>Editor</code> roles in the workspace.
+    /// information and define which groups in the assertion attribute are to have the <c>Admin</c>
+    /// and <c>Editor</c> roles in the workspace.
     /// 
     ///  <note> 
     /// <para>
@@ -44,16 +45,16 @@ namespace Amazon.ManagedGrafana.Model
     /// </summary>
     public partial class UpdateWorkspaceAuthenticationRequest : AmazonManagedGrafanaRequest
     {
-        private List<string> _authenticationProviders = new List<string>();
+        private List<string> _authenticationProviders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SamlConfiguration _samlConfiguration;
         private string _workspaceId;
 
         /// <summary>
         /// Gets and sets the property AuthenticationProviders. 
         /// <para>
-        /// Specifies whether this workspace uses SAML 2.0, IAM Identity Center (successor to
-        /// Single Sign-On), or both to authenticate users for using the Grafana console within
-        /// a workspace. For more information, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html">User
+        /// Specifies whether this workspace uses SAML 2.0, IAM Identity Center, or both to authenticate
+        /// users for using the Grafana console within a workspace. For more information, see
+        /// <a href="https://docs.aws.amazon.com/grafana/latest/userguide/authentication-in-AMG.html">User
         /// authentication in Amazon Managed Grafana</a>.
         /// </para>
         /// </summary>
@@ -67,7 +68,7 @@ namespace Amazon.ManagedGrafana.Model
         // Check to see if AuthenticationProviders property is set
         internal bool IsSetAuthenticationProviders()
         {
-            return this._authenticationProviders != null && this._authenticationProviders.Count > 0; 
+            return this._authenticationProviders != null && (this._authenticationProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace Amazon.ManagedGrafana.Model
         /// <para>
         /// If the workspace uses SAML, use this structure to map SAML assertion attributes to
         /// workspace user information and define which groups in the assertion attribute are
-        /// to have the <code>Admin</code> and <code>Editor</code> roles in the workspace.
+        /// to have the <c>Admin</c> and <c>Editor</c> roles in the workspace.
         /// </para>
         /// </summary>
         public SamlConfiguration SamlConfiguration

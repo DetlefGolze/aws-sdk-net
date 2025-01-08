@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Outposts.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Outposts.Model
     /// </summary>
     public partial class OrderSummary
     {
-        private Dictionary<string, int> _lineItemCountsByStatus = new Dictionary<string, int>();
+        private Dictionary<string, int> _lineItemCountsByStatus = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
         private DateTime? _orderFulfilledDate;
         private string _orderId;
         private DateTime? _orderSubmissionDate;
@@ -56,7 +57,7 @@ namespace Amazon.Outposts.Model
         // Check to see if LineItemCountsByStatus property is set
         internal bool IsSetLineItemCountsByStatus()
         {
-            return this._lineItemCountsByStatus != null && this._lineItemCountsByStatus.Count > 0; 
+            return this._lineItemCountsByStatus != null && (this._lineItemCountsByStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,29 +159,29 @@ namespace Amazon.Outposts.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PREPARING</code> - Order is received and is being prepared.
+        ///  <c>PREPARING</c> - Order is received and is being prepared.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> - Order is either being built, shipped, or installed. For
-        /// more information, see the <code>LineItem</code> status.
+        ///  <c>IN_PROGRESS</c> - Order is either being built, shipped, or installed. For more
+        /// information, see the <c>LineItem</c> status.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COMPLETED</code> - Order is complete.
+        ///  <c>COMPLETED</c> - Order is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANCELLED</code> - Order is cancelled.
+        ///  <c>CANCELLED</c> - Order is cancelled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ERROR</code> - Customer should contact support.
+        ///  <c>ERROR</c> - Customer should contact support.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// The following statuses are deprecated: <code>RECEIVED</code>, <code>PENDING</code>,
-        /// <code>PROCESSING</code>, <code>INSTALLING</code>, and <code>FULFILLED</code>. 
+        /// The following statuses are deprecated: <c>RECEIVED</c>, <c>PENDING</c>, <c>PROCESSING</c>,
+        /// <c>INSTALLING</c>, and <c>FULFILLED</c>. 
         /// </para>
         ///  </note>
         /// </summary>

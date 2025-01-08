@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property PackageID. 
         /// <para>
-        /// Internal ID of the package to dissociate from the domain. Use <code>ListPackagesForDomain</code>
+        /// Internal ID of the package to dissociate from the domain. Use <c>ListPackagesForDomain</c>
         /// to find this value.
         /// </para>
         /// </summary>

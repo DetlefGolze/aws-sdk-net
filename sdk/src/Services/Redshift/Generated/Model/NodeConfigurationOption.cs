@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property NodeType. 
         /// <para>
-        /// The node type, such as, "ds2.8xlarge".
+        /// The node type, such as, "ra3.4xlarge".
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,15 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAdminPasswordSecretKmsKeyId())
+                {
+                    context.Writer.WritePropertyName("adminPasswordSecretKmsKeyId");
+                    context.Writer.Write(publicRequest.AdminPasswordSecretKmsKeyId);
+                }
+
                 if(publicRequest.IsSetAdminUsername())
                 {
                     context.Writer.WritePropertyName("adminUsername");
@@ -111,6 +119,12 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestLogExportsListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetManageAdminPassword())
+                {
+                    context.Writer.WritePropertyName("manageAdminPassword");
+                    context.Writer.Write(publicRequest.ManageAdminPassword);
                 }
 
                 if(publicRequest.IsSetNamespaceName())

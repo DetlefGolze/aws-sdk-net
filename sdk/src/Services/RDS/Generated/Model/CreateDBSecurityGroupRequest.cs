@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.RDS.Model
     {
         private string _dbSecurityGroupDescription;
         private string _dbSecurityGroupName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -62,7 +63,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Instantiates CreateDBSecurityGroupRequest with the parameterized properties
         /// </summary>
-        /// <param name="dbSecurityGroupName">The name for the DB security group. This value is stored as a lowercase string. Constraints: <ul> <li> Must be 1 to 255 letters, numbers, or hyphens. </li> <li> First character must be a letter </li> <li> Can't end with a hyphen or contain two consecutive hyphens </li> <li> Must not be "Default" </li> </ul> Example: <code>mysecuritygroup</code> </param>
+        /// <param name="dbSecurityGroupName">The name for the DB security group. This value is stored as a lowercase string. Constraints: <ul> <li> Must be 1 to 255 letters, numbers, or hyphens. </li> <li> First character must be a letter </li> <li> Can't end with a hyphen or contain two consecutive hyphens </li> <li> Must not be "Default" </li> </ul> Example: <c>mysecuritygroup</c> </param>
         /// <param name="dbSecurityGroupDescription">The description for the DB security group.</param>
         public CreateDBSecurityGroupRequest(string dbSecurityGroupName, string dbSecurityGroupDescription)
         {
@@ -116,7 +117,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>mysecuritygroup</code> 
+        /// Example: <c>mysecuritygroup</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -147,7 +148,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

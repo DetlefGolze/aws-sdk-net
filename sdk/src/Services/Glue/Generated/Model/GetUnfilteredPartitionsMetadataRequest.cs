@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Glue.Model
     /// 
     ///  
     /// <para>
-    /// For IAM authorization, the public IAM action associated with this API is <code>glue:GetPartitions</code>.
+    /// For IAM authorization, the public IAM action associated with this API is <c>glue:GetPartitions</c>.
     /// </para>
     /// </summary>
     public partial class GetUnfilteredPartitionsMetadataRequest : AmazonGlueRequest
@@ -45,8 +46,10 @@ namespace Amazon.Glue.Model
         private string _expression;
         private int? _maxResults;
         private string _nextToken;
+        private QuerySessionContext _querySessionContext;
+        private string _region;
         private Segment _segment;
-        private List<string> _supportedPermissionTypes = new List<string>();
+        private List<string> _supportedPermissionTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tableName;
 
         /// <summary>
@@ -113,13 +116,13 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// The expression uses SQL syntax similar to the SQL <code>WHERE</code> filter clause.
-        /// The SQL statement parser <a href="http://jsqlparser.sourceforge.net/home.php">JSQLParser</a>
+        /// The expression uses SQL syntax similar to the SQL <c>WHERE</c> filter clause. The
+        /// SQL statement parser <a href="http://jsqlparser.sourceforge.net/home.php">JSQLParser</a>
         /// parses the expression. 
         /// </para>
         ///  
         /// <para>
-        ///  <i>Operators</i>: The following are the operators that you can use in the <code>Expression</code>
+        ///  <i>Operators</i>: The following are the operators that you can use in the <c>Expression</c>
         /// API call:
         /// </para>
         ///  <dl> <dt>=</dt> <dd> 
@@ -190,39 +193,39 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>string</code> 
+        ///  <c>string</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>date</code> 
+        ///  <c>date</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>timestamp</code> 
+        ///  <c>timestamp</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>int</code> 
+        ///  <c>int</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>bigint</code> 
+        ///  <c>bigint</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>long</code> 
+        ///  <c>long</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tinyint</code> 
+        ///  <c>tinyint</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>smallint</code> 
+        ///  <c>smallint</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>decimal</code> 
+        ///  <c>decimal</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -280,6 +283,45 @@ namespace Amazon.Glue.Model
         }
 
         /// <summary>
+        /// Gets and sets the property QuerySessionContext. 
+        /// <para>
+        /// A structure used as a protocol between query engines and Lake Formation or Glue. Contains
+        /// both a Lake Formation generated authorization identifier and information from the
+        /// request's authorization context.
+        /// </para>
+        /// </summary>
+        public QuerySessionContext QuerySessionContext
+        {
+            get { return this._querySessionContext; }
+            set { this._querySessionContext = value; }
+        }
+
+        // Check to see if QuerySessionContext property is set
+        internal bool IsSetQuerySessionContext()
+        {
+            return this._querySessionContext != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Region. 
+        /// <para>
+        /// Specified only if the base tables belong to a different Amazon Web Services Region.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
+        public string Region
+        {
+            get { return this._region; }
+            set { this._region = value; }
+        }
+
+        // Check to see if Region property is set
+        internal bool IsSetRegion()
+        {
+            return this._region != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Segment. 
         /// <para>
         /// The segment of the table's partitions to scan in this request.
@@ -313,7 +355,7 @@ namespace Amazon.Glue.Model
         // Check to see if SupportedPermissionTypes property is set
         internal bool IsSetSupportedPermissionTypes()
         {
-            return this._supportedPermissionTypes != null && this._supportedPermissionTypes.Count > 0; 
+            return this._supportedPermissionTypes != null && (this._supportedPermissionTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

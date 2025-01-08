@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,12 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.ContactFlowId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("FlowContentSha256", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.FlowContentSha256 = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

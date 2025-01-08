@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -34,12 +35,13 @@ namespace Amazon.ResilienceHub.Model
     public partial class AlarmRecommendation
     {
         private string _appComponentName;
-        private List<string> _appComponentNames = new List<string>();
+        private List<string> _appComponentNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
-        private List<RecommendationItem> _items = new List<RecommendationItem>();
+        private List<RecommendationItem> _items = AWSConfigs.InitializeCollections ? new List<RecommendationItem>() : null;
         private string _name;
         private string _prerequisite;
         private string _recommendationId;
+        private RecommendationStatus _recommendationStatus;
         private string _referenceId;
         private AlarmType _type;
 
@@ -47,7 +49,7 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property AppComponentName. 
         /// <para>
         /// Application Component name for the CloudWatch alarm recommendation. This name is saved
-        /// as the first item in the <code>appComponentNames</code> list.
+        /// as the first item in the <c>appComponentNames</c> list.
         /// </para>
         /// </summary>
         [Obsolete("An alarm recommendation can be attached to multiple Application Components, hence this property will be replaced by the new property 'appComponentNames'.")]
@@ -78,7 +80,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if AppComponentNames property is set
         internal bool IsSetAppComponentNames()
         {
-            return this._appComponentNames != null && this._appComponentNames.Count > 0; 
+            return this._appComponentNames != null && (this._appComponentNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,7 +117,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,6 +175,24 @@ namespace Amazon.ResilienceHub.Model
         internal bool IsSetRecommendationId()
         {
             return this._recommendationId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecommendationStatus. 
+        /// <para>
+        /// Status of the recommended Amazon CloudWatch alarm.
+        /// </para>
+        /// </summary>
+        public RecommendationStatus RecommendationStatus
+        {
+            get { return this._recommendationStatus; }
+            set { this._recommendationStatus = value; }
+        }
+
+        // Check to see if RecommendationStatus property is set
+        internal bool IsSetRecommendationStatus()
+        {
+            return this._recommendationStatus != null;
         }
 
         /// <summary>

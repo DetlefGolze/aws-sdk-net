@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// This operation requires the HTTPS protocol. Ensure that you specify the HTTPS protocol
-    /// in your request, or omit the <code>RequiredProtocols</code> element from your distribution
+    /// in your request, or omit the <c>RequiredProtocols</c> element from your distribution
     /// configuration.
     /// </summary>
     #if !NETSTANDARD

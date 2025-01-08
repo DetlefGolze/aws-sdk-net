@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The navigation configuration for <code>CustomActionNavigationOperation</code>.
+    /// The navigation configuration for <c>CustomActionNavigationOperation</c>.
     /// </summary>
     public partial class LocalNavigationConfiguration
     {

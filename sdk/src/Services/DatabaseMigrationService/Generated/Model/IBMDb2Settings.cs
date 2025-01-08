@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -35,6 +36,9 @@ namespace Amazon.DatabaseMigrationService.Model
     {
         private string _currentLsn;
         private string _databaseName;
+        private bool? _keepCsvFiles;
+        private int? _loadTimeout;
+        private int? _maxFileSize;
         private int? _maxKBytesPerRead;
         private string _password;
         private int? _port;
@@ -43,6 +47,7 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _serverName;
         private bool? _setDataCaptureChanges;
         private string _username;
+        private int? _writeBufferSize;
 
         /// <summary>
         /// Gets and sets the property CurrentLsn. 
@@ -79,6 +84,66 @@ namespace Amazon.DatabaseMigrationService.Model
         internal bool IsSetDatabaseName()
         {
             return this._databaseName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property KeepCsvFiles. 
+        /// <para>
+        /// If true, DMS saves any .csv files to the Db2 LUW target that were used to replicate
+        /// data. DMS uses these files for analysis and troubleshooting.
+        /// </para>
+        ///  
+        /// <para>
+        /// The default value is false. 
+        /// </para>
+        /// </summary>
+        public bool KeepCsvFiles
+        {
+            get { return this._keepCsvFiles.GetValueOrDefault(); }
+            set { this._keepCsvFiles = value; }
+        }
+
+        // Check to see if KeepCsvFiles property is set
+        internal bool IsSetKeepCsvFiles()
+        {
+            return this._keepCsvFiles.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LoadTimeout. 
+        /// <para>
+        /// The amount of time (in milliseconds) before DMS times out operations performed by
+        /// DMS on the Db2 target. The default value is 1200 (20 minutes).
+        /// </para>
+        /// </summary>
+        public int LoadTimeout
+        {
+            get { return this._loadTimeout.GetValueOrDefault(); }
+            set { this._loadTimeout = value; }
+        }
+
+        // Check to see if LoadTimeout property is set
+        internal bool IsSetLoadTimeout()
+        {
+            return this._loadTimeout.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MaxFileSize. 
+        /// <para>
+        /// Specifies the maximum size (in KB) of .csv files used to transfer data to Db2 LUW.
+        /// </para>
+        /// </summary>
+        public int MaxFileSize
+        {
+            get { return this._maxFileSize.GetValueOrDefault(); }
+            set { this._maxFileSize = value; }
+        }
+
+        // Check to see if MaxFileSize property is set
+        internal bool IsSetMaxFileSize()
+        {
+            return this._maxFileSize.HasValue; 
         }
 
         /// <summary>
@@ -140,19 +205,19 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property SecretsManagerAccessRoleArn. 
         /// <para>
         /// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as the trusted
-        /// entity and grants the required permissions to access the value in <code>SecretsManagerSecret</code>.
-        /// The role must allow the <code>iam:PassRole</code> action. <code>SecretsManagerSecret</code>
-        /// has the value of the Amazon Web Services Secrets Manager secret that allows access
-        /// to the Db2 LUW endpoint. 
+        /// entity and grants the required permissions to access the value in <c>SecretsManagerSecret</c>.
+        /// The role must allow the <c>iam:PassRole</c> action. <c>SecretsManagerSecret</c> has
+        /// the value of the Amazon Web Services Secrets Manager secret that allows access to
+        /// the Db2 LUW endpoint. 
         /// </para>
         ///  <note> 
         /// <para>
         /// You can specify one of two sets of values for these permissions. You can specify the
-        /// values for this setting and <code>SecretsManagerSecretId</code>. Or you can specify
-        /// clear-text values for <code>UserName</code>, <code>Password</code>, <code>ServerName</code>,
-        /// and <code>Port</code>. You can't specify both. For more information on creating this
-        /// <code>SecretsManagerSecret</code> and the <code>SecretsManagerAccessRoleArn</code>
-        /// and <code>SecretsManagerSecretId</code> required to access it, see <a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager">Using
+        /// values for this setting and <c>SecretsManagerSecretId</c>. Or you can specify clear-text
+        /// values for <c>UserName</c>, <c>Password</c>, <c>ServerName</c>, and <c>Port</c>. You
+        /// can't specify both. For more information on creating this <c>SecretsManagerSecret</c>
+        /// and the <c>SecretsManagerAccessRoleArn</c> and <c>SecretsManagerSecretId</c> required
+        /// to access it, see <a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager">Using
         /// secrets to access Database Migration Service resources</a> in the <i>Database Migration
         /// Service User Guide</i>.
         /// </para>
@@ -173,8 +238,8 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property SecretsManagerSecretId. 
         /// <para>
-        /// The full ARN, partial ARN, or friendly name of the <code>SecretsManagerSecret</code>
-        /// that contains the Db2 LUW endpoint connection details.
+        /// The full ARN, partial ARN, or friendly name of the <c>SecretsManagerSecret</c> that
+        /// contains the Db2 LUW endpoint connection details.
         /// </para>
         /// </summary>
         public string SecretsManagerSecretId
@@ -241,6 +306,25 @@ namespace Amazon.DatabaseMigrationService.Model
         internal bool IsSetUsername()
         {
             return this._username != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WriteBufferSize. 
+        /// <para>
+        /// The size (in KB) of the in-memory file write buffer used when generating .csv files
+        /// on the local disk on the DMS replication instance. The default value is 1024 (1 MB).
+        /// </para>
+        /// </summary>
+        public int WriteBufferSize
+        {
+            get { return this._writeBufferSize.GetValueOrDefault(); }
+            set { this._writeBufferSize = value; }
+        }
+
+        // Check to see if WriteBufferSize property is set
+        internal bool IsSetWriteBufferSize()
+        {
+            return this._writeBufferSize.HasValue; 
         }
 
     }

@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Route53RecoveryControlConfig.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Route53RecoveryControlConfig
 {
     /// <summary>
-    /// Interface for accessing Route53RecoveryControlConfig
+    /// <para>Interface for accessing Route53RecoveryControlConfig</para>
     ///
     /// Recovery Control Configuration API Reference for Amazon Route 53 Application Recovery
     /// Controller
@@ -950,6 +951,48 @@ namespace Amazon.Route53RecoveryControlConfig
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/route53-recovery-control-config-2020-11-02/DescribeSafetyRule">REST API Reference for DescribeSafetyRule Operation</seealso>
         Task<DescribeSafetyRuleResponse> DescribeSafetyRuleAsync(DescribeSafetyRuleRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetResourcePolicy
+
+
+        /// <summary>
+        /// Get information about the resource policy for a cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetResourcePolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetResourcePolicy service method, as returned by Route53RecoveryControlConfig.</returns>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.InternalServerException">
+        /// 500 response - InternalServiceError. Temporary service error. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.ResourceNotFoundException">
+        /// 404 response - MalformedQueryString. The query string contains a syntax error or resource
+        /// not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/route53-recovery-control-config-2020-11-02/GetResourcePolicy">REST API Reference for GetResourcePolicy Operation</seealso>
+        GetResourcePolicyResponse GetResourcePolicy(GetResourcePolicyRequest request);
+
+
+
+        /// <summary>
+        /// Get information about the resource policy for a cluster.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetResourcePolicy service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetResourcePolicy service method, as returned by Route53RecoveryControlConfig.</returns>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.InternalServerException">
+        /// 500 response - InternalServiceError. Temporary service error. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.Route53RecoveryControlConfig.Model.ResourceNotFoundException">
+        /// 404 response - MalformedQueryString. The query string contains a syntax error or resource
+        /// not found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/route53-recovery-control-config-2020-11-02/GetResourcePolicy">REST API Reference for GetResourcePolicy Operation</seealso>
+        Task<GetResourcePolicyResponse> GetResourcePolicyAsync(GetResourcePolicyRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         

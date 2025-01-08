@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the quicksight-2018-04-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -51,6 +52,16 @@ namespace Amazon.QuickSight.Model
         IListAssetBundleImportJobsPaginator ListAssetBundleImportJobs(ListAssetBundleImportJobsRequest request);
 
         /// <summary>
+        /// Paginator for ListBrands operation
+        ///</summary>
+        IListBrandsPaginator ListBrands(ListBrandsRequest request);
+
+        /// <summary>
+        /// Paginator for ListCustomPermissions operation
+        ///</summary>
+        IListCustomPermissionsPaginator ListCustomPermissions(ListCustomPermissionsRequest request);
+
+        /// <summary>
         /// Paginator for ListDashboards operation
         ///</summary>
         IListDashboardsPaginator ListDashboards(ListDashboardsRequest request);
@@ -81,6 +92,11 @@ namespace Amazon.QuickSight.Model
         IListFoldersPaginator ListFolders(ListFoldersRequest request);
 
         /// <summary>
+        /// Paginator for ListFoldersForResource operation
+        ///</summary>
+        IListFoldersForResourcePaginator ListFoldersForResource(ListFoldersForResourceRequest request);
+
+        /// <summary>
         /// Paginator for ListGroupMemberships operation
         ///</summary>
         IListGroupMembershipsPaginator ListGroupMemberships(ListGroupMembershipsRequest request);
@@ -109,6 +125,11 @@ namespace Amazon.QuickSight.Model
         /// Paginator for ListNamespaces operation
         ///</summary>
         IListNamespacesPaginator ListNamespaces(ListNamespacesRequest request);
+
+        /// <summary>
+        /// Paginator for ListRoleMemberships operation
+        ///</summary>
+        IListRoleMembershipsPaginator ListRoleMemberships(ListRoleMembershipsRequest request);
 
         /// <summary>
         /// Paginator for ListTemplateAliases operation
@@ -184,5 +205,10 @@ namespace Amazon.QuickSight.Model
         /// Paginator for SearchGroups operation
         ///</summary>
         ISearchGroupsPaginator SearchGroups(SearchGroupsRequest request);
+
+        /// <summary>
+        /// Paginator for SearchTopics operation
+        ///</summary>
+        ISearchTopicsPaginator SearchTopics(SearchTopicsRequest request);
     }
 }

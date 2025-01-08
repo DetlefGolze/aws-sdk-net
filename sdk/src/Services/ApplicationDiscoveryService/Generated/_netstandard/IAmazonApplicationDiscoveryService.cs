@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ApplicationDiscoveryService.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ApplicationDiscoveryService
 {
     /// <summary>
-    /// Interface for accessing ApplicationDiscoveryService
+    /// <para>Interface for accessing ApplicationDiscoveryService</para>
     ///
     /// Amazon Web Services Application Discovery Service 
     /// <para>
@@ -118,8 +119,8 @@ namespace Amazon.ApplicationDiscoveryService
     ///  </li> <li> 
     /// <para>
     /// You must make API calls for write actions (create, notify, associate, disassociate,
-    /// import, or put) while in your home Region, or a <code>HomeRegionNotSetException</code>
-    /// error is returned.
+    /// import, or put) while in your home Region, or a <c>HomeRegionNotSetException</c> error
+    /// is returned.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -129,11 +130,11 @@ namespace Amazon.ApplicationDiscoveryService
     ///  </li> <li> 
     /// <para>
     /// Although it is unlikely, the Migration Hub home Region could change. If you call APIs
-    /// outside the home Region, an <code>InvalidInputException</code> is returned.
+    /// outside the home Region, an <c>InvalidInputException</c> is returned.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// You must call <code>GetHomeRegion</code> to obtain the latest Migration Hub home Region.
+    /// You must call <c>GetHomeRegion</c> to obtain the latest Migration Hub home Region.
     /// </para>
     ///  </li> </ul> </note> 
     /// <para>
@@ -189,6 +190,40 @@ namespace Amazon.ApplicationDiscoveryService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AssociateConfigurationItemsToApplication">REST API Reference for AssociateConfigurationItemsToApplication Operation</seealso>
         Task<AssociateConfigurationItemsToApplicationResponse> AssociateConfigurationItemsToApplicationAsync(AssociateConfigurationItemsToApplicationRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  BatchDeleteAgents
+
+
+
+        /// <summary>
+        /// Deletes one or more agents or collectors as specified by ID. Deleting an agent or
+        /// collector does not delete the previously discovered data. To delete the data collected,
+        /// use <c>StartBatchDeleteConfigurationTask</c>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchDeleteAgents service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchDeleteAgents service method, as returned by ApplicationDiscoveryService.</returns>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.AuthorizationErrorException">
+        /// The user does not have permission to perform the action. Check the IAM policy associated
+        /// with this user.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.InvalidParameterException">
+        /// One or more parameters are not valid. Verify the parameters and try again.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.InvalidParameterValueException">
+        /// The value of one or more parameters are either invalid or out of range. Verify the
+        /// parameter values and try again.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ServerInternalErrorException">
+        /// The server experienced an internal error. Try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/BatchDeleteAgents">REST API Reference for BatchDeleteAgents Operation</seealso>
+        Task<BatchDeleteAgentsResponse> BatchDeleteAgentsAsync(BatchDeleteAgentsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -400,8 +435,8 @@ namespace Amazon.ApplicationDiscoveryService
 
         /// <summary>
         /// Lists agents or collectors as specified by ID or other filters. All agents/collectors
-        /// associated with your user can be listed if you call <code>DescribeAgents</code> as
-        /// is without passing any parameters.
+        /// associated with your user can be listed if you call <c>DescribeAgents</c> as is without
+        /// passing any parameters.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeAgents service method.</param>
         /// <param name="cancellationToken">
@@ -428,6 +463,39 @@ namespace Amazon.ApplicationDiscoveryService
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgents">REST API Reference for DescribeAgents Operation</seealso>
         Task<DescribeAgentsResponse> DescribeAgentsAsync(DescribeAgentsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
+        #region  DescribeBatchDeleteConfigurationTask
+
+
+
+        /// <summary>
+        /// Takes a unique deletion task identifier as input and returns metadata about a configuration
+        /// deletion task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DescribeBatchDeleteConfigurationTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DescribeBatchDeleteConfigurationTask service method, as returned by ApplicationDiscoveryService.</returns>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.AuthorizationErrorException">
+        /// The user does not have permission to perform the action. Check the IAM policy associated
+        /// with this user.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.HomeRegionNotSetException">
+        /// The home Region is not set. Set the home Region to continue.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.InvalidParameterValueException">
+        /// The value of one or more parameters are either invalid or out of range. Verify the
+        /// parameter values and try again.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ServerInternalErrorException">
+        /// The server experienced an internal error. Try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeBatchDeleteConfigurationTask">REST API Reference for DescribeBatchDeleteConfigurationTask Operation</seealso>
+        Task<DescribeBatchDeleteConfigurationTaskResponse> DescribeBatchDeleteConfigurationTaskAsync(DescribeBatchDeleteConfigurationTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
                 
@@ -506,8 +574,8 @@ namespace Amazon.ApplicationDiscoveryService
 
         /// <summary>
         /// Lists exports as specified by ID. All continuous exports associated with your user
-        /// can be listed if you call <code>DescribeContinuousExports</code> as is without passing
-        /// any parameters.
+        /// can be listed if you call <c>DescribeContinuousExports</c> as is without passing any
+        /// parameters.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeContinuousExports service method.</param>
         /// <param name="cancellationToken">
@@ -549,7 +617,7 @@ namespace Amazon.ApplicationDiscoveryService
 
 
         /// <summary>
-        /// <code>DescribeExportConfigurations</code> is deprecated. Use <a href="https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html">DescribeExportTasks</a>,
+        /// <c>DescribeExportConfigurations</c> is deprecated. Use <a href="https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_DescribeExportTasks.html">DescribeExportTasks</a>,
         /// instead.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeExportConfigurations service method.</param>
@@ -663,7 +731,7 @@ namespace Amazon.ApplicationDiscoveryService
 
         /// <summary>
         /// Retrieves a list of configuration items that have tags as specified by the key-value
-        /// pairs, name and value, passed to the optional parameter <code>filters</code>.
+        /// pairs, name and value, passed to the optional parameter <c>filters</c>.
         /// 
         ///  
         /// <para>
@@ -684,7 +752,7 @@ namespace Amazon.ApplicationDiscoveryService
         ///  </li> </ul> 
         /// <para>
         /// Also, all configuration items associated with your user that have tags can be listed
-        /// if you call <code>DescribeTags</code> as is without passing any parameters.
+        /// if you call <c>DescribeTags</c> as is without passing any parameters.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeTags service method.</param>
@@ -759,7 +827,7 @@ namespace Amazon.ApplicationDiscoveryService
 
 
         /// <summary>
-        /// Deprecated. Use <code>StartExportTask</code> instead.
+        /// Deprecated. Use <c>StartExportTask</c> instead.
         /// 
         ///  
         /// <para>
@@ -849,8 +917,8 @@ namespace Amazon.ApplicationDiscoveryService
 
         /// <summary>
         /// Retrieves a list of configuration items as specified by the value passed to the required
-        /// parameter <code>configurationType</code>. Optional filtering may be applied to refine
-        /// search results.
+        /// parameter <c>configurationType</c>. Optional filtering may be applied to refine search
+        /// results.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListConfigurations service method.</param>
         /// <param name="cancellationToken">
@@ -919,6 +987,48 @@ namespace Amazon.ApplicationDiscoveryService
 
         #endregion
                 
+        #region  StartBatchDeleteConfigurationTask
+
+
+
+        /// <summary>
+        /// Takes a list of configurationId as input and starts an asynchronous deletion task
+        /// to remove the configurationItems. Returns a unique deletion task identifier.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartBatchDeleteConfigurationTask service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the StartBatchDeleteConfigurationTask service method, as returned by ApplicationDiscoveryService.</returns>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.AuthorizationErrorException">
+        /// The user does not have permission to perform the action. Check the IAM policy associated
+        /// with this user.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.HomeRegionNotSetException">
+        /// The home Region is not set. Set the home Region to continue.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.InvalidParameterException">
+        /// One or more parameters are not valid. Verify the parameters and try again.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.InvalidParameterValueException">
+        /// The value of one or more parameters are either invalid or out of range. Verify the
+        /// parameter values and try again.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.LimitExceededException">
+        /// The limit of 200 configuration IDs per request has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.OperationNotPermittedException">
+        /// This operation is not permitted.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ServerInternalErrorException">
+        /// The server experienced an internal error. Try again.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartBatchDeleteConfigurationTask">REST API Reference for StartBatchDeleteConfigurationTask Operation</seealso>
+        Task<StartBatchDeleteConfigurationTaskResponse> StartBatchDeleteConfigurationTaskAsync(StartBatchDeleteConfigurationTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  StartContinuousExport
 
 
@@ -937,7 +1047,7 @@ namespace Amazon.ApplicationDiscoveryService
         /// with this user.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ConflictErrorException">
-        /// 
+        /// Conflict error.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.HomeRegionNotSetException">
         /// The home Region is not set. Set the home Region to continue.
@@ -953,11 +1063,10 @@ namespace Amazon.ApplicationDiscoveryService
         /// This operation is not permitted.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ResourceInUseException">
-        /// This issue occurs when the same <code>clientRequestToken</code> is used with the <code>StartImportTask</code>
+        /// This issue occurs when the same <c>clientRequestToken</c> is used with the <c>StartImportTask</c>
         /// action, but with different parameters. For example, you use the same request token
         /// but have two different import URLs, you can encounter this issue. If the import tasks
-        /// are meant to be different, use a different <code>clientRequestToken</code>, and try
-        /// again.
+        /// are meant to be different, use a different <c>clientRequestToken</c>, and try again.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ServerInternalErrorException">
         /// The server experienced an internal error. Try again.
@@ -1019,25 +1128,25 @@ namespace Amazon.ApplicationDiscoveryService
         /// </para>
         ///  </note> 
         /// <para>
-        /// If you do not specify <code>preferences</code> or <code>agentIds</code> in the filter,
-        /// a summary of all servers, applications, tags, and performance is generated. This data
-        /// is an aggregation of all server data collected through on-premises tooling, file import,
+        /// If you do not specify <c>preferences</c> or <c>agentIds</c> in the filter, a summary
+        /// of all servers, applications, tags, and performance is generated. This data is an
+        /// aggregation of all server data collected through on-premises tooling, file import,
         /// application grouping and applying tags.
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>agentIds</code> in a filter, the task exports up to 72 hours
-        /// of detailed data collected by the identified Application Discovery Agent, including
-        /// network, process, and performance details. A time range for exported agent data may
-        /// be set by using <code>startTime</code> and <code>endTime</code>. Export of detailed
-        /// agent data is limited to five concurrently running exports. Export of detailed agent
-        /// data is limited to two exports per day.
+        /// If you specify <c>agentIds</c> in a filter, the task exports up to 72 hours of detailed
+        /// data collected by the identified Application Discovery Agent, including network, process,
+        /// and performance details. A time range for exported agent data may be set by using
+        /// <c>startTime</c> and <c>endTime</c>. Export of detailed agent data is limited to five
+        /// concurrently running exports. Export of detailed agent data is limited to two exports
+        /// per day.
         /// </para>
         ///  
         /// <para>
-        /// If you enable <code>ec2RecommendationsPreferences</code> in <code>preferences</code>
-        /// , an Amazon EC2 instance matching the characteristics of each server in Application
-        /// Discovery Service is generated. Changing the attributes of the <code>ec2RecommendationsPreferences</code>
+        /// If you enable <c>ec2RecommendationsPreferences</c> in <c>preferences</c> , an Amazon
+        /// EC2 instance matching the characteristics of each server in Application Discovery
+        /// Service is generated. Changing the attributes of the <c>ec2RecommendationsPreferences</c>
         /// changes the criteria of the recommendation.
         /// </para>
         /// </summary>
@@ -1105,7 +1214,7 @@ namespace Amazon.ApplicationDiscoveryService
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use the console or the <code>StartImportTask</code> command with the Amazon Web Services
+        /// Use the console or the <c>StartImportTask</c> command with the Amazon Web Services
         /// CLI or one of the Amazon Web Services SDKs to import the records from your file.
         /// </para>
         ///  </li> </ol> 
@@ -1143,11 +1252,10 @@ namespace Amazon.ApplicationDiscoveryService
         /// parameter values and try again.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ResourceInUseException">
-        /// This issue occurs when the same <code>clientRequestToken</code> is used with the <code>StartImportTask</code>
+        /// This issue occurs when the same <c>clientRequestToken</c> is used with the <c>StartImportTask</c>
         /// action, but with different parameters. For example, you use the same request token
         /// but have two different import URLs, you can encounter this issue. If the import tasks
-        /// are meant to be different, use a different <code>clientRequestToken</code>, and try
-        /// again.
+        /// are meant to be different, use a different <c>clientRequestToken</c>, and try again.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ServerInternalErrorException">
         /// The server experienced an internal error. Try again.
@@ -1188,11 +1296,10 @@ namespace Amazon.ApplicationDiscoveryService
         /// This operation is not permitted.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ResourceInUseException">
-        /// This issue occurs when the same <code>clientRequestToken</code> is used with the <code>StartImportTask</code>
+        /// This issue occurs when the same <c>clientRequestToken</c> is used with the <c>StartImportTask</c>
         /// action, but with different parameters. For example, you use the same request token
         /// but have two different import URLs, you can encounter this issue. If the import tasks
-        /// are meant to be different, use a different <code>clientRequestToken</code>, and try
-        /// again.
+        /// are meant to be different, use a different <c>clientRequestToken</c>, and try again.
         /// </exception>
         /// <exception cref="Amazon.ApplicationDiscoveryService.Model.ResourceNotFoundException">
         /// The specified configuration ID was not located. Verify the configuration ID and try

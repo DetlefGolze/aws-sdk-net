@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteVoiceMessageSpendLimitOverride operation.
     /// Deletes an account level monthly spend limit override for sending voice messages.
-    /// Deleting a spend limit override sets the <code>EnforcedLimit</code> equal to the <code>MaxLimit</code>,
+    /// Deleting a spend limit override sets the <c>EnforcedLimit</c> equal to the <c>MaxLimit</c>,
     /// which is controlled by Amazon Web Services. For more information on spending limits
-    /// (quotas) see <a href="https://docs.aws.amazon.com/pinpoint/latest/developerguide/quotas.html">Amazon
-    /// Pinpoint quotas</a> in the <i>Amazon Pinpoint Developer Guide</i>.
+    /// (quotas) see <a href="https://docs.aws.amazon.com/sms-voice/latest/userguide/quotas.html">Quotas
+    /// </a> in the <i>AWS End User Messaging SMS User Guide</i>.
     /// </summary>
     public partial class DeleteVoiceMessageSpendLimitOverrideRequest : AmazonPinpointSMSVoiceV2Request
     {

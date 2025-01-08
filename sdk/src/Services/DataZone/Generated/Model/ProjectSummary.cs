@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -37,8 +38,11 @@ namespace Amazon.DataZone.Model
         private string _createdBy;
         private string _description;
         private string _domainId;
+        private string _domainUnitId;
+        private List<ProjectDeletionError> _failureReasons = AWSConfigs.InitializeCollections ? new List<ProjectDeletionError>() : null;
         private string _id;
         private string _name;
+        private ProjectStatus _projectStatus;
         private DateTime? _updatedAt;
 
         /// <summary>
@@ -117,6 +121,44 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DomainUnitId. 
+        /// <para>
+        /// The ID of the domain unit.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string DomainUnitId
+        {
+            get { return this._domainUnitId; }
+            set { this._domainUnitId = value; }
+        }
+
+        // Check to see if DomainUnitId property is set
+        internal bool IsSetDomainUnitId()
+        {
+            return this._domainUnitId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FailureReasons. 
+        /// <para>
+        /// Specifies the error message that is returned if the operation cannot be successfully
+        /// completed.
+        /// </para>
+        /// </summary>
+        public List<ProjectDeletionError> FailureReasons
+        {
+            get { return this._failureReasons; }
+            set { this._failureReasons = value; }
+        }
+
+        // Check to see if FailureReasons property is set
+        internal bool IsSetFailureReasons()
+        {
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
         /// The identifier of a project.
@@ -152,6 +194,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProjectStatus. 
+        /// <para>
+        /// The status of the project.
+        /// </para>
+        /// </summary>
+        public ProjectStatus ProjectStatus
+        {
+            get { return this._projectStatus; }
+            set { this._projectStatus = value; }
+        }
+
+        // Check to see if ProjectStatus property is set
+        internal bool IsSetProjectStatus()
+        {
+            return this._projectStatus != null;
         }
 
         /// <summary>

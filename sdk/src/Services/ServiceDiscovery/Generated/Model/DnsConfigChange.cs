@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ServiceDiscovery.Model
     /// </summary>
     public partial class DnsConfigChange
     {
-        private List<DnsRecord> _dnsRecords = new List<DnsRecord>();
+        private List<DnsRecord> _dnsRecords = AWSConfigs.InitializeCollections ? new List<DnsRecord>() : null;
 
         /// <summary>
         /// Gets and sets the property DnsRecords. 
         /// <para>
-        /// An array that contains one <code>DnsRecord</code> object for each Route 53 record
-        /// that you want Cloud Map to create when you register an instance.
+        /// An array that contains one <c>DnsRecord</c> object for each Route 53 record that you
+        /// want Cloud Map to create when you register an instance.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -53,7 +54,7 @@ namespace Amazon.ServiceDiscovery.Model
         // Check to see if DnsRecords property is set
         internal bool IsSetDnsRecords()
         {
-            return this._dnsRecords != null && this._dnsRecords.Count > 0; 
+            return this._dnsRecords != null && (this._dnsRecords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

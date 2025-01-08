@@ -26,21 +26,44 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
     /// A type of analysis rule that enables the table owner to approve custom SQL queries
-    /// on their configured tables.
+    /// on their configured tables. It supports differential privacy.
     /// </summary>
     public partial class AnalysisRuleCustom
     {
-        private List<string> _allowedAnalyses = new List<string>();
-        private List<string> _allowedAnalysisProviders = new List<string>();
+        private AdditionalAnalyses _additionalAnalyses;
+        private List<string> _allowedAnalyses = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _allowedAnalysisProviders = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private DifferentialPrivacyConfiguration _differentialPrivacy;
+        private List<string> _disallowedOutputColumns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AdditionalAnalyses. 
+        /// <para>
+        ///  An indicator as to whether additional analyses (such as Clean Rooms ML) can be applied
+        /// to the output of the direct query.
+        /// </para>
+        /// </summary>
+        public AdditionalAnalyses AdditionalAnalyses
+        {
+            get { return this._additionalAnalyses; }
+            set { this._additionalAnalyses = value; }
+        }
+
+        // Check to see if AdditionalAnalyses property is set
+        internal bool IsSetAdditionalAnalyses()
+        {
+            return this._additionalAnalyses != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AllowedAnalyses. 
         /// <para>
-        /// The analysis templates that are allowed by the custom analysis rule.
+        /// The ARN of the analysis templates that are allowed by the custom analysis rule.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]
@@ -53,14 +76,14 @@ namespace Amazon.CleanRooms.Model
         // Check to see if AllowedAnalyses property is set
         internal bool IsSetAllowedAnalyses()
         {
-            return this._allowedAnalyses != null && this._allowedAnalyses.Count > 0; 
+            return this._allowedAnalyses != null && (this._allowedAnalyses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AllowedAnalysisProviders. 
         /// <para>
-        /// The Amazon Web Services accounts that are allowed to query by the custom analysis
-        /// rule. Required when <code>allowedAnalyses</code> is <code>ANY_QUERY</code>.
+        /// The IDs of the Amazon Web Services accounts that are allowed to query by the custom
+        /// analysis rule. Required when <c>allowedAnalyses</c> is <c>ANY_QUERY</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -73,7 +96,43 @@ namespace Amazon.CleanRooms.Model
         // Check to see if AllowedAnalysisProviders property is set
         internal bool IsSetAllowedAnalysisProviders()
         {
-            return this._allowedAnalysisProviders != null && this._allowedAnalysisProviders.Count > 0; 
+            return this._allowedAnalysisProviders != null && (this._allowedAnalysisProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DifferentialPrivacy. 
+        /// <para>
+        /// The differential privacy configuration.
+        /// </para>
+        /// </summary>
+        public DifferentialPrivacyConfiguration DifferentialPrivacy
+        {
+            get { return this._differentialPrivacy; }
+            set { this._differentialPrivacy = value; }
+        }
+
+        // Check to see if DifferentialPrivacy property is set
+        internal bool IsSetDifferentialPrivacy()
+        {
+            return this._differentialPrivacy != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DisallowedOutputColumns. 
+        /// <para>
+        ///  A list of columns that aren't allowed to be shown in the query output.
+        /// </para>
+        /// </summary>
+        public List<string> DisallowedOutputColumns
+        {
+            get { return this._disallowedOutputColumns; }
+            set { this._disallowedOutputColumns = value; }
+        }
+
+        // Check to see if DisallowedOutputColumns property is set
+        internal bool IsSetDisallowedOutputColumns()
+        {
+            return this._disallowedOutputColumns != null && (this._disallowedOutputColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

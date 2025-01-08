@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -52,11 +53,35 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Paginator for DescribeInstanceRefreshes operation
+        ///</summary>
+        public IDescribeInstanceRefreshesPaginator DescribeInstanceRefreshes(DescribeInstanceRefreshesRequest request) 
+        {
+            return new DescribeInstanceRefreshesPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for DescribeLaunchConfigurations operation
         ///</summary>
         public IDescribeLaunchConfigurationsPaginator DescribeLaunchConfigurations(DescribeLaunchConfigurationsRequest request) 
         {
             return new DescribeLaunchConfigurationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeLoadBalancers operation
+        ///</summary>
+        public IDescribeLoadBalancersPaginator DescribeLoadBalancers(DescribeLoadBalancersRequest request) 
+        {
+            return new DescribeLoadBalancersPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeLoadBalancerTargetGroups operation
+        ///</summary>
+        public IDescribeLoadBalancerTargetGroupsPaginator DescribeLoadBalancerTargetGroups(DescribeLoadBalancerTargetGroupsRequest request) 
+        {
+            return new DescribeLoadBalancerTargetGroupsPaginator(this.client, request);
         }
 
         /// <summary>

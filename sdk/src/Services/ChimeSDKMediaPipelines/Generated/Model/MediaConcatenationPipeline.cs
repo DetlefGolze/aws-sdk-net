@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         private DateTime? _createdTimestamp;
         private string _mediaPipelineArn;
         private string _mediaPipelineId;
-        private List<ConcatenationSink> _sinks = new List<ConcatenationSink>();
-        private List<ConcatenationSource> _sources = new List<ConcatenationSource>();
+        private List<ConcatenationSink> _sinks = AWSConfigs.InitializeCollections ? new List<ConcatenationSink>() : null;
+        private List<ConcatenationSource> _sources = AWSConfigs.InitializeCollections ? new List<ConcatenationSource>() : null;
         private MediaPipelineStatus _status;
         private DateTime? _updatedTimestamp;
 
@@ -62,8 +63,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property MediaPipelineArn. 
         /// <para>
-        /// The ARN of the media pipeline that you specify in the <code>SourceConfiguration</code>
-        /// object.
+        /// The ARN of the media pipeline that you specify in the <c>SourceConfiguration</c> object.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1011)]
@@ -114,7 +114,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         // Check to see if Sinks property is set
         internal bool IsSetSinks()
         {
-            return this._sinks != null && this._sinks.Count > 0; 
+            return this._sinks != null && (this._sinks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

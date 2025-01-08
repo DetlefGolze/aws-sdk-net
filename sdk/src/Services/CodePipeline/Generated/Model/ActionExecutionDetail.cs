@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -44,6 +45,7 @@ namespace Amazon.CodePipeline.Model
         private string _stageName;
         private DateTime? _startTime;
         private ActionExecutionStatus _status;
+        private string _updatedBy;
 
         /// <summary>
         /// Gets and sets the property ActionExecutionId. 
@@ -213,8 +215,8 @@ namespace Amazon.CodePipeline.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The status of the action execution. Status categories are <code>InProgress</code>,
-        /// <code>Succeeded</code>, and <code>Failed</code>.
+        ///  The status of the action execution. Status categories are <c>InProgress</c>, <c>Succeeded</c>,
+        /// and <c>Failed</c>.
         /// </para>
         /// </summary>
         public ActionExecutionStatus Status
@@ -227,6 +229,24 @@ namespace Amazon.CodePipeline.Model
         internal bool IsSetStatus()
         {
             return this._status != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UpdatedBy. 
+        /// <para>
+        /// The ARN of the user who changed the pipeline execution details.
+        /// </para>
+        /// </summary>
+        public string UpdatedBy
+        {
+            get { return this._updatedBy; }
+            set { this._updatedBy = value; }
+        }
+
+        // Check to see if UpdatedBy property is set
+        internal bool IsSetUpdatedBy()
+        {
+            return this._updatedBy != null;
         }
 
     }

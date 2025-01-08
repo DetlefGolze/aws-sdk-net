@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeFleetAttributes operation.
-    /// Retrieves core fleet-wide properties, including the computing hardware and deployment
-    /// configuration for all instances in the fleet.
+    /// Retrieves core fleet-wide properties for fleets in an Amazon Web Services Region.
+    /// Properties include the computing hardware and deployment configuration for instances
+    /// in the fleet.
     /// 
     ///  
     /// <para>
-    /// This operation can be used in the following ways: 
+    /// You can use this operation in the following ways: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// To get attributes for one or more specific fleets, provide a list of fleet IDs or
-    /// fleet ARNs. 
+    /// To get attributes for specific fleets, provide a list of fleet IDs or fleet ARNs.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// To get attributes for all fleets, do not provide a fleet identifier. 
+    /// To get attributes for all fleets, do not provide a fleet identifier.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, a <code>FleetAttributes</code> object is returned for each fleet requested,
+    /// If successful, a <c>FleetAttributes</c> object is returned for each fleet requested,
     /// unless the fleet identifier is not found. 
     /// </para>
     ///  <note> 
@@ -74,7 +75,7 @@ namespace Amazon.GameLift.Model
     /// </summary>
     public partial class DescribeFleetAttributesRequest : AmazonGameLiftRequest
     {
-        private List<string> _fleetIds = new List<string>();
+        private List<string> _fleetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _limit;
         private string _nextToken;
 
@@ -96,13 +97,13 @@ namespace Amazon.GameLift.Model
         // Check to see if FleetIds property is set
         internal bool IsSetFleetIds()
         {
-            return this._fleetIds != null && this._fleetIds.Count > 0; 
+            return this._fleetIds != null && (this._fleetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages. This parameter is ignored when the request
         /// specifies one or a list of fleet IDs.
         /// </para>

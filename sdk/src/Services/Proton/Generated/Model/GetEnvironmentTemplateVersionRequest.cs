@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property MajorVersion. 
         /// <para>
-        /// To get environment template major version detail data, include <code>major Version</code>.
+        /// To get environment template major version detail data, include <c>major Version</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -60,7 +61,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property MinorVersion. 
         /// <para>
-        /// To get environment template minor version detail data, include <code>minorVersion</code>.
+        /// To get environment template minor version detail data, include <c>minorVersion</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]

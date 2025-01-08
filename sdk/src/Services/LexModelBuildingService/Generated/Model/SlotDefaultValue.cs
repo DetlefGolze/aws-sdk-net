@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -42,16 +43,15 @@ namespace Amazon.LexModelBuildingService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>#context-name.slot-name</code> - The slot value "slot-name" in the context
-        /// "context-name."
+        ///  <c>#context-name.slot-name</c> - The slot value "slot-name" in the context "context-name."
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>{attribute}</code> - The slot value of the session attribute "attribute."
+        ///  <c>{attribute}</c> - The slot value of the session attribute "attribute."
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>'value'</code> - The discrete value "value."
+        ///  <c>'value'</c> - The discrete value "value."
         /// </para>
         ///  </li> </ul>
         /// </summary>

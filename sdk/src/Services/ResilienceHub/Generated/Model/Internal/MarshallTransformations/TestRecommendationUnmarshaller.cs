@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public TestRecommendation Unmarshall(JsonUnmarshallerContext context)
         {
+            TestRecommendation unmarshalledObject = new TestRecommendation();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            TestRecommendation unmarshalledObject = new TestRecommendation();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("appComponentId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AppComponentId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("appComponentName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -112,6 +120,12 @@ namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
                     unmarshalledObject.RecommendationId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("recommendationStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RecommendationStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("referenceId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -131,7 +145,6 @@ namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

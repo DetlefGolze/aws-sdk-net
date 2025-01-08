@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.ApplicationDiscoveryService.Model
     /// </summary>
     public partial class DescribeExportTasksResponse : AmazonWebServiceResponse
     {
-        private List<ExportInfo> _exportsInfo = new List<ExportInfo>();
+        private List<ExportInfo> _exportsInfo = AWSConfigs.InitializeCollections ? new List<ExportInfo>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ExportsInfo. 
         /// <para>
         /// Contains one or more sets of export request details. When the status of a request
-        /// is <code>SUCCEEDED</code>, the response includes a URL for an Amazon S3 bucket where
-        /// you can view the data in a CSV file.
+        /// is <c>SUCCEEDED</c>, the response includes a URL for an Amazon S3 bucket where you
+        /// can view the data in a CSV file.
         /// </para>
         /// </summary>
         public List<ExportInfo> ExportsInfo
@@ -53,14 +54,14 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if ExportsInfo property is set
         internal bool IsSetExportsInfo()
         {
-            return this._exportsInfo != null && this._exportsInfo.Count > 0; 
+            return this._exportsInfo != null && (this._exportsInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>DescribeExportTasks</code>
-        /// request. When the results of a <code>DescribeExportTasks</code> request exceed <code>maxResults</code>,
+        /// The <c>nextToken</c> value to include in a future <c>DescribeExportTasks</c> request.
+        /// When the results of a <c>DescribeExportTasks</c> request exceed <c>maxResults</c>,
         /// this value can be used to retrieve the next page of results. This value is null when
         /// there are no more results to return.
         /// </para>

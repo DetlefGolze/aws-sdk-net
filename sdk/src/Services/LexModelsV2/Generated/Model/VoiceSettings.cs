@@ -26,10 +26,33 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
     /// Defines settings for using an Amazon Polly voice to communicate with a user.
+    /// 
+    ///  
+    /// <para>
+    /// Valid values include:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <c>standard</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>neural</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>long-form</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>generative</c> 
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class VoiceSettings
     {
@@ -41,12 +64,12 @@ namespace Amazon.LexModelsV2.Model
         /// <para>
         /// Indicates the type of Amazon Polly voice that Amazon Lex should use for voice interaction
         /// with the user. For more information, see the <a href="https://docs.aws.amazon.com/polly/latest/dg/API_SynthesizeSpeech.html#polly-SynthesizeSpeech-request-Engine">
-        /// <code>engine</code> parameter of the <code>SynthesizeSpeech</code> operation</a> in
-        /// the <i>Amazon Polly developer guide</i>.
+        /// <c>engine</c> parameter of the <c>SynthesizeSpeech</c> operation</a> in the <i>Amazon
+        /// Polly developer guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// If you do not specify a value, the default is <code>standard</code>.
+        /// If you do not specify a value, the default is <c>standard</c>.
         /// </para>
         /// </summary>
         public VoiceEngine Engine

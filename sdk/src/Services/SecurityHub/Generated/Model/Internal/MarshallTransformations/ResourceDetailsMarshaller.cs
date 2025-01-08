@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ResourceDetails requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAwsAmazonMqBroker())
             {
                 context.Writer.WritePropertyName("AwsAmazonMqBroker");
@@ -283,6 +286,17 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 
                 var marshaller = AwsDynamoDbTableDetailsMarshaller.Instance;
                 marshaller.Marshall(requestObject.AwsDynamoDbTable, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetAwsEc2ClientVpnEndpoint())
+            {
+                context.Writer.WritePropertyName("AwsEc2ClientVpnEndpoint");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AwsEc2ClientVpnEndpointDetailsMarshaller.Instance;
+                marshaller.Marshall(requestObject.AwsEc2ClientVpnEndpoint, context);
 
                 context.Writer.WriteObjectEnd();
             }
@@ -866,6 +880,17 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 
                 var marshaller = AwsRoute53HostedZoneDetailsMarshaller.Instance;
                 marshaller.Marshall(requestObject.AwsRoute53HostedZone, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetAwsS3AccessPoint())
+            {
+                context.Writer.WritePropertyName("AwsS3AccessPoint");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = AwsS3AccessPointDetailsMarshaller.Instance;
+                marshaller.Marshall(requestObject.AwsS3AccessPoint, context);
 
                 context.Writer.WriteObjectEnd();
             }

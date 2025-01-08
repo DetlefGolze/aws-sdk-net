@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Route53.Model
     /// </summary>
     public partial class ListResourceRecordSetsResponse : AmazonWebServiceResponse
     {
-        private List<ResourceRecordSet> _resourceRecordSets = new List<ResourceRecordSet>();
+        private List<ResourceRecordSet> _resourceRecordSets = AWSConfigs.InitializeCollections ? new List<ResourceRecordSet>() : null;
         private bool? _isTruncated;
         private string _nextRecordName;
         private RRType _nextRecordType;
@@ -56,14 +57,14 @@ namespace Amazon.Route53.Model
         // Check to see if ResourceRecordSets property is set
         internal bool IsSetResourceRecordSets()
         {
-            return this._resourceRecordSets != null && this._resourceRecordSets.Count > 0; 
+            return this._resourceRecordSets != null && (this._resourceRecordSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IsTruncated. 
         /// <para>
         /// A flag that indicates whether more resource record sets remain to be listed. If your
-        /// results were truncated, you can make a follow-up pagination request by using the <code>NextRecordName</code>
+        /// results were truncated, you can make a follow-up pagination request by using the <c>NextRecordName</c>
         /// element.
         /// </para>
         /// </summary>
@@ -87,7 +88,7 @@ namespace Amazon.Route53.Model
         /// </para>
         ///  
         /// <para>
-        /// This element is present only if <code>IsTruncated</code> is true. 
+        /// This element is present only if <c>IsTruncated</c> is true. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -110,7 +111,7 @@ namespace Amazon.Route53.Model
         /// </para>
         ///  
         /// <para>
-        /// This element is present only if <code>IsTruncated</code> is true. 
+        /// This element is present only if <c>IsTruncated</c> is true. 
         /// </para>
         /// </summary>
         public RRType NextRecordType
@@ -129,8 +130,8 @@ namespace Amazon.Route53.Model
         /// Gets and sets the property NextRecordIdentifier. 
         /// <para>
         ///  <i>Resource record sets that have a routing policy other than simple:</i> If results
-        /// were truncated for a given DNS name and type, the value of <code>SetIdentifier</code>
-        /// for the next resource record set that has the current DNS name and type.
+        /// were truncated for a given DNS name and type, the value of <c>SetIdentifier</c> for
+        /// the next resource record set that has the current DNS name and type.
         /// </para>
         ///  
         /// <para>

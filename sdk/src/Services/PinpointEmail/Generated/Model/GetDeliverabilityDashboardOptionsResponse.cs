@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -35,17 +36,17 @@ namespace Amazon.PinpointEmail.Model
     public partial class GetDeliverabilityDashboardOptionsResponse : AmazonWebServiceResponse
     {
         private DeliverabilityDashboardAccountStatus _accountStatus;
-        private List<DomainDeliverabilityTrackingOption> _activeSubscribedDomains = new List<DomainDeliverabilityTrackingOption>();
+        private List<DomainDeliverabilityTrackingOption> _activeSubscribedDomains = AWSConfigs.InitializeCollections ? new List<DomainDeliverabilityTrackingOption>() : null;
         private bool? _dashboardEnabled;
-        private List<DomainDeliverabilityTrackingOption> _pendingExpirationSubscribedDomains = new List<DomainDeliverabilityTrackingOption>();
+        private List<DomainDeliverabilityTrackingOption> _pendingExpirationSubscribedDomains = AWSConfigs.InitializeCollections ? new List<DomainDeliverabilityTrackingOption>() : null;
         private DateTime? _subscriptionExpiryDate;
 
         /// <summary>
         /// Gets and sets the property AccountStatus. 
         /// <para>
         /// The current status of your Deliverability dashboard subscription. If this value is
-        /// <code>PENDING_EXPIRATION</code>, your subscription is scheduled to expire at the end
-        /// of the current calendar month.
+        /// <c>PENDING_EXPIRATION</c>, your subscription is scheduled to expire at the end of
+        /// the current calendar month.
         /// </para>
         /// </summary>
         public DeliverabilityDashboardAccountStatus AccountStatus
@@ -77,14 +78,14 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if ActiveSubscribedDomains property is set
         internal bool IsSetActiveSubscribedDomains()
         {
-            return this._activeSubscribedDomains != null && this._activeSubscribedDomains.Count > 0; 
+            return this._activeSubscribedDomains != null && (this._activeSubscribedDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DashboardEnabled. 
         /// <para>
         /// Specifies whether the Deliverability dashboard is enabled for your Amazon Pinpoint
-        /// account. If this value is <code>true</code>, the dashboard is enabled.
+        /// account. If this value is <c>true</c>, the dashboard is enabled.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -117,7 +118,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if PendingExpirationSubscribedDomains property is set
         internal bool IsSetPendingExpirationSubscribedDomains()
         {
-            return this._pendingExpirationSubscribedDomains != null && this._pendingExpirationSubscribedDomains.Count > 0; 
+            return this._pendingExpirationSubscribedDomains != null && (this._pendingExpirationSubscribedDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.LexModelsV2.Model
         private string _roleArn;
         private TestSetStorageLocation _storageLocation;
         private string _testSetName;
-        private Dictionary<string, string> _testSetTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _testSetTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -160,8 +161,8 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property TestSetTags. 
         /// <para>
         /// A list of tags to add to the test set. You can only add tags when you import/generate
-        /// a new test set. You can't use the <code>UpdateTestSet</code> operation to update tags.
-        /// To update tags, use the <code>TagResource</code> operation.
+        /// a new test set. You can't use the <c>UpdateTestSet</c> operation to update tags. To
+        /// update tags, use the <c>TagResource</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=200)]
@@ -174,7 +175,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if TestSetTags property is set
         internal bool IsSetTestSetTags()
         {
-            return this._testSetTags != null && this._testSetTags.Count > 0; 
+            return this._testSetTags != null && (this._testSetTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

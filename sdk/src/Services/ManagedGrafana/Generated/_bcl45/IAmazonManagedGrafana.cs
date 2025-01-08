@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ManagedGrafana.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ManagedGrafana
 {
     /// <summary>
-    /// Interface for accessing ManagedGrafana
+    /// <para>Interface for accessing ManagedGrafana</para>
     ///
     /// Amazon Managed Grafana is a fully managed and secure data visualization service that
     /// you can use to instantly query, correlate, and visualize operational metrics, logs,
@@ -58,8 +59,10 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Assigns a Grafana Enterprise license to a workspace. Upgrading to Grafana Enterprise
-        /// incurs additional fees. For more information, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html">Upgrade
+        /// Assigns a Grafana Enterprise license to a workspace. To upgrade, you must use <c>ENTERPRISE</c>
+        /// for the <c>licenseType</c>, and pass in a valid Grafana Labs token for the <c>grafanaToken</c>.
+        /// Upgrading to Grafana Enterprise incurs additional fees. For more information, see
+        /// <a href="https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html">Upgrade
         /// a workspace to Grafana Enterprise</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateLicense service method.</param>
@@ -86,8 +89,10 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Assigns a Grafana Enterprise license to a workspace. Upgrading to Grafana Enterprise
-        /// incurs additional fees. For more information, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html">Upgrade
+        /// Assigns a Grafana Enterprise license to a workspace. To upgrade, you must use <c>ENTERPRISE</c>
+        /// for the <c>licenseType</c>, and pass in a valid Grafana Labs token for the <c>grafanaToken</c>.
+        /// Upgrading to Grafana Enterprise incurs additional fees. For more information, see
+        /// <a href="https://docs.aws.amazon.com/grafana/latest/userguide/upgrade-to-Grafana-Enterprise.html">Upgrade
         /// a workspace to Grafana Enterprise</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateLicense service method.</param>
@@ -126,8 +131,8 @@ namespace Amazon.ManagedGrafana
         /// 
         ///  
         /// <para>
-        /// Don't use <code>CreateWorkspace</code> to modify an existing workspace. Instead, use
-        /// <a href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html">UpdateWorkspace</a>.
+        /// Don't use <c>CreateWorkspace</c> to modify an existing workspace. Instead, use <a
+        /// href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html">UpdateWorkspace</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkspace service method.</param>
@@ -163,8 +168,8 @@ namespace Amazon.ManagedGrafana
         /// 
         ///  
         /// <para>
-        /// Don't use <code>CreateWorkspace</code> to modify an existing workspace. Instead, use
-        /// <a href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html">UpdateWorkspace</a>.
+        /// Don't use <c>CreateWorkspace</c> to modify an existing workspace. Instead, use <a
+        /// href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdateWorkspace.html">UpdateWorkspace</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkspace service method.</param>
@@ -203,6 +208,13 @@ namespace Amazon.ManagedGrafana
         /// Creates a Grafana API key for the workspace. This key can be used to authenticate
         /// requests sent to the workspace's HTTP API. See <a href="https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html">https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html</a>
         /// for available APIs and example requests.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// In workspaces compatible with Grafana version 9 or above, use workspace service accounts
+        /// instead of API keys. API keys will be removed in a future release.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaceApiKey service method.</param>
         /// 
@@ -237,6 +249,13 @@ namespace Amazon.ManagedGrafana
         /// Creates a Grafana API key for the workspace. This key can be used to authenticate
         /// requests sent to the workspace's HTTP API. See <a href="https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html">https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html</a>
         /// for available APIs and example requests.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// In workspaces compatible with Grafana version 9 or above, use workspace service accounts
+        /// instead of API keys. API keys will be removed in a future release.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaceApiKey service method.</param>
         /// <param name="cancellationToken">
@@ -267,6 +286,226 @@ namespace Amazon.ManagedGrafana
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/CreateWorkspaceApiKey">REST API Reference for CreateWorkspaceApiKey Operation</seealso>
         Task<CreateWorkspaceApiKeyResponse> CreateWorkspaceApiKeyAsync(CreateWorkspaceApiKeyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateWorkspaceServiceAccount
+
+
+        /// <summary>
+        /// Creates a service account for the workspace. A service account can be used to call
+        /// Grafana HTTP APIs, and run automated workloads. After creating the service account
+        /// with the correct <c>GrafanaRole</c> for your use case, use <c>CreateWorkspaceServiceAccountToken</c>
+        /// to create a token that can be used to authenticate and authorize Grafana HTTP API
+        /// calls.
+        /// 
+        ///  
+        /// <para>
+        /// You can only create service accounts for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// For more information about service accounts, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/service-accounts.html">Service
+        /// accounts</a> in the <i>Amazon Managed Grafana User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about the Grafana HTTP APIs, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html">Using
+        /// Grafana HTTP APIs</a> in the <i>Amazon Managed Grafana User Guide</i>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaceServiceAccount service method.</param>
+        /// 
+        /// <returns>The response from the CreateWorkspaceServiceAccount service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ServiceQuotaExceededException">
+        /// The request would cause a service quota to be exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/CreateWorkspaceServiceAccount">REST API Reference for CreateWorkspaceServiceAccount Operation</seealso>
+        CreateWorkspaceServiceAccountResponse CreateWorkspaceServiceAccount(CreateWorkspaceServiceAccountRequest request);
+
+
+
+        /// <summary>
+        /// Creates a service account for the workspace. A service account can be used to call
+        /// Grafana HTTP APIs, and run automated workloads. After creating the service account
+        /// with the correct <c>GrafanaRole</c> for your use case, use <c>CreateWorkspaceServiceAccountToken</c>
+        /// to create a token that can be used to authenticate and authorize Grafana HTTP API
+        /// calls.
+        /// 
+        ///  
+        /// <para>
+        /// You can only create service accounts for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// For more information about service accounts, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/service-accounts.html">Service
+        /// accounts</a> in the <i>Amazon Managed Grafana User Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about the Grafana HTTP APIs, see <a href="https://docs.aws.amazon.com/grafana/latest/userguide/Using-Grafana-APIs.html">Using
+        /// Grafana HTTP APIs</a> in the <i>Amazon Managed Grafana User Guide</i>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaceServiceAccount service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateWorkspaceServiceAccount service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ServiceQuotaExceededException">
+        /// The request would cause a service quota to be exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/CreateWorkspaceServiceAccount">REST API Reference for CreateWorkspaceServiceAccount Operation</seealso>
+        Task<CreateWorkspaceServiceAccountResponse> CreateWorkspaceServiceAccountAsync(CreateWorkspaceServiceAccountRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateWorkspaceServiceAccountToken
+
+
+        /// <summary>
+        /// Creates a token that can be used to authenticate and authorize Grafana HTTP API operations
+        /// for the given <a href="https://docs.aws.amazon.com/grafana/latest/userguide/service-accounts.html">workspace
+        /// service account</a>. The service account acts as a user for the API operations, and
+        /// defines the permissions that are used by the API.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// When you create the service account token, you will receive a key that is used when
+        /// calling Grafana APIs. Do not lose this key, as it will not be retrievable again.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you do lose the key, you can delete the token and recreate it to receive a new
+        /// key. This will disable the initial key.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaceServiceAccountToken service method.</param>
+        /// 
+        /// <returns>The response from the CreateWorkspaceServiceAccountToken service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ServiceQuotaExceededException">
+        /// The request would cause a service quota to be exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/CreateWorkspaceServiceAccountToken">REST API Reference for CreateWorkspaceServiceAccountToken Operation</seealso>
+        CreateWorkspaceServiceAccountTokenResponse CreateWorkspaceServiceAccountToken(CreateWorkspaceServiceAccountTokenRequest request);
+
+
+
+        /// <summary>
+        /// Creates a token that can be used to authenticate and authorize Grafana HTTP API operations
+        /// for the given <a href="https://docs.aws.amazon.com/grafana/latest/userguide/service-accounts.html">workspace
+        /// service account</a>. The service account acts as a user for the API operations, and
+        /// defines the permissions that are used by the API.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// When you create the service account token, you will receive a key that is used when
+        /// calling Grafana APIs. Do not lose this key, as it will not be retrievable again.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you do lose the key, you can delete the token and recreate it to receive a new
+        /// key. This will disable the initial key.
+        /// </para>
+        ///  </important> 
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateWorkspaceServiceAccountToken service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateWorkspaceServiceAccountToken service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ServiceQuotaExceededException">
+        /// The request would cause a service quota to be exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/CreateWorkspaceServiceAccountToken">REST API Reference for CreateWorkspaceServiceAccountToken Operation</seealso>
+        Task<CreateWorkspaceServiceAccountTokenResponse> CreateWorkspaceServiceAccountTokenAsync(CreateWorkspaceServiceAccountTokenRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -339,6 +578,13 @@ namespace Amazon.ManagedGrafana
 
         /// <summary>
         /// Deletes a Grafana API key for the workspace.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// In workspaces compatible with Grafana version 9 or above, use workspace service accounts
+        /// instead of API keys. API keys will be removed in a future release.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteWorkspaceApiKey service method.</param>
         /// 
@@ -368,6 +614,13 @@ namespace Amazon.ManagedGrafana
 
         /// <summary>
         /// Deletes a Grafana API key for the workspace.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// In workspaces compatible with Grafana version 9 or above, use workspace service accounts
+        /// instead of API keys. API keys will be removed in a future release.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteWorkspaceApiKey service method.</param>
         /// <param name="cancellationToken">
@@ -395,6 +648,180 @@ namespace Amazon.ManagedGrafana
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DeleteWorkspaceApiKey">REST API Reference for DeleteWorkspaceApiKey Operation</seealso>
         Task<DeleteWorkspaceApiKeyResponse> DeleteWorkspaceApiKeyAsync(DeleteWorkspaceApiKeyRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteWorkspaceServiceAccount
+
+
+        /// <summary>
+        /// Deletes a workspace service account from the workspace.
+        /// 
+        ///  
+        /// <para>
+        /// This will delete any tokens created for the service account, as well. If the tokens
+        /// are currently in use, the will fail to authenticate / authorize after they are deleted.
+        /// </para>
+        ///  
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteWorkspaceServiceAccount service method.</param>
+        /// 
+        /// <returns>The response from the DeleteWorkspaceServiceAccount service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DeleteWorkspaceServiceAccount">REST API Reference for DeleteWorkspaceServiceAccount Operation</seealso>
+        DeleteWorkspaceServiceAccountResponse DeleteWorkspaceServiceAccount(DeleteWorkspaceServiceAccountRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a workspace service account from the workspace.
+        /// 
+        ///  
+        /// <para>
+        /// This will delete any tokens created for the service account, as well. If the tokens
+        /// are currently in use, the will fail to authenticate / authorize after they are deleted.
+        /// </para>
+        ///  
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteWorkspaceServiceAccount service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteWorkspaceServiceAccount service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DeleteWorkspaceServiceAccount">REST API Reference for DeleteWorkspaceServiceAccount Operation</seealso>
+        Task<DeleteWorkspaceServiceAccountResponse> DeleteWorkspaceServiceAccountAsync(DeleteWorkspaceServiceAccountRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  DeleteWorkspaceServiceAccountToken
+
+
+        /// <summary>
+        /// Deletes a token for the workspace service account.
+        /// 
+        ///  
+        /// <para>
+        /// This will disable the key associated with the token. If any automation is currently
+        /// using the key, it will no longer be authenticated or authorized to perform actions
+        /// with the Grafana HTTP APIs.
+        /// </para>
+        ///  
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteWorkspaceServiceAccountToken service method.</param>
+        /// 
+        /// <returns>The response from the DeleteWorkspaceServiceAccountToken service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DeleteWorkspaceServiceAccountToken">REST API Reference for DeleteWorkspaceServiceAccountToken Operation</seealso>
+        DeleteWorkspaceServiceAccountTokenResponse DeleteWorkspaceServiceAccountToken(DeleteWorkspaceServiceAccountTokenRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a token for the workspace service account.
+        /// 
+        ///  
+        /// <para>
+        /// This will disable the key associated with the token. If any automation is currently
+        /// using the key, it will no longer be authenticated or authorized to perform actions
+        /// with the Grafana HTTP APIs.
+        /// </para>
+        ///  
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteWorkspaceServiceAccountToken service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteWorkspaceServiceAccountToken service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/DeleteWorkspaceServiceAccountToken">REST API Reference for DeleteWorkspaceServiceAccountToken Operation</seealso>
+        Task<DeleteWorkspaceServiceAccountTokenResponse> DeleteWorkspaceServiceAccountTokenAsync(DeleteWorkspaceServiceAccountTokenRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -469,6 +896,9 @@ namespace Amazon.ManagedGrafana
         /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
         /// You do not have sufficient permissions to perform this action.
         /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
         /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
         /// Unexpected error while processing the request. Retry the request.
         /// </exception>
@@ -498,6 +928,9 @@ namespace Amazon.ManagedGrafana
         /// <returns>The response from the DescribeWorkspaceAuthentication service method, as returned by ManagedGrafana.</returns>
         /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
         /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
         /// </exception>
         /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
         /// Unexpected error while processing the request. Retry the request.
@@ -630,12 +1063,11 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Lists the users and groups who have the Grafana <code>Admin</code> and <code>Editor</code>
-        /// roles in this workspace. If you use this operation without specifying <code>userId</code>
-        /// or <code>groupId</code>, the operation returns the roles of all users and groups.
-        /// If you specify a <code>userId</code> or a <code>groupId</code>, only the roles for
-        /// that user or group are returned. If you do this, you can specify only one <code>userId</code>
-        /// or one <code>groupId</code>.
+        /// Lists the users and groups who have the Grafana <c>Admin</c> and <c>Editor</c> roles
+        /// in this workspace. If you use this operation without specifying <c>userId</c> or <c>groupId</c>,
+        /// the operation returns the roles of all users and groups. If you specify a <c>userId</c>
+        /// or a <c>groupId</c>, only the roles for that user or group are returned. If you do
+        /// this, you can specify only one <c>userId</c> or one <c>groupId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListPermissions service method.</param>
         /// 
@@ -661,12 +1093,11 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Lists the users and groups who have the Grafana <code>Admin</code> and <code>Editor</code>
-        /// roles in this workspace. If you use this operation without specifying <code>userId</code>
-        /// or <code>groupId</code>, the operation returns the roles of all users and groups.
-        /// If you specify a <code>userId</code> or a <code>groupId</code>, only the roles for
-        /// that user or group are returned. If you do this, you can specify only one <code>userId</code>
-        /// or one <code>groupId</code>.
+        /// Lists the users and groups who have the Grafana <c>Admin</c> and <c>Editor</c> roles
+        /// in this workspace. If you use this operation without specifying <c>userId</c> or <c>groupId</c>,
+        /// the operation returns the roles of all users and groups. If you specify a <c>userId</c>
+        /// or a <c>groupId</c>, only the roles for that user or group are returned. If you do
+        /// this, you can specify only one <c>userId</c> or one <c>groupId</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListPermissions service method.</param>
         /// <param name="cancellationToken">
@@ -698,8 +1129,8 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// The <code>ListTagsForResource</code> operation returns the tags that are associated
-        /// with the Amazon Managed Service for Grafana resource specified by the <code>resourceArn</code>.
+        /// The <c>ListTagsForResource</c> operation returns the tags that are associated with
+        /// the Amazon Managed Service for Grafana resource specified by the <c>resourceArn</c>.
         /// Currently, the only resource that can be tagged is a workspace.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
@@ -726,8 +1157,8 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// The <code>ListTagsForResource</code> operation returns the tags that are associated
-        /// with the Amazon Managed Service for Grafana resource specified by the <code>resourceArn</code>.
+        /// The <c>ListTagsForResource</c> operation returns the tags that are associated with
+        /// the Amazon Managed Service for Grafana resource specified by the <c>resourceArn</c>.
         /// Currently, the only resource that can be tagged is a workspace.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
@@ -760,7 +1191,7 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Lists available versions of Grafana. These are available when calling <code>CreateWorkspace</code>.
+        /// Lists available versions of Grafana. These are available when calling <c>CreateWorkspace</c>.
         /// Optionally, include a workspace to list the versions to which it can be upgraded.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListVersions service method.</param>
@@ -787,7 +1218,7 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Lists available versions of Grafana. These are available when calling <code>CreateWorkspace</code>.
+        /// Lists available versions of Grafana. These are available when calling <c>CreateWorkspace</c>.
         /// Optionally, include a workspace to list the versions to which it can be upgraded.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListVersions service method.</param>
@@ -864,12 +1295,174 @@ namespace Amazon.ManagedGrafana
 
         #endregion
         
+        #region  ListWorkspaceServiceAccounts
+
+
+        /// <summary>
+        /// Returns a list of service accounts for a workspace.
+        /// 
+        ///  
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkspaceServiceAccounts service method.</param>
+        /// 
+        /// <returns>The response from the ListWorkspaceServiceAccounts service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListWorkspaceServiceAccounts">REST API Reference for ListWorkspaceServiceAccounts Operation</seealso>
+        ListWorkspaceServiceAccountsResponse ListWorkspaceServiceAccounts(ListWorkspaceServiceAccountsRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of service accounts for a workspace.
+        /// 
+        ///  
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkspaceServiceAccounts service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListWorkspaceServiceAccounts service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListWorkspaceServiceAccounts">REST API Reference for ListWorkspaceServiceAccounts Operation</seealso>
+        Task<ListWorkspaceServiceAccountsResponse> ListWorkspaceServiceAccountsAsync(ListWorkspaceServiceAccountsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListWorkspaceServiceAccountTokens
+
+
+        /// <summary>
+        /// Returns a list of tokens for a workspace service account.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This does not return the key for each token. You cannot access keys after they are
+        /// created. To create a new key, delete the token and recreate it.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkspaceServiceAccountTokens service method.</param>
+        /// 
+        /// <returns>The response from the ListWorkspaceServiceAccountTokens service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListWorkspaceServiceAccountTokens">REST API Reference for ListWorkspaceServiceAccountTokens Operation</seealso>
+        ListWorkspaceServiceAccountTokensResponse ListWorkspaceServiceAccountTokens(ListWorkspaceServiceAccountTokensRequest request);
+
+
+
+        /// <summary>
+        /// Returns a list of tokens for a workspace service account.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// This does not return the key for each token. You cannot access keys after they are
+        /// created. To create a new key, delete the token and recreate it.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// Service accounts are only available for workspaces that are compatible with Grafana
+        /// version 9 and above.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListWorkspaceServiceAccountTokens service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListWorkspaceServiceAccountTokens service method, as returned by ManagedGrafana.</returns>
+        /// <exception cref="Amazon.ManagedGrafana.Model.AccessDeniedException">
+        /// You do not have sufficient permissions to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ConflictException">
+        /// A resource was in an inconsistent state during an update or a deletion.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.InternalServerException">
+        /// Unexpected error while processing the request. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ResourceNotFoundException">
+        /// The request references a resource that does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ThrottlingException">
+        /// The request was denied because of request throttling. Retry the request.
+        /// </exception>
+        /// <exception cref="Amazon.ManagedGrafana.Model.ValidationException">
+        /// The value of a parameter in the request caused an error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/grafana-2020-08-18/ListWorkspaceServiceAccountTokens">REST API Reference for ListWorkspaceServiceAccountTokens Operation</seealso>
+        Task<ListWorkspaceServiceAccountTokensResponse> ListWorkspaceServiceAccountTokensAsync(ListWorkspaceServiceAccountTokensRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  TagResource
 
 
         /// <summary>
-        /// The <code>TagResource</code> operation associates tags with an Amazon Managed Grafana
-        /// resource. Currently, the only resource that can be tagged is workspaces. 
+        /// The <c>TagResource</c> operation associates tags with an Amazon Managed Grafana resource.
+        /// Currently, the only resource that can be tagged is workspaces. 
         /// 
         ///  
         /// <para>
@@ -903,8 +1496,8 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// The <code>TagResource</code> operation associates tags with an Amazon Managed Grafana
-        /// resource. Currently, the only resource that can be tagged is workspaces. 
+        /// The <c>TagResource</c> operation associates tags with an Amazon Managed Grafana resource.
+        /// Currently, the only resource that can be tagged is workspaces. 
         /// 
         ///  
         /// <para>
@@ -944,8 +1537,8 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// The <code>UntagResource</code> operation removes the association of the tag with the
-        /// Amazon Managed Grafana resource.
+        /// The <c>UntagResource</c> operation removes the association of the tag with the Amazon
+        /// Managed Grafana resource.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -971,8 +1564,8 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// The <code>UntagResource</code> operation removes the association of the tag with the
-        /// Amazon Managed Grafana resource.
+        /// The <c>UntagResource</c> operation removes the association of the tag with the Amazon
+        /// Managed Grafana resource.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// <param name="cancellationToken">
@@ -1004,7 +1597,7 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Updates which users in a workspace have the Grafana <code>Admin</code> or <code>Editor</code>
+        /// Updates which users in a workspace have the Grafana <c>Admin</c> or <c>Editor</c>
         /// roles.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdatePermissions service method.</param>
@@ -1031,7 +1624,7 @@ namespace Amazon.ManagedGrafana
 
 
         /// <summary>
-        /// Updates which users in a workspace have the Grafana <code>Admin</code> or <code>Editor</code>
+        /// Updates which users in a workspace have the Grafana <c>Admin</c> or <c>Editor</c>
         /// roles.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdatePermissions service method.</param>
@@ -1074,8 +1667,8 @@ namespace Amazon.ManagedGrafana
         /// </para>
         ///  
         /// <para>
-        /// To modify which users in the workspace have the <code>Admin</code> and <code>Editor</code>
-        /// Grafana roles, use <a href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html">UpdatePermissions</a>.
+        /// To modify which users in the workspace have the <c>Admin</c> and <c>Editor</c> Grafana
+        /// roles, use <a href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html">UpdatePermissions</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateWorkspace service method.</param>
@@ -1115,8 +1708,8 @@ namespace Amazon.ManagedGrafana
         /// </para>
         ///  
         /// <para>
-        /// To modify which users in the workspace have the <code>Admin</code> and <code>Editor</code>
-        /// Grafana roles, use <a href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html">UpdatePermissions</a>.
+        /// To modify which users in the workspace have the <c>Admin</c> and <c>Editor</c> Grafana
+        /// roles, use <a href="https://docs.aws.amazon.com/grafana/latest/APIReference/API_UpdatePermissions.html">UpdatePermissions</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateWorkspace service method.</param>
@@ -1154,8 +1747,8 @@ namespace Amazon.ManagedGrafana
         /// <summary>
         /// Use this operation to define the identity provider (IdP) that this workspace authenticates
         /// users from, using SAML. You can also map SAML assertion attributes to workspace user
-        /// information and define which groups in the assertion attribute are to have the <code>Admin</code>
-        /// and <code>Editor</code> roles in the workspace.
+        /// information and define which groups in the assertion attribute are to have the <c>Admin</c>
+        /// and <c>Editor</c> roles in the workspace.
         /// 
         ///  <note> 
         /// <para>
@@ -1193,8 +1786,8 @@ namespace Amazon.ManagedGrafana
         /// <summary>
         /// Use this operation to define the identity provider (IdP) that this workspace authenticates
         /// users from, using SAML. You can also map SAML assertion attributes to workspace user
-        /// information and define which groups in the assertion attribute are to have the <code>Admin</code>
-        /// and <code>Editor</code> roles in the workspace.
+        /// information and define which groups in the assertion attribute are to have the <c>Admin</c>
+        /// and <c>Editor</c> roles in the workspace.
         /// 
         ///  <note> 
         /// <para>

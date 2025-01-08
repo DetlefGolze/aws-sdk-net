@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
-    /// Filters he operation status list based on the passed attribute value.
+    /// Filters the operation status list based on the passed attribute value.
     /// </summary>
     public partial class OperationStatusFilter
     {

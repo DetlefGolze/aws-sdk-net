@@ -26,16 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// For <code>StartConfigRulesEvaluation</code> API, this exception is thrown if an evaluation
-    /// is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than
-    /// once per minute.
+    /// For <c>PutServiceLinkedConfigurationRecorder</c> API, this exception is thrown if
+    /// the number of service-linked roles in the account exceeds the limit.
     /// 
     ///  
     /// <para>
-    /// For <code>PutConfigurationAggregator</code> API, this exception is thrown if the number
+    /// For <c>StartConfigRulesEvaluation</c> API, this exception is thrown if an evaluation
+    /// is in progress or if you call the <a>StartConfigRulesEvaluation</a> API more than
+    /// once per minute.
+    /// </para>
+    ///  
+    /// <para>
+    /// For <c>PutConfigurationAggregator</c> API, this exception is thrown if the number
     /// of accounts and aggregators exceeds the limit.
     /// </para>
     /// </summary>

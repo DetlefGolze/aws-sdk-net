@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.MediaLive.Model
         private string _activeInputSwitchActionName;
         private string _activeMotionGraphicsActionName;
         private string _activeMotionGraphicsUri;
+        private ChannelEngineVersionResponse _channelEngineVersion;
         private string _pipelineId;
 
         /// <summary>
@@ -103,6 +105,22 @@ namespace Amazon.MediaLive.Model
         internal bool IsSetActiveMotionGraphicsUri()
         {
             return this._activeMotionGraphicsUri != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ChannelEngineVersion. Current engine version of the encoder
+        /// for this pipeline.
+        /// </summary>
+        public ChannelEngineVersionResponse ChannelEngineVersion
+        {
+            get { return this._channelEngineVersion; }
+            set { this._channelEngineVersion = value; }
+        }
+
+        // Check to see if ChannelEngineVersion property is set
+        internal bool IsSetChannelEngineVersion()
+        {
+            return this._channelEngineVersion != null;
         }
 
         /// <summary>

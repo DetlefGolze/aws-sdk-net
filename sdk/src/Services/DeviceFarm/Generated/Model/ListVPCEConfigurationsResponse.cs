@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DeviceFarm.Model
     public partial class ListVPCEConfigurationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<VPCEConfiguration> _vpceConfigurations = new List<VPCEConfiguration>();
+        private List<VPCEConfiguration> _vpceConfigurations = AWSConfigs.InitializeCollections ? new List<VPCEConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -59,8 +60,8 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property VpceConfigurations. 
         /// <para>
-        /// An array of <code>VPCEConfiguration</code> objects that contain information about
-        /// your VPC endpoint configuration.
+        /// An array of <c>VPCEConfiguration</c> objects that contain information about your VPC
+        /// endpoint configuration.
         /// </para>
         /// </summary>
         public List<VPCEConfiguration> VpceConfigurations
@@ -72,7 +73,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if VpceConfigurations property is set
         internal bool IsSetVpceConfigurations()
         {
-            return this._vpceConfigurations != null && this._vpceConfigurations.Count > 0; 
+            return this._vpceConfigurations != null && (this._vpceConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.EC2.Model
     {
         private string _applicationDomain;
         private VerifiedAccessEndpointAttachmentType _attachmentType;
+        private CreateVerifiedAccessEndpointCidrOptions _cidrOptions;
         private string _clientToken;
         private string _description;
         private string _domainCertificateArn;
@@ -45,9 +47,10 @@ namespace Amazon.EC2.Model
         private CreateVerifiedAccessEndpointLoadBalancerOptions _loadBalancerOptions;
         private CreateVerifiedAccessEndpointEniOptions _networkInterfaceOptions;
         private string _policyDocument;
-        private List<string> _securityGroupIds = new List<string>();
+        private CreateVerifiedAccessEndpointRdsOptions _rdsOptions;
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VerifiedAccessSseSpecificationRequest _sseSpecification;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private string _verifiedAccessGroupId;
 
         /// <summary>
@@ -56,7 +59,6 @@ namespace Amazon.EC2.Model
         /// The DNS name for users to reach your application.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string ApplicationDomain
         {
             get { return this._applicationDomain; }
@@ -89,11 +91,29 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CidrOptions. 
+        /// <para>
+        /// The CIDR options. This parameter is required if the endpoint type is <c>cidr</c>.
+        /// </para>
+        /// </summary>
+        public CreateVerifiedAccessEndpointCidrOptions CidrOptions
+        {
+            get { return this._cidrOptions; }
+            set { this._cidrOptions = value; }
+        }
+
+        // Check to see if CidrOptions property is set
+        internal bool IsSetCidrOptions()
+        {
+            return this._cidrOptions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A unique, case-sensitive token that you provide to ensure idempotency of your modification
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
-        /// Idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken
@@ -134,7 +154,6 @@ namespace Amazon.EC2.Model
         /// your end users will use to reach your application.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string DomainCertificateArn
         {
             get { return this._domainCertificateArn; }
@@ -153,7 +172,6 @@ namespace Amazon.EC2.Model
         /// A custom identifier that is prepended to the DNS name that is generated for the endpoint.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string EndpointDomainPrefix
         {
             get { return this._endpointDomainPrefix; }
@@ -188,7 +206,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LoadBalancerOptions. 
         /// <para>
-        /// The load balancer details. This parameter is required if the endpoint type is <code>load-balancer</code>.
+        /// The load balancer details. This parameter is required if the endpoint type is <c>load-balancer</c>.
         /// </para>
         /// </summary>
         public CreateVerifiedAccessEndpointLoadBalancerOptions LoadBalancerOptions
@@ -207,7 +225,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property NetworkInterfaceOptions. 
         /// <para>
         /// The network interface details. This parameter is required if the endpoint type is
-        /// <code>network-interface</code>.
+        /// <c>network-interface</c>.
         /// </para>
         /// </summary>
         public CreateVerifiedAccessEndpointEniOptions NetworkInterfaceOptions
@@ -241,9 +259,28 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RdsOptions. 
+        /// <para>
+        /// The RDS details. This parameter is required if the endpoint type is <c>rds</c>.
+        /// </para>
+        /// </summary>
+        public CreateVerifiedAccessEndpointRdsOptions RdsOptions
+        {
+            get { return this._rdsOptions; }
+            set { this._rdsOptions = value; }
+        }
+
+        // Check to see if RdsOptions property is set
+        internal bool IsSetRdsOptions()
+        {
+            return this._rdsOptions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SecurityGroupIds. 
         /// <para>
-        /// The IDs of the security groups to associate with the Verified Access endpoint.
+        /// The IDs of the security groups to associate with the Verified Access endpoint. Required
+        /// if <c>AttachmentType</c> is set to <c>vpc</c>.
         /// </para>
         /// </summary>
         public List<string> SecurityGroupIds
@@ -255,13 +292,13 @@ namespace Amazon.EC2.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SseSpecification. 
         /// <para>
-        ///  Options for server side encryption. 
+        /// The options for server side encryption.
         /// </para>
         /// </summary>
         public VerifiedAccessSseSpecificationRequest SseSpecification
@@ -291,7 +328,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

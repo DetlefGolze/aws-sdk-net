@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.Neptune.Model
         private string _dbInstanceIdentifier;
         private string _dbParameterGroupName;
         private int? _dbPortNumber;
-        private List<string> _dbSecurityGroups = new List<string>();
+        private List<string> _dbSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _dbSubnetGroupName;
         private bool? _deletionProtection;
         private string _domain;
@@ -73,7 +74,7 @@ namespace Amazon.Neptune.Model
         private string _storageType;
         private string _tdeCredentialArn;
         private string _tdeCredentialPassword;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
@@ -116,18 +117,18 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
         /// Specifies whether the modifications in this request and any pending modifications
-        /// are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code>
+        /// are asynchronously applied as soon as possible, regardless of the <c>PreferredMaintenanceWindow</c>
         /// setting for the DB instance.
         /// </para>
         ///  
         /// <para>
-        ///  If this parameter is set to <code>false</code>, changes to the DB instance are applied
+        ///  If this parameter is set to <c>false</c>, changes to the DB instance are applied
         /// during the next maintenance window. Some parameter changes can cause an outage and
         /// are applied on the next call to <a>RebootDBInstance</a>, or the next failure reboot.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool ApplyImmediately
@@ -148,7 +149,7 @@ namespace Amazon.Neptune.Model
         ///  Indicates that minor version upgrades are applied automatically to the DB instance
         /// during the maintenance window. Changing this parameter doesn't result in an outage
         /// except in the following case and the change is asynchronously applied as soon as possible.
-        /// An outage will result if this parameter is set to <code>true</code> during the maintenance
+        /// An outage will result if this parameter is set to <c>true</c> during the maintenance
         /// window, and a newer minor version is available, and Neptune has enabled auto patching
         /// for that engine version.
         /// </para>
@@ -247,14 +248,14 @@ namespace Amazon.Neptune.Model
         /// <summary>
         /// Gets and sets the property DBInstanceClass. 
         /// <para>
-        /// The new compute and memory capacity of the DB instance, for example, <code>db.m4.large</code>.
+        /// The new compute and memory capacity of the DB instance, for example, <c>db.m4.large</c>.
         /// Not all DB instance classes are available in all Amazon Regions.
         /// </para>
         ///  
         /// <para>
         /// If you modify the DB instance class, an outage occurs during the change. The change
-        /// is applied during the next maintenance window, unless <code>ApplyImmediately</code>
-        /// is specified as <code>true</code> for this request.
+        /// is applied during the next maintenance window, unless <c>ApplyImmediately</c> is specified
+        /// as <c>true</c> for this request.
         /// </para>
         ///  
         /// <para>
@@ -339,17 +340,17 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// The value of the <code>DBPortNumber</code> parameter must not match any of the port
-        /// values specified for options in the option group for the DB instance.
+        /// The value of the <c>DBPortNumber</c> parameter must not match any of the port values
+        /// specified for options in the option group for the DB instance.
         /// </para>
         ///  
         /// <para>
-        /// Your database will restart when you change the <code>DBPortNumber</code> value regardless
-        /// of the value of the <code>ApplyImmediately</code> parameter.
+        /// Your database will restart when you change the <c>DBPortNumber</c> value regardless
+        /// of the value of the <c>ApplyImmediately</c> parameter.
         /// </para>
         ///  
         /// <para>
-        ///  Default: <code>8182</code> 
+        ///  Default: <c>8182</c> 
         /// </para>
         /// </summary>
         public int DBPortNumber
@@ -389,7 +390,7 @@ namespace Amazon.Neptune.Model
         // Check to see if DBSecurityGroups property is set
         internal bool IsSetDBSecurityGroups()
         {
-            return this._dbSecurityGroups != null && this._dbSecurityGroups.Count > 0; 
+            return this._dbSecurityGroups != null && (this._dbSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -401,7 +402,7 @@ namespace Amazon.Neptune.Model
         ///  
         /// <para>
         /// Changing the subnet group causes an outage during the change. The change is applied
-        /// during the next maintenance window, unless you specify <code>true</code> for the <code>ApplyImmediately</code>
+        /// during the next maintenance window, unless you specify <c>true</c> for the <c>ApplyImmediately</c>
         /// parameter.
         /// </para>
         ///  
@@ -410,7 +411,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mySubnetGroup</code> 
+        /// Example: <c>mySubnetGroup</c> 
         /// </para>
         /// </summary>
         public string DBSubnetGroupName
@@ -499,7 +500,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool EnableIAMDatabaseAuthentication
@@ -560,8 +561,8 @@ namespace Amazon.Neptune.Model
         ///  
         /// <para>
         /// Changing this setting doesn't result in an outage and the change is applied during
-        /// the next maintenance window unless the <code>ApplyImmediately</code> parameter is
-        /// set to <code>true</code> for this request.
+        /// the next maintenance window unless the <c>ApplyImmediately</c> parameter is set to
+        /// <c>true</c> for this request.
         /// </para>
         ///  
         /// <para>
@@ -625,12 +626,12 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  
         /// <para>
-        /// If <code>MonitoringRoleArn</code> is specified, then you must also set <code>MonitoringInterval</code>
+        /// If <c>MonitoringRoleArn</c> is specified, then you must also set <c>MonitoringInterval</c>
         /// to a value other than 0.
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>0, 1, 5, 10, 15, 30, 60</code> 
+        /// Valid Values: <c>0, 1, 5, 10, 15, 30, 60</c> 
         /// </para>
         /// </summary>
         public int MonitoringInterval
@@ -649,12 +650,12 @@ namespace Amazon.Neptune.Model
         /// Gets and sets the property MonitoringRoleArn. 
         /// <para>
         /// The ARN for the IAM role that permits Neptune to send enhanced monitoring metrics
-        /// to Amazon CloudWatch Logs. For example, <code>arn:aws:iam:123456789012:role/emaccess</code>.
+        /// to Amazon CloudWatch Logs. For example, <c>arn:aws:iam:123456789012:role/emaccess</c>.
         /// </para>
         ///  
         /// <para>
-        /// If <code>MonitoringInterval</code> is set to a value other than 0, then you must supply
-        /// a <code>MonitoringRoleArn</code> value.
+        /// If <c>MonitoringInterval</c> is set to a value other than 0, then you must supply
+        /// a <c>MonitoringRoleArn</c> value.
         /// </para>
         /// </summary>
         public string MonitoringRoleArn
@@ -674,7 +675,7 @@ namespace Amazon.Neptune.Model
         /// <para>
         /// Specifies if the DB instance is a Multi-AZ deployment. Changing this parameter doesn't
         /// result in an outage and the change is applied during the next maintenance window unless
-        /// the <code>ApplyImmediately</code> parameter is set to <code>true</code> for this request.
+        /// the <c>ApplyImmediately</c> parameter is set to <c>true</c> for this request.
         /// </para>
         /// </summary>
         public bool MultiAZ
@@ -694,9 +695,8 @@ namespace Amazon.Neptune.Model
         /// <para>
         ///  The new DB instance identifier for the DB instance when renaming a DB instance. When
         /// you change the DB instance identifier, an instance reboot will occur immediately if
-        /// you set <code>Apply Immediately</code> to true, or will occur during the next maintenance
-        /// window if <code>Apply Immediately</code> to false. This value is stored as a lowercase
-        /// string.
+        /// you set <c>Apply Immediately</c> to true, or will occur during the next maintenance
+        /// window if <c>Apply Immediately</c> to false. This value is stored as a lowercase string.
         /// </para>
         ///  
         /// <para>
@@ -716,7 +716,7 @@ namespace Amazon.Neptune.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>mydbinstance</code> 
+        /// Example: <c>mydbinstance</c> 
         /// </para>
         /// </summary>
         public string NewDBInstanceIdentifier
@@ -941,6 +941,7 @@ namespace Amazon.Neptune.Model
         /// The password for the given ARN from the key store in order to access the device.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string TdeCredentialPassword
         {
             get { return this._tdeCredentialPassword; }
@@ -983,7 +984,7 @@ namespace Amazon.Neptune.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

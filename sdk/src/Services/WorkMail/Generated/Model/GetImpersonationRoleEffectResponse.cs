@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.WorkMail.Model
     public partial class GetImpersonationRoleEffectResponse : AmazonWebServiceResponse
     {
         private AccessEffect _effect;
-        private List<ImpersonationMatchedRule> _matchedRules = new List<ImpersonationMatchedRule>();
+        private List<ImpersonationMatchedRule> _matchedRules = AWSConfigs.InitializeCollections ? new List<ImpersonationMatchedRule>() : null;
         private ImpersonationRoleType _type;
 
         /// <summary>
         /// Gets and sets the property Effect. 
         /// <para>
         ///  <code/>Effect of the impersonation role on the target user based on its rules. Available
-        /// effects are <code>ALLOW</code> or <code>DENY</code>.
+        /// effects are <c>ALLOW</c> or <c>DENY</c>.
         /// </para>
         /// </summary>
         public AccessEffect Effect
@@ -72,7 +73,7 @@ namespace Amazon.WorkMail.Model
         // Check to see if MatchedRules property is set
         internal bool IsSetMatchedRules()
         {
-            return this._matchedRules != null && this._matchedRules.Count > 0; 
+            return this._matchedRules != null && (this._matchedRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

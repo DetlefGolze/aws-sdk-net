@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
-    /// The filter that specifies criteria that the pricing rules returned by the <code>ListPricingRules</code>
+    /// The filter that specifies criteria that the pricing rules returned by the <c>ListPricingRules</c>
     /// API will adhere to.
     /// </summary>
     public partial class ListPricingRulesFilter
     {
-        private List<string> _arns = new List<string>();
+        private List<string> _arns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arns. 
@@ -53,7 +54,7 @@ namespace Amazon.BillingConductor.Model
         // Check to see if Arns property is set
         internal bool IsSetArns()
         {
-            return this._arns != null && this._arns.Count > 0; 
+            return this._arns != null && (this._arns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -44,10 +45,13 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetId. 
         /// <para>
-        /// The ID of the parent asset.
+        /// The ID of the parent asset. This can be either the actual ID in UUID format, or else
+        /// <c>externalId:</c> followed by the external ID, if it has one. For more information,
+        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=139)]
         public string AssetId
         {
             get { return this._assetId; }
@@ -63,10 +67,13 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property ChildAssetId. 
         /// <para>
-        /// The ID of the child asset to be associated.
+        /// The ID of the child asset to be associated. This can be either the actual ID in UUID
+        /// format, or else <c>externalId:</c> followed by the external ID, if it has one. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=139)]
         public string ChildAssetId
         {
             get { return this._childAssetId; }
@@ -102,13 +109,16 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property HierarchyId. 
         /// <para>
-        /// The ID of a hierarchy in the parent asset's model. Hierarchies allow different groupings
-        /// of assets to be formed that all come from the same asset model. For more information,
-        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
+        /// The ID of a hierarchy in the parent asset's model. (This can be either the actual
+        /// ID in UUID format, or else <c>externalId:</c> followed by the external ID, if it has
+        /// one. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.) Hierarchies
+        /// allow different groupings of assets to be formed that all come from the same asset
+        /// model. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
         /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=36, Max=36)]
+        [AWSProperty(Required=true, Min=13, Max=139)]
         public string HierarchyId
         {
             get { return this._hierarchyId; }

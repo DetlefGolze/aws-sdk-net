@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ResourceGroups.Model
     /// </summary>
     public partial class GroupConfigurationItem
     {
-        private List<GroupConfigurationParameter> _parameters = new List<GroupConfigurationParameter>();
+        private List<GroupConfigurationParameter> _parameters = AWSConfigs.InitializeCollections ? new List<GroupConfigurationParameter>() : null;
         private string _type;
 
         /// <summary>
@@ -55,15 +56,15 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
         /// Specifies the type of group configuration item. Each item must have a unique value
-        /// for <code>type</code>. For the list of types that you can specify for a configuration
-        /// item, see <a href="https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types">Supported
+        /// for <c>type</c>. For the list of types that you can specify for a configuration item,
+        /// see <a href="https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types">Supported
         /// resource types and parameters</a>.
         /// </para>
         /// </summary>

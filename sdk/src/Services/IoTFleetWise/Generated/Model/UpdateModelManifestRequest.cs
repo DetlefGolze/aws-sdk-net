@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -37,8 +38,8 @@ namespace Amazon.IoTFleetWise.Model
     {
         private string _description;
         private string _name;
-        private List<string> _nodesToAdd = new List<string>();
-        private List<string> _nodesToRemove = new List<string>();
+        private List<string> _nodesToAdd = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _nodesToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ManifestStatus _status;
 
         /// <summary>
@@ -82,8 +83,8 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property NodesToAdd. 
         /// <para>
-        ///  A list of <code>fullyQualifiedName</code> of nodes, which are a general abstraction
-        /// of signals, to add to the vehicle model. 
+        ///  A list of <c>fullyQualifiedName</c> of nodes, which are a general abstraction of
+        /// signals, to add to the vehicle model. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=500)]
@@ -96,14 +97,14 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if NodesToAdd property is set
         internal bool IsSetNodesToAdd()
         {
-            return this._nodesToAdd != null && this._nodesToAdd.Count > 0; 
+            return this._nodesToAdd != null && (this._nodesToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NodesToRemove. 
         /// <para>
-        ///  A list of <code>fullyQualifiedName</code> of nodes, which are a general abstraction
-        /// of signals, to remove from the vehicle model. 
+        ///  A list of <c>fullyQualifiedName</c> of nodes, which are a general abstraction of
+        /// signals, to remove from the vehicle model. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=500)]
@@ -116,15 +117,14 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if NodesToRemove property is set
         internal bool IsSetNodesToRemove()
         {
-            return this._nodesToRemove != null && this._nodesToRemove.Count > 0; 
+            return this._nodesToRemove != null && (this._nodesToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The state of the vehicle model. If the status is <code>ACTIVE</code>, the vehicle
-        /// model can't be edited. If the status is <code>DRAFT</code>, you can edit the vehicle
-        /// model. 
+        ///  The state of the vehicle model. If the status is <c>ACTIVE</c>, the vehicle model
+        /// can't be edited. If the status is <c>DRAFT</c>, you can edit the vehicle model. 
         /// </para>
         /// </summary>
         public ManifestStatus Status

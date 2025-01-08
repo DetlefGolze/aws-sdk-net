@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
-    /// <code>UpdateUserResponse</code> returns the user name and identifier for the request
-    /// to update a user's properties.
+    /// <c>UpdateUserResponse</c> returns the user name and identifier for the request to
+    /// update a user's properties.
     /// </summary>
     public partial class UpdateUserResponse : AmazonWebServiceResponse
     {

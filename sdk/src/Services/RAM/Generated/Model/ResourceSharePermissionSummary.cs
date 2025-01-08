@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.RAM.Model
         private PermissionType _permissionType;
         private string _resourceType;
         private string _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _version;
 
         /// <summary>
@@ -127,9 +128,9 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>PROMOTING_TO_STANDARD</b> – This resource share was originally <code>CREATED_FROM_POLICY</code>,
+        ///  <b>PROMOTING_TO_STANDARD</b> – This resource share was originally <c>CREATED_FROM_POLICY</c>,
         /// but the customer ran the <a>PromoteResourceShareCreatedFromPolicy</a> and that operation
-        /// is still in progress. This value changes to <code>STANDARD</code> when complete.
+        /// is still in progress. This value changes to <c>STANDARD</c> when complete.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -207,14 +208,14 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AWS_MANAGED</code> – Amazon Web Services created and manages this managed permission.
+        ///  <c>AWS_MANAGED</c> – Amazon Web Services created and manages this managed permission.
         /// You can associate it with your resource shares, but you can't modify it.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CUSTOMER_MANAGED</code> – You, or another principal in your account created
-        /// this managed permission. You can associate it with your resource shares and create
-        /// new versions that have different permissions.
+        ///  <c>CUSTOMER_MANAGED</c> – You, or another principal in your account created this
+        /// managed permission. You can associate it with your resource shares and create new
+        /// versions that have different permissions.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -233,9 +234,9 @@ namespace Amazon.RAM.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The type of resource to which this permission applies. This takes the form of: <code>service-code</code>:<code>resource-code</code>,
+        /// The type of resource to which this permission applies. This takes the form of: <c>service-code</c>:<c>resource-code</c>,
         /// and is case-insensitive. For example, an Amazon EC2 Subnet would be represented by
-        /// the string <code>ec2:subnet</code>.
+        /// the string <c>ec2:subnet</c>.
         /// </para>
         /// </summary>
         public string ResourceType
@@ -283,7 +284,7 @@ namespace Amazon.RAM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

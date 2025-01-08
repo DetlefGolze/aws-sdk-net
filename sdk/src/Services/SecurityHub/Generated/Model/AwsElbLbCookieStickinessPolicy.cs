@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Contains information about a stickiness policy that was created using <code>CreateLBCookieStickinessPolicy</code>.
+    /// Contains information about a stickiness policy that was created using <c>CreateLBCookieStickinessPolicy</c>.
     /// </summary>
     public partial class AwsElbLbCookieStickinessPolicy
     {

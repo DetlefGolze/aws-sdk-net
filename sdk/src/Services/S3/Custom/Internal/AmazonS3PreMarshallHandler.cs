@@ -139,7 +139,9 @@ namespace Amazon.S3.Internal
             if (putBucketRequest != null)
             {
                 // UseClientRegion only applies if neither BucketRegionName and BucketRegion are set.
-                if (putBucketRequest.UseClientRegion &&
+                // And is skipped if PutBucketConfiguration.Location is defined.
+                if (putBucketRequest.UseClientRegion && 
+                    !(putBucketRequest.IsSetPutBucketConfiguration() && putBucketRequest.PutBucketConfiguration.IsSetLocation()) &&
                     !(putBucketRequest.IsSetBucketRegionName() || putBucketRequest.IsSetBucketRegion()))
                 {
                     var regionCode = DetermineBucketRegionCode(config);
@@ -200,8 +202,9 @@ namespace Amazon.S3.Internal
         {
             if (config.RegionEndpoint != null && string.IsNullOrEmpty(config.ServiceURL))
                 return config.RegionEndpoint.SystemName;
-
+#pragma warning disable CS0612, CS0618
             return AWSSDKUtils.DetermineRegion(config.DetermineServiceURL());
+#pragma warning restore CS0612,CS0618
         }
     }
 }

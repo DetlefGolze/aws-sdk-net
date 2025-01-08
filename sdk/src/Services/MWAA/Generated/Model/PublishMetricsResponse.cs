@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
     /// This is the response object from the PublishMetrics operation.
     /// </summary>
+    [Obsolete("This type is for internal use and not meant for public use. Data set for this type will be ignored.")]
     public partial class PublishMetricsResponse : AmazonWebServiceResponse
     {
 

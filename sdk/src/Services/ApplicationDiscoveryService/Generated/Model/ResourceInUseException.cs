@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
-    /// This issue occurs when the same <code>clientRequestToken</code> is used with the <code>StartImportTask</code>
+    /// This issue occurs when the same <c>clientRequestToken</c> is used with the <c>StartImportTask</c>
     /// action, but with different parameters. For example, you use the same request token
     /// but have two different import URLs, you can encounter this issue. If the import tasks
-    /// are meant to be different, use a different <code>clientRequestToken</code>, and try
-    /// again.
+    /// are meant to be different, use a different <c>clientRequestToken</c>, and try again.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

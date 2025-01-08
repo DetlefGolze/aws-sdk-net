@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -60,9 +61,9 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A token to specify where to start paginating the response. This is the <code>NextToken</code>
-        /// from a previously truncated response. On your first call to the <code>ListAutomationRules</code>
-        /// API, set the value of this parameter to <code>NULL</code>. 
+        ///  A token to specify where to start paginating the response. This is the <c>NextToken</c>
+        /// from a previously truncated response. On your first call to the <c>ListAutomationRules</c>
+        /// API, set the value of this parameter to <c>NULL</c>. 
         /// </para>
         /// </summary>
         public string NextToken

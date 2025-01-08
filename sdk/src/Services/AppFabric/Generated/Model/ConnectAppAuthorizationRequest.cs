@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppFabric.Model
 {
     /// <summary>
@@ -87,7 +88,7 @@ namespace Amazon.AppFabric.Model
         ///  
         /// <para>
         /// This is required if the app authorization for the request is configured with an OAuth2
-        /// (<code>oauth2</code>) authorization type.
+        /// (<c>oauth2</c>) authorization type.
         /// </para>
         /// </summary>
         public AuthRequest AuthRequest

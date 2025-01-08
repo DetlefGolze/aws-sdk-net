@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MQ.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.MQ.Model
         private string _id;
         private ConfigurationRevision _latestRevision;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -138,9 +139,10 @@ namespace Amazon.MQ.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// Required. The broker engine's version. For a list of supported engine versions, see,
-        /// <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html">Supported
-        /// engines</a>.
+        /// The broker engine version. Defaults to the latest available version for the specified
+        /// broker engine type. For a list of supported engine versions, see the <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/activemq-version-management.html">ActiveMQ
+        /// version management</a> and the <a href="https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/rabbitmq-version-management.html">RabbitMQ
+        /// version management</a> sections in the Amazon MQ Developer Guide.
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -226,7 +228,7 @@ namespace Amazon.MQ.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

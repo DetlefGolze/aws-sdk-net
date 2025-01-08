@@ -26,24 +26,63 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A collection of <code>Domain</code> configuration settings to update.
+    /// A collection of <c>Domain</c> configuration settings to update.
     /// </summary>
     public partial class DomainSettingsForUpdate
     {
+        private AmazonQSettings _amazonQSettings;
+        private DockerSettings _dockerSettings;
         private ExecutionRoleIdentityConfig _executionRoleIdentityConfig;
         private RStudioServerProDomainSettingsForUpdate _rStudioServerProDomainSettingsForUpdate;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AmazonQSettings. 
+        /// <para>
+        /// A collection of settings that configure the Amazon Q experience within the domain.
+        /// </para>
+        /// </summary>
+        public AmazonQSettings AmazonQSettings
+        {
+            get { return this._amazonQSettings; }
+            set { this._amazonQSettings = value; }
+        }
+
+        // Check to see if AmazonQSettings property is set
+        internal bool IsSetAmazonQSettings()
+        {
+            return this._amazonQSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DockerSettings. 
+        /// <para>
+        /// A collection of settings that configure the domain's Docker interaction.
+        /// </para>
+        /// </summary>
+        public DockerSettings DockerSettings
+        {
+            get { return this._dockerSettings; }
+            set { this._dockerSettings = value; }
+        }
+
+        // Check to see if DockerSettings property is set
+        internal bool IsSetDockerSettings()
+        {
+            return this._dockerSettings != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ExecutionRoleIdentityConfig. 
         /// <para>
-        /// The configuration for attaching a SageMaker user profile name to the execution role
-        /// as a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html">sts:SourceIdentity
-        /// key</a>. This configuration can only be modified if there are no apps in the <code>InService</code>
-        /// or <code>Pending</code> state.
+        /// The configuration for attaching a SageMaker AI user profile name to the execution
+        /// role as a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html">sts:SourceIdentity
+        /// key</a>. This configuration can only be modified if there are no apps in the <c>InService</c>
+        /// or <c>Pending</c> state.
         /// </para>
         /// </summary>
         public ExecutionRoleIdentityConfig ExecutionRoleIdentityConfig
@@ -61,8 +100,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RStudioServerProDomainSettingsForUpdate. 
         /// <para>
-        /// A collection of <code>RStudioServerPro</code> Domain-level app settings to update.
-        /// A single <code>RStudioServerPro</code> application is created for a domain.
+        /// A collection of <c>RStudioServerPro</c> Domain-level app settings to update. A single
+        /// <c>RStudioServerPro</c> application is created for a domain.
         /// </para>
         /// </summary>
         public RStudioServerProDomainSettingsForUpdate RStudioServerProDomainSettingsForUpdate
@@ -80,8 +119,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SecurityGroupIds. 
         /// <para>
-        /// The security groups for the Amazon Virtual Private Cloud that the <code>Domain</code>
-        /// uses for communication between Domain-level apps and user apps.
+        /// The security groups for the Amazon Virtual Private Cloud that the <c>Domain</c> uses
+        /// for communication between Domain-level apps and user apps.
         /// </para>
         /// </summary>
         [AWSProperty(Max=3)]
@@ -94,7 +133,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

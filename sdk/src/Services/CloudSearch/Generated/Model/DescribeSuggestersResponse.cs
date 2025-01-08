@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeSuggesters</code> request.
+    /// The result of a <c>DescribeSuggesters</c> request.
     /// </summary>
     public partial class DescribeSuggestersResponse : AmazonWebServiceResponse
     {
-        private List<SuggesterStatus> _suggesters = new List<SuggesterStatus>();
+        private List<SuggesterStatus> _suggesters = AWSConfigs.InitializeCollections ? new List<SuggesterStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property Suggesters. 
@@ -51,7 +52,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if Suggesters property is set
         internal bool IsSetSuggesters()
         {
-            return this._suggesters != null && this._suggesters.Count > 0; 
+            return this._suggesters != null && (this._suggesters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

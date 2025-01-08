@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -57,6 +58,12 @@ namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
                     response.AdvancedEventSelectors = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("BillingMode", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.BillingMode = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreatedTimestamp", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -67,6 +74,18 @@ namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.EventDataStoreArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("FederationRoleArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.FederationRoleArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("FederationStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.FederationStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("KmsKeyId", targetDepth))
@@ -91,6 +110,12 @@ namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     response.OrganizationEnabled = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("PartitionKeys", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<PartitionKey, PartitionKeyUnmarshaller>(PartitionKeyUnmarshaller.Instance);
+                    response.PartitionKeys = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("RetentionPeriod", targetDepth))

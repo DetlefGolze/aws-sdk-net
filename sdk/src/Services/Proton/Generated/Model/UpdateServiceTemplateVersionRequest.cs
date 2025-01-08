@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.Proton.Model
     /// </summary>
     public partial class UpdateServiceTemplateVersionRequest : AmazonProtonRequest
     {
-        private List<CompatibleEnvironmentTemplateInput> _compatibleEnvironmentTemplates = new List<CompatibleEnvironmentTemplateInput>();
+        private List<CompatibleEnvironmentTemplateInput> _compatibleEnvironmentTemplates = AWSConfigs.InitializeCollections ? new List<CompatibleEnvironmentTemplateInput>() : null;
         private string _description;
         private string _majorVersion;
         private string _minorVersion;
         private TemplateVersionStatus _status;
-        private List<string> _supportedComponentSources = new List<string>();
+        private List<string> _supportedComponentSources = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _templateName;
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.Proton.Model
         // Check to see if CompatibleEnvironmentTemplates property is set
         internal bool IsSetCompatibleEnvironmentTemplates()
         {
-            return this._compatibleEnvironmentTemplates != null && this._compatibleEnvironmentTemplates.Count > 0; 
+            return this._compatibleEnvironmentTemplates != null && (this._compatibleEnvironmentTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -85,7 +86,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property MajorVersion. 
         /// <para>
-        /// To update a major version of a service template, include <code>major Version</code>.
+        /// To update a major version of a service template, include <c>major Version</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -104,7 +105,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property MinorVersion. 
         /// <para>
-        /// To update a minor version of a service template, include <code>minorVersion</code>.
+        /// To update a minor version of a service template, include <c>minorVersion</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -146,9 +147,8 @@ namespace Amazon.Proton.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// A change to <code>supportedComponentSources</code> doesn't impact existing component
-        /// attachments to instances based on this template version. A change only affects later
-        /// associations.
+        /// A change to <c>supportedComponentSources</c> doesn't impact existing component attachments
+        /// to instances based on this template version. A change only affects later associations.
         /// </para>
         ///  </note> 
         /// <para>
@@ -165,7 +165,7 @@ namespace Amazon.Proton.Model
         // Check to see if SupportedComponentSources property is set
         internal bool IsSetSupportedComponentSources()
         {
-            return this._supportedComponentSources != null && this._supportedComponentSources.Count > 0; 
+            return this._supportedComponentSources != null && (this._supportedComponentSources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

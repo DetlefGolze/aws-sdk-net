@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
     /// Container for the parameters to the LookupPolicy operation.
     /// Lists all policies from the root of the <a>Directory</a> to the object specified.
     /// If there are no policies present, an empty list is returned. If policies are present,
-    /// and if some objects don't have the policies attached, it returns the <code>ObjectIdentifier</code>
-    /// for such objects. If policies are present, it returns <code>ObjectIdentifier</code>,
-    /// <code>policyId</code>, and <code>policyType</code>. Paths that don't lead to the root
-    /// from the target object are ignored. For more information, see <a href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies">Policies</a>.
+    /// and if some objects don't have the policies attached, it returns the <c>ObjectIdentifier</c>
+    /// for such objects. If policies are present, it returns <c>ObjectIdentifier</c>, <c>policyId</c>,
+    /// and <c>policyType</c>. Paths that don't lead to the root from the target object are
+    /// ignored. For more information, see <a href="https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directory.html#key_concepts_policies">Policies</a>.
     /// </summary>
     public partial class LookupPolicyRequest : AmazonCloudDirectoryRequest
     {
@@ -61,7 +62,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if DirectoryArn property is set
         internal bool IsSetDirectoryArn()
         {
-            return this._directoryArn != null;
+            return !string.IsNullOrEmpty(this._directoryArn);
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeConnector operation.
-    /// Describes the connector that's identified by the <code>ConnectorId.</code>
+    /// Describes the connector that's identified by the <c>ConnectorId.</c>
     /// </summary>
     public partial class DescribeConnectorRequest : AmazonTransferRequest
     {

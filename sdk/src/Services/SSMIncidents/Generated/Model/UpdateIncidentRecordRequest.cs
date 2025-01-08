@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SSMIncidents.Model
         private ChatChannel _chatChannel;
         private string _clientToken;
         private int? _impact;
-        private List<NotificationTargetItem> _notificationTargets = new List<NotificationTargetItem>();
+        private List<NotificationTargetItem> _notificationTargets = AWSConfigs.InitializeCollections ? new List<NotificationTargetItem>() : null;
         private IncidentRecordStatus _status;
         private string _summary;
         private string _title;
@@ -111,29 +112,27 @@ namespace Amazon.SSMIncidents.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>Possible impacts:</b> 
+        ///  <b>Supported impact codes</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>1</code> - Critical impact, full application failure that impacts many to all
-        /// customers. 
+        ///  <c>1</c> - Critical
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>2</code> - High impact, partial application failure with impact to many customers.
+        ///  <c>2</c> - High
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>3</code> - Medium impact, the application is providing reduced service to customers.
+        ///  <c>3</c> - Medium
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>4</code> - Low impact, customer aren't impacted by the problem yet.
+        ///  <c>4</c> - Low
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>5</code> - No impact, customers aren't currently impacted but urgent action
-        /// is needed to avoid impact.
+        ///  <c>5</c> - No Impact
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -171,13 +170,13 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if NotificationTargets property is set
         internal bool IsSetNotificationTargets()
         {
-            return this._notificationTargets != null && this._notificationTargets.Count > 0; 
+            return this._notificationTargets != null && (this._notificationTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the incident. Possible statuses are <code>Open</code> or <code>Resolved</code>.
+        /// The status of the incident. Possible statuses are <c>Open</c> or <c>Resolved</c>.
         /// </para>
         /// </summary>
         public IncidentRecordStatus Status

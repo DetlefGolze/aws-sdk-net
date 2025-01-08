@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,9 +40,9 @@ namespace Amazon.EC2.Model
         private DateTime? _createTime;
         private DateTime? _endDate;
         private FleetInstanceMatchCriteria _instanceMatchCriteria;
-        private List<FleetCapacityReservation> _instanceTypeSpecifications = new List<FleetCapacityReservation>();
+        private List<FleetCapacityReservation> _instanceTypeSpecifications = AWSConfigs.InitializeCollections ? new List<FleetCapacityReservation>() : null;
         private CapacityReservationFleetState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private FleetCapacityReservationTenancy _tenancy;
         private double? _totalFulfilledCapacity;
         private int? _totalTargetCapacity;
@@ -50,8 +51,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property AllocationStrategy. 
         /// <para>
         /// The strategy used by the Capacity Reservation Fleet to determine which of the specified
-        /// instance types to use. For more information, see For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#allocation-strategy">
-        /// Allocation strategy</a> in the Amazon EC2 User Guide.
+        /// instance types to use. For more information, see For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#allocation-strategy">Allocation
+        /// strategy</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public string AllocationStrategy
@@ -146,11 +147,10 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Currently, Capacity Reservation Fleets support <code>open</code> instance matching
-        /// criteria only. This means that instances that have matching attributes (instance type,
-        /// platform, and Availability Zone) run in the Capacity Reservations automatically. Instances
-        /// do not need to explicitly target a Capacity Reservation Fleet to use its reserved
-        /// capacity.
+        /// Currently, Capacity Reservation Fleets support <c>open</c> instance matching criteria
+        /// only. This means that instances that have matching attributes (instance type, platform,
+        /// and Availability Zone) run in the Capacity Reservations automatically. Instances do
+        /// not need to explicitly target a Capacity Reservation Fleet to use its reserved capacity.
         /// </para>
         /// </summary>
         public FleetInstanceMatchCriteria InstanceMatchCriteria
@@ -180,7 +180,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceTypeSpecifications property is set
         internal bool IsSetInstanceTypeSpecifications()
         {
-            return this._instanceTypeSpecifications != null && this._instanceTypeSpecifications.Count > 0; 
+            return this._instanceTypeSpecifications != null && (this._instanceTypeSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -190,53 +190,52 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>submitted</code> - The Capacity Reservation Fleet request has been submitted
-        /// and Amazon Elastic Compute Cloud is preparing to create the Capacity Reservations.
+        ///  <c>submitted</c> - The Capacity Reservation Fleet request has been submitted and
+        /// Amazon Elastic Compute Cloud is preparing to create the Capacity Reservations.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modifying</code> - The Capacity Reservation Fleet is being modified. The Fleet
-        /// remains in this state until the modification is complete.
+        ///  <c>modifying</c> - The Capacity Reservation Fleet is being modified. The Fleet remains
+        /// in this state until the modification is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>active</code> - The Capacity Reservation Fleet has fulfilled its total target
-        /// capacity and it is attempting to maintain this capacity. The Fleet remains in this
-        /// state until it is modified or deleted.
+        ///  <c>active</c> - The Capacity Reservation Fleet has fulfilled its total target capacity
+        /// and it is attempting to maintain this capacity. The Fleet remains in this state until
+        /// it is modified or deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>partially_fulfilled</code> - The Capacity Reservation Fleet has partially fulfilled
+        ///  <c>partially_fulfilled</c> - The Capacity Reservation Fleet has partially fulfilled
         /// its total target capacity. There is insufficient Amazon EC2 to fulfill the total target
         /// capacity. The Fleet is attempting to asynchronously fulfill its total target capacity.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>expiring</code> - The Capacity Reservation Fleet has reach its end date and
-        /// it is in the process of expiring. One or more of its Capacity reservations might still
-        /// be active.
+        ///  <c>expiring</c> - The Capacity Reservation Fleet has reach its end date and it is
+        /// in the process of expiring. One or more of its Capacity reservations might still be
+        /// active.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>expired</code> - The Capacity Reservation Fleet has reach its end date. The
-        /// Fleet and its Capacity Reservations are expired. The Fleet can't create new Capacity
+        ///  <c>expired</c> - The Capacity Reservation Fleet has reach its end date. The Fleet
+        /// and its Capacity Reservations are expired. The Fleet can't create new Capacity Reservations.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>cancelling</c> - The Capacity Reservation Fleet is in the process of being cancelled.
+        /// One or more of its Capacity reservations might still be active.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>cancelled</c> - The Capacity Reservation Fleet has been manually cancelled. The
+        /// Fleet and its Capacity Reservations are cancelled and the Fleet can't create new Capacity
         /// Reservations.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cancelling</code> - The Capacity Reservation Fleet is in the process of being
-        /// cancelled. One or more of its Capacity reservations might still be active.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>cancelled</code> - The Capacity Reservation Fleet has been manually cancelled.
-        /// The Fleet and its Capacity Reservations are cancelled and the Fleet can't create new
-        /// Capacity Reservations.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>failed</code> - The Capacity Reservation Fleet failed to reserve capacity for
-        /// the specified instance types.
+        ///  <c>failed</c> - The Capacity Reservation Fleet failed to reserve capacity for the
+        /// specified instance types.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -267,7 +266,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -277,13 +276,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>default</code> - The Capacity Reservation Fleet is created on hardware that
-        /// is shared with other Amazon Web Services accounts.
+        ///  <c>default</c> - The Capacity Reservation Fleet is created on hardware that is shared
+        /// with other Amazon Web Services accounts.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dedicated</code> - The Capacity Reservation Fleet is created on single-tenant
-        /// hardware that is dedicated to a single Amazon Web Services account.
+        ///  <c>dedicated</c> - The Capacity Reservation Fleet is created on single-tenant hardware
+        /// that is dedicated to a single Amazon Web Services account.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -322,7 +321,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The total number of capacity units for which the Capacity Reservation Fleet reserves
         /// capacity. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity">Total
-        /// target capacity</a> in the Amazon EC2 User Guide.
+        /// target capacity</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public int TotalTargetCapacity

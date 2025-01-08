@@ -5,11 +5,13 @@
     "endpointPrefix":"m2",
     "jsonVersion":"1.1",
     "protocol":"rest-json",
+    "protocols":["rest-json"],
     "serviceFullName":"AWSMainframeModernization",
     "serviceId":"m2",
     "signatureVersion":"v4",
     "signingName":"m2",
-    "uid":"m2-2021-04-28"
+    "uid":"m2-2021-04-28",
+    "auth":["aws.auth#sigv4"]
   },
   "operations":{
     "CancelBatchJobExecution":{
@@ -235,8 +237,11 @@
       "output":{"shape":"GetDataSetDetailsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ExecutionTimeoutException"},
+        {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
@@ -382,6 +387,25 @@
       ],
       "documentation":"<p>Lists historical, current, and scheduled batch job executions for a specific application.</p>"
     },
+    "ListBatchJobRestartPoints":{
+      "name":"ListBatchJobRestartPoints",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{applicationId}/batch-job-executions/{executionId}/steps",
+        "responseCode":200
+      },
+      "input":{"shape":"ListBatchJobRestartPointsRequest"},
+      "output":{"shape":"ListBatchJobRestartPointsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"<p>Lists all the job steps for a JCL file to restart a batch job. This is only applicable for Micro Focus engine with versions 8.0.6 and above.</p>"
+    },
     "ListDataSetImportHistory":{
       "name":"ListDataSetImportHistory",
       "http":{
@@ -411,8 +435,11 @@
       "output":{"shape":"ListDataSetsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ExecutionTimeoutException"},
+        {"shape":"ServiceUnavailableException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ],
@@ -808,6 +835,11 @@
       "member":{"shape":"Arn"},
       "min":1
     },
+    "AuthSecretsManagerArn":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
     "BatchJobDefinition":{
       "type":"structure",
       "members":{
@@ -838,6 +870,7 @@
         "Cancelled",
         "Succeeded",
         "Failed",
+        "Purged",
         "Succeeded With Warning"
       ]
     },
@@ -904,6 +937,14 @@
           "shape":"FileBatchJobIdentifier",
           "documentation":"<p>Specifies a file associated with a specific batch job.</p>"
         },
+        "restartBatchJobIdentifier":{
+          "shape":"RestartBatchJobIdentifier",
+          "documentation":"<p>Specifies the required information for restart, including <code>executionId</code> and <code>JobStepRestartMarker</code>.</p>"
+        },
+        "s3BatchJobIdentifier":{
+          "shape":"S3BatchJobIdentifier",
+          "documentation":"<p>Specifies an Amazon S3 location that identifies the batch jobs that you want to run. Use this identifier to run ad hoc batch jobs.</p>"
+        },
         "scriptBatchJobIdentifier":{
           "shape":"ScriptBatchJobIdentifier",
           "documentation":"<p>A batch job identifier in which the batch job to run is identified by the script name.</p>"
@@ -920,6 +961,10 @@
       "max":500,
       "min":0
     },
+    "BatchJobStepList":{
+      "type":"list",
+      "member":{"shape":"JobStep"}
+    },
     "BatchJobType":{
       "type":"string",
       "enum":[
@@ -930,15 +975,15 @@
     },
     "BatchParamKey":{
       "type":"string",
-      "documentation":"<p>See https://www.ibm.com/docs/en/workload-automation/9.3.0?topic=zos-coding-variables-in-jcl to get details about limits for both keys and values: 8 for keys (variable names), 44 for values (variable values) In addition, keys will be only alphabetic characters and digits, without any space or special characters (dash, underscore, etc ...)</p> <p>Parameter key: the first character must be alphabetic. Can be of up to 8 alphanumeric characters.</p>",
-      "max":8,
+      "documentation":"<p>See https://www.ibm.com/docs/en/workload-automation/9.3.0?topic=zos-coding-variables-in-jcl to get details about limits for both keys and values: 8 for keys (variable names), 44 for values (variable values) In addition, keys will be only alphabetic characters and digits, without any space or special characters (dash, underscore, etc ...)</p> <p>For BluAge Engine: There is no limit in length of keys and values. Additional validation may be applied in code, per engine. Parameter key: the first character must be alphabetic. Can be of up to 32 alphanumeric characters.</p>",
+      "max":32,
       "min":1,
-      "pattern":"^[A-Za-z][A-Za-z0-9]{1,7}$"
+      "pattern":"^[A-Za-z][A-Za-z0-9]{1,31}$"
     },
     "BatchParamValue":{
       "type":"string",
-      "documentation":"<p>Parameter value can be of up to 44 alphanumeric characters.</p>",
-      "max":44,
+      "documentation":"<p>Parameter value can be of up to 1024 alphanumeric characters.</p>",
+      "max":1024,
       "min":0
     },
     "Boolean":{"type":"boolean"},
@@ -954,6 +999,10 @@
           "documentation":"<p>The unique identifier of the application.</p>",
           "location":"uri",
           "locationName":"applicationId"
+        },
+        "authSecretsManagerArn":{
+          "shape":"AuthSecretsManagerArn",
+          "documentation":"<p>The Amazon Web Services Secrets Manager containing user's credentials for authentication and authorization for Cancel Batch Job Execution operation.</p>"
         },
         "executionId":{
           "shape":"Identifier",
@@ -971,6 +1020,13 @@
     "CapacityValue":{
       "type":"integer",
       "box":true
+    },
+    "ClientToken":{
+      "type":"string",
+      "documentation":"<p>A client token is a unique, case-sensitive string of up to 128 ASCII characters with ASCII values of 33-126 inclusive. It is generated by the client to ensure idempotent operations, allowing safe retries without unintended side effects.</p>",
+      "max":128,
+      "min":0,
+      "pattern":"^[!-~]+$"
     },
     "ConflictException":{
       "type":"structure",
@@ -1002,8 +1058,8 @@
       ],
       "members":{
         "clientToken":{
-          "shape":"String",
-          "documentation":"<p>Unique, case-sensitive identifier the service generates to ensure the idempotency of the request to create an application. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires. </p>",
+          "shape":"ClientToken",
+          "documentation":"<p>A client token is a unique, case-sensitive string of up to 128 ASCII characters with ASCII values of 33-126 inclusive. It's generated by the client to ensure idempotent operations, allowing for safe retries without unintended side effects.</p>",
           "idempotencyToken":true
         },
         "definition":{
@@ -1072,7 +1128,7 @@
           "locationName":"applicationId"
         },
         "clientToken":{
-          "shape":"String",
+          "shape":"ClientToken",
           "documentation":"<p> Unique, case-sensitive identifier you provide to ensure the idempotency of the request to create a data set import. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires. </p>",
           "idempotencyToken":true
         },
@@ -1111,7 +1167,7 @@
           "documentation":"<p>The version of the application to deploy.</p>"
         },
         "clientToken":{
-          "shape":"String",
+          "shape":"ClientToken",
           "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request to create a deployment. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires. </p>",
           "idempotencyToken":true
         },
@@ -1140,7 +1196,7 @@
       ],
       "members":{
         "clientToken":{
-          "shape":"String",
+          "shape":"ClientToken",
           "documentation":"<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request to create an environment. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires. </p>",
           "idempotencyToken":true
         },
@@ -1172,9 +1228,13 @@
           "shape":"EntityName",
           "documentation":"<p>The name of the runtime environment. Must be unique within the account.</p>"
         },
+        "networkType":{
+          "shape":"NetworkType",
+          "documentation":"<p>The network type required for the runtime environment.</p>"
+        },
         "preferredMaintenanceWindow":{
           "shape":"String50",
-          "documentation":"<p>Configures the maintenance window you want for the runtime environment. If you do not provide a value, a random system-generated value will be assigned.</p>"
+          "documentation":"<p>Configures the maintenance window that you want for the runtime environment. The maintenance window must have the format <code>ddd:hh24:mi-ddd:hh24:mi</code> and must be less than 24 hours. The following two examples are valid maintenance windows: <code>sun:23:45-mon:00:15</code> or <code>sat:01:00-sat:03:00</code>. </p> <p>If you do not provide a value, a random system-generated value will be assigned.</p>"
         },
         "publiclyAccessible":{
           "shape":"Boolean",
@@ -1323,6 +1383,10 @@
           "shape":"DataSetTaskLifecycle",
           "documentation":"<p>The status of the data set import task.</p>"
         },
+        "statusReason":{
+          "shape":"String",
+          "documentation":"<p>If dataset import failed, the failure reason will show here.</p>"
+        },
         "summary":{
           "shape":"DataSetImportSummary",
           "documentation":"<p>A summary of the data set import task.</p>"
@@ -1374,7 +1438,8 @@
       "enum":[
         "Creating",
         "Running",
-        "Completed"
+        "Completed",
+        "Failed"
       ]
     },
     "DataSetsSummaryList":{
@@ -1529,7 +1594,8 @@
       "enum":[
         "Deploying",
         "Succeeded",
-        "Failed"
+        "Failed",
+        "Updating Deployment"
       ]
     },
     "DeploymentList":{
@@ -1653,7 +1719,8 @@
         "Available",
         "Updating",
         "Deleting",
-        "Failed"
+        "Failed",
+        "UnHealthy"
       ]
     },
     "EnvironmentSummary":{
@@ -1697,6 +1764,10 @@
           "shape":"EntityName",
           "documentation":"<p>The name of the runtime environment.</p>"
         },
+        "networkType":{
+          "shape":"NetworkType",
+          "documentation":"<p>The network type supported by the runtime environment.</p>"
+        },
         "status":{
           "shape":"EnvironmentLifecycle",
           "documentation":"<p>The status of the runtime environment</p>"
@@ -1707,6 +1778,18 @@
     "EnvironmentSummaryList":{
       "type":"list",
       "member":{"shape":"EnvironmentSummary"}
+    },
+    "ExecutionTimeoutException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "documentation":"<p> Failed to connect to server, or didn’t receive response within expected time period.</p>",
+      "error":{"httpStatusCode":504},
+      "exception":true,
+      "fault":true,
+      "retryable":{"throttling":false}
     },
     "ExternalLocation":{
       "type":"structure",
@@ -2018,6 +2101,10 @@
           "shape":"String100",
           "documentation":"<p>The name of this batch job.</p>"
         },
+        "jobStepRestartMarker":{
+          "shape":"JobStepRestartMarker",
+          "documentation":"<p>The step/procedure step information for the restart batch job operation.</p>"
+        },
         "jobType":{
           "shape":"BatchJobType",
           "documentation":"<p>The type of job.</p>"
@@ -2085,6 +2172,10 @@
         "dataSetOrg":{
           "shape":"DatasetDetailOrgAttributes",
           "documentation":"<p>The type of data set. The only supported value is VSAM.</p>"
+        },
+        "fileSize":{
+          "shape":"Long",
+          "documentation":"<p>File size of the dataset.</p>"
         },
         "lastReferencedTime":{
           "shape":"Timestamp",
@@ -2239,7 +2330,7 @@
       "members":{
         "actualCapacity":{
           "shape":"CapacityValue",
-          "documentation":"<p>The number of instances included in the runtime environment. A standalone runtime environment has a maxiumum of one instance. Currently, a high availability runtime environment has a maximum of two instances. </p>"
+          "documentation":"<p>The number of instances included in the runtime environment. A standalone runtime environment has a maximum of one instance. Currently, a high availability runtime environment has a maximum of two instances. </p>"
         },
         "creationTime":{
           "shape":"Timestamp",
@@ -2285,13 +2376,17 @@
           "shape":"EntityName",
           "documentation":"<p>The name of the runtime environment. Must be unique within the account.</p>"
         },
+        "networkType":{
+          "shape":"NetworkType",
+          "documentation":"<p>The network type supported by the runtime environment.</p>"
+        },
         "pendingMaintenance":{
           "shape":"PendingMaintenance",
           "documentation":"<p>Indicates the pending maintenance scheduled on this environment.</p>"
         },
         "preferredMaintenanceWindow":{
           "shape":"String50",
-          "documentation":"<p>Configures the maintenance window you want for the runtime environment. If you do not provide a value, a random system-generated value will be assigned.</p>"
+          "documentation":"<p>The maintenance window for the runtime environment. If you don't provide a value for the maintenance window, the service assigns a random value.</p>"
         },
         "publiclyAccessible":{
           "shape":"Boolean",
@@ -2303,7 +2398,7 @@
         },
         "status":{
           "shape":"EnvironmentLifecycle",
-          "documentation":"<p>The status of the runtime environment.</p>"
+          "documentation":"<p>The status of the runtime environment. If the Amazon Web Services Mainframe Modernization environment is missing a connection to the customer owned dependent resource, the status will be <code>Unhealthy</code>.</p>"
         },
         "statusReason":{
           "shape":"String",
@@ -2376,6 +2471,74 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "JobIdentifier":{
+      "type":"structure",
+      "members":{
+        "fileName":{
+          "shape":"String",
+          "documentation":"<p>The name of the file that contains the batch job definition.</p>"
+        },
+        "scriptName":{
+          "shape":"String",
+          "documentation":"<p>The name of the script that contains the batch job definition.</p>"
+        }
+      },
+      "documentation":"<p>Identifies a specific batch job.</p>",
+      "union":true
+    },
+    "JobStep":{
+      "type":"structure",
+      "members":{
+        "procStepName":{
+          "shape":"String",
+          "documentation":"<p>The name of a procedure step.</p>"
+        },
+        "procStepNumber":{
+          "shape":"Integer",
+          "documentation":"<p>The number of a procedure step.</p>"
+        },
+        "stepCondCode":{
+          "shape":"String",
+          "documentation":"<p>The condition code of a step.</p>"
+        },
+        "stepName":{
+          "shape":"String",
+          "documentation":"<p>The name of a step.</p>"
+        },
+        "stepNumber":{
+          "shape":"Integer",
+          "documentation":"<p>The number of a step.</p>"
+        },
+        "stepRestartable":{
+          "shape":"Boolean",
+          "documentation":"<p>Specifies if a step can be restarted or not.</p>"
+        }
+      },
+      "documentation":"<p>Provides information related to a job step.</p>"
+    },
+    "JobStepRestartMarker":{
+      "type":"structure",
+      "required":["fromStep"],
+      "members":{
+        "fromProcStep":{
+          "shape":"String",
+          "documentation":"<p>The procedure step name that a batch job was restarted from.</p>"
+        },
+        "fromStep":{
+          "shape":"String",
+          "documentation":"<p>The step name that a batch job was restarted from.</p>"
+        },
+        "toProcStep":{
+          "shape":"String",
+          "documentation":"<p>The procedure step name that a batch job was restarted to.</p>"
+        },
+        "toStep":{
+          "shape":"String",
+          "documentation":"<p>The step name that a batch job was restarted to.</p>"
+        }
+      },
+      "documentation":"<p>Provides step/procedure step information for a restart batch job operation.</p>"
     },
     "ListApplicationVersionsRequest":{
       "type":"structure",
@@ -2570,6 +2733,42 @@
         }
       }
     },
+    "ListBatchJobRestartPointsRequest":{
+      "type":"structure",
+      "required":[
+        "applicationId",
+        "executionId"
+      ],
+      "members":{
+        "applicationId":{
+          "shape":"Identifier",
+          "documentation":"<p>The unique identifier of the application.</p>",
+          "location":"uri",
+          "locationName":"applicationId"
+        },
+        "authSecretsManagerArn":{
+          "shape":"AuthSecretsManagerArn",
+          "documentation":"<p>The Amazon Web Services Secrets Manager containing user's credentials for authentication and authorization for List Batch Job Restart Points operation.</p>",
+          "location":"querystring",
+          "locationName":"authSecretsManagerArn"
+        },
+        "executionId":{
+          "shape":"Identifier",
+          "documentation":"<p>The unique identifier of the batch job execution.</p>",
+          "location":"uri",
+          "locationName":"executionId"
+        }
+      }
+    },
+    "ListBatchJobRestartPointsResponse":{
+      "type":"structure",
+      "members":{
+        "batchJobSteps":{
+          "shape":"BatchJobStepList",
+          "documentation":"<p>Returns all the batch job steps and related information for a batch job that previously ran.</p>"
+        }
+      }
+    },
     "ListDataSetImportHistoryRequest":{
       "type":"structure",
       "required":["applicationId"],
@@ -2623,6 +2822,12 @@
           "documentation":"<p>The maximum number of objects to return.</p>",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "nameFilter":{
+          "shape":"String200",
+          "documentation":"<p>Filter dataset name matching the specified pattern. Can use * and % as wild cards.</p>",
+          "location":"querystring",
+          "locationName":"nameFilter"
         },
         "nextToken":{
           "shape":"NextToken",
@@ -2819,6 +3024,10 @@
       },
       "documentation":"<p>A subset of the attributes that describe a log group. In CloudWatch a log group is a group of log streams that share the same retention, monitoring, and access control settings.</p>"
     },
+    "Long":{
+      "type":"long",
+      "box":true
+    },
     "MaintenanceSchedule":{
       "type":"structure",
       "members":{
@@ -2838,6 +3047,13 @@
       "box":true,
       "max":2000,
       "min":1
+    },
+    "NetworkType":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "dual"
+      ]
     },
     "NextToken":{
       "type":"string",
@@ -2996,6 +3212,46 @@
       },
       "exception":true
     },
+    "RestartBatchJobIdentifier":{
+      "type":"structure",
+      "required":[
+        "executionId",
+        "jobStepRestartMarker"
+      ],
+      "members":{
+        "executionId":{
+          "shape":"Identifier",
+          "documentation":"<p>The <code>executionId</code> from the <code>StartBatchJob</code> response when the job ran for the first time.</p>"
+        },
+        "jobStepRestartMarker":{
+          "shape":"JobStepRestartMarker",
+          "documentation":"<p>The step/procedure step information for a restart batch job operation.</p>"
+        }
+      },
+      "documentation":"<p>An identifier for the <code>StartBatchJob</code> API to show that it is a restart operation.</p>"
+    },
+    "S3BatchJobIdentifier":{
+      "type":"structure",
+      "required":[
+        "bucket",
+        "identifier"
+      ],
+      "members":{
+        "bucket":{
+          "shape":"String",
+          "documentation":"<p>The Amazon S3 bucket that contains the batch job definitions.</p>"
+        },
+        "identifier":{
+          "shape":"JobIdentifier",
+          "documentation":"<p>Identifies the batch job definition. This identifier can also point to any batch job definition that already exists in the application or to one of the batch job definitions within the directory that is specified in <code>keyPrefix</code>.</p>"
+        },
+        "keyPrefix":{
+          "shape":"String",
+          "documentation":"<p>The key prefix that specifies the path to the folder in the S3 bucket that has the batch job definitions.</p>"
+        }
+      },
+      "documentation":"<p>A batch job identifier in which the batch jobs to run are identified by an Amazon S3 location.</p>"
+    },
     "ScriptBatchJobDefinition":{
       "type":"structure",
       "required":["scriptName"],
@@ -3047,6 +3303,18 @@
       },
       "exception":true
     },
+    "ServiceUnavailableException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "documentation":"<p>Server cannot process the request at the moment.</p>",
+      "error":{"httpStatusCode":503},
+      "exception":true,
+      "fault":true,
+      "retryable":{"throttling":false}
+    },
     "StartApplicationRequest":{
       "type":"structure",
       "required":["applicationId"],
@@ -3076,6 +3344,10 @@
           "documentation":"<p>The unique identifier of the application associated with this batch job.</p>",
           "location":"uri",
           "locationName":"applicationId"
+        },
+        "authSecretsManagerArn":{
+          "shape":"AuthSecretsManagerArn",
+          "documentation":"<p>The Amazon Web Services Secrets Manager containing user's credentials for authentication and authorization for Start Batch Job execution operation.</p>"
         },
         "batchJobIdentifier":{
           "shape":"BatchJobIdentifier",
@@ -3226,7 +3498,7 @@
         "message":{"shape":"String"},
         "quotaCode":{
           "shape":"String",
-          "documentation":"<p>The identifier of the throttled reuqest.</p>"
+          "documentation":"<p>The identifier of the throttled request.</p>"
         },
         "retryAfterSeconds":{
           "shape":"Integer",
@@ -3333,13 +3605,17 @@
           "location":"uri",
           "locationName":"environmentId"
         },
+        "forceUpdate":{
+          "shape":"Boolean",
+          "documentation":"<p>Forces the updates on the environment. This option is needed if the applications in the environment are not stopped or if there are ongoing application-related activities in the environment.</p> <p>If you use this option, be aware that it could lead to data corruption in the applications, and that you might need to perform repair and recovery procedures for the applications.</p> <p>This option is not needed if the attribute being updated is <code>preferredMaintenanceWindow</code>.</p>"
+        },
         "instanceType":{
           "shape":"String20",
           "documentation":"<p>The instance type for the runtime environment to update.</p>"
         },
         "preferredMaintenanceWindow":{
           "shape":"String",
-          "documentation":"<p>Configures the maintenance window you want for the runtime environment. If you do not provide a value, a random system-generated value will be assigned.</p>"
+          "documentation":"<p>Configures the maintenance window that you want for the runtime environment. The maintenance window must have the format <code>ddd:hh24:mi-ddd:hh24:mi</code> and must be less than 24 hours. The following two examples are valid maintenance windows: <code>sun:23:45-mon:00:15</code> or <code>sat:01:00-sat:03:00</code>. </p> <p>If you do not provide a value, a random system-generated value will be assigned.</p>"
         }
       }
     },
@@ -3401,6 +3677,8 @@
       "enum":[
         "unknownOperation",
         "cannotParse",
+        "featureNotAvailable",
+        "unsupportedEngineVersion",
         "fieldValidationFailed",
         "other"
       ]

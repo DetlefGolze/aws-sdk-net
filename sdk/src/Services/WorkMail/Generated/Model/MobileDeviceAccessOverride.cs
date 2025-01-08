@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
@@ -117,7 +118,7 @@ namespace Amazon.WorkMail.Model
         /// <summary>
         /// Gets and sets the property Effect. 
         /// <para>
-        /// The effect of the override, <code>ALLOW</code> or <code>DENY</code>.
+        /// The effect of the override, <c>ALLOW</c> or <c>DENY</c>.
         /// </para>
         /// </summary>
         public MobileDeviceAccessRuleEffect Effect

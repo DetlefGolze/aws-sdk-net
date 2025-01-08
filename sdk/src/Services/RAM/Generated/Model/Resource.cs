@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -205,9 +206,9 @@ namespace Amazon.RAM.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The resource type. This takes the form of: <code>service-code</code>:<code>resource-code</code>,
+        /// The resource type. This takes the form of: <c>service-code</c>:<c>resource-code</c>,
         /// and is case-insensitive. For example, an Amazon EC2 Subnet would be represented by
-        /// the string <code>ec2:subnet</code>.
+        /// the string <c>ec2:subnet</c>.
         /// </para>
         /// </summary>
         public string Type

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Scheduler.Model
 {
     /// <summary>
     /// The templated target type for the Amazon SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_StartPipelineExecution.html">
-    /// <code>StartPipelineExecution</code> </a> API operation.
+    /// <c>StartPipelineExecution</c> </a> API operation.
     /// </summary>
     public partial class SageMakerPipelineParameters
     {
-        private List<SageMakerPipelineParameter> _pipelineParameterList = new List<SageMakerPipelineParameter>();
+        private List<SageMakerPipelineParameter> _pipelineParameterList = AWSConfigs.InitializeCollections ? new List<SageMakerPipelineParameter>() : null;
 
         /// <summary>
         /// Gets and sets the property PipelineParameterList. 
@@ -53,7 +54,7 @@ namespace Amazon.Scheduler.Model
         // Check to see if PipelineParameterList property is set
         internal bool IsSetPipelineParameterList()
         {
-            return this._pipelineParameterList != null && this._pipelineParameterList.Count > 0; 
+            return this._pipelineParameterList != null && (this._pipelineParameterList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

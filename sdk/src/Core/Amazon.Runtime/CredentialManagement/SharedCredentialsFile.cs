@@ -21,6 +21,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Diagnostics.CodeAnalysis;
+using Amazon.Runtime.Internal;
 
 namespace Amazon.Runtime.CredentialManagement
 {
@@ -47,6 +48,7 @@ namespace Amazon.Runtime.CredentialManagement
         private const string CredentialProcess = "credential_process";
         private const string StsRegionalEndpointsField = "sts_regional_endpoints";
         private const string S3UseArnRegionField = "s3_use_arn_region";
+        private const string S3DisableExpressSessionAuthField = "s3_disable_express_session_auth";
         private const string S3RegionalEndpointField = "s3_us_east_1_regional_endpoint";
         private const string S3DisableMultiRegionAccessPointsField = "s3_disable_multiregion_access_points";
         private const string RetryModeField = "retry_mode";
@@ -59,6 +61,7 @@ namespace Amazon.Runtime.CredentialManagement
         private const string SsoSession = "sso_session";
         private const string EC2MetadataServiceEndpointField = "ec2_metadata_service_endpoint";
         private const string EC2MetadataServiceEndpointModeField = "ec2_metadata_service_endpoint_mode";
+        private const string EC2MetadataV1DisabledField = "ec2_metadata_v1_disabled";
         private const string UseDualstackEndpointField = "use_dualstack_endpoint";
         private const string UseFIPSEndpointField = "use_fips_endpoint";
         private const string EndpointUrlField = "endpoint_url";
@@ -66,6 +69,8 @@ namespace Amazon.Runtime.CredentialManagement
         private const string IgnoreConfiguredEndpointUrlsField = "ignore_configured_endpoint_urls";
         private const string DisableRequestCompressionField = "disable_request_compression";
         private const string RequestMinCompressionSizeBytesField = "request_min_compression_size_bytes";
+        private const string ClientAppIdField = "sdk_ua_app_id";
+        private const string AccountIdEndpointModeField = "account_id_endpoint_mode";
         private readonly Logger _logger = Logger.GetLogger(typeof(SharedCredentialsFile));
 
         private static readonly HashSet<string> ReservedPropertyNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -76,6 +81,7 @@ namespace Amazon.Runtime.CredentialManagement
             CredentialProcess,
             StsRegionalEndpointsField,
             S3UseArnRegionField,
+            S3DisableExpressSessionAuthField,
             S3RegionalEndpointField,
             S3DisableMultiRegionAccessPointsField,
             RetryModeField,
@@ -88,6 +94,7 @@ namespace Amazon.Runtime.CredentialManagement
             SsoSession,
             EC2MetadataServiceEndpointField,
             EC2MetadataServiceEndpointModeField,
+            EC2MetadataV1DisabledField,
             UseDualstackEndpointField,
             UseFIPSEndpointField,
             DefaultConfigurationModeField,
@@ -96,6 +103,8 @@ namespace Amazon.Runtime.CredentialManagement
             IgnoreConfiguredEndpointUrlsField,
             DisableRequestCompressionField,
             RequestMinCompressionSizeBytesField,
+            ClientAppIdField,
+            AccountIdEndpointModeField
         };
 
         /// <summary>
@@ -390,6 +399,9 @@ namespace Amazon.Runtime.CredentialManagement
             if (profile.S3UseArnRegion != null)
                 reservedProperties[S3UseArnRegionField] = profile.S3UseArnRegion.Value.ToString().ToLowerInvariant();
 
+            if (profile.S3DisableExpressSessionAuth != null)
+                reservedProperties[S3DisableExpressSessionAuthField] = profile.S3DisableExpressSessionAuth.Value.ToString().ToLowerInvariant();
+
             if (profile.S3RegionalEndpoint != null)
                 reservedProperties[S3RegionalEndpointField] = profile.S3RegionalEndpoint.ToString().ToLowerInvariant();
 
@@ -408,6 +420,9 @@ namespace Amazon.Runtime.CredentialManagement
             if (profile.EC2MetadataServiceEndpointMode != null)
                 reservedProperties[EC2MetadataServiceEndpointModeField] = profile.EC2MetadataServiceEndpointMode.ToString().ToLowerInvariant();
 
+            if (profile.EC2MetadataV1Disabled != null)
+                reservedProperties[EC2MetadataV1DisabledField] = profile.EC2MetadataV1Disabled.ToString().ToLowerInvariant();
+
             if (profile.UseDualstackEndpoint != null)
                 reservedProperties[UseDualstackEndpointField] = profile.UseDualstackEndpoint.ToString().ToLowerInvariant();
 
@@ -425,6 +440,11 @@ namespace Amazon.Runtime.CredentialManagement
 
             if (profile.RequestMinCompressionSizeBytes != null)
                 reservedProperties[RequestMinCompressionSizeBytesField] = profile.RequestMinCompressionSizeBytes.ToString().ToLowerInvariant();
+
+            if (profile.ClientAppId != null)
+                reservedProperties[ClientAppIdField] = profile.ClientAppId;
+            if (profile.AccountIdEndpointMode != null)
+                reservedProperties[AccountIdEndpointModeField] = profile.AccountIdEndpointMode.ToString().ToLowerInvariant();
 
             var profileDictionary = PropertyMapping.CombineProfileParts(
                 profile.Options, ReservedPropertyNames, reservedProperties, profile.Properties);
@@ -462,7 +482,7 @@ namespace Amazon.Runtime.CredentialManagement
 
 
             if (configProperties.TryGetValue(SsoSession, out var session)
-                && _configFile.TryGetSection(session, true, out var ssoSessionProperties))
+                && _configFile.TryGetSection(session, true, false, out var ssoSessionProperties, out _))
             {
                 // Skip SsoSession properties as it might be used by other profiles
                 var ssoSessionPropertiesNames = ssoSessionProperties.Keys.ToArray();
@@ -692,6 +712,19 @@ namespace Amazon.Runtime.CredentialManagement
                     s3UseArnRegion = s3UseArnRegionOut;
                 }
 
+                string s3DisableExpressSessionAuthString;
+                bool? s3DisableExpressSessionAuth = null;
+                if (reservedProperties.TryGetValue(S3DisableExpressSessionAuthField, out s3DisableExpressSessionAuthString))
+                {
+                    bool s3DisableExpressSessionAuthOut;
+                    if (!bool.TryParse(s3DisableExpressSessionAuthString, out s3DisableExpressSessionAuthOut))
+                    {
+                        profile = null;
+                        return false;
+                    }
+                    s3DisableExpressSessionAuth = s3DisableExpressSessionAuthOut;
+                }
+
                 S3UsEast1RegionalEndpointValue? s3RegionalEndpoint = null;
                 if (reservedProperties.TryGetValue(S3RegionalEndpointField, out var s3RegionalEndpointString))
                 {
@@ -826,6 +859,20 @@ namespace Amazon.Runtime.CredentialManagement
                 }
 #endif
 
+                string ec2MetadataV1DisabledString;
+                bool? ec2MetadataV1Disabled = null;
+                if (reservedProperties.TryGetValue(EC2MetadataV1DisabledField, out ec2MetadataV1DisabledString))
+                {
+                    bool ec2MetadataV1DisabledOut;
+                    if (!bool.TryParse(ec2MetadataV1DisabledString, out ec2MetadataV1DisabledOut))
+                    {
+                        Logger.GetLogger(GetType()).InfoFormat("Invalid value {0} for {1} in profile {2}. A boolean true/false is expected.", ec2MetadataV1DisabledString, EC2MetadataV1DisabledField, profileName);
+                        profile = null;
+                        return false;
+                    }
+                    ec2MetadataV1Disabled = ec2MetadataV1DisabledOut;
+                }
+
                 string useDualstackEndpointString;
                 bool? useDualstackEndpoint = null;
                 if (reservedProperties.TryGetValue(UseDualstackEndpointField, out useDualstackEndpointString))
@@ -884,7 +931,42 @@ namespace Amazon.Runtime.CredentialManagement
                     requestMinCompressionSizeBytes = requestMinCompressionSizeBytesOut;
                 }
 
-                profile = new CredentialProfile(profileName, profileOptions)
+                string clientAppId = null;
+                if (reservedProperties.TryGetValue(ClientAppIdField, out clientAppId))
+                {
+                    if (clientAppId != null && clientAppId.Length > EnvironmentVariableInternalConfiguration.AWS_SDK_UA_APP_ID_MAX_LENGTH)
+                    {
+                        Logger.GetLogger(GetType()).InfoFormat("Warning: Client app id in profile {0} exceeds recommended maximum length of {1} characters: \"{2}\"",
+                            profileName, EnvironmentVariableInternalConfiguration.AWS_SDK_UA_APP_ID_MAX_LENGTH, clientAppId);
+                    }
+                }
+
+                AccountIdEndpointMode? accountIdEndpointMode = null;
+                if (reservedProperties.TryGetValue(AccountIdEndpointModeField, out var accountIdEndpointModeString))
+                {
+#if BCL35
+                    try
+                    {
+                        accountIdEndpointMode = (AccountIdEndpointMode)Enum.Parse(typeof(AccountIdEndpointMode), accountIdEndpointModeString, true);
+                    }
+                    catch (Exception)
+                    {
+                        _logger.InfoFormat("Invalid value {0} for {1} in profile {2}. A string preferred/disabled/required is expected.", accountIdEndpointModeString, AccountIdEndpointModeField, profileName);
+                        profile = null;
+                        return false;
+                    }
+#else
+                    if (!Enum.TryParse<AccountIdEndpointMode>(accountIdEndpointModeString, true, out var accountIdEndpointModeTemp))
+                    {
+                        _logger.InfoFormat("Invalid value {0} for {1} in profile {2}. A string  preferred/disabled/required is expected.", accountIdEndpointModeString, AccountIdEndpointModeField, profileName);
+                        profile = null;
+                        return false;
+                    }
+                    accountIdEndpointMode = accountIdEndpointModeTemp;
+                
+#endif
+                }
+                    profile = new CredentialProfile(profileName, profileOptions)
                 {
                     UniqueKey = toolkitArtifactGuid,
                     Properties = userProperties,
@@ -894,19 +976,23 @@ namespace Amazon.Runtime.CredentialManagement
                     EndpointDiscoveryEnabled = endpointDiscoveryEnabled,
                     StsRegionalEndpoints = stsRegionalEndpoints,
                     S3UseArnRegion = s3UseArnRegion,
+                    S3DisableExpressSessionAuth = s3DisableExpressSessionAuth,
                     S3RegionalEndpoint = s3RegionalEndpoint,
                     S3DisableMultiRegionAccessPoints = s3DisableMultiRegionAccessPoints,
                     RetryMode = requestRetryMode,
                     MaxAttempts = maxAttempts,
                     EC2MetadataServiceEndpoint = ec2MetadataServiceEndpoint,
                     EC2MetadataServiceEndpointMode = ec2MetadataServiceEndpointMode,
+                    EC2MetadataV1Disabled = ec2MetadataV1Disabled,
                     UseDualstackEndpoint = useDualstackEndpoint,
                     UseFIPSEndpoint = useFIPSEndpoint,
                     NestedProperties = nestedProperties,
                     IgnoreConfiguredEndpointUrls = ignoreConfiguredEndpointUrls,
                     EndpointUrl = endpointUrlString,
                     DisableRequestCompression = disableRequestCompression,
-                    RequestMinCompressionSizeBytes = requestMinCompressionSizeBytes
+                    RequestMinCompressionSizeBytes = requestMinCompressionSizeBytes,
+                    ClientAppId = clientAppId,
+                    AccountIdEndpointMode = accountIdEndpointMode
                 };
 
                 if (!IsSupportedProfileType(profile.ProfileType))

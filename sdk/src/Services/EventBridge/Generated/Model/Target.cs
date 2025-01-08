@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -36,14 +37,15 @@ namespace Amazon.EventBridge.Model
     /// <para>
     /// If you are setting the event bus of another account as the target, and that account
     /// granted permission to your account through an organization instead of directly by
-    /// the account ID, then you must specify a <code>RoleArn</code> with proper permissions
-    /// in the <code>Target</code> structure. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
+    /// the account ID, then you must specify a <c>RoleArn</c> with proper permissions in
+    /// the <c>Target</c> structure. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
     /// and Receiving Events Between Amazon Web Services Accounts</a> in the <i>Amazon EventBridge
     /// User Guide</i>.
     /// </para>
     /// </summary>
     public partial class Target
     {
+        private AppSyncParameters _appSyncParameters;
         private string _arn;
         private BatchParameters _batchParameters;
         private DeadLetterConfig _deadLetterConfig;
@@ -60,6 +62,25 @@ namespace Amazon.EventBridge.Model
         private RunCommandParameters _runCommandParameters;
         private SageMakerPipelineParameters _sageMakerPipelineParameters;
         private SqsParameters _sqsParameters;
+
+        /// <summary>
+        /// Gets and sets the property AppSyncParameters. 
+        /// <para>
+        /// Contains the GraphQL operation to be parsed and executed, if the event target is an
+        /// AppSync API.
+        /// </para>
+        /// </summary>
+        public AppSyncParameters AppSyncParameters
+        {
+            get { return this._appSyncParameters; }
+            set { this._appSyncParameters = value; }
+        }
+
+        // Check to see if AppSyncParameters property is set
+        internal bool IsSetAppSyncParameters()
+        {
+            return this._appSyncParameters != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -103,8 +124,8 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property DeadLetterConfig. 
         /// <para>
-        /// The <code>DeadLetterConfig</code> that defines the target queue to send dead-letter
-        /// queue events to.
+        /// The <c>DeadLetterConfig</c> that defines the target queue to send dead-letter queue
+        /// events to.
         /// </para>
         /// </summary>
         public DeadLetterConfig DeadLetterConfig
@@ -253,7 +274,7 @@ namespace Amazon.EventBridge.Model
         /// <para>
         /// The custom parameter you can use to control the shard assignment, when the target
         /// is a Kinesis data stream. If you do not include this parameter, the default is to
-        /// use the <code>eventId</code> as the partition key.
+        /// use the <c>eventId</c> as the partition key.
         /// </para>
         /// </summary>
         public KinesisParameters KinesisParameters
@@ -296,8 +317,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property RetryPolicy. 
         /// <para>
-        /// The <code>RetryPolicy</code> object that contains the retry policy configuration to
-        /// use for the dead-letter queue.
+        /// The retry policy configuration to use for the dead-letter queue.
         /// </para>
         /// </summary>
         public RetryPolicy RetryPolicy

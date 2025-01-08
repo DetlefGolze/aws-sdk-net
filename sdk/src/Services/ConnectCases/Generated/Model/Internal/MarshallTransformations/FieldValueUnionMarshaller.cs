@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(FieldValueUnion requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBooleanValue())
             {
                 context.Writer.WritePropertyName("booleanValue");
@@ -54,7 +57,14 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
             if(requestObject.IsSetDoubleValue())
             {
                 context.Writer.WritePropertyName("doubleValue");
-                context.Writer.Write(requestObject.DoubleValue);
+                if(StringUtils.IsSpecialDoubleValue(requestObject.DoubleValue))
+                {
+                    context.Writer.Write(StringUtils.FromSpecialDoubleValue(requestObject.DoubleValue));
+                }
+                else
+                {
+                    context.Writer.Write(requestObject.DoubleValue);
+                }
             }
 
             if(requestObject.IsSetEmptyValue())
@@ -72,6 +82,12 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("stringValue");
                 context.Writer.Write(requestObject.StringValue);
+            }
+
+            if(requestObject.IsSetUserArnValue())
+            {
+                context.Writer.WritePropertyName("userArnValue");
+                context.Writer.Write(requestObject.UserArnValue);
             }
 
         }

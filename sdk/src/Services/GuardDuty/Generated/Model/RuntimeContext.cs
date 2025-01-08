@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -34,12 +35,13 @@ namespace Amazon.GuardDuty.Model
     public partial class RuntimeContext
     {
         private string _addressFamily;
+        private string _commandLineExample;
         private string _fileSystemType;
-        private List<string> _flags = new List<string>();
+        private List<string> _flags = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _ianaProtocolNumber;
         private string _ldPreloadValue;
         private string _libraryPath;
-        private List<string> _memoryRegions = new List<string>();
+        private List<string> _memoryRegions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _modifiedAt;
         private ProcessDetails _modifyingProcess;
         private string _moduleFilePath;
@@ -50,15 +52,19 @@ namespace Amazon.GuardDuty.Model
         private string _releaseAgentPath;
         private string _runcBinaryPath;
         private string _scriptPath;
+        private string _serviceName;
         private string _shellHistoryFilePath;
         private string _socketPath;
         private ProcessDetails _targetProcess;
+        private string _threatFilePath;
+        private string _toolCategory;
+        private string _toolName;
 
         /// <summary>
         /// Gets and sets the property AddressFamily. 
         /// <para>
         /// Represents the communication protocol associated with the address. For example, the
-        /// address family <code>AF_INET</code> is used for IP version of 4 protocol.
+        /// address family <c>AF_INET</c> is used for IP version of 4 protocol.
         /// </para>
         /// </summary>
         public string AddressFamily
@@ -71,6 +77,24 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetAddressFamily()
         {
             return this._addressFamily != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CommandLineExample. 
+        /// <para>
+        /// Example of the command line involved in the suspicious activity.
+        /// </para>
+        /// </summary>
+        public string CommandLineExample
+        {
+            get { return this._commandLineExample; }
+            set { this._commandLineExample = value; }
+        }
+
+        // Check to see if CommandLineExample property is set
+        internal bool IsSetCommandLineExample()
+        {
+            return this._commandLineExample != null;
         }
 
         /// <summary>
@@ -107,15 +131,15 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Flags property is set
         internal bool IsSetFlags()
         {
-            return this._flags != null && this._flags.Count > 0; 
+            return this._flags != null && (this._flags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IanaProtocolNumber. 
         /// <para>
         /// Specifies a particular protocol within the address family. Usually there is a single
-        /// protocol in address families. For example, the address family <code>AF_INET</code>
-        /// only has the IP protocol.
+        /// protocol in address families. For example, the address family <c>AF_INET</c> only
+        /// has the IP protocol.
         /// </para>
         /// </summary>
         public int IanaProtocolNumber
@@ -181,7 +205,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if MemoryRegions property is set
         internal bool IsSetMemoryRegions()
         {
-            return this._memoryRegions != null && this._memoryRegions.Count > 0; 
+            return this._memoryRegions != null && (this._memoryRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -261,7 +285,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property ModuleSha256. 
         /// <para>
-        /// The <code>SHA256</code> hash of the module.
+        /// The <c>SHA256</c> hash of the module.
         /// </para>
         /// </summary>
         public string ModuleSha256
@@ -333,7 +357,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property RuncBinaryPath. 
         /// <para>
-        /// The path to the leveraged <code>runc</code> implementation.
+        /// The path to the leveraged <c>runc</c> implementation.
         /// </para>
         /// </summary>
         public string RuncBinaryPath
@@ -364,6 +388,24 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetScriptPath()
         {
             return this._scriptPath != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ServiceName. 
+        /// <para>
+        /// Name of the security service that has been potentially disabled.
+        /// </para>
+        /// </summary>
+        public string ServiceName
+        {
+            get { return this._serviceName; }
+            set { this._serviceName = value; }
+        }
+
+        // Check to see if ServiceName property is set
+        internal bool IsSetServiceName()
+        {
+            return this._serviceName != null;
         }
 
         /// <summary>
@@ -418,6 +460,61 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetTargetProcess()
         {
             return this._targetProcess != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ThreatFilePath. 
+        /// <para>
+        /// The suspicious file path for which the threat intelligence details were found.
+        /// </para>
+        /// </summary>
+        public string ThreatFilePath
+        {
+            get { return this._threatFilePath; }
+            set { this._threatFilePath = value; }
+        }
+
+        // Check to see if ThreatFilePath property is set
+        internal bool IsSetThreatFilePath()
+        {
+            return this._threatFilePath != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ToolCategory. 
+        /// <para>
+        /// Category that the tool belongs to. Some of the examples are Backdoor Tool, Pentest
+        /// Tool, Network Scanner, and Network Sniffer.
+        /// </para>
+        /// </summary>
+        public string ToolCategory
+        {
+            get { return this._toolCategory; }
+            set { this._toolCategory = value; }
+        }
+
+        // Check to see if ToolCategory property is set
+        internal bool IsSetToolCategory()
+        {
+            return this._toolCategory != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ToolName. 
+        /// <para>
+        /// Name of the potentially suspicious tool.
+        /// </para>
+        /// </summary>
+        public string ToolName
+        {
+            get { return this._toolName; }
+            set { this._toolName = value; }
+        }
+
+        // Check to see if ToolName property is set
+        internal bool IsSetToolName()
+        {
+            return this._toolName != null;
         }
 
     }

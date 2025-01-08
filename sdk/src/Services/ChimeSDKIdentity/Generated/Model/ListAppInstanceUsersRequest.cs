@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAppInstanceUsers operation.
-    /// List all <code>AppInstanceUsers</code> created under a single <code>AppInstance</code>.
+    /// List all <c>AppInstanceUsers</c> created under a single <c>AppInstance</c>.
     /// </summary>
     public partial class ListAppInstanceUsersRequest : AmazonChimeSDKIdentityRequest
     {
@@ -41,7 +42,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property AppInstanceArn. 
         /// <para>
-        /// The ARN of the <code>AppInstance</code>.
+        /// The ARN of the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=1600)]

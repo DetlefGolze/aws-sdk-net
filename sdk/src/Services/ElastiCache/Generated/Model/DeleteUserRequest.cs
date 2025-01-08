@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteUser operation.
-    /// For Redis engine version 6.0 onwards: Deletes a user. The user will be removed from
-    /// all user groups and in turn removed from all replication groups. For more information,
-    /// see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html">Using
+    /// For Valkey engine version 7.2 onwards and Redis OSS 6.0 onwards: Deletes a user. The
+    /// user will be removed from all user groups and in turn removed from all replication
+    /// groups. For more information, see <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Clusters.RBAC.html">Using
     /// Role Based Access Control (RBAC)</a>.
     /// </summary>
     public partial class DeleteUserRequest : AmazonElastiCacheRequest

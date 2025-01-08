@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.ECS.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// To inject sensitive data into your containers as environment variables, use the <code>secrets</code>
+    /// To inject sensitive data into your containers as environment variables, use the <c>secrets</c>
     /// container definition parameter.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// To reference sensitive information in the log configuration of a container, use the
-    /// <code>secretOptions</code> container definition parameter.
+    /// <c>secretOptions</c> container definition parameter.
     /// </para>
     ///  </li> </ul> 
     /// <para>

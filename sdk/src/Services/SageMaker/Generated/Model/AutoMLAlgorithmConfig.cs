@@ -26,32 +26,36 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// The collection of algorithms run on a dataset for training the model candidates of
-    /// an Autopilot job.
+    /// The selection of algorithms trained on your dataset to generate the model candidates
+    /// for an Autopilot job.
     /// </summary>
     public partial class AutoMLAlgorithmConfig
     {
-        private List<string> _autoMLAlgorithms = new List<string>();
+        private List<string> _autoMLAlgorithms = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoMLAlgorithms. 
         /// <para>
-        /// The selection of algorithms run on a dataset to train the model candidates of an Autopilot
-        /// job. 
+        /// The selection of algorithms trained on your dataset to generate the model candidates
+        /// for an Autopilot job.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For the tabular problem type <c>TabularJobConfig</c>:</b> 
         /// </para>
         ///  <note> 
         /// <para>
         /// Selected algorithms must belong to the list corresponding to the training mode set
         /// in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_AutoMLJobConfig.html#sagemaker-Type-AutoMLJobConfig-Mode">AutoMLJobConfig.Mode</a>
-        /// (<code>ENSEMBLING</code> or <code>HYPERPARAMETER_TUNING</code>). Choose a minimum
-        /// of 1 algorithm. 
+        /// (<c>ENSEMBLING</c> or <c>HYPERPARAMETER_TUNING</c>). Choose a minimum of 1 algorithm.
         /// </para>
         ///  </note> <ul> <li> 
         /// <para>
-        /// In <code>ENSEMBLING</code> mode:
+        /// In <c>ENSEMBLING</c> mode:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -87,7 +91,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        /// In <code>HYPERPARAMETER_TUNING</code> mode:
+        /// In <c>HYPERPARAMETER_TUNING</c> mode:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -101,7 +105,40 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// "xgboost"
         /// </para>
-        ///  </li> </ul> </li> </ul>
+        ///  </li> </ul> </li> </ul> </li> <li> 
+        /// <para>
+        ///  <b>For the time-series forecasting problem type <c>TimeSeriesForecastingJobConfig</c>:</b>
+        /// 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Choose your algorithms from this list.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// "cnn-qr"
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// "deepar"
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// "prophet"
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// "arima"
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// "npts"
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// "ets"
+        /// </para>
+        ///  </li> </ul> </li> </ul> </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Max=11)]
         public List<string> AutoMLAlgorithms
@@ -113,7 +150,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AutoMLAlgorithms property is set
         internal bool IsSetAutoMLAlgorithms()
         {
-            return this._autoMLAlgorithms != null && this._autoMLAlgorithms.Count > 0; 
+            return this._autoMLAlgorithms != null && (this._autoMLAlgorithms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

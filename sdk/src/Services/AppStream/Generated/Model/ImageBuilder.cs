@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AppStream.Model
     /// </summary>
     public partial class ImageBuilder
     {
-        private List<AccessEndpoint> _accessEndpoints = new List<AccessEndpoint>();
+        private List<AccessEndpoint> _accessEndpoints = AWSConfigs.InitializeCollections ? new List<AccessEndpoint>() : null;
         private string _appstreamAgentVersion;
         private string _arn;
         private DateTime? _createdTime;
@@ -43,8 +44,9 @@ namespace Amazon.AppStream.Model
         private bool? _enableDefaultInternetAccess;
         private string _iamRoleArn;
         private string _imageArn;
-        private List<ResourceError> _imageBuilderErrors = new List<ResourceError>();
+        private List<ResourceError> _imageBuilderErrors = AWSConfigs.InitializeCollections ? new List<ResourceError>() : null;
         private string _instanceType;
+        private LatestAppstreamAgentVersion _latestAppstreamAgentVersion;
         private string _name;
         private NetworkAccessConfiguration _networkAccessConfiguration;
         private PlatformType _platform;
@@ -69,7 +71,7 @@ namespace Amazon.AppStream.Model
         // Check to see if AccessEndpoints property is set
         internal bool IsSetAccessEndpoints()
         {
-            return this._accessEndpoints != null && this._accessEndpoints.Count > 0; 
+            return this._accessEndpoints != null && (this._accessEndpoints.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -207,10 +209,10 @@ namespace Amazon.AppStream.Model
         /// Gets and sets the property IamRoleArn. 
         /// <para>
         /// The ARN of the IAM role that is applied to the image builder. To assume a role, the
-        /// image builder calls the AWS Security Token Service (STS) <code>AssumeRole</code> API
-        /// operation and passes the ARN of the role to use. The operation creates a new session
-        /// with temporary credentials. AppStream 2.0 retrieves the temporary credentials and
-        /// creates the <b>appstream_machine_role</b> credential profile on the instance.
+        /// image builder calls the AWS Security Token Service (STS) <c>AssumeRole</c> API operation
+        /// and passes the ARN of the role to use. The operation creates a new session with temporary
+        /// credentials. AppStream 2.0 retrieves the temporary credentials and creates the <b>appstream_machine_role</b>
+        /// credential profile on the instance.
         /// </para>
         ///  
         /// <para>
@@ -264,7 +266,7 @@ namespace Amazon.AppStream.Model
         // Check to see if ImageBuilderErrors property is set
         internal bool IsSetImageBuilderErrors()
         {
-            return this._imageBuilderErrors != null && this._imageBuilderErrors.Count > 0; 
+            return this._imageBuilderErrors != null && (this._imageBuilderErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -417,6 +419,25 @@ namespace Amazon.AppStream.Model
         internal bool IsSetInstanceType()
         {
             return this._instanceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LatestAppstreamAgentVersion. 
+        /// <para>
+        /// Indicates whether the image builder is using the latest AppStream 2.0 agent version
+        /// or not.
+        /// </para>
+        /// </summary>
+        public LatestAppstreamAgentVersion LatestAppstreamAgentVersion
+        {
+            get { return this._latestAppstreamAgentVersion; }
+            set { this._latestAppstreamAgentVersion = value; }
+        }
+
+        // Check to see if LatestAppstreamAgentVersion property is set
+        internal bool IsSetLatestAppstreamAgentVersion()
+        {
+            return this._latestAppstreamAgentVersion != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.VPCLattice.Model
         private string _id;
         private DateTime? _lastUpdatedAt;
         private string _name;
-        private List<string> _serviceArns = new List<string>();
+        private List<string> _serviceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private TargetGroupStatus _status;
         private TargetGroupType _type;
 
@@ -85,7 +86,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The date and time that the target group was created, specified in ISO-8601 format.
+        /// The date and time that the target group was created, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -158,7 +159,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedAt. 
         /// <para>
-        /// The date and time that the target group was last updated, specified in ISO-8601 format.
+        /// The date and time that the target group was last updated, in ISO-8601 format.
         /// </para>
         /// </summary>
         public DateTime LastUpdatedAt
@@ -207,7 +208,7 @@ namespace Amazon.VPCLattice.Model
         // Check to see if ServiceArns property is set
         internal bool IsSetServiceArns()
         {
-            return this._serviceArns != null && this._serviceArns.Count > 0; 
+            return this._serviceArns != null && (this._serviceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

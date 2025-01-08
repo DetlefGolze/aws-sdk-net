@@ -26,10 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// A container for IdP details.
+    /// The details of a user pool identity provider (IdP), including name and type.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListIdentityProviders.html">ListIdentityProviders</a>.
+    /// </para>
     /// </summary>
     public partial class ProviderDescription
     {
@@ -41,8 +47,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was created.
+        /// The date and time when the item was created. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -60,7 +67,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LastModifiedDate. 
         /// <para>
-        /// The date the provider was last modified.
+        /// The date and time when the item was modified. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime LastModifiedDate
@@ -78,7 +87,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ProviderName. 
         /// <para>
-        /// The IdP name.
+        /// The name of the IdP, for example <c>MySAMLProvider</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]
@@ -97,7 +106,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ProviderType. 
         /// <para>
-        /// The IdP type.
+        /// The type of the provider, for example <c>SAML</c>. Amazon Cognito supports SAML 2.0,
+        /// OIDC, and social IdPs. User pools list supported social IdPs by name in this response
+        /// parameter: Facebook, Google, Login with Amazon, and Sign in with Apple.
         /// </para>
         /// </summary>
         public IdentityProviderTypeType ProviderType

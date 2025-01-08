@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
     /// Container for the parameters to the AssociateChannelFlow operation.
     /// Associates a channel flow with a channel. Once associated, all messages to that channel
-    /// go through channel flow processors. To stop processing, use the <code>DisassociateChannelFlow</code>
+    /// go through channel flow processors. To stop processing, use the <c>DisassociateChannelFlow</c>
     /// API.
     /// 
     ///  <note> 
     /// <para>
-    /// Only administrators or channel moderators can associate a channel flow. The <code>x-amz-chime-bearer</code>
-    /// request header is mandatory. Use the ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+    /// Only administrators or channel moderators can associate a channel flow. The <c>x-amz-chime-bearer</c>
+    /// request header is mandatory. Use the ARN of the <c>AppInstanceUser</c> or <c>AppInstanceBot</c>
     /// that makes the API call as the value in the header.
     /// </para>
     ///  </note>
@@ -89,7 +90,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The <code>AppInstanceUserArn</code> of the user making the API call.
+        /// The <c>AppInstanceUserArn</c> of the user making the API call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=1600)]
@@ -102,7 +103,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
     }

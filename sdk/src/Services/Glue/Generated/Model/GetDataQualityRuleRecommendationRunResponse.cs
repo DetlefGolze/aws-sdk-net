@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.Glue.Model
     {
         private DateTime? _completedOn;
         private string _createdRulesetName;
+        private string _dataQualitySecurityConfiguration;
         private DataSource _dataSource;
         private string _errorString;
         private int? _executionTime;
@@ -82,6 +84,25 @@ namespace Amazon.Glue.Model
         internal bool IsSetCreatedRulesetName()
         {
             return this._createdRulesetName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DataQualitySecurityConfiguration. 
+        /// <para>
+        /// The name of the security configuration created with the data quality encryption option.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=255)]
+        public string DataQualitySecurityConfiguration
+        {
+            get { return this._dataQualitySecurityConfiguration; }
+            set { this._dataQualitySecurityConfiguration = value; }
+        }
+
+        // Check to see if DataQualitySecurityConfiguration property is set
+        internal bool IsSetDataQualitySecurityConfiguration()
+        {
+            return this._dataQualitySecurityConfiguration != null;
         }
 
         /// <summary>
@@ -160,7 +181,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property NumberOfWorkers. 
         /// <para>
-        /// The number of <code>G.1X</code> workers to be used in the run. The default is 5.
+        /// The number of <c>G.1X</c> workers to be used in the run. The default is 5.
         /// </para>
         /// </summary>
         public int NumberOfWorkers
@@ -273,8 +294,8 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property Timeout. 
         /// <para>
         /// The timeout for a run in minutes. This is the maximum time that a run can consume
-        /// resources before it is terminated and enters <code>TIMEOUT</code> status. The default
-        /// is 2,880 minutes (48 hours).
+        /// resources before it is terminated and enters <c>TIMEOUT</c> status. The default is
+        /// 2,880 minutes (48 hours).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

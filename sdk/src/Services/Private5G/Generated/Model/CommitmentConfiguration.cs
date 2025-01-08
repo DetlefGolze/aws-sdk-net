@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Private5G.Model
 {
     /// <summary>
@@ -50,8 +51,8 @@ namespace Amazon.Private5G.Model
         /// </para>
         ///  
         /// <para>
-        /// Set to <code>True</code>, if you want your commitment period to automatically renew.
-        /// Set to <code>False</code> if you do not want your commitment to automatically renew.
+        /// Set to <c>True</c>, if you want your commitment period to automatically renew. Set
+        /// to <c>False</c> if you do not want your commitment to automatically renew.
         /// </para>
         ///  
         /// <para>

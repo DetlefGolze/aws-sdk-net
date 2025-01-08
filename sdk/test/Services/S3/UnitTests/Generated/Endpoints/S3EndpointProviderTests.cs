@@ -18,6 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.S3.Endpoints;
 using Amazon.S3.Internal;
@@ -982,6 +983,44 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
             parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = false;
             parameters["Accelerate"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://bucket-name.s3.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("virtual addressing, aws-global region with Prefix, and Key uses the global endpoint. Prefix and Key parameters should not be used in endpoint evaluation.")]
+        public void Virtual_addressing_awsglobal_region_with_Prefix_and_Key_uses_the_global_endpoint_Prefix_and_Key_parameters_should_not_be_used_in_endpoint_evaluation_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "aws-global";
+            parameters["Bucket"] = "bucket-name";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["Prefix"] = "prefix";
+            parameters["Key"] = "key";
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://bucket-name.s3.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("virtual addressing, aws-global region with Copy Source, and Key uses the global endpoint. Copy Source and Key parameters should not be used in endpoint evaluation.")]
+        public void Virtual_addressing_awsglobal_region_with_Copy_Source_and_Key_uses_the_global_endpoint_Copy_Source_and_Key_parameters_should_not_be_used_in_endpoint_evaluation_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "aws-global";
+            parameters["Bucket"] = "bucket-name";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["CopySource"] = "/copy/source";
+            parameters["Key"] = "key";
             var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://bucket-name.s3.amazonaws.com", endpoint.URL);
         }
@@ -4753,6 +4792,669 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
             parameters["Accelerate"] = false;
             var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://amazonaws.com/bucketName", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with short zone name")]
+        public void Data_Plane_with_short_zone_name_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--abcd-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--abcd-ab1--x-s3.s3express-abcd-ab1.us-east-1.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with short zone names (13 chars)")]
+        public void Data_Plane_with_short_zone_names_13_chars_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test-zone-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test-zone-ab1--x-s3.s3express-test-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with medium zone names (14 chars)")]
+        public void Data_Plane_with_medium_zone_names_14_chars_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-zone-ab1--x-s3.s3express-test1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with long zone names (20 chars)")]
+        public void Data_Plane_with_long_zone_names_20_chars_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-long1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-long1-zone-ab1--x-s3.s3express-test1-long1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with short zone fips")]
+        public void Data_Plane_with_short_zone_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--test-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test-ab1--x-s3.s3express-fips-test-ab1.us-east-1.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with short zone (13 chars) fips")]
+        public void Data_Plane_with_short_zone_13_chars_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test-zone-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test-zone-ab1--x-s3.s3express-fips-test-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with medium zone (14 chars) fips")]
+        public void Data_Plane_with_medium_zone_14_chars_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-zone-ab1--x-s3.s3express-fips-test1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with long zone (20 chars) fips")]
+        public void Data_Plane_with_long_zone_20_chars_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-long1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-long1-zone-ab1--x-s3.s3express-fips-test1-long1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with long AZ")]
+        public void Data_Plane_with_long_AZ_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-az1--x-s3.s3express-test1-az1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane with long AZ fips")]
+        public void Data_Plane_with_long_AZ_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-az1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-az1--x-s3.s3express-fips-test1-az1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Control plane with short AZ bucket")]
+        public void Control_plane_with_short_AZ_bucket_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--test-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = true;
+            parameters["DisableS3ExpressSessionAuth"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://s3express-control.us-east-1.amazonaws.com/mybucket--test-ab1--x-s3", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Control plane with short AZ bucket and fips")]
+        public void Control_plane_with_short_AZ_bucket_and_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--test-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = true;
+            parameters["DisableS3ExpressSessionAuth"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://s3express-control-fips.us-east-1.amazonaws.com/mybucket--test-ab1--x-s3", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Control plane without bucket")]
+        public void Control_plane_without_bucket_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = true;
+            parameters["DisableS3ExpressSessionAuth"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://s3express-control.us-east-1.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Control plane without bucket and fips")]
+        public void Control_plane_without_bucket_and_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = true;
+            parameters["DisableS3ExpressSessionAuth"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://s3express-control-fips.us-east-1.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with short AZ")]
+        public void Data_Plane_sigv4_auth_with_short_AZ_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--usw2-az1--x-s3.s3express-usw2-az1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with short zone (13 chars)")]
+        public void Data_Plane_sigv4_auth_with_short_zone_13_chars_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test-zone-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test-zone-ab1--x-s3.s3express-test-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with short AZ fips")]
+        public void Data_Plane_sigv4_auth_with_short_AZ_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--usw2-az1--x-s3.s3express-fips-usw2-az1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with short zone (13 chars) fips")]
+        public void Data_Plane_sigv4_auth_with_short_zone_13_chars_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test-zone-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test-zone-ab1--x-s3.s3express-fips-test-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with long AZ")]
+        public void Data_Plane_sigv4_auth_with_long_AZ_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-az1--x-s3.s3express-test1-az1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with medium zone(14 chars)")]
+        public void Data_Plane_sigv4_auth_with_medium_zone14_chars_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-zone-ab1--x-s3.s3express-test1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with long zone(20 chars)")]
+        public void Data_Plane_sigv4_auth_with_long_zone20_chars_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-long1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-long1-zone-ab1--x-s3.s3express-test1-long1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with long AZ fips")]
+        public void Data_Plane_sigv4_auth_with_long_AZ_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-az1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-az1--x-s3.s3express-fips-test1-az1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with medium zone (14 chars) fips")]
+        public void Data_Plane_sigv4_auth_with_medium_zone_14_chars_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-zone-ab1--x-s3.s3express-fips-test1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data Plane sigv4 auth with long zone (20 chars) fips")]
+        public void Data_Plane_sigv4_auth_with_long_zone_20_chars_fips_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--test1-long1-zone-ab1--x-s3";
+            parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--test1-long1-zone-ab1--x-s3.s3express-fips-test1-long1-zone-ab1.us-west-2.amazonaws.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Control Plane host override")]
+        public void Control_Plane_host_override_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = true;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            parameters["Endpoint"] = "https://custom.com";
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--usw2-az1--x-s3.custom.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Control Plane host override no bucket")]
+        public void Control_Plane_host_override_no_bucket_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = true;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            parameters["Endpoint"] = "https://custom.com";
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://custom.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data plane host override non virtual session auth")]
+        public void Data_plane_host_override_non_virtual_session_auth_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["Endpoint"] = "https://10.0.0.1";
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://10.0.0.1/mybucket--usw2-az1--x-s3", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Control Plane host override ip")]
+        public void Control_Plane_host_override_ip_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = true;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            parameters["Endpoint"] = "https://10.0.0.1";
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://10.0.0.1/mybucket--usw2-az1--x-s3", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data plane host override")]
+        public void Data_plane_host_override_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "mybucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["Endpoint"] = "https://custom.com";
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+            Assert.AreEqual("https://mybucket--usw2-az1--x-s3.custom.com", endpoint.URL);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("bad format error")]
+        [ExpectedException(typeof(AmazonClientException), @"Unrecognized S3Express bucket name format.")]
+        public void Bad_format_error_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--usaz1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("bad format error no session auth")]
+        [ExpectedException(typeof(AmazonClientException), @"Unrecognized S3Express bucket name format.")]
+        public void Bad_format_error_no_session_auth_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--usaz1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("dual-stack error")]
+        [ExpectedException(typeof(AmazonClientException), @"S3Express does not support Dual-stack.")]
+        public void Dualstack_error_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--test-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("accelerate error")]
+        [ExpectedException(typeof(AmazonClientException), @"S3Express does not support S3 Accelerate.")]
+        public void Accelerate_error_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "mybucket--test-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = true;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("Data plane bucket format error")]
+        [ExpectedException(typeof(AmazonClientException), @"S3Express bucket name is not a valid virtual hostable name.")]
+        public void Data_plane_bucket_format_error_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-east-1";
+            parameters["Bucket"] = "my.bucket--test-ab1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["UseS3ExpressControlEndpoint"] = false;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("host override data plane bucket error session auth")]
+        [ExpectedException(typeof(AmazonClientException), @"S3Express bucket name is not a valid virtual hostable name.")]
+        public void Host_override_data_plane_bucket_error_session_auth_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "my.bucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["Endpoint"] = "https://custom.com";
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
+        }
+
+        [TestMethod]
+        [TestCategory("UnitTest")]
+        [TestCategory("Endpoints")]
+        [TestCategory("S3")]
+        [Description("host override data plane bucket error")]
+        [ExpectedException(typeof(AmazonClientException), @"S3Express bucket name is not a valid virtual hostable name.")]
+        public void Host_override_data_plane_bucket_error_Test()
+        {
+            var parameters = new S3EndpointParameters();
+            parameters["Region"] = "us-west-2";
+            parameters["Bucket"] = "my.bucket--usw2-az1--x-s3";
+            parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
+            parameters["Accelerate"] = false;
+            parameters["Endpoint"] = "https://custom.com";
+            parameters["DisableS3ExpressSessionAuth"] = true;
+            var endpoint = new AmazonS3EndpointProvider().ResolveEndpoint(parameters);
         }
 
     }

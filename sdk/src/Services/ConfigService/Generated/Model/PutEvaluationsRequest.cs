@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
     /// Container for the parameters to the PutEvaluations operation.
-    /// Used by an Lambda function to deliver evaluation results to Config. This action is
-    /// required in every Lambda function that is invoked by an Config rule.
+    /// Used by an Lambda function to deliver evaluation results to Config. This operation
+    /// is required in every Lambda function that is invoked by an Config rule.
     /// </summary>
     public partial class PutEvaluationsRequest : AmazonConfigServiceRequest
     {
-        private List<Evaluation> _evaluations = new List<Evaluation>();
+        private List<Evaluation> _evaluations = AWSConfigs.InitializeCollections ? new List<Evaluation>() : null;
         private string _resultToken;
         private bool? _testMode;
 
@@ -57,7 +58,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if Evaluations property is set
         internal bool IsSetEvaluations()
         {
-            return this._evaluations != null && this._evaluations.Count > 0; 
+            return this._evaluations != null && (this._evaluations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,16 +84,14 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property TestMode. 
         /// <para>
-        /// Use this parameter to specify a test run for <code>PutEvaluations</code>. You can
-        /// verify whether your Lambda function will deliver evaluation results to Config. No
-        /// updates occur to your existing evaluations, and evaluation results are not sent to
-        /// Config.
+        /// Use this parameter to specify a test run for <c>PutEvaluations</c>. You can verify
+        /// whether your Lambda function will deliver evaluation results to Config. No updates
+        /// occur to your existing evaluations, and evaluation results are not sent to Config.
         /// </para>
         ///  <note> 
         /// <para>
-        /// When <code>TestMode</code> is <code>true</code>, <code>PutEvaluations</code> doesn't
-        /// require a valid value for the <code>ResultToken</code> parameter, but the value cannot
-        /// be null.
+        /// When <c>TestMode</c> is <c>true</c>, <c>PutEvaluations</c> doesn't require a valid
+        /// value for the <c>ResultToken</c> parameter, but the value cannot be null.
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
@@ -33,7 +34,23 @@ namespace Amazon.AppRegistry.Model
     /// </summary>
     public partial class Integrations
     {
+        private ResourceGroup _applicationTagResourceGroup;
         private ResourceGroup _resourceGroup;
+
+        /// <summary>
+        /// Gets and sets the property ApplicationTagResourceGroup.
+        /// </summary>
+        public ResourceGroup ApplicationTagResourceGroup
+        {
+            get { return this._applicationTagResourceGroup; }
+            set { this._applicationTagResourceGroup = value; }
+        }
+
+        // Check to see if ApplicationTagResourceGroup property is set
+        internal bool IsSetApplicationTagResourceGroup()
+        {
+            return this._applicationTagResourceGroup != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ResourceGroup. 

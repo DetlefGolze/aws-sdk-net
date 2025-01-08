@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.Organizations.Model
     /// 
     ///  
     /// <para>
-    /// You can access handshakes that are <code>ACCEPTED</code>, <code>DECLINED</code>, or
-    /// <code>CANCELED</code> for only 30 days after they change to that state. They're then
-    /// deleted and no longer accessible.
+    /// You can access handshakes that are <c>ACCEPTED</c>, <c>DECLINED</c>, or <c>CANCELED</c>
+    /// for only 30 days after they change to that state. They're then deleted and no longer
+    /// accessible.
     /// </para>
     ///  
     /// <para>

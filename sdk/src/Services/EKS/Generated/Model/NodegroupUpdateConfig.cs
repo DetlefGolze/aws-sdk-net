@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -39,9 +40,9 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property MaxUnavailable. 
         /// <para>
-        /// The maximum number of nodes unavailable at once during a version update. Nodes will
-        /// be updated in parallel. This value or <code>maxUnavailablePercentage</code> is required
-        /// to have a value.The maximum number is 100.
+        /// The maximum number of nodes unavailable at once during a version update. Nodes are
+        /// updated in parallel. This value or <c>maxUnavailablePercentage</c> is required to
+        /// have a value.The maximum number is 100.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -61,7 +62,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property MaxUnavailablePercentage. 
         /// <para>
         /// The maximum percentage of nodes unavailable during a version update. This percentage
-        /// of nodes will be updated in parallel, up to 100 nodes at once. This value or <code>maxUnavailable</code>
+        /// of nodes are updated in parallel, up to 100 nodes at once. This value or <c>maxUnavailable</c>
         /// is required to have a value.
         /// </para>
         /// </summary>

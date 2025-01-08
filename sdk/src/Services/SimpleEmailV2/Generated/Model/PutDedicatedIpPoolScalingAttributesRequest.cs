@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// 
     ///  <note> 
     /// <para>
-    ///  <code>MANAGED</code> pools cannot be converted to <code>STANDARD</code> scaling mode.
+    ///  <c>MANAGED</c> pools cannot be converted to <c>STANDARD</c> scaling mode.
     /// </para>
     ///  </note>
     /// </summary>
@@ -69,8 +70,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Changing the scaling mode from <code>MANAGED</code> to <code>STANDARD</code> is not
-        /// supported.
+        /// Changing the scaling mode from <c>MANAGED</c> to <c>STANDARD</c> is not supported.
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DirectoryService.Model
     /// </summary>
     public partial class DescribeDirectoriesResponse : AmazonWebServiceResponse
     {
-        private List<DirectoryDescription> _directoryDescriptions = new List<DirectoryDescription>();
+        private List<DirectoryDescription> _directoryDescriptions = AWSConfigs.InitializeCollections ? new List<DirectoryDescription>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -44,9 +45,9 @@ namespace Amazon.DirectoryService.Model
         ///  
         /// <para>
         /// It is possible that this list contains less than the number of items specified in
-        /// the <code>Limit</code> member of the request. This occurs if there are less than the
-        /// requested number of items left to retrieve, or if the limitations of the operation
-        /// have been exceeded.
+        /// the <c>Limit</c> member of the request. This occurs if there are less than the requested
+        /// number of items left to retrieve, or if the limitations of the operation have been
+        /// exceeded.
         /// </para>
         /// </summary>
         public List<DirectoryDescription> DirectoryDescriptions
@@ -58,13 +59,13 @@ namespace Amazon.DirectoryService.Model
         // Check to see if DirectoryDescriptions property is set
         internal bool IsSetDirectoryDescriptions()
         {
-            return this._directoryDescriptions != null && this._directoryDescriptions.Count > 0; 
+            return this._directoryDescriptions != null && (this._directoryDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If not null, more results are available. Pass this value for the <code>NextToken</code>
+        /// If not null, more results are available. Pass this value for the <c>NextToken</c>
         /// parameter in a subsequent call to <a>DescribeDirectories</a> to retrieve the next
         /// set of items.
         /// </para>

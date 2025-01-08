@@ -26,21 +26,41 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// An object which defines the <code>resolutionType</code> and the <code>ruleBasedProperties</code>.
+    /// An object which defines the <c>resolutionType</c> and the <c>ruleBasedProperties</c>.
     /// </summary>
     public partial class ResolutionTechniques
     {
+        private ProviderProperties _providerProperties;
         private ResolutionType _resolutionType;
         private RuleBasedProperties _ruleBasedProperties;
 
         /// <summary>
+        /// Gets and sets the property ProviderProperties. 
+        /// <para>
+        /// The properties of the provider service.
+        /// </para>
+        /// </summary>
+        public ProviderProperties ProviderProperties
+        {
+            get { return this._providerProperties; }
+            set { this._providerProperties = value; }
+        }
+
+        // Check to see if ProviderProperties property is set
+        internal bool IsSetProviderProperties()
+        {
+            return this._providerProperties != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResolutionType. 
         /// <para>
-        /// The type of matching. There are two types of matching: <code>RULE_MATCHING</code>
-        /// and <code>ML_MATCHING</code>.
+        /// The type of matching. There are three types of matching: <c>RULE_MATCHING</c>, <c>ML_MATCHING</c>,
+        /// and <c>PROVIDER</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +79,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property RuleBasedProperties. 
         /// <para>
-        /// An object which defines the list of matching rules to run and has a field <code>Rules</code>,
+        /// An object which defines the list of matching rules to run and has a field <c>Rules</c>,
         /// which is a list of rule objects.
         /// </para>
         /// </summary>

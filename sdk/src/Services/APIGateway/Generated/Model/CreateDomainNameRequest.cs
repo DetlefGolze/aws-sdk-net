@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -43,16 +44,18 @@ namespace Amazon.APIGateway.Model
         private EndpointConfiguration _endpointConfiguration;
         private MutualTlsAuthenticationInput _mutualTlsAuthentication;
         private string _ownershipVerificationCertificateArn;
+        private string _policy;
         private string _regionalCertificateArn;
         private string _regionalCertificateName;
         private SecurityPolicy _securityPolicy;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property CertificateArn. 
         /// <para>
         /// The reference to an Amazon Web Services-managed certificate that will be used by edge-optimized
-        /// endpoint for this domain name. Certificate Manager is the only supported source.
+        /// endpoint or private endpoint for this domain name. Certificate Manager is the only
+        /// supported source.
         /// </para>
         /// </summary>
         public string CertificateArn
@@ -71,7 +74,7 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property CertificateBody. 
         /// <para>
         /// [Deprecated] The body of the server certificate that will be used by edge-optimized
-        /// endpoint for this domain name provided by your certificate authority.
+        /// endpoint or private endpoint for this domain name provided by your certificate authority.
         /// </para>
         /// </summary>
         public string CertificateBody
@@ -113,7 +116,7 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property CertificateName. 
         /// <para>
         /// The user-friendly name of the certificate that will be used by edge-optimized endpoint
-        /// for this domain name.
+        /// or private endpoint for this domain name.
         /// </para>
         /// </summary>
         public string CertificateName
@@ -220,6 +223,26 @@ namespace Amazon.APIGateway.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Policy. 
+        /// <para>
+        /// A stringified JSON policy document that applies to the <c>execute-api</c> service
+        /// for this DomainName regardless of the caller and Method configuration. Supported only
+        /// for private custom domain names.
+        /// </para>
+        /// </summary>
+        public string Policy
+        {
+            get { return this._policy; }
+            set { this._policy = value; }
+        }
+
+        // Check to see if Policy property is set
+        internal bool IsSetPolicy()
+        {
+            return this._policy != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property RegionalCertificateArn. 
         /// <para>
         /// The reference to an Amazon Web Services-managed certificate that will be used by regional
@@ -261,7 +284,7 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property SecurityPolicy. 
         /// <para>
         /// The Transport Layer Security (TLS) version + cipher suite for this DomainName. The
-        /// valid values are <code>TLS_1_0</code> and <code>TLS_1_2</code>.
+        /// valid values are <c>TLS_1_0</c> and <c>TLS_1_2</c>.
         /// </para>
         /// </summary>
         public SecurityPolicy SecurityPolicy
@@ -280,8 +303,8 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag
-        /// key can be up to 128 characters and must not start with <code>aws:</code>. The tag
-        /// value can be up to 256 characters.
+        /// key can be up to 128 characters and must not start with <c>aws:</c>. The tag value
+        /// can be up to 256 characters.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Tags
@@ -293,7 +316,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

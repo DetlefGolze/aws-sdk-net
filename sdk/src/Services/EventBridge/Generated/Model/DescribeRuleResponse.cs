@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -66,11 +67,11 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property CreatedBy. 
         /// <para>
-        /// The account ID of the user that created the rule. If you use <code>PutRule</code>
-        /// to put a rule on an event bus in another account, the other account is the owner of
-        /// the rule, and the rule ARN includes the account ID for that account. However, the
-        /// value for <code>CreatedBy</code> is the account ID as the account that created the
-        /// rule in the other account.
+        /// The account ID of the user that created the rule. If you use <c>PutRule</c> to put
+        /// a rule on an event bus in another account, the other account is the owner of the rule,
+        /// and the rule ARN includes the account ID for that account. However, the value for
+        /// <c>CreatedBy</c> is the account ID as the account that created the rule in the other
+        /// account.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -128,7 +129,7 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property EventPattern. 
         /// <para>
         /// The event pattern. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html">Events
-        /// and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.
+        /// and Event Patterns</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AddOutputRequest requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCidrAllowList())
             {
                 context.Writer.WritePropertyName("cidrAllowList");
@@ -111,6 +114,12 @@ namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("name");
                 context.Writer.Write(requestObject.Name);
+            }
+
+            if(requestObject.IsSetOutputStatus())
+            {
+                context.Writer.WritePropertyName("outputStatus");
+                context.Writer.Write(requestObject.OutputStatus);
             }
 
             if(requestObject.IsSetPort())

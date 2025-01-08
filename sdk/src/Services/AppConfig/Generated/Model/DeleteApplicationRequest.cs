@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteApplication operation.
-    /// Deletes an application. Deleting an application does not delete a configuration from
-    /// a host.
+    /// Deletes an application.
     /// </summary>
     public partial class DeleteApplicationRequest : AmazonAppConfigRequest
     {

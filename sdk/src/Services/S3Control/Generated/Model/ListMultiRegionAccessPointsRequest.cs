@@ -26,24 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the ListMultiRegionAccessPoints operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Returns a list of the Multi-Region Access Points currently associated with the specified
     /// Amazon Web Services account. Each call can return up to 100 Multi-Region Access Points,
     /// the maximum number of Multi-Region Access Points that can be associated with a single
     /// account.
-    /// 
-    ///  
-    /// <para>
-    /// This action will always be routed to the US West (Oregon) Region. For more information
-    /// about the restrictions around managing Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html">Managing
-    /// Multi-Region Access Points</a> in the <i>Amazon S3 User Guide</i>.
     /// </para>
     ///  
     /// <para>
-    /// The following actions are related to <code>ListMultiRegionAccessPoint</code>:
+    /// This action will always be routed to the US West (Oregon) Region. For more information
+    /// about the restrictions around working with Multi-Region Access Points, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html">Multi-Region
+    /// Access Point restrictions and limitations</a> in the <i>Amazon S3 User Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// The following actions are related to <c>ListMultiRegionAccessPoint</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -89,7 +96,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>

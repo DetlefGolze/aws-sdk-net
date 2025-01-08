@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.CloudTrail.Model
         private string _s3BucketName;
         private string _s3KeyPrefix;
         private string _snsTopicName;
-        private List<Tag> _tagsList = new List<Tag>();
+        private List<Tag> _tagsList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CloudWatchLogsLogGroupArn. 
@@ -57,7 +58,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        /// Not required unless you specify <code>CloudWatchLogsRoleArn</code>.
+        /// Not required unless you specify <c>CloudWatchLogsRoleArn</c>.
         /// </para>
         /// </summary>
         public string CloudWatchLogsLogGroupArn
@@ -184,8 +185,8 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail. The value
-        /// can be an alias name prefixed by <code>alias/</code>, a fully specified ARN to an
-        /// alias, a fully specified ARN to a key, or a globally unique identifier.
+        /// can be an alias name prefixed by <c>alias/</c>, a fully specified ARN to an alias,
+        /// a fully specified ARN to a key, or a globally unique identifier.
         /// </para>
         ///  
         /// <para>
@@ -199,20 +200,20 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>alias/MyAliasName</code> 
+        ///  <c>alias/MyAliasName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>arn:aws:kms:us-east-2:123456789012:alias/MyAliasName</code> 
+        ///  <c>arn:aws:kms:us-east-2:123456789012:alias/MyAliasName</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>12345678-1234-1234-1234-123456789012</code> 
+        ///  <c>12345678-1234-1234-1234-123456789012</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -248,8 +249,8 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Have no adjacent periods, underscores or dashes. Names like <code>my-_namespace</code>
-        /// and <code>my--namespace</code> are not valid.
+        /// Have no adjacent periods, underscores or dashes. Names like <c>my-_namespace</c> and
+        /// <c>my--namespace</c> are not valid.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -273,9 +274,9 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property S3BucketName. 
         /// <para>
-        /// Specifies the name of the Amazon S3 bucket designated for publishing log files. See
-        /// <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html">Amazon
-        /// S3 Bucket Naming Requirements</a>.
+        /// Specifies the name of the Amazon S3 bucket designated for publishing log files. For
+        /// information about bucket naming rules, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html">Bucket
+        /// naming rules</a> in the <i>Amazon Simple Storage Service User Guide</i>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -295,7 +296,7 @@ namespace Amazon.CloudTrail.Model
         /// Gets and sets the property S3KeyPrefix. 
         /// <para>
         /// Specifies the Amazon S3 key prefix that comes after the name of the bucket you have
-        /// designated for log file delivery. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html">Finding
+        /// designated for log file delivery. For more information, see <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/get-and-view-cloudtrail-log-files.html#cloudtrail-find-log-files">Finding
         /// Your CloudTrail Log Files</a>. The maximum length is 200 characters.
         /// </para>
         /// </summary>
@@ -343,7 +344,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if TagsList property is set
         internal bool IsSetTagsList()
         {
-            return this._tagsList != null && this._tagsList.Count > 0; 
+            return this._tagsList != null && (this._tagsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

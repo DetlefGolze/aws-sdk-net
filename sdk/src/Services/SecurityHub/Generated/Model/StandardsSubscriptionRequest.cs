@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.SecurityHub.Model
     public partial class StandardsSubscriptionRequest
     {
         private string _standardsArn;
-        private Dictionary<string, string> _standardsInput = new Dictionary<string, string>();
+        private Dictionary<string, string> _standardsInput = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property StandardsArn. 
         /// <para>
         /// The ARN of the standard that you want to enable. To view the list of available standards
-        /// and their ARNs, use the <code>DescribeStandards</code> operation.
+        /// and their ARNs, use the <c>DescribeStandards</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -71,7 +72,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StandardsInput property is set
         internal bool IsSetStandardsInput()
         {
-            return this._standardsInput != null && this._standardsInput.Count > 0; 
+            return this._standardsInput != null && (this._standardsInput.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

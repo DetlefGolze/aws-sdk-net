@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.WorkSpaces.Model
         /// interface. Specify an IP address range that is compatible with your network and in
         /// CIDR notation (that is, specify the range as an IPv4 CIDR block). The CIDR block size
         /// must be /16 (for example, 203.0.113.25/16). It must also be specified as available
-        /// by the <code>ListAvailableManagementCidrRanges</code> operation.
+        /// by the <c>ListAvailableManagementCidrRanges</c> operation.
         /// </para>
         /// </summary>
         public string DedicatedTenancyManagementCidrRange

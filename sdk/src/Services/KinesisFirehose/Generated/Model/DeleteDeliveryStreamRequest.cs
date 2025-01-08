@@ -26,27 +26,35 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteDeliveryStream operation.
-    /// Deletes a delivery stream and its data.
+    /// Deletes a Firehose stream and its data.
     /// 
     ///  
     /// <para>
-    /// To check the state of a delivery stream, use <a>DescribeDeliveryStream</a>. You can
-    /// delete a delivery stream only if it is in one of the following states: <code>ACTIVE</code>,
-    /// <code>DELETING</code>, <code>CREATING_FAILED</code>, or <code>DELETING_FAILED</code>.
-    /// You can't delete a delivery stream that is in the <code>CREATING</code> state. While
-    /// the deletion request is in process, the delivery stream is in the <code>DELETING</code>
-    /// state.
+    /// You can delete a Firehose stream only if it is in one of the following states: <c>ACTIVE</c>,
+    /// <c>DELETING</c>, <c>CREATING_FAILED</c>, or <c>DELETING_FAILED</c>. You can't delete
+    /// a Firehose stream that is in the <c>CREATING</c> state. To check the state of a Firehose
+    /// stream, use <a>DescribeDeliveryStream</a>. 
     /// </para>
     ///  
     /// <para>
-    /// While the delivery stream is in the <code>DELETING</code> state, the service might
+    /// DeleteDeliveryStream is an asynchronous API. When an API request to DeleteDeliveryStream
+    /// succeeds, the Firehose stream is marked for deletion, and it goes into the <c>DELETING</c>
+    /// state.While the Firehose stream is in the <c>DELETING</c> state, the service might
     /// continue to accept records, but it doesn't make any guarantees with respect to delivering
     /// the data. Therefore, as a best practice, first stop any applications that are sending
-    /// records before you delete a delivery stream.
+    /// records before you delete a Firehose stream.
+    /// </para>
+    ///  
+    /// <para>
+    /// Removal of a Firehose stream that is in the <c>DELETING</c> state is a low priority
+    /// operation for the service. A stream may remain in the <c>DELETING</c> state for several
+    /// minutes. Therefore, as a best practice, applications should not wait for streams in
+    /// the <c>DELETING</c> state to be removed. 
     /// </para>
     /// </summary>
     public partial class DeleteDeliveryStreamRequest : AmazonKinesisFirehoseRequest
@@ -57,13 +65,13 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property AllowForceDelete. 
         /// <para>
-        /// Set this to true if you want to delete the delivery stream even if Kinesis Data Firehose
-        /// is unable to retire the grant for the CMK. Kinesis Data Firehose might be unable to
-        /// retire the grant due to a customer error, such as when the CMK or the grant are in
-        /// an invalid state. If you force deletion, you can then use the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html">RevokeGrant</a>
-        /// operation to revoke the grant you gave to Kinesis Data Firehose. If a failure to retire
-        /// the grant happens due to an Amazon Web Services KMS issue, Kinesis Data Firehose keeps
-        /// retrying the delete operation.
+        /// Set this to true if you want to delete the Firehose stream even if Firehose is unable
+        /// to retire the grant for the CMK. Firehose might be unable to retire the grant due
+        /// to a customer error, such as when the CMK or the grant are in an invalid state. If
+        /// you force deletion, you can then use the <a href="https://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html">RevokeGrant</a>
+        /// operation to revoke the grant you gave to Firehose. If a failure to retire the grant
+        /// happens due to an Amazon Web Services KMS issue, Firehose keeps retrying the delete
+        /// operation.
         /// </para>
         ///  
         /// <para>
@@ -85,7 +93,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property DeliveryStreamName. 
         /// <para>
-        /// The name of the delivery stream.
+        /// The name of the Firehose stream.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

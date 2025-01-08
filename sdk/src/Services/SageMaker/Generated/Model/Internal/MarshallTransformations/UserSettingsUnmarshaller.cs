@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,28 +53,65 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public UserSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            UserSettings unmarshalledObject = new UserSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            UserSettings unmarshalledObject = new UserSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AutoMountHomeEFS", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AutoMountHomeEFS = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CanvasAppSettings", targetDepth))
                 {
                     var unmarshaller = CanvasAppSettingsUnmarshaller.Instance;
                     unmarshalledObject.CanvasAppSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("CodeEditorAppSettings", targetDepth))
+                {
+                    var unmarshaller = CodeEditorAppSettingsUnmarshaller.Instance;
+                    unmarshalledObject.CodeEditorAppSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("CustomFileSystemConfigs", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<CustomFileSystemConfig, CustomFileSystemConfigUnmarshaller>(CustomFileSystemConfigUnmarshaller.Instance);
+                    unmarshalledObject.CustomFileSystemConfigs = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("CustomPosixUserConfig", targetDepth))
+                {
+                    var unmarshaller = CustomPosixUserConfigUnmarshaller.Instance;
+                    unmarshalledObject.CustomPosixUserConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DefaultLandingUri", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DefaultLandingUri = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ExecutionRole", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ExecutionRole = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("JupyterLabAppSettings", targetDepth))
+                {
+                    var unmarshaller = JupyterLabAppSettingsUnmarshaller.Instance;
+                    unmarshalledObject.JupyterLabAppSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("JupyterServerAppSettings", targetDepth))
@@ -112,6 +150,24 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.SharingSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SpaceStorageSettings", targetDepth))
+                {
+                    var unmarshaller = DefaultSpaceStorageSettingsUnmarshaller.Instance;
+                    unmarshalledObject.SpaceStorageSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("StudioWebPortal", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.StudioWebPortal = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("StudioWebPortalSettings", targetDepth))
+                {
+                    var unmarshaller = StudioWebPortalSettingsUnmarshaller.Instance;
+                    unmarshalledObject.StudioWebPortalSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("TensorBoardAppSettings", targetDepth))
                 {
                     var unmarshaller = TensorBoardAppSettingsUnmarshaller.Instance;
@@ -119,7 +175,6 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

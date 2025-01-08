@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Imagebuilder.Model
     /// </summary>
     public partial class ListImagePipelinesRequest : AmazonImagebuilderRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -45,27 +46,27 @@ namespace Amazon.Imagebuilder.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>description</code> 
+        ///  <c>description</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>distributionConfigurationArn</code> 
+        ///  <c>distributionConfigurationArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>imageRecipeArn</code> 
+        ///  <c>imageRecipeArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>infrastructureConfigurationArn</code> 
+        ///  <c>infrastructureConfigurationArn</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>name</code> 
+        ///  <c>name</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>status</code> 
+        ///  <c>status</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -79,7 +80,7 @@ namespace Amazon.Imagebuilder.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token to specify where to start paginating. This is the NextToken from a previously
+        /// A token to specify where to start paginating. This is the nextToken from a previously
         /// truncated response.
         /// </para>
         /// </summary>

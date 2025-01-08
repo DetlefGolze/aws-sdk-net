@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroupsTaggingAPI.Model
 {
     /// <summary>
@@ -69,25 +70,25 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
     /// </para>
     ///  
     /// <para>
-    /// In addition to the <code>tag:TagResources</code> permission required by this operation,
+    /// In addition to the <c>tag:TagResources</c> permission required by this operation,
     /// you must also have the tagging permission defined by the service that created the
-    /// resource. For example, to tag an Amazon EC2 instance using the <code>TagResources</code>
+    /// resource. For example, to tag an Amazon EC2 instance using the <c>TagResources</c>
     /// operation, you must have both of the following permissions:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>tag:TagResource</code> 
+    ///  <c>tag:TagResource</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ec2:CreateTags</code> 
+    ///  <c>ec2:CreateTags</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class TagResourcesRequest : AmazonResourceGroupsTaggingAPIRequest
     {
-        private List<string> _resourceARNList = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<string> _resourceARNList = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARNList. 
@@ -112,7 +113,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if ResourceARNList property is set
         internal bool IsSetResourceARNList()
         {
-            return this._resourceARNList != null && this._resourceARNList.Count > 0; 
+            return this._resourceARNList != null && (this._resourceARNList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -132,7 +133,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

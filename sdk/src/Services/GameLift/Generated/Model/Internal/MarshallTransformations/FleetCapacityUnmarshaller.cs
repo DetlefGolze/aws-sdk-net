@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.GameLift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.GameLift.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public FleetCapacity Unmarshall(JsonUnmarshallerContext context)
         {
+            FleetCapacity unmarshalledObject = new FleetCapacity();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            FleetCapacity unmarshalledObject = new FleetCapacity();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.GameLift.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.FleetId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("GameServerContainerGroupCounts", targetDepth))
+                {
+                    var unmarshaller = GameServerContainerGroupCountsUnmarshaller.Instance;
+                    unmarshalledObject.GameServerContainerGroupCounts = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("InstanceCounts", targetDepth))
@@ -95,7 +103,6 @@ namespace Amazon.GameLift.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

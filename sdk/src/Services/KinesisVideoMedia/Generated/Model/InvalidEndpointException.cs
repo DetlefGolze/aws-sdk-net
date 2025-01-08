@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideoMedia.Model
 {
     /// <summary>
     /// Status Code: 400, Caller used wrong endpoint to write data to a stream. On receiving
-    /// such an exception, the user must call <code>GetDataEndpoint</code> with <code>AccessMode</code>
-    /// set to "READ" and use the endpoint Kinesis Video returns in the next <code>GetMedia</code>
+    /// such an exception, the user must call <c>GetDataEndpoint</c> with <c>AccessMode</c>
+    /// set to "READ" and use the endpoint Kinesis Video returns in the next <c>GetMedia</c>
     /// call.
     /// </summary>
     #if !NETSTANDARD

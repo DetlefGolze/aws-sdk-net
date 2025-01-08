@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.QuickSight.Model
     public partial class RegisteredUserDashboardFeatureConfigurations
     {
         private BookmarksConfigurations _bookmarks;
+        private SharedViewConfigurations _sharedView;
         private StatePersistenceConfigurations _statePersistence;
 
         /// <summary>
@@ -52,6 +54,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetBookmarks()
         {
             return this._bookmarks != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SharedView. 
+        /// <para>
+        /// The shared view settings of an embedded dashboard.
+        /// </para>
+        /// </summary>
+        public SharedViewConfigurations SharedView
+        {
+            get { return this._sharedView; }
+            set { this._sharedView = value; }
+        }
+
+        // Check to see if SharedView property is set
+        internal bool IsSetSharedView()
+        {
+            return this._sharedView != null;
         }
 
         /// <summary>

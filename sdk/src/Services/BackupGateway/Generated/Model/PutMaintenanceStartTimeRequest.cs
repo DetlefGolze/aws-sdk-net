@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BackupGateway.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.BackupGateway.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values range from <code>Sunday</code> to <code>Saturday</code>.
+        /// Valid values range from <c>Sunday</c> to <c>Saturday</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=31)]

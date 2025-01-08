@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.AppMesh.Model
     /// </summary>
     public partial class ListGatewayRoutesResponse : AmazonWebServiceResponse
     {
-        private List<GatewayRouteRef> _gatewayRoutes = new List<GatewayRouteRef>();
+        private List<GatewayRouteRef> _gatewayRoutes = AWSConfigs.InitializeCollections ? new List<GatewayRouteRef>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.AppMesh.Model
         // Check to see if GatewayRoutes property is set
         internal bool IsSetGatewayRoutes()
         {
-            return this._gatewayRoutes != null && this._gatewayRoutes.Count > 0; 
+            return this._gatewayRoutes != null && (this._gatewayRoutes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListGatewayRoutes</code>
-        /// request. When the results of a <code>ListGatewayRoutes</code> request exceed <code>limit</code>,
-        /// you can use this value to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>ListGatewayRoutes</c> request.
+        /// When the results of a <c>ListGatewayRoutes</c> request exceed <c>limit</c>, you can
+        /// use this value to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

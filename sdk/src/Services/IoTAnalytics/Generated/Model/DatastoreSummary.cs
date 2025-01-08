@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -141,8 +142,7 @@ namespace Amazon.IoTAnalytics.Model
         ///  
         /// <para>
         /// IoT Analytics updates this value at most once per minute for Amazon Simple Storage
-        /// Service one data store. Hence, the <code>lastMessageArrivalTime</code> value is an
-        /// approximation.
+        /// Service one data store. Hence, the <c>lastMessageArrivalTime</c> value is an approximation.
         /// </para>
         ///  
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.Kinesis.Model
     /// </summary>
     public partial class GetRecordsResponse : AmazonWebServiceResponse
     {
-        private List<ChildShard> _childShards = new List<ChildShard>();
+        private List<ChildShard> _childShards = AWSConfigs.InitializeCollections ? new List<ChildShard>() : null;
         private long? _millisBehindLatest;
         private string _nextShardIterator;
-        private List<Record> _records = new List<Record>();
+        private List<Record> _records = AWSConfigs.InitializeCollections ? new List<Record>() : null;
 
         /// <summary>
         /// Gets and sets the property ChildShards. 
         /// <para>
-        /// The list of the current shard's child shards, returned in the <code>GetRecords</code>
-        /// API's response only when the end of the current shard is reached.
+        /// The list of the current shard's child shards, returned in the <c>GetRecords</c> API's
+        /// response only when the end of the current shard is reached.
         /// </para>
         /// </summary>
         public List<ChildShard> ChildShards
@@ -54,7 +55,7 @@ namespace Amazon.Kinesis.Model
         // Check to see if ChildShards property is set
         internal bool IsSetChildShards()
         {
-            return this._childShards != null && this._childShards.Count > 0; 
+            return this._childShards != null && (this._childShards.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,8 +84,8 @@ namespace Amazon.Kinesis.Model
         /// Gets and sets the property NextShardIterator. 
         /// <para>
         /// The next position in the shard from which to start sequentially reading data records.
-        /// If set to <code>null</code>, the shard has been closed and the requested iterator
-        /// does not return any more data. 
+        /// If set to <c>null</c>, the shard has been closed and the requested iterator does not
+        /// return any more data. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]
@@ -116,7 +117,7 @@ namespace Amazon.Kinesis.Model
         // Check to see if Records property is set
         internal bool IsSetRecords()
         {
-            return this._records != null && this._records.Count > 0; 
+            return this._records != null && (this._records.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ModelPackageGroupName. 
         /// <para>
-        /// The name of gthe model group to describe.
+        /// The name of the model group to describe.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=170)]

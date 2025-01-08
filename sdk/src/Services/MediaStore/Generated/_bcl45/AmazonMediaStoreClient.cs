@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.MediaStore
 {
     /// <summary>
-    /// Implementation for accessing MediaStore
+    /// <para>Implementation for accessing MediaStore</para>
     ///
     /// An AWS Elemental MediaStore container is a namespace that holds folders and objects.
     /// You use a container endpoint to create, read, and delete objects.
@@ -329,7 +330,7 @@ namespace Amazon.MediaStore
 
 
         /// <summary>
-        /// Deletes the specified container. Before you make a <code>DeleteContainer</code> request,
+        /// Deletes the specified container. Before you make a <c>DeleteContainer</c> request,
         /// delete any objects in the container or in any folders in the container. You can delete
         /// only empty containers.
         /// </summary>
@@ -357,7 +358,7 @@ namespace Amazon.MediaStore
 
 
         /// <summary>
-        /// Deletes the specified container. Before you make a <code>DeleteContainer</code> request,
+        /// Deletes the specified container. Before you make a <c>DeleteContainer</c> request,
         /// delete any objects in the container or in any folders in the container. You can delete
         /// only empty containers.
         /// </summary>
@@ -462,7 +463,7 @@ namespace Amazon.MediaStore
         /// 
         ///  
         /// <para>
-        /// To use this operation, you must have permission to perform the <code>MediaStore:DeleteCorsPolicy</code>
+        /// To use this operation, you must have permission to perform the <c>MediaStore:DeleteCorsPolicy</c>
         /// action. The container owner has this permission by default and can grant this permission
         /// to others.
         /// </para>
@@ -499,7 +500,7 @@ namespace Amazon.MediaStore
         /// 
         ///  
         /// <para>
-        /// To use this operation, you must have permission to perform the <code>MediaStore:DeleteCorsPolicy</code>
+        /// To use this operation, you must have permission to perform the <c>MediaStore:DeleteCorsPolicy</c>
         /// action. The container owner has this permission by default and can grant this permission
         /// to others.
         /// </para>
@@ -677,9 +678,9 @@ namespace Amazon.MediaStore
         /// Retrieves the properties of the requested container. This request is commonly used
         /// to retrieve the endpoint of a container. An endpoint is a value assigned by the service
         /// when a new container is created. A container's endpoint does not change after it has
-        /// been assigned. The <code>DescribeContainer</code> request returns a single <code>Container</code>
-        /// object based on <code>ContainerName</code>. To return all <code>Container</code> objects
-        /// that are associated with a specified AWS account, use <a>ListContainers</a>.
+        /// been assigned. The <c>DescribeContainer</c> request returns a single <c>Container</c>
+        /// object based on <c>ContainerName</c>. To return all <c>Container</c> objects that
+        /// are associated with a specified AWS account, use <a>ListContainers</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeContainer service method.</param>
         /// 
@@ -705,9 +706,9 @@ namespace Amazon.MediaStore
         /// Retrieves the properties of the requested container. This request is commonly used
         /// to retrieve the endpoint of a container. An endpoint is a value assigned by the service
         /// when a new container is created. A container's endpoint does not change after it has
-        /// been assigned. The <code>DescribeContainer</code> request returns a single <code>Container</code>
-        /// object based on <code>ContainerName</code>. To return all <code>Container</code> objects
-        /// that are associated with a specified AWS account, use <a>ListContainers</a>.
+        /// been assigned. The <c>DescribeContainer</c> request returns a single <c>Container</c>
+        /// object based on <c>ContainerName</c>. To return all <c>Container</c> objects that
+        /// are associated with a specified AWS account, use <a>ListContainers</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeContainer service method.</param>
         /// <param name="cancellationToken">
@@ -811,7 +812,7 @@ namespace Amazon.MediaStore
         /// 
         ///  
         /// <para>
-        /// To use this operation, you must have permission to perform the <code>MediaStore:GetCorsPolicy</code>
+        /// To use this operation, you must have permission to perform the <c>MediaStore:GetCorsPolicy</c>
         /// action. By default, the container owner has this permission and can grant it to others.
         /// </para>
         /// </summary>
@@ -847,7 +848,7 @@ namespace Amazon.MediaStore
         /// 
         ///  
         /// <para>
-        /// To use this operation, you must have permission to perform the <code>MediaStore:GetCorsPolicy</code>
+        /// To use this operation, you must have permission to perform the <c>MediaStore:GetCorsPolicy</c>
         /// action. By default, the container owner has this permission and can grant it to others.
         /// </para>
         /// </summary>
@@ -1020,11 +1021,11 @@ namespace Amazon.MediaStore
         ///  
         /// <para>
         /// You can query to receive all the containers in one response. Or you can include the
-        /// <code>MaxResults</code> parameter to receive a limited number of containers in each
-        /// response. In this case, the response includes a token. To get the next set of containers,
-        /// send the command again, this time with the <code>NextToken</code> parameter (with
-        /// the returned token as its value). The next set of responses appears, with a token
-        /// if there are still more containers to receive. 
+        /// <c>MaxResults</c> parameter to receive a limited number of containers in each response.
+        /// In this case, the response includes a token. To get the next set of containers, send
+        /// the command again, this time with the <c>NextToken</c> parameter (with the returned
+        /// token as its value). The next set of responses appears, with a token if there are
+        /// still more containers to receive. 
         /// </para>
         ///  
         /// <para>
@@ -1054,11 +1055,11 @@ namespace Amazon.MediaStore
         ///  
         /// <para>
         /// You can query to receive all the containers in one response. Or you can include the
-        /// <code>MaxResults</code> parameter to receive a limited number of containers in each
-        /// response. In this case, the response includes a token. To get the next set of containers,
-        /// send the command again, this time with the <code>NextToken</code> parameter (with
-        /// the returned token as its value). The next set of responses appears, with a token
-        /// if there are still more containers to receive. 
+        /// <c>MaxResults</c> parameter to receive a limited number of containers in each response.
+        /// In this case, the response includes a token. To get the next set of containers, send
+        /// the command again, this time with the <c>NextToken</c> parameter (with the returned
+        /// token as its value). The next set of responses appears, with a token if there are
+        /// still more containers to receive. 
         /// </para>
         ///  
         /// <para>
@@ -1157,8 +1158,8 @@ namespace Amazon.MediaStore
         ///  
         /// <para>
         /// For this release of the REST API, you can create only one policy for a container.
-        /// If you enter <code>PutContainerPolicy</code> twice, the second command modifies the
-        /// existing policy. 
+        /// If you enter <c>PutContainerPolicy</c> twice, the second command modifies the existing
+        /// policy. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutContainerPolicy service method.</param>
@@ -1193,8 +1194,8 @@ namespace Amazon.MediaStore
         ///  
         /// <para>
         /// For this release of the REST API, you can create only one policy for a container.
-        /// If you enter <code>PutContainerPolicy</code> twice, the second command modifies the
-        /// existing policy. 
+        /// If you enter <c>PutContainerPolicy</c> twice, the second command modifies the existing
+        /// policy. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutContainerPolicy service method.</param>
@@ -1718,11 +1719,11 @@ namespace Amazon.MediaStore
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

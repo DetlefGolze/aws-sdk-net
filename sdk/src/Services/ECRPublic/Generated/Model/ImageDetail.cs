@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ECRPublic.Model
         private string _imageManifestMediaType;
         private DateTime? _imagePushedAt;
         private long? _imageSizeInBytes;
-        private List<string> _imageTags = new List<string>();
+        private List<string> _imageTags = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _registryId;
         private string _repositoryName;
 
@@ -63,7 +64,7 @@ namespace Amazon.ECRPublic.Model
         /// <summary>
         /// Gets and sets the property ImageDigest. 
         /// <para>
-        /// The <code>sha256</code> digest of the image manifest.
+        /// The <c>sha256</c> digest of the image manifest.
         /// </para>
         /// </summary>
         public string ImageDigest
@@ -127,9 +128,9 @@ namespace Amazon.ECRPublic.Model
         ///  <note> 
         /// <para>
         /// Beginning with Docker version 1.9, the Docker client compresses image layers before
-        /// pushing them to a V2 Docker registry. The output of the <code>docker images</code>
-        /// command shows the uncompressed image size, so it might return a larger image size
-        /// than the image sizes that are returned by <a>DescribeImages</a>.
+        /// pushing them to a V2 Docker registry. The output of the <c>docker images</c> command
+        /// shows the uncompressed image size, so it might return a larger image size than the
+        /// image sizes that are returned by <a>DescribeImages</a>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -160,7 +161,7 @@ namespace Amazon.ECRPublic.Model
         // Check to see if ImageTags property is set
         internal bool IsSetImageTags()
         {
-            return this._imageTags != null && this._imageTags.Count > 0; 
+            return this._imageTags != null && (this._imageTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

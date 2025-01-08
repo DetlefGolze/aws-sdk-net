@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,22 +53,47 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AgentInfo Unmarshall(JsonUnmarshallerContext context)
         {
+            AgentInfo unmarshalledObject = new AgentInfo();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AgentInfo unmarshalledObject = new AgentInfo();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AgentPauseDurationInSeconds", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.AgentPauseDurationInSeconds = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Capabilities", targetDepth))
+                {
+                    var unmarshaller = ParticipantCapabilitiesUnmarshaller.Instance;
+                    unmarshalledObject.Capabilities = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ConnectedToAgentTimestamp", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.ConnectedToAgentTimestamp = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DeviceInfo", targetDepth))
+                {
+                    var unmarshaller = DeviceInfoUnmarshaller.Instance;
+                    unmarshalledObject.DeviceInfo = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("HierarchyGroups", targetDepth))
+                {
+                    var unmarshaller = HierarchyGroupsUnmarshaller.Instance;
+                    unmarshalledObject.HierarchyGroups = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Id", targetDepth))
@@ -77,7 +103,6 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

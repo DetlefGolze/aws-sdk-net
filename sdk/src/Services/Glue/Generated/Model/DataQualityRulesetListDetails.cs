@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// Describes a data quality ruleset returned by <code>GetDataQualityRuleset</code>.
+    /// Describes a data quality ruleset returned by <c>GetDataQualityRuleset</c>.
     /// </summary>
     public partial class DataQualityRulesetListDetails
     {

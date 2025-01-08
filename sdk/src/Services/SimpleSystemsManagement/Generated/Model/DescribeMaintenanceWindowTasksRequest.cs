@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -35,15 +36,15 @@ namespace Amazon.SimpleSystemsManagement.Model
     ///  <note> 
     /// <para>
     /// For maintenance window tasks without a specified target, you can't supply values for
-    /// <code>--max-errors</code> and <code>--max-concurrency</code>. Instead, the system
-    /// inserts a placeholder value of <code>1</code>, which may be reported in the response
-    /// to this command. These values don't affect the running of your task and can be ignored.
+    /// <c>--max-errors</c> and <c>--max-concurrency</c>. Instead, the system inserts a placeholder
+    /// value of <c>1</c>, which may be reported in the response to this command. These values
+    /// don't affect the running of your task and can be ignored.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class DescribeMaintenanceWindowTasksRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<MaintenanceWindowFilter> _filters = new List<MaintenanceWindowFilter>();
+        private List<MaintenanceWindowFilter> _filters = AWSConfigs.InitializeCollections ? new List<MaintenanceWindowFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _windowId;
@@ -52,8 +53,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property Filters. 
         /// <para>
         /// Optional filters used to narrow down the scope of the returned tasks. The supported
-        /// filter keys are <code>WindowTaskId</code>, <code>TaskArn</code>, <code>Priority</code>,
-        /// and <code>TaskType</code>.
+        /// filter keys are <c>WindowTaskId</c>, <c>TaskArn</c>, <c>Priority</c>, and <c>TaskType</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
@@ -66,7 +66,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

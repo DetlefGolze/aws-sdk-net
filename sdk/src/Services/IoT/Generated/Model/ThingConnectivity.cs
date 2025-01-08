@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property DisconnectReason. 
         /// <para>
         /// The reason why the client is disconnected. If the thing has been disconnected for
-        /// approximately an hour, the <code>disconnectReason</code> value might be missing.
+        /// approximately an hour, the <c>disconnectReason</c> value might be missing.
         /// </para>
         /// </summary>
         public string DisconnectReason

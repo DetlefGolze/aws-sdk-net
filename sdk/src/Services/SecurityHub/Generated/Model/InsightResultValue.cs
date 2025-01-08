@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// The insight result values returned by the <code>GetInsightResults</code> operation.
+    /// The insight result values returned by the <c>GetInsightResults</c> operation.
     /// </summary>
     public partial class InsightResultValue
     {
@@ -39,7 +40,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Count. 
         /// <para>
-        /// The number of findings returned for each <code>GroupByAttributeValue</code>.
+        /// The number of findings returned for each <c>GroupByAttributeValue</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +60,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property GroupByAttributeValue. 
         /// <para>
         /// The value of the attribute that the findings are grouped by for the insight whose
-        /// results are returned by the <code>GetInsightResults</code> operation.
+        /// results are returned by the <c>GetInsightResults</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

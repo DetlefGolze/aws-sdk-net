@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeStarconnections.Model
 {
     /// <summary>
@@ -49,6 +50,22 @@ namespace Amazon.CodeStarconnections.Model
         public IListHostsPaginator ListHosts(ListHostsRequest request) 
         {
             return new ListHostsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRepositoryLinks operation
+        ///</summary>
+        public IListRepositoryLinksPaginator ListRepositoryLinks(ListRepositoryLinksRequest request) 
+        {
+            return new ListRepositoryLinksPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListSyncConfigurations operation
+        ///</summary>
+        public IListSyncConfigurationsPaginator ListSyncConfigurations(ListSyncConfigurationsRequest request) 
+        {
+            return new ListSyncConfigurationsPaginator(this.client, request);
         }
     }
 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -42,7 +43,13 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property DetectorId. 
         /// <para>
-        /// The unique ID of the detector the member is associated with.
+        /// The unique ID of the detector that is associated with the member.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -106,7 +113,7 @@ namespace Amazon.GuardDuty.Model
         /// members who haven't been invited yet or have been disassociated). Member accounts
         /// must have been previously associated with the GuardDuty administrator account using
         /// <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_CreateMembers.html">
-        /// <code>Create Members</code> </a>. 
+        /// <c>Create Members</c> </a>. 
         /// </para>
         /// </summary>
         public string OnlyAssociated

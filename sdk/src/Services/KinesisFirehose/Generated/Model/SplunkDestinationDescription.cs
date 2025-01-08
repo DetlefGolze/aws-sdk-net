@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -33,6 +34,7 @@ namespace Amazon.KinesisFirehose.Model
     /// </summary>
     public partial class SplunkDestinationDescription
     {
+        private SplunkBufferingHints _bufferingHints;
         private CloudWatchLoggingOptions _cloudWatchLoggingOptions;
         private int? _hecAcknowledgmentTimeoutInSeconds;
         private string _hecEndpoint;
@@ -42,11 +44,31 @@ namespace Amazon.KinesisFirehose.Model
         private SplunkRetryOptions _retryOptions;
         private SplunkS3BackupMode _s3BackupMode;
         private S3DestinationDescription _s3DestinationDescription;
+        private SecretsManagerConfiguration _secretsManagerConfiguration;
+
+        /// <summary>
+        /// Gets and sets the property BufferingHints. 
+        /// <para>
+        /// The buffering options. If no value is specified, the default values for Splunk are
+        /// used.
+        /// </para>
+        /// </summary>
+        public SplunkBufferingHints BufferingHints
+        {
+            get { return this._bufferingHints; }
+            set { this._bufferingHints = value; }
+        }
+
+        // Check to see if BufferingHints property is set
+        internal bool IsSetBufferingHints()
+        {
+            return this._bufferingHints != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CloudWatchLoggingOptions. 
         /// <para>
-        /// The Amazon CloudWatch logging options for your delivery stream.
+        /// The Amazon CloudWatch logging options for your Firehose stream.
         /// </para>
         /// </summary>
         public CloudWatchLoggingOptions CloudWatchLoggingOptions
@@ -64,10 +86,9 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property HECAcknowledgmentTimeoutInSeconds. 
         /// <para>
-        /// The amount of time that Kinesis Data Firehose waits to receive an acknowledgment from
-        /// Splunk after it sends it data. At the end of the timeout period, Kinesis Data Firehose
-        /// either tries to send the data again or considers it an error, based on your retry
-        /// settings.
+        /// The amount of time that Firehose waits to receive an acknowledgment from Splunk after
+        /// it sends it data. At the end of the timeout period, Firehose either tries to send
+        /// the data again or considers it an error, based on your retry settings.
         /// </para>
         /// </summary>
         [AWSProperty(Min=180, Max=600)]
@@ -86,8 +107,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property HECEndpoint. 
         /// <para>
-        /// The HTTP Event Collector (HEC) endpoint to which Kinesis Data Firehose sends your
-        /// data.
+        /// The HTTP Event Collector (HEC) endpoint to which Firehose sends your data.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]
@@ -161,8 +181,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property RetryOptions. 
         /// <para>
-        /// The retry behavior in case Kinesis Data Firehose is unable to deliver data to Splunk
-        /// or if it doesn't receive an acknowledgment of receipt from Splunk.
+        /// The retry behavior in case Firehose is unable to deliver data to Splunk or if it doesn't
+        /// receive an acknowledgment of receipt from Splunk.
         /// </para>
         /// </summary>
         public SplunkRetryOptions RetryOptions
@@ -180,11 +200,11 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property S3BackupMode. 
         /// <para>
-        /// Defines how documents should be delivered to Amazon S3. When set to <code>FailedDocumentsOnly</code>,
-        /// Kinesis Data Firehose writes any data that could not be indexed to the configured
-        /// Amazon S3 destination. When set to <code>AllDocuments</code>, Kinesis Data Firehose
-        /// delivers all incoming records to Amazon S3, and also writes failed documents to Amazon
-        /// S3. Default value is <code>FailedDocumentsOnly</code>. 
+        /// Defines how documents should be delivered to Amazon S3. When set to <c>FailedDocumentsOnly</c>,
+        /// Firehose writes any data that could not be indexed to the configured Amazon S3 destination.
+        /// When set to <c>AllDocuments</c>, Firehose delivers all incoming records to Amazon
+        /// S3, and also writes failed documents to Amazon S3. Default value is <c>FailedDocumentsOnly</c>.
+        /// 
         /// </para>
         /// </summary>
         public SplunkS3BackupMode S3BackupMode
@@ -215,6 +235,24 @@ namespace Amazon.KinesisFirehose.Model
         internal bool IsSetS3DestinationDescription()
         {
             return this._s3DestinationDescription != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SecretsManagerConfiguration. 
+        /// <para>
+        ///  The configuration that defines how you access secrets for Splunk. 
+        /// </para>
+        /// </summary>
+        public SecretsManagerConfiguration SecretsManagerConfiguration
+        {
+            get { return this._secretsManagerConfiguration; }
+            set { this._secretsManagerConfiguration = value; }
+        }
+
+        // Check to see if SecretsManagerConfiguration property is set
+        internal bool IsSetSecretsManagerConfiguration()
+        {
+            return this._secretsManagerConfiguration != null;
         }
 
     }

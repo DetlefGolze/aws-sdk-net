@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.RoboMaker.Model
         private string _iamRole;
         private OutputLocation _outputLocation;
         private WorldExportJobStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -127,7 +128,7 @@ namespace Amazon.RoboMaker.Model
         /// </para>
         ///  </dd> <dt>AllWorldGenerationFailed</dt> <dd> 
         /// <para>
-        /// All of the worlds in the world generation job failed. This can happen if your <code>worldCount</code>
+        /// All of the worlds in the world generation job failed. This can happen if your <c>worldCount</c>
         /// is greater than 50 or less than 1. 
         /// </para>
         ///  </dd> </dl> 
@@ -202,7 +203,7 @@ namespace Amazon.RoboMaker.Model
         /// </para>
         ///  </dd> <dt>Failed</dt> <dd> 
         /// <para>
-        /// The world export job failed. See <code>failureCode</code> for more information. 
+        /// The world export job failed. See <c>failureCode</c> for more information. 
         /// </para>
         ///  </dd> <dt>Canceled</dt> <dd> 
         /// <para>
@@ -243,7 +244,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

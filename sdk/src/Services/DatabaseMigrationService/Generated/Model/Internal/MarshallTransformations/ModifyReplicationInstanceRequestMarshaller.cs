@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAllocatedStorage())
@@ -95,6 +97,17 @@ namespace Amazon.DatabaseMigrationService.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("EngineVersion");
                     context.Writer.Write(publicRequest.EngineVersion);
+                }
+
+                if(publicRequest.IsSetKerberosAuthenticationSettings())
+                {
+                    context.Writer.WritePropertyName("KerberosAuthenticationSettings");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = KerberosAuthenticationSettingsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.KerberosAuthenticationSettings, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetMultiAZ())

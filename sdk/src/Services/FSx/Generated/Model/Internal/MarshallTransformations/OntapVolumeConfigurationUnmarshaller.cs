@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public OntapVolumeConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            OntapVolumeConfiguration unmarshalledObject = new OntapVolumeConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            OntapVolumeConfiguration unmarshalledObject = new OntapVolumeConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AggregateConfiguration", targetDepth))
+                {
+                    var unmarshaller = AggregateConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.AggregateConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CopyTagsToBackups", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
@@ -92,6 +100,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.SecurityStyle = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SizeInBytes", targetDepth))
+                {
+                    var unmarshaller = LongUnmarshaller.Instance;
+                    unmarshalledObject.SizeInBytes = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("SizeInMegabytes", targetDepth))
@@ -142,8 +156,13 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     unmarshalledObject.UUID = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("VolumeStyle", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.VolumeStyle = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

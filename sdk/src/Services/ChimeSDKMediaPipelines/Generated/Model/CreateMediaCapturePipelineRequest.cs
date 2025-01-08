@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -37,16 +38,17 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         private ChimeSdkMeetingConfiguration _chimeSdkMeetingConfiguration;
         private string _clientRequestToken;
         private string _sinkArn;
+        private string _sinkIamRoleArn;
         private MediaPipelineSinkType _sinkType;
         private string _sourceArn;
         private MediaPipelineSourceType _sourceType;
-        private List<Tag> _tags = new List<Tag>();
+        private SseAwsKeyManagementParams _sseAwsKeyManagementParams;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ChimeSdkMeetingConfiguration. 
         /// <para>
-        /// The configuration for a specified media pipeline. <code>SourceType</code> must be
-        /// <code>ChimeSdkMeeting</code>.
+        /// The configuration for a specified media pipeline. <c>SourceType</c> must be <c>ChimeSdkMeeting</c>.
         /// </para>
         /// </summary>
         public ChimeSdkMeetingConfiguration ChimeSdkMeetingConfiguration
@@ -98,6 +100,36 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         internal bool IsSetSinkArn()
         {
             return this._sinkArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SinkIamRoleArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the sink role to be used with <c>AwsKmsKeyId</c>
+        /// in <c>SseAwsKeyManagementParams</c>. Can only interact with <c>S3Bucket</c> sink type.
+        /// The role must belong to the caller’s account and be able to act on behalf of the caller
+        /// during the API call. All minimum policy permissions requirements for the caller to
+        /// perform sink-related actions are the same for <c>SinkIamRoleArn</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Additionally, the role must have permission to <c>kms:GenerateDataKey</c> using KMS
+        /// key supplied as <c>AwsKmsKeyId</c> in <c>SseAwsKeyManagementParams</c>. If media concatenation
+        /// will be required later, the role must also have permission to <c>kms:Decrypt</c> for
+        /// the same KMS key.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=1, Max=1024)]
+        public string SinkIamRoleArn
+        {
+            get { return this._sinkIamRoleArn; }
+            set { this._sinkIamRoleArn = value; }
+        }
+
+        // Check to see if SinkIamRoleArn property is set
+        internal bool IsSetSinkIamRoleArn()
+        {
+            return this._sinkIamRoleArn != null;
         }
 
         /// <summary>
@@ -159,6 +191,26 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SseAwsKeyManagementParams. 
+        /// <para>
+        /// An object that contains server side encryption parameters to be used by media capture
+        /// pipeline. The parameters can also be used by media concatenation pipeline taking media
+        /// capture pipeline as a media source.
+        /// </para>
+        /// </summary>
+        public SseAwsKeyManagementParams SseAwsKeyManagementParams
+        {
+            get { return this._sseAwsKeyManagementParams; }
+            set { this._sseAwsKeyManagementParams = value; }
+        }
+
+        // Check to see if SseAwsKeyManagementParams property is set
+        internal bool IsSetSseAwsKeyManagementParams()
+        {
+            return this._sseAwsKeyManagementParams != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tag key-value pairs.
@@ -174,7 +226,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,23 +26,63 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// A collection of settings that apply to the <code>SageMaker Domain</code>. These settings
-    /// are specified through the <code>CreateDomain</code> API call.
+    /// A collection of settings that apply to the <c>SageMaker Domain</c>. These settings
+    /// are specified through the <c>CreateDomain</c> API call.
     /// </summary>
     public partial class DomainSettings
     {
+        private AmazonQSettings _amazonQSettings;
+        private DockerSettings _dockerSettings;
         private ExecutionRoleIdentityConfig _executionRoleIdentityConfig;
         private RStudioServerProDomainSettings _rStudioServerProDomainSettings;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AmazonQSettings. 
+        /// <para>
+        /// A collection of settings that configure the Amazon Q experience within the domain.
+        /// The <c>AuthMode</c> that you use to create the domain must be <c>SSO</c>.
+        /// </para>
+        /// </summary>
+        public AmazonQSettings AmazonQSettings
+        {
+            get { return this._amazonQSettings; }
+            set { this._amazonQSettings = value; }
+        }
+
+        // Check to see if AmazonQSettings property is set
+        internal bool IsSetAmazonQSettings()
+        {
+            return this._amazonQSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DockerSettings. 
+        /// <para>
+        /// A collection of settings that configure the domain's Docker interaction.
+        /// </para>
+        /// </summary>
+        public DockerSettings DockerSettings
+        {
+            get { return this._dockerSettings; }
+            set { this._dockerSettings = value; }
+        }
+
+        // Check to see if DockerSettings property is set
+        internal bool IsSetDockerSettings()
+        {
+            return this._dockerSettings != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ExecutionRoleIdentityConfig. 
         /// <para>
-        /// The configuration for attaching a SageMaker user profile name to the execution role
-        /// as a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html">sts:SourceIdentity
+        /// The configuration for attaching a SageMaker AI user profile name to the execution
+        /// role as a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html">sts:SourceIdentity
         /// key</a>.
         /// </para>
         /// </summary>
@@ -61,8 +101,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RStudioServerProDomainSettings. 
         /// <para>
-        /// A collection of settings that configure the <code>RStudioServerPro</code> Domain-level
-        /// app.
+        /// A collection of settings that configure the <c>RStudioServerPro</c> Domain-level app.
         /// </para>
         /// </summary>
         public RStudioServerProDomainSettings RStudioServerProDomainSettings
@@ -80,8 +119,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SecurityGroupIds. 
         /// <para>
-        /// The security groups for the Amazon Virtual Private Cloud that the <code>Domain</code>
-        /// uses for communication between Domain-level apps and user apps.
+        /// The security groups for the Amazon Virtual Private Cloud that the <c>Domain</c> uses
+        /// for communication between Domain-level apps and user apps.
         /// </para>
         /// </summary>
         [AWSProperty(Max=3)]
@@ -94,7 +133,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

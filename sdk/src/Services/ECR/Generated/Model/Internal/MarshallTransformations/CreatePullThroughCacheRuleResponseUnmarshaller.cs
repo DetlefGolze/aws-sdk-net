@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECR.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -57,6 +58,12 @@ namespace Amazon.ECR.Model.Internal.MarshallTransformations
                     response.CreatedAt = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("credentialArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.CredentialArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ecrRepositoryPrefix", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -67,6 +74,12 @@ namespace Amazon.ECR.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.RegistryId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("upstreamRegistry", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.UpstreamRegistry = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("upstreamRegistryUrl", targetDepth))
@@ -110,9 +123,21 @@ namespace Amazon.ECR.Model.Internal.MarshallTransformations
                 {
                     return PullThroughCacheRuleAlreadyExistsExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("SecretNotFoundException"))
+                {
+                    return SecretNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("ServerException"))
                 {
                     return ServerExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("UnableToAccessSecretException"))
+                {
+                    return UnableToAccessSecretExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("UnableToDecryptSecretValueException"))
+                {
+                    return UnableToDecryptSecretValueExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("UnsupportedUpstreamRegistryException"))
                 {

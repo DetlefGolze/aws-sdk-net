@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property ChangeToken. 
         /// <para>
-        /// The <code>ChangeToken</code> that you used to submit the <code>CreateSizeConstraintSet</code>
+        /// The <c>ChangeToken</c> that you used to submit the <c>CreateSizeConstraintSet</c>
         /// request. You can also use this value to query the status of the request. For more
         /// information, see <a>GetChangeTokenStatus</a>.
         /// </para>
@@ -60,7 +61,7 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property SizeConstraintSet. 
         /// <para>
-        /// A <a>SizeConstraintSet</a> that contains no <code>SizeConstraint</code> objects.
+        /// A <a>SizeConstraintSet</a> that contains no <c>SizeConstraint</c> objects.
         /// </para>
         /// </summary>
         public SizeConstraintSet SizeConstraintSet

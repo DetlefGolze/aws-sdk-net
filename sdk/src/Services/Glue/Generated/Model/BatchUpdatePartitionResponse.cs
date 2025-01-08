@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,12 +34,12 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class BatchUpdatePartitionResponse : AmazonWebServiceResponse
     {
-        private List<BatchUpdatePartitionFailureEntry> _errors = new List<BatchUpdatePartitionFailureEntry>();
+        private List<BatchUpdatePartitionFailureEntry> _errors = AWSConfigs.InitializeCollections ? new List<BatchUpdatePartitionFailureEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
-        /// The errors encountered when trying to update the requested partitions. A list of <code>BatchUpdatePartitionFailureEntry</code>
+        /// The errors encountered when trying to update the requested partitions. A list of <c>BatchUpdatePartitionFailureEntry</c>
         /// objects.
         /// </para>
         /// </summary>
@@ -51,7 +52,7 @@ namespace Amazon.Glue.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

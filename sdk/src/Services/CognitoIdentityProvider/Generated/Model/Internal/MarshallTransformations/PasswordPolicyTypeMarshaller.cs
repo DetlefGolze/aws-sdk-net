@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(PasswordPolicyType requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetMinimumLength())
             {
                 context.Writer.WritePropertyName("MinimumLength");
                 context.Writer.Write(requestObject.MinimumLength);
+            }
+
+            if(requestObject.IsSetPasswordHistorySize())
+            {
+                context.Writer.WritePropertyName("PasswordHistorySize");
+                context.Writer.Write(requestObject.PasswordHistorySize);
             }
 
             if(requestObject.IsSetRequireLowercase())

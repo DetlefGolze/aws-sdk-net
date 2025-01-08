@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.EntityResolution.Model
     {
         private string _description;
         private IncrementalRunConfig _incrementalRunConfig;
-        private List<InputSource> _inputSourceConfig = new List<InputSource>();
-        private List<OutputSource> _outputSourceConfig = new List<OutputSource>();
+        private List<InputSource> _inputSourceConfig = AWSConfigs.InitializeCollections ? new List<InputSource>() : null;
+        private List<OutputSource> _outputSourceConfig = AWSConfigs.InitializeCollections ? new List<OutputSource>() : null;
         private ResolutionTechniques _resolutionTechniques;
         private string _roleArn;
         private string _workflowArn;
@@ -64,7 +65,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property IncrementalRunConfig. 
         /// <para>
-        /// An object which defines an incremental run type and has only <code>incrementalRunType</code>
+        /// An object which defines an incremental run type and has only <c>incrementalRunType</c>
         /// as a field.
         /// </para>
         /// </summary>
@@ -83,8 +84,8 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property InputSourceConfig. 
         /// <para>
-        /// A list of <code>InputSource</code> objects, which have the fields <code>InputSourceARN</code>
-        /// and <code>SchemaName</code>.
+        /// A list of <c>InputSource</c> objects, which have the fields <c>InputSourceARN</c>
+        /// and <c>SchemaName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]
@@ -97,14 +98,14 @@ namespace Amazon.EntityResolution.Model
         // Check to see if InputSourceConfig property is set
         internal bool IsSetInputSourceConfig()
         {
-            return this._inputSourceConfig != null && this._inputSourceConfig.Count > 0; 
+            return this._inputSourceConfig != null && (this._inputSourceConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OutputSourceConfig. 
         /// <para>
-        /// A list of <code>OutputSource</code> objects, each of which contains fields <code>OutputS3Path</code>,
-        /// <code>ApplyNormalization</code>, and <code>Output</code>.
+        /// A list of <c>OutputSource</c> objects, each of which contains fields <c>OutputS3Path</c>,
+        /// <c>ApplyNormalization</c>, and <c>Output</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1)]
@@ -117,13 +118,13 @@ namespace Amazon.EntityResolution.Model
         // Check to see if OutputSourceConfig property is set
         internal bool IsSetOutputSourceConfig()
         {
-            return this._outputSourceConfig != null && this._outputSourceConfig.Count > 0; 
+            return this._outputSourceConfig != null && (this._outputSourceConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResolutionTechniques. 
         /// <para>
-        /// An object which defines the <code>resolutionType</code> and the <code>ruleBasedProperties</code>.
+        /// An object which defines the <c>resolutionType</c> and the <c>ruleBasedProperties</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -162,7 +163,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property WorkflowArn. 
         /// <para>
-        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <code>MatchingWorkflow</code>.
+        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <c>MatchingWorkflow</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -184,7 +185,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the workflow.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string WorkflowName
         {
             get { return this._workflowName; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property ParticipantCredentials. 
         /// <para>
-        /// The token used by the chat participant to call <code>CreateParticipantConnection</code>.
+        /// The token used by the chat participant to call <c>CreateParticipantConnection</c>.
         /// The participant token is valid for the lifetime of a chat participant.
         /// </para>
         /// </summary>

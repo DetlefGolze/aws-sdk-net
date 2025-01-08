@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
     /// Adds to or modifies the tags of the given resource. Tags are metadata which can be
     /// used to manage a resource. To untag a resource, the caller account must be the same
-    /// as the resource’s <code>OwnerAccountId</code>. Untagging resources across accounts
-    /// is not supported.
+    /// as the resource’s <c>OwnerAccountId</c>. Untagging resources across accounts is not
+    /// supported.
     /// </summary>
     public partial class UntagResourceRequest : AmazonMigrationHubRefactorSpacesRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -75,7 +76,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,11 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
     /// Container for the parameters to the ListFindings operation.
-    /// Lists Amazon GuardDuty findings for the specified detector ID.
+    /// Lists GuardDuty findings for the specified detector ID.
+    /// 
+    ///  
+    /// <para>
+    /// There might be regional differences because some flags might not be available in all
+    /// the Regions where GuardDuty is currently supported. For more information, see <a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_regions.html">Regions
+    /// and endpoints</a>.
+    /// </para>
     /// </summary>
     public partial class ListFindingsRequest : AmazonGuardDutyRequest
     {
@@ -45,6 +53,12 @@ namespace Amazon.GuardDuty.Model
         /// <para>
         /// The ID of the detector that specifies the GuardDuty service whose findings you want
         /// to list.
+        /// </para>
+        ///  
+        /// <para>
+        /// To find the <c>detectorId</c> in the current Region, see the Settings page in the
+        /// GuardDuty console, or run the <a href="https://docs.aws.amazon.com/guardduty/latest/APIReference/API_ListDetectors.html">ListDetectors</a>
+        /// API.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=300)]
@@ -199,6 +213,10 @@ namespace Amazon.GuardDuty.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
+        /// service.action.dnsRequestAction.domainWithSuffix
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         /// service.action.networkConnectionAction.blocked
         /// </para>
         ///  </li> <li> 
@@ -246,6 +264,10 @@ namespace Amazon.GuardDuty.Model
         /// When this attribute is set to 'true', only archived findings are listed. When it's
         /// set to 'false', only unarchived findings are listed. When this attribute is not set,
         /// all existing findings are listed.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// service.ebsVolumeScanDetails.scanId
         /// </para>
         ///  </li> <li> 
         /// <para>

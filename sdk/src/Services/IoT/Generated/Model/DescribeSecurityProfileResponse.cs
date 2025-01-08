@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -33,12 +34,13 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class DescribeSecurityProfileResponse : AmazonWebServiceResponse
     {
-        private List<string> _additionalMetricsToRetain = new List<string>();
-        private List<MetricToRetain> _additionalMetricsToRetainV2 = new List<MetricToRetain>();
-        private Dictionary<string, AlertTarget> _alertTargets = new Dictionary<string, AlertTarget>();
-        private List<Behavior> _behaviors = new List<Behavior>();
+        private List<string> _additionalMetricsToRetain = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<MetricToRetain> _additionalMetricsToRetainV2 = AWSConfigs.InitializeCollections ? new List<MetricToRetain>() : null;
+        private Dictionary<string, AlertTarget> _alertTargets = AWSConfigs.InitializeCollections ? new Dictionary<string, AlertTarget>() : null;
+        private List<Behavior> _behaviors = AWSConfigs.InitializeCollections ? new List<Behavior>() : null;
         private DateTime? _creationDate;
         private DateTime? _lastModifiedDate;
+        private MetricsExportConfig _metricsExportConfig;
         private string _securityProfileArn;
         private string _securityProfileDescription;
         private string _securityProfileName;
@@ -53,8 +55,8 @@ namespace Amazon.IoT.Model
         ///  
         /// <para>
         /// A list of metrics whose data is retained (stored). By default, data is retained for
-        /// any metric used in the profile's <code>behaviors</code>, but it is also retained for
-        /// any metric specified here.
+        /// any metric used in the profile's <c>behaviors</c>, but it is also retained for any
+        /// metric specified here.
         /// </para>
         /// </summary>
         [Obsolete("Use additionalMetricsToRetainV2.")]
@@ -67,7 +69,7 @@ namespace Amazon.IoT.Model
         // Check to see if AdditionalMetricsToRetain property is set
         internal bool IsSetAdditionalMetricsToRetain()
         {
-            return this._additionalMetricsToRetain != null && this._additionalMetricsToRetain.Count > 0; 
+            return this._additionalMetricsToRetain != null && (this._additionalMetricsToRetain.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,7 +89,7 @@ namespace Amazon.IoT.Model
         // Check to see if AdditionalMetricsToRetainV2 property is set
         internal bool IsSetAdditionalMetricsToRetainV2()
         {
-            return this._additionalMetricsToRetainV2 != null && this._additionalMetricsToRetainV2.Count > 0; 
+            return this._additionalMetricsToRetainV2 != null && (this._additionalMetricsToRetainV2.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -105,7 +107,7 @@ namespace Amazon.IoT.Model
         // Check to see if AlertTargets property is set
         internal bool IsSetAlertTargets()
         {
-            return this._alertTargets != null && this._alertTargets.Count > 0; 
+            return this._alertTargets != null && (this._alertTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace Amazon.IoT.Model
         // Check to see if Behaviors property is set
         internal bool IsSetBehaviors()
         {
-            return this._behaviors != null && this._behaviors.Count > 0; 
+            return this._behaviors != null && (this._behaviors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -161,6 +163,24 @@ namespace Amazon.IoT.Model
         internal bool IsSetLastModifiedDate()
         {
             return this._lastModifiedDate.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MetricsExportConfig. 
+        /// <para>
+        /// Specifies the MQTT topic and role ARN required for metric export.
+        /// </para>
+        /// </summary>
+        public MetricsExportConfig MetricsExportConfig
+        {
+            get { return this._metricsExportConfig; }
+            set { this._metricsExportConfig = value; }
+        }
+
+        // Check to see if MetricsExportConfig property is set
+        internal bool IsSetMetricsExportConfig()
+        {
+            return this._metricsExportConfig != null;
         }
 
         /// <summary>

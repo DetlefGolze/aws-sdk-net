@@ -26,13 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
     /// Container for the parameters to the GetControlOperation operation.
-    /// Returns the status of a particular <code>EnableControl</code> or <code>DisableControl</code>
-    /// operation. Displays a message in case of error. Details for an operation are available
-    /// for 90 days.
+    /// Returns the status of a particular <c>EnableControl</c> or <c>DisableControl</c> operation.
+    /// Displays a message in case of error. Details for an operation are available for 90
+    /// days. For usage examples, see the <a href="https://docs.aws.amazon.com/controltower/latest/controlreference/control-api-examples-short.html">
+    /// <i>Controls Reference Guide</i> </a>.
     /// </summary>
     public partial class GetControlOperationRequest : AmazonControlTowerRequest
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EMRServerless.Model
 {
     /// <summary>
@@ -38,8 +39,9 @@ namespace Amazon.EMRServerless.Model
         private DateTime? _createdAtAfter;
         private DateTime? _createdAtBefore;
         private int? _maxResults;
+        private JobRunMode _mode;
         private string _nextToken;
-        private List<string> _states = new List<string>();
+        private List<string> _states = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -116,6 +118,24 @@ namespace Amazon.EMRServerless.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Mode. 
+        /// <para>
+        /// The mode of the job runs to list.
+        /// </para>
+        /// </summary>
+        public JobRunMode Mode
+        {
+            get { return this._mode; }
+            set { this._mode = value; }
+        }
+
+        // Check to see if Mode property is set
+        internal bool IsSetMode()
+        {
+            return this._mode != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token for the next set of job run results.
@@ -151,7 +171,7 @@ namespace Amazon.EMRServerless.Model
         // Check to see if States property is set
         internal bool IsSetStates()
         {
-            return this._states != null && this._states.Count > 0; 
+            return this._states != null && (this._states.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

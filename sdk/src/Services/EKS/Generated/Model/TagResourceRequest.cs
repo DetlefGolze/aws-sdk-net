@@ -26,28 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Associates the specified tags to a resource with the specified <code>resourceArn</code>.
-    /// If existing tags on a resource are not specified in the request parameters, they are
-    /// not changed. When a resource is deleted, the tags associated with that resource are
-    /// deleted as well. Tags that you create for Amazon EKS resources do not propagate to
-    /// any other resources associated with the cluster. For example, if you tag a cluster
-    /// with this operation, that tag does not automatically propagate to the subnets and
-    /// nodes associated with the cluster.
+    /// Associates the specified tags to an Amazon EKS resource with the specified <c>resourceArn</c>.
+    /// If existing tags on a resource are not specified in the request parameters, they aren't
+    /// changed. When a resource is deleted, the tags associated with that resource are also
+    /// deleted. Tags that you create for Amazon EKS resources don't propagate to any other
+    /// resources associated with the cluster. For example, if you tag a cluster with this
+    /// operation, that tag doesn't automatically propagate to the subnets and nodes associated
+    /// with the cluster.
     /// </summary>
     public partial class TagResourceRequest : AmazonEKSRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the resource to which to add tags. Currently, the
-        /// supported resources are Amazon EKS clusters and managed node groups.
+        /// The Amazon Resource Name (ARN) of the resource to add tags to.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -66,7 +66,9 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags to add to the resource. A tag is an array of key-value pairs.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=50)]
@@ -79,7 +81,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

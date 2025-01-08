@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
-    /// Filter the results of a <code>ListVpcEndpoints</code> request.
+    /// Filter the results of a <c>ListVpcEndpoints</c> request.
     /// </summary>
     public partial class VpcEndpointFilters
     {

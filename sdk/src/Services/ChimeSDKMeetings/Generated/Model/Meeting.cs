@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.ChimeSDKMeetings.Model
         private string _meetingHostId;
         private string _meetingId;
         private string _primaryMeetingId;
-        private List<string> _tenantIds = new List<string>();
+        private List<string> _tenantIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ExternalMeetingId. 
@@ -50,12 +51,12 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// </para>
         ///  
         /// <para>
-        /// Pattern: <code>[-_&amp;@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*</code> 
+        /// Pattern: <c>[-_&amp;@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*</c> 
         /// </para>
         ///  
         /// <para>
-        /// Values that begin with <code>aws:</code> are reserved. You can't configure a value
-        /// that uses this prefix. Case insensitive.
+        /// Values that begin with <c>aws:</c> are reserved. You can't configure a value that
+        /// uses this prefix. Case insensitive.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=2, Max=64)]
@@ -92,16 +93,16 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <summary>
         /// Gets and sets the property MediaRegion. 
         /// <para>
-        /// The Region in which you create the meeting. Available values: <code>af-south-1</code>,
-        /// <code>ap-northeast-1</code>, <code>ap-northeast-2</code>, <code>ap-south-1</code>,
-        /// <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>,
-        /// <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>,
-        /// <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>,
-        /// <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.
+        /// The Region in which you create the meeting. Available values: <c>af-south-1</c>, <c>ap-northeast-1</c>,
+        /// <c>ap-northeast-2</c>, <c>ap-south-1</c>, <c>ap-southeast-1</c>, <c>ap-southeast-2</c>,
+        /// <c>ca-central-1</c>, <c>eu-central-1</c>, <c>eu-north-1</c>, <c>eu-south-1</c>, <c>eu-west-1</c>,
+        /// <c>eu-west-2</c>, <c>eu-west-3</c>, <c>sa-east-1</c>, <c>us-east-1</c>, <c>us-east-2</c>,
+        /// <c>us-west-1</c>, <c>us-west-2</c>.
         /// </para>
         ///  
         /// <para>
-        /// Available values in AWS GovCloud (US) Regions: <code>us-gov-east-1</code>, <code>us-gov-west-1</code>.
+        /// Available values in Amazon Web Services GovCloud (US) Regions: <c>us-gov-east-1</c>,
+        /// <c>us-gov-west-1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=64)]
@@ -226,7 +227,7 @@ namespace Amazon.ChimeSDKMeetings.Model
         // Check to see if TenantIds property is set
         internal bool IsSetTenantIds()
         {
-            return this._tenantIds != null && this._tenantIds.Count > 0; 
+            return this._tenantIds != null && (this._tenantIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

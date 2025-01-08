@@ -26,12 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelMLModelTransformJob operation.
     /// Cancels a specified model transform job. See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning-model-transform.html">Use
     /// a trained model to generate new model artifacts</a>.
+    /// 
+    ///  
+    /// <para>
+    /// When invoking this operation in a Neptune cluster that has IAM authentication enabled,
+    /// the IAM user or role making the request must have a policy attached that allows the
+    /// <a href="https://docs.aws.amazon.com/neptune/latest/userguide/iam-dp-actions.html#cancelmlmodeltransformjob">neptune-db:CancelMLModelTransformJob</a>
+    /// IAM action in that cluster.
+    /// </para>
     /// </summary>
     public partial class CancelMLModelTransformJobRequest : AmazonNeptunedataRequest
     {
@@ -42,8 +51,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Clean. 
         /// <para>
-        /// If this flag is set to <code>TRUE</code>, all Neptune ML S3 artifacts should be deleted
-        /// when the job is stopped. The default is <code>FALSE</code>.
+        /// If this flag is set to <c>TRUE</c>, all Neptune ML S3 artifacts should be deleted
+        /// when the job is stopped. The default is <c>FALSE</c>.
         /// </para>
         /// </summary>
         public bool Clean

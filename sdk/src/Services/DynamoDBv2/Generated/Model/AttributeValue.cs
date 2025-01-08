@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -46,14 +47,14 @@ namespace Amazon.DynamoDBv2.Model
     {
         private MemoryStream _b;
         private bool? _bool;
-        private List<MemoryStream> _bs = new List<MemoryStream>();
-        private List<AttributeValue> _l = new List<AttributeValue>();
-        private Dictionary<string, AttributeValue> _m = new Dictionary<string, AttributeValue>();
+        private List<MemoryStream> _bs = AWSConfigs.InitializeCollections ? new List<MemoryStream>() : null;
+        private List<AttributeValue> _l = AWSConfigs.InitializeCollections ? new List<AttributeValue>() : null;
+        private Dictionary<string, AttributeValue> _m = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private string _n;
-        private List<string> _ns = new List<string>();
+        private List<string> _ns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _null;
         private string _s;
-        private List<string> _ss = new List<string>();
+        private List<string> _ss = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -63,7 +64,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates AttributeValue with the parameterized properties
         /// </summary>
-        /// <param name="s">An attribute of type String. For example:  <code>"S": "Hello"</code> </param>
+        /// <param name="s">An attribute of type String. For example:  <c>"S": "Hello"</c> </param>
         public AttributeValue(string s)
         {
             _s = s;
@@ -72,7 +73,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates AttributeValue with the parameterized properties
         /// </summary>
-        /// <param name="ss">An attribute of type String Set. For example:  <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code> </param>
+        /// <param name="ss">An attribute of type String Set. For example:  <c>"SS": ["Giraffe", "Hippo" ,"Zebra"]</c> </param>
         public AttributeValue(List<string> ss)
         {
             _ss = ss;
@@ -85,7 +86,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</code> 
+        ///  <c>"B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"</c> 
         /// </para>
         /// </summary>
         public MemoryStream B
@@ -107,7 +108,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"BOOL": true</code> 
+        ///  <c>"BOOL": true</c> 
         /// </para>
         /// </summary>
         public bool BOOL
@@ -151,7 +152,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</code> 
+        ///  <c>"BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]</c> 
         /// </para>
         /// </summary>
         public List<MemoryStream> BS
@@ -160,10 +161,32 @@ namespace Amazon.DynamoDBv2.Model
             set { this._bs = value; }
         }
 
+        /// <summary>
+        /// This property is set to true if the property <seealso cref="BS"/>
+        /// is set; false otherwise.
+        /// This property can be used to determine if the related property
+        /// was returned by a service response or if the related property
+        /// should be sent to the service during a service call.
+        /// </summary>
+        /// <returns>
+        /// True if the related property was set or will be sent to a service; false otherwise.
+        /// </returns>
+        public bool IsBSSet
+        {
+            get
+            {
+                return Amazon.Util.Internal.InternalSDKUtils.GetIsSet(this._bs);
+            }
+            set
+            {
+                Amazon.Util.Internal.InternalSDKUtils.SetIsSet(value, ref this._bs);
+            }
+        }
+
         // Check to see if BS property is set
         internal bool IsSetBS()
         {
-            return this._bs != null && this._bs.Count > 0; 
+            return this.IsBSSet; 
         }
 
         /// <summary>
@@ -173,7 +196,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N": "3.14159"}]</code> 
+        ///  <c>"L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N": "3.14159"}]</c> 
         /// </para>
         /// </summary>
         public List<AttributeValue> L
@@ -217,7 +240,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</code> 
+        ///  <c>"M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}</c> 
         /// </para>
         /// </summary>
         public Dictionary<string, AttributeValue> M
@@ -261,7 +284,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"N": "123.45"</code> 
+        ///  <c>"N": "123.45"</c> 
         /// </para>
         ///  
         /// <para>
@@ -289,7 +312,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"NS": ["42.2", "-19", "7.5", "3.14"]</code> 
+        ///  <c>"NS": ["42.2", "-19", "7.5", "3.14"]</c> 
         /// </para>
         ///  
         /// <para>
@@ -304,10 +327,32 @@ namespace Amazon.DynamoDBv2.Model
             set { this._ns = value; }
         }
 
+        /// <summary>
+        /// This property is set to true if the property <seealso cref="NS"/>
+        /// is set; false otherwise.
+        /// This property can be used to determine if the related property
+        /// was returned by a service response or if the related property
+        /// should be sent to the service during a service call.
+        /// </summary>
+        /// <returns>
+        /// True if the related property was set or will be sent to a service; false otherwise.
+        /// </returns>
+        public bool IsNSSet
+        {
+            get
+            {
+                return Amazon.Util.Internal.InternalSDKUtils.GetIsSet(this._ns);
+            }
+            set
+            {
+                Amazon.Util.Internal.InternalSDKUtils.SetIsSet(value, ref this._ns);
+            }
+        }
+
         // Check to see if NS property is set
         internal bool IsSetNS()
         {
-            return this._ns != null && this._ns.Count > 0; 
+            return this.IsNSSet; 
         }
 
         /// <summary>
@@ -317,7 +362,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"NULL": true</code> 
+        ///  <c>"NULL": true</c> 
         /// </para>
         /// </summary>
         public bool NULL
@@ -339,7 +384,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"S": "Hello"</code> 
+        ///  <c>"S": "Hello"</c> 
         /// </para>
         /// </summary>
         public string S
@@ -361,7 +406,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>"SS": ["Giraffe", "Hippo" ,"Zebra"]</code> 
+        ///  <c>"SS": ["Giraffe", "Hippo" ,"Zebra"]</c> 
         /// </para>
         /// </summary>
         public List<string> SS
@@ -370,10 +415,32 @@ namespace Amazon.DynamoDBv2.Model
             set { this._ss = value; }
         }
 
+        /// <summary>
+        /// This property is set to true if the property <seealso cref="SS"/>
+        /// is set; false otherwise.
+        /// This property can be used to determine if the related property
+        /// was returned by a service response or if the related property
+        /// should be sent to the service during a service call.
+        /// </summary>
+        /// <returns>
+        /// True if the related property was set or will be sent to a service; false otherwise.
+        /// </returns>
+        public bool IsSSSet
+        {
+            get
+            {
+                return Amazon.Util.Internal.InternalSDKUtils.GetIsSet(this._ss);
+            }
+            set
+            {
+                Amazon.Util.Internal.InternalSDKUtils.SetIsSet(value, ref this._ss);
+            }
+        }
+
         // Check to see if SS property is set
         internal bool IsSetSS()
         {
-            return this._ss != null && this._ss.Count > 0; 
+            return this.IsSSSet; 
         }
 
     }

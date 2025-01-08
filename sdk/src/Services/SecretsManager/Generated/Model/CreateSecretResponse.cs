@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SecretsManager.Model
     {
         private string _arn;
         private string _name;
-        private List<ReplicationStatusType> _replicationStatus = new List<ReplicationStatusType>();
+        private List<ReplicationStatusType> _replicationStatus = AWSConfigs.InitializeCollections ? new List<ReplicationStatusType>() : null;
         private string _versionId;
 
         /// <summary>
@@ -86,16 +87,16 @@ namespace Amazon.SecretsManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Failed</code>, which indicates that the replica was not created.
+        ///  <c>Failed</c>, which indicates that the replica was not created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InProgress</code>, which indicates that Secrets Manager is in the process of
-        /// creating the replica.
+        ///  <c>InProgress</c>, which indicates that Secrets Manager is in the process of creating
+        /// the replica.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InSync</code>, which indicates that the replica was created.
+        ///  <c>InSync</c>, which indicates that the replica was created.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -108,7 +109,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if ReplicationStatus property is set
         internal bool IsSetReplicationStatus()
         {
-            return this._replicationStatus != null && this._replicationStatus.Count > 0; 
+            return this._replicationStatus != null && (this._replicationStatus.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

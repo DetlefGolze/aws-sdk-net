@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
     /// Provides more details about the current status of the access preview. For example,
-    /// if the creation of the access preview fails, a <code>Failed</code> status is returned.
-    /// This failure can be due to an internal issue with the analysis or due to an invalid
-    /// proposed resource configuration.
+    /// if the creation of the access preview fails, a <c>Failed</c> status is returned. This
+    /// failure can be due to an internal issue with the analysis or due to an invalid proposed
+    /// resource configuration.
     /// </summary>
     public partial class AccessPreviewStatusReason
     {

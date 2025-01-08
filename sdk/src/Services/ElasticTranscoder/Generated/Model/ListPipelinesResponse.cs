@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.ElasticTranscoder.Model
     public partial class ListPipelinesResponse : AmazonWebServiceResponse
     {
         private string _nextPageToken;
-        private List<Pipeline> _pipelines = new List<Pipeline>();
+        private List<Pipeline> _pipelines = AWSConfigs.InitializeCollections ? new List<Pipeline>() : null;
 
         /// <summary>
         /// Gets and sets the property NextPageToken. 
         /// <para>
         /// A value that you use to access the second and subsequent pages of results, if any.
         /// When the pipelines fit on one page or when you've reached the last page of results,
-        /// the value of <code>NextPageToken</code> is <code>null</code>.
+        /// the value of <c>NextPageToken</c> is <c>null</c>.
         /// </para>
         /// </summary>
         public string NextPageToken
@@ -59,7 +60,7 @@ namespace Amazon.ElasticTranscoder.Model
         /// <summary>
         /// Gets and sets the property Pipelines. 
         /// <para>
-        /// An array of <code>Pipeline</code> objects.
+        /// An array of <c>Pipeline</c> objects.
         /// </para>
         /// </summary>
         public List<Pipeline> Pipelines
@@ -71,7 +72,7 @@ namespace Amazon.ElasticTranscoder.Model
         // Check to see if Pipelines property is set
         internal bool IsSetPipelines()
         {
-            return this._pipelines != null && this._pipelines.Count > 0; 
+            return this._pipelines != null && (this._pipelines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.NetworkManager.Model
     {
         private string _clientToken;
         private string _peeringId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _transitGatewayRouteTableArn;
 
         /// <summary>
@@ -92,14 +93,14 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TransitGatewayRouteTableArn. 
         /// <para>
         /// The ARN of the transit gateway route table for the attachment request. For example,
-        /// <code>"TransitGatewayRouteTableArn": "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456"</code>.
+        /// <c>"TransitGatewayRouteTableArn": "arn:aws:ec2:us-west-2:123456789012:transit-gateway-route-table/tgw-rtb-9876543210123456"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=500)]

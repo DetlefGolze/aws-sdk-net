@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The parameters for Amazon Redshift. The <code>ClusterId</code> field can be blank
-    /// if <code>Host</code> and <code>Port</code> are both set. The <code>Host</code> and
-    /// <code>Port</code> fields can be blank if the <code>ClusterId</code> field is set.
+    /// The parameters for Amazon Redshift. The <c>ClusterId</c> field can be blank if <c>Host</c>
+    /// and <c>Port</c> are both set. The <c>Host</c> and <c>Port</c> fields can be blank
+    /// if the <c>ClusterId</c> field is set.
     /// </summary>
     public partial class RedshiftParameters
     {
@@ -39,13 +40,13 @@ namespace Amazon.QuickSight.Model
         private string _database;
         private string _host;
         private RedshiftIAMParameters _iamParameters;
+        private IdentityCenterConfiguration _identityCenterConfiguration;
         private int? _port;
 
         /// <summary>
         /// Gets and sets the property ClusterId. 
         /// <para>
-        /// Cluster ID. This field can be blank if the <code>Host</code> and <code>Port</code>
-        /// are provided.
+        /// Cluster ID. This field can be blank if the <c>Host</c> and <c>Port</c> are provided.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -83,7 +84,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Host. 
         /// <para>
-        /// Host. This field can be blank if <code>ClusterId</code> is provided.
+        /// Host. This field can be blank if <c>ClusterId</c> is provided.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -119,9 +120,33 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IdentityCenterConfiguration. 
+        /// <para>
+        /// An optional parameter that configures IAM Identity Center authentication to grant
+        /// Amazon QuickSight access to your cluster.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter can only be specified if your Amazon QuickSight account is configured
+        /// with IAM Identity Center.
+        /// </para>
+        /// </summary>
+        public IdentityCenterConfiguration IdentityCenterConfiguration
+        {
+            get { return this._identityCenterConfiguration; }
+            set { this._identityCenterConfiguration = value; }
+        }
+
+        // Check to see if IdentityCenterConfiguration property is set
+        internal bool IsSetIdentityCenterConfiguration()
+        {
+            return this._identityCenterConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Port. 
         /// <para>
-        /// Port. This field can be blank if the <code>ClusterId</code> is provided.
+        /// Port. This field can be blank if the <c>ClusterId</c> is provided.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=65535)]

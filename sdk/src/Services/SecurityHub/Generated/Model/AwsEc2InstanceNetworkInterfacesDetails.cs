@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NetworkInterfaceId. 
         /// <para>
-        /// The identifier of the network interface. The details are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code>
+        /// The identifier of the network interface. The details are in a corresponding <c>AwsEc2NetworkInterfacesDetails</c>
         /// object.
         /// </para>
         /// </summary>

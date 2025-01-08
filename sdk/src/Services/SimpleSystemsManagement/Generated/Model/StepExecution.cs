@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -38,24 +39,25 @@ namespace Amazon.SimpleSystemsManagement.Model
         private DateTime? _executionStartTime;
         private FailureDetails _failureDetails;
         private string _failureMessage;
-        private Dictionary<string, string> _inputs = new Dictionary<string, string>();
+        private Dictionary<string, string> _inputs = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private bool? _isCritical;
         private bool? _isEnd;
         private int? _maxAttempts;
         private string _nextStep;
         private string _onFailure;
-        private Dictionary<string, List<string>> _outputs = new Dictionary<string, List<string>>();
-        private Dictionary<string, List<string>> _overriddenParameters = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _outputs = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
+        private Dictionary<string, List<string>> _overriddenParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
+        private ParentStepDetails _parentStepDetails;
         private string _response;
         private string _responseCode;
         private string _stepExecutionId;
         private string _stepName;
         private AutomationExecutionStatus _stepStatus;
         private TargetLocation _targetLocation;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
         private long? _timeoutSeconds;
-        private List<AlarmStateInformation> _triggeredAlarms = new List<AlarmStateInformation>();
-        private List<string> _validNextSteps = new List<string>();
+        private List<AlarmStateInformation> _triggeredAlarms = AWSConfigs.InitializeCollections ? new List<AlarmStateInformation>() : null;
+        private List<string> _validNextSteps = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Action. 
@@ -164,7 +166,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Inputs property is set
         internal bool IsSetInputs()
         {
-            return this._inputs != null && this._inputs.Count > 0; 
+            return this._inputs != null && (this._inputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -208,7 +210,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property MaxAttempts. 
         /// <para>
-        /// The maximum number of tries to run the action of the step. The default value is <code>1</code>.
+        /// The maximum number of tries to run the action of the step. The default value is <c>1</c>.
         /// </para>
         /// </summary>
         public int MaxAttempts
@@ -244,7 +246,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property OnFailure. 
         /// <para>
-        /// The action to take if the step fails. The default value is <code>Abort</code>.
+        /// The action to take if the step fails. The default value is <c>Abort</c>.
         /// </para>
         /// </summary>
         public string OnFailure
@@ -275,7 +277,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Outputs property is set
         internal bool IsSetOutputs()
         {
-            return this._outputs != null && this._outputs.Count > 0; 
+            return this._outputs != null && (this._outputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -294,7 +296,25 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if OverriddenParameters property is set
         internal bool IsSetOverriddenParameters()
         {
-            return this._overriddenParameters != null && this._overriddenParameters.Count > 0; 
+            return this._overriddenParameters != null && (this._overriddenParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ParentStepDetails. 
+        /// <para>
+        /// Information about the parent step.
+        /// </para>
+        /// </summary>
+        public ParentStepDetails ParentStepDetails
+        {
+            get { return this._parentStepDetails; }
+            set { this._parentStepDetails = value; }
+        }
+
+        // Check to see if ParentStepDetails property is set
+        internal bool IsSetParentStepDetails()
+        {
+            return this._parentStepDetails != null;
         }
 
         /// <summary>
@@ -422,7 +442,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -459,7 +479,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if TriggeredAlarms property is set
         internal bool IsSetTriggeredAlarms()
         {
-            return this._triggeredAlarms != null && this._triggeredAlarms.Count > 0; 
+            return this._triggeredAlarms != null && (this._triggeredAlarms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -480,7 +500,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if ValidNextSteps property is set
         internal bool IsSetValidNextSteps()
         {
-            return this._validNextSteps != null && this._validNextSteps.Count > 0; 
+            return this._validNextSteps != null && (this._validNextSteps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

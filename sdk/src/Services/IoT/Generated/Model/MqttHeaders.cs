@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.IoT.Model
         private string _messageExpiry;
         private string _payloadFormatIndicator;
         private string _responseTopic;
-        private List<UserProperty> _userProperties = new List<UserProperty>();
+        private List<UserProperty> _userProperties = AWSConfigs.InitializeCollections ? new List<UserProperty>() : null;
 
         /// <summary>
         /// Gets and sets the property ContentType. 
@@ -109,8 +110,8 @@ namespace Amazon.IoT.Model
         /// <para>
         /// A user-defined integer value that will persist a message at the message broker for
         /// a specified amount of time to ensure that the message will expire if it's no longer
-        /// relevant to the subscriber. The value of <code>messageExpiry</code> represents the
-        /// number of seconds before it expires. For more information about the limits of <code>messageExpiry</code>,
+        /// relevant to the subscriber. The value of <c>messageExpiry</c> represents the number
+        /// of seconds before it expires. For more information about the limits of <c>messageExpiry</c>,
         /// see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html">Amazon
         /// Web Services IoT Core message broker and protocol limits and quotas </a> from the
         /// Amazon Web Services Reference Guide.
@@ -137,12 +138,11 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property PayloadFormatIndicator. 
         /// <para>
-        /// An <code>Enum</code> string value that indicates whether the payload is formatted
-        /// as UTF-8.
+        /// An <c>Enum</c> string value that indicates whether the payload is formatted as UTF-8.
         /// </para>
         ///  
         /// <para>
-        /// Valid values are <code>UNSPECIFIED_BYTES</code> and <code>UTF8_DATA</code>.
+        /// Valid values are <c>UNSPECIFIED_BYTES</c> and <c>UTF8_DATA</c>.
         /// </para>
         ///  
         /// <para>
@@ -215,7 +215,7 @@ namespace Amazon.IoT.Model
         // Check to see if UserProperties property is set
         internal bool IsSetUserProperties()
         {
-            return this._userProperties != null && this._userProperties.Count > 0; 
+            return this._userProperties != null && (this._userProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

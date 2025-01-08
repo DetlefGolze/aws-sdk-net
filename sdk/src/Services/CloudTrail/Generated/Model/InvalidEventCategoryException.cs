@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
-    /// Occurs if an event category that is not valid is specified as a value of <code>EventCategory</code>.
+    /// Occurs if an event category that is not valid is specified as a value of <c>EventCategory</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

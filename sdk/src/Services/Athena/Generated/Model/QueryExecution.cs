@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -34,10 +35,11 @@ namespace Amazon.Athena.Model
     public partial class QueryExecution
     {
         private EngineVersion _engineVersion;
-        private List<string> _executionParameters = new List<string>();
+        private List<string> _executionParameters = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _query;
         private QueryExecutionContext _queryExecutionContext;
         private string _queryExecutionId;
+        private QueryResultsS3AccessGrantsConfiguration _queryResultsS3AccessGrantsConfiguration;
         private ResultConfiguration _resultConfiguration;
         private ResultReuseConfiguration _resultReuseConfiguration;
         private StatementType _statementType;
@@ -82,7 +84,7 @@ namespace Amazon.Athena.Model
         // Check to see if ExecutionParameters property is set
         internal bool IsSetExecutionParameters()
         {
-            return this._executionParameters != null && this._executionParameters.Count > 0; 
+            return this._executionParameters != null && (this._executionParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,6 +144,24 @@ namespace Amazon.Athena.Model
         }
 
         /// <summary>
+        /// Gets and sets the property QueryResultsS3AccessGrantsConfiguration. 
+        /// <para>
+        /// Specifies whether Amazon S3 access grants are enabled for query results.
+        /// </para>
+        /// </summary>
+        public QueryResultsS3AccessGrantsConfiguration QueryResultsS3AccessGrantsConfiguration
+        {
+            get { return this._queryResultsS3AccessGrantsConfiguration; }
+            set { this._queryResultsS3AccessGrantsConfiguration = value; }
+        }
+
+        // Check to see if QueryResultsS3AccessGrantsConfiguration property is set
+        internal bool IsSetQueryResultsS3AccessGrantsConfiguration()
+        {
+            return this._queryResultsS3AccessGrantsConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ResultConfiguration. 
         /// <para>
         /// The location in Amazon S3 where query and calculation results are stored and the encryption
@@ -184,11 +204,10 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property StatementType. 
         /// <para>
-        /// The type of query statement that was run. <code>DDL</code> indicates DDL query statements.
-        /// <code>DML</code> indicates DML (Data Manipulation Language) query statements, such
-        /// as <code>CREATE TABLE AS SELECT</code>. <code>UTILITY</code> indicates query statements
-        /// other than DDL and DML, such as <code>SHOW CREATE TABLE</code>, or <code>DESCRIBE
-        /// TABLE</code>.
+        /// The type of query statement that was run. <c>DDL</c> indicates DDL query statements.
+        /// <c>DML</c> indicates DML (Data Manipulation Language) query statements, such as <c>CREATE
+        /// TABLE AS SELECT</c>. <c>UTILITY</c> indicates query statements other than DDL and
+        /// DML, such as <c>SHOW CREATE TABLE</c>, or <c>DESCRIBE TABLE</c>.
         /// </para>
         /// </summary>
         public StatementType StatementType

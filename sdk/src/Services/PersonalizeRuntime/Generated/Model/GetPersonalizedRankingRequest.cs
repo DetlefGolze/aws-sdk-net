@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PersonalizeRuntime.Model
 {
     /// <summary>
@@ -42,10 +43,11 @@ namespace Amazon.PersonalizeRuntime.Model
     public partial class GetPersonalizedRankingRequest : AmazonPersonalizeRuntimeRequest
     {
         private string _campaignArn;
-        private Dictionary<string, string> _context = new Dictionary<string, string>();
+        private Dictionary<string, string> _context = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _filterArn;
-        private Dictionary<string, string> _filterValues = new Dictionary<string, string>();
-        private List<string> _inputList = new List<string>();
+        private Dictionary<string, string> _filterValues = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _inputList = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, List<string>> _metadataColumns = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _userId;
 
         /// <summary>
@@ -86,7 +88,7 @@ namespace Amazon.PersonalizeRuntime.Model
         // Check to see if Context property is set
         internal bool IsSetContext()
         {
-            return this._context != null && this._context.Count > 0; 
+            return this._context != null && (this._context.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,11 +122,11 @@ namespace Amazon.PersonalizeRuntime.Model
         /// </para>
         ///  
         /// <para>
-        /// For filter expressions that use an <code>INCLUDE</code> element to include items,
-        /// you must provide values for all parameters that are defined in the expression. For
-        /// filters with expressions that use an <code>EXCLUDE</code> element to exclude items,
-        /// you can omit the <code>filter-values</code>.In this case, Amazon Personalize doesn't
-        /// use that portion of the expression to filter recommendations.
+        /// For filter expressions that use an <c>INCLUDE</c> element to include items, you must
+        /// provide values for all parameters that are defined in the expression. For filters
+        /// with expressions that use an <c>EXCLUDE</c> element to exclude items, you can omit
+        /// the <c>filter-values</c>.In this case, Amazon Personalize doesn't use that portion
+        /// of the expression to filter recommendations.
         /// </para>
         ///  
         /// <para>
@@ -142,15 +144,15 @@ namespace Amazon.PersonalizeRuntime.Model
         // Check to see if FilterValues property is set
         internal bool IsSetFilterValues()
         {
-            return this._filterValues != null && this._filterValues.Count > 0; 
+            return this._filterValues != null && (this._filterValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InputList. 
         /// <para>
-        /// A list of items (by <code>itemId</code>) to rank. If an item was not included in the
-        /// training dataset, the item is appended to the end of the reranked list. The maximum
-        /// is 500.
+        /// A list of items (by <c>itemId</c>) to rank. If an item was not included in the training
+        /// dataset, the item is appended to the end of the reranked list. If you are including
+        /// metadata in recommendations, the maximum is 50. Otherwise, the maximum is 500.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -163,7 +165,34 @@ namespace Amazon.PersonalizeRuntime.Model
         // Check to see if InputList property is set
         internal bool IsSetInputList()
         {
-            return this._inputList != null && this._inputList.Count > 0; 
+            return this._inputList != null && (this._inputList.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MetadataColumns. 
+        /// <para>
+        /// If you enabled metadata in recommendations when you created or updated the campaign,
+        /// specify metadata columns from your Items dataset to include in the personalized ranking.
+        /// The map key is <c>ITEMS</c> and the value is a list of column names from your Items
+        /// dataset. The maximum number of columns you can provide is 10.
+        /// </para>
+        ///  
+        /// <para>
+        ///  For information about enabling metadata for a campaign, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/campaigns.html#create-campaign-return-metadata">Enabling
+        /// metadata in recommendations for a campaign</a>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1)]
+        public Dictionary<string, List<string>> MetadataColumns
+        {
+            get { return this._metadataColumns; }
+            set { this._metadataColumns = value; }
+        }
+
+        // Check to see if MetadataColumns property is set
+        internal bool IsSetMetadataColumns()
+        {
+            return this._metadataColumns != null && (this._metadataColumns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

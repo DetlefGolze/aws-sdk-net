@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Snowball.Model
     /// </summary>
     public partial class ListClusterJobsResponse : AmazonWebServiceResponse
     {
-        private List<JobListEntry> _jobListEntries = new List<JobListEntry>();
+        private List<JobListEntry> _jobListEntries = AWSConfigs.InitializeCollections ? new List<JobListEntry>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property JobListEntries. 
         /// <para>
-        /// Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value
-        /// that indicates whether the job is a job part, in the case of export jobs. 
+        /// Each <c>JobListEntry</c> object contains a job's state, a job's ID, and a value that
+        /// indicates whether the job is a job part, in the case of export jobs. 
         /// </para>
         /// </summary>
         public List<JobListEntry> JobListEntries
@@ -52,15 +53,15 @@ namespace Amazon.Snowball.Model
         // Check to see if JobListEntries property is set
         internal bool IsSetJobListEntries()
         {
-            return this._jobListEntries != null && this._jobListEntries.Count > 0; 
+            return this._jobListEntries != null && (this._jobListEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// HTTP requests are stateless. If you use the automatically generated <code>NextToken</code>
-        /// value in your next <code>ListClusterJobsResult</code> call, your list of returned
-        /// jobs will start from this point in the array.
+        /// HTTP requests are stateless. If you use the automatically generated <c>NextToken</c>
+        /// value in your next <c>ListClusterJobsResult</c> call, your list of returned jobs will
+        /// start from this point in the array.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

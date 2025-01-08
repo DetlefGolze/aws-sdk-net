@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudControlApi.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.CloudControlApi.Model
     /// </summary>
     public partial class ResourceRequestStatusFilter
     {
-        private List<string> _operations = new List<string>();
-        private List<string> _operationStatuses = new List<string>();
+        private List<string> _operations = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _operationStatuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Operations. 
@@ -51,7 +52,7 @@ namespace Amazon.CloudControlApi.Model
         // Check to see if Operations property is set
         internal bool IsSetOperations()
         {
-            return this._operations != null && this._operations.Count > 0; 
+            return this._operations != null && (this._operations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -61,27 +62,27 @@ namespace Amazon.CloudControlApi.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code>: The operation has been requested, but not yet initiated.
+        ///  <c>PENDING</c>: The operation has been requested, but not yet initiated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code>: The operation is in progress.
+        ///  <c>IN_PROGRESS</c>: The operation is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCESS</code>: The operation completed.
+        ///  <c>SUCCESS</c>: The operation completed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code>: The operation failed.
+        ///  <c>FAILED</c>: The operation failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANCEL_IN_PROGRESS</code>: The operation is in the process of being canceled.
+        ///  <c>CANCEL_IN_PROGRESS</c>: The operation is in the process of being canceled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANCEL_COMPLETE</code>: The operation has been canceled.
+        ///  <c>CANCEL_COMPLETE</c>: The operation has been canceled.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -94,7 +95,7 @@ namespace Amazon.CloudControlApi.Model
         // Check to see if OperationStatuses property is set
         internal bool IsSetOperationStatuses()
         {
-            return this._operationStatuses != null && this._operationStatuses.Count > 0; 
+            return this._operationStatuses != null && (this._operationStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

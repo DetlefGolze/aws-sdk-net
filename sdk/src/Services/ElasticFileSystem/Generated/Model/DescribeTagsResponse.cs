@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -35,13 +36,12 @@ namespace Amazon.ElasticFileSystem.Model
     {
         private string _marker;
         private string _nextMarker;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// If the request included a <code>Marker</code>, the response returns that value in
-        /// this field.
+        /// If the request included a <c>Marker</c>, the response returns that value in this field.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -61,8 +61,8 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property NextMarker. 
         /// <para>
         /// If a value is present, there are more tags to return. In a subsequent request, you
-        /// can provide the value of <code>NextMarker</code> as the value of the <code>Marker</code>
-        /// parameter in your next request to retrieve the next set of tags.
+        /// can provide the value of <c>NextMarker</c> as the value of the <c>Marker</c> parameter
+        /// in your next request to retrieve the next set of tags.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -81,8 +81,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Returns tags associated with the file system as an array of <code>Tag</code> objects.
-        /// 
+        /// Returns tags associated with the file system as an array of <c>Tag</c> objects. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -95,7 +94,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

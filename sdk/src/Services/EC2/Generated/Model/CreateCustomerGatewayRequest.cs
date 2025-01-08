@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -56,11 +57,12 @@ namespace Amazon.EC2.Model
     public partial class CreateCustomerGatewayRequest : AmazonEC2Request
     {
         private int? _bgpAsn;
+        private long? _bgpAsnExtended;
         private string _certificateArn;
         private string _deviceName;
         private string _ipAddress;
         private string _publicIp;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private GatewayType _type;
 
         /// <summary>
@@ -71,9 +73,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates CreateCustomerGatewayRequest with the parameterized properties
         /// </summary>
-        /// <param name="type">The type of VPN connection that this customer gateway supports (<code>ipsec.1</code>).</param>
+        /// <param name="type">The type of VPN connection that this customer gateway supports (<c>ipsec.1</c>).</param>
         /// <param name="publicIp"> <i>This member has been deprecated.</i> The Internet-routable IP address for the customer gateway's outside interface. The address must be static.</param>
-        /// <param name="bgpAsn">For devices that support BGP, the customer gateway's BGP ASN. Default: 65000</param>
+        /// <param name="bgpAsn">For customer gateway devices that support BGP, specify the device's ASN. You must specify either <c>BgpAsn</c> or <c>BgpAsnExtended</c> when creating the customer gateway. If the ASN is larger than <c>2,147,483,647</c>, you must use <c>BgpAsnExtended</c>. Default: 65000 Valid values: <c>1</c> to <c>2,147,483,647</c> </param>
         public CreateCustomerGatewayRequest(GatewayType type, string publicIp, int bgpAsn)
         {
             _type = type;
@@ -84,11 +86,17 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property BgpAsn. 
         /// <para>
-        /// For devices that support BGP, the customer gateway's BGP ASN.
+        /// For customer gateway devices that support BGP, specify the device's ASN. You must
+        /// specify either <c>BgpAsn</c> or <c>BgpAsnExtended</c> when creating the customer gateway.
+        /// If the ASN is larger than <c>2,147,483,647</c>, you must use <c>BgpAsnExtended</c>.
         /// </para>
         ///  
         /// <para>
         /// Default: 65000
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: <c>1</c> to <c>2,147,483,647</c> 
         /// </para>
         /// </summary>
         public int BgpAsn
@@ -101,6 +109,30 @@ namespace Amazon.EC2.Model
         internal bool IsSetBgpAsn()
         {
             return this._bgpAsn.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property BgpAsnExtended. 
+        /// <para>
+        /// For customer gateway devices that support BGP, specify the device's ASN. You must
+        /// specify either <c>BgpAsn</c> or <c>BgpAsnExtended</c> when creating the customer gateway.
+        /// If the ASN is larger than <c>2,147,483,647</c>, you must use <c>BgpAsnExtended</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: <c>2,147,483,648</c> to <c>4,294,967,295</c> 
+        /// </para>
+        /// </summary>
+        public long BgpAsnExtended
+        {
+            get { return this._bgpAsnExtended.GetValueOrDefault(); }
+            set { this._bgpAsnExtended = value; }
+        }
+
+        // Check to see if BgpAsnExtended property is set
+        internal bool IsSetBgpAsnExtended()
+        {
+            return this._bgpAsnExtended.HasValue; 
         }
 
         /// <summary>
@@ -146,8 +178,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property IpAddress. 
         /// <para>
-        ///  IPv4 address for the customer gateway device's outside interface. The address must
-        /// be static. 
+        /// IPv4 address for the customer gateway device's outside interface. The address must
+        /// be static. If <c>OutsideIpAddressType</c> in your VPN connection options is set to
+        /// <c>PrivateIpv4</c>, you can use an RFC6598 or RFC1918 private IPv4 address. If <c>OutsideIpAddressType</c>
+        /// is set to <c>PublicIpv4</c>, you can use a public IPv4 address. 
         /// </para>
         /// </summary>
         public string IpAddress
@@ -196,13 +230,13 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of VPN connection that this customer gateway supports (<code>ipsec.1</code>).
+        /// The type of VPN connection that this customer gateway supports (<c>ipsec.1</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

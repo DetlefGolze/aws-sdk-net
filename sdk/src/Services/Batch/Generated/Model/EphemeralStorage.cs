@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property SizeInGiB. 
         /// <para>
         /// The total amount, in GiB, of ephemeral storage to set for the task. The minimum supported
-        /// value is <code>21</code> GiB and the maximum supported value is <code>200</code> GiB.
+        /// value is <c>21</c> GiB and the maximum supported value is <c>200</c> GiB.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

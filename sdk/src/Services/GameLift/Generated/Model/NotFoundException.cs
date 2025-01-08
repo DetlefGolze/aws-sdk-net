@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
-    /// THe requested resources was not found. The resource was either not created yet or
+    /// The requested resources was not found. The resource was either not created yet or
     /// deleted.
     /// </summary>
     #if !NETSTANDARD

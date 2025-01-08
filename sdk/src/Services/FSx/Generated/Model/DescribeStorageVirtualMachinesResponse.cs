@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.FSx.Model
     public partial class DescribeStorageVirtualMachinesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StorageVirtualMachine> _storageVirtualMachines = new List<StorageVirtualMachine>();
+        private List<StorageVirtualMachine> _storageVirtualMachines = AWSConfigs.InitializeCollections ? new List<StorageVirtualMachine>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken.
@@ -55,8 +56,8 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property StorageVirtualMachines. 
         /// <para>
-        /// Returned after a successful <code>DescribeStorageVirtualMachines</code> operation,
-        /// describing each SVM.
+        /// Returned after a successful <c>DescribeStorageVirtualMachines</c> operation, describing
+        /// each SVM.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -69,7 +70,7 @@ namespace Amazon.FSx.Model
         // Check to see if StorageVirtualMachines property is set
         internal bool IsSetStorageVirtualMachines()
         {
-            return this._storageVirtualMachines != null && this._storageVirtualMachines.Count > 0; 
+            return this._storageVirtualMachines != null && (this._storageVirtualMachines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

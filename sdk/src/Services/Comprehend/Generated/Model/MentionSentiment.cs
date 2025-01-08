@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Comprehend.Model
     ///  
     /// <para>
     /// For more information about targeted sentiment, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html">Targeted
-    /// sentiment</a>.
+    /// sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
     /// </para>
     /// </summary>
     public partial class MentionSentiment

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkMail.Model
 {
     /// <summary>
@@ -121,6 +122,14 @@ namespace Amazon.WorkMail.Model
         public IListOrganizationsPaginator ListOrganizations(ListOrganizationsRequest request) 
         {
             return new ListOrganizationsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPersonalAccessTokens operation
+        ///</summary>
+        public IListPersonalAccessTokensPaginator ListPersonalAccessTokens(ListPersonalAccessTokensRequest request) 
+        {
+            return new ListPersonalAccessTokensPaginator(this.client, request);
         }
 
         /// <summary>

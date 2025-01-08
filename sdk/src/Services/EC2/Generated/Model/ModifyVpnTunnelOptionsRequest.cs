@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -46,11 +47,12 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SkipTunnelReplacement. 
         /// <para>
-        /// Choose whether or not to trigger immediate tunnel replacement.
+        /// Choose whether or not to trigger immediate tunnel replacement. This is only applicable
+        /// when turning on or off <c>EnableTunnelLifecycleControl</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>True</code> | <code>False</code> 
+        /// Valid values: <c>True</c> | <c>False</c> 
         /// </para>
         /// </summary>
         public bool SkipTunnelReplacement

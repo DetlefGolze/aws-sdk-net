@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for the parameters received from <code> <a>DescribeElasticsearchInstanceTypeLimits</a>
-    /// </code> operation.
+    /// Container for the parameters received from <c> <a>DescribeElasticsearchInstanceTypeLimits</a>
+    /// </c> operation.
     /// </summary>
     public partial class DescribeElasticsearchInstanceTypeLimitsResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, Limits> _limitsByRole = new Dictionary<string, Limits>();
+        private Dictionary<string, Limits> _limitsByRole = AWSConfigs.InitializeCollections ? new Dictionary<string, Limits>() : null;
 
         /// <summary>
         /// Gets and sets the property LimitsByRole.
@@ -48,7 +49,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if LimitsByRole property is set
         internal bool IsSetLimitsByRole()
         {
-            return this._limitsByRole != null && this._limitsByRole.Count > 0; 
+            return this._limitsByRole != null && (this._limitsByRole.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

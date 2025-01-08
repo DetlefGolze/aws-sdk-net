@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property MigrationStatus. 
         /// <para>
-        /// The status of the operation. When the status is <code>COMPLETE</code> the bot is available
+        /// The status of the operation. When the status is <c>COMPLETE</c> the bot is available
         /// in Amazon Lex V2. There may be alerts and warnings that need to be resolved to complete
         /// the migration.
         /// </para>

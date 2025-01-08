@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -33,20 +34,26 @@ namespace Amazon.Comprehend.Model
     /// </summary>
     public partial class ClassifyDocumentResponse : AmazonWebServiceResponse
     {
-        private List<DocumentClass> _classes = new List<DocumentClass>();
+        private List<DocumentClass> _classes = AWSConfigs.InitializeCollections ? new List<DocumentClass>() : null;
         private DocumentMetadata _documentMetadata;
-        private List<DocumentTypeListItem> _documentType = new List<DocumentTypeListItem>();
-        private List<ErrorsListItem> _errors = new List<ErrorsListItem>();
-        private List<DocumentLabel> _labels = new List<DocumentLabel>();
-        private List<WarningsListItem> _warnings = new List<WarningsListItem>();
+        private List<DocumentTypeListItem> _documentType = AWSConfigs.InitializeCollections ? new List<DocumentTypeListItem>() : null;
+        private List<ErrorsListItem> _errors = AWSConfigs.InitializeCollections ? new List<ErrorsListItem>() : null;
+        private List<DocumentLabel> _labels = AWSConfigs.InitializeCollections ? new List<DocumentLabel>() : null;
+        private List<WarningsListItem> _warnings = AWSConfigs.InitializeCollections ? new List<WarningsListItem>() : null;
 
         /// <summary>
         /// Gets and sets the property Classes. 
         /// <para>
-        /// The classes used by the document being analyzed. These are used for multi-class trained
-        /// models. Individual classes are mutually exclusive and each document is expected to
-        /// have only a single class assigned to it. For example, an animal can be a dog or a
-        /// cat, but not both at the same time. 
+        /// The classes used by the document being analyzed. These are used for models trained
+        /// in multi-class mode. Individual classes are mutually exclusive and each document is
+        /// expected to have only a single class assigned to it. For example, an animal can be
+        /// a dog or a cat, but not both at the same time. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For prompt safety classification, the response includes only two classes (SAFE_PROMPT
+        /// and UNSAFE_PROMPT), along with a confidence score for each class. The value range
+        /// of the score is zero to one, where one is the highest confidence.
         /// </para>
         /// </summary>
         public List<DocumentClass> Classes
@@ -58,14 +65,14 @@ namespace Amazon.Comprehend.Model
         // Check to see if Classes property is set
         internal bool IsSetClasses()
         {
-            return this._classes != null && this._classes.Count > 0; 
+            return this._classes != null && (this._classes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DocumentMetadata. 
         /// <para>
         /// Extraction information about the document. This field is present in the response only
-        /// if your request includes the <code>Byte</code> parameter. 
+        /// if your request includes the <c>Byte</c> parameter. 
         /// </para>
         /// </summary>
         public DocumentMetadata DocumentMetadata
@@ -84,7 +91,7 @@ namespace Amazon.Comprehend.Model
         /// Gets and sets the property DocumentType. 
         /// <para>
         /// The document type for each page in the input document. This field is present in the
-        /// response only if your request includes the <code>Byte</code> parameter. 
+        /// response only if your request includes the <c>Byte</c> parameter. 
         /// </para>
         /// </summary>
         public List<DocumentTypeListItem> DocumentType
@@ -96,7 +103,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if DocumentType property is set
         internal bool IsSetDocumentType()
         {
-            return this._documentType != null && this._documentType.Count > 0; 
+            return this._documentType != null && (this._documentType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,13 +122,13 @@ namespace Amazon.Comprehend.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Labels. 
         /// <para>
-        /// The labels used the document being analyzed. These are used for multi-label trained
+        /// The labels used in the document being analyzed. These are used for multi-label trained
         /// models. Individual labels represent different categories that are related in some
         /// manner and are not mutually exclusive. For example, a movie can be just an action
         /// movie, or it can be an action movie, a science fiction movie, and a comedy, all at
@@ -137,7 +144,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if Labels property is set
         internal bool IsSetLabels()
         {
-            return this._labels != null && this._labels.Count > 0; 
+            return this._labels != null && (this._labels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +169,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if Warnings property is set
         internal bool IsSetWarnings()
         {
-            return this._warnings != null && this._warnings.Count > 0; 
+            return this._warnings != null && (this._warnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

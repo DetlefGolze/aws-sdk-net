@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -43,9 +44,42 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Action. 
         /// <para>
-        /// The type of pending maintenance action that is available for the resource. Valid actions
-        /// are <code>system-update</code>, <code>db-upgrade</code>, <code>hardware-maintenance</code>,
-        /// and <code>ca-certificate-rotation</code>.
+        /// The type of pending maintenance action that is available for the resource. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about maintenance actions, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html">Maintaining
+        /// a DB instance</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ca-certificate-rotation</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>db-upgrade</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>hardware-maintenance</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>os-upgrade</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>system-update</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information about these actions, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html#maintenance-actions-aurora">Maintenance
+        /// actions for Amazon Aurora</a> or <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#maintenance-actions-rds">Maintenance
+        /// actions for Amazon RDS</a>.
         /// </para>
         /// </summary>
         public string Action
@@ -83,10 +117,10 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property CurrentApplyDate. 
         /// <para>
         /// The effective date when the pending maintenance action is applied to the resource.
-        /// This date takes into account opt-in requests received from the <code>ApplyPendingMaintenanceAction</code>
-        /// API, the <code>AutoAppliedAfterDate</code>, and the <code>ForcedApplyDate</code>.
-        /// This value is blank if an opt-in request has not been received and nothing has been
-        /// specified as <code>AutoAppliedAfterDate</code> or <code>ForcedApplyDate</code>.
+        /// This date takes into account opt-in requests received from the <c>ApplyPendingMaintenanceAction</c>
+        /// API, the <c>AutoAppliedAfterDate</c>, and the <c>ForcedApplyDate</c>. This value is
+        /// blank if an opt-in request has not been received and nothing has been specified as
+        /// <c>AutoAppliedAfterDate</c> or <c>ForcedApplyDate</c>.
         /// </para>
         /// </summary>
         public DateTime CurrentApplyDate

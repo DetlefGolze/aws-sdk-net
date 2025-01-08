@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
     /// Your request didn't pass one or more validation tests. This can occur when the entity
     /// you're trying to delete doesn't exist or if it's in a non-terminal state (such as
-    /// <code>IN PROGRESS</code>). See the exception message field for more information.
+    /// <c>IN PROGRESS</c>). See the exception message field for more information.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

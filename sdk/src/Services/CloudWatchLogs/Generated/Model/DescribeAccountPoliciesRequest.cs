@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -34,7 +35,8 @@ namespace Amazon.CloudWatchLogs.Model
     /// </summary>
     public partial class DescribeAccountPoliciesRequest : AmazonCloudWatchLogsRequest
     {
-        private List<string> _accountIdentifiers = new List<string>();
+        private List<string> _accountIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _nextToken;
         private string _policyName;
         private PolicyType _policyType;
 
@@ -61,7 +63,27 @@ namespace Amazon.CloudWatchLogs.Model
         // Check to see if AccountIdentifiers property is set
         internal bool IsSetAccountIdentifiers()
         {
-            return this._accountIdentifiers != null && this._accountIdentifiers.Count > 0; 
+            return this._accountIdentifiers != null && (this._accountIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NextToken. 
+        /// <para>
+        /// The token for the next set of items to return. (You received this token from a previous
+        /// call.)
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public string NextToken
+        {
+            get { return this._nextToken; }
+            set { this._nextToken = value; }
+        }
+
+        // Check to see if NextToken property is set
+        internal bool IsSetNextToken()
+        {
+            return this._nextToken != null;
         }
 
         /// <summary>
@@ -87,7 +109,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// Gets and sets the property PolicyType. 
         /// <para>
         /// Use this parameter to limit the returned policies to only the policies that match
-        /// the policy type that you specify. Currently, the only valid value is <code>DATA_PROTECTION_POLICY</code>.
+        /// the policy type that you specify.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

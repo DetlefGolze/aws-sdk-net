@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property Policy. 
         /// <para>
-        /// The policy details for the <code>PutMultiRegionAccessPoint</code> request.
+        /// The policy details for the <c>PutMultiRegionAccessPoint</c> request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Unexpected error during processing of request.
+    /// An unexpected error occurred during the processing of the request.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

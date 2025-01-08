@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.IotData.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.IotData
 {
     /// <summary>
-    /// Interface for accessing IotData
+    /// <para>Interface for accessing IotData</para>
     ///
     /// IoT data 
     /// <para>
@@ -44,7 +45,7 @@ namespace Amazon.IotData
     /// </para>
     ///  
     /// <para>
-    ///  <code>aws iot describe-endpoint --endpoint-type iot:Data-ATS</code> 
+    ///  <c>aws iot describe-endpoint --endpoint-type iot:Data-ATS</c> 
     /// </para>
     ///  
     /// <para>

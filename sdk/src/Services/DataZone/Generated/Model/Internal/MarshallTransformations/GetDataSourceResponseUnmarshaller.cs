@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,6 +62,12 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DataSourceConfigurationOutputUnmarshaller.Instance;
                     response.Configuration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("connectionId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ConnectionId = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("createdAt", targetDepth))
@@ -157,6 +164,12 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ScheduleConfigurationUnmarshaller.Instance;
                     response.Schedule = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("selfGrantStatus", targetDepth))
+                {
+                    var unmarshaller = SelfGrantStatusOutputUnmarshaller.Instance;
+                    response.SelfGrantStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("status", targetDepth))

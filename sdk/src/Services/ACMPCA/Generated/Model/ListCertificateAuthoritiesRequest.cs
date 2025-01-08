@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
@@ -44,8 +45,12 @@ namespace Amazon.ACMPCA.Model
         /// <para>
         /// Use this parameter when paginating results to specify the maximum number of items
         /// to return in the response on each page. If additional items exist beyond the number
-        /// you specify, the <code>NextToken</code> element is sent in the response. Use this
-        /// <code>NextToken</code> value in a subsequent request to retrieve additional items.
+        /// you specify, the <c>NextToken</c> element is sent in the response. Use this <c>NextToken</c>
+        /// value in a subsequent request to retrieve additional items.
+        /// </para>
+        ///  
+        /// <para>
+        /// Although the maximum value is 1000, the action only returns a maximum of 100 items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -65,11 +70,11 @@ namespace Amazon.ACMPCA.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Use this parameter when paginating results in a subsequent request after you receive
-        /// a response with truncated results. Set it to the value of the <code>NextToken</code>
-        /// parameter from the response you just received.
+        /// a response with truncated results. Set it to the value of the <c>NextToken</c> parameter
+        /// from the response you just received.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=500)]
+        [AWSProperty(Min=1, Max=43739)]
         public string NextToken
         {
             get { return this._nextToken; }

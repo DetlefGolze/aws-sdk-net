@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for the response returned by the <code>UpdatePackage</code> operation.
+    /// Container for the response returned by the <c>UpdatePackage</c> operation.
     /// </summary>
     public partial class UpdatePackageResponse : AmazonWebServiceResponse
     {

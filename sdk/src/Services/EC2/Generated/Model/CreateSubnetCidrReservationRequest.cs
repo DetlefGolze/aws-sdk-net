@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateSubnetCidrReservation operation.
     /// Creates a subnet CIDR reservation. For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/subnet-cidr-reservation.html">Subnet
-    /// CIDR reservations</a> in the <i>Amazon Virtual Private Cloud User Guide</i> and <a
-    /// href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html">Assign
-    /// prefixes to network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// CIDR reservations</a> in the <i>Amazon VPC User Guide</i> and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/work-with-prefixes.html">Manage
+    /// prefixes for your network interfaces</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class CreateSubnetCidrReservationRequest : AmazonEC2Request
     {
@@ -41,7 +41,7 @@ namespace Amazon.EC2.Model
         private string _description;
         private SubnetCidrReservationType _reservationType;
         private string _subnetId;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Gets and sets the property Cidr. 
@@ -88,12 +88,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>prefix</code> - Amazon Web Services assigns the reserved IP addresses to network
+        ///  <c>prefix</c> - Amazon Web Services assigns the reserved IP addresses to network
         /// interfaces.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>explicit</code> - You assign the reserved IP addresses to network interfaces.
+        ///  <c>explicit</c> - You assign the reserved IP addresses to network interfaces.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -144,7 +144,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

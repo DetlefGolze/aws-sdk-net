@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -100,8 +101,8 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, an account might show a status of <code>Pending</code> because member
-        /// accounts of an organization require more time to be enrolled in the service.
+        /// For example, an account might show a status of <c>Pending</c> because member accounts
+        /// of an organization require more time to be enrolled in the service.
         /// </para>
         /// </summary>
         public string StatusReason

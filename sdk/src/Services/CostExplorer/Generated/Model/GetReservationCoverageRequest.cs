@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -87,17 +88,17 @@ namespace Amazon.CostExplorer.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// To determine valid values for a dimension, use the <code>GetDimensionValues</code>
-    /// operation. 
+    /// To determine valid values for a dimension, use the <c>GetDimensionValues</c> operation.
+    /// 
     /// </para>
     /// </summary>
     public partial class GetReservationCoverageRequest : AmazonCostExplorerRequest
     {
         private Expression _filter;
         private Granularity _granularity;
-        private List<GroupDefinition> _groupBy = new List<GroupDefinition>();
+        private List<GroupDefinition> _groupBy = AWSConfigs.InitializeCollections ? new List<GroupDefinition>() : null;
         private int? _maxResults;
-        private List<string> _metrics = new List<string>();
+        private List<string> _metrics = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextPageToken;
         private SortDefinition _sortBy;
         private DateInterval _timePeriod;
@@ -157,14 +158,14 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  <code>GetReservationCoverage</code> uses the same <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html">Expression</a>
-        /// object as the other operations, but only <code>AND</code> is supported among each
-        /// dimension. You can nest only one level deep. If there are multiple values for a dimension,
-        /// they are OR'd together.
+        ///  <c>GetReservationCoverage</c> uses the same <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html">Expression</a>
+        /// object as the other operations, but only <c>AND</c> is supported among each dimension.
+        /// You can nest only one level deep. If there are multiple values for a dimension, they
+        /// are OR'd together.
         /// </para>
         ///  
         /// <para>
-        /// If you don't provide a <code>SERVICE</code> filter, Cost Explorer defaults to EC2.
+        /// If you don't provide a <c>SERVICE</c> filter, Cost Explorer defaults to EC2.
         /// </para>
         ///  
         /// <para>
@@ -187,18 +188,18 @@ namespace Amazon.CostExplorer.Model
         /// Gets and sets the property Granularity. 
         /// <para>
         /// The granularity of the Amazon Web Services cost data for the reservation. Valid values
-        /// are <code>MONTHLY</code> and <code>DAILY</code>.
+        /// are <c>MONTHLY</c> and <c>DAILY</c>.
         /// </para>
         ///  
         /// <para>
-        /// If <code>GroupBy</code> is set, <code>Granularity</code> can't be set. If <code>Granularity</code>
-        /// isn't set, the response object doesn't include <code>Granularity</code>, either <code>MONTHLY</code>
-        /// or <code>DAILY</code>.
+        /// If <c>GroupBy</c> is set, <c>Granularity</c> can't be set. If <c>Granularity</c> isn't
+        /// set, the response object doesn't include <c>Granularity</c>, either <c>MONTHLY</c>
+        /// or <c>DAILY</c>.
         /// </para>
         ///  
         /// <para>
-        /// The <code>GetReservationCoverage</code> operation supports only <code>DAILY</code>
-        /// and <code>MONTHLY</code> granularities.
+        /// The <c>GetReservationCoverage</c> operation supports only <c>DAILY</c> and <c>MONTHLY</c>
+        /// granularities.
         /// </para>
         /// </summary>
         public Granularity Granularity
@@ -273,7 +274,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if GroupBy property is set
         internal bool IsSetGroupBy()
         {
-            return this._groupBy != null && this._groupBy.Count > 0; 
+            return this._groupBy != null && (this._groupBy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -304,8 +305,8 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values are <code>Hour</code>, <code>Unit</code>, and <code>Cost</code>. You
-        /// can use multiple values in a request.
+        /// Valid values are <c>Hour</c>, <c>Unit</c>, and <c>Cost</c>. You can use multiple values
+        /// in a request.
         /// </para>
         /// </summary>
         public List<string> Metrics
@@ -317,7 +318,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if Metrics property is set
         internal bool IsSetMetrics()
         {
-            return this._metrics != null && this._metrics.Count > 0; 
+            return this._metrics != null && (this._metrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -347,51 +348,51 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  
         /// <para>
-        /// The following values are supported for <code>Key</code>:
+        /// The following values are supported for <c>Key</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>OnDemandCost</code> 
+        ///  <c>OnDemandCost</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CoverageHoursPercentage</code> 
+        ///  <c>CoverageHoursPercentage</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OnDemandHours</code> 
+        ///  <c>OnDemandHours</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReservedHours</code> 
+        ///  <c>ReservedHours</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TotalRunningHours</code> 
+        ///  <c>TotalRunningHours</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CoverageNormalizedUnitsPercentage</code> 
+        ///  <c>CoverageNormalizedUnitsPercentage</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OnDemandNormalizedUnits</code> 
+        ///  <c>OnDemandNormalizedUnits</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReservedNormalizedUnits</code> 
+        ///  <c>ReservedNormalizedUnits</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TotalRunningNormalizedUnits</code> 
+        ///  <c>TotalRunningNormalizedUnits</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Time</code> 
+        ///  <c>Time</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Supported values for <code>SortOrder</code> are <code>ASCENDING</code> or <code>DESCENDING</code>.
+        /// Supported values for <c>SortOrder</c> are <c>ASCENDING</c> or <c>DESCENDING</c>.
         /// </para>
         /// </summary>
         public SortDefinition SortBy
@@ -412,10 +413,9 @@ namespace Amazon.CostExplorer.Model
         /// The start and end dates of the period that you want to retrieve data about reservation
         /// coverage for. You can retrieve data for a maximum of 13 months: the last 12 months
         /// and the current month. The start date is inclusive, but the end date is exclusive.
-        /// For example, if <code>start</code> is <code>2017-01-01</code> and <code>end</code>
-        /// is <code>2017-05-01</code>, then the cost and usage data is retrieved from <code>2017-01-01</code>
-        /// up to and including <code>2017-04-30</code> but not including <code>2017-05-01</code>.
-        /// 
+        /// For example, if <c>start</c> is <c>2017-01-01</c> and <c>end</c> is <c>2017-05-01</c>,
+        /// then the cost and usage data is retrieved from <c>2017-01-01</c> up to and including
+        /// <c>2017-04-30</c> but not including <c>2017-05-01</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

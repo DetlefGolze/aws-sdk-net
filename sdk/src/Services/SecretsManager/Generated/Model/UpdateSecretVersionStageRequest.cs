@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -40,19 +41,18 @@ namespace Amazon.SecretsManager.Model
     /// 
     ///  
     /// <para>
-    /// The staging labels that you specify in the <code>VersionStage</code> parameter are
-    /// added to the existing list of staging labels for the version. 
+    /// The staging labels that you specify in the <c>VersionStage</c> parameter are added
+    /// to the existing list of staging labels for the version. 
     /// </para>
     ///  
     /// <para>
-    /// You can move the <code>AWSCURRENT</code> staging label to this version by including
-    /// it in this call.
+    /// You can move the <c>AWSCURRENT</c> staging label to this version by including it in
+    /// this call.
     /// </para>
     ///  <note> 
     /// <para>
-    /// Whenever you move <code>AWSCURRENT</code>, Secrets Manager automatically moves the
-    /// label <code>AWSPREVIOUS</code> to the version that <code>AWSCURRENT</code> was removed
-    /// from.
+    /// Whenever you move <c>AWSCURRENT</c>, Secrets Manager automatically moves the label
+    /// <c>AWSPREVIOUS</c> to the version that <c>AWSCURRENT</c> was removed from.
     /// </para>
     ///  </note> 
     /// <para>
@@ -68,8 +68,8 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:UpdateSecretVersionStage</code>.
-    /// For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
+    ///  <b>Required permissions: </b> <c>secretsmanager:UpdateSecretVersionStage</c>. For
+    /// more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
     /// </para>
@@ -90,7 +90,7 @@ namespace Amazon.SecretsManager.Model
         ///  
         /// <para>
         /// If the staging label is already attached to a different version of the secret, then
-        /// you must also specify the <code>RemoveFromVersionId</code> parameter. 
+        /// you must also specify the <c>RemoveFromVersionId</c> parameter. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=32, Max=64)]

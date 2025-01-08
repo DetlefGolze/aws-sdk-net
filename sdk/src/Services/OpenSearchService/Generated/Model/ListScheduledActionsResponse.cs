@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.OpenSearchService.Model
     public partial class ListScheduledActionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ScheduledAction> _scheduledActions = new List<ScheduledAction>();
+        private List<ScheduledAction> _scheduledActions = AWSConfigs.InitializeCollections ? new List<ScheduledAction>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// When <c>nextToken</c> is returned, there are more results available. The value of
+        /// <c>nextToken</c> is a unique pagination token for each page. Send the request again
+        /// using the returned token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if ScheduledActions property is set
         internal bool IsSetScheduledActions()
         {
-            return this._scheduledActions != null && this._scheduledActions.Count > 0; 
+            return this._scheduledActions != null && (this._scheduledActions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

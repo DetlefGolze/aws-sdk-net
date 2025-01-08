@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
     /// Container for the parameters to the AddCommunicationToCase operation.
     /// Adds additional customer communication to an Amazon Web Services Support case. Use
-    /// the <code>caseId</code> parameter to identify the case to which to add communication.
-    /// You can list a set of email addresses to copy on the communication by using the <code>ccEmailAddresses</code>
-    /// parameter. The <code>communicationBody</code> value contains the text of the communication.
+    /// the <c>caseId</c> parameter to identify the case to which to add communication. You
+    /// can list a set of email addresses to copy on the communication by using the <c>ccEmailAddresses</c>
+    /// parameter. The <c>communicationBody</c> value contains the text of the communication.
     /// 
     ///  <note> <ul> <li> 
     /// <para>
@@ -43,7 +44,7 @@ namespace Amazon.AWSSupport.Model
     ///  </li> <li> 
     /// <para>
     /// If you call the Amazon Web Services Support API from an account that doesn't have
-    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <code>SubscriptionRequiredException</code>
+    /// a Business, Enterprise On-Ramp, or Enterprise Support plan, the <c>SubscriptionRequiredException</c>
     /// error message appears. For information about changing your support plan, see <a href="http://aws.amazon.com/premiumsupport/">Amazon
     /// Web Services Support</a>.
     /// </para>
@@ -53,7 +54,7 @@ namespace Amazon.AWSSupport.Model
     {
         private string _attachmentSetId;
         private string _caseId;
-        private List<string> _ccEmailAddresses = new List<string>();
+        private List<string> _ccEmailAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _communicationBody;
 
         /// <summary>
@@ -111,7 +112,7 @@ namespace Amazon.AWSSupport.Model
         // Check to see if CcEmailAddresses property is set
         internal bool IsSetCcEmailAddresses()
         {
-            return this._ccEmailAddresses != null && this._ccEmailAddresses.Count > 0; 
+            return this._ccEmailAddresses != null && (this._ccEmailAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

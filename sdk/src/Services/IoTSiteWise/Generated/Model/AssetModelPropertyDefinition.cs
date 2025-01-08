@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -36,6 +37,8 @@ namespace Amazon.IoTSiteWise.Model
     {
         private PropertyDataType _dataType;
         private string _dataTypeSpec;
+        private string _externalId;
+        private string _id;
         private string _name;
         private PropertyType _type;
         private string _unit;
@@ -47,8 +50,8 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>STRUCT</code>, you must also specify <code>dataTypeSpec</code>
-        /// to identify the type of the structure for this property.
+        /// If you specify <c>STRUCT</c>, you must also specify <c>dataTypeSpec</c> to identify
+        /// the type of the structure for this property.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -68,13 +71,13 @@ namespace Amazon.IoTSiteWise.Model
         /// Gets and sets the property DataTypeSpec. 
         /// <para>
         /// The data type of the structure for this property. This parameter is required on properties
-        /// that have the <code>STRUCT</code> data type.
+        /// that have the <c>STRUCT</c> data type.
         /// </para>
         ///  
         /// <para>
         /// The options for this parameter depend on the type of the composite model in which
-        /// you define this property. Use <code>AWS/ALARM_STATE</code> for alarm state in alarm
-        /// composite models.
+        /// you define this property. Use <c>AWS/ALARM_STATE</c> for alarm state in alarm composite
+        /// models.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -88,6 +91,49 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetDataTypeSpec()
         {
             return this._dataTypeSpec != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExternalId. 
+        /// <para>
+        /// An external ID to assign to the property definition. The external ID must be unique
+        /// among property definitions within this asset model. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string ExternalId
+        {
+            get { return this._externalId; }
+            set { this._externalId = value; }
+        }
+
+        // Check to see if ExternalId property is set
+        internal bool IsSetExternalId()
+        {
+            return this._externalId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Id. 
+        /// <para>
+        /// The ID to assign to the asset model property, if desired. IoT SiteWise automatically
+        /// generates a unique ID for you, so this parameter is never required. However, if you
+        /// prefer to supply your own ID instead, you can specify it here in UUID format. If you
+        /// specify your own ID, it must be globally unique.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=36, Max=36)]
+        public string Id
+        {
+            get { return this._id; }
+            set { this._id = value; }
+        }
+
+        // Check to see if Id property is set
+        internal bool IsSetId()
+        {
+            return this._id != null;
         }
 
         /// <summary>
@@ -112,8 +158,8 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The property definition type (see <code>PropertyType</code>). You can only specify
-        /// one type in a property definition.
+        /// The property definition type (see <c>PropertyType</c>). You can only specify one type
+        /// in a property definition.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -132,7 +178,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property Unit. 
         /// <para>
-        /// The unit of the property definition, such as <code>Newtons</code> or <code>RPM</code>.
+        /// The unit of the property definition, such as <c>Newtons</c> or <c>RPM</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

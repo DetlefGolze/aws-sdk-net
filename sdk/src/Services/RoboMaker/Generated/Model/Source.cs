@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property Etag. 
         /// <para>
-        /// A hash of the object specified by <code>s3Bucket</code> and <code>s3Key</code>.
+        /// A hash of the object specified by <c>s3Bucket</c> and <c>s3Key</c>.
         /// </para>
         /// </summary>
         public string Etag

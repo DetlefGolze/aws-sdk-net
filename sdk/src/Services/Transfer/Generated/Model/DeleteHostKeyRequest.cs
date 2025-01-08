@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteHostKey operation.
-    /// Deletes the host key that's specified in the <code>HostKeyId</code> parameter.
+    /// Deletes the host key that's specified in the <c>HostKeyId</c> parameter.
     /// </summary>
     public partial class DeleteHostKeyRequest : AmazonTransferRequest
     {

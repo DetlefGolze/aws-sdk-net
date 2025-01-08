@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -36,7 +37,9 @@ namespace Amazon.StepFunctions.Model
     {
         private long? _aborted;
         private long? _failed;
+        private long? _failuresNotRedrivable;
         private long? _pending;
+        private long? _pendingRedrive;
         private long? _resultsWritten;
         private long? _running;
         private long? _succeeded;
@@ -83,6 +86,27 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FailuresNotRedrivable. 
+        /// <para>
+        /// The number of <c>FAILED</c>, <c>ABORTED</c>, or <c>TIMED_OUT</c> items in child workflow
+        /// executions that cannot be redriven because the execution status of those child workflows
+        /// is terminal. For example, child workflows with an execution status of <c>FAILED</c>,
+        /// <c>ABORTED</c>, or <c>TIMED_OUT</c> and a <c>redriveStatus</c> of <c>NOT_REDRIVABLE</c>.
+        /// </para>
+        /// </summary>
+        public long FailuresNotRedrivable
+        {
+            get { return this._failuresNotRedrivable.GetValueOrDefault(); }
+            set { this._failuresNotRedrivable = value; }
+        }
+
+        // Check to see if FailuresNotRedrivable property is set
+        internal bool IsSetFailuresNotRedrivable()
+        {
+            return this._failuresNotRedrivable.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Pending. 
         /// <para>
         /// The total number of items to process in child workflow executions that haven't started
@@ -103,10 +127,29 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PendingRedrive. 
+        /// <para>
+        /// The number of unsuccessful items in child workflow executions currently waiting to
+        /// be redriven.
+        /// </para>
+        /// </summary>
+        public long PendingRedrive
+        {
+            get { return this._pendingRedrive.GetValueOrDefault(); }
+            set { this._pendingRedrive = value; }
+        }
+
+        // Check to see if PendingRedrive property is set
+        internal bool IsSetPendingRedrive()
+        {
+            return this._pendingRedrive.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ResultsWritten. 
         /// <para>
-        /// Returns the count of items whose results were written by <code>ResultWriter</code>.
-        /// For more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultwriter.html">ResultWriter</a>
+        /// Returns the count of items whose results were written by <c>ResultWriter</c>. For
+        /// more information, see <a href="https://docs.aws.amazon.com/step-functions/latest/dg/input-output-resultwriter.html">ResultWriter</a>
         /// in the <i>Step Functions Developer Guide</i>.
         /// </para>
         /// </summary>

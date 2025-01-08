@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Budgets
 {
     /// <summary>
-    /// Implementation for accessing Budgets
+    /// <para>Implementation for accessing Budgets</para>
     ///
     /// Use the Amazon Web Services Budgets API to plan your service usage, service costs,
     /// and instance reservations. This API reference provides descriptions, syntax, and usage
@@ -339,10 +340,9 @@ namespace Amazon.Budgets
         /// 
         ///  <important> 
         /// <para>
-        /// Only one of <code>BudgetLimit</code> or <code>PlannedBudgetLimits</code> can be present
-        /// in the syntax at one time. Use the syntax that matches your case. The Request Syntax
-        /// section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>,
-        /// see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateBudget.html#API_CreateBudget_Examples">Examples</a>
+        /// Only one of <c>BudgetLimit</c> or <c>PlannedBudgetLimits</c> can be present in the
+        /// syntax at one time. Use the syntax that matches your case. The Request Syntax section
+        /// shows the <c>BudgetLimit</c> syntax. For <c>PlannedBudgetLimits</c>, see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateBudget.html#API_CreateBudget_Examples">Examples</a>
         /// section. 
         /// </para>
         ///  </important>
@@ -364,6 +364,9 @@ namespace Amazon.Budgets
         /// </exception>
         /// <exception cref="Amazon.Budgets.Model.InvalidParameterException">
         /// An error on the client occurred. Typically, the cause is an invalid input value.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.ServiceQuotaExceededException">
+        /// You've reached the limit on the number of tags you can associate with a resource.
         /// </exception>
         /// <exception cref="Amazon.Budgets.Model.ThrottlingException">
         /// The number of API requests has exceeded the maximum allowed API request throttling
@@ -440,6 +443,9 @@ namespace Amazon.Budgets
         /// </exception>
         /// <exception cref="Amazon.Budgets.Model.NotFoundException">
         /// We can’t locate the resource that you specified.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.ServiceQuotaExceededException">
+        /// You've reached the limit on the number of tags you can associate with a resource.
         /// </exception>
         /// <exception cref="Amazon.Budgets.Model.ThrottlingException">
         /// The number of API requests has exceeded the maximum allowed API request throttling
@@ -956,7 +962,7 @@ namespace Amazon.Budgets
         /// 
         ///  <important> 
         /// <para>
-        /// The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>,
+        /// The Request Syntax section shows the <c>BudgetLimit</c> syntax. For <c>PlannedBudgetLimits</c>,
         /// see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudget.html#API_DescribeBudget_Examples">Examples</a>
         /// section. 
         /// </para>
@@ -1392,8 +1398,8 @@ namespace Amazon.Budgets
         #region  DescribeBudgetPerformanceHistory
 
         /// <summary>
-        /// Describes the history for <code>DAILY</code>, <code>MONTHLY</code>, and <code>QUARTERLY</code>
-        /// budgets. Budget history isn't available for <code>ANNUAL</code> budgets.
+        /// Describes the history for <c>DAILY</c>, <c>MONTHLY</c>, and <c>QUARTERLY</c> budgets.
+        /// Budget history isn't available for <c>ANNUAL</c> budgets.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeBudgetPerformanceHistory service method.</param>
         /// 
@@ -1473,7 +1479,7 @@ namespace Amazon.Budgets
         /// 
         ///  <important> 
         /// <para>
-        /// The Request Syntax section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>,
+        /// The Request Syntax section shows the <c>BudgetLimit</c> syntax. For <c>PlannedBudgetLimits</c>,
         /// see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_DescribeBudgets.html#API_DescribeBudgets_Examples">Examples</a>
         /// section. 
         /// </para>
@@ -1776,19 +1782,231 @@ namespace Amazon.Budgets
 
         #endregion
         
+        #region  ListTagsForResource
+
+        /// <summary>
+        /// Lists tags associated with a budget or budget action resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
+        /// 
+        /// <returns>The response from the ListTagsForResource service method, as returned by Budgets.</returns>
+        /// <exception cref="Amazon.Budgets.Model.AccessDeniedException">
+        /// You are not authorized to use this operation with the given parameters.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.InternalErrorException">
+        /// An error on the server occurred during the processing of your request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.InvalidParameterException">
+        /// An error on the client occurred. Typically, the cause is an invalid input value.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.NotFoundException">
+        /// We can’t locate the resource that you specified.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.ThrottlingException">
+        /// The number of API requests has exceeded the maximum allowed API request throttling
+        /// limit for the account.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
+        public virtual ListTagsForResourceResponse ListTagsForResource(ListTagsForResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTagsForResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTagsForResourceResponseUnmarshaller.Instance;
+
+            return Invoke<ListTagsForResourceResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListTagsForResource operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource operation on AmazonBudgetsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListTagsForResource
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
+        public virtual IAsyncResult BeginListTagsForResource(ListTagsForResourceRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListTagsForResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListTagsForResourceResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListTagsForResource operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListTagsForResource.</param>
+        /// 
+        /// <returns>Returns a  ListTagsForResourceResult from Budgets.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
+        public virtual ListTagsForResourceResponse EndListTagsForResource(IAsyncResult asyncResult)
+        {
+            return EndInvoke<ListTagsForResourceResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  TagResource
+
+        /// <summary>
+        /// Creates tags for a budget or budget action resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
+        /// 
+        /// <returns>The response from the TagResource service method, as returned by Budgets.</returns>
+        /// <exception cref="Amazon.Budgets.Model.AccessDeniedException">
+        /// You are not authorized to use this operation with the given parameters.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.InternalErrorException">
+        /// An error on the server occurred during the processing of your request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.InvalidParameterException">
+        /// An error on the client occurred. Typically, the cause is an invalid input value.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.NotFoundException">
+        /// We can’t locate the resource that you specified.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.ServiceQuotaExceededException">
+        /// You've reached the limit on the number of tags you can associate with a resource.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.ThrottlingException">
+        /// The number of API requests has exceeded the maximum allowed API request throttling
+        /// limit for the account.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/TagResource">REST API Reference for TagResource Operation</seealso>
+        public virtual TagResourceResponse TagResource(TagResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TagResourceResponseUnmarshaller.Instance;
+
+            return Invoke<TagResourceResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the TagResource operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the TagResource operation on AmazonBudgetsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndTagResource
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/TagResource">REST API Reference for TagResource Operation</seealso>
+        public virtual IAsyncResult BeginTagResource(TagResourceRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = TagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = TagResourceResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  TagResource operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginTagResource.</param>
+        /// 
+        /// <returns>Returns a  TagResourceResult from Budgets.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/TagResource">REST API Reference for TagResource Operation</seealso>
+        public virtual TagResourceResponse EndTagResource(IAsyncResult asyncResult)
+        {
+            return EndInvoke<TagResourceResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  UntagResource
+
+        /// <summary>
+        /// Deletes tags associated with a budget or budget action resource.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
+        /// 
+        /// <returns>The response from the UntagResource service method, as returned by Budgets.</returns>
+        /// <exception cref="Amazon.Budgets.Model.AccessDeniedException">
+        /// You are not authorized to use this operation with the given parameters.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.InternalErrorException">
+        /// An error on the server occurred during the processing of your request. Try again later.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.InvalidParameterException">
+        /// An error on the client occurred. Typically, the cause is an invalid input value.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.NotFoundException">
+        /// We can’t locate the resource that you specified.
+        /// </exception>
+        /// <exception cref="Amazon.Budgets.Model.ThrottlingException">
+        /// The number of API requests has exceeded the maximum allowed API request throttling
+        /// limit for the account.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UntagResource">REST API Reference for UntagResource Operation</seealso>
+        public virtual UntagResourceResponse UntagResource(UntagResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UntagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UntagResourceResponseUnmarshaller.Instance;
+
+            return Invoke<UntagResourceResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UntagResource operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UntagResource operation on AmazonBudgetsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUntagResource
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UntagResource">REST API Reference for UntagResource Operation</seealso>
+        public virtual IAsyncResult BeginUntagResource(UntagResourceRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UntagResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UntagResourceResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UntagResource operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUntagResource.</param>
+        /// 
+        /// <returns>Returns a  UntagResourceResult from Budgets.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UntagResource">REST API Reference for UntagResource Operation</seealso>
+        public virtual UntagResourceResponse EndUntagResource(IAsyncResult asyncResult)
+        {
+            return EndInvoke<UntagResourceResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  UpdateBudget
 
         /// <summary>
-        /// Updates a budget. You can change every part of a budget except for the <code>budgetName</code>
-        /// and the <code>calculatedSpend</code>. When you modify a budget, the <code>calculatedSpend</code>
+        /// Updates a budget. You can change every part of a budget except for the <c>budgetName</c>
+        /// and the <c>calculatedSpend</c>. When you modify a budget, the <c>calculatedSpend</c>
         /// drops to zero until Amazon Web Services has new usage data to use for forecasting.
         /// 
         ///  <important> 
         /// <para>
-        /// Only one of <code>BudgetLimit</code> or <code>PlannedBudgetLimits</code> can be present
-        /// in the syntax at one time. Use the syntax that matches your case. The Request Syntax
-        /// section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>,
-        /// see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateBudget.html#API_UpdateBudget_Examples">Examples</a>
+        /// Only one of <c>BudgetLimit</c> or <c>PlannedBudgetLimits</c> can be present in the
+        /// syntax at one time. Use the syntax that matches your case. The Request Syntax section
+        /// shows the <c>BudgetLimit</c> syntax. For <c>PlannedBudgetLimits</c>, see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_UpdateBudget.html#API_UpdateBudget_Examples">Examples</a>
         /// section. 
         /// </para>
         ///  </important>
@@ -2087,11 +2305,11 @@ namespace Amazon.Budgets
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

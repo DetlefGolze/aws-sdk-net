@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property FileSystemId. 
         /// <para>
-        /// Specifies the EFS file system to which the <code>FileSystemPolicy</code> applies.
+        /// Specifies the EFS file system to which the <c>FileSystemPolicy</c> applies.
         /// </para>
         /// </summary>
         [AWSProperty(Max=128)]
@@ -58,7 +59,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Policy. 
         /// <para>
-        /// The JSON formatted <code>FileSystemPolicy</code> for the EFS file system.
+        /// The JSON formatted <c>FileSystemPolicy</c> for the EFS file system.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20000)]

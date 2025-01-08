@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class AwsEc2VolumeDetails
     {
-        private List<AwsEc2VolumeAttachment> _attachments = new List<AwsEc2VolumeAttachment>();
+        private List<AwsEc2VolumeAttachment> _attachments = AWSConfigs.InitializeCollections ? new List<AwsEc2VolumeAttachment>() : null;
         private string _createTime;
         private string _deviceName;
         private bool? _encrypted;
@@ -60,7 +61,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Attachments property is set
         internal bool IsSetAttachments()
         {
-            return this._attachments != null && this._attachments.Count > 0; 
+            return this._attachments != null && (this._attachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -70,9 +71,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreateTime
@@ -185,27 +185,27 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>available</code> 
+        ///  <c>available</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>creating</code> 
+        ///  <c>creating</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code> 
+        ///  <c>deleted</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code> 
+        ///  <c>deleting</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>error</code> 
+        ///  <c>error</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>in-use</code> 
+        ///  <c>in-use</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

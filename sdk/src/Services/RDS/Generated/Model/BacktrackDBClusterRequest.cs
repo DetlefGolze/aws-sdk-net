@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>2017-07-08T18:00Z</code> 
+        /// Example: <c>2017-07-08T18:00Z</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -116,7 +117,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster1</code> 
+        /// Example: <c>my-cluster1</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -210,7 +211,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>2017-07-08T18:00Z</code> 
+        /// Example: <c>2017-07-08T18:00Z</c> 
         /// </para>
         /// </summary>
         [Obsolete("Setting this property results in non-UTC DateTimes not being marshalled correctly. " +

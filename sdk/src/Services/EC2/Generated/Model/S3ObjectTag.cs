@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// Constraints: Tag keys are case-sensitive and can be up to 128 Unicode characters in
-        /// length. May not begin with <code>aws</code>:.
+        /// length. May not begin with <c>aws</c>:.
         /// </para>
         /// </summary>
         public string Key

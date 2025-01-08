@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.Polly.Model
         /// <summary>
         /// Gets and sets the property Alphabet. 
         /// <para>
-        /// Phonetic alphabet used in the lexicon. Valid values are <code>ipa</code> and <code>x-sampa</code>.
+        /// Phonetic alphabet used in the lexicon. Valid values are <c>ipa</c> and <c>x-sampa</c>.
         /// </para>
         /// </summary>
         public string Alphabet

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the StartCrawlerSchedule operation.
-    /// Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless
-    /// the crawler is already running or the schedule state is already <code>SCHEDULED</code>.
+    /// Changes the schedule state of the specified crawler to <c>SCHEDULED</c>, unless the
+    /// crawler is already running or the schedule state is already <c>SCHEDULED</c>.
     /// </summary>
     public partial class StartCrawlerScheduleRequest : AmazonGlueRequest
     {

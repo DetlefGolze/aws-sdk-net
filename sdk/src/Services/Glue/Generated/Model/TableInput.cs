@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -38,12 +39,13 @@ namespace Amazon.Glue.Model
         private DateTime? _lastAnalyzedTime;
         private string _name;
         private string _owner;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
-        private List<Column> _partitionKeys = new List<Column>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<Column> _partitionKeys = AWSConfigs.InitializeCollections ? new List<Column>() : null;
         private int? _retention;
         private StorageDescriptor _storageDescriptor;
         private string _tableType;
         private TableIdentifier _targetTable;
+        private ViewDefinitionInput _viewDefinition;
         private string _viewExpandedText;
         private string _viewOriginalText;
 
@@ -156,7 +158,7 @@ namespace Amazon.Glue.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -167,13 +169,12 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        /// When you create a table used by Amazon Athena, and you do not specify any <code>partitionKeys</code>,
-        /// you must at least set the value of <code>partitionKeys</code> to an empty list. For
-        /// example:
+        /// When you create a table used by Amazon Athena, and you do not specify any <c>partitionKeys</c>,
+        /// you must at least set the value of <c>partitionKeys</c> to an empty list. For example:
         /// </para>
         ///  
         /// <para>
-        ///  <code>"PartitionKeys": []</code> 
+        ///  <c>"PartitionKeys": []</c> 
         /// </para>
         /// </summary>
         public List<Column> PartitionKeys
@@ -185,7 +186,7 @@ namespace Amazon.Glue.Model
         // Check to see if PartitionKeys property is set
         internal bool IsSetPartitionKeys()
         {
-            return this._partitionKeys != null && this._partitionKeys.Count > 0; 
+            return this._partitionKeys != null && (this._partitionKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -228,9 +229,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property TableType. 
         /// <para>
-        /// The type of this table. Glue will create tables with the <code>EXTERNAL_TABLE</code>
-        /// type. Other services, such as Athena, may create tables with additional table types.
-        /// 
+        /// The type of this table. Glue will create tables with the <c>EXTERNAL_TABLE</c> type.
+        /// Other services, such as Athena, may create tables with additional table types. 
         /// </para>
         ///  
         /// <para>
@@ -242,7 +242,7 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  </dd> <dt>GOVERNED</dt> <dd> 
         /// <para>
-        /// Used by Lake Formation. The Glue Data Catalog understands <code>GOVERNED</code>.
+        /// Used by Lake Formation. The Glue Data Catalog understands <c>GOVERNED</c>.
         /// </para>
         ///  </dd> </dl>
         /// </summary>
@@ -262,8 +262,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property TargetTable. 
         /// <para>
-        /// A <code>TableIdentifier</code> structure that describes a target table for resource
-        /// linking.
+        /// A <c>TableIdentifier</c> structure that describes a target table for resource linking.
         /// </para>
         /// </summary>
         public TableIdentifier TargetTable
@@ -276,6 +275,25 @@ namespace Amazon.Glue.Model
         internal bool IsSetTargetTable()
         {
             return this._targetTable != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ViewDefinition. 
+        /// <para>
+        /// A structure that contains all the information that defines the view, including the
+        /// dialect or dialects for the view, and the query.
+        /// </para>
+        /// </summary>
+        public ViewDefinitionInput ViewDefinition
+        {
+            get { return this._viewDefinition; }
+            set { this._viewDefinition = value; }
+        }
+
+        // Check to see if ViewDefinition property is set
+        internal bool IsSetViewDefinition()
+        {
+            return this._viewDefinition != null;
         }
 
         /// <summary>
@@ -301,8 +319,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property ViewOriginalText. 
         /// <para>
         /// Included for Apache Hive compatibility. Not used in the normal course of Glue operations.
-        /// If the table is a <code>VIRTUAL_VIEW</code>, certain Athena configuration encoded
-        /// in base64.
+        /// If the table is a <c>VIRTUAL_VIEW</c>, certain Athena configuration encoded in base64.
         /// </para>
         /// </summary>
         [AWSProperty(Max=409600)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property Delete. 
         /// <para>
-        /// A request to perform a <code>DeleteItem</code> operation.
+        /// A request to perform a <c>DeleteItem</c> operation.
         /// </para>
         /// </summary>
         public Delete Delete
@@ -78,7 +79,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property Put. 
         /// <para>
-        /// A request to perform a <code>PutItem</code> operation.
+        /// A request to perform a <c>PutItem</c> operation.
         /// </para>
         /// </summary>
         public Put Put
@@ -96,7 +97,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property Update. 
         /// <para>
-        /// A request to perform an <code>UpdateItem</code> operation.
+        /// A request to perform an <c>UpdateItem</c> operation.
         /// </para>
         /// </summary>
         public Update Update

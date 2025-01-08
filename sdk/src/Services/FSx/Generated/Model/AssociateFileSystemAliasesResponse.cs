@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
     /// The system generated response showing the DNS aliases that Amazon FSx is attempting
     /// to associate with the file system. Use the API operation to monitor the status of
     /// the aliases Amazon FSx is associating with the file system. It can take up to 2.5
-    /// minutes for the alias status to change from <code>CREATING</code> to <code>AVAILABLE</code>.
+    /// minutes for the alias status to change from <c>CREATING</c> to <c>AVAILABLE</c>.
     /// </summary>
     public partial class AssociateFileSystemAliasesResponse : AmazonWebServiceResponse
     {
-        private List<Alias> _aliases = new List<Alias>();
+        private List<Alias> _aliases = AWSConfigs.InitializeCollections ? new List<Alias>() : null;
 
         /// <summary>
         /// Gets and sets the property Aliases. 
@@ -54,7 +55,7 @@ namespace Amazon.FSx.Model
         // Check to see if Aliases property is set
         internal bool IsSetAliases()
         {
-            return this._aliases != null && this._aliases.Count > 0; 
+            return this._aliases != null && (this._aliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

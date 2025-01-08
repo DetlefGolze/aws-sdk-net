@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,11 +37,13 @@ namespace Amazon.EC2.Model
         private string _availabilityZone;
         private string _availabilityZoneId;
         private int? _availableInstanceCount;
-        private List<CapacityAllocation> _capacityAllocations = new List<CapacityAllocation>();
+        private List<CapacityAllocation> _capacityAllocations = AWSConfigs.InitializeCollections ? new List<CapacityAllocation>() : null;
         private string _capacityReservationArn;
         private string _capacityReservationFleetId;
         private string _capacityReservationId;
+        private CapacityReservationCommitmentInfo _commitmentInfo;
         private DateTime? _createDate;
+        private CapacityReservationDeliveryPreference _deliveryPreference;
         private bool? _ebsOptimized;
         private DateTime? _endDate;
         private EndDateType _endDateType;
@@ -51,11 +54,13 @@ namespace Amazon.EC2.Model
         private string _outpostArn;
         private string _ownerId;
         private string _placementGroupArn;
+        private CapacityReservationType _reservationType;
         private DateTime? _startDate;
         private CapacityReservationState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private CapacityReservationTenancy _tenancy;
         private int? _totalInstanceCount;
+        private string _unusedReservationBillingOwnerId;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
@@ -127,7 +132,7 @@ namespace Amazon.EC2.Model
         // Check to see if CapacityAllocations property is set
         internal bool IsSetCapacityAllocations()
         {
-            return this._capacityAllocations != null && this._capacityAllocations.Count > 0; 
+            return this._capacityAllocations != null && (this._capacityAllocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -186,6 +191,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CommitmentInfo. 
+        /// <para>
+        /// Information about your commitment for a future-dated Capacity Reservation.
+        /// </para>
+        /// </summary>
+        public CapacityReservationCommitmentInfo CommitmentInfo
+        {
+            get { return this._commitmentInfo; }
+            set { this._commitmentInfo = value; }
+        }
+
+        // Check to see if CommitmentInfo property is set
+        internal bool IsSetCommitmentInfo()
+        {
+            return this._commitmentInfo != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property CreateDate. 
         /// <para>
         /// The date and time at which the Capacity Reservation was created.
@@ -201,6 +224,26 @@ namespace Amazon.EC2.Model
         internal bool IsSetCreateDate()
         {
             return this._createDate.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DeliveryPreference. 
+        /// <para>
+        /// The delivery method for a future-dated Capacity Reservation. <c>incremental</c> indicates
+        /// that the requested capacity is delivered in addition to any running instances and
+        /// reserved capacity that you have in your account at the requested date and time.
+        /// </para>
+        /// </summary>
+        public CapacityReservationDeliveryPreference DeliveryPreference
+        {
+            get { return this._deliveryPreference; }
+            set { this._deliveryPreference = value; }
+        }
+
+        // Check to see if DeliveryPreference property is set
+        internal bool IsSetDeliveryPreference()
+        {
+            return this._deliveryPreference != null;
         }
 
         /// <summary>
@@ -229,8 +272,8 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The date and time at which the Capacity Reservation expires. When a Capacity Reservation
         /// expires, the reserved capacity is released and you can no longer launch instances
-        /// into it. The Capacity Reservation's state changes to <code>expired</code> when it
-        /// reaches its end date and time.
+        /// into it. The Capacity Reservation's state changes to <c>expired</c> when it reaches
+        /// its end date and time.
         /// </para>
         /// </summary>
         public DateTime EndDate
@@ -253,13 +296,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>unlimited</code> - The Capacity Reservation remains active until you explicitly
-        /// cancel it.
+        ///  <c>unlimited</c> - The Capacity Reservation remains active until you explicitly cancel
+        /// it.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>limited</code> - The Capacity Reservation expires automatically at a specified
-        /// date and time.
+        ///  <c>limited</c> - The Capacity Reservation expires automatically at a specified date
+        /// and time.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -301,17 +344,17 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>open</code> - The Capacity Reservation accepts all instances that have matching
-        /// attributes (instance type, platform, and Availability Zone). Instances that have matching
-        /// attributes launch into the Capacity Reservation automatically without specifying any
-        /// additional parameters.
+        ///  <c>open</c> - The Capacity Reservation accepts all instances that have matching attributes
+        /// (instance type, platform, and Availability Zone). Instances that have matching attributes
+        /// launch into the Capacity Reservation automatically without specifying any additional
+        /// parameters.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>targeted</code> - The Capacity Reservation only accepts instances that have
-        /// matching attributes (instance type, platform, and Availability Zone), and explicitly
-        /// target the Capacity Reservation. This ensures that only permitted instances can use
-        /// the reserved capacity. 
+        ///  <c>targeted</c> - The Capacity Reservation only accepts instances that have matching
+        /// attributes (instance type, platform, and Availability Zone), and explicitly target
+        /// the Capacity Reservation. This ensures that only permitted instances can use the reserved
+        /// capacity. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -421,6 +464,24 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ReservationType. 
+        /// <para>
+        /// The type of Capacity Reservation.
+        /// </para>
+        /// </summary>
+        public CapacityReservationType ReservationType
+        {
+            get { return this._reservationType; }
+            set { this._reservationType = value; }
+        }
+
+        // Check to see if ReservationType property is set
+        internal bool IsSetReservationType()
+        {
+            return this._reservationType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property StartDate. 
         /// <para>
         /// The date and time at which the Capacity Reservation was started.
@@ -446,30 +507,53 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>active</code> - The Capacity Reservation is active and the capacity is available
+        ///  <c>active</c> - The capacity is available for use.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>expired</c> - The Capacity Reservation expired automatically at the date and time
+        /// specified in your reservation request. The reserved capacity is no longer available
         /// for your use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>expired</code> - The Capacity Reservation expired automatically at the date
-        /// and time specified in your request. The reserved capacity is no longer available for
-        /// your use.
+        ///  <c>cancelled</c> - The Capacity Reservation was canceled. The reserved capacity is
+        /// no longer available for your use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>cancelled</code> - The Capacity Reservation was cancelled. The reserved capacity
-        /// is no longer available for your use.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>pending</code> - The Capacity Reservation request was successful but the capacity
+        ///  <c>pending</c> - The Capacity Reservation request was successful but the capacity
         /// provisioning is still pending.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>failed</code> - The Capacity Reservation request has failed. A request might
-        /// fail due to invalid request parameters, capacity constraints, or instance limit constraints.
-        /// Failed requests are retained for 60 minutes.
+        ///  <c>failed</c> - The Capacity Reservation request has failed. A request can fail due
+        /// to request parameters that are not valid, capacity constraints, or instance limit
+        /// constraints. You can view a failed request for 60 minutes.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>scheduled</c> - (<i>Future-dated Capacity Reservations only</i>) The future-dated
+        /// Capacity Reservation request was approved and the Capacity Reservation is scheduled
+        /// for delivery on the requested start date.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>assessing</c> - (<i>Future-dated Capacity Reservations only</i>) Amazon EC2 is
+        /// assessing your request for a future-dated Capacity Reservation.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>delayed</c> - (<i>Future-dated Capacity Reservations only</i>) Amazon EC2 encountered
+        /// a delay in provisioning the requested future-dated Capacity Reservation. Amazon EC2
+        /// is unable to deliver the requested capacity by the requested start date and time.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>unsupported</c> - (<i>Future-dated Capacity Reservations only</i>) Amazon EC2
+        /// can't support the future-dated Capacity Reservation request due to capacity constraints.
+        /// You can view unsupported requests for 30 days. The Capacity Reservation will not be
+        /// delivered.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -500,7 +584,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -511,12 +595,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>default</code> - The Capacity Reservation is created on hardware that is shared
-        /// with other Amazon Web Services accounts.
+        ///  <c>default</c> - The Capacity Reservation is created on hardware that is shared with
+        /// other Amazon Web Services accounts.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware
+        ///  <c>dedicated</c> - The Capacity Reservation is created on single-tenant hardware
         /// that is dedicated to a single Amazon Web Services account.
         /// </para>
         ///  </li> </ul>
@@ -549,6 +633,26 @@ namespace Amazon.EC2.Model
         internal bool IsSetTotalInstanceCount()
         {
             return this._totalInstanceCount.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property UnusedReservationBillingOwnerId. 
+        /// <para>
+        /// The ID of the Amazon Web Services account to which billing of the unused capacity
+        /// of the Capacity Reservation is assigned.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=12, Max=12)]
+        public string UnusedReservationBillingOwnerId
+        {
+            get { return this._unusedReservationBillingOwnerId; }
+            set { this._unusedReservationBillingOwnerId = value; }
+        }
+
+        // Check to see if UnusedReservationBillingOwnerId property is set
+        internal bool IsSetUnusedReservationBillingOwnerId()
+        {
+            return this._unusedReservationBillingOwnerId != null;
         }
 
     }

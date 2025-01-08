@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
     /// Container for the parameters to the DisableDomainTransferLock operation.
-    /// This operation removes the transfer lock on the domain (specifically the <code>clientTransferProhibited</code>
+    /// This operation removes the transfer lock on the domain (specifically the <c>clientTransferProhibited</c>
     /// status) to allow domain transfers. We recommend you refrain from performing this action
     /// unless you intend to transfer the domain to a different registrar. Successful submission
     /// returns an operation ID that you can use to track the progress and completion of the

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for response parameters to the <code><a>AuthorizeVpcEndpointAccess</a></code>
+    /// Container for response parameters to the <c><a>AuthorizeVpcEndpointAccess</a></c>
     /// operation. Contains the account ID and the type of the account being authorized to
     /// access the VPC endpoint.
     /// </summary>

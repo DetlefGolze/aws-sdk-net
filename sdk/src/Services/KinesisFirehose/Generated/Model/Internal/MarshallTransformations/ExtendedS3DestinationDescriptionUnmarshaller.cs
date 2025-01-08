@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ExtendedS3DestinationDescription Unmarshall(JsonUnmarshallerContext context)
         {
+            ExtendedS3DestinationDescription unmarshalledObject = new ExtendedS3DestinationDescription();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ExtendedS3DestinationDescription unmarshalledObject = new ExtendedS3DestinationDescription();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,12 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
                     unmarshalledObject.CompressionFormat = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("CustomTimeZone", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CustomTimeZone = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DataFormatConversionConfiguration", targetDepth))
                 {
                     var unmarshaller = DataFormatConversionConfigurationUnmarshaller.Instance;
@@ -110,6 +118,12 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ErrorOutputPrefix = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("FileExtension", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.FileExtension = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Prefix", targetDepth))
@@ -143,7 +157,6 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

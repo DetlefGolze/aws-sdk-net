@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -42,33 +43,33 @@ namespace Amazon.ApplicationDiscoveryService.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// If you do not specify <code>preferences</code> or <code>agentIds</code> in the filter,
-    /// a summary of all servers, applications, tags, and performance is generated. This data
-    /// is an aggregation of all server data collected through on-premises tooling, file import,
+    /// If you do not specify <c>preferences</c> or <c>agentIds</c> in the filter, a summary
+    /// of all servers, applications, tags, and performance is generated. This data is an
+    /// aggregation of all server data collected through on-premises tooling, file import,
     /// application grouping and applying tags.
     /// </para>
     ///  
     /// <para>
-    /// If you specify <code>agentIds</code> in a filter, the task exports up to 72 hours
-    /// of detailed data collected by the identified Application Discovery Agent, including
-    /// network, process, and performance details. A time range for exported agent data may
-    /// be set by using <code>startTime</code> and <code>endTime</code>. Export of detailed
-    /// agent data is limited to five concurrently running exports. Export of detailed agent
-    /// data is limited to two exports per day.
+    /// If you specify <c>agentIds</c> in a filter, the task exports up to 72 hours of detailed
+    /// data collected by the identified Application Discovery Agent, including network, process,
+    /// and performance details. A time range for exported agent data may be set by using
+    /// <c>startTime</c> and <c>endTime</c>. Export of detailed agent data is limited to five
+    /// concurrently running exports. Export of detailed agent data is limited to two exports
+    /// per day.
     /// </para>
     ///  
     /// <para>
-    /// If you enable <code>ec2RecommendationsPreferences</code> in <code>preferences</code>
-    /// , an Amazon EC2 instance matching the characteristics of each server in Application
-    /// Discovery Service is generated. Changing the attributes of the <code>ec2RecommendationsPreferences</code>
+    /// If you enable <c>ec2RecommendationsPreferences</c> in <c>preferences</c> , an Amazon
+    /// EC2 instance matching the characteristics of each server in Application Discovery
+    /// Service is generated. Changing the attributes of the <c>ec2RecommendationsPreferences</c>
     /// changes the criteria of the recommendation.
     /// </para>
     /// </summary>
     public partial class StartExportTaskRequest : AmazonApplicationDiscoveryServiceRequest
     {
         private DateTime? _endTime;
-        private List<string> _exportDataFormat = new List<string>();
-        private List<ExportFilter> _filters = new List<ExportFilter>();
+        private List<string> _exportDataFormat = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<ExportFilter> _filters = AWSConfigs.InitializeCollections ? new List<ExportFilter>() : null;
         private ExportPreferences _preferences;
         private DateTime? _startTime;
 
@@ -95,8 +96,8 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property ExportDataFormat. 
         /// <para>
-        /// The file format for the returned export data. Default value is <code>CSV</code>. <b>Note:</b>
-        /// <i>The</i> <code>GRAPHML</code> <i>option has been deprecated.</i> 
+        /// The file format for the returned export data. Default value is <c>CSV</c>. <b>Note:</b>
+        /// <i>The</i> <c>GRAPHML</c> <i>option has been deprecated.</i> 
         /// </para>
         /// </summary>
         public List<string> ExportDataFormat
@@ -108,18 +109,18 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if ExportDataFormat property is set
         internal bool IsSetExportDataFormat()
         {
-            return this._exportDataFormat != null && this._exportDataFormat.Count > 0; 
+            return this._exportDataFormat != null && (this._exportDataFormat.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// If a filter is present, it selects the single <code>agentId</code> of the Application
-        /// Discovery Agent for which data is exported. The <code>agentId</code> can be found
-        /// in the results of the <code>DescribeAgents</code> API or CLI. If no filter is present,
-        /// <code>startTime</code> and <code>endTime</code> are ignored and exported data includes
-        /// both Amazon Web Services Application Discovery Service Agentless Collector collectors
-        /// data and summary data from Application Discovery Agent agents. 
+        /// If a filter is present, it selects the single <c>agentId</c> of the Application Discovery
+        /// Agent for which data is exported. The <c>agentId</c> can be found in the results of
+        /// the <c>DescribeAgents</c> API or CLI. If no filter is present, <c>startTime</c> and
+        /// <c>endTime</c> are ignored and exported data includes both Amazon Web Services Application
+        /// Discovery Service Agentless Collector collectors data and summary data from Application
+        /// Discovery Agent agents. 
         /// </para>
         /// </summary>
         public List<ExportFilter> Filters
@@ -131,7 +132,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

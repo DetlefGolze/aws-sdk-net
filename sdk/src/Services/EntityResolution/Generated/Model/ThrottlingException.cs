@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// The request was denied due to request throttling. <code>HTTP Status Code: 429</code>
+    /// The request was denied due to request throttling.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

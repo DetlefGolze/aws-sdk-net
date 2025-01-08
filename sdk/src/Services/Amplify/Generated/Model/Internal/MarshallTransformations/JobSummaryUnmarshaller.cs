@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Amplify.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public JobSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            JobSummary unmarshalledObject = new JobSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            JobSummary unmarshalledObject = new JobSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -106,6 +108,18 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
                     unmarshalledObject.JobType = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("sourceUrl", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SourceUrl = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("sourceUrlType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SourceUrlType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("startTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -119,7 +133,6 @@ namespace Amazon.Amplify.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

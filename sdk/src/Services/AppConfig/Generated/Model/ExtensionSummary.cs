@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
-    /// Information about an extension. Call <code>GetExtension</code> to get more information
-    /// about an extension.
+    /// Information about an extension. Call <c>GetExtension</c> to get more information about
+    /// an extension.
     /// </summary>
     public partial class ExtensionSummary
     {

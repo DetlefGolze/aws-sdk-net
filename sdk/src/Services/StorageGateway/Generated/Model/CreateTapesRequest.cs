@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.StorageGateway.Model
         private string _kmsKey;
         private int? _numTapesToCreate;
         private string _poolId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tapeBarcodePrefix;
         private long? _tapeSizeInBytes;
         private bool? _worm;
@@ -57,11 +58,11 @@ namespace Amazon.StorageGateway.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// A unique identifier that you use to retry a request. If you retry a request, use the
-        /// same <code>ClientToken</code> you specified in the initial request.
+        /// same <c>ClientToken</c> you specified in the initial request.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Using the same <code>ClientToken</code> prevents creating the tape multiple times.
+        /// Using the same <c>ClientToken</c> prevents creating the tape multiple times.
         /// </para>
         ///  </note>
         /// </summary>
@@ -102,12 +103,12 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property KMSEncrypted. 
         /// <para>
-        /// Set to <code>true</code> to use Amazon S3 server-side encryption with your own KMS
-        /// key, or <code>false</code> to use a key managed by Amazon S3. Optional.
+        /// Set to <c>true</c> to use Amazon S3 server-side encryption with your own KMS key,
+        /// or <c>false</c> to use a key managed by Amazon S3. Optional.
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>true</code> | <code>false</code> 
+        /// Valid Values: <c>true</c> | <c>false</c> 
         /// </para>
         /// </summary>
         public bool KMSEncrypted
@@ -127,7 +128,7 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon
         /// S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This
-        /// value can only be set when <code>KMSEncrypted</code> is <code>true</code>. Optional.
+        /// value can only be set when <c>KMSEncrypted</c> is <c>true</c>. Optional.
         /// </para>
         /// </summary>
         [AWSProperty(Min=7, Max=2048)]
@@ -209,7 +210,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -265,7 +266,7 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property Worm. 
         /// <para>
-        /// Set to <code>TRUE</code> if the tape you are creating is to be configured as a write-once-read-many
+        /// Set to <c>TRUE</c> if the tape you are creating is to be configured as a write-once-read-many
         /// (WORM) tape.
         /// </para>
         /// </summary>

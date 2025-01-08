@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// List of field-level encrpytion configurations.
+    /// List of field-level encryption configurations.
     /// </summary>
     public partial class FieldLevelEncryptionList
     {
-        private List<FieldLevelEncryptionSummary> _items = new List<FieldLevelEncryptionSummary>();
+        private List<FieldLevelEncryptionSummary> _items = AWSConfigs.InitializeCollections ? new List<FieldLevelEncryptionSummary>() : null;
         private int? _maxItems;
         private string _nextMarker;
         private int? _quantity;
@@ -53,7 +54,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property NextMarker. 
         /// <para>
         /// If there are more elements to be listed, this element is present and contains the
-        /// value that you can use for the <code>Marker</code> request parameter to continue listing
+        /// value that you can use for the <c>Marker</c> request parameter to continue listing
         /// your configurations where you left off.
         /// </para>
         /// </summary>

@@ -26,11 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeNetworkAcls operation.
-    /// Describes one or more of your network ACLs.
+    /// Describes your network ACLs. The default is to describe all your network ACLs. Alternatively,
+    /// you can specify specific network ACL IDs or filter the results to include only the
+    /// network ACLs that match specific criteria.
     /// 
     ///  
     /// <para>
@@ -40,9 +43,9 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeNetworkAclsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
-        private List<string> _networkAclIds = new List<string>();
+        private List<string> _networkAclIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,93 +55,89 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>association.association-id</code> - The ID of an association ID for the ACL.
+        ///  <c>association.association-id</c> - The ID of an association ID for the ACL.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>association.network-acl-id</code> - The ID of the network ACL involved in the
-        /// association.
+        ///  <c>association.network-acl-id</c> - The ID of the network ACL involved in the association.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>association.subnet-id</code> - The ID of the subnet involved in the association.
+        ///  <c>association.subnet-id</c> - The ID of the subnet involved in the association.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>default</code> - Indicates whether the ACL is the default network ACL for the
-        /// VPC.
+        ///  <c>default</c> - Indicates whether the ACL is the default network ACL for the VPC.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.cidr</code> - The IPv4 CIDR range specified in the entry.
+        ///  <c>entry.cidr</c> - The IPv4 CIDR range specified in the entry.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.icmp.code</code> - The ICMP code specified in the entry, if any.
+        ///  <c>entry.icmp.code</c> - The ICMP code specified in the entry, if any.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.icmp.type</code> - The ICMP type specified in the entry, if any.
+        ///  <c>entry.icmp.type</c> - The ICMP type specified in the entry, if any.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.ipv6-cidr</code> - The IPv6 CIDR range specified in the entry.
+        ///  <c>entry.ipv6-cidr</c> - The IPv6 CIDR range specified in the entry.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.port-range.from</code> - The start of the port range specified in the
-        /// entry. 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>entry.port-range.to</code> - The end of the port range specified in the entry.
+        ///  <c>entry.port-range.from</c> - The start of the port range specified in the entry.
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.protocol</code> - The protocol specified in the entry (<code>tcp</code>
-        /// | <code>udp</code> | <code>icmp</code> or a protocol number).
+        ///  <c>entry.port-range.to</c> - The end of the port range specified in the entry. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.rule-action</code> - Allows or denies the matching traffic (<code>allow</code>
-        /// | <code>deny</code>).
+        ///  <c>entry.protocol</c> - The protocol specified in the entry (<c>tcp</c> | <c>udp</c>
+        /// | <c>icmp</c> or a protocol number).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.egress</code> - A Boolean that indicates the type of rule. Specify <code>true</code>
-        /// for egress rules, or <code>false</code> for ingress rules.
+        ///  <c>entry.rule-action</c> - Allows or denies the matching traffic (<c>allow</c> |
+        /// <c>deny</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>entry.rule-number</code> - The number of an entry (in other words, rule) in
-        /// the set of ACL entries.
+        ///  <c>entry.egress</c> - A Boolean that indicates the type of rule. Specify <c>true</c>
+        /// for egress rules, or <c>false</c> for ingress rules.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>network-acl-id</code> - The ID of the network ACL.
+        ///  <c>entry.rule-number</c> - The number of an entry (in other words, rule) in the set
+        /// of ACL entries.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>owner-id</code> - The ID of the Amazon Web Services account that owns the network
+        ///  <c>network-acl-id</c> - The ID of the network ACL.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>owner-id</c> - The ID of the Amazon Web Services account that owns the network
         /// ACL.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c> - The key/value combination of a tag assigned to the resource. Use the
+        /// tag key in the filter name and the tag value as the filter value. For example, to
+        /// find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vpc-id</code> - The ID of the VPC for the network ACL.
+        ///  <c>vpc-id</c> - The ID of the VPC for the network ACL.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -151,7 +150,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -180,10 +179,6 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The IDs of the network ACLs.
         /// </para>
-        ///  
-        /// <para>
-        /// Default: Describes all your network ACLs.
-        /// </para>
         /// </summary>
         public List<string> NetworkAclIds
         {
@@ -194,7 +189,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkAclIds property is set
         internal bool IsSetNetworkAclIds()
         {
-            return this._networkAclIds != null && this._networkAclIds.Count > 0; 
+            return this._networkAclIds != null && (this._networkAclIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

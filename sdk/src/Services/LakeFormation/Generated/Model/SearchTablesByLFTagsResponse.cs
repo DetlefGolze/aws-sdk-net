@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -34,12 +35,13 @@ namespace Amazon.LakeFormation.Model
     public partial class SearchTablesByLFTagsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<TaggedTable> _tableList = new List<TaggedTable>();
+        private List<TaggedTable> _tableList = AWSConfigs.InitializeCollections ? new List<TaggedTable>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A continuation token, present if the current list segment is not the last.
+        /// A continuation token, present if the current list segment is not the last. On the
+        /// first run, if you include a not null (a value) token you can get empty pages.
         /// </para>
         /// </summary>
         public string NextToken
@@ -69,7 +71,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if TableList property is set
         internal bool IsSetTableList()
         {
-            return this._tableList != null && this._tableList.Count > 0; 
+            return this._tableList != null && (this._tableList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

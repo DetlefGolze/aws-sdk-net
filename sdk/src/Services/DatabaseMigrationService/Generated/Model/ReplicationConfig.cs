@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -102,7 +103,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ReplicationConfigIdentifier. 
         /// <para>
-        /// The identifier for the <code>ReplicationConfig</code> associated with the replication.
+        /// The identifier for the <c>ReplicationConfig</c> associated with the replication.
         /// </para>
         /// </summary>
         public string ReplicationConfigIdentifier

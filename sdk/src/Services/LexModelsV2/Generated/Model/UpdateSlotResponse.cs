@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -70,7 +71,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotVersion. 
         /// <para>
-        /// The version of the bot that contains the slot. Will always be <code>DRAFT</code>.
+        /// The version of the bot that contains the slot. Will always be <c>DRAFT</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=5)]

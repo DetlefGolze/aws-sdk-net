@@ -26,10 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
-    /// Represents an event that a partner tried to generate, but failed.
+    /// The result of an event entry the partner submitted in this request. If the event was
+    /// successfully submitted, the entry has the event ID in it. Otherwise, you can use the
+    /// error code and error message to identify the problem with the entry.
     /// </summary>
     public partial class PutPartnerEventsResultEntry
     {

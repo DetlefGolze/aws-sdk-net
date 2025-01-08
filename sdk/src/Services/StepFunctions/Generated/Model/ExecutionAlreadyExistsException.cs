@@ -26,15 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
-    /// The execution has the same <code>name</code> as another execution (but a different
-    /// <code>input</code>).
+    /// The execution has the same <c>name</c> as another execution (but a different <c>input</c>).
     /// 
     ///  <note> 
     /// <para>
-    /// Executions with the same <code>name</code> and <code>input</code> are considered idempotent.
+    /// Executions with the same <c>name</c> and <c>input</c> are considered idempotent.
     /// </para>
     ///  </note>
     /// </summary>

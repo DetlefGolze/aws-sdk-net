@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class UpdateSubscriptionGrantStatusResponse : AmazonWebServiceResponse
     {
-        private List<SubscribedAsset> _assets = new List<SubscribedAsset>();
+        private List<SubscribedAsset> _assets = AWSConfigs.InitializeCollections ? new List<SubscribedAsset>() : null;
         private DateTime? _createdAt;
         private string _createdBy;
         private string _domainId;
@@ -46,7 +47,10 @@ namespace Amazon.DataZone.Model
         private string _updatedBy;
 
         /// <summary>
-        /// Gets and sets the property Assets.
+        /// Gets and sets the property Assets. 
+        /// <para>
+        /// The details of the asset for which the subscription grant is created.
+        /// </para>
         /// </summary>
         public List<SubscribedAsset> Assets
         {
@@ -57,7 +61,7 @@ namespace Amazon.DataZone.Model
         // Check to see if Assets property is set
         internal bool IsSetAssets()
         {
-            return this._assets != null && this._assets.Count > 0; 
+            return this._assets != null && (this._assets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -121,7 +125,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property GrantedEntity. 
         /// <para>
-        /// The granted entity to be updated as part of the <code>UpdateSubscriptionGrantStatus</code>
+        /// The granted entity to be updated as part of the <c>UpdateSubscriptionGrantStatus</c>
         /// action.
         /// </para>
         /// </summary>
@@ -160,8 +164,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status to be updated as part of the <code>UpdateSubscriptionGrantStatus</code>
-        /// action.
+        /// The status to be updated as part of the <c>UpdateSubscriptionGrantStatus</c> action.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -183,6 +186,7 @@ namespace Amazon.DataZone.Model
         /// The identifier of the subscription.
         /// </para>
         /// </summary>
+        [Obsolete("Multiple subscriptions can exist for a single grant")]
         public string SubscriptionId
         {
             get { return this._subscriptionId; }

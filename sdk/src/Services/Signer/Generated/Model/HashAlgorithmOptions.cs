@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
-    /// The hash algorithms that are available to a code signing job.
+    /// The hash algorithms that are available to a code-signing job.
     /// </summary>
     public partial class HashAlgorithmOptions
     {
-        private List<string> _allowedValues = new List<string>();
+        private List<string> _allowedValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HashAlgorithm _defaultValue;
 
         /// <summary>
         /// Gets and sets the property AllowedValues. 
         /// <para>
-        /// The set of accepted hash algorithms allowed in a code signing job.
+        /// The set of accepted hash algorithms allowed in a code-signing job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,13 +53,13 @@ namespace Amazon.Signer.Model
         // Check to see if AllowedValues property is set
         internal bool IsSetAllowedValues()
         {
-            return this._allowedValues != null && this._allowedValues.Count > 0; 
+            return this._allowedValues != null && (this._allowedValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultValue. 
         /// <para>
-        /// The default hash algorithm that is used in a code signing job.
+        /// The default hash algorithm that is used in a code-signing job.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

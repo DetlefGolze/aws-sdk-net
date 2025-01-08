@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ContentModerationDetection Unmarshall(JsonUnmarshallerContext context)
         {
+            ContentModerationDetection unmarshalledObject = new ContentModerationDetection();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ContentModerationDetection unmarshalledObject = new ContentModerationDetection();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("ContentTypes", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ContentType, ContentTypeUnmarshaller>(ContentTypeUnmarshaller.Instance);
+                    unmarshalledObject.ContentTypes = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DurationMillis", targetDepth))
                 {
                     var unmarshaller = LongUnmarshaller.Instance;
@@ -95,7 +103,6 @@ namespace Amazon.Rekognition.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

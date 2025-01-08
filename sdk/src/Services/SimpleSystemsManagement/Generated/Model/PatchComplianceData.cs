@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Classification. 
         /// <para>
-        /// The classification of the patch, such as <code>SecurityUpdates</code>, <code>Updates</code>,
-        /// and <code>CriticalUpdates</code>.
+        /// The classification of the patch, such as <c>SecurityUpdates</c>, <c>Updates</c>, and
+        /// <c>CriticalUpdates</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -68,6 +69,12 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// The IDs of one or more Common Vulnerabilities and Exposure (CVE) issues that are resolved
         /// by the patch.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Currently, CVE ID values are reported only for patches with a status of <c>Missing</c>
+        /// or <c>Failed</c>.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string CVEIds
         {
@@ -123,8 +130,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Severity. 
         /// <para>
-        /// The severity of the patch such as <code>Critical</code>, <code>Important</code>, and
-        /// <code>Moderate</code>.
+        /// The severity of the patch such as <c>Critical</c>, <c>Important</c>, and <c>Moderate</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -147,7 +153,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// </para>
         ///  
         /// <para>
-        /// For descriptions of each patch state, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-compliance-about.html#sysman-compliance-monitor-patch">About
+        /// For descriptions of each patch state, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/compliance-about.html#compliance-monitor-patch">About
         /// patch compliance</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         /// </summary>

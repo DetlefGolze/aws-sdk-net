@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Resource requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCatalog())
             {
                 context.Writer.WritePropertyName("Catalog");
@@ -96,6 +99,17 @@ namespace Amazon.LakeFormation.Model.Internal.MarshallTransformations
 
                 var marshaller = LFTagKeyResourceMarshaller.Instance;
                 marshaller.Marshall(requestObject.LFTag, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetLFTagExpression())
+            {
+                context.Writer.WritePropertyName("LFTagExpression");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = LFTagExpressionResourceMarshaller.Instance;
+                marshaller.Marshall(requestObject.LFTagExpression, context);
 
                 context.Writer.WriteObjectEnd();
             }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.EKS.Model
         private string _identityProviderConfigArn;
         private string _identityProviderConfigName;
         private string _issuerUrl;
-        private Dictionary<string, string> _requiredClaims = new Dictionary<string, string>();
+        private Dictionary<string, string> _requiredClaims = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ConfigStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _usernameClaim;
         private string _usernamePrefix;
 
@@ -68,7 +69,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The cluster that the configuration is associated to.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         public string ClusterName
@@ -105,9 +106,9 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property GroupsPrefix. 
         /// <para>
         /// The prefix that is prepended to group claims to prevent clashes with existing names
-        /// (such as <code>system:</code> groups). For example, the value<code> oidc:</code> creates
-        /// group names like <code>oidc:engineering</code> and <code>oidc:infra</code>. The prefix
-        /// can't contain <code>system:</code> 
+        /// (such as <c>system:</c> groups). For example, the value<c> oidc:</c> creates group
+        /// names like <c>oidc:engineering</c> and <c>oidc:infra</c>. The prefix can't contain
+        /// <c>system:</c> 
         /// </para>
         /// </summary>
         public string GroupsPrefix
@@ -193,7 +194,7 @@ namespace Amazon.EKS.Model
         // Check to see if RequiredClaims property is set
         internal bool IsSetRequiredClaims()
         {
-            return this._requiredClaims != null && this._requiredClaims.Count > 0; 
+            return this._requiredClaims != null && (this._requiredClaims.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -217,8 +218,9 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata to apply to the provider configuration to assist with categorization
-        /// and organization. Each tag consists of a key and an optional value. You define both.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -231,7 +233,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -256,7 +258,7 @@ namespace Amazon.EKS.Model
         /// Gets and sets the property UsernamePrefix. 
         /// <para>
         /// The prefix that is prepended to username claims to prevent clashes with existing names.
-        /// The prefix can't contain <code>system:</code> 
+        /// The prefix can't contain <c>system:</c> 
         /// </para>
         /// </summary>
         public string UsernamePrefix

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SecurityHub.Model
         private string _launchedAt;
         private string _name;
         private bool? _privileged;
-        private List<VolumeMount> _volumeMounts = new List<VolumeMount>();
+        private List<VolumeMount> _volumeMounts = AWSConfigs.InitializeCollections ? new List<VolumeMount>() : null;
 
         /// <summary>
         /// Gets and sets the property ContainerRuntime. 
@@ -102,9 +103,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string LaunchedAt
@@ -140,8 +140,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Privileged. 
         /// <para>
-        /// When this parameter is <code>true</code>, the container is given elevated privileges
-        /// on the host container instance (similar to the root user). 
+        /// When this parameter is <c>true</c>, the container is given elevated privileges on
+        /// the host container instance (similar to the root user). 
         /// </para>
         /// </summary>
         public bool Privileged
@@ -171,7 +171,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if VolumeMounts property is set
         internal bool IsSetVolumeMounts()
         {
-            return this._volumeMounts != null && this._volumeMounts.Count > 0; 
+            return this._volumeMounts != null && (this._volumeMounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

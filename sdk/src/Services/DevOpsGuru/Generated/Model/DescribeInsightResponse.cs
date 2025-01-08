@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property ProactiveInsight. 
         /// <para>
-        ///  A <code>ProactiveInsight</code> object that represents the requested insight. 
+        ///  A <c>ProactiveInsight</c> object that represents the requested insight. 
         /// </para>
         /// </summary>
         public ProactiveInsight ProactiveInsight
@@ -57,7 +58,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property ReactiveInsight. 
         /// <para>
-        ///  A <code>ReactiveInsight</code> object that represents the requested insight. 
+        ///  A <c>ReactiveInsight</c> object that represents the requested insight. 
         /// </para>
         /// </summary>
         public ReactiveInsight ReactiveInsight

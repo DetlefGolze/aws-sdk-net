@@ -26,17 +26,19 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.WorkSpacesWeb.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.WorkSpacesWeb
 {
     /// <summary>
-    /// Interface for accessing WorkSpacesWeb
+    /// <para>Interface for accessing WorkSpacesWeb</para>
     ///
-    /// WorkSpaces Web is a low cost, fully managed WorkSpace built specifically to facilitate
-    /// secure, web-based workloads. WorkSpaces Web makes it easy for customers to safely
-    /// provide their employees with access to internal websites and SaaS web applications
-    /// without the administrative burden of appliances or specialized client software. WorkSpaces
-    /// Web provides simple policy tools tailored for user interactions, while offloading
-    /// common tasks like capacity management, scaling, and maintaining browser images.
+    /// Amazon WorkSpaces Secure Browser is a low cost, fully managed WorkSpace built specifically
+    /// to facilitate secure, web-based workloads. WorkSpaces Secure Browser makes it easy
+    /// for customers to safely provide their employees with access to internal websites and
+    /// SaaS web applications without the administrative burden of appliances or specialized
+    /// client software. WorkSpaces Secure Browser provides simple policy tools tailored for
+    /// user interactions, while offloading common tasks like capacity management, scaling,
+    /// and maintaining browser images.
     /// </summary>
     public partial interface IAmazonWorkSpacesWeb : IAmazonService, IDisposable
     {
@@ -108,6 +110,70 @@ namespace Amazon.WorkSpacesWeb
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateBrowserSettings">REST API Reference for AssociateBrowserSettings Operation</seealso>
         Task<AssociateBrowserSettingsResponse> AssociateBrowserSettingsAsync(AssociateBrowserSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  AssociateDataProtectionSettings
+
+
+        /// <summary>
+        /// Associates a data protection settings resource with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the AssociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateDataProtectionSettings">REST API Reference for AssociateDataProtectionSettings Operation</seealso>
+        AssociateDataProtectionSettingsResponse AssociateDataProtectionSettings(AssociateDataProtectionSettingsRequest request);
+
+
+
+        /// <summary>
+        /// Associates a data protection settings resource with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/AssociateDataProtectionSettings">REST API Reference for AssociateDataProtectionSettings Operation</seealso>
+        Task<AssociateDataProtectionSettingsResponse> AssociateDataProtectionSettingsAsync(AssociateDataProtectionSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -251,6 +317,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -279,6 +348,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the AssociateTrustStore service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -496,6 +568,76 @@ namespace Amazon.WorkSpacesWeb
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateBrowserSettings">REST API Reference for CreateBrowserSettings Operation</seealso>
         Task<CreateBrowserSettingsResponse> CreateBrowserSettingsAsync(CreateBrowserSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  CreateDataProtectionSettings
+
+
+        /// <summary>
+        /// Creates a data protection settings resource that can be associated with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the CreateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateDataProtectionSettings">REST API Reference for CreateDataProtectionSettings Operation</seealso>
+        CreateDataProtectionSettingsResponse CreateDataProtectionSettings(CreateDataProtectionSettingsRequest request);
+
+
+
+        /// <summary>
+        /// Creates a data protection settings resource that can be associated with a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/CreateDataProtectionSettings">REST API Reference for CreateDataProtectionSettings Operation</seealso>
+        Task<CreateDataProtectionSettingsResponse> CreateDataProtectionSettingsAsync(CreateDataProtectionSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1037,6 +1179,64 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  DeleteDataProtectionSettings
+
+
+        /// <summary>
+        /// Deletes data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteDataProtectionSettings">REST API Reference for DeleteDataProtectionSettings Operation</seealso>
+        DeleteDataProtectionSettingsResponse DeleteDataProtectionSettings(DeleteDataProtectionSettingsRequest request);
+
+
+
+        /// <summary>
+        /// Deletes data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DeleteDataProtectionSettings">REST API Reference for DeleteDataProtectionSettings Operation</seealso>
+        Task<DeleteDataProtectionSettingsResponse> DeleteDataProtectionSettingsAsync(DeleteDataProtectionSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteIdentityProvider
 
 
@@ -1455,6 +1655,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1484,6 +1687,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1501,6 +1707,70 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  DisassociateDataProtectionSettings
+
+
+        /// <summary>
+        /// Disassociates data protection settings from a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the DisassociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateDataProtectionSettings">REST API Reference for DisassociateDataProtectionSettings Operation</seealso>
+        DisassociateDataProtectionSettingsResponse DisassociateDataProtectionSettings(DisassociateDataProtectionSettingsRequest request);
+
+
+
+        /// <summary>
+        /// Disassociates data protection settings from a web portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DisassociateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateDataProtectionSettings">REST API Reference for DisassociateDataProtectionSettings Operation</seealso>
+        Task<DisassociateDataProtectionSettingsResponse> DisassociateDataProtectionSettingsAsync(DisassociateDataProtectionSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DisassociateIpAccessSettings
 
 
@@ -1512,6 +1782,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateIpAccessSettings service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1542,6 +1815,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1570,6 +1846,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateNetworkSettings service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1600,6 +1879,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1628,6 +1910,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateTrustStore service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1658,6 +1943,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1686,6 +1974,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateUserAccessLoggingSettings service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1716,6 +2007,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1744,6 +2038,9 @@ namespace Amazon.WorkSpacesWeb
         /// <returns>The response from the DisassociateUserSettings service method, as returned by WorkSpacesWeb.</returns>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
@@ -1774,6 +2071,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
         /// Access is denied.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ConflictException">
+        /// There is a conflict.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
         /// There is an internal server error.
         /// </exception>
@@ -1788,6 +2088,64 @@ namespace Amazon.WorkSpacesWeb
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/DisassociateUserSettings">REST API Reference for DisassociateUserSettings Operation</seealso>
         Task<DisassociateUserSettingsResponse> DisassociateUserSettingsAsync(DisassociateUserSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ExpireSession
+
+
+        /// <summary>
+        /// Expires an active secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ExpireSession service method.</param>
+        /// 
+        /// <returns>The response from the ExpireSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ExpireSession">REST API Reference for ExpireSession Operation</seealso>
+        ExpireSessionResponse ExpireSession(ExpireSessionRequest request);
+
+
+
+        /// <summary>
+        /// Expires an active secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ExpireSession service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ExpireSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ExpireSession">REST API Reference for ExpireSession Operation</seealso>
+        Task<ExpireSessionResponse> ExpireSessionAsync(ExpireSessionRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -1846,6 +2204,64 @@ namespace Amazon.WorkSpacesWeb
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetBrowserSettings">REST API Reference for GetBrowserSettings Operation</seealso>
         Task<GetBrowserSettingsResponse> GetBrowserSettingsAsync(GetBrowserSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  GetDataProtectionSettings
+
+
+        /// <summary>
+        /// Gets the data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the GetDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetDataProtectionSettings">REST API Reference for GetDataProtectionSettings Operation</seealso>
+        GetDataProtectionSettingsResponse GetDataProtectionSettings(GetDataProtectionSettingsRequest request);
+
+
+
+        /// <summary>
+        /// Gets the data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetDataProtectionSettings">REST API Reference for GetDataProtectionSettings Operation</seealso>
+        Task<GetDataProtectionSettingsResponse> GetDataProtectionSettingsAsync(GetDataProtectionSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2139,6 +2555,64 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  GetSession
+
+
+        /// <summary>
+        /// Gets information for a secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSession service method.</param>
+        /// 
+        /// <returns>The response from the GetSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetSession">REST API Reference for GetSession Operation</seealso>
+        GetSessionResponse GetSession(GetSessionRequest request);
+
+
+
+        /// <summary>
+        /// Gets information for a secure browser session.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSession service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetSession service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/GetSession">REST API Reference for GetSession Operation</seealso>
+        Task<GetSessionResponse> GetSessionAsync(GetSessionRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetTrustStore
 
 
@@ -2423,6 +2897,58 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  ListDataProtectionSettings
+
+
+        /// <summary>
+        /// Retrieves a list of data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the ListDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListDataProtectionSettings">REST API Reference for ListDataProtectionSettings Operation</seealso>
+        ListDataProtectionSettingsResponse ListDataProtectionSettings(ListDataProtectionSettingsRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves a list of data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListDataProtectionSettings">REST API Reference for ListDataProtectionSettings Operation</seealso>
+        Task<ListDataProtectionSettingsResponse> ListDataProtectionSettingsAsync(ListDataProtectionSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListIdentityProviders
 
 
@@ -2628,6 +3154,64 @@ namespace Amazon.WorkSpacesWeb
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListPortals">REST API Reference for ListPortals Operation</seealso>
         Task<ListPortalsResponse> ListPortalsAsync(ListPortalsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListSessions
+
+
+        /// <summary>
+        /// Lists information for multiple secure browser sessions from a specific portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSessions service method.</param>
+        /// 
+        /// <returns>The response from the ListSessions service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListSessions">REST API Reference for ListSessions Operation</seealso>
+        ListSessionsResponse ListSessions(ListSessionsRequest request);
+
+
+
+        /// <summary>
+        /// Lists information for multiple secure browser sessions from a specific portal.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSessions service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListSessions service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/ListSessions">REST API Reference for ListSessions Operation</seealso>
+        Task<ListSessionsResponse> ListSessionsAsync(ListSessionsRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -3083,6 +3667,64 @@ namespace Amazon.WorkSpacesWeb
 
         #endregion
         
+        #region  UpdateDataProtectionSettings
+
+
+        /// <summary>
+        /// Updates data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDataProtectionSettings service method.</param>
+        /// 
+        /// <returns>The response from the UpdateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateDataProtectionSettings">REST API Reference for UpdateDataProtectionSettings Operation</seealso>
+        UpdateDataProtectionSettingsResponse UpdateDataProtectionSettings(UpdateDataProtectionSettingsRequest request);
+
+
+
+        /// <summary>
+        /// Updates data protection settings.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateDataProtectionSettings service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateDataProtectionSettings service method, as returned by WorkSpacesWeb.</returns>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.AccessDeniedException">
+        /// Access is denied.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.InternalServerException">
+        /// There is an internal server error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
+        /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
+        /// There is a throttling error.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ValidationException">
+        /// There is a validation error.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/workspaces-web-2020-07-08/UpdateDataProtectionSettings">REST API Reference for UpdateDataProtectionSettings Operation</seealso>
+        Task<UpdateDataProtectionSettingsResponse> UpdateDataProtectionSettingsAsync(UpdateDataProtectionSettingsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  UpdateIdentityProvider
 
 
@@ -3278,6 +3920,9 @@ namespace Amazon.WorkSpacesWeb
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
         /// The resource cannot be found.
         /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
+        /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
         /// There is a throttling error.
         /// </exception>
@@ -3309,6 +3954,9 @@ namespace Amazon.WorkSpacesWeb
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ResourceNotFoundException">
         /// The resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.WorkSpacesWeb.Model.ServiceQuotaExceededException">
+        /// The service quota has been exceeded.
         /// </exception>
         /// <exception cref="Amazon.WorkSpacesWeb.Model.ThrottlingException">
         /// There is a throttling error.

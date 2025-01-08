@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token from the previous <code>ListSchemaMappings</code> API call.
+        /// The pagination token from the previous API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -82,7 +83,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the workflow to be retrieved.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string WorkflowName
         {
             get { return this._workflowName; }

@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeLocationFsxOpenZfs operation.
-    /// Provides details about how an DataSync location for an Amazon FSx for OpenZFS file
-    /// system is configured.
+    /// Provides details about how an DataSync transfer location for an Amazon FSx for OpenZFS
+    /// file system is configured.
     /// 
     ///  <note> 
     /// <para>
-    /// Response elements related to <code>SMB</code> aren't supported with the <code>DescribeLocationFsxOpenZfs</code>
+    /// Response elements related to <c>SMB</c> aren't supported with the <c>DescribeLocationFsxOpenZfs</c>
     /// operation.
     /// </para>
     ///  </note>

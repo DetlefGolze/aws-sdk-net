@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateOutpostResolver operation.
-    /// Creates an Route 53 Resolver on an Outpost.
+    /// Creates a Route 53 Resolver on an Outpost.
     /// </summary>
     public partial class CreateOutpostResolverRequest : AmazonRoute53ResolverRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.Route53Resolver.Model
         private string _name;
         private string _outpostArn;
         private string _preferredInstanceType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatorRequestId. 
@@ -49,8 +50,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreatorRequestId</code> can be any unique string, for example, a date/time
-        /// stamp.
+        ///  <c>CreatorRequestId</c> can be any unique string, for example, a date/time stamp.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -109,7 +109,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property OutpostArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the Outpost. If you specify this, you must also
-        /// specify a value for the <code>PreferredInstanceType</code>.
+        /// specify a value for the <c>PreferredInstanceType</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -129,7 +129,7 @@ namespace Amazon.Route53Resolver.Model
         /// Gets and sets the property PreferredInstanceType. 
         /// <para>
         ///  The Amazon EC2 instance type. If you specify this, you must also specify a value
-        /// for the <code>OutpostArn</code>. 
+        /// for the <c>OutpostArn</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -161,7 +161,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

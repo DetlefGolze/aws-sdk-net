@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.CodePipeline.Model
         private string _externalExecutionUrl;
         private DateTime? _lastStatusChange;
         private string _lastUpdatedBy;
+        private string _logStreamARN;
         private int? _percentComplete;
         private ActionExecutionStatus _status;
         private string _summary;
@@ -163,6 +165,25 @@ namespace Amazon.CodePipeline.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LogStreamARN. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the log stream for the action compute.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=250)]
+        public string LogStreamARN
+        {
+            get { return this._logStreamARN; }
+            set { this._logStreamARN = value; }
+        }
+
+        // Check to see if LogStreamARN property is set
+        internal bool IsSetLogStreamARN()
+        {
+            return this._logStreamARN != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PercentComplete. 
         /// <para>
         /// A percentage of completeness of the action as it runs.
@@ -222,9 +243,9 @@ namespace Amazon.CodePipeline.Model
         /// Gets and sets the property Token. 
         /// <para>
         /// The system-generated token used to identify a unique approval request. The token for
-        /// each open approval request can be obtained using the <code>GetPipelineState</code>
-        /// command. It is used to validate that the approval request corresponding to this token
-        /// is still valid.
+        /// each open approval request can be obtained using the <c>GetPipelineState</c> command.
+        /// It is used to validate that the approval request corresponding to this token is still
+        /// valid.
         /// </para>
         /// </summary>
         public string Token

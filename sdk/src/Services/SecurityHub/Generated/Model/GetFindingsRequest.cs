@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.SecurityHub.Model
     /// 
     ///  
     /// <para>
-    /// If finding aggregation is enabled, then when you call <code>GetFindings</code> from
-    /// the aggregation Region, the results include all of the matching findings from both
-    /// the aggregation Region and the linked Regions.
+    /// If cross-Region aggregation is enabled, then when you call <c>GetFindings</c> from
+    /// the home Region, the results include all of the matching findings from both the home
+    /// Region and linked Regions.
     /// </para>
     /// </summary>
     public partial class GetFindingsRequest : AmazonSecurityHubRequest
@@ -44,7 +45,7 @@ namespace Amazon.SecurityHub.Model
         private AwsSecurityFindingFilters _filters;
         private int? _maxResults;
         private string _nextToken;
-        private List<SortCriterion> _sortCriteria = new List<SortCriterion>();
+        private List<SortCriterion> _sortCriteria = AWSConfigs.InitializeCollections ? new List<SortCriterion>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -58,8 +59,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Note that in the available filter fields, <code>WorkflowState</code> is deprecated.
-        /// To search for a finding based on its workflow status, use <code>WorkflowStatus</code>.
+        /// Note that in the available filter fields, <c>WorkflowState</c> is deprecated. To search
+        /// for a finding based on its workflow status, use <c>WorkflowStatus</c>.
         /// </para>
         /// </summary>
         public AwsSecurityFindingFilters Filters
@@ -96,8 +97,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token that is required for pagination. On your first call to the <code>GetFindings</code>
-        /// operation, set the value of this parameter to <code>NULL</code>.
+        /// The token that is required for pagination. On your first call to the <c>GetFindings</c>
+        /// operation, set the value of this parameter to <c>NULL</c>.
         /// </para>
         ///  
         /// <para>
@@ -132,7 +133,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SortCriteria property is set
         internal bool IsSetSortCriteria()
         {
-            return this._sortCriteria != null && this._sortCriteria.Count > 0; 
+            return this._sortCriteria != null && (this._sortCriteria.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

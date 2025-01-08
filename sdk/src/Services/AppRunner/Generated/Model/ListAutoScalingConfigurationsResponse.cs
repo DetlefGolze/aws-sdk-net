@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRunner.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.AppRunner.Model
     /// </summary>
     public partial class ListAutoScalingConfigurationsResponse : AmazonWebServiceResponse
     {
-        private List<AutoScalingConfigurationSummary> _autoScalingConfigurationSummaryList = new List<AutoScalingConfigurationSummary>();
+        private List<AutoScalingConfigurationSummary> _autoScalingConfigurationSummaryList = AWSConfigs.InitializeCollections ? new List<AutoScalingConfigurationSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AutoScalingConfigurationSummaryList. 
         /// <para>
         /// A list of summary information records for auto scaling configurations. In a paginated
-        /// request, the request returns up to <code>MaxResults</code> records for each call.
+        /// request, the request returns up to <c>MaxResults</c> records for each call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -53,7 +54,7 @@ namespace Amazon.AppRunner.Model
         // Check to see if AutoScalingConfigurationSummaryList property is set
         internal bool IsSetAutoScalingConfigurationSummaryList()
         {
-            return this._autoScalingConfigurationSummaryList != null && this._autoScalingConfigurationSummaryList.Count > 0; 
+            return this._autoScalingConfigurationSummaryList != null && (this._autoScalingConfigurationSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

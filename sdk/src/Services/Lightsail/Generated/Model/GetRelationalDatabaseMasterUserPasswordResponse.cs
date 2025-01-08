@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property MasterUserPassword. 
         /// <para>
-        /// The master user password for the <code>password version</code> specified.
+        /// The master user password for the <c>password version</c> specified.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

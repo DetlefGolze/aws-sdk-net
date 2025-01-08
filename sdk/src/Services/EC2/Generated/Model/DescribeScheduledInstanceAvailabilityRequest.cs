@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeScheduledInstanceAvailabilityRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private SlotDateTimeRangeRequest _firstSlotStartTimeRange;
         private int? _maxResults;
         private int? _maxSlotDurationInHours;
@@ -62,15 +63,15 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>availability-zone</code> - The Availability Zone (for example, <code>us-west-2a</code>).
+        ///  <c>availability-zone</c> - The Availability Zone (for example, <c>us-west-2a</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-type</code> - The instance type (for example, <code>c4.large</code>).
+        ///  <c>instance-type</c> - The instance type (for example, <c>c4.large</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>platform</code> - The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
+        ///  <c>platform</c> - The platform (<c>Linux/UNIX</c> or <c>Windows</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -83,7 +84,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The maximum number of results to return in a single call. This value can be between
         /// 5 and 300. The default value is 300. To retrieve the remaining results, make another
-        /// call with the returned <code>NextToken</code> value.
+        /// call with the returned <c>NextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=300)]
@@ -129,7 +130,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property MaxSlotDurationInHours. 
         /// <para>
-        /// The maximum available duration, in hours. This value must be greater than <code>MinSlotDurationInHours</code>
+        /// The maximum available duration, in hours. This value must be greater than <c>MinSlotDurationInHours</c>
         /// and less than 1,720.
         /// </para>
         /// </summary>

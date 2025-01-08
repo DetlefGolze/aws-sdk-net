@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.DataZone.Model
         private string _environmentId;
         private int? _maxResults;
         private string _nextToken;
+        private string _owningProjectId;
         private SortKey _sortBy;
         private SortOrder _sortOrder;
         private string _subscribedListingId;
@@ -84,10 +86,10 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of subscription grants to return in a single call to <code>ListSubscriptionGrants</code>.
-        /// When the number of subscription grants to be listed is greater than the value of <code>MaxResults</code>,
-        /// the response contains a <code>NextToken</code> value that you can use in a subsequent
-        /// call to <code>ListSubscriptionGrants</code> to list the next set of subscription grants.
+        /// The maximum number of subscription grants to return in a single call to <c>ListSubscriptionGrants</c>.
+        /// When the number of subscription grants to be listed is greater than the value of <c>MaxResults</c>,
+        /// the response contains a <c>NextToken</c> value that you can use in a subsequent call
+        /// to <c>ListSubscriptionGrants</c> to list the next set of subscription grants.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -106,12 +108,11 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When the number of subscription grants is greater than the default value for the <code>MaxResults</code>
-        /// parameter, or if you explicitly specify a value for <code>MaxResults</code> that is
-        /// less than the number of subscription grants, the response includes a pagination token
-        /// named <code>NextToken</code>. You can specify this <code>NextToken</code> value in
-        /// a subsequent call to <code>ListSubscriptionGrants</code> to list the next set of subscription
-        /// grants.
+        /// When the number of subscription grants is greater than the default value for the <c>MaxResults</c>
+        /// parameter, or if you explicitly specify a value for <c>MaxResults</c> that is less
+        /// than the number of subscription grants, the response includes a pagination token named
+        /// <c>NextToken</c>. You can specify this <c>NextToken</c> value in a subsequent call
+        /// to <c>ListSubscriptionGrants</c> to list the next set of subscription grants.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]
@@ -125,6 +126,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetNextToken()
         {
             return this._nextToken != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OwningProjectId. 
+        /// <para>
+        /// The ID of the owning project of the subscription grants.
+        /// </para>
+        /// </summary>
+        public string OwningProjectId
+        {
+            get { return this._owningProjectId; }
+            set { this._owningProjectId = value; }
+        }
+
+        // Check to see if OwningProjectId property is set
+        internal bool IsSetOwningProjectId()
+        {
+            return this._owningProjectId != null;
         }
 
         /// <summary>

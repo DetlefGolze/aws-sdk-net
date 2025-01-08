@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// The request was rejected because the specified customer master key (CMK) isn't enabled.
+    /// The request was rejected because the specified Amazon Web Services KMS key isn't enabled.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

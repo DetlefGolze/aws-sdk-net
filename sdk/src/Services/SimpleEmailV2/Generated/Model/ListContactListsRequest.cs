@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -61,9 +62,9 @@ namespace Amazon.SimpleEmailV2.Model
         /// Gets and sets the property PageSize. 
         /// <para>
         /// Maximum number of contact lists to return at once. Use this parameter to paginate
-        /// results. If additional contact lists exist beyond the specified limit, the <code>NextToken</code>
-        /// element is sent in the response. Use the <code>NextToken</code> value in subsequent
-        /// requests to retrieve additional lists.
+        /// results. If additional contact lists exist beyond the specified limit, the <c>NextToken</c>
+        /// element is sent in the response. Use the <c>NextToken</c> value in subsequent requests
+        /// to retrieve additional lists.
         /// </para>
         /// </summary>
         public int PageSize

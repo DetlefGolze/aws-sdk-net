@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearchDomain.Model
 {
     /// <summary>
@@ -43,10 +44,10 @@ namespace Amazon.CloudSearchDomain.Model
     /// 
     ///  
     /// <para>
-    /// The endpoint for submitting <code>UploadDocuments</code> requests is domain-specific.
-    /// To get the document endpoint for your domain, use the Amazon CloudSearch configuration
-    /// service <code>DescribeDomains</code> action. A domain's endpoints are also displayed
-    /// on the domain dashboard in the Amazon CloudSearch console. 
+    /// The endpoint for submitting <c>UploadDocuments</c> requests is domain-specific. To
+    /// get the document endpoint for your domain, use the Amazon CloudSearch configuration
+    /// service <c>DescribeDomains</c> action. A domain's endpoints are also displayed on
+    /// the domain dashboard in the Amazon CloudSearch console. 
     /// </para>
     ///  
     /// <para>
@@ -79,7 +80,7 @@ namespace Amazon.CloudSearchDomain.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>examplecluster</code> 
+        /// Example: <c>examplecluster</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=2147483647)]

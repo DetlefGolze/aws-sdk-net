@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SimpleWorkflow.Model
         private ExecutionStatus _executionStatus;
         private WorkflowExecution _parent;
         private DateTime? _startTimestamp;
-        private List<string> _tagList = new List<string>();
+        private List<string> _tagList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private WorkflowType _workflowType;
 
         /// <summary>
@@ -68,31 +69,30 @@ namespace Amazon.SimpleWorkflow.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>COMPLETED</code> – the execution was successfully completed.
+        ///  <c>COMPLETED</c> – the execution was successfully completed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANCELED</code> – the execution was canceled.Cancellation allows the implementation
+        ///  <c>CANCELED</c> – the execution was canceled.Cancellation allows the implementation
         /// to gracefully clean up before the execution is closed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TERMINATED</code> – the execution was force terminated.
+        ///  <c>TERMINATED</c> – the execution was force terminated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> – the execution failed to complete.
+        ///  <c>FAILED</c> – the execution failed to complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TIMED_OUT</code> – the execution did not complete in the alloted time and was
-        /// automatically timed out.
+        ///  <c>TIMED_OUT</c> – the execution did not complete in the alloted time and was automatically
+        /// timed out.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CONTINUED_AS_NEW</code> – the execution is logically continued. This means
-        /// the current execution was completed and a new execution was started to carry on the
-        /// workflow.
+        ///  <c>CONTINUED_AS_NEW</c> – the execution is logically continued. This means the current
+        /// execution was completed and a new execution was started to carry on the workflow.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -221,7 +221,7 @@ namespace Amazon.SimpleWorkflow.Model
         // Check to see if TagList property is set
         internal bool IsSetTagList()
         {
-            return this._tagList != null && this._tagList.Count > 0; 
+            return this._tagList != null && (this._tagList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

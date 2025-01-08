@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The Client VPN endpoint's status changes to <code>pending-associate</code> 
+    /// The Client VPN endpoint's status changes to <c>pending-associate</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>

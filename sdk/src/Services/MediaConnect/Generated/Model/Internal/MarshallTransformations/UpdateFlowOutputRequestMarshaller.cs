@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCidrAllowList())
@@ -131,6 +133,12 @@ namespace Amazon.MediaConnect.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("minLatency");
                     context.Writer.Write(publicRequest.MinLatency);
+                }
+
+                if(publicRequest.IsSetOutputStatus())
+                {
+                    context.Writer.WritePropertyName("outputStatus");
+                    context.Writer.Write(publicRequest.OutputStatus);
                 }
 
                 if(publicRequest.IsSetPort())

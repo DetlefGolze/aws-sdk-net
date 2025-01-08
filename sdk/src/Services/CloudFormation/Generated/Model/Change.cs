@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
-    /// The <code>Change</code> structure describes the changes CloudFormation will perform
-    /// if you execute the change set.
+    /// The <c>Change</c> structure describes the changes CloudFormation will perform if you
+    /// execute the change set.
     /// </summary>
     public partial class Change
     {
@@ -41,8 +42,8 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property HookInvocationCount. 
         /// <para>
-        /// Is either <code>null</code>, if no hooks invoke for the resource, or contains the
-        /// number of hooks that will invoke for the resource.
+        /// Is either <c>null</c>, if no hooks invoke for the resource, or contains the number
+        /// of hooks that will invoke for the resource.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -61,8 +62,8 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property ResourceChange. 
         /// <para>
-        /// A <code>ResourceChange</code> structure that describes the resource and action that
-        /// CloudFormation will perform.
+        /// A <c>ResourceChange</c> structure that describes the resource and action that CloudFormation
+        /// will perform.
         /// </para>
         /// </summary>
         public ResourceChange ResourceChange
@@ -80,9 +81,13 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of entity that CloudFormation changes. Currently, the only entity type is
-        /// <code>Resource</code>.
+        /// The type of entity that CloudFormation changes.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>Resource</c> This change is for a resource.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public ChangeType Type
         {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property PortfolioShareToken. 
         /// <para>
-        /// The token that tracks the status of the <code>UpdatePortfolioShare</code> operation
-        /// for external account to account or organizational type sharing.
+        /// The token that tracks the status of the <c>UpdatePortfolioShare</c> operation for
+        /// external account to account or organizational type sharing.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -59,8 +60,8 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of <code>UpdatePortfolioShare</code> operation. You can also obtain the
-        /// operation status using <code>DescribePortfolioShareStatus</code> API. 
+        /// The status of <c>UpdatePortfolioShare</c> operation. You can also obtain the operation
+        /// status using <c>DescribePortfolioShareStatus</c> API. 
         /// </para>
         /// </summary>
         public ShareStatus Status

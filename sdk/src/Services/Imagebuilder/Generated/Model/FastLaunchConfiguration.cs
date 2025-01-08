@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -61,8 +62,8 @@ namespace Amazon.Imagebuilder.Model
         /// Gets and sets the property Enabled. 
         /// <para>
         /// A Boolean that represents the current state of faster launching for the Windows AMI.
-        /// Set to <code>true</code> to start using Windows faster launching, or <code>false</code>
-        /// to stop using it.
+        /// Set to <c>true</c> to start using Windows faster launching, or <c>false</c> to stop
+        /// using it.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -103,7 +104,7 @@ namespace Amazon.Imagebuilder.Model
         /// The maximum number of parallel instances that are launched for creating resources.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=10000)]
+        [AWSProperty(Min=1)]
         public int MaxParallelLaunches
         {
             get { return this._maxParallelLaunches.GetValueOrDefault(); }

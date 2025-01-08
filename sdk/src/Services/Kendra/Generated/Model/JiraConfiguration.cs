@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -33,31 +34,31 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class JiraConfiguration
     {
-        private List<DataSourceToIndexFieldMapping> _attachmentFieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<DataSourceToIndexFieldMapping> _commentFieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<string> _exclusionPatterns = new List<string>();
-        private List<string> _inclusionPatterns = new List<string>();
-        private List<DataSourceToIndexFieldMapping> _issueFieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<string> _issueSubEntityFilter = new List<string>();
-        private List<string> _issueType = new List<string>();
+        private List<DataSourceToIndexFieldMapping> _attachmentFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<DataSourceToIndexFieldMapping> _commentFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<string> _exclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _inclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DataSourceToIndexFieldMapping> _issueFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<string> _issueSubEntityFilter = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _issueType = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _jiraAccountUrl;
-        private List<string> _project = new List<string>();
-        private List<DataSourceToIndexFieldMapping> _projectFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<string> _project = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DataSourceToIndexFieldMapping> _projectFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private string _secretArn;
-        private List<string> _status = new List<string>();
+        private List<string> _status = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _useChangeLog;
         private DataSourceVpcConfiguration _vpcConfiguration;
-        private List<DataSourceToIndexFieldMapping> _workLogFieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _workLogFieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property AttachmentFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Jira attachments to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Jira fields. For more
-        /// information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
-        /// Mapping data source fields</a>. The Jira data source field names must exist in your
-        /// Jira custom metadata.
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Jira attachments to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Jira fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html"> Mapping
+        /// data source fields</a>. The Jira data source field names must exist in your Jira custom
+        /// metadata.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -70,18 +71,18 @@ namespace Amazon.Kendra.Model
         // Check to see if AttachmentFieldMappings property is set
         internal bool IsSetAttachmentFieldMappings()
         {
-            return this._attachmentFieldMappings != null && this._attachmentFieldMappings.Count > 0; 
+            return this._attachmentFieldMappings != null && (this._attachmentFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CommentFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Jira comments to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Jira fields. For more
-        /// information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
-        /// Mapping data source fields</a>. The Jira data source field names must exist in your
-        /// Jira custom metadata.
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Jira comments to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Jira fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html"> Mapping
+        /// data source fields</a>. The Jira data source field names must exist in your Jira custom
+        /// metadata.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -94,7 +95,7 @@ namespace Amazon.Kendra.Model
         // Check to see if CommentFieldMappings property is set
         internal bool IsSetCommentFieldMappings()
         {
-            return this._commentFieldMappings != null && this._commentFieldMappings.Count > 0; 
+            return this._commentFieldMappings != null && (this._commentFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace Amazon.Kendra.Model
         // Check to see if ExclusionPatterns property is set
         internal bool IsSetExclusionPatterns()
         {
-            return this._exclusionPatterns != null && this._exclusionPatterns.Count > 0; 
+            return this._exclusionPatterns != null && (this._exclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,15 +141,15 @@ namespace Amazon.Kendra.Model
         // Check to see if InclusionPatterns property is set
         internal bool IsSetInclusionPatterns()
         {
-            return this._inclusionPatterns != null && this._inclusionPatterns.Count > 0; 
+            return this._inclusionPatterns != null && (this._inclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IssueFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Jira issues to Amazon Kendra index field names. To create custom fields,
-        /// use the <code>UpdateIndex</code> API before you map to Jira fields. For more information,
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Jira issues to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Jira fields. For more information,
         /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html"> Mapping
         /// data source fields</a>. The Jira data source field names must exist in your Jira custom
         /// metadata.
@@ -164,7 +165,7 @@ namespace Amazon.Kendra.Model
         // Check to see if IssueFieldMappings property is set
         internal bool IsSetIssueFieldMappings()
         {
-            return this._issueFieldMappings != null && this._issueFieldMappings.Count > 0; 
+            return this._issueFieldMappings != null && (this._issueFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -184,7 +185,7 @@ namespace Amazon.Kendra.Model
         // Check to see if IssueSubEntityFilter property is set
         internal bool IsSetIssueSubEntityFilter()
         {
-            return this._issueSubEntityFilter != null && this._issueSubEntityFilter.Count > 0; 
+            return this._issueSubEntityFilter != null && (this._issueSubEntityFilter.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -203,7 +204,7 @@ namespace Amazon.Kendra.Model
         // Check to see if IssueType property is set
         internal bool IsSetIssueType()
         {
-            return this._issueType != null && this._issueType.Count > 0; 
+            return this._issueType != null && (this._issueType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -241,18 +242,18 @@ namespace Amazon.Kendra.Model
         // Check to see if Project property is set
         internal bool IsSetProject()
         {
-            return this._project != null && this._project.Count > 0; 
+            return this._project != null && (this._project.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProjectFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Jira projects to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Jira fields. For more
-        /// information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
-        /// Mapping data source fields</a>. The Jira data source field names must exist in your
-        /// Jira custom metadata.
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Jira projects to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Jira fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html"> Mapping
+        /// data source fields</a>. The Jira data source field names must exist in your Jira custom
+        /// metadata.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -265,7 +266,7 @@ namespace Amazon.Kendra.Model
         // Check to see if ProjectFieldMappings property is set
         internal bool IsSetProjectFieldMappings()
         {
-            return this._projectFieldMappings != null && this._projectFieldMappings.Count > 0; 
+            return this._projectFieldMappings != null && (this._projectFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -315,15 +316,15 @@ namespace Amazon.Kendra.Model
         // Check to see if Status property is set
         internal bool IsSetStatus()
         {
-            return this._status != null && this._status.Count > 0; 
+            return this._status != null && (this._status.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UseChangeLog. 
         /// <para>
-        ///  <code>TRUE</code> to use the Jira change log to determine which documents require
-        /// updating in the index. Depending on the change log's size, it may take longer for
-        /// Amazon Kendra to use the change log than to scan all of your documents in Jira.
+        ///  <c>TRUE</c> to use the Jira change log to determine which documents require updating
+        /// in the index. Depending on the change log's size, it may take longer for Amazon Kendra
+        /// to use the change log than to scan all of your documents in Jira.
         /// </para>
         /// </summary>
         public bool UseChangeLog
@@ -361,12 +362,12 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property WorkLogFieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map attributes or
-        /// field names of Jira work logs to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to Jira fields. For more
-        /// information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">
-        /// Mapping data source fields</a>. The Jira data source field names must exist in your
-        /// Jira custom metadata.
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map attributes or field
+        /// names of Jira work logs to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to Jira fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html"> Mapping
+        /// data source fields</a>. The Jira data source field names must exist in your Jira custom
+        /// metadata.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -379,7 +380,7 @@ namespace Amazon.Kendra.Model
         // Check to see if WorkLogFieldMappings property is set
         internal bool IsSetWorkLogFieldMappings()
         {
-            return this._workLogFieldMappings != null && this._workLogFieldMappings.Count > 0; 
+            return this._workLogFieldMappings != null && (this._workLogFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

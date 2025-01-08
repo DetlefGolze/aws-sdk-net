@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -102,7 +103,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a previous call to <code>DescribeCodeCoverages</code>.
+        /// The <c>nextToken</c> value returned from a previous call to <c>DescribeCodeCoverages</c>.
         /// This specifies the next item to return. To return the beginning of the list, exclude
         /// this parameter.
         /// </para>

@@ -26,33 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDhcpOptions operation.
-    /// Describes one or more of your DHCP options sets.
+    /// Describes your DHCP option sets. The default is to describe all your DHCP option sets.
+    /// Alternatively, you can specify specific DHCP option set IDs or filter the results
+    /// to include only the DHCP option sets that match specific criteria.
     /// 
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html">DHCP
-    /// options sets</a> in the <i>Amazon VPC User Guide</i>.
+    /// option sets</a> in the <i>Amazon VPC User Guide</i>.
     /// </para>
     /// </summary>
     public partial class DescribeDhcpOptionsRequest : AmazonEC2Request
     {
-        private List<string> _dhcpOptionsIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _dhcpOptionsIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property DhcpOptionsIds. 
         /// <para>
-        /// The IDs of one or more DHCP options sets.
-        /// </para>
-        ///  
-        /// <para>
-        /// Default: Describes all your DHCP options sets.
+        /// The IDs of DHCP option sets.
         /// </para>
         /// </summary>
         public List<string> DhcpOptionsIds
@@ -64,7 +63,7 @@ namespace Amazon.EC2.Model
         // Check to see if DhcpOptionsIds property is set
         internal bool IsSetDhcpOptionsIds()
         {
-            return this._dhcpOptionsIds != null && this._dhcpOptionsIds.Count > 0; 
+            return this._dhcpOptionsIds != null && (this._dhcpOptionsIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,33 +73,32 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>dhcp-options-id</code> - The ID of a DHCP options set.
+        ///  <c>dhcp-options-id</c> - The ID of a DHCP options set.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>key</code> - The key for one of the options (for example, <code>domain-name</code>).
+        ///  <c>key</c> - The key for one of the options (for example, <c>domain-name</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>value</code> - The value for one of the options.
+        ///  <c>value</c> - The value for one of the options.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>owner-id</code> - The ID of the Amazon Web Services account that owns the DHCP
-        /// options set.
+        ///  <c>owner-id</c> - The ID of the Amazon Web Services account that owns the DHCP options
+        /// set.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c> - The key/value combination of a tag assigned to the resource. Use the
+        /// tag key in the filter name and the tag value as the filter value. For example, to
+        /// find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -113,7 +111,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSMarketplaceMetering.Model
 {
     /// <summary>
-    /// You have metered usage for a <code>CustomerIdentifier</code> that does not exist.
+    /// You have metered usage for a <c>CustomerIdentifier</c> that does not exist.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

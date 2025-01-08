@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -42,9 +43,10 @@ namespace Amazon.RDS.Model
         private string _backupTarget;
         private string _dbInstanceArn;
         private string _dbInstanceAutomatedBackupsArn;
-        private List<DBInstanceAutomatedBackupsReplication> _dbInstanceAutomatedBackupsReplications = new List<DBInstanceAutomatedBackupsReplication>();
+        private List<DBInstanceAutomatedBackupsReplication> _dbInstanceAutomatedBackupsReplications = AWSConfigs.InitializeCollections ? new List<DBInstanceAutomatedBackupsReplication>() : null;
         private string _dbInstanceIdentifier;
         private string _dbiResourceId;
+        private bool? _dedicatedLogVolume;
         private bool? _encrypted;
         private string _engine;
         private string _engineVersion;
@@ -54,6 +56,7 @@ namespace Amazon.RDS.Model
         private string _kmsKeyId;
         private string _licenseModel;
         private string _masterUsername;
+        private bool? _multiTenant;
         private string _optionGroupName;
         private int? _port;
         private string _region;
@@ -210,7 +213,7 @@ namespace Amazon.RDS.Model
         // Check to see if DBInstanceAutomatedBackupsReplications property is set
         internal bool IsSetDBInstanceAutomatedBackupsReplications()
         {
-            return this._dbInstanceAutomatedBackupsReplications != null && this._dbInstanceAutomatedBackupsReplications.Count > 0; 
+            return this._dbInstanceAutomatedBackupsReplications != null && (this._dbInstanceAutomatedBackupsReplications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -249,6 +252,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetDbiResourceId()
         {
             return this._dbiResourceId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DedicatedLogVolume. 
+        /// <para>
+        /// Indicates whether the DB instance has a dedicated log volume (DLV) enabled.
+        /// </para>
+        /// </summary>
+        public bool DedicatedLogVolume
+        {
+            get { return this._dedicatedLogVolume.GetValueOrDefault(); }
+            set { this._dedicatedLogVolume = value; }
+        }
+
+        // Check to see if DedicatedLogVolume property is set
+        internal bool IsSetDedicatedLogVolume()
+        {
+            return this._dedicatedLogVolume.HasValue; 
         }
 
         /// <summary>
@@ -420,6 +441,25 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MultiTenant. 
+        /// <para>
+        /// Specifies whether the automatic backup is for a DB instance in the multi-tenant configuration
+        /// (TRUE) or the single-tenant configuration (FALSE). 
+        /// </para>
+        /// </summary>
+        public bool MultiTenant
+        {
+            get { return this._multiTenant.GetValueOrDefault(); }
+            set { this._multiTenant = value; }
+        }
+
+        // Check to see if MultiTenant property is set
+        internal bool IsSetMultiTenant()
+        {
+            return this._multiTenant.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property OptionGroupName. 
         /// <para>
         /// The option group the automated backup is associated with. If omitted, the default
@@ -449,7 +489,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>1150-65535</code> 
+        /// Valid Values: <c>1150-65535</c> 
         /// </para>
         /// </summary>
         public int Port
@@ -507,16 +547,16 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>active</code> - Automated backups for current instances.
+        ///  <c>active</c> - Automated backups for current instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>retained</code> - Automated backups for deleted instances.
+        ///  <c>retained</c> - Automated backups for deleted instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>creating</code> - Automated backups that are waiting for the first automated
-        /// snapshot to be available.
+        ///  <c>creating</c> - Automated backups that are waiting for the first automated snapshot
+        /// to be available.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -589,8 +629,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Timezone. 
         /// <para>
-        /// The time zone of the automated backup. In most cases, the <code>Timezone</code> element
-        /// is empty. <code>Timezone</code> content appears only for Microsoft SQL Server DB instances
+        /// The time zone of the automated backup. In most cases, the <c>Timezone</c> element
+        /// is empty. <c>Timezone</c> content appears only for Microsoft SQL Server DB instances
         /// that were created with a time zone specified.
         /// </para>
         /// </summary>

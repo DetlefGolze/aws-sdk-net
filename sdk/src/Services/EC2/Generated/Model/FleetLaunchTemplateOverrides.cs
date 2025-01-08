@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -64,10 +65,65 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ImageId. 
         /// <para>
-        /// The ID of the AMI. An AMI is required to launch an instance. This parameter is only
-        /// available for fleets of type <code>instant</code>. For fleets of type <code>maintain</code>
-        /// and <code>request</code>, you must specify the AMI ID in the launch template.
+        /// The ID of the AMI in the format <c>ami-17characters00000</c>.
         /// </para>
+        ///  
+        /// <para>
+        /// Alternatively, you can specify a Systems Manager parameter, using one of the following
+        /// formats. The Systems Manager parameter will resolve to an AMI ID on launch.
+        /// </para>
+        ///  
+        /// <para>
+        /// To reference a public parameter:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resolve:ssm:<i>public-parameter</i> </c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To reference a parameter stored in the same account:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resolve:ssm:<i>parameter-name</i> </c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resolve:ssm:<i>parameter-name:version-number</i> </c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resolve:ssm:<i>parameter-name:label</i> </c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To reference a parameter shared from another Amazon Web Services account:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>resolve:ssm:<i>parameter-ARN</i> </c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resolve:ssm:<i>parameter-ARN:version-number</i> </c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>resolve:ssm:<i>parameter-ARN:label</i> </c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-launch-template.html#use-an-ssm-parameter-instead-of-an-ami-id">Use
+        /// a Systems Manager parameter instead of an AMI ID</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This parameter is only available for fleets of type <c>instant</c>. For fleets of
+        /// type <c>maintain</c> and <c>request</c>, you must specify the AMI ID in the launch
+        /// template.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string ImageId
         {
@@ -89,7 +145,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceType</code>.
+        /// If you specify <c>InstanceRequirements</c>, you can't specify <c>InstanceType</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -112,11 +168,11 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>mac1.metal</code> is not supported as a launch template override.
+        ///  <c>mac1.metal</c> is not supported as a launch template override.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specify <code>InstanceType</code>, you can't specify <code>InstanceRequirements</code>.
+        /// If you specify <c>InstanceType</c>, you can't specify <c>InstanceRequirements</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -183,21 +239,21 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// If the On-Demand <code>AllocationStrategy</code> is set to <code>prioritized</code>,
-        /// EC2 Fleet uses priority to determine which launch template override to use first in
-        /// fulfilling On-Demand capacity.
+        /// If the On-Demand <c>AllocationStrategy</c> is set to <c>prioritized</c>, EC2 Fleet
+        /// uses priority to determine which launch template override to use first in fulfilling
+        /// On-Demand capacity.
         /// </para>
         ///  
         /// <para>
-        /// If the Spot <code>AllocationStrategy</code> is set to <code>capacity-optimized-prioritized</code>,
+        /// If the Spot <c>AllocationStrategy</c> is set to <c>capacity-optimized-prioritized</c>,
         /// EC2 Fleet uses priority on a best-effort basis to determine which launch template
         /// override to use in fulfilling Spot capacity, but optimizes for capacity first.
         /// </para>
         ///  
         /// <para>
-        /// Valid values are whole numbers starting at <code>0</code>. The lower the number, the
-        /// higher the priority. If no number is set, the override has the lowest priority. You
-        /// can set the same priority for different launch template overrides.
+        /// Valid values are whole numbers starting at <c>0</c>. The lower the number, the higher
+        /// the priority. If no number is set, the override has the lowest priority. You can set
+        /// the same priority for different launch template overrides.
         /// </para>
         /// </summary>
         public double Priority
@@ -233,8 +289,25 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property WeightedCapacity. 
         /// <para>
-        /// The number of units provided by the specified instance type.
+        /// The number of units provided by the specified instance type. These are the same units
+        /// that you chose to set the target capacity in terms of instances, or a performance
+        /// characteristic such as vCPUs, memory, or I/O.
         /// </para>
+        ///  
+        /// <para>
+        /// If the target capacity divided by this value is not a whole number, Amazon EC2 rounds
+        /// the number of instances to the next whole number. If this value is not specified,
+        /// the default is 1.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// When specifying weights, the price used in the <c>lowest-price</c> and <c>price-capacity-optimized</c>
+        /// allocation strategies is per <i>unit</i> hour (where the instance price is divided
+        /// by the specified weight). However, if all the specified weights are above the requested
+        /// <c>TargetCapacity</c>, resulting in only 1 instance being launched, the price used
+        /// is per <i>instance</i> hour.
+        /// </para>
+        ///  </note>
         /// </summary>
         public double WeightedCapacity
         {

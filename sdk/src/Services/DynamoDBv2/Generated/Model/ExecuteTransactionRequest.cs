@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.DynamoDBv2.Model
     /// The entire transaction must consist of either read statements or write statements,
     /// you cannot mix both in one transaction. The EXISTS function is an exception and can
     /// be used to check the condition of specific attributes of the item in a similar manner
-    /// to <code>ConditionCheck</code> in the <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html#transaction-apis-txwriteitems">TransactWriteItems</a>
+    /// to <c>ConditionCheck</c> in the <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html#transaction-apis-txwriteitems">TransactWriteItems</a>
     /// API.
     /// </para>
     ///  </note>
@@ -47,13 +48,13 @@ namespace Amazon.DynamoDBv2.Model
     {
         private string _clientRequestToken;
         private ReturnConsumedCapacity _returnConsumedCapacity;
-        private List<ParameterizedStatement> _transactStatements = new List<ParameterizedStatement>();
+        private List<ParameterizedStatement> _transactStatements = AWSConfigs.InitializeCollections ? new List<ParameterizedStatement>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Set this value to get remaining results, if <code>NextToken</code> was returned in
-        /// the statement response.
+        /// Set this value to get remaining results, if <c>NextToken</c> was returned in the statement
+        /// response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -105,7 +106,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if TransactStatements property is set
         internal bool IsSetTransactStatements()
         {
-            return this._transactStatements != null && this._transactStatements.Count > 0; 
+            return this._transactStatements != null && (this._transactStatements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

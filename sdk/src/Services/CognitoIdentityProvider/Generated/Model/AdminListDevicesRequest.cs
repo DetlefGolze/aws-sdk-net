@@ -26,11 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminListDevices operation.
-    /// Lists devices, as an administrator.
+    /// Lists a user's registered devices. Remembered devices are used in authentication services
+    /// where you offer a "Remember me" option for users who you want to permit to sign in
+    /// without MFA from a trusted device. Users can bypass MFA while your application performs
+    /// device SRP authentication on the back end. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html">Working
+    /// with devices</a>.
     /// 
     ///  <note> 
     /// <para>
@@ -64,7 +69,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The limit of the devices request.
+        /// The maximum number of devices that you want Amazon Cognito to return in the response.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=60)]
@@ -83,7 +88,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property PaginationToken. 
         /// <para>
-        /// The pagination token.
+        /// This API operation returns a limited number of results. The pagination token is an
+        /// identifier that you can present in an additional API request with the same parameters.
+        /// When you include the pagination token, Amazon Cognito returns the next set of items
+        /// after the current list. Subsequent requests return a new pagination token. By use
+        /// of this token, you can paginate through the full list of items.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -102,7 +111,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -121,7 +133,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID.
+        /// The ID of the user pool where the device owner is a user.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

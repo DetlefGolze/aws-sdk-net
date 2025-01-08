@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ChimeSDKIdentity.Model
     /// </summary>
     public partial class ListAppInstanceAdminsResponse : AmazonWebServiceResponse
     {
-        private List<AppInstanceAdminSummary> _appInstanceAdmins = new List<AppInstanceAdminSummary>();
+        private List<AppInstanceAdminSummary> _appInstanceAdmins = AWSConfigs.InitializeCollections ? new List<AppInstanceAdminSummary>() : null;
         private string _appInstanceArn;
         private string _nextToken;
 
@@ -52,13 +53,13 @@ namespace Amazon.ChimeSDKIdentity.Model
         // Check to see if AppInstanceAdmins property is set
         internal bool IsSetAppInstanceAdmins()
         {
-            return this._appInstanceAdmins != null && this._appInstanceAdmins.Count > 0; 
+            return this._appInstanceAdmins != null && (this._appInstanceAdmins.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AppInstanceArn. 
         /// <para>
-        /// The ARN of the <code>AppInstance</code>.
+        /// The ARN of the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]

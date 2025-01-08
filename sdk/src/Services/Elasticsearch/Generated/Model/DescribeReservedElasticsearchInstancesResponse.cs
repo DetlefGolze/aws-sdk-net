@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// Container for results from <code>DescribeReservedElasticsearchInstances</code>
+    /// Container for results from <c>DescribeReservedElasticsearchInstances</c>
     /// </summary>
     public partial class DescribeReservedElasticsearchInstancesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ReservedElasticsearchInstance> _reservedElasticsearchInstances = new List<ReservedElasticsearchInstance>();
+        private List<ReservedElasticsearchInstance> _reservedElasticsearchInstances = AWSConfigs.InitializeCollections ? new List<ReservedElasticsearchInstance>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -69,7 +70,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if ReservedElasticsearchInstances property is set
         internal bool IsSetReservedElasticsearchInstances()
         {
-            return this._reservedElasticsearchInstances != null && this._reservedElasticsearchInstances.Count > 0; 
+            return this._reservedElasticsearchInstances != null && (this._reservedElasticsearchInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -24,7 +24,8 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Runtime;
- 
+
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -40,6 +41,12 @@ namespace Amazon.ElasticFileSystem.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         public IPaginatedEnumerable<DescribeTagsResponse> Responses => new PaginatedResponse<DescribeTagsResponse>(this);
+
+        /// <summary>
+        /// Enumerable containing all of the Tags
+        /// </summary>
+        public IPaginatedEnumerable<Tag> Tags => 
+            new PaginatedResultKeyResponse<DescribeTagsResponse, Tag>(this, (i) => i.Tags ?? new List<Tag>());
 
         internal DescribeTagsPaginator(IAmazonElasticFileSystem client, DescribeTagsRequest request)
         {
@@ -67,7 +74,7 @@ namespace Amazon.ElasticFileSystem.Model
         }
 #endif
 #if AWS_ASYNC_ENUMERABLES_API
-        async IAsyncEnumerable<DescribeTagsResponse> IPaginator<DescribeTagsResponse>.PaginateAsync(CancellationToken cancellationToken = default)
+        async IAsyncEnumerable<DescribeTagsResponse> IPaginator<DescribeTagsResponse>.PaginateAsync([System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken)
         {
             if (Interlocked.Exchange(ref _isPaginatorInUse, 1) != 0)
             {

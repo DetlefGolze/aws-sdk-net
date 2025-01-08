@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DevOpsGuru.Model
     /// </summary>
     public partial class CloudWatchMetricsDetail
     {
-        private List<CloudWatchMetricsDimension> _dimensions = new List<CloudWatchMetricsDimension>();
+        private List<CloudWatchMetricsDimension> _dimensions = AWSConfigs.InitializeCollections ? new List<CloudWatchMetricsDimension>() : null;
         private CloudWatchMetricsDataSummary _metricDataSummary;
         private string _metricName;
         private string _awsNamespace;
@@ -56,7 +57,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Dimensions property is set
         internal bool IsSetDimensions()
         {
-            return this._dimensions != null && this._dimensions.Count > 0; 
+            return this._dimensions != null && (this._dimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,8 +156,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Unit. 
         /// <para>
-        ///  The unit of measure used for the CloudWatch metric. For example, <code>Bytes</code>,
-        /// <code>Seconds</code>, <code>Count</code>, and <code>Percent</code>. 
+        ///  The unit of measure used for the CloudWatch metric. For example, <c>Bytes</c>, <c>Seconds</c>,
+        /// <c>Count</c>, and <c>Percent</c>. 
         /// </para>
         /// </summary>
         public string Unit

@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The Amazon S3 result from the snapshot job. The result includes the <code>DestinationConfiguration</code>
+    /// The Amazon S3 result from the snapshot job. The result includes the <c>DestinationConfiguration</c>
     /// and the Amazon S3 Uri. If an error occured during the job, the result returns information
     /// on the error.
     /// </summary>
     public partial class SnapshotJobS3Result
     {
-        private List<SnapshotJobResultErrorInfo> _errorInfo = new List<SnapshotJobResultErrorInfo>();
+        private List<SnapshotJobResultErrorInfo> _errorInfo = AWSConfigs.InitializeCollections ? new List<SnapshotJobResultErrorInfo>() : null;
         private SnapshotS3DestinationConfiguration _s3DestinationConfiguration;
         private string _s3Uri;
 
@@ -55,13 +56,13 @@ namespace Amazon.QuickSight.Model
         // Check to see if ErrorInfo property is set
         internal bool IsSetErrorInfo()
         {
-            return this._errorInfo != null && this._errorInfo.Count > 0; 
+            return this._errorInfo != null && (this._errorInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property S3DestinationConfiguration. 
         /// <para>
-        /// A list of Amazon S3 bucket configurations that are provided when you make a <code>StartDashboardSnapshotJob</code>
+        /// A list of Amazon S3 bucket configurations that are provided when you make a <c>StartDashboardSnapshotJob</c>
         /// API call. 
         /// </para>
         /// </summary>

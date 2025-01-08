@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Inspector2.Model
     /// </summary>
     public partial class ListFindingAggregationsResponse : AmazonWebServiceResponse
     {
-        private List<AggregationResponse> _aggregations = new List<AggregationResponse>();
+        private List<AggregationResponse> _aggregations = AWSConfigs.InitializeCollections ? new List<AggregationResponse>() : null;
         private AggregationType _aggregationType;
         private string _nextToken;
 
@@ -52,7 +53,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if Aggregations property is set
         internal bool IsSetAggregations()
         {
-            return this._aggregations != null && this._aggregations.Count > 0; 
+            return this._aggregations != null && (this._aggregations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,8 +80,8 @@ namespace Amazon.Inspector2.Model
         /// <para>
         /// A token to use for paginating results that are returned in the response. Set the value
         /// of this parameter to null for the first request to a list action. For subsequent calls,
-        /// use the <code>NextToken</code> value returned from the previous request to continue
-        /// listing results after the first page.
+        /// use the <c>NextToken</c> value returned from the previous request to continue listing
+        /// results after the first page.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1000000)]

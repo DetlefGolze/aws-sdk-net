@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Node Unmarshall(JsonUnmarshallerContext context)
         {
+            Node unmarshalledObject = new Node();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Node unmarshalledObject = new Node();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,14 +84,25 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                     unmarshalledObject.Branch = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("property", targetDepth))
+                {
+                    var unmarshaller = CustomPropertyUnmarshaller.Instance;
+                    unmarshalledObject.Property = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("sensor", targetDepth))
                 {
                     var unmarshaller = SensorUnmarshaller.Instance;
                     unmarshalledObject.Sensor = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("struct", targetDepth))
+                {
+                    var unmarshaller = CustomStructUnmarshaller.Instance;
+                    unmarshalledObject.Struct = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
     /// Container for the parameters to the PollForJobs operation.
-    /// Returns information about any jobs for CodePipeline to act on. <code>PollForJobs</code>
+    /// Returns information about any jobs for CodePipeline to act on. <c>PollForJobs</c>
     /// is valid only for action types with "Custom" in the owner field. If the action type
-    /// contains <code>AWS</code> or <code>ThirdParty</code> in the owner field, the <code>PollForJobs</code>
+    /// contains <c>AWS</c> or <c>ThirdParty</c> in the owner field, the <c>PollForJobs</c>
     /// action returns an error.
     /// 
     ///  <important> 
@@ -48,7 +49,7 @@ namespace Amazon.CodePipeline.Model
     {
         private ActionTypeId _actionTypeId;
         private int? _maxBatchSize;
-        private Dictionary<string, string> _queryParam = new Dictionary<string, string>();
+        private Dictionary<string, string> _queryParam = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ActionTypeId. 
@@ -107,7 +108,7 @@ namespace Amazon.CodePipeline.Model
         // Check to see if QueryParam property is set
         internal bool IsSetQueryParam()
         {
-            return this._queryParam != null && this._queryParam.Count > 0; 
+            return this._queryParam != null && (this._queryParam.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

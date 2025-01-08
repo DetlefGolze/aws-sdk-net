@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the macie2-2020-01-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -39,6 +40,11 @@ namespace Amazon.Macie2.Model
         /// Paginator for ListAllowLists operation
         ///</summary>
         IListAllowListsPaginator ListAllowLists(ListAllowListsRequest request);
+
+        /// <summary>
+        /// Paginator for ListAutomatedDiscoveryAccounts operation
+        ///</summary>
+        IListAutomatedDiscoveryAccountsPaginator ListAutomatedDiscoveryAccounts(ListAutomatedDiscoveryAccountsRequest request);
 
         /// <summary>
         /// Paginator for ListClassificationJobs operation

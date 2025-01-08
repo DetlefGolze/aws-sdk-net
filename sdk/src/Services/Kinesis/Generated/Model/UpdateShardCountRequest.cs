@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -35,17 +36,18 @@ namespace Amazon.Kinesis.Model
     /// 
     ///  <note> 
     /// <para>
-    /// When invoking this API, it is recommended you use the <code>StreamARN</code> input
-    /// parameter rather than the <code>StreamName</code> input parameter.
+    /// When invoking this API, you must use either the <c>StreamARN</c> or the <c>StreamName</c>
+    /// parameter, or both. It is recommended that you use the <c>StreamARN</c> input parameter
+    /// when you invoke this API.
     /// </para>
     ///  </note> 
     /// <para>
     /// Updating the shard count is an asynchronous operation. Upon receiving the request,
-    /// Kinesis Data Streams returns immediately and sets the status of the stream to <code>UPDATING</code>.
+    /// Kinesis Data Streams returns immediately and sets the status of the stream to <c>UPDATING</c>.
     /// After the update is complete, Kinesis Data Streams sets the status of the stream back
-    /// to <code>ACTIVE</code>. Depending on the size of the stream, the scaling action could
-    /// take a few minutes to complete. You can continue to read and write data to your stream
-    /// while its status is <code>UPDATING</code>.
+    /// to <c>ACTIVE</c>. Depending on the size of the stream, the scaling action could take
+    /// a few minutes to complete. You can continue to read and write data to your stream
+    /// while its status is <c>UPDATING</c>.
     /// </para>
     ///  
     /// <para>
@@ -89,6 +91,10 @@ namespace Amazon.Kinesis.Model
     ///  </li> <li> 
     /// <para>
     /// Scale up to more than the shard limit for your account
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Make over 10 TPS. TPS over 10 will trigger the LimitExceededException
     /// </para>
     ///  </li> </ul> 
     /// <para>

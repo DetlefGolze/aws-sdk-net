@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.CloudControlApi.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.CloudControlApi
 {
     /// <summary>
-    /// Interface for accessing CloudControlApi
+    /// <para>Interface for accessing CloudControlApi</para>
     ///
     /// For more information about Amazon Web Services Cloud Control API, see the <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/userguide/what-is-cloudcontrolapi.html">Amazon
     /// Web Services Cloud Control API User Guide</a>.
@@ -55,7 +56,7 @@ namespace Amazon.CloudControlApi
         /// 
         ///  
         /// <para>
-        /// Only resource operations requests with a status of <code>PENDING</code> or <code>IN_PROGRESS</code>
+        /// Only resource operations requests with a status of <c>PENDING</c> or <c>IN_PROGRESS</c>
         /// can be canceled.
         /// </para>
         /// </summary>
@@ -110,8 +111,7 @@ namespace Amazon.CloudControlApi
         /// <para>
         /// After you have initiated a resource creation request, you can monitor the progress
         /// of your request by calling <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/APIReference/API_GetResourceRequestStatus.html">GetResourceRequestStatus</a>
-        /// using the <code>RequestToken</code> of the <code>ProgressEvent</code> type returned
-        /// by <code>CreateResource</code>.
+        /// using the <c>RequestToken</c> of the <c>ProgressEvent</c> type returned by <c>CreateResource</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateResource service method.</param>
@@ -178,7 +178,7 @@ namespace Amazon.CloudControlApi
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceInternalErrorException">
         /// The resource handler has returned that the downstream service returned an internal
-        /// error, typically with a <code>5XX HTTP</code> status code.
+        /// error, typically with a <c>5XX HTTP</c> status code.
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceLimitExceededException">
         /// The resource handler has returned that a non-transient resource limit was reached
@@ -235,8 +235,7 @@ namespace Amazon.CloudControlApi
         /// <para>
         /// After you have initiated a resource deletion request, you can monitor the progress
         /// of your request by calling <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/APIReference/API_GetResourceRequestStatus.html">GetResourceRequestStatus</a>
-        /// using the <code>RequestToken</code> of the <code>ProgressEvent</code> returned by
-        /// <code>DeleteResource</code>.
+        /// using the <c>RequestToken</c> of the <c>ProgressEvent</c> returned by <c>DeleteResource</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteResource service method.</param>
@@ -303,7 +302,7 @@ namespace Amazon.CloudControlApi
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceInternalErrorException">
         /// The resource handler has returned that the downstream service returned an internal
-        /// error, typically with a <code>5XX HTTP</code> status code.
+        /// error, typically with a <c>5XX HTTP</c> status code.
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceLimitExceededException">
         /// The resource handler has returned that a non-transient resource limit was reached
@@ -416,7 +415,7 @@ namespace Amazon.CloudControlApi
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceInternalErrorException">
         /// The resource handler has returned that the downstream service returned an internal
-        /// error, typically with a <code>5XX HTTP</code> status code.
+        /// error, typically with a <c>5XX HTTP</c> status code.
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceLimitExceededException">
         /// The resource handler has returned that a non-transient resource limit was reached
@@ -623,7 +622,7 @@ namespace Amazon.CloudControlApi
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceInternalErrorException">
         /// The resource handler has returned that the downstream service returned an internal
-        /// error, typically with a <code>5XX HTTP</code> status code.
+        /// error, typically with a <c>5XX HTTP</c> status code.
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceLimitExceededException">
         /// The resource handler has returned that a non-transient resource limit was reached
@@ -690,8 +689,7 @@ namespace Amazon.CloudControlApi
         /// <para>
         /// After you have initiated a resource update request, you can monitor the progress of
         /// your request by calling <a href="https://docs.aws.amazon.com/cloudcontrolapi/latest/APIReference/API_GetResourceRequestStatus.html">GetResourceRequestStatus</a>
-        /// using the <code>RequestToken</code> of the <code>ProgressEvent</code> returned by
-        /// <code>UpdateResource</code>.
+        /// using the <c>RequestToken</c> of the <c>ProgressEvent</c> returned by <c>UpdateResource</c>.
         /// </para>
         ///  
         /// <para>
@@ -764,7 +762,7 @@ namespace Amazon.CloudControlApi
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceInternalErrorException">
         /// The resource handler has returned that the downstream service returned an internal
-        /// error, typically with a <code>5XX HTTP</code> status code.
+        /// error, typically with a <c>5XX HTTP</c> status code.
         /// </exception>
         /// <exception cref="Amazon.CloudControlApi.Model.ServiceLimitExceededException">
         /// The resource handler has returned that a non-transient resource limit was reached

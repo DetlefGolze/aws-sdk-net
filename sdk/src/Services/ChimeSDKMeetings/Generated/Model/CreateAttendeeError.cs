@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -85,12 +86,12 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// </para>
         ///  
         /// <para>
-        /// Pattern: <code>[-_&amp;@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*</code> 
+        /// Pattern: <c>[-_&amp;@+=,(){}\[\]\/«».:|'"#a-zA-Z0-9À-ÿ\s]*</c> 
         /// </para>
         ///  
         /// <para>
-        /// Values that begin with <code>aws:</code> are reserved. You can't configure a value
-        /// that uses this prefix. Case insensitive.
+        /// Values that begin with <c>aws:</c> are reserved. You can't configure a value that
+        /// uses this prefix. Case insensitive.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=2, Max=64)]

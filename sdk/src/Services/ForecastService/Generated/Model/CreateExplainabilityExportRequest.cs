@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.ForecastService.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The <code>Status</code> of the export job must be <code>ACTIVE</code> before you can
-    /// access the export in your Amazon S3 bucket. To get the status, use the <a>DescribeExplainabilityExport</a>
+    /// The <c>Status</c> of the export job must be <c>ACTIVE</c> before you can access the
+    /// export in your Amazon S3 bucket. To get the status, use the <a>DescribeExplainabilityExport</a>
     /// operation.
     /// </para>
     ///  </note>
@@ -53,7 +54,7 @@ namespace Amazon.ForecastService.Model
         private string _explainabilityArn;
         private string _explainabilityExportName;
         private string _format;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Destination.
@@ -163,12 +164,11 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key prefixes cannot include any upper or lowercase combination of <code>aws:</code>
-        /// or <code>AWS:</code>. Values can have this prefix. If a tag value has <code>aws</code>
-        /// as its prefix but the key does not, Forecast considers it to be a user tag and will
-        /// count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code>
-        /// do not count against your tags per resource limit. You cannot edit or delete tag keys
-        /// with this prefix.
+        /// Key prefixes cannot include any upper or lowercase combination of <c>aws:</c> or <c>AWS:</c>.
+        /// Values can have this prefix. If a tag value has <c>aws</c> as its prefix but the key
+        /// does not, Forecast considers it to be a user tag and will count against the limit
+        /// of 50 tags. Tags with only the key prefix of <c>aws</c> do not count against your
+        /// tags per resource limit. You cannot edit or delete tag keys with this prefix.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -182,7 +182,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

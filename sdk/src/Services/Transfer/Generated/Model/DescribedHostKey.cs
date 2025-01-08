@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Transfer.Model
         private string _description;
         private string _hostKeyFingerprint;
         private string _hostKeyId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _type;
 
         /// <summary>
@@ -151,34 +152,34 @@ namespace Amazon.Transfer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The encryption algorithm that is used for the host key. The <code>Type</code> parameter
+        /// The encryption algorithm that is used for the host key. The <c>Type</c> parameter
         /// is specified by using one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ssh-rsa</code> 
+        ///  <c>ssh-rsa</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ssh-ed25519</code> 
+        ///  <c>ssh-ed25519</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ecdsa-sha2-nistp256</code> 
+        ///  <c>ecdsa-sha2-nistp256</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ecdsa-sha2-nistp384</code> 
+        ///  <c>ecdsa-sha2-nistp384</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ecdsa-sha2-nistp521</code> 
+        ///  <c>ecdsa-sha2-nistp521</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroupsTaggingAPI.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeReportCreation operation.
-    /// Describes the status of the <code>StartReportCreation</code> operation. 
+    /// Describes the status of the <c>StartReportCreation</c> operation. 
     /// 
     ///  
     /// <para>

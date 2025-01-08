@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.PinpointEmail.Model
     /// </summary>
     public partial class ListConfigurationSetsResponse : AmazonWebServiceResponse
     {
-        private List<string> _configurationSets = new List<string>();
+        private List<string> _configurationSets = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,15 +53,15 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if ConfigurationSets property is set
         internal bool IsSetConfigurationSets()
         {
-            return this._configurationSets != null && this._configurationSets.Count > 0; 
+            return this._configurationSets != null && (this._configurationSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates that there are additional configuration sets to list. To view
-        /// additional configuration sets, issue another request to <code>ListConfigurationSets</code>,
-        /// and pass this token in the <code>NextToken</code> parameter.
+        /// additional configuration sets, issue another request to <c>ListConfigurationSets</c>,
+        /// and pass this token in the <c>NextToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextToken

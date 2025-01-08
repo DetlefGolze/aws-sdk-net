@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// An alert action taken to light up an icon on the Amazon SageMaker Model Dashboard
-    /// when an alert goes into <code>InAlert</code> status.
+    /// when an alert goes into <c>InAlert</c> status.
     /// </summary>
     public partial class ModelDashboardIndicatorAction
     {

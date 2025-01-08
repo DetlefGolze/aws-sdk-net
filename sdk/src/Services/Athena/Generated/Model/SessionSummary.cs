@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
@@ -61,8 +62,7 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The engine version used by the session (for example, <code>PySpark engine version
-        /// 3</code>).
+        /// The engine version used by the session (for example, <c>PySpark engine version 3</c>).
         /// </para>
         /// </summary>
         public EngineVersion EngineVersion

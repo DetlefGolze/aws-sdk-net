@@ -26,18 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateApplicationMaintenanceConfiguration operation.
-    /// Updates the maintenance configuration of the Kinesis Data Analytics application. 
+    /// Updates the maintenance configuration of the Managed Service for Apache Flink application.
+    /// 
     /// 
     ///  
     /// <para>
     /// You can invoke this operation on an application that is in one of the two following
-    /// states: <code>READY</code> or <code>RUNNING</code>. If you invoke it when the application
-    /// is in a state other than these two states, it throws a <code>ResourceInUseException</code>.
-    /// The service makes use of the updated configuration the next time it schedules maintenance
+    /// states: <c>READY</c> or <c>RUNNING</c>. If you invoke it when the application is in
+    /// a state other than these two states, it throws a <c>ResourceInUseException</c>. The
+    /// service makes use of the updated configuration the next time it schedules maintenance
     /// for the application. If you invoke this operation after the service schedules maintenance,
     /// the service will apply the configuration update the next time it schedules maintenance
     /// for the application. This means that you might not see the maintenance configuration
@@ -51,12 +53,12 @@ namespace Amazon.KinesisAnalyticsV2.Model
     /// </para>
     ///  
     /// <para>
-    /// For information about application maintenance, see <a href="https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html">Kinesis
-    /// Data Analytics for Apache Flink Maintenance</a>.
+    /// For information about application maintenance, see <a href="https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html">Managed
+    /// Service for Apache Flink for Apache Flink Maintenance</a>.
     /// </para>
     ///  <note> 
     /// <para>
-    /// This operation is supported only for Amazon Kinesis Data Analytics for Apache Flink.
+    /// This operation is supported only for Managed Service for Apache Flink.
     /// </para>
     ///  </note>
     /// </summary>

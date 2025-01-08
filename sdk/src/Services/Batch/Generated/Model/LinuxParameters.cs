@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -34,20 +35,20 @@ namespace Amazon.Batch.Model
     /// </summary>
     public partial class LinuxParameters
     {
-        private List<Device> _devices = new List<Device>();
+        private List<Device> _devices = AWSConfigs.InitializeCollections ? new List<Device>() : null;
         private bool? _initProcessEnabled;
         private int? _maxSwap;
         private int? _sharedMemorySize;
         private int? _swappiness;
-        private List<Tmpfs> _tmpfs = new List<Tmpfs>();
+        private List<Tmpfs> _tmpfs = AWSConfigs.InitializeCollections ? new List<Tmpfs>() : null;
 
         /// <summary>
         /// Gets and sets the property Devices. 
         /// <para>
-        /// Any of the host devices to expose to the container. This parameter maps to <code>Devices</code>
+        /// Any of the host devices to expose to the container. This parameter maps to <c>Devices</c>
         /// in the <a href="https://docs.docker.com/engine/api/v1.23/#create-a-container">Create
         /// a container</a> section of the <a href="https://docs.docker.com/engine/api/v1.23/">Docker
-        /// Remote API</a> and the <code>--device</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// Remote API</a> and the <c>--device</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         ///  <note> 
@@ -66,18 +67,18 @@ namespace Amazon.Batch.Model
         // Check to see if Devices property is set
         internal bool IsSetDevices()
         {
-            return this._devices != null && this._devices.Count > 0; 
+            return this._devices != null && (this._devices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property InitProcessEnabled. 
         /// <para>
-        /// If true, run an <code>init</code> process inside the container that forwards signals
-        /// and reaps processes. This parameter maps to the <code>--init</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// If true, run an <c>init</c> process inside the container that forwards signals and
+        /// reaps processes. This parameter maps to the <c>--init</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>. This parameter requires version 1.25 of the Docker Remote API or greater
         /// on your container instance. To check the Docker Remote API version on your container
-        /// instance, log in to your container instance and run the following command: <code>sudo
-        /// docker version | grep "Server API version"</code> 
+        /// instance, log in to your container instance and run the following command: <c>sudo
+        /// docker version | grep "Server API version"</c> 
         /// </para>
         /// </summary>
         public bool InitProcessEnabled
@@ -96,17 +97,17 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property MaxSwap. 
         /// <para>
         /// The total amount of swap memory (in MiB) a container can use. This parameter is translated
-        /// to the <code>--memory-swap</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
-        /// run</a> where the value is the sum of the container memory plus the <code>maxSwap</code>
+        /// to the <c>--memory-swap</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// run</a> where the value is the sum of the container memory plus the <c>maxSwap</c>
         /// value. For more information, see <a href="https://docs.docker.com/config/containers/resource_constraints/#--memory-swap-details">
-        /// <code>--memory-swap</code> details</a> in the Docker documentation.
+        /// <c>--memory-swap</c> details</a> in the Docker documentation.
         /// </para>
         ///  
         /// <para>
-        /// If a <code>maxSwap</code> value of <code>0</code> is specified, the container doesn't
-        /// use swap. Accepted values are <code>0</code> or any positive integer. If the <code>maxSwap</code>
-        /// parameter is omitted, the container doesn't use the swap configuration for the container
-        /// instance that it's running on. A <code>maxSwap</code> value must be set for the <code>swappiness</code>
+        /// If a <c>maxSwap</c> value of <c>0</c> is specified, the container doesn't use swap.
+        /// Accepted values are <c>0</c> or any positive integer. If the <c>maxSwap</c> parameter
+        /// is omitted, the container doesn't use the swap configuration for the container instance
+        /// that it's running on. A <c>maxSwap</c> value must be set for the <c>swappiness</c>
         /// parameter to be used.
         /// </para>
         ///  <note> 
@@ -131,8 +132,8 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property SharedMemorySize. 
         /// <para>
-        /// The value for the size (in MiB) of the <code>/dev/shm</code> volume. This parameter
-        /// maps to the <code>--shm-size</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// The value for the size (in MiB) of the <c>/dev/shm</c> volume. This parameter maps
+        /// to the <c>--shm-size</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         ///  <note> 
@@ -157,14 +158,13 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Swappiness. 
         /// <para>
-        /// You can use this parameter to tune a container's memory swappiness behavior. A <code>swappiness</code>
-        /// value of <code>0</code> causes swapping to not occur unless absolutely necessary.
-        /// A <code>swappiness</code> value of <code>100</code> causes pages to be swapped aggressively.
-        /// Valid values are whole numbers between <code>0</code> and <code>100</code>. If the
-        /// <code>swappiness</code> parameter isn't specified, a default value of <code>60</code>
-        /// is used. If a value isn't specified for <code>maxSwap</code>, then this parameter
-        /// is ignored. If <code>maxSwap</code> is set to 0, the container doesn't use swap. This
-        /// parameter maps to the <code>--memory-swappiness</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// You can use this parameter to tune a container's memory swappiness behavior. A <c>swappiness</c>
+        /// value of <c>0</c> causes swapping to not occur unless absolutely necessary. A <c>swappiness</c>
+        /// value of <c>100</c> causes pages to be swapped aggressively. Valid values are whole
+        /// numbers between <c>0</c> and <c>100</c>. If the <c>swappiness</c> parameter isn't
+        /// specified, a default value of <c>60</c> is used. If a value isn't specified for <c>maxSwap</c>,
+        /// then this parameter is ignored. If <c>maxSwap</c> is set to 0, the container doesn't
+        /// use swap. This parameter maps to the <c>--memory-swappiness</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         ///  
@@ -191,10 +191,9 @@ namespace Amazon.Batch.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the <code>maxSwap</code> and <code>swappiness</code> parameters are omitted from
-        /// a job definition, each container has a default <code>swappiness</code> value of 60.
-        /// Moreover, the total swap usage is limited to two times the memory reservation of the
-        /// container.
+        /// If the <c>maxSwap</c> and <c>swappiness</c> parameters are omitted from a job definition,
+        /// each container has a default <c>swappiness</c> value of 60. Moreover, the total swap
+        /// usage is limited to two times the memory reservation of the container.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -218,8 +217,8 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Tmpfs. 
         /// <para>
-        /// The container path, mount options, and size (in MiB) of the <code>tmpfs</code> mount.
-        /// This parameter maps to the <code>--tmpfs</code> option to <a href="https://docs.docker.com/engine/reference/run/">docker
+        /// The container path, mount options, and size (in MiB) of the <c>tmpfs</c> mount. This
+        /// parameter maps to the <c>--tmpfs</c> option to <a href="https://docs.docker.com/engine/reference/run/">docker
         /// run</a>.
         /// </para>
         ///  <note> 
@@ -238,7 +237,7 @@ namespace Amazon.Batch.Model
         // Check to see if Tmpfs property is set
         internal bool IsSetTmpfs()
         {
-            return this._tmpfs != null && this._tmpfs.Count > 0; 
+            return this._tmpfs != null && (this._tmpfs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

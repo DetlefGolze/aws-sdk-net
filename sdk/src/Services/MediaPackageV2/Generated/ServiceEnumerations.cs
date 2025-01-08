@@ -25,6 +25,56 @@ namespace Amazon.MediaPackageV2
 {
 
     /// <summary>
+    /// Constants used for properties of type AdMarkerDash.
+    /// </summary>
+    public class AdMarkerDash : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant BINARY for AdMarkerDash
+        /// </summary>
+        public static readonly AdMarkerDash BINARY = new AdMarkerDash("BINARY");
+        /// <summary>
+        /// Constant XML for AdMarkerDash
+        /// </summary>
+        public static readonly AdMarkerDash XML = new AdMarkerDash("XML");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AdMarkerDash(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AdMarkerDash FindValue(string value)
+        {
+            return FindValue<AdMarkerDash>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AdMarkerDash(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type AdMarkerHls.
     /// </summary>
     public class AdMarkerHls : ConstantClass
@@ -229,6 +279,222 @@ namespace Amazon.MediaPackageV2
 
 
     /// <summary>
+    /// Constants used for properties of type DashDrmSignaling.
+    /// </summary>
+    public class DashDrmSignaling : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant INDIVIDUAL for DashDrmSignaling
+        /// </summary>
+        public static readonly DashDrmSignaling INDIVIDUAL = new DashDrmSignaling("INDIVIDUAL");
+        /// <summary>
+        /// Constant REFERENCED for DashDrmSignaling
+        /// </summary>
+        public static readonly DashDrmSignaling REFERENCED = new DashDrmSignaling("REFERENCED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DashDrmSignaling(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DashDrmSignaling FindValue(string value)
+        {
+            return FindValue<DashDrmSignaling>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DashDrmSignaling(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DashPeriodTrigger.
+    /// </summary>
+    public class DashPeriodTrigger : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AVAILS for DashPeriodTrigger
+        /// </summary>
+        public static readonly DashPeriodTrigger AVAILS = new DashPeriodTrigger("AVAILS");
+        /// <summary>
+        /// Constant DRM_KEY_ROTATION for DashPeriodTrigger
+        /// </summary>
+        public static readonly DashPeriodTrigger DRM_KEY_ROTATION = new DashPeriodTrigger("DRM_KEY_ROTATION");
+        /// <summary>
+        /// Constant NONE for DashPeriodTrigger
+        /// </summary>
+        public static readonly DashPeriodTrigger NONE = new DashPeriodTrigger("NONE");
+        /// <summary>
+        /// Constant SOURCE_CHANGES for DashPeriodTrigger
+        /// </summary>
+        public static readonly DashPeriodTrigger SOURCE_CHANGES = new DashPeriodTrigger("SOURCE_CHANGES");
+        /// <summary>
+        /// Constant SOURCE_DISRUPTIONS for DashPeriodTrigger
+        /// </summary>
+        public static readonly DashPeriodTrigger SOURCE_DISRUPTIONS = new DashPeriodTrigger("SOURCE_DISRUPTIONS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DashPeriodTrigger(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DashPeriodTrigger FindValue(string value)
+        {
+            return FindValue<DashPeriodTrigger>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DashPeriodTrigger(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DashSegmentTemplateFormat.
+    /// </summary>
+    public class DashSegmentTemplateFormat : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant NUMBER_WITH_TIMELINE for DashSegmentTemplateFormat
+        /// </summary>
+        public static readonly DashSegmentTemplateFormat NUMBER_WITH_TIMELINE = new DashSegmentTemplateFormat("NUMBER_WITH_TIMELINE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DashSegmentTemplateFormat(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DashSegmentTemplateFormat FindValue(string value)
+        {
+            return FindValue<DashSegmentTemplateFormat>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DashSegmentTemplateFormat(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type DashUtcTimingMode.
+    /// </summary>
+    public class DashUtcTimingMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant HTTP_HEAD for DashUtcTimingMode
+        /// </summary>
+        public static readonly DashUtcTimingMode HTTP_HEAD = new DashUtcTimingMode("HTTP_HEAD");
+        /// <summary>
+        /// Constant HTTP_ISO for DashUtcTimingMode
+        /// </summary>
+        public static readonly DashUtcTimingMode HTTP_ISO = new DashUtcTimingMode("HTTP_ISO");
+        /// <summary>
+        /// Constant HTTP_XSDATE for DashUtcTimingMode
+        /// </summary>
+        public static readonly DashUtcTimingMode HTTP_XSDATE = new DashUtcTimingMode("HTTP_XSDATE");
+        /// <summary>
+        /// Constant UTC_DIRECT for DashUtcTimingMode
+        /// </summary>
+        public static readonly DashUtcTimingMode UTC_DIRECT = new DashUtcTimingMode("UTC_DIRECT");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DashUtcTimingMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DashUtcTimingMode FindValue(string value)
+        {
+            return FindValue<DashUtcTimingMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DashUtcTimingMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type DrmSystem.
     /// </summary>
     public class DrmSystem : ConstantClass
@@ -242,6 +508,10 @@ namespace Amazon.MediaPackageV2
         /// Constant FAIRPLAY for DrmSystem
         /// </summary>
         public static readonly DrmSystem FAIRPLAY = new DrmSystem("FAIRPLAY");
+        /// <summary>
+        /// Constant IRDETO for DrmSystem
+        /// </summary>
+        public static readonly DrmSystem IRDETO = new DrmSystem("IRDETO");
         /// <summary>
         /// Constant PLAYREADY for DrmSystem
         /// </summary>
@@ -280,6 +550,176 @@ namespace Amazon.MediaPackageV2
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator DrmSystem(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type EndpointErrorCondition.
+    /// </summary>
+    public class EndpointErrorCondition : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant INCOMPLETE_MANIFEST for EndpointErrorCondition
+        /// </summary>
+        public static readonly EndpointErrorCondition INCOMPLETE_MANIFEST = new EndpointErrorCondition("INCOMPLETE_MANIFEST");
+        /// <summary>
+        /// Constant MISSING_DRM_KEY for EndpointErrorCondition
+        /// </summary>
+        public static readonly EndpointErrorCondition MISSING_DRM_KEY = new EndpointErrorCondition("MISSING_DRM_KEY");
+        /// <summary>
+        /// Constant SLATE_INPUT for EndpointErrorCondition
+        /// </summary>
+        public static readonly EndpointErrorCondition SLATE_INPUT = new EndpointErrorCondition("SLATE_INPUT");
+        /// <summary>
+        /// Constant STALE_MANIFEST for EndpointErrorCondition
+        /// </summary>
+        public static readonly EndpointErrorCondition STALE_MANIFEST = new EndpointErrorCondition("STALE_MANIFEST");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EndpointErrorCondition(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EndpointErrorCondition FindValue(string value)
+        {
+            return FindValue<EndpointErrorCondition>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EndpointErrorCondition(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type HarvestJobStatus.
+    /// </summary>
+    public class HarvestJobStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CANCELLED for HarvestJobStatus
+        /// </summary>
+        public static readonly HarvestJobStatus CANCELLED = new HarvestJobStatus("CANCELLED");
+        /// <summary>
+        /// Constant COMPLETED for HarvestJobStatus
+        /// </summary>
+        public static readonly HarvestJobStatus COMPLETED = new HarvestJobStatus("COMPLETED");
+        /// <summary>
+        /// Constant FAILED for HarvestJobStatus
+        /// </summary>
+        public static readonly HarvestJobStatus FAILED = new HarvestJobStatus("FAILED");
+        /// <summary>
+        /// Constant IN_PROGRESS for HarvestJobStatus
+        /// </summary>
+        public static readonly HarvestJobStatus IN_PROGRESS = new HarvestJobStatus("IN_PROGRESS");
+        /// <summary>
+        /// Constant QUEUED for HarvestJobStatus
+        /// </summary>
+        public static readonly HarvestJobStatus QUEUED = new HarvestJobStatus("QUEUED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public HarvestJobStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static HarvestJobStatus FindValue(string value)
+        {
+            return FindValue<HarvestJobStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator HarvestJobStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type InputType.
+    /// </summary>
+    public class InputType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CMAF for InputType
+        /// </summary>
+        public static readonly InputType CMAF = new InputType("CMAF");
+        /// <summary>
+        /// Constant HLS for InputType
+        /// </summary>
+        public static readonly InputType HLS = new InputType("HLS");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public InputType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static InputType FindValue(string value)
+        {
+            return FindValue<InputType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator InputType(string value)
         {
             return FindValue(value);
         }
@@ -444,6 +884,10 @@ namespace Amazon.MediaPackageV2
         /// Constant CHANNEL_GROUP for ResourceTypeNotFound
         /// </summary>
         public static readonly ResourceTypeNotFound CHANNEL_GROUP = new ResourceTypeNotFound("CHANNEL_GROUP");
+        /// <summary>
+        /// Constant HARVEST_JOB for ResourceTypeNotFound
+        /// </summary>
+        public static readonly ResourceTypeNotFound HARVEST_JOB = new ResourceTypeNotFound("HARVEST_JOB");
         /// <summary>
         /// Constant ORIGIN_ENDPOINT for ResourceTypeNotFound
         /// </summary>
@@ -623,9 +1067,21 @@ namespace Amazon.MediaPackageV2
         /// </summary>
         public static readonly ValidationExceptionType CENC_IV_INCOMPATIBLE = new ValidationExceptionType("CENC_IV_INCOMPATIBLE");
         /// <summary>
+        /// Constant CLIP_START_TIME_WITH_START_OR_END for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType CLIP_START_TIME_WITH_START_OR_END = new ValidationExceptionType("CLIP_START_TIME_WITH_START_OR_END");
+        /// <summary>
         /// Constant CONTAINER_TYPE_IMMUTABLE for ValidationExceptionType
         /// </summary>
         public static readonly ValidationExceptionType CONTAINER_TYPE_IMMUTABLE = new ValidationExceptionType("CONTAINER_TYPE_IMMUTABLE");
+        /// <summary>
+        /// Constant DIRECT_MODE_WITH_TIMING_SOURCE for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType DIRECT_MODE_WITH_TIMING_SOURCE = new ValidationExceptionType("DIRECT_MODE_WITH_TIMING_SOURCE");
+        /// <summary>
+        /// Constant DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS = new ValidationExceptionType("DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS");
         /// <summary>
         /// Constant DRM_SYSTEMS_ENCRYPTION_METHOD_INCOMPATIBLE for ValidationExceptionType
         /// </summary>
@@ -647,6 +1103,42 @@ namespace Amazon.MediaPackageV2
         /// </summary>
         public static readonly ValidationExceptionType ENCRYPTION_METHOD_CONTAINER_TYPE_MISMATCH = new ValidationExceptionType("ENCRYPTION_METHOD_CONTAINER_TYPE_MISMATCH");
         /// <summary>
+        /// Constant END_TIME_EARLIER_THAN_START_TIME for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType END_TIME_EARLIER_THAN_START_TIME = new ValidationExceptionType("END_TIME_EARLIER_THAN_START_TIME");
+        /// <summary>
+        /// Constant HARVEST_JOB_CUSTOMER_ENDPOINT_READ_ACCESS_DENIED for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType HARVEST_JOB_CUSTOMER_ENDPOINT_READ_ACCESS_DENIED = new ValidationExceptionType("HARVEST_JOB_CUSTOMER_ENDPOINT_READ_ACCESS_DENIED");
+        /// <summary>
+        /// Constant HARVEST_JOB_INELIGIBLE_FOR_CANCELLATION for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType HARVEST_JOB_INELIGIBLE_FOR_CANCELLATION = new ValidationExceptionType("HARVEST_JOB_INELIGIBLE_FOR_CANCELLATION");
+        /// <summary>
+        /// Constant HARVEST_JOB_S3_DESTINATION_MISSING_OR_INCOMPLETE for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType HARVEST_JOB_S3_DESTINATION_MISSING_OR_INCOMPLETE = new ValidationExceptionType("HARVEST_JOB_S3_DESTINATION_MISSING_OR_INCOMPLETE");
+        /// <summary>
+        /// Constant HARVEST_JOB_UNABLE_TO_WRITE_TO_S3_DESTINATION for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType HARVEST_JOB_UNABLE_TO_WRITE_TO_S3_DESTINATION = new ValidationExceptionType("HARVEST_JOB_UNABLE_TO_WRITE_TO_S3_DESTINATION");
+        /// <summary>
+        /// Constant HARVESTED_MANIFEST_HAS_START_END_FILTER_CONFIGURATION for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType HARVESTED_MANIFEST_HAS_START_END_FILTER_CONFIGURATION = new ValidationExceptionType("HARVESTED_MANIFEST_HAS_START_END_FILTER_CONFIGURATION");
+        /// <summary>
+        /// Constant HARVESTED_MANIFEST_NOT_FOUND_ON_ENDPOINT for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType HARVESTED_MANIFEST_NOT_FOUND_ON_ENDPOINT = new ValidationExceptionType("HARVESTED_MANIFEST_NOT_FOUND_ON_ENDPOINT");
+        /// <summary>
+        /// Constant INVALID_HARVEST_JOB_DURATION for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType INVALID_HARVEST_JOB_DURATION = new ValidationExceptionType("INVALID_HARVEST_JOB_DURATION");
+        /// <summary>
+        /// Constant INVALID_MANIFEST_FILTER for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType INVALID_MANIFEST_FILTER = new ValidationExceptionType("INVALID_MANIFEST_FILTER");
+        /// <summary>
         /// Constant INVALID_PAGINATION_MAX_RESULTS for ValidationExceptionType
         /// </summary>
         public static readonly ValidationExceptionType INVALID_PAGINATION_MAX_RESULTS = new ValidationExceptionType("INVALID_PAGINATION_MAX_RESULTS");
@@ -662,6 +1154,14 @@ namespace Amazon.MediaPackageV2
         /// Constant INVALID_ROLE_ARN for ValidationExceptionType
         /// </summary>
         public static readonly ValidationExceptionType INVALID_ROLE_ARN = new ValidationExceptionType("INVALID_ROLE_ARN");
+        /// <summary>
+        /// Constant INVALID_TIME_DELAY_SECONDS for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType INVALID_TIME_DELAY_SECONDS = new ValidationExceptionType("INVALID_TIME_DELAY_SECONDS");
+        /// <summary>
+        /// Constant MANIFEST_DRM_SYSTEMS_INCOMPATIBLE for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType MANIFEST_DRM_SYSTEMS_INCOMPATIBLE = new ValidationExceptionType("MANIFEST_DRM_SYSTEMS_INCOMPATIBLE");
         /// <summary>
         /// Constant MANIFEST_NAME_COLLISION for ValidationExceptionType
         /// </summary>
@@ -699,6 +1199,10 @@ namespace Amazon.MediaPackageV2
         /// </summary>
         public static readonly ValidationExceptionType MEMBER_MISSING = new ValidationExceptionType("MEMBER_MISSING");
         /// <summary>
+        /// Constant NONE_MODE_WITH_TIMING_SOURCE for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType NONE_MODE_WITH_TIMING_SOURCE = new ValidationExceptionType("NONE_MODE_WITH_TIMING_SOURCE");
+        /// <summary>
         /// Constant NUM_MANIFESTS_HIGH for ValidationExceptionType
         /// </summary>
         public static readonly ValidationExceptionType NUM_MANIFESTS_HIGH = new ValidationExceptionType("NUM_MANIFESTS_HIGH");
@@ -706,6 +1210,22 @@ namespace Amazon.MediaPackageV2
         /// Constant NUM_MANIFESTS_LOW for ValidationExceptionType
         /// </summary>
         public static readonly ValidationExceptionType NUM_MANIFESTS_LOW = new ValidationExceptionType("NUM_MANIFESTS_LOW");
+        /// <summary>
+        /// Constant ONLY_CMAF_INPUT_TYPE_ALLOW_FORCE_ENDPOINT_ERROR_CONFIGURATION for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType ONLY_CMAF_INPUT_TYPE_ALLOW_FORCE_ENDPOINT_ERROR_CONFIGURATION = new ValidationExceptionType("ONLY_CMAF_INPUT_TYPE_ALLOW_FORCE_ENDPOINT_ERROR_CONFIGURATION");
+        /// <summary>
+        /// Constant ONLY_CMAF_INPUT_TYPE_ALLOW_MQCS_INPUT_SWITCHING for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType ONLY_CMAF_INPUT_TYPE_ALLOW_MQCS_INPUT_SWITCHING = new ValidationExceptionType("ONLY_CMAF_INPUT_TYPE_ALLOW_MQCS_INPUT_SWITCHING");
+        /// <summary>
+        /// Constant ONLY_CMAF_INPUT_TYPE_ALLOW_MQCS_OUTPUT_CONFIGURATION for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType ONLY_CMAF_INPUT_TYPE_ALLOW_MQCS_OUTPUT_CONFIGURATION = new ValidationExceptionType("ONLY_CMAF_INPUT_TYPE_ALLOW_MQCS_OUTPUT_CONFIGURATION");
+        /// <summary>
+        /// Constant PERIOD_TRIGGERS_NONE_SPECIFIED_WITH_ADDITIONAL_VALUES for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType PERIOD_TRIGGERS_NONE_SPECIFIED_WITH_ADDITIONAL_VALUES = new ValidationExceptionType("PERIOD_TRIGGERS_NONE_SPECIFIED_WITH_ADDITIONAL_VALUES");
         /// <summary>
         /// Constant ROLE_ARN_INVALID_FORMAT for ValidationExceptionType
         /// </summary>
@@ -718,6 +1238,30 @@ namespace Amazon.MediaPackageV2
         /// Constant ROLE_ARN_NOT_ASSUMABLE for ValidationExceptionType
         /// </summary>
         public static readonly ValidationExceptionType ROLE_ARN_NOT_ASSUMABLE = new ValidationExceptionType("ROLE_ARN_NOT_ASSUMABLE");
+        /// <summary>
+        /// Constant SOURCE_DISRUPTIONS_ENABLED_INCORRECTLY for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType SOURCE_DISRUPTIONS_ENABLED_INCORRECTLY = new ValidationExceptionType("SOURCE_DISRUPTIONS_ENABLED_INCORRECTLY");
+        /// <summary>
+        /// Constant START_TAG_TIME_OFFSET_INVALID for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType START_TAG_TIME_OFFSET_INVALID = new ValidationExceptionType("START_TAG_TIME_OFFSET_INVALID");
+        /// <summary>
+        /// Constant TIMING_SOURCE_MISSING for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType TIMING_SOURCE_MISSING = new ValidationExceptionType("TIMING_SOURCE_MISSING");
+        /// <summary>
+        /// Constant TOO_MANY_IN_PROGRESS_HARVEST_JOBS for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType TOO_MANY_IN_PROGRESS_HARVEST_JOBS = new ValidationExceptionType("TOO_MANY_IN_PROGRESS_HARVEST_JOBS");
+        /// <summary>
+        /// Constant TS_CONTAINER_TYPE_WITH_DASH_MANIFEST for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType TS_CONTAINER_TYPE_WITH_DASH_MANIFEST = new ValidationExceptionType("TS_CONTAINER_TYPE_WITH_DASH_MANIFEST");
+        /// <summary>
+        /// Constant UPDATE_PERIOD_SMALLER_THAN_SEGMENT_DURATION for ValidationExceptionType
+        /// </summary>
+        public static readonly ValidationExceptionType UPDATE_PERIOD_SMALLER_THAN_SEGMENT_DURATION = new ValidationExceptionType("UPDATE_PERIOD_SMALLER_THAN_SEGMENT_DURATION");
         /// <summary>
         /// Constant URL_INVALID for ValidationExceptionType
         /// </summary>

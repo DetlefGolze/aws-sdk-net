@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteCertificate operation.
-    /// Deletes the certificate that's specified in the <code>CertificateId</code> parameter.
+    /// Deletes the certificate that's specified in the <c>CertificateId</c> parameter.
     /// </summary>
     public partial class DeleteCertificateRequest : AmazonTransferRequest
     {

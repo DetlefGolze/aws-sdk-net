@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.RDS.Model
     {
         private string _dbInstanceClass;
         private string _duration;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _leaseId;
         private string _marker;
         private int? _maxRecords;
@@ -79,7 +80,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>1 | 3 | 31536000 | 94608000</code> 
+        /// Valid Values: <c>1 | 3 | 31536000 | 94608000</c> 
         /// </para>
         /// </summary>
         public string Duration
@@ -109,7 +110,7 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,7 +143,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous request. If this parameter is
         /// specified, the response includes only records beyond the marker, up to the value specified
-        /// by <code>MaxRecords</code>.
+        /// by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -160,7 +161,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property MaxRecords. 
         /// <para>
-        /// The maximum number of records to include in the response. If more than the <code>MaxRecords</code>
+        /// The maximum number of records to include in the response. If more than the <c>MaxRecords</c>
         /// value is available, a pagination token called a marker is included in the response
         /// so you can retrieve the remaining results.
         /// </para>
@@ -211,7 +212,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>"Partial Upfront" | "All Upfront" | "No Upfront" </code> 
+        /// Valid Values: <c>"Partial Upfront" | "All Upfront" | "No Upfront" </c> 
         /// </para>
         /// </summary>
         public string OfferingType

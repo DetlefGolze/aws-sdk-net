@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property MigrationId. 
         /// <para>
-        /// The unique identifier of the migration to view. The <code>migrationID</code> is returned
+        /// The unique identifier of the migration to view. The <c>migrationID</c> is returned
         /// by the operation.
         /// </para>
         /// </summary>

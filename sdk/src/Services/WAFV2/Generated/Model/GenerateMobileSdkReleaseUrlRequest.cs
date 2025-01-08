@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -67,7 +68,7 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property ReleaseVersion. 
         /// <para>
-        /// The release version. For the latest available version, specify <code>LATEST</code>.
+        /// The release version. For the latest available version, specify <c>LATEST</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

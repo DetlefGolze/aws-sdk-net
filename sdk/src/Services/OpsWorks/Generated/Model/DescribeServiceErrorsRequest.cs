@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeServiceErrors operation.
-    /// Describes AWS OpsWorks Stacks service errors.
+    /// Describes OpsWorks Stacks service errors.
     /// 
     ///  
     /// <para>
@@ -47,14 +48,14 @@ namespace Amazon.OpsWorks.Model
     public partial class DescribeServiceErrorsRequest : AmazonOpsWorksRequest
     {
         private string _instanceId;
-        private List<string> _serviceErrorIds = new List<string>();
+        private List<string> _serviceErrorIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackId;
 
         /// <summary>
         /// Gets and sets the property InstanceId. 
         /// <para>
-        /// The instance ID. If you use this parameter, <code>DescribeServiceErrors</code> returns
-        /// descriptions of the errors associated with the specified instance.
+        /// The instance ID. If you use this parameter, <c>DescribeServiceErrors</c> returns descriptions
+        /// of the errors associated with the specified instance.
         /// </para>
         /// </summary>
         public string InstanceId
@@ -72,7 +73,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property ServiceErrorIds. 
         /// <para>
-        /// An array of service error IDs. If you use this parameter, <code>DescribeServiceErrors</code>
+        /// An array of service error IDs. If you use this parameter, <c>DescribeServiceErrors</c>
         /// returns descriptions of the specified errors. Otherwise, it returns a description
         /// of every error.
         /// </para>
@@ -86,14 +87,14 @@ namespace Amazon.OpsWorks.Model
         // Check to see if ServiceErrorIds property is set
         internal bool IsSetServiceErrorIds()
         {
-            return this._serviceErrorIds != null && this._serviceErrorIds.Count > 0; 
+            return this._serviceErrorIds != null && (this._serviceErrorIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StackId. 
         /// <para>
-        /// The stack ID. If you use this parameter, <code>DescribeServiceErrors</code> returns
-        /// descriptions of the errors associated with the specified stack.
+        /// The stack ID. If you use this parameter, <c>DescribeServiceErrors</c> returns descriptions
+        /// of the errors associated with the specified stack.
         /// </para>
         /// </summary>
         public string StackId

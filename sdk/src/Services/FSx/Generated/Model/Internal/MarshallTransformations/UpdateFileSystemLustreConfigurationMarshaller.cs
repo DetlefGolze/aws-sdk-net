@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UpdateFileSystemLustreConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAutoImportPolicy())
             {
                 context.Writer.WritePropertyName("AutoImportPolicy");
@@ -78,6 +81,23 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.LogConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetMetadataConfiguration())
+            {
+                context.Writer.WritePropertyName("MetadataConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = UpdateFileSystemLustreMetadataConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.MetadataConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetPerUnitStorageThroughput())
+            {
+                context.Writer.WritePropertyName("PerUnitStorageThroughput");
+                context.Writer.Write(requestObject.PerUnitStorageThroughput);
             }
 
             if(requestObject.IsSetRootSquashConfiguration())

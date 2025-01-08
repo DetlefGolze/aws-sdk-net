@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -38,10 +39,11 @@ namespace Amazon.IVS.Model
         private Channel _channel;
         private DateTime? _endTime;
         private IngestConfiguration _ingestConfiguration;
+        private IngestConfigurations _ingestConfigurations;
         private RecordingConfiguration _recordingConfiguration;
         private DateTime? _startTime;
         private string _streamId;
-        private List<StreamEvent> _truncatedEvents = new List<StreamEvent>();
+        private List<StreamEvent> _truncatedEvents = AWSConfigs.InitializeCollections ? new List<StreamEvent>() : null;
 
         /// <summary>
         /// Gets and sets the property Channel. 
@@ -65,7 +67,7 @@ namespace Amazon.IVS.Model
         /// Gets and sets the property EndTime. 
         /// <para>
         /// Time when the channel went offline. This is an ISO 8601 timestamp; <i>note that this
-        /// is returned as a string</i>. For live streams, this is <code>NULL</code>.
+        /// is returned as a string</i>. For live streams, this is <c>NULL</c>.
         /// </para>
         /// </summary>
         public DateTime EndTime
@@ -83,7 +85,16 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property IngestConfiguration. 
         /// <para>
-        /// The properties of the incoming RTMP stream for the stream.
+        /// The properties of the incoming RTMP stream.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Note:</b> <c>ingestConfiguration</c> is deprecated in favor of <c>ingestConfigurations</c>
+        /// but retained to ensure backward compatibility. If multitrack is not enabled, <c>ingestConfiguration</c>
+        /// and <c>ingestConfigurations</c> contain the same data, namely information about track0
+        /// (the sole track). If multitrack is enabled, <c>ingestConfiguration</c> contains data
+        /// for only the first track (track0) and <c>ingestConfigurations</c> contains data for
+        /// all tracks.
         /// </para>
         /// </summary>
         public IngestConfiguration IngestConfiguration
@@ -96,6 +107,26 @@ namespace Amazon.IVS.Model
         internal bool IsSetIngestConfiguration()
         {
             return this._ingestConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IngestConfigurations. 
+        /// <para>
+        /// The properties of the incoming RTMP stream. If multitrack is enabled, <c>ingestConfigurations</c>
+        /// contains data for all tracks; otherwise, it contains data only for track0 (the sole
+        /// track).
+        /// </para>
+        /// </summary>
+        public IngestConfigurations IngestConfigurations
+        {
+            get { return this._ingestConfigurations; }
+            set { this._ingestConfigurations = value; }
+        }
+
+        // Check to see if IngestConfigurations property is set
+        internal bool IsSetIngestConfigurations()
+        {
+            return this._ingestConfigurations != null;
         }
 
         /// <summary>
@@ -172,7 +203,7 @@ namespace Amazon.IVS.Model
         // Check to see if TruncatedEvents property is set
         internal bool IsSetTruncatedEvents()
         {
-            return this._truncatedEvents != null && this._truncatedEvents.Count > 0; 
+            return this._truncatedEvents != null && (this._truncatedEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

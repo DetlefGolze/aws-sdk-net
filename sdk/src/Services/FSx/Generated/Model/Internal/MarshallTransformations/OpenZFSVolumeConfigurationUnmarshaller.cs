@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FSx.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public OpenZFSVolumeConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            OpenZFSVolumeConfiguration unmarshalledObject = new OpenZFSVolumeConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            OpenZFSVolumeConfiguration unmarshalledObject = new OpenZFSVolumeConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("CopyStrategy", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CopyStrategy = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CopyTagsToSnapshots", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
@@ -82,10 +90,22 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     unmarshalledObject.DeleteClonedVolumes = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DeleteIntermediateData", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.DeleteIntermediateData = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DeleteIntermediateSnaphots", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     unmarshalledObject.DeleteIntermediateSnaphots = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DestinationSnapshot", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DestinationSnapshot = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("NfsExports", targetDepth))
@@ -124,6 +144,12 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     unmarshalledObject.RestoreToSnapshot = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SourceSnapshotARN", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SourceSnapshotARN = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("StorageCapacityQuotaGiB", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
@@ -149,7 +175,6 @@ namespace Amazon.FSx.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

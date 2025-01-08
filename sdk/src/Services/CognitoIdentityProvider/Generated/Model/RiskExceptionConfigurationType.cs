@@ -26,22 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The type of the configuration to override the risk decision.
+    /// Exceptions to the risk evaluation configuration, including always-allow and always-block
+    /// IP address ranges. 
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetRiskConfiguration.html">SetRiskConfiguration</a>
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeRiskConfiguration.html">DescribeRiskConfiguration</a>.
+    /// </para>
     /// </summary>
     public partial class RiskExceptionConfigurationType
     {
-        private List<string> _blockedIPRangeList = new List<string>();
-        private List<string> _skippedIPRangeList = new List<string>();
+        private List<string> _blockedIPRangeList = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _skippedIPRangeList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property BlockedIPRangeList. 
         /// <para>
-        /// Overrides the risk decision to always block the pre-authentication requests. The IP
-        /// range is in CIDR notation, a compact representation of an IP address and its routing
-        /// prefix.
+        /// An always-block IP address list. Overrides the risk decision and always blocks authentication
+        /// requests. This parameter is displayed and set in CIDR notation.
         /// </para>
         /// </summary>
         [AWSProperty(Max=200)]
@@ -54,14 +61,14 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if BlockedIPRangeList property is set
         internal bool IsSetBlockedIPRangeList()
         {
-            return this._blockedIPRangeList != null && this._blockedIPRangeList.Count > 0; 
+            return this._blockedIPRangeList != null && (this._blockedIPRangeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SkippedIPRangeList. 
         /// <para>
-        /// Risk detection isn't performed on the IP addresses in this range list. The IP range
-        /// is in CIDR notation.
+        /// An always-allow IP address list. Risk detection isn't performed on the IP addresses
+        /// in this range list. This parameter is displayed and set in CIDR notation.
         /// </para>
         /// </summary>
         [AWSProperty(Max=200)]
@@ -74,7 +81,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if SkippedIPRangeList property is set
         internal bool IsSetSkippedIPRangeList()
         {
-            return this._skippedIPRangeList != null && this._skippedIPRangeList.Count > 0; 
+            return this._skippedIPRangeList != null && (this._skippedIPRangeList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

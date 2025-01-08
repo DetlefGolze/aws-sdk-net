@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudHSMV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CloudHSMV2.Model
     /// </summary>
     public partial class DescribeBackupsResponse : AmazonWebServiceResponse
     {
-        private List<Backup> _backups = new List<Backup>();
+        private List<Backup> _backups = AWSConfigs.InitializeCollections ? new List<Backup>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.CloudHSMV2.Model
         // Check to see if Backups property is set
         internal bool IsSetBackups()
         {
-            return this._backups != null && this._backups.Count > 0; 
+            return this._backups != null && (this._backups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// An opaque string that indicates that the response contains only a subset of backups.
-        /// Use this value in a subsequent <code>DescribeBackups</code> request to get more backups.
+        /// Use this value in a subsequent <c>DescribeBackups</c> request to get more backups.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroupsTaggingAPI.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ResourceGroupsTaggingAPI.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// You must enable the tag policies service principal (<code>tagpolicies.tag.amazonaws.com</code>)
+    /// You must enable the tag policies service principal (<c>tagpolicies.tag.amazonaws.com</c>)
     /// to integrate with Organizations For information, see <a href="https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html">EnableAWSServiceAccess</a>.
     /// </para>
     ///  </li> <li> 

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A parameter declaration for the <code>String</code> data type.
+    /// A parameter declaration for the <c>String</c> data type.
     /// </summary>
     public partial class StringParameterDeclaration
     {
         private StringDefaultValues _defaultValues;
-        private List<MappedDataSetParameter> _mappedDataSetParameters = new List<MappedDataSetParameter>();
+        private List<MappedDataSetParameter> _mappedDataSetParameters = AWSConfigs.InitializeCollections ? new List<MappedDataSetParameter>() : null;
         private string _name;
         private ParameterValueType _parameterValueType;
         private StringValueWhenUnsetConfiguration _valueWhenUnset;
@@ -71,7 +72,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if MappedDataSetParameters property is set
         internal bool IsSetMappedDataSetParameters()
         {
-            return this._mappedDataSetParameters != null && this._mappedDataSetParameters.Count > 0; 
+            return this._mappedDataSetParameters != null && (this._mappedDataSetParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,8 +116,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ValueWhenUnset. 
         /// <para>
-        /// The configuration that defines the default value of a <code>String</code> parameter
-        /// when a value has not been set.
+        /// The configuration that defines the default value of a <c>String</c> parameter when
+        /// a value has not been set.
         /// </para>
         /// </summary>
         public StringValueWhenUnsetConfiguration ValueWhenUnset

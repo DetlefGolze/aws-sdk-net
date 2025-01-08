@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ConfigService.Model
     /// 
     ///  
     /// <para>
-    /// Valid values: <code>Success</code> | <code>Failure</code> 
+    /// Valid values: <c>Success</c> | <c>Failure</c> 
     /// </para>
     /// </summary>
     public partial class DeliveryChannelStatus

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Signer.Model
     /// 
     ///  
     /// <para>
-    /// Instead of this error, <code>TooManyRequestsException</code> should be used.
+    /// Instead of this error, <c>TooManyRequestsException</c> should be used.
     /// </para>
     /// </summary>
     [Obsolete("Instead of this error, TooManyRequestsException should be used.")]

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DomainConfig Unmarshall(JsonUnmarshallerContext context)
         {
+            DomainConfig unmarshalledObject = new DomainConfig();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DomainConfig unmarshalledObject = new DomainConfig();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -80,6 +82,12 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = AdvancedSecurityOptionsStatusUnmarshaller.Instance;
                     unmarshalledObject.AdvancedSecurityOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AIMLOptions", targetDepth))
+                {
+                    var unmarshaller = AIMLOptionsStatusUnmarshaller.Instance;
+                    unmarshalledObject.AIMLOptions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("AutoTuneOptions", targetDepth))
@@ -130,10 +138,28 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     unmarshalledObject.EngineVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("IdentityCenterOptions", targetDepth))
+                {
+                    var unmarshaller = IdentityCenterOptionsStatusUnmarshaller.Instance;
+                    unmarshalledObject.IdentityCenterOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IPAddressType", targetDepth))
+                {
+                    var unmarshaller = IPAddressTypeStatusUnmarshaller.Instance;
+                    unmarshalledObject.IPAddressType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("LogPublishingOptions", targetDepth))
                 {
                     var unmarshaller = LogPublishingOptionsStatusUnmarshaller.Instance;
                     unmarshalledObject.LogPublishingOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ModifyingProperties", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ModifyingProperties, ModifyingPropertiesUnmarshaller>(ModifyingPropertiesUnmarshaller.Instance);
+                    unmarshalledObject.ModifyingProperties = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("NodeToNodeEncryptionOptions", targetDepth))
@@ -167,7 +193,6 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

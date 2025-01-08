@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CertificateManager.Model
     /// </summary>
     public partial class ListCertificatesResponse : AmazonWebServiceResponse
     {
-        private List<CertificateSummary> _certificateSummaryList = new List<CertificateSummary>();
+        private List<CertificateSummary> _certificateSummaryList = AWSConfigs.InitializeCollections ? new List<CertificateSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.CertificateManager.Model
         // Check to see if CertificateSummaryList property is set
         internal bool IsSetCertificateSummaryList()
         {
-            return this._certificateSummaryList != null && this._certificateSummaryList.Count > 0; 
+            return this._certificateSummaryList != null && (this._certificateSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// When the list is truncated, this value is present and contains the value to use for
-        /// the <code>NextToken</code> parameter in a subsequent pagination request.
+        /// the <c>NextToken</c> parameter in a subsequent pagination request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10000)]

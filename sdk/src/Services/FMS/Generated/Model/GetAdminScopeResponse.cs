@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -58,25 +59,25 @@ namespace Amazon.FMS.Model
         /// Gets and sets the property Status. 
         /// <para>
         /// The current status of the request to onboard a member account as an Firewall Manager
-        /// administator.
+        /// administrator.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ONBOARDING</code> - The account is onboarding to Firewall Manager as an administrator.
+        ///  <c>ONBOARDING</c> - The account is onboarding to Firewall Manager as an administrator.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ONBOARDING_COMPLETE</code> - Firewall Manager The account is onboarded to Firewall
+        ///  <c>ONBOARDING_COMPLETE</c> - Firewall Manager The account is onboarded to Firewall
         /// Manager as an administrator, and can perform actions on the resources defined in their
         /// <a>AdminScope</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OFFBOARDING</code> - The account is being removed as an Firewall Manager administrator.
+        ///  <c>OFFBOARDING</c> - The account is being removed as an Firewall Manager administrator.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OFFBOARDING_COMPLETE</code> - The account has been removed as an Firewall Manager
+        ///  <c>OFFBOARDING_COMPLETE</c> - The account has been removed as an Firewall Manager
         /// administrator.
         /// </para>
         ///  </li> </ul>

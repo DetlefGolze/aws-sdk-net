@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:ValidateResourcePolicy</code>
-    /// and <code>secretsmanager:PutResourcePolicy</code>. For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
+    ///  <b>Required permissions: </b> <c>secretsmanager:ValidateResourcePolicy</c> and <c>secretsmanager:PutResourcePolicy</c>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
     /// </para>
@@ -96,7 +97,7 @@ namespace Amazon.SecretsManager.Model
         /// <summary>
         /// Gets and sets the property SecretId. 
         /// <para>
-        /// This field is reserved for internal use.
+        /// The ARN or name of the secret with the resource-based policy you want to validate.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

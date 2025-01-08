@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.DatabaseMigrationService.Model
     public partial class DescribeReplicationTaskAssessmentRunsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ReplicationTaskAssessmentRun> _replicationTaskAssessmentRuns = new List<ReplicationTaskAssessmentRun>();
+        private List<ReplicationTaskAssessmentRun> _replicationTaskAssessmentRuns = AWSConfigs.InitializeCollections ? new List<ReplicationTaskAssessmentRun>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// A pagination token returned for you to pass to a subsequent request. If you pass this
-        /// token as the <code>Marker</code> value in a subsequent request, the response includes
-        /// only records beyond the marker, up to the value specified in the request by <code>MaxRecords</code>.
+        /// token as the <c>Marker</c> value in a subsequent request, the response includes only
+        /// records beyond the marker, up to the value specified in the request by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -59,7 +60,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ReplicationTaskAssessmentRuns. 
         /// <para>
-        /// One or more premigration assessment runs as specified by <code>Filters</code>.
+        /// One or more premigration assessment runs as specified by <c>Filters</c>.
         /// </para>
         /// </summary>
         public List<ReplicationTaskAssessmentRun> ReplicationTaskAssessmentRuns
@@ -71,7 +72,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if ReplicationTaskAssessmentRuns property is set
         internal bool IsSetReplicationTaskAssessmentRuns()
         {
-            return this._replicationTaskAssessmentRuns != null && this._replicationTaskAssessmentRuns.Count > 0; 
+            return this._replicationTaskAssessmentRuns != null && (this._replicationTaskAssessmentRuns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

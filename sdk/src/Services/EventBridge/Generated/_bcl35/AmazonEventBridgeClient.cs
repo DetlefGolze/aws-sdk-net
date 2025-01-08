@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.EventBridge
 {
     /// <summary>
-    /// Implementation for accessing EventBridge
+    /// <para>Implementation for accessing EventBridge</para>
     ///
     /// Amazon EventBridge helps you to respond to state changes in your Amazon Web Services
     /// resources. When your resources change state, they automatically send events to an
@@ -231,7 +232,7 @@ namespace Amazon.EventBridge
         /// </summary>
         protected override AbstractAWSSigner CreateSigner()
         {
-            return new EventBridgeSigner();
+            return new AWSEndpointAuthSchemeSigner();
         }
 
         /// <summary>
@@ -411,6 +412,16 @@ namespace Amazon.EventBridge
         /// <summary>
         /// Creates an API destination, which is an HTTP invocation endpoint configured as a target
         /// for events.
+        /// 
+        ///  
+        /// <para>
+        /// API destinations do not support private destinations, such as interface VPC endpoints.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html">API
+        /// destinations</a> in the <i>EventBridge User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateApiDestination service method.</param>
         /// 
@@ -482,6 +493,35 @@ namespace Amazon.EventBridge
         /// period of time for changes to take effect. If you do not specify a pattern to filter
         /// events sent to the archive, all events are sent to the archive except replayed events.
         /// Replayed events are not sent to an archive.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// Archives and schema discovery are not supported for event buses encrypted using a
+        /// customer managed key. EventBridge returns an error if:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You call <c> <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_CreateArchive.html">CreateArchive</a>
+        /// </c> on an event bus set to use a customer managed key for encryption.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You call <c> <a href="https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-discoverers.html#CreateDiscoverer">CreateDiscoverer</a>
+        /// </c> on an event bus set to use a customer managed key for encryption.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You call <c> <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UpdatedEventBus.html">UpdatedEventBus</a>
+        /// </c> to set a customer managed key on an event bus with an archives or schema discovery
+        /// enabled.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To enable archives or schema discovery on an event bus, choose to use an Amazon Web
+        /// Services owned key. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption.html">Data
+        /// encryption in EventBridge</a> in the <i>Amazon EventBridge User Guide</i>.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateArchive service method.</param>
         /// 
@@ -556,10 +596,19 @@ namespace Amazon.EventBridge
         /// <summary>
         /// Creates a connection. A connection defines the authorization type and credentials
         /// to use for authorization with an API destination HTTP endpoint.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-target-connection.html">Connections
+        /// for endpoint targets</a> in the <i>Amazon EventBridge User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateConnection service method.</param>
         /// 
         /// <returns>The response from the CreateConnection service method, as returned by EventBridge.</returns>
+        /// <exception cref="Amazon.EventBridge.Model.AccessDeniedException">
+        /// You do not have the necessary permissons for this action.
+        /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.InternalException">
         /// This exception occurs due to unexpected causes.
         /// </exception>
@@ -569,6 +618,12 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceAlreadyExistsException">
         /// The resource you are trying to create already exists.
+        /// </exception>
+        /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
+        /// An entity that you specified does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.EventBridge.Model.ThrottlingException">
+        /// This request cannot be completed due to throttling issues.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/CreateConnection">REST API Reference for CreateConnection Operation</seealso>
         public virtual CreateConnectionResponse CreateConnection(CreateConnectionRequest request)
@@ -793,17 +848,33 @@ namespace Amazon.EventBridge
         /// </para>
         ///  
         /// <para>
-        ///  <code> <i>partner_name</i>/<i>event_namespace</i>/<i>event_name</i> </code> 
+        ///  <c> <i>partner_name</i>/<i>event_namespace</i>/<i>event_name</i> </c> 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <i>partner_name</i> is determined during partner registration, and identifies the
+        /// partner to Amazon Web Services customers. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <i>event_namespace</i> is determined by the partner, and is a way for the partner
+        /// to categorize their events.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <i>event_name</i> is determined by the partner, and should uniquely identify an event-generating
+        /// resource within the partner system. 
         /// </para>
         ///  
         /// <para>
-        ///  <i>partner_name</i> is determined during partner registration and identifies the
-        /// partner to Amazon Web Services customers. <i>event_namespace</i> is determined by
-        /// the partner and is a way for the partner to categorize their events. <i>event_name</i>
-        /// is determined by the partner, and should uniquely identify an event-generating resource
-        /// within the partner system. The combination of <i>event_namespace</i> and <i>event_name</i>
-        /// should help Amazon Web Services customers decide whether to create an event bus to
-        /// receive these events.
+        /// The <i>event_name</i> must be unique across all Amazon Web Services customers. This
+        /// is because the event source is a shared resource between the partner and customer
+        /// accounts, and each partner event source unique in the partner account.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// The combination of <i>event_namespace</i> and <i>event_name</i> should help Amazon
+        /// Web Services customers decide whether to create an event bus to receive these events.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePartnerEventSource service method.</param>
@@ -1210,7 +1281,7 @@ namespace Amazon.EventBridge
         /// Delete an existing global endpoint. For more information about global endpoints, see
         /// <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
         /// applications Regional-fault tolerant with global endpoints and event replication</a>
-        /// in the Amazon EventBridge User Guide.
+        /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEndpoint service method.</param>
         /// 
@@ -1419,14 +1490,14 @@ namespace Amazon.EventBridge
         ///  
         /// <para>
         /// If you call delete rule multiple times for the same rule, all calls will succeed.
-        /// When you call delete rule for a non-existent custom eventbus, <code>ResourceNotFoundException</code>
+        /// When you call delete rule for a non-existent custom eventbus, <c>ResourceNotFoundException</c>
         /// is returned.
         /// </para>
         ///  
         /// <para>
         /// Managed rules are rules created and managed by another Amazon Web Services service
         /// on your behalf. These rules are created by those other Amazon Web Services services
-        /// to support functionality in those services. You can delete these rules using the <code>Force</code>
+        /// to support functionality in those services. You can delete these rules using the <c>Force</c>
         /// option, but you should do so only if you are sure the other service is not still using
         /// that rule.
         /// </para>
@@ -1442,11 +1513,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -1686,7 +1757,7 @@ namespace Amazon.EventBridge
         /// Get the information about an existing global endpoint. For more information about
         /// global endpoints, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
         /// applications Regional-fault tolerant with global endpoints and event replication</a>
-        /// in the Amazon EventBridge User Guide..
+        /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeEndpoint service method.</param>
         /// 
@@ -1949,13 +2020,13 @@ namespace Amazon.EventBridge
         #region  DescribeReplay
 
         /// <summary>
-        /// Retrieves details about a replay. Use <code>DescribeReplay</code> to determine the
-        /// progress of a running replay. A replay processes events to replay based on the time
-        /// in the event, and replays them using 1 minute intervals. If you use <code>StartReplay</code>
-        /// and specify an <code>EventStartTime</code> and an <code>EventEndTime</code> that covers
-        /// a 20 minute time range, the events are replayed from the first minute of that 20 minute
-        /// range first. Then the events from the second minute are replayed. You can use <code>DescribeReplay</code>
-        /// to determine the progress of a replay. The value returned for <code>EventLastReplayedTime</code>
+        /// Retrieves details about a replay. Use <c>DescribeReplay</c> to determine the progress
+        /// of a running replay. A replay processes events to replay based on the time in the
+        /// event, and replays them using 1 minute intervals. If you use <c>StartReplay</c> and
+        /// specify an <c>EventStartTime</c> and an <c>EventEndTime</c> that covers a 20 minute
+        /// time range, the events are replayed from the first minute of that 20 minute range
+        /// first. Then the events from the second minute are replayed. You can use <c>DescribeReplay</c>
+        /// to determine the progress of a replay. The value returned for <c>EventLastReplayedTime</c>
         /// indicates the time within the specified time range associated with the last event
         /// replayed.
         /// </summary>
@@ -2103,11 +2174,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -2180,11 +2251,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -2416,7 +2487,7 @@ namespace Amazon.EventBridge
         /// List the global endpoints associated with this account. For more information about
         /// global endpoints, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
         /// applications Regional-fault tolerant with global endpoints and event replication</a>
-        /// in the Amazon EventBridge User Guide..
+        /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEndpoints service method.</param>
         /// 
@@ -2779,6 +2850,11 @@ namespace Amazon.EventBridge
         /// <summary>
         /// Lists the rules for the specified target. You can see which of the rules in Amazon
         /// EventBridge can invoke a specific target in your account.
+        /// 
+        ///  
+        /// <para>
+        /// The maximum number of results per page for requests is 100.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListRuleNamesByTarget service method.</param>
         /// 
@@ -2841,6 +2917,10 @@ namespace Amazon.EventBridge
         /// Lists your Amazon EventBridge rules. You can either list all the rules or you can
         /// provide a prefix to match to the rule names.
         /// 
+        ///  
+        /// <para>
+        /// The maximum number of results per page for requests is 100.
+        /// </para>
         ///  
         /// <para>
         /// ListRules does not list the targets of a rule. To see the targets associated with
@@ -2967,6 +3047,11 @@ namespace Amazon.EventBridge
 
         /// <summary>
         /// Lists the targets assigned to the specified rule.
+        /// 
+        ///  
+        /// <para>
+        /// The maximum number of results per page for requests is 100.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTargetsByRule service method.</param>
         /// 
@@ -3028,9 +3113,23 @@ namespace Amazon.EventBridge
         /// <summary>
         /// Sends custom events to Amazon EventBridge so that they can be matched to rules.
         /// 
+        ///  
+        /// <para>
+        /// The maximum size for a PutEvents event entry is 256 KB. Entry size is calculated including
+        /// the event and any necessary characters and keys of the JSON representation of the
+        /// event. To learn more, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevent-size.html">Calculating
+        /// PutEvents event entry size</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// PutEvents accepts the data in JSON format. For the JSON number (integer) data type,
+        /// the constraints are: a minimum value of -9,223,372,036,854,775,808 and a maximum value
+        /// of 9,223,372,036,854,775,807.
+        /// </para>
         ///  <note> 
         /// <para>
-        /// PutEvents will only process nested JSON up to 1100 levels deep.
+        /// PutEvents will only process nested JSON up to 1000 levels deep.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3091,6 +3190,12 @@ namespace Amazon.EventBridge
         /// <summary>
         /// This is used by SaaS partners to write events to a customer's partner event bus. Amazon
         /// Web Services customers do not use this operation.
+        /// 
+        ///  
+        /// <para>
+        /// For information on calculating event batch size, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-putevent-size.html">Calculating
+        /// EventBridge PutEvents event entry size</a> in the <i>EventBridge User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutPartnerEvents service method.</param>
         /// 
@@ -3150,10 +3255,10 @@ namespace Amazon.EventBridge
         #region  PutPermission
 
         /// <summary>
-        /// Running <code>PutPermission</code> permits the specified Amazon Web Services account
-        /// or Amazon Web Services organization to put events to the specified <i>event bus</i>.
-        /// Amazon EventBridge (CloudWatch Events) rules in your account are triggered by these
-        /// events arriving to an event bus in your account. 
+        /// Running <c>PutPermission</c> permits the specified Amazon Web Services account or
+        /// Amazon Web Services organization to put events to the specified <i>event bus</i>.
+        /// Amazon EventBridge rules in your account are triggered by these events arriving to
+        /// an event bus in your account. 
         /// 
         ///  
         /// <para>
@@ -3163,16 +3268,15 @@ namespace Amazon.EventBridge
         ///  
         /// <para>
         /// To enable multiple Amazon Web Services accounts to put events to your event bus, run
-        /// <code>PutPermission</code> once for each of these accounts. Or, if all the accounts
-        /// are members of the same Amazon Web Services organization, you can run <code>PutPermission</code>
-        /// once specifying <code>Principal</code> as "*" and specifying the Amazon Web Services
-        /// organization ID in <code>Condition</code>, to grant permissions to all accounts in
-        /// that organization.
+        /// <c>PutPermission</c> once for each of these accounts. Or, if all the accounts are
+        /// members of the same Amazon Web Services organization, you can run <c>PutPermission</c>
+        /// once specifying <c>Principal</c> as "*" and specifying the Amazon Web Services organization
+        /// ID in <c>Condition</c>, to grant permissions to all accounts in that organization.
         /// </para>
         ///  
         /// <para>
         /// If you grant permissions using an organization, then accounts in that organization
-        /// must specify a <code>RoleArn</code> with proper permissions when they use <code>PutTarget</code>
+        /// must specify a <c>RoleArn</c> with proper permissions when they use <c>PutTarget</c>
         /// to add your account's event bus as a target. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
         /// and Receiving Events Between Amazon Web Services Accounts</a> in the <i>Amazon EventBridge
         /// User Guide</i>.
@@ -3264,9 +3368,8 @@ namespace Amazon.EventBridge
         ///  
         /// <para>
         /// If you are updating an existing rule, the rule is replaced with what you specify in
-        /// this <code>PutRule</code> command. If you omit arguments in <code>PutRule</code>,
-        /// the old values for those arguments are not kept. Instead, they are replaced with null
-        /// values.
+        /// this <c>PutRule</c> command. If you omit arguments in <c>PutRule</c>, the old values
+        /// for those arguments are not kept. Instead, they are replaced with null values.
         /// </para>
         ///  
         /// <para>
@@ -3285,14 +3388,13 @@ namespace Amazon.EventBridge
         /// When you initially create a rule, you can optionally assign one or more tags to the
         /// rule. Tags can help you organize and categorize your resources. You can also use them
         /// to scope user permissions, by granting a user permission to access or change only
-        /// rules with certain tag values. To use the <code>PutRule</code> operation and assign
-        /// tags, you must have both the <code>events:PutRule</code> and <code>events:TagResource</code>
-        /// permissions.
+        /// rules with certain tag values. To use the <c>PutRule</c> operation and assign tags,
+        /// you must have both the <c>events:PutRule</c> and <c>events:TagResource</c> permissions.
         /// </para>
         ///  
         /// <para>
-        /// If you are updating an existing rule, any tags you specify in the <code>PutRule</code>
-        /// operation are ignored. To update the tags of an existing rule, use <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_TagResource.html">TagResource</a>
+        /// If you are updating an existing rule, any tags you specify in the <c>PutRule</c> operation
+        /// are ignored. To update the tags of an existing rule, use <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_TagResource.html">TagResource</a>
         /// and <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_UntagResource.html">UntagResource</a>.
         /// </para>
         ///  
@@ -3323,6 +3425,13 @@ namespace Amazon.EventBridge
         /// more information, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html">Managing
         /// Your Costs with Budgets</a>.
         /// </para>
+        ///  
+        /// <para>
+        /// To create a rule that filters for management events from Amazon Web Services services,
+        /// see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html#eb-service-event-cloudtrail-management">Receiving
+        /// read-only management events from Amazon Web Services services</a> in the <i>EventBridge
+        /// User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutRule service method.</param>
         /// 
@@ -3342,11 +3451,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -3407,188 +3516,100 @@ namespace Amazon.EventBridge
         /// <para>
         /// Targets are the resources that are invoked when a rule is triggered.
         /// </para>
+        ///  
+        /// <para>
+        /// The maximum number of entries per request is 10.
+        /// </para>
         ///  <note> 
         /// <para>
         /// Each rule can have up to five (5) targets associated with it at one time.
         /// </para>
         ///  </note> 
         /// <para>
-        /// You can configure the following as targets for Events:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html">API
-        /// destination</a> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-gateway-target.html">API
-        /// Gateway</a> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Batch job queue
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// CloudWatch group
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// CodeBuild project
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// CodePipeline
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// EC2 <code>CreateSnapshot</code> API call
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// EC2 Image Builder
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// EC2 <code>RebootInstances</code> API call
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// EC2 <code>StopInstances</code> API call
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// EC2 <code>TerminateInstances</code> API call
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// ECS task
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html">Event
-        /// bus in a different account or Region</a> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-bus-to-bus.html">Event
-        /// bus in the same account and Region</a> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Firehose delivery stream
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Glue workflow
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <a href="https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-creation.html#incident-tracking-auto-eventbridge">Incident
-        /// Manager response plan</a> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Inspector assessment template
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Kinesis stream
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Lambda function
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Redshift cluster
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Redshift Serverless workgroup
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// SageMaker Pipeline
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// SNS topic
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// SQS queue
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Step Functions state machine
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Systems Manager Automation
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Systems Manager OpsItem
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// Systems Manager Run Command
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// Creating rules with built-in targets is supported only in the Amazon Web Services
-        /// Management Console. The built-in targets are <code>EC2 CreateSnapshot API call</code>,
-        /// <code>EC2 RebootInstances API call</code>, <code>EC2 StopInstances API call</code>,
-        /// and <code>EC2 TerminateInstances API call</code>. 
+        /// For a list of services you can configure as targets for events, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html">EventBridge
+        /// targets</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </para>
         ///  
         /// <para>
-        /// For some target types, <code>PutTargets</code> provides target-specific parameters.
-        /// If the target is a Kinesis data stream, you can optionally specify which shard the
-        /// event goes to by using the <code>KinesisParameters</code> argument. To invoke a command
-        /// on multiple EC2 instances with one rule, you can use the <code>RunCommandParameters</code>
-        /// field.
+        /// Creating rules with built-in targets is supported only in the Amazon Web Services
+        /// Management Console. The built-in targets are:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>Amazon EBS CreateSnapshot API call</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Amazon EC2 RebootInstances API call</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Amazon EC2 StopInstances API call</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Amazon EC2 TerminateInstances API call</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For some target types, <c>PutTargets</c> provides target-specific parameters. If the
+        /// target is a Kinesis data stream, you can optionally specify which shard the event
+        /// goes to by using the <c>KinesisParameters</c> argument. To invoke a command on multiple
+        /// EC2 instances with one rule, you can use the <c>RunCommandParameters</c> field.
         /// </para>
         ///  
         /// <para>
         /// To be able to make API calls against the resources that you own, Amazon EventBridge
-        /// needs the appropriate permissions. For Lambda and Amazon SNS resources, EventBridge
-        /// relies on resource-based policies. For EC2 instances, Kinesis Data Streams, Step Functions
-        /// state machines and API Gateway APIs, EventBridge relies on IAM roles that you specify
-        /// in the <code>RoleARN</code> argument in <code>PutTargets</code>. For more information,
-        /// see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html">Authentication
-        /// and Access Control</a> in the <i>Amazon EventBridge User Guide</i>.
+        /// needs the appropriate permissions: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For Lambda and Amazon SNS resources, EventBridge relies on resource-based policies.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For EC2 instances, Kinesis Data Streams, Step Functions state machines and API Gateway
+        /// APIs, EventBridge relies on IAM roles that you specify in the <c>RoleARN</c> argument
+        /// in <c>PutTargets</c>.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html">Authentication
+        /// and Access Control</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </para>
         ///  
         /// <para>
         /// If another Amazon Web Services account is in the same region and has granted you permission
-        /// (using <code>PutPermission</code>), you can send events to that account. Set that
-        /// account's event bus as a target of the rules in your account. To send the matched
-        /// events to the other account, specify that account's event bus as the <code>Arn</code>
-        /// value when you run <code>PutTargets</code>. If your account sends events to another
-        /// account, your account is charged for each sent event. Each event sent to another account
-        /// is charged as a custom event. The account receiving the event is not charged. For
-        /// more information, see <a href="http://aws.amazon.com/eventbridge/pricing/">Amazon
-        /// EventBridge Pricing</a>.
+        /// (using <c>PutPermission</c>), you can send events to that account. Set that account's
+        /// event bus as a target of the rules in your account. To send the matched events to
+        /// the other account, specify that account's event bus as the <c>Arn</c> value when you
+        /// run <c>PutTargets</c>. If your account sends events to another account, your account
+        /// is charged for each sent event. Each event sent to another account is charged as a
+        /// custom event. The account receiving the event is not charged. For more information,
+        /// see <a href="http://aws.amazon.com/eventbridge/pricing/">Amazon EventBridge Pricing</a>.
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <code>Input</code>, <code>InputPath</code>, and <code>InputTransformer</code> are
-        /// not available with <code>PutTarget</code> if the target is an event bus of a different
-        /// Amazon Web Services account.
+        ///  <c>Input</c>, <c>InputPath</c>, and <c>InputTransformer</c> are not available with
+        /// <c>PutTarget</c> if the target is an event bus of a different Amazon Web Services
+        /// account.
         /// </para>
         ///  </note> 
         /// <para>
         /// If you are setting the event bus of another account as the target, and that account
         /// granted permission to your account through an organization instead of directly by
-        /// the account ID, then you must specify a <code>RoleArn</code> with proper permissions
-        /// in the <code>Target</code> structure. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
+        /// the account ID, then you must specify a <c>RoleArn</c> with proper permissions in
+        /// the <c>Target</c> structure. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
         /// and Receiving Events Between Amazon Web Services Accounts</a> in the <i>Amazon EventBridge
         /// User Guide</i>.
         /// </para>
-        ///  
+        ///  <note> 
+        /// <para>
+        /// If you have an IAM role on a cross-account event bus target, a <c>PutTargets</c> call
+        /// without a role on the same target (same <c>Id</c> and <c>Arn</c>) will not remove
+        /// the role.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// For more information about enabling cross-account events, see <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutPermission.html">PutPermission</a>.
         /// </para>
@@ -3610,7 +3631,7 @@ namespace Amazon.EventBridge
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <b>InputPath</b> is specified in the form of JSONPath (for example, <code>$.detail</code>),
+        /// If <b>InputPath</b> is specified in the form of JSONPath (for example, <c>$.detail</c>),
         /// then only the part of the event specified in the path is passed to the target (for
         /// example, only the detail part of the event is passed).
         /// </para>
@@ -3622,8 +3643,8 @@ namespace Amazon.EventBridge
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When you specify <code>InputPath</code> or <code>InputTransformer</code>, you must
-        /// use JSON dot notation, not bracket notation.
+        /// When you specify <c>InputPath</c> or <c>InputTransformer</c>, you must use JSON dot
+        /// notation, not bracket notation.
         /// </para>
         ///  
         /// <para>
@@ -3634,8 +3655,8 @@ namespace Amazon.EventBridge
         ///  
         /// <para>
         /// This action can partially fail if too many requests are made at the same time. If
-        /// that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry
-        /// in <code>FailedEntries</code> provides the ID of the failed target and the error code.
+        /// that happens, <c>FailedEntryCount</c> is non-zero in the response and each entry in
+        /// <c>FailedEntries</c> provides the ID of the failed target and the error code.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutTargets service method.</param>
@@ -3653,11 +3674,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -3712,9 +3733,9 @@ namespace Amazon.EventBridge
 
         /// <summary>
         /// Revokes the permission of another Amazon Web Services account to be able to put events
-        /// to the specified event bus. Specify the account to revoke by the <code>StatementId</code>
-        /// value that you associated with the account when you granted it permission with <code>PutPermission</code>.
-        /// You can find the <code>StatementId</code> by using <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeEventBus.html">DescribeEventBus</a>.
+        /// to the specified event bus. Specify the account to revoke by the <c>StatementId</c>
+        /// value that you associated with the account when you granted it permission with <c>PutPermission</c>.
+        /// You can find the <c>StatementId</c> by using <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeEventBus.html">DescribeEventBus</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemovePermission service method.</param>
         /// 
@@ -3785,8 +3806,8 @@ namespace Amazon.EventBridge
         /// 
         ///  <note> 
         /// <para>
-        /// A successful execution of <code>RemoveTargets</code> doesn't guarantee all targets
-        /// are removed from the rule, it means that the target(s) listed in the request are removed.
+        /// A successful execution of <c>RemoveTargets</c> doesn't guarantee all targets are removed
+        /// from the rule, it means that the target(s) listed in the request are removed.
         /// </para>
         ///  </note> 
         /// <para>
@@ -3796,8 +3817,12 @@ namespace Amazon.EventBridge
         ///  
         /// <para>
         /// This action can partially fail if too many requests are made at the same time. If
-        /// that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry
-        /// in <code>FailedEntries</code> provides the ID of the failed target and the error code.
+        /// that happens, <c>FailedEntryCount</c> is non-zero in the response and each entry in
+        /// <c>FailedEntries</c> provides the ID of the failed target and the error code.
+        /// </para>
+        ///  
+        /// <para>
+        /// The maximum number of entries per request is 10.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemoveTargets service method.</param>
@@ -3811,11 +3836,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -3872,10 +3897,10 @@ namespace Amazon.EventBridge
         /// Starts the specified replay. Events are not necessarily replayed in the exact same
         /// order that they were added to the archive. A replay processes events to replay based
         /// on the time in the event, and replays them using 1 minute intervals. If you specify
-        /// an <code>EventStartTime</code> and an <code>EventEndTime</code> that covers a 20 minute
-        /// time range, the events are replayed from the first minute of that 20 minute range
-        /// first. Then the events from the second minute are replayed. You can use <code>DescribeReplay</code>
-        /// to determine the progress of a replay. The value returned for <code>EventLastReplayedTime</code>
+        /// an <c>EventStartTime</c> and an <c>EventEndTime</c> that covers a 20 minute time range,
+        /// the events are replayed from the first minute of that 20 minute range first. Then
+        /// the events from the second minute are replayed. You can use <c>DescribeReplay</c>
+        /// to determine the progress of a replay. The value returned for <c>EventLastReplayedTime</c>
         /// indicates the time within the specified time range associated with the last event
         /// replayed.
         /// </summary>
@@ -3959,9 +3984,9 @@ namespace Amazon.EventBridge
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> action with a resource that already has tags.
-        /// If you specify a new tag key, this tag is appended to the list of tags associated
-        /// with the resource. If you specify a tag key that is already associated with the resource,
+        /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+        /// you specify a new tag key, this tag is appended to the list of tags associated with
+        /// the resource. If you specify a tag key that is already associated with the resource,
         /// the new tag value that you specify replaces the previous value for that tag.
         /// </para>
         ///  
@@ -3980,11 +4005,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -4106,8 +4131,8 @@ namespace Amazon.EventBridge
         #region  UntagResource
 
         /// <summary>
-        /// Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge
-        /// (CloudWatch Events), rules and event buses can be tagged.
+        /// Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge,
+        /// rules and event buses can be tagged.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -4120,11 +4145,11 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ManagedRuleException">
         /// This rule was created by an Amazon Web Services service on behalf of your account.
-        /// It is managed by that service. If you see this error in response to <code>DeleteRule</code>
-        /// or <code>RemoveTargets</code>, you can use the <code>Force</code> parameter in those
-        /// calls to delete the rule or remove targets from the rule. You cannot modify these
-        /// managed rules by using <code>DisableRule</code>, <code>EnableRule</code>, <code>PutTargets</code>,
-        /// <code>PutRule</code>, <code>TagResource</code>, or <code>UntagResource</code>.
+        /// It is managed by that service. If you see this error in response to <c>DeleteRule</c>
+        /// or <c>RemoveTargets</c>, you can use the <c>Force</c> parameter in those calls to
+        /// delete the rule or remove targets from the rule. You cannot modify these managed rules
+        /// by using <c>DisableRule</c>, <c>EnableRule</c>, <c>PutTargets</c>, <c>PutRule</c>,
+        /// <c>TagResource</c>, or <c>UntagResource</c>.
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
@@ -4320,6 +4345,9 @@ namespace Amazon.EventBridge
         /// <param name="request">Container for the necessary parameters to execute the UpdateConnection service method.</param>
         /// 
         /// <returns>The response from the UpdateConnection service method, as returned by EventBridge.</returns>
+        /// <exception cref="Amazon.EventBridge.Model.AccessDeniedException">
+        /// You do not have the necessary permissons for this action.
+        /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ConcurrentModificationException">
         /// There is concurrent modification on a rule, target, archive, or replay.
         /// </exception>
@@ -4332,6 +4360,9 @@ namespace Amazon.EventBridge
         /// </exception>
         /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
         /// An entity that you specified does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.EventBridge.Model.ThrottlingException">
+        /// This request cannot be completed due to throttling issues.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/UpdateConnection">REST API Reference for UpdateConnection Operation</seealso>
         public virtual UpdateConnectionResponse UpdateConnection(UpdateConnectionRequest request)
@@ -4384,7 +4415,7 @@ namespace Amazon.EventBridge
         /// <summary>
         /// Update an existing endpoint. For more information about global endpoints, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-global-endpoints.html">Making
         /// applications Regional-fault tolerant with global endpoints and event replication</a>
-        /// in the Amazon EventBridge User Guide..
+        /// in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateEndpoint service method.</param>
         /// 
@@ -4444,6 +4475,72 @@ namespace Amazon.EventBridge
 
         #endregion
         
+        #region  UpdateEventBus
+
+        /// <summary>
+        /// Updates the specified event bus.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventBus service method.</param>
+        /// 
+        /// <returns>The response from the UpdateEventBus service method, as returned by EventBridge.</returns>
+        /// <exception cref="Amazon.EventBridge.Model.ConcurrentModificationException">
+        /// There is concurrent modification on a rule, target, archive, or replay.
+        /// </exception>
+        /// <exception cref="Amazon.EventBridge.Model.InternalException">
+        /// This exception occurs due to unexpected causes.
+        /// </exception>
+        /// <exception cref="Amazon.EventBridge.Model.OperationDisabledException">
+        /// The operation you are attempting is not available in this region.
+        /// </exception>
+        /// <exception cref="Amazon.EventBridge.Model.ResourceNotFoundException">
+        /// An entity that you specified does not exist.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/UpdateEventBus">REST API Reference for UpdateEventBus Operation</seealso>
+        public virtual UpdateEventBusResponse UpdateEventBus(UpdateEventBusRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateEventBusRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateEventBusResponseUnmarshaller.Instance;
+
+            return Invoke<UpdateEventBusResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateEventBus operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateEventBus operation on AmazonEventBridgeClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateEventBus
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/UpdateEventBus">REST API Reference for UpdateEventBus Operation</seealso>
+        public virtual IAsyncResult BeginUpdateEventBus(UpdateEventBusRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = UpdateEventBusRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = UpdateEventBusResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateEventBus operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateEventBus.</param>
+        /// 
+        /// <returns>Returns a  UpdateEventBusResult from EventBridge.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/UpdateEventBus">REST API Reference for UpdateEventBus Operation</seealso>
+        public virtual UpdateEventBusResponse EndUpdateEventBus(IAsyncResult asyncResult)
+        {
+            return EndInvoke<UpdateEventBusResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region DetermineServiceOperationEndpoint
 
         /// <summary>
@@ -4453,11 +4550,11 @@ namespace Amazon.EventBridge
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

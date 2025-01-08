@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,10 +35,30 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ByoipCidr
     {
+        private List<AsnAssociation> _asnAssociations = AWSConfigs.InitializeCollections ? new List<AsnAssociation>() : null;
         private string _cidr;
         private string _description;
+        private string _networkBorderGroup;
         private ByoipCidrState _state;
         private string _statusMessage;
+
+        /// <summary>
+        /// Gets and sets the property AsnAssociations. 
+        /// <para>
+        /// The BYOIP CIDR associations with ASNs.
+        /// </para>
+        /// </summary>
+        public List<AsnAssociation> AsnAssociations
+        {
+            get { return this._asnAssociations; }
+            set { this._asnAssociations = value; }
+        }
+
+        // Check to see if AsnAssociations property is set
+        internal bool IsSetAsnAssociations()
+        {
+            return this._asnAssociations != null && (this._asnAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property Cidr. 
@@ -76,10 +97,93 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property NetworkBorderGroup. 
+        /// <para>
+        /// If you have <a href="https://docs.aws.amazon.com/local-zones/latest/ug/how-local-zones-work.html">Local
+        /// Zones</a> enabled, you can choose a network border group for Local Zones when you
+        /// provision and advertise a BYOIPv4 CIDR. Choose the network border group carefully
+        /// as the EIP and the Amazon Web Services resource it is associated with must reside
+        /// in the same network border group.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can provision BYOIP address ranges to and advertise them in the following Local
+        /// Zone network border groups:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// us-east-1-dfw-2
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// us-west-2-lax-1
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// us-west-2-phx-2
+        /// </para>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// You cannot provision or advertise BYOIPv6 address ranges in Local Zones at this time.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public string NetworkBorderGroup
+        {
+            get { return this._networkBorderGroup; }
+            set { this._networkBorderGroup = value; }
+        }
+
+        // Check to see if NetworkBorderGroup property is set
+        internal bool IsSetNetworkBorderGroup()
+        {
+            return this._networkBorderGroup != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The state of the address pool.
+        /// The state of the address range.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>advertised</c>: The address range is being advertised to the internet by Amazon
+        /// Web Services.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>deprovisioned</c>: The address range is deprovisioned.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>failed-deprovision</c>: The request to deprovision the address range was unsuccessful.
+        /// Ensure that all EIPs from the range have been deallocated and try again.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>failed-provision</c>: The request to provision the address range was unsuccessful.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>pending-deprovision</c>: You’ve submitted a request to deprovision an address
+        /// range and it's pending.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>pending-provision</c>: You’ve submitted a request to provision an address range
+        /// and it's pending.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>provisioned</c>: The address range is provisioned and can be advertised. The range
+        /// is not currently advertised.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>provisioned-not-publicly-advertisable</c>: The address range is provisioned and
+        /// cannot be advertised.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public ByoipCidrState State
         {

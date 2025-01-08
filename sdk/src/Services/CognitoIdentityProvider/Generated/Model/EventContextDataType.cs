@@ -26,10 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// Specifies the user context data captured at the time of an event request.
+    /// The context data that your application submitted in an authentication request with
+    /// advanced security features, as displayed in an <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminListUserAuthEvents.html">AdminListUserAuthEvents</a>
+    /// response.
     /// </summary>
     public partial class EventContextDataType
     {

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the fis-2020-12-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -31,6 +32,11 @@ namespace Amazon.FIS.Model
         IListActionsPaginator ListActions(ListActionsRequest request);
 
         /// <summary>
+        /// Paginator for ListExperimentResolvedTargets operation
+        ///</summary>
+        IListExperimentResolvedTargetsPaginator ListExperimentResolvedTargets(ListExperimentResolvedTargetsRequest request);
+
+        /// <summary>
         /// Paginator for ListExperiments operation
         ///</summary>
         IListExperimentsPaginator ListExperiments(ListExperimentsRequest request);
@@ -39,6 +45,11 @@ namespace Amazon.FIS.Model
         /// Paginator for ListExperimentTemplates operation
         ///</summary>
         IListExperimentTemplatesPaginator ListExperimentTemplates(ListExperimentTemplatesRequest request);
+
+        /// <summary>
+        /// Paginator for ListTargetAccountConfigurations operation
+        ///</summary>
+        IListTargetAccountConfigurationsPaginator ListTargetAccountConfigurations(ListTargetAccountConfigurationsRequest request);
 
         /// <summary>
         /// Paginator for ListTargetResourceTypes operation

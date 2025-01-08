@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
     /// Container for the parameters to the ScheduleKeyDeletion operation.
     /// Schedules the deletion of a KMS key. By default, KMS applies a waiting period of 30
     /// days, but you can specify a waiting period of 7-30 days. When this operation is successful,
-    /// the key state of the KMS key changes to <code>PendingDeletion</code> and the key can't
-    /// be used in any cryptographic operations. It remains in this state for the duration
-    /// of the waiting period. Before the waiting period ends, you can use <a>CancelKeyDeletion</a>
+    /// the key state of the KMS key changes to <c>PendingDeletion</c> and the key can't be
+    /// used in any cryptographic operations. It remains in this state for the duration of
+    /// the waiting period. Before the waiting period ends, you can use <a>CancelKeyDeletion</a>
     /// to cancel the deletion of the KMS key. After the waiting period ends, KMS deletes
     /// the KMS key, its key material, and all KMS data associated with it, including all
     /// aliases that refer to it.
@@ -43,7 +44,7 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     /// Deleting a KMS key is a destructive and potentially dangerous operation. When a KMS
     /// key is deleted, all data that was encrypted under the KMS key is unrecoverable. (The
-    /// only exception is a <a href="kms/latest/developerguide/multi-region-keys-delete.html">multi-Region
+    /// only exception is a <a href="https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-delete.html">multi-Region
     /// replica key</a>, or an <a href="kms/latest/developerguide/importing-keys-managing.html#import-delete-key">asymmetric
     /// or HMAC KMS key with imported key material</a>.) To prevent the use of a KMS key without
     /// deleting it, use <a>DisableKey</a>. 
@@ -53,11 +54,10 @@ namespace Amazon.KeyManagementService.Model
     /// You can schedule the deletion of a multi-Region primary key and its replica keys at
     /// any time. However, KMS will not delete a multi-Region primary key with existing replica
     /// keys. If you schedule the deletion of a primary key with replicas, its key state changes
-    /// to <code>PendingReplicaDeletion</code> and it cannot be replicated or used in cryptographic
+    /// to <c>PendingReplicaDeletion</c> and it cannot be replicated or used in cryptographic
     /// operations. This status can continue indefinitely. When the last of its replicas keys
-    /// is deleted (not just scheduled), the key state of the primary key changes to <code>PendingDeletion</code>
-    /// and its waiting period (<code>PendingWindowInDays</code>) begins. For details, see
-    /// <a href="https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-delete.html">Deleting
+    /// is deleted (not just scheduled), the key state of the primary key changes to <c>PendingDeletion</c>
+    /// and its waiting period (<c>PendingWindowInDays</c>) begins. For details, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-delete.html">Deleting
     /// multi-Region keys</a> in the <i>Key Management Service Developer Guide</i>.
     /// </para>
     ///  
@@ -105,7 +105,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>DisableKey</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class ScheduleKeyDeletionRequest : AmazonKeyManagementServiceRequest
     {
@@ -127,11 +132,11 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> 
+        /// Key ID: <c>1234abcd-12ab-34cd-56ef-1234567890ab</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+        /// Key ARN: <c>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -168,9 +173,8 @@ namespace Amazon.KeyManagementService.Model
         /// <para>
         /// This value is optional. If you include a value, it must be between 7 and 30, inclusive.
         /// If you do not include a value, it defaults to 30. You can use the <a href="https://docs.aws.amazon.com/kms/latest/developerguide/conditions-kms.html#conditions-kms-schedule-key-deletion-pending-window-in-days">
-        /// <code>kms:ScheduleKeyDeletionPendingWindowInDays</code> </a> condition key to further
-        /// constrain the values that principals can specify in the <code>PendingWindowInDays</code>
-        /// parameter.
+        /// <c>kms:ScheduleKeyDeletionPendingWindowInDays</c> </a> condition key to further constrain
+        /// the values that principals can specify in the <c>PendingWindowInDays</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=365)]

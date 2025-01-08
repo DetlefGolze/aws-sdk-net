@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.ElasticFileSystem.Model
         private bool? _encrypted;
         private string _fileSystemArn;
         private string _fileSystemId;
+        private FileSystemProtectionDescription _fileSystemProtection;
         private string _kmsKeyId;
         private LifeCycleState _lifeCycleState;
         private string _name;
@@ -48,16 +50,16 @@ namespace Amazon.ElasticFileSystem.Model
         private PerformanceMode _performanceMode;
         private double? _provisionedThroughputInMibps;
         private FileSystemSize _sizeInBytes;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private ThroughputMode _throughputMode;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZoneId. 
         /// <para>
-        /// The unique and consistent identifier of the Availability Zone in which the file system's
-        /// One Zone storage classes exist. For example, <code>use1-az1</code> is an Availability
-        /// Zone ID for the us-east-1 Amazon Web Services Region, and it has the same location
-        /// in every Amazon Web Services account.
+        /// The unique and consistent identifier of the Availability Zone in which the file system
+        /// is located, and is valid only for One Zone file systems. For example, <c>use1-az1</c>
+        /// is an Availability Zone ID for the us-east-1 Amazon Web Services Region, and it has
+        /// the same location in every Amazon Web Services account.
         /// </para>
         /// </summary>
         public string AvailabilityZoneId
@@ -76,8 +78,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property AvailabilityZoneName. 
         /// <para>
         /// Describes the Amazon Web Services Availability Zone in which the file system is located,
-        /// and is valid only for file systems using One Zone storage classes. For more information,
-        /// see <a href="https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html">Using
+        /// and is valid only for One Zone file systems. For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html">Using
         /// EFS storage classes</a> in the <i>Amazon EFS User Guide</i>.
         /// </para>
         /// </summary>
@@ -153,8 +154,8 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property FileSystemArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) for the EFS file system, in the format <code>arn:aws:elasticfilesystem:<i>region</i>:<i>account-id</i>:file-system/<i>file-system-id</i>
-        /// </code>. Example with sample data: <code>arn:aws:elasticfilesystem:us-west-2:1111333322228888:file-system/fs-01234567</code>
+        /// The Amazon Resource Name (ARN) for the EFS file system, in the format <c>arn:aws:elasticfilesystem:<i>region</i>:<i>account-id</i>:file-system/<i>file-system-id</i>
+        /// </c>. Example with sample data: <c>arn:aws:elasticfilesystem:us-west-2:1111333322228888:file-system/fs-01234567</c>
         /// 
         /// </para>
         /// </summary>
@@ -187,6 +188,24 @@ namespace Amazon.ElasticFileSystem.Model
         internal bool IsSetFileSystemId()
         {
             return this._fileSystemId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FileSystemProtection. 
+        /// <para>
+        /// Describes the protection on the file system. 
+        /// </para>
+        /// </summary>
+        public FileSystemProtectionDescription FileSystemProtection
+        {
+            get { return this._fileSystemProtection; }
+            set { this._fileSystemProtection = value; }
+        }
+
+        // Check to see if FileSystemProtection property is set
+        internal bool IsSetFileSystemProtection()
+        {
+            return this._fileSystemProtection != null;
         }
 
         /// <summary>
@@ -230,9 +249,9 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// You can add tags to a file system, including a <code>Name</code> tag. For more information,
-        /// see <a>CreateFileSystem</a>. If the file system has a <code>Name</code> tag, Amazon
-        /// EFS returns the value in this field. 
+        /// You can add tags to a file system, including a <c>Name</c> tag. For more information,
+        /// see <a>CreateFileSystem</a>. If the file system has a <c>Name</c> tag, Amazon EFS
+        /// returns the value in this field. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -310,7 +329,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property ProvisionedThroughputInMibps. 
         /// <para>
         /// The amount of provisioned throughput, measured in MiBps, for the file system. Valid
-        /// for file systems using <code>ThroughputMode</code> set to <code>provisioned</code>.
+        /// for file systems using <c>ThroughputMode</c> set to <c>provisioned</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -330,13 +349,13 @@ namespace Amazon.ElasticFileSystem.Model
         /// Gets and sets the property SizeInBytes. 
         /// <para>
         /// The latest known metered size (in bytes) of data stored in the file system, in its
-        /// <code>Value</code> field, and the time at which that size was determined in its <code>Timestamp</code>
-        /// field. The <code>Timestamp</code> value is the integer number of seconds since 1970-01-01T00:00:00Z.
-        /// The <code>SizeInBytes</code> value doesn't represent the size of a consistent snapshot
-        /// of the file system, but it is eventually consistent when there are no writes to the
-        /// file system. That is, <code>SizeInBytes</code> represents actual size only if the
-        /// file system is not modified for a period longer than a couple of hours. Otherwise,
-        /// the value is not the exact size that the file system was at any point in time. 
+        /// <c>Value</c> field, and the time at which that size was determined in its <c>Timestamp</c>
+        /// field. The <c>Timestamp</c> value is the integer number of seconds since 1970-01-01T00:00:00Z.
+        /// The <c>SizeInBytes</c> value doesn't represent the size of a consistent snapshot of
+        /// the file system, but it is eventually consistent when there are no writes to the file
+        /// system. That is, <c>SizeInBytes</c> represents actual size only if the file system
+        /// is not modified for a period longer than a couple of hours. Otherwise, the value is
+        /// not the exact size that the file system was at any point in time. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -355,8 +374,7 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags associated with the file system, presented as an array of <code>Tag</code>
-        /// objects.
+        /// The tags associated with the file system, presented as an array of <c>Tag</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -369,7 +387,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

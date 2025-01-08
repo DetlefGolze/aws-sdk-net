@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -48,22 +49,22 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To configure Network Firewall to inspect for the IP address 192.0.2.44, specify <code>192.0.2.44/32</code>.
+        /// To configure Network Firewall to inspect for the IP address 192.0.2.44, specify <c>192.0.2.44/32</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// To configure Network Firewall to inspect for IP addresses from 192.0.2.0 to 192.0.2.255,
-        /// specify <code>192.0.2.0/24</code>.
+        /// specify <c>192.0.2.0/24</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// To configure Network Firewall to inspect for the IP address 1111:0000:0000:0000:0000:0000:0000:0111,
-        /// specify <code>1111:0000:0000:0000:0000:0000:0000:0111/128</code>.
+        /// specify <c>1111:0000:0000:0000:0000:0000:0000:0111/128</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// To configure Network Firewall to inspect for IP addresses from 1111:0000:0000:0000:0000:0000:0000:0000
-        /// to 1111:0000:0000:0000:ffff:ffff:ffff:ffff, specify <code>1111:0000:0000:0000:0000:0000:0000:0000/64</code>.
+        /// to 1111:0000:0000:0000:ffff:ffff:ffff:ffff, specify <c>1111:0000:0000:0000:0000:0000:0000:0000/64</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>

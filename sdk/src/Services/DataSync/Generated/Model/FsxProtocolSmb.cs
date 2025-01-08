@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Specifies the Server Message Block (SMB) protocol configuration that DataSync uses
-    /// to access your Amazon FSx for NetApp ONTAP file system. For more information, see
-    /// <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access">Accessing
-    /// FSx for ONTAP file systems</a>.
+    /// to access your Amazon FSx for NetApp ONTAP file system's storage virtual machine (SVM).
+    /// For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-access">Providing
+    /// DataSync access to FSx for ONTAP file systems</a>.
     /// </summary>
     public partial class FsxProtocolSmb
     {
@@ -44,8 +45,18 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Domain. 
         /// <para>
-        /// Specifies the fully qualified domain name (FQDN) of the Microsoft Active Directory
-        /// that your storage virtual machine (SVM) belongs to.
+        /// Specifies the name of the Windows domain that your storage virtual machine (SVM) belongs
+        /// to.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you have multiple domains in your environment, configuring this setting makes sure
+        /// that DataSync connects to the right SVM.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you have multiple Active Directory domains in your environment, configuring this
+        /// parameter makes sure that DataSync connects to the right SVM.
         /// </para>
         /// </summary>
         [AWSProperty(Max=253)]
@@ -98,43 +109,15 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// Specifies a user name that can mount the location and access the files, folders, and
-        /// metadata that you need in the SVM.
+        /// Specifies a user that can mount and access the files, folders, and metadata in your
+        /// SVM.
         /// </para>
         ///  
         /// <para>
-        /// If you provide a user in your Active Directory, note the following:
+        /// For information about choosing a user with the right level of access for your transfer,
+        /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-ontap-location.html#create-ontap-location-smb">Using
+        /// the SMB protocol</a>.
         /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        /// If you're using Directory Service for Microsoft Active Directory, the user must be
-        /// a member of the Amazon Web Services Delegated FSx Administrators group.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// If you're using a self-managed Active Directory, the user must be a member of either
-        /// the Domain Admins group or a custom group that you specified for file system administration
-        /// when you created your file system.
-        /// </para>
-        ///  </li> </ul> 
-        /// <para>
-        /// Make sure that the user has the permissions it needs to copy the data you want:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <code>SE_TCB_NAME</code>: Required to set object ownership and file metadata. With
-        /// this privilege, you also can copy NTFS discretionary access lists (DACLs).
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>SE_SECURITY_NAME</code>: May be needed to copy NTFS system access control lists
-        /// (SACLs). This operation specifically requires the Windows privilege, which is granted
-        /// to members of the Domain Admins group. If you configure your task to copy SACLs, make
-        /// sure that the user has the required privileges. For information about copying SACLs,
-        /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html#configure-ownership-and-permissions">Ownership
-        /// and permissions-related options</a>.
-        /// </para>
-        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Max=104)]
         public string User

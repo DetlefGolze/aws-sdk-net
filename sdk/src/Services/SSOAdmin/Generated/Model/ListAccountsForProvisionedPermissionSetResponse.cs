@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.SSOAdmin.Model
     /// </summary>
     public partial class ListAccountsForProvisionedPermissionSetResponse : AmazonWebServiceResponse
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AccountIds. 
         /// <para>
-        /// The list of Amazon Web Services <code>AccountIds</code>.
+        /// The list of Amazon Web Services <c>AccountIds</c>.
         /// </para>
         /// </summary>
         public List<string> AccountIds
@@ -51,7 +52,7 @@ namespace Amazon.SSOAdmin.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

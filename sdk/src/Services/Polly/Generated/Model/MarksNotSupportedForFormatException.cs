@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Polly.Model
 {
     /// <summary>
-    /// Speech marks are not supported for the <code>OutputFormat</code> selected. Speech
-    /// marks are only available for content in <code>json</code> format.
+    /// Speech marks are not supported for the <c>OutputFormat</c> selected. Speech marks
+    /// are only available for content in <c>json</c> format.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

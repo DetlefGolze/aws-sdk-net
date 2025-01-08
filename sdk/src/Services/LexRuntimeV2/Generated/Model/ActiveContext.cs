@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.LexRuntimeV2.Model
     ///  
     /// <para>
     /// Use a context to indicate to Amazon Lex V2 intents that should be used as follow-up
-    /// intents. For example, if the active context is <code>order-fulfilled</code>, only
-    /// intents that have <code>order-fulfilled</code> configured as a trigger are considered
-    /// for follow up.
+    /// intents. For example, if the active context is <c>order-fulfilled</c>, only intents
+    /// that have <c>order-fulfilled</c> configured as a trigger are considered for follow
+    /// up.
     /// </para>
     /// </summary>
     public partial class ActiveContext
     {
-        private Dictionary<string, string> _contextAttributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _contextAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _name;
         private ActiveContextTimeToLive _timeToLive;
 
@@ -70,7 +71,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if ContextAttributes property is set
         internal bool IsSetContextAttributes()
         {
-            return this._contextAttributes != null && this._contextAttributes.Count > 0; 
+            return this._contextAttributes != null && (this._contextAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

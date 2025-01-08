@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -222,16 +223,16 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>InProgress</code>: The model card export job is in progress.
+        ///  <c>InProgress</c>: The model card export job is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Completed</code>: The model card export job is complete.
+        ///  <c>Completed</c>: The model card export job is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code>: The model card export job failed. To see the reason for the
-        /// failure, see the <code>FailureReason</code> field in the response to a <code>DescribeModelCardExportJob</code>
+        ///  <c>Failed</c>: The model card export job failed. To see the reason for the failure,
+        /// see the <c>FailureReason</c> field in the response to a <c>DescribeModelCardExportJob</c>
         /// call.
         /// </para>
         ///  </li> </ul>

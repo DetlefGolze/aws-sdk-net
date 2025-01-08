@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoT.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -75,12 +76,24 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAction())
                 {
                     context.Writer.WritePropertyName("action");
                     context.Writer.Write(publicRequest.Action);
+                }
+
+                if(publicRequest.IsSetArtifact())
+                {
+                    context.Writer.WritePropertyName("artifact");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PackageVersionArtifactMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.Artifact, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetAttributes())
@@ -101,6 +114,12 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("description");
                     context.Writer.Write(publicRequest.Description);
+                }
+
+                if(publicRequest.IsSetRecipe())
+                {
+                    context.Writer.WritePropertyName("recipe");
+                    context.Writer.Write(publicRequest.Recipe);
                 }
 
                 writer.WriteObjectEnd();

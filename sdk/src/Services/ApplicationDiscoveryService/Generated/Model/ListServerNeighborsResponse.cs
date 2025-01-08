@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
     public partial class ListServerNeighborsResponse : AmazonWebServiceResponse
     {
         private long? _knownDependencyCount;
-        private List<NeighborConnectionDetail> _neighbors = new List<NeighborConnectionDetail>();
+        private List<NeighborConnectionDetail> _neighbors = AWSConfigs.InitializeCollections ? new List<NeighborConnectionDetail>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -71,14 +72,14 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Neighbors property is set
         internal bool IsSetNeighbors()
         {
-            return this._neighbors != null && this._neighbors.Count > 0; 
+            return this._neighbors != null && (this._neighbors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Token to retrieve the next set of results. For example, if you specified 100 IDs for
-        /// <code>ListServerNeighborsRequest$neighborConfigurationIds</code> but set <code>ListServerNeighborsRequest$maxResults</code>
+        /// <c>ListServerNeighborsRequest$neighborConfigurationIds</c> but set <c>ListServerNeighborsRequest$maxResults</c>
         /// to 10, you received a set of 10 results along with this token. Use this token in the
         /// next query to retrieve the next set of 10.
         /// </para>

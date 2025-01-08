@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.OpenSearchServerless.Model
         private string _kmsKeyArn;
         private long? _lastModifiedDate;
         private string _name;
+        private StandbyReplicas _standbyReplicas;
         private CollectionStatus _status;
         private CollectionType _type;
 
@@ -169,6 +171,24 @@ namespace Amazon.OpenSearchServerless.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property StandbyReplicas. 
+        /// <para>
+        /// Creates details about an OpenSearch Serverless collection.
+        /// </para>
+        /// </summary>
+        public StandbyReplicas StandbyReplicas
+        {
+            get { return this._standbyReplicas; }
+            set { this._standbyReplicas = value; }
+        }
+
+        // Check to see if StandbyReplicas property is set
+        internal bool IsSetStandbyReplicas()
+        {
+            return this._standbyReplicas != null;
         }
 
         /// <summary>

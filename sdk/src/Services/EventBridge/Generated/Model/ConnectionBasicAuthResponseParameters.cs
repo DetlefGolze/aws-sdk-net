@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
-    /// Contains the authorization parameters for the connection if Basic is specified as
-    /// the authorization type.
+    /// The authorization parameters for the connection if Basic is specified as the authorization
+    /// type.
     /// </summary>
     public partial class ConnectionBasicAuthResponseParameters
     {

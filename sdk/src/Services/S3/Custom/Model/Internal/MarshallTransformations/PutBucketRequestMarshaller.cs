@@ -82,6 +82,40 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
                 {
                     xmlWriter.WriteStartElement("CreateBucketConfiguration", S3Constants.S3RequestXmlNamespace);
                     xmlWriter.WriteElementString("LocationConstraint", regionCode);
+                }
+                if (putBucketRequest.IsSetPutBucketConfiguration())
+                {
+                    if(regionCode == null)
+                        xmlWriter.WriteStartElement("CreateBucketConfiguration", S3Constants.S3RequestXmlNamespace);
+                    if (putBucketRequest.PutBucketConfiguration.BucketInfo != null)
+                    {
+                        xmlWriter.WriteStartElement("Bucket", S3Constants.S3RequestXmlNamespace);
+                        if (putBucketRequest.PutBucketConfiguration.BucketInfo.IsSetDataRedundancy())
+                        {
+                            xmlWriter.WriteElementString("DataRedundancy", S3Constants.S3RequestXmlNamespace, StringUtils.FromString(putBucketRequest.PutBucketConfiguration.BucketInfo.DataRedundancy));
+                        }
+                        if (putBucketRequest.PutBucketConfiguration.BucketInfo.IsSetType())
+                        {
+                            xmlWriter.WriteElementString("Type", S3Constants.S3RequestXmlNamespace, StringUtils.FromString(putBucketRequest.PutBucketConfiguration.BucketInfo.Type));
+                        }
+                        xmlWriter.WriteEndElement();
+                    }
+                    if(putBucketRequest.PutBucketConfiguration.Location != null)
+                    {
+                        xmlWriter.WriteStartElement("Location", S3Constants.S3RequestXmlNamespace);
+                        if(putBucketRequest.PutBucketConfiguration.Location.IsSetName())
+                        {
+                            xmlWriter.WriteElementString("Name", S3Constants.S3RequestXmlNamespace, StringUtils.FromString(putBucketRequest.PutBucketConfiguration.Location.Name));
+                        }
+                        if (putBucketRequest.PutBucketConfiguration.Location.IsSetType())
+                        {
+                            xmlWriter.WriteElementString("Type", S3Constants.S3RequestXmlNamespace, StringUtils.FromString(putBucketRequest.PutBucketConfiguration.Location.Type));
+                        }
+                        xmlWriter.WriteEndElement();
+                    }
+                }
+                if(regionCode != null || putBucketRequest.IsSetPutBucketConfiguration())
+                {
                     xmlWriter.WriteEndElement();
                 }
             }
@@ -106,22 +140,25 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
         protected internal static void ConvertPutWithACLRequest(PutWithACLRequest request, IRequest irequest)
         {
             Dictionary<S3Permission, string> protoHeaders = new Dictionary<S3Permission, string>();
-            foreach (var grant in request.Grants)
+            if (request.Grants != null)
             {
-                string grantee = null;
-                if (grant.Grantee.CanonicalUser != null && !string.IsNullOrEmpty(grant.Grantee.CanonicalUser))
-                    grantee = string.Format(CultureInfo.InvariantCulture, "id=\"{0}\"", grant.Grantee.CanonicalUser);
-                else if (grant.Grantee.IsSetEmailAddress())
-                    grantee = string.Format(CultureInfo.InvariantCulture, "emailAddress=\"{0}\"", grant.Grantee.EmailAddress);
-                else if (grant.Grantee.IsSetURI())
-                    grantee = string.Format(CultureInfo.InvariantCulture, "uri=\"{0}\"", grant.Grantee.URI);
-                else continue;
+                foreach (var grant in request.Grants)
+                {
+                    string grantee = null;
+                    if (grant.Grantee.CanonicalUser != null && !string.IsNullOrEmpty(grant.Grantee.CanonicalUser))
+                        grantee = string.Format(CultureInfo.InvariantCulture, "id=\"{0}\"", grant.Grantee.CanonicalUser);
+                    else if (grant.Grantee.IsSetEmailAddress())
+                        grantee = string.Format(CultureInfo.InvariantCulture, "emailAddress=\"{0}\"", grant.Grantee.EmailAddress);
+                    else if (grant.Grantee.IsSetURI())
+                        grantee = string.Format(CultureInfo.InvariantCulture, "uri=\"{0}\"", grant.Grantee.URI);
+                    else continue;
 
-                string glist = null;
-                if (protoHeaders.TryGetValue(grant.Permission, out glist))
-                    protoHeaders[grant.Permission] = string.Format(CultureInfo.InvariantCulture, "{0}, {1}", glist, grantee);
-                else
-                    protoHeaders.Add(grant.Permission, grantee);
+                    string glist = null;
+                    if (protoHeaders.TryGetValue(grant.Permission, out glist))
+                        protoHeaders[grant.Permission] = string.Format(CultureInfo.InvariantCulture, "{0}, {1}", glist, grantee);
+                    else
+                        protoHeaders.Add(grant.Permission, grantee);
+                }
             }
 
             foreach (var permission in protoHeaders.Keys)
@@ -143,7 +180,10 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
 
 	    private static PutBucketRequestMarshaller _instance;
 
-	    public static PutBucketRequestMarshaller Instance
+        /// <summary>
+        /// Singleton for marshaller
+        /// </summary>
+        public static PutBucketRequestMarshaller Instance
 	    {
 	        get
 	        {

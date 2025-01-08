@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -36,12 +37,13 @@ namespace Amazon.SecurityHub.Model
         private string _findingAggregationRegion;
         private string _findingAggregatorArn;
         private string _regionLinkingMode;
-        private List<string> _regions = new List<string>();
+        private List<string> _regions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FindingAggregationRegion. 
         /// <para>
-        /// The aggregation Region.
+        /// The home Region. Findings generated in linked Regions are replicated and sent to the
+        /// home Region.
         /// </para>
         /// </summary>
         public string FindingAggregationRegion
@@ -108,7 +110,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Regions property is set
         internal bool IsSetRegions()
         {
-            return this._regions != null && this._regions.Count > 0; 
+            return this._regions != null && (this._regions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

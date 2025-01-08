@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -40,6 +41,35 @@ namespace Amazon.Redshift.Model
     /// go to <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html">Amazon
     /// Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.
     /// </para>
+    ///  
+    /// <para>
+    /// VPC Block Public Access (BPA) enables you to block resources in VPCs and subnets that
+    /// you own in a Region from reaching or being reached from the internet through internet
+    /// gateways and egress-only internet gateways. If a subnet group for a provisioned cluster
+    /// is in an account with VPC BPA turned on, the following capabilities are blocked:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// Creating a public cluster
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Restoring a public cluster
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Modifying a private cluster to be public
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Adding a subnet with VPC BPA turned on to the subnet group when there's at least one
+    /// public cluster within the group
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// For more information about VPC BPA, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/security-vpc-bpa.html">Block
+    /// public access to VPCs and subnets</a> in the <i>Amazon VPC User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class CreateClusterRequest : AmazonRedshiftRequest
     {
@@ -51,7 +81,7 @@ namespace Amazon.Redshift.Model
         private bool? _availabilityZoneRelocation;
         private string _clusterIdentifier;
         private string _clusterParameterGroupName;
-        private List<string> _clusterSecurityGroups = new List<string>();
+        private List<string> _clusterSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _clusterSubnetGroupName;
         private string _clusterType;
         private string _clusterVersion;
@@ -62,21 +92,26 @@ namespace Amazon.Redshift.Model
         private bool? _enhancedVpcRouting;
         private string _hsmClientCertificateIdentifier;
         private string _hsmConfigurationIdentifier;
-        private List<string> _iamRoles = new List<string>();
+        private List<string> _iamRoles = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _ipAddressType;
         private string _kmsKeyId;
         private string _loadSampleData;
         private string _maintenanceTrackName;
+        private bool? _manageMasterPassword;
         private int? _manualSnapshotRetentionPeriod;
+        private string _masterPasswordSecretKmsKeyId;
         private string _masterUsername;
         private string _masterUserPassword;
+        private bool? _multiAZ;
         private string _nodeType;
         private int? _numberOfNodes;
         private int? _port;
         private string _preferredMaintenanceWindow;
         private bool? _publiclyAccessible;
+        private string _redshiftIdcApplicationArn;
         private string _snapshotScheduleIdentifier;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AdditionalInfo. 
@@ -100,8 +135,8 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property AllowVersionUpgrade. 
         /// <para>
-        /// If <code>true</code>, major version upgrades can be applied during the maintenance
-        /// window to the Amazon Redshift engine that is running on the cluster.
+        /// If <c>true</c>, major version upgrades can be applied during the maintenance window
+        /// to the Amazon Redshift engine that is running on the cluster.
         /// </para>
         ///  
         /// <para>
@@ -111,7 +146,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>true</code> 
+        /// Default: <c>true</c> 
         /// </para>
         /// </summary>
         public bool AllowVersionUpgrade
@@ -159,7 +194,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>1</code> 
+        /// Default: <c>1</c> 
         /// </para>
         ///  
         /// <para>
@@ -193,7 +228,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>us-east-2d</code> 
+        /// Example: <c>us-east-2d</c> 
         /// </para>
         ///  
         /// <para>
@@ -266,7 +301,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>myexamplecluster</code> 
+        /// Example: <c>myexamplecluster</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=2147483647)]
@@ -343,7 +378,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ClusterSecurityGroups property is set
         internal bool IsSetClusterSecurityGroups()
         {
-            return this._clusterSecurityGroups != null && this._clusterSecurityGroups.Count > 0; 
+            return this._clusterSecurityGroups != null && (this._clusterSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -377,19 +412,19 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>single-node</code>, the <b>NumberOfNodes</b> parameter is not required.
+        ///  <c>single-node</c>, the <b>NumberOfNodes</b> parameter is not required.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>multi-node</code>, the <b>NumberOfNodes</b> parameter is required.
+        ///  <c>multi-node</c>, the <b>NumberOfNodes</b> parameter is required.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Valid Values: <code>multi-node</code> | <code>single-node</code> 
+        /// Valid Values: <c>multi-node</c> | <c>single-node</c> 
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>multi-node</code> 
+        /// Default: <c>multi-node</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -421,7 +456,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>1.0</code> 
+        /// Example: <c>1.0</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -451,7 +486,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>dev</code> 
+        /// Default: <c>dev</c> 
         /// </para>
         ///  
         /// <para>
@@ -536,7 +571,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property Encrypted. 
         /// <para>
-        /// If <code>true</code>, the data in the cluster is encrypted at rest. 
+        /// If <c>true</c>, the data in the cluster is encrypted at rest. 
         /// </para>
         ///  
         /// <para>
@@ -565,7 +600,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// If this option is <code>true</code>, enhanced VPC routing is enabled. 
+        /// If this option is <c>true</c>, enhanced VPC routing is enabled. 
         /// </para>
         ///  
         /// <para>
@@ -647,7 +682,27 @@ namespace Amazon.Redshift.Model
         // Check to see if IamRoles property is set
         internal bool IsSetIamRoles()
         {
-            return this._iamRoles != null && this._iamRoles.Count > 0; 
+            return this._iamRoles != null && (this._iamRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IpAddressType. 
+        /// <para>
+        /// The IP address types that the cluster supports. Possible values are <c>ipv4</c> and
+        /// <c>dualstack</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string IpAddressType
+        {
+            get { return this._ipAddressType; }
+            set { this._ipAddressType = value; }
+        }
+
+        // Check to see if IpAddressType property is set
+        internal bool IsSetIpAddressType()
+        {
+            return this._ipAddressType != null;
         }
 
         /// <summary>
@@ -693,7 +748,7 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property MaintenanceTrackName. 
         /// <para>
         /// An optional parameter for the name of the maintenance track for the cluster. If you
-        /// don't provide a maintenance track name, the cluster is assigned to the <code>current</code>
+        /// don't provide a maintenance track name, the cluster is assigned to the <c>current</c>
         /// track.
         /// </para>
         /// </summary>
@@ -708,6 +763,27 @@ namespace Amazon.Redshift.Model
         internal bool IsSetMaintenanceTrackName()
         {
             return this._maintenanceTrackName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManageMasterPassword. 
+        /// <para>
+        /// If <c>true</c>, Amazon Redshift uses Secrets Manager to manage this cluster's admin
+        /// credentials. You can't use <c>MasterUserPassword</c> if <c>ManageMasterPassword</c>
+        /// is true. If <c>ManageMasterPassword</c> is false or not set, Amazon Redshift uses
+        /// <c>MasterUserPassword</c> for the admin user account's password. 
+        /// </para>
+        /// </summary>
+        public bool ManageMasterPassword
+        {
+            get { return this._manageMasterPassword.GetValueOrDefault(); }
+            set { this._manageMasterPassword = value; }
+        }
+
+        // Check to see if ManageMasterPassword property is set
+        internal bool IsSetManageMasterPassword()
+        {
+            return this._manageMasterPassword.HasValue; 
         }
 
         /// <summary>
@@ -735,6 +811,27 @@ namespace Amazon.Redshift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MasterPasswordSecretKmsKeyId. 
+        /// <para>
+        /// The ID of the Key Management Service (KMS) key used to encrypt and store the cluster's
+        /// admin credentials secret. You can only use this parameter if <c>ManageMasterPassword</c>
+        /// is true.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string MasterPasswordSecretKmsKeyId
+        {
+            get { return this._masterPasswordSecretKmsKeyId; }
+            set { this._masterPasswordSecretKmsKeyId = value; }
+        }
+
+        // Check to see if MasterPasswordSecretKmsKeyId property is set
+        internal bool IsSetMasterPasswordSecretKmsKeyId()
+        {
+            return this._masterPasswordSecretKmsKeyId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property MasterUsername. 
         /// <para>
         /// The user name associated with the admin user account for the cluster that is being
@@ -746,7 +843,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be 1 - 128 alphanumeric characters or hyphens. The user name can't be <code>PUBLIC</code>.
+        /// Must be 1 - 128 alphanumeric characters or hyphens. The user name can't be <c>PUBLIC</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -789,6 +886,10 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
+        /// You can't use <c>MasterUserPassword</c> if <c>ManageMasterPassword</c> is <c>true</c>.
+        /// </para>
+        ///  
+        /// <para>
         /// Constraints:
         /// </para>
         ///  <ul> <li> 
@@ -809,12 +910,12 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can be any printable ASCII character (ASCII code 33-126) except <code>'</code> (single
-        /// quote), <code>"</code> (double quote), <code>\</code>, <code>/</code>, or <code>@</code>.
+        /// Can be any printable ASCII character (ASCII code 33-126) except <c>'</c> (single quote),
+        /// <c>"</c> (double quote), <c>\</c>, <c>/</c>, or <c>@</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Required=true, Max=2147483647)]
+        [AWSProperty(Sensitive=true)]
         public string MasterUserPassword
         {
             get { return this._masterUserPassword; }
@@ -828,6 +929,24 @@ namespace Amazon.Redshift.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MultiAZ. 
+        /// <para>
+        /// If true, Amazon Redshift will deploy the cluster in two Availability Zones (AZ).
+        /// </para>
+        /// </summary>
+        public bool MultiAZ
+        {
+            get { return this._multiAZ.GetValueOrDefault(); }
+            set { this._multiAZ = value; }
+        }
+
+        // Check to see if MultiAZ property is set
+        internal bool IsSetMultiAZ()
+        {
+            return this._multiAZ.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property NodeType. 
         /// <para>
         /// The node type to be provisioned for the cluster. For information about node types,
@@ -837,9 +956,8 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>ds2.xlarge</code> | <code>ds2.8xlarge</code> | <code>dc1.large</code>
-        /// | <code>dc1.8xlarge</code> | <code>dc2.large</code> | <code>dc2.8xlarge</code> | <code>ra3.xlplus</code>
-        /// | <code>ra3.4xlarge</code> | <code>ra3.16xlarge</code> 
+        /// Valid Values: <c>dc2.large</c> | <c>dc2.8xlarge</c> | <c>ra3.large</c> | <c>ra3.xlplus</c>
+        /// | <c>ra3.4xlarge</c> | <c>ra3.16xlarge</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=2147483647)]
@@ -859,7 +977,7 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property NumberOfNodes. 
         /// <para>
         /// The number of compute nodes in the cluster. This parameter is required when the <b>ClusterType</b>
-        /// parameter is specified as <code>multi-node</code>. 
+        /// parameter is specified as <c>multi-node</c>. 
         /// </para>
         ///  
         /// <para>
@@ -874,7 +992,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>1</code> 
+        /// Default: <c>1</c> 
         /// </para>
         ///  
         /// <para>
@@ -906,12 +1024,23 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>5439</code> 
+        /// Default: <c>5439</c> 
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>1150-65535</code> 
+        /// Valid Values: 
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For clusters with ra3 nodes - Select a port within the ranges <c>5431-5455</c> or
+        /// <c>8191-8215</c>. (If you have an existing cluster with ra3 nodes, it isn't required
+        /// that you change the port to these ranges.)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For clusters with dc2 nodes - Select a port within the range <c>1150-65535</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public int Port
         {
@@ -932,7 +1061,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  
         /// <para>
-        ///  Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> 
+        ///  Format: <c>ddd:hh24:mi-ddd:hh24:mi</c> 
         /// </para>
         ///  
         /// <para>
@@ -966,7 +1095,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property PubliclyAccessible. 
         /// <para>
-        /// If <code>true</code>, the cluster can be accessed from a public network. 
+        /// If <c>true</c>, the cluster can be accessed from a public network. 
         /// </para>
         /// </summary>
         public bool PubliclyAccessible
@@ -979,6 +1108,25 @@ namespace Amazon.Redshift.Model
         internal bool IsSetPubliclyAccessible()
         {
             return this._publiclyAccessible.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RedshiftIdcApplicationArn. 
+        /// <para>
+        /// The Amazon resource name (ARN) of the Amazon Redshift IAM Identity Center application.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=2147483647)]
+        public string RedshiftIdcApplicationArn
+        {
+            get { return this._redshiftIdcApplicationArn; }
+            set { this._redshiftIdcApplicationArn = value; }
+        }
+
+        // Check to see if RedshiftIdcApplicationArn property is set
+        internal bool IsSetRedshiftIdcApplicationArn()
+        {
+            return this._redshiftIdcApplicationArn != null;
         }
 
         /// <summary>
@@ -1015,7 +1163,7 @@ namespace Amazon.Redshift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1037,7 +1185,7 @@ namespace Amazon.Redshift.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

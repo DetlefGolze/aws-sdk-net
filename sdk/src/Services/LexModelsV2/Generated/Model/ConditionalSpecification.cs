@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -38,14 +39,14 @@ namespace Amazon.LexModelsV2.Model
     public partial class ConditionalSpecification
     {
         private bool? _active;
-        private List<ConditionalBranch> _conditionalBranches = new List<ConditionalBranch>();
+        private List<ConditionalBranch> _conditionalBranches = AWSConfigs.InitializeCollections ? new List<ConditionalBranch>() : null;
         private DefaultConditionalBranch _defaultBranch;
 
         /// <summary>
         /// Gets and sets the property Active. 
         /// <para>
-        /// Determines whether a conditional branch is active. When <code>active</code> is false,
-        /// the conditions are not evaluated.
+        /// Determines whether a conditional branch is active. When <c>active</c> is false, the
+        /// conditions are not evaluated.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -79,7 +80,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if ConditionalBranches property is set
         internal bool IsSetConditionalBranches()
         {
-            return this._conditionalBranches != null && this._conditionalBranches.Count > 0; 
+            return this._conditionalBranches != null && (this._conditionalBranches.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

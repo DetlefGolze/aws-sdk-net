@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -41,8 +42,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property SlotToElicit. 
         /// <para>
-        /// If the dialog action is <code>ElicitSlot</code>, defines the slot to elicit from the
-        /// user.
+        /// If the dialog action is <c>ElicitSlot</c>, defines the slot to elicit from the user.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]

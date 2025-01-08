@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptographyData.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// The cryptogram provided by the terminal during transaction processing.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=16, Max=16)]
+        [AWSProperty(Sensitive=true, Min=16, Max=16)]
         public string ApplicationCryptogram
         {
             get { return this._applicationCryptogram; }
@@ -61,7 +62,7 @@ namespace Amazon.PaymentCryptographyData.Model
         /// The transaction counter that is provided by the terminal during transaction processing.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=2, Max=4)]
+        [AWSProperty(Min=4, Max=4)]
         public string ApplicationTransactionCounter
         {
             get { return this._applicationTransactionCounter; }

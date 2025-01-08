@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -42,6 +43,7 @@ namespace Amazon.OpenSearchService.Model
         private int? _instanceCount;
         private OpenSearchPartitionInstanceType _instanceType;
         private bool? _multiAZWithStandbyEnabled;
+        private List<NodeOption> _nodeOptions = AWSConfigs.InitializeCollections ? new List<NodeOption>() : null;
         private int? _warmCount;
         private bool? _warmEnabled;
         private OpenSearchWarmPartitionInstanceType _warmType;
@@ -88,9 +90,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property DedicatedMasterEnabled. 
         /// <para>
-        /// Indicates whether dedicated master nodes are enabled for the cluster.<code>True</code>
-        /// if the cluster will use a dedicated master node.<code>False</code> if the cluster
-        /// will not.
+        /// Indicates whether dedicated master nodes are enabled for the cluster.<c>True</c> if
+        /// the cluster will use a dedicated master node.<c>False</c> if the cluster will not.
         /// </para>
         /// </summary>
         public bool DedicatedMasterEnabled
@@ -126,8 +127,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property InstanceCount. 
         /// <para>
-        /// Number of dedicated master nodes in the cluster. This number must be greater than
-        /// 1, otherwise you receive a validation exception.
+        /// Number of data nodes in the cluster. This number must be greater than 1, otherwise
+        /// you receive a validation exception.
         /// </para>
         /// </summary>
         public int InstanceCount
@@ -178,6 +179,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetMultiAZWithStandbyEnabled()
         {
             return this._multiAZWithStandbyEnabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NodeOptions. 
+        /// <para>
+        /// List of node options for the domain.
+        /// </para>
+        /// </summary>
+        public List<NodeOption> NodeOptions
+        {
+            get { return this._nodeOptions; }
+            set { this._nodeOptions = value; }
+        }
+
+        // Check to see if NodeOptions property is set
+        internal bool IsSetNodeOptions()
+        {
+            return this._nodeOptions != null && (this._nodeOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -237,8 +256,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property ZoneAwarenessConfig. 
         /// <para>
-        /// Container for zone awareness configuration options. Only required if <code>ZoneAwarenessEnabled</code>
-        /// is <code>true</code>.
+        /// Container for zone awareness configuration options. Only required if <c>ZoneAwarenessEnabled</c>
+        /// is <c>true</c>.
         /// </para>
         /// </summary>
         public ZoneAwarenessConfig ZoneAwarenessConfig

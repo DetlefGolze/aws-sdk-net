@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.APIGateway.Model
     /// </summary>
     public partial class GetResourceRequest : AmazonAPIGatewayRequest
     {
-        private List<string> _embed = new List<string>();
+        private List<string> _embed = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceId;
         private string _restApiId;
 
@@ -42,10 +43,10 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property Embed. 
         /// <para>
         /// A query parameter to retrieve the specified resources embedded in the returned Resource
-        /// representation in the response. This <code>embed</code> parameter value is a list
-        /// of comma-separated strings. Currently, the request supports only retrieval of the
-        /// embedded Method resources this way. The query parameter value must be a single-valued
-        /// list and contain the <code>"methods"</code> string. For example, <code>GET /restapis/{restapi_id}/resources/{resource_id}?embed=methods</code>.
+        /// representation in the response. This <c>embed</c> parameter value is a list of comma-separated
+        /// strings. Currently, the request supports only retrieval of the embedded Method resources
+        /// this way. The query parameter value must be a single-valued list and contain the <c>"methods"</c>
+        /// string. For example, <c>GET /restapis/{restapi_id}/resources/{resource_id}?embed=methods</c>.
         /// </para>
         /// </summary>
         public List<string> Embed
@@ -57,7 +58,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if Embed property is set
         internal bool IsSetEmbed()
         {
-            return this._embed != null && this._embed.Count > 0; 
+            return this._embed != null && (this._embed.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

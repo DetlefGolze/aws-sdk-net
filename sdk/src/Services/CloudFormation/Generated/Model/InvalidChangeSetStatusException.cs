@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// The specified change set can't be used to update the stack. For example, the change
-    /// set status might be <code>CREATE_IN_PROGRESS</code>, or the stack status might be
-    /// <code>UPDATE_IN_PROGRESS</code>.
+    /// set status might be <c>CREATE_IN_PROGRESS</c>, or the stack status might be <c>UPDATE_IN_PROGRESS</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

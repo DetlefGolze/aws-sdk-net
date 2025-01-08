@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Information about the uplink <code>Config</code> of an antenna.
+    /// Information about the uplink <c>Config</c> of an antenna.
     /// </summary>
     public partial class AntennaUplinkConfig
     {
@@ -40,7 +41,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property SpectrumConfig. 
         /// <para>
-        /// Information about the uplink spectral <code>Config</code>.
+        /// Information about the uplink spectral <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

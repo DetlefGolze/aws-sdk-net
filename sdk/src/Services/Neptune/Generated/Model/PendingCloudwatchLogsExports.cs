@@ -26,16 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
     /// A list of the log types whose configuration is still pending. In other words, these
     /// log types are in the process of being activated or deactivated.
+    /// 
+    ///  
+    /// <para>
+    /// Valid log types are: <c>audit</c> (to publish audit logs) and <c>slowquery</c> (to
+    /// publish slow-query logs). See <a href="https://docs.aws.amazon.com/neptune/latest/userguide/cloudwatch-logs.html">Publishing
+    /// Neptune logs to Amazon CloudWatch logs</a>.
+    /// </para>
     /// </summary>
     public partial class PendingCloudwatchLogsExports
     {
-        private List<string> _logTypesToDisable = new List<string>();
-        private List<string> _logTypesToEnable = new List<string>();
+        private List<string> _logTypesToDisable = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _logTypesToEnable = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LogTypesToDisable. 
@@ -53,7 +61,7 @@ namespace Amazon.Neptune.Model
         // Check to see if LogTypesToDisable property is set
         internal bool IsSetLogTypesToDisable()
         {
-            return this._logTypesToDisable != null && this._logTypesToDisable.Count > 0; 
+            return this._logTypesToDisable != null && (this._logTypesToDisable.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,7 +80,7 @@ namespace Amazon.Neptune.Model
         // Check to see if LogTypesToEnable property is set
         internal bool IsSetLogTypesToEnable()
         {
-            return this._logTypesToEnable != null && this._logTypesToEnable.Count > 0; 
+            return this._logTypesToEnable != null && (this._logTypesToEnable.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

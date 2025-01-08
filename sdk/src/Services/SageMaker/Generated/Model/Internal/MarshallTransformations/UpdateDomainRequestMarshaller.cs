@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,15 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAppNetworkAccessType())
+                {
+                    context.Writer.WritePropertyName("AppNetworkAccessType");
+                    context.Writer.Write(publicRequest.AppNetworkAccessType);
+                }
+
                 if(publicRequest.IsSetAppSecurityGroupManagement())
                 {
                     context.Writer.WritePropertyName("AppSecurityGroupManagement");
@@ -110,6 +118,23 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.DomainSettingsForUpdate, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetSubnetIds())
+                {
+                    context.Writer.WritePropertyName("SubnetIds");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestSubnetIdsListValue in publicRequest.SubnetIds)
+                    {
+                            context.Writer.Write(publicRequestSubnetIdsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetTagPropagation())
+                {
+                    context.Writer.WritePropertyName("TagPropagation");
+                    context.Writer.Write(publicRequest.TagPropagation);
                 }
 
                 writer.WriteObjectEnd();

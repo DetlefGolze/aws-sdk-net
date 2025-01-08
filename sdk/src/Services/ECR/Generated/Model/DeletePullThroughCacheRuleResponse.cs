@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.ECR.Model
     public partial class DeletePullThroughCacheRuleResponse : AmazonWebServiceResponse
     {
         private DateTime? _createdAt;
+        private string _credentialArn;
         private string _ecrRepositoryPrefix;
         private string _registryId;
         private string _upstreamRegistryUrl;
@@ -57,12 +59,32 @@ namespace Amazon.ECR.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CredentialArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret associated
+        /// with the pull through cache rule.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=50, Max=612)]
+        public string CredentialArn
+        {
+            get { return this._credentialArn; }
+            set { this._credentialArn = value; }
+        }
+
+        // Check to see if CredentialArn property is set
+        internal bool IsSetCredentialArn()
+        {
+            return this._credentialArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EcrRepositoryPrefix. 
         /// <para>
         /// The Amazon ECR repository prefix associated with the request.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=2, Max=20)]
+        [AWSProperty(Min=2, Max=30)]
         public string EcrRepositoryPrefix
         {
             get { return this._ecrRepositoryPrefix; }

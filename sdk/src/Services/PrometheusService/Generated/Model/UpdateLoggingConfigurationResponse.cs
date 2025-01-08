@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PrometheusService.Model
 {
     /// <summary>
-    /// Represents the output of an UpdateLoggingConfiguration operation.
+    /// Represents the output of an <c>UpdateLoggingConfiguration</c> operation.
     /// </summary>
     public partial class UpdateLoggingConfigurationResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.PrometheusService.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the logging configuration.
+        /// A structure that contains the current status of the logging configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

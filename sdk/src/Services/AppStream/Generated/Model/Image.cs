@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -33,22 +34,26 @@ namespace Amazon.AppStream.Model
     /// </summary>
     public partial class Image
     {
-        private List<Application> _applications = new List<Application>();
+        private List<Application> _applications = AWSConfigs.InitializeCollections ? new List<Application>() : null;
         private string _appstreamAgentVersion;
         private string _arn;
         private string _baseImageArn;
         private DateTime? _createdTime;
         private string _description;
         private string _displayName;
+        private DynamicAppProvidersEnabled _dynamicAppProvidersEnabled;
         private string _imageBuilderName;
         private bool? _imageBuilderSupported;
-        private List<ResourceError> _imageErrors = new List<ResourceError>();
+        private List<ResourceError> _imageErrors = AWSConfigs.InitializeCollections ? new List<ResourceError>() : null;
         private ImagePermissions _imagePermissions;
+        private ImageSharedWithOthers _imageSharedWithOthers;
+        private LatestAppstreamAgentVersion _latestAppstreamAgentVersion;
         private string _name;
         private PlatformType _platform;
         private DateTime? _publicBaseImageReleasedDate;
         private ImageState _state;
         private ImageStateChangeReason _stateChangeReason;
+        private List<string> _supportedInstanceFamilies = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VisibilityType _visibility;
 
         /// <summary>
@@ -66,7 +71,7 @@ namespace Amazon.AppStream.Model
         // Check to see if Applications property is set
         internal bool IsSetApplications()
         {
-            return this._applications != null && this._applications.Count > 0; 
+            return this._applications != null && (this._applications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -182,6 +187,25 @@ namespace Amazon.AppStream.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DynamicAppProvidersEnabled. 
+        /// <para>
+        /// Indicates whether dynamic app providers are enabled within an AppStream 2.0 image
+        /// or not.
+        /// </para>
+        /// </summary>
+        public DynamicAppProvidersEnabled DynamicAppProvidersEnabled
+        {
+            get { return this._dynamicAppProvidersEnabled; }
+            set { this._dynamicAppProvidersEnabled = value; }
+        }
+
+        // Check to see if DynamicAppProvidersEnabled property is set
+        internal bool IsSetDynamicAppProvidersEnabled()
+        {
+            return this._dynamicAppProvidersEnabled != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ImageBuilderName. 
         /// <para>
         /// The name of the image builder that was used to create the private image. If the image
@@ -234,7 +258,7 @@ namespace Amazon.AppStream.Model
         // Check to see if ImageErrors property is set
         internal bool IsSetImageErrors()
         {
-            return this._imageErrors != null && this._imageErrors.Count > 0; 
+            return this._imageErrors != null && (this._imageErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -253,6 +277,42 @@ namespace Amazon.AppStream.Model
         internal bool IsSetImagePermissions()
         {
             return this._imagePermissions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ImageSharedWithOthers. 
+        /// <para>
+        /// Indicates whether the image is shared with another account ID.
+        /// </para>
+        /// </summary>
+        public ImageSharedWithOthers ImageSharedWithOthers
+        {
+            get { return this._imageSharedWithOthers; }
+            set { this._imageSharedWithOthers = value; }
+        }
+
+        // Check to see if ImageSharedWithOthers property is set
+        internal bool IsSetImageSharedWithOthers()
+        {
+            return this._imageSharedWithOthers != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LatestAppstreamAgentVersion. 
+        /// <para>
+        /// Indicates whether the image is using the latest AppStream 2.0 agent version or not.
+        /// </para>
+        /// </summary>
+        public LatestAppstreamAgentVersion LatestAppstreamAgentVersion
+        {
+            get { return this._latestAppstreamAgentVersion; }
+            set { this._latestAppstreamAgentVersion = value; }
+        }
+
+        // Check to see if LatestAppstreamAgentVersion property is set
+        internal bool IsSetLatestAppstreamAgentVersion()
+        {
+            return this._latestAppstreamAgentVersion != null;
         }
 
         /// <summary>
@@ -314,8 +374,8 @@ namespace Amazon.AppStream.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The image starts in the <code>PENDING</code> state. If image creation succeeds, the
-        /// state is <code>AVAILABLE</code>. If image creation fails, the state is <code>FAILED</code>.
+        /// The image starts in the <c>PENDING</c> state. If image creation succeeds, the state
+        /// is <c>AVAILABLE</c>. If image creation fails, the state is <c>FAILED</c>.
         /// </para>
         /// </summary>
         public ImageState State
@@ -346,6 +406,59 @@ namespace Amazon.AppStream.Model
         internal bool IsSetStateChangeReason()
         {
             return this._stateChangeReason != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportedInstanceFamilies. 
+        /// <para>
+        /// The supported instances families that determine which image a customer can use when
+        /// the customer launches a fleet or image builder. The following instances families are
+        /// supported:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// General Purpose
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Compute Optimized
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Memory Optimized
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Graphics
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Graphics Design
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Graphics Pro
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Graphics G4
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Graphics G5
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public List<string> SupportedInstanceFamilies
+        {
+            get { return this._supportedInstanceFamilies; }
+            set { this._supportedInstanceFamilies = value; }
+        }
+
+        // Check to see if SupportedInstanceFamilies property is set
+        internal bool IsSetSupportedInstanceFamilies()
+        {
+            return this._supportedInstanceFamilies != null && (this._supportedInstanceFamilies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

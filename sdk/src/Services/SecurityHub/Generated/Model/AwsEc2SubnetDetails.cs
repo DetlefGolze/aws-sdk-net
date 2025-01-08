@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.SecurityHub.Model
         private int? _availableIpAddressCount;
         private string _cidrBlock;
         private bool? _defaultForAz;
-        private List<Ipv6CidrBlockAssociation> _ipv6CidrBlockAssociationSet = new List<Ipv6CidrBlockAssociation>();
+        private List<Ipv6CidrBlockAssociation> _ipv6CidrBlockAssociationSet = AWSConfigs.InitializeCollections ? new List<Ipv6CidrBlockAssociation>() : null;
         private bool? _mapPublicIpOnLaunch;
         private string _ownerId;
         private string _state;
@@ -171,7 +172,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Ipv6CidrBlockAssociationSet property is set
         internal bool IsSetIpv6CidrBlockAssociationSet()
         {
-            return this._ipv6CidrBlockAssociationSet != null && this._ipv6CidrBlockAssociationSet.Count > 0; 
+            return this._ipv6CidrBlockAssociationSet != null && (this._ipv6CidrBlockAssociationSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -213,7 +214,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The current state of the subnet. Valid values are <code>available</code> or <code>pending</code>.
+        /// The current state of the subnet. Valid values are <c>available</c> or <c>pending</c>.
         /// </para>
         /// </summary>
         public string State

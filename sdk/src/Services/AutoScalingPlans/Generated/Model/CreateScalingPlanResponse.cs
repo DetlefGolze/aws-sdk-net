@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScalingPlans.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AutoScalingPlans.Model
         /// <summary>
         /// Gets and sets the property ScalingPlanVersion. 
         /// <para>
-        /// The version number of the scaling plan. This value is always <code>1</code>. Currently,
+        /// The version number of the scaling plan. This value is always <c>1</c>. Currently,
         /// you cannot have multiple scaling plan versions.
         /// </para>
         /// </summary>

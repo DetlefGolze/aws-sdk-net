@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
     /// A time range that specifies when DevOps Guru opens and then closes an anomaly. This
-    /// is different from <code>AnomalyTimeRange</code>, which specifies the time range when
-    /// DevOps Guru actually observes the anomalous behavior.
+    /// is different from <c>AnomalyTimeRange</c>, which specifies the time range when DevOps
+    /// Guru actually observes the anomalous behavior.
     /// </summary>
     public partial class AnomalyReportedTimeRange
     {

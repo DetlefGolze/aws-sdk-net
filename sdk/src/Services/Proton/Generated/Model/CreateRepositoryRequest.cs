@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.Proton.Model
         private string _encryptionKey;
         private string _name;
         private RepositoryProvider _provider;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ConnectionArn. 
@@ -97,7 +98,7 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The repository name (for example, <code>myrepos/myrepo</code>).
+        /// The repository name (for example, <c>myrepos/myrepo</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -154,7 +155,7 @@ namespace Amazon.Proton.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

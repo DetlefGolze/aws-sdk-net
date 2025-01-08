@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -33,11 +34,30 @@ namespace Amazon.ResilienceHub.Model
     /// </summary>
     public partial class UpdateRecommendationStatusRequestEntry
     {
+        private string _appComponentId;
         private string _entryId;
         private bool? _excluded;
         private ExcludeRecommendationReason _excludeReason;
         private UpdateRecommendationStatusItem _item;
         private string _referenceId;
+
+        /// <summary>
+        /// Gets and sets the property AppComponentId. 
+        /// <para>
+        /// Indicates the identifier of the AppComponent.
+        /// </para>
+        /// </summary>
+        public string AppComponentId
+        {
+            get { return this._appComponentId; }
+            set { this._appComponentId = value; }
+        }
+
+        // Check to see if AppComponentId property is set
+        internal bool IsSetAppComponentId()
+        {
+            return this._appComponentId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property EntryId. 
@@ -46,7 +66,7 @@ namespace Amazon.ResilienceHub.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>entryId</code>s of a batch request need to be unique within a request.
+        /// The <c>entryId</c>s of a batch request need to be unique within a request.
         /// </para>
         ///  </note>
         /// </summary>
@@ -107,7 +127,6 @@ namespace Amazon.ResilienceHub.Model
         /// The operational recommendation item.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public UpdateRecommendationStatusItem Item
         {
             get { return this._item; }

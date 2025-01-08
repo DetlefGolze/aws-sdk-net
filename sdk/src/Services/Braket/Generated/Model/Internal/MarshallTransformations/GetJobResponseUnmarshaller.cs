@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Braket.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.Braket.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = AlgorithmSpecificationUnmarshaller.Instance;
                     response.AlgorithmSpecification = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("associations", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<Association, AssociationUnmarshaller>(AssociationUnmarshaller.Instance);
+                    response.Associations = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("billableDuration", targetDepth))

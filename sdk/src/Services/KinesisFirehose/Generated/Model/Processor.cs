@@ -26,14 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Describes a data processor.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// If you want to add a new line delimiter between records in objects that are delivered
+    /// to Amazon S3, choose <c>AppendDelimiterToRecord</c> as a processor type. You don’t
+    /// have to put a processor parameter when you select <c>AppendDelimiterToRecord</c>.
+    /// 
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class Processor
     {
-        private List<ProcessorParameter> _parameters = new List<ProcessorParameter>();
+        private List<ProcessorParameter> _parameters = AWSConfigs.InitializeCollections ? new List<ProcessorParameter>() : null;
         private ProcessorType _type;
 
         /// <summary>
@@ -51,7 +61,7 @@ namespace Amazon.KinesisFirehose.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

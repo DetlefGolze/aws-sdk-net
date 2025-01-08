@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Associates the specified tags to a resource with the specified <code>resourceArn</code>.
+    /// Associates the specified tags to a resource with the specified <c>resourceArn</c>.
     /// If existing tags on a resource aren't specified in the request parameters, they aren't
     /// changed. When a resource is deleted, the tags that are associated with that resource
     /// are deleted as well. Batch resources that support tags are compute environments, jobs,
@@ -40,7 +41,7 @@ namespace Amazon.Batch.Model
     public partial class TagResourceRequest : AmazonBatchRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -82,7 +83,7 @@ namespace Amazon.Batch.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

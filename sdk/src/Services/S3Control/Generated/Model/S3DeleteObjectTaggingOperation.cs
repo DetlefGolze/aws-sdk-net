@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
-    /// Contains no configuration parameters because the DELETE Object tagging (<code>DeleteObjectTagging</code>)
+    /// Contains no configuration parameters because the DELETE Object tagging (<c>DeleteObjectTagging</c>)
     /// API operation accepts only the bucket name and key name as parameters, which are defined
     /// in the job's manifest.
     /// </summary>

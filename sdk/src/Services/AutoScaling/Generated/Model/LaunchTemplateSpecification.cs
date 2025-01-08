@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
     /// Describes the launch template and the version of the launch template that Amazon EC2
     /// Auto Scaling uses to launch Amazon EC2 instances. For more information about launch
-    /// templates, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/LaunchTemplates.html">Launch
+    /// templates, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/launch-templates.html">Launch
     /// templates</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
     /// </summary>
     public partial class LaunchTemplateSpecification
@@ -49,7 +50,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either a <code>LaunchTemplateId</code> or a <code>LaunchTemplateName</code>.
+        /// Conditional: You must specify either a <c>LaunchTemplateId</c> or a <c>LaunchTemplateName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -74,7 +75,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify either a <code>LaunchTemplateId</code> or a <code>LaunchTemplateName</code>.
+        /// Conditional: You must specify either a <c>LaunchTemplateId</c> or a <c>LaunchTemplateName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=3, Max=128)]
@@ -93,14 +94,14 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version number, <code>$Latest</code>, or <code>$Default</code>. To get the version
-        /// number, use the Amazon EC2 <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplateVersions.html">DescribeLaunchTemplateVersions</a>
+        /// The version number, <c>$Latest</c>, or <c>$Default</c>. To get the version number,
+        /// use the Amazon EC2 <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplateVersions.html">DescribeLaunchTemplateVersions</a>
         /// API operation. New launch template versions can be created using the Amazon EC2 <a
         /// href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateLaunchTemplateVersion.html">CreateLaunchTemplateVersion</a>
-        /// API. If the value is <code>$Latest</code>, Amazon EC2 Auto Scaling selects the latest
-        /// version of the launch template when launching instances. If the value is <code>$Default</code>,
+        /// API. If the value is <c>$Latest</c>, Amazon EC2 Auto Scaling selects the latest version
+        /// of the launch template when launching instances. If the value is <c>$Default</c>,
         /// Amazon EC2 Auto Scaling selects the default version of the launch template when launching
-        /// instances. The default value is <code>$Default</code>.
+        /// instances. The default value is <c>$Default</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property AssociationType. 
         /// <para>
         /// The type of the Association(Edge) between the source and destination. For example
-        /// <code>ContributedTo</code>, <code>Produced</code>, or <code>DerivedFrom</code>.
+        /// <c>ContributedTo</c>, <c>Produced</c>, or <c>DerivedFrom</c>.
         /// </para>
         /// </summary>
         public AssociationEdgeType AssociationType

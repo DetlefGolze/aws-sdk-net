@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOAdmin.Model
 {
     /// <summary>
     /// Container for the parameters to the ListInstances operation.
-    /// Lists the IAM Identity Center instances that the caller has access to.
+    /// Lists the details of the organization and account instances of IAM Identity Center
+    /// that were created in or visible to the account calling this API.
     /// </summary>
     public partial class ListInstancesRequest : AmazonSSOAdminRequest
     {

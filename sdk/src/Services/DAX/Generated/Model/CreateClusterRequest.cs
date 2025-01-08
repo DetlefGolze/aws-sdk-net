@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DAX.Model
     /// </summary>
     public partial class CreateClusterRequest : AmazonDAXRequest
     {
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ClusterEndpointEncryptionType _clusterEndpointEncryptionType;
         private string _clusterName;
         private string _description;
@@ -44,16 +45,16 @@ namespace Amazon.DAX.Model
         private string _parameterGroupName;
         private string _preferredMaintenanceWindow;
         private int? _replicationFactor;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SSESpecification _sseSpecification;
         private string _subnetGroupName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZones. 
         /// <para>
         /// The Availability Zones (AZs) in which the cluster nodes will reside after the cluster
-        /// has been created or updated. If provided, the length of this list must equal the <code>ReplicationFactor</code>
+        /// has been created or updated. If provided, the length of this list must equal the <c>ReplicationFactor</c>
         /// parameter. If you omit this parameter, DAX will spread the nodes across Availability
         /// Zones for the highest availability.
         /// </para>
@@ -67,7 +68,7 @@ namespace Amazon.DAX.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -77,11 +78,11 @@ namespace Amazon.DAX.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> for no encryption
+        ///  <c>NONE</c> for no encryption
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TLS</code> for Transport Layer Security
+        ///  <c>TLS</c> for Transport Layer Security
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -237,40 +238,40 @@ namespace Amazon.DAX.Model
         /// <para>
         /// Specifies the weekly time range during which maintenance on the DAX cluster is performed.
         /// It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC).
-        /// The minimum maintenance window is a 60 minute period. Valid values for <code>ddd</code>
+        /// The minimum maintenance window is a 60 minute period. Valid values for <c>ddd</c>
         /// are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>sun</code> 
+        ///  <c>sun</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mon</code> 
+        ///  <c>mon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tue</code> 
+        ///  <c>tue</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wed</code> 
+        ///  <c>wed</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>thu</code> 
+        ///  <c>thu</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>fri</code> 
+        ///  <c>fri</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sat</code> 
+        ///  <c>sat</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>sun:05:00-sun:09:00</code> 
+        /// Example: <c>sun:05:00-sun:09:00</c> 
         /// </para>
         ///  <note> 
         /// <para>
@@ -297,10 +298,10 @@ namespace Amazon.DAX.Model
         /// <para>
         /// The number of nodes in the DAX cluster. A replication factor of 1 will create a single-node
         /// cluster, without any read replicas. For additional fault tolerance, you can create
-        /// a multiple node cluster with one or more read replicas. To do this, set <code>ReplicationFactor</code>
+        /// a multiple node cluster with one or more read replicas. To do this, set <c>ReplicationFactor</c>
         /// to a number between 3 (one primary and two read replicas) and 10 (one primary and
-        /// nine read replicas). <code>If the AvailabilityZones</code> parameter is provided,
-        /// its length must equal the <code>ReplicationFactor</code>.
+        /// nine read replicas). <c>If the AvailabilityZones</c> parameter is provided, its length
+        /// must equal the <c>ReplicationFactor</c>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -342,7 +343,7 @@ namespace Amazon.DAX.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -402,7 +403,7 @@ namespace Amazon.DAX.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

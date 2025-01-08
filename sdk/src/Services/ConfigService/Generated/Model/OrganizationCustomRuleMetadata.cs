@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// organization custom rule metadata such as resource type, resource ID of Amazon Web
-    /// Services resource, Lambda function ARN, and organization trigger types that trigger
-    /// Config to evaluate your Amazon Web Services resources against a rule. It also provides
-    /// the frequency with which you want Config to run evaluations for the rule if the trigger
-    /// type is periodic.
+    /// An object that specifies organization custom rule metadata such as resource type,
+    /// resource ID of Amazon Web Services resource, Lambda function ARN, and organization
+    /// trigger types that trigger Config to evaluate your Amazon Web Services resources against
+    /// a rule. It also provides the frequency with which you want Config to run evaluations
+    /// for the rule if the trigger type is periodic.
     /// </summary>
     public partial class OrganizationCustomRuleMetadata
     {
@@ -41,9 +42,9 @@ namespace Amazon.ConfigService.Model
         private string _inputParameters;
         private string _lambdaFunctionArn;
         private MaximumExecutionFrequency _maximumExecutionFrequency;
-        private List<string> _organizationConfigRuleTriggerTypes = new List<string>();
+        private List<string> _organizationConfigRuleTriggerTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceIdScope;
-        private List<string> _resourceTypesScope = new List<string>();
+        private List<string> _resourceTypesScope = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tagKeyScope;
         private string _tagValueScope;
 
@@ -114,8 +115,7 @@ namespace Amazon.ConfigService.Model
         ///  <note> 
         /// <para>
         /// By default, rules with a periodic trigger are evaluated every 24 hours. To change
-        /// the frequency, specify a valid value for the <code>MaximumExecutionFrequency</code>
-        /// parameter.
+        /// the frequency, specify a valid value for the <c>MaximumExecutionFrequency</c> parameter.
         /// </para>
         ///  </note>
         /// </summary>
@@ -139,20 +139,20 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ConfigurationItemChangeNotification</code> - Triggers an evaluation when Config
-        /// delivers a configuration item as a result of a resource change.
+        ///  <c>ConfigurationItemChangeNotification</c> - Triggers an evaluation when Config delivers
+        /// a configuration item as a result of a resource change.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OversizedConfigurationItemChangeNotification</code> - Triggers an evaluation
-        /// when Config delivers an oversized configuration item. Config may generate this notification
+        ///  <c>OversizedConfigurationItemChangeNotification</c> - Triggers an evaluation when
+        /// Config delivers an oversized configuration item. Config may generate this notification
         /// type when a resource changes and the notification exceeds the maximum size allowed
         /// by Amazon SNS.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ScheduledNotification</code> - Triggers a periodic evaluation at the frequency
-        /// specified for <code>MaximumExecutionFrequency</code>.
+        ///  <c>ScheduledNotification</c> - Triggers a periodic evaluation at the frequency specified
+        /// for <c>MaximumExecutionFrequency</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -166,7 +166,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if OrganizationConfigRuleTriggerTypes property is set
         internal bool IsSetOrganizationConfigRuleTriggerTypes()
         {
-            return this._organizationConfigRuleTriggerTypes != null && this._organizationConfigRuleTriggerTypes.Count > 0; 
+            return this._organizationConfigRuleTriggerTypes != null && (this._organizationConfigRuleTriggerTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ResourceTypesScope property is set
         internal bool IsSetResourceTypesScope()
         {
-            return this._resourceTypesScope != null && this._resourceTypesScope.Count > 0; 
+            return this._resourceTypesScope != null && (this._resourceTypesScope.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property Captcha. 
         /// <para>
-        /// Instructs WAF to run a <code>CAPTCHA</code> check against the web request.
+        /// Instructs WAF to run a <c>CAPTCHA</c> check against the web request.
         /// </para>
         /// </summary>
         public CaptchaAction Captcha
@@ -97,7 +98,7 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property Challenge. 
         /// <para>
-        /// Instructs WAF to run a <code>Challenge</code> check against the web request.
+        /// Instructs WAF to run a <c>Challenge</c> check against the web request.
         /// </para>
         /// </summary>
         public ChallengeAction Challenge

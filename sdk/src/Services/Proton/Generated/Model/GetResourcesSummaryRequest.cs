@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -45,8 +46,7 @@ namespace Amazon.Proton.Model
     /// a template major version, or behind a template minor version), the total number of
     /// resources, and the number of resources that are in a failed state, grouped by resource
     /// type. Components, environments, and service templates return less information - see
-    /// the <code>components</code>, <code>environments</code>, and <code>serviceTemplates</code>
-    /// field descriptions.
+    /// the <c>components</c>, <c>environments</c>, and <c>serviceTemplates</c> field descriptions.
     /// </para>
     ///  
     /// <para>

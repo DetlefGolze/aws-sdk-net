@@ -26,24 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
     /// Container for the parameters to the EnableControl operation.
     /// This API call activates a control. It starts an asynchronous operation that creates
-    /// AWS resources on the specified organizational unit and the accounts it contains. The
-    /// resources created will vary according to the control that you specify.
+    /// Amazon Web Services resources on the specified organizational unit and the accounts
+    /// it contains. The resources created will vary according to the control that you specify.
+    /// For usage examples, see the <a href="https://docs.aws.amazon.com/controltower/latest/controlreference/control-api-examples-short.html">
+    /// <i>Controls Reference Guide</i> </a>.
     /// </summary>
     public partial class EnableControlRequest : AmazonControlTowerRequest
     {
         private string _controlIdentifier;
+        private List<EnabledControlParameter> _parameters = AWSConfigs.InitializeCollections ? new List<EnabledControlParameter>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _targetIdentifier;
 
         /// <summary>
         /// Gets and sets the property ControlIdentifier. 
         /// <para>
         /// The ARN of the control. Only <b>Strongly recommended</b> and <b>Elective</b> controls
-        /// are permitted, with the exception of the <b>Region deny</b> guardrail.
+        /// are permitted, with the exception of the <b>Region deny</b> control. For information
+        /// on how to find the <c>controlIdentifier</c>, see <a href="https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html">the
+        /// overview page</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -60,9 +67,49 @@ namespace Amazon.ControlTower.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Parameters. 
+        /// <para>
+        /// A list of input parameter values, which are specified to configure the control when
+        /// you enable it.
+        /// </para>
+        /// </summary>
+        public List<EnabledControlParameter> Parameters
+        {
+            get { return this._parameters; }
+            set { this._parameters = value; }
+        }
+
+        // Check to see if Parameters property is set
+        internal bool IsSetParameters()
+        {
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// Tags to be applied to the <c>EnabledControl</c> resource.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=200)]
+        public Dictionary<string, string> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property TargetIdentifier. 
         /// <para>
-        /// The ARN of the organizational unit.
+        /// The ARN of the organizational unit. For information on how to find the <c>targetIdentifier</c>,
+        /// see <a href="https://docs.aws.amazon.com/controltower/latest/APIReference/Welcome.html">the
+        /// overview page</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

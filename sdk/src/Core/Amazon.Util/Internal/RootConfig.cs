@@ -37,6 +37,8 @@ namespace Amazon.Util.Internal
         }
         public bool UseSdkCache { get; set; }
 
+        public bool InitializeCollections { get; set; }
+
         public bool CorrectForClockSkew { get; set; }
 
         public bool UseAlternateUserAgentHeader { get; set; }
@@ -46,6 +48,10 @@ namespace Amazon.Util.Internal
         public bool? CSMEnabled { get; set; }
         public string CSMClientId { get; set; }
         public int? CSMPort { get; set; }
+
+#if NET8_0_OR_GREATER
+        public bool DisableDangerousDisablePathAndQueryCanonicalization { get; set; }
+#endif
 
         private const string _rootAwsSectionName = "aws";
         public RootConfig()
@@ -59,7 +65,12 @@ namespace Amazon.Util.Internal
             ProfileName = AWSConfigs._awsProfileName;
             ProfilesLocation = AWSConfigs._awsAccountsLocation;
             UseSdkCache = AWSConfigs._useSdkCache;
+            InitializeCollections = AWSConfigs._initializeCollections;
             CorrectForClockSkew = true;
+
+#if NET8_0_OR_GREATER
+            DisableDangerousDisablePathAndQueryCanonicalization = AWSConfigs._disableDangerousDisablePathAndQueryCanonicalization;
+#endif
 
 #if !NETSTANDARD
             var root = AWSConfigs.GetSection<AWSSection>(_rootAwsSectionName);

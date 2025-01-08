@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53RecoveryCluster.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateRoutingControlState operation.
     /// Set the state of the routing control to reroute traffic. You can set the value to
-    /// be On or Off. When the state is On, traffic flows to a cell. When the state is Off,
-    /// traffic does not flow.
+    /// ON or OFF. When the state is ON, traffic flows to a cell. When the state is OFF, traffic
+    /// does not flow.
     /// 
     ///  
     /// <para>
@@ -47,7 +48,7 @@ namespace Amazon.Route53RecoveryCluster.Model
     /// </para>
     ///  
     /// <para>
-    /// The <code>SafetyRulesToOverride</code> property enables you override one or more safety
+    /// The <c>SafetyRulesToOverride</c> property enables you override one or more safety
     /// rules and update routing control states. For more information, see <a href="https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.override-safety-rule.html">
     /// Override safety rules to reroute traffic</a> in the Amazon Route 53 Application Recovery
     /// Controller Developer Guide.
@@ -79,7 +80,7 @@ namespace Amazon.Route53RecoveryCluster.Model
     {
         private string _routingControlArn;
         private RoutingControlState _routingControlState;
-        private List<string> _safetyRulesToOverride = new List<string>();
+        private List<string> _safetyRulesToOverride = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property RoutingControlArn. 
@@ -104,7 +105,7 @@ namespace Amazon.Route53RecoveryCluster.Model
         /// <summary>
         /// Gets and sets the property RoutingControlState. 
         /// <para>
-        /// The state of the routing control. You can set the value to be On or Off.
+        /// The state of the routing control. You can set the value to ON or OFF.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -143,7 +144,7 @@ namespace Amazon.Route53RecoveryCluster.Model
         // Check to see if SafetyRulesToOverride property is set
         internal bool IsSetSafetyRulesToOverride()
         {
-            return this._safetyRulesToOverride != null && this._safetyRulesToOverride.Count > 0; 
+            return this._safetyRulesToOverride != null && (this._safetyRulesToOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

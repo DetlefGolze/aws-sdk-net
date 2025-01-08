@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCustomDomainConfig())
@@ -82,6 +84,12 @@ namespace Amazon.CognitoIdentityProvider.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Domain");
                     context.Writer.Write(publicRequest.Domain);
+                }
+
+                if(publicRequest.IsSetManagedLoginVersion())
+                {
+                    context.Writer.WritePropertyName("ManagedLoginVersion");
+                    context.Writer.Write(publicRequest.ManagedLoginVersion);
                 }
 
                 if(publicRequest.IsSetUserPoolId())

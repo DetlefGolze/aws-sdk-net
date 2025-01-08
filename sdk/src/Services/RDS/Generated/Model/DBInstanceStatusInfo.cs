@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Normal. 
         /// <para>
-        /// A Boolean value that is true if the instance is operating normally, or false if the
-        /// instance is in an error state.
+        /// Indicates whether the instance is operating normally (TRUE) or is in an error state
+        /// (FALSE).
         /// </para>
         /// </summary>
         public bool Normal

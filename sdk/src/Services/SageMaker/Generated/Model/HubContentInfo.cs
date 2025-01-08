@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -39,10 +40,13 @@ namespace Amazon.SageMaker.Model
         private string _hubContentDescription;
         private string _hubContentDisplayName;
         private string _hubContentName;
-        private List<string> _hubContentSearchKeywords = new List<string>();
+        private List<string> _hubContentSearchKeywords = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HubContentStatus _hubContentStatus;
         private HubContentType _hubContentType;
         private string _hubContentVersion;
+        private DateTime? _originalCreationTime;
+        private string _sageMakerPublicHubContentArn;
+        private HubContentSupportStatus _supportStatus;
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
@@ -174,7 +178,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if HubContentSearchKeywords property is set
         internal bool IsSetHubContentSearchKeywords()
         {
-            return this._hubContentSearchKeywords != null && this._hubContentSearchKeywords.Count > 0; 
+            return this._hubContentSearchKeywords != null && (this._hubContentSearchKeywords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -232,6 +236,62 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetHubContentVersion()
         {
             return this._hubContentVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OriginalCreationTime. 
+        /// <para>
+        /// The date and time when the hub content was originally created, before any updates
+        /// or revisions.
+        /// </para>
+        /// </summary>
+        public DateTime OriginalCreationTime
+        {
+            get { return this._originalCreationTime.GetValueOrDefault(); }
+            set { this._originalCreationTime = value; }
+        }
+
+        // Check to see if OriginalCreationTime property is set
+        internal bool IsSetOriginalCreationTime()
+        {
+            return this._originalCreationTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SageMakerPublicHubContentArn. 
+        /// <para>
+        /// The ARN of the public hub content.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=255)]
+        public string SageMakerPublicHubContentArn
+        {
+            get { return this._sageMakerPublicHubContentArn; }
+            set { this._sageMakerPublicHubContentArn = value; }
+        }
+
+        // Check to see if SageMakerPublicHubContentArn property is set
+        internal bool IsSetSageMakerPublicHubContentArn()
+        {
+            return this._sageMakerPublicHubContentArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportStatus. 
+        /// <para>
+        /// The support status of the hub content.
+        /// </para>
+        /// </summary>
+        public HubContentSupportStatus SupportStatus
+        {
+            get { return this._supportStatus; }
+            set { this._supportStatus = value; }
+        }
+
+        // Check to see if SupportStatus property is set
+        internal bool IsSetSupportStatus()
+        {
+            return this._supportStatus != null;
         }
 
     }

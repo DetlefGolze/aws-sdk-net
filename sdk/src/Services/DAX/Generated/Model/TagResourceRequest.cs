@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Associates a set of tags with a DAX resource. You can call <code>TagResource</code>
-    /// up to 5 times per second, per account.
+    /// Associates a set of tags with a DAX resource. You can call <c>TagResource</c> up to
+    /// 5 times per second, per account.
     /// </summary>
     public partial class TagResourceRequest : AmazonDAXRequest
     {
         private string _resourceName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceName. 
@@ -73,7 +74,7 @@ namespace Amazon.DAX.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

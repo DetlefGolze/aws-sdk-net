@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
-    /// Specifies a grok classifier to update when passed to <code>UpdateClassifier</code>.
+    /// Specifies a grok classifier to update when passed to <c>UpdateClassifier</c>.
     /// </summary>
     public partial class UpdateGrokClassifierRequest
     {
@@ -98,7 +99,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>GrokClassifier</code>.
+        /// The name of the <c>GrokClassifier</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]

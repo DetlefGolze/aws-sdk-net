@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Kendra.Model
     {
         private string _documentDataFieldName;
         private string _documentTitleFieldName;
-        private List<DataSourceToIndexFieldMapping> _fieldMappings = new List<DataSourceToIndexFieldMapping>();
+        private List<DataSourceToIndexFieldMapping> _fieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
         private string _name;
 
         /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property FieldMappings. 
         /// <para>
         /// Maps attributes or field names of the custom knowledge article to Amazon Kendra index
-        /// field names. To create custom fields, use the <code>UpdateIndex</code> API before
-        /// you map to Salesforce fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// field names. To create custom fields, use the <c>UpdateIndex</c> API before you map
+        /// to Salesforce fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Salesforce data source field names must exist in your
         /// Salesforce custom metadata.
         /// </para>
@@ -97,7 +98,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FieldMappings property is set
         internal bool IsSetFieldMappings()
         {
-            return this._fieldMappings != null && this._fieldMappings.Count > 0; 
+            return this._fieldMappings != null && (this._fieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

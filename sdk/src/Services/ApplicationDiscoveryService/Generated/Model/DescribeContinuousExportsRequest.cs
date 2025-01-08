@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeContinuousExports operation.
     /// Lists exports as specified by ID. All continuous exports associated with your user
-    /// can be listed if you call <code>DescribeContinuousExports</code> as is without passing
-    /// any parameters.
+    /// can be listed if you call <c>DescribeContinuousExports</c> as is without passing any
+    /// parameters.
     /// </summary>
     public partial class DescribeContinuousExportsRequest : AmazonApplicationDiscoveryServiceRequest
     {
-        private List<string> _exportIds = new List<string>();
+        private List<string> _exportIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -55,7 +56,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if ExportIds property is set
         internal bool IsSetExportIds()
         {
-            return this._exportIds != null && this._exportIds.Count > 0; 
+            return this._exportIds != null && (this._exportIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token from the previous call to <code>DescribeExportTasks</code>.
+        /// The token from the previous call to <c>DescribeExportTasks</c>.
         /// </para>
         /// </summary>
         public string NextToken

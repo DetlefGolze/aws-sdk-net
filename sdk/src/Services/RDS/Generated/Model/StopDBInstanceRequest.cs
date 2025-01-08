@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.RDS.Model
     ///  <note> 
     /// <para>
     /// This command doesn't apply to RDS Custom, Aurora MySQL, and Aurora PostgreSQL. For
-    /// Aurora clusters, use <code>StopDBCluster</code> instead.
+    /// Aurora clusters, use <c>StopDBCluster</c> instead.
     /// </para>
     ///  </note>
     /// </summary>

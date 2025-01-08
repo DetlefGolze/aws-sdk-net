@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -34,12 +35,23 @@ namespace Amazon.EventBridge.Model
     public partial class ListPartnerEventSourceAccountsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<PartnerEventSourceAccount> _partnerEventSourceAccounts = new List<PartnerEventSourceAccount>();
+        private List<PartnerEventSourceAccount> _partnerEventSourceAccounts = AWSConfigs.InitializeCollections ? new List<PartnerEventSourceAccount>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token you can use in a subsequent operation to retrieve the next set of results.
+        /// A token indicating there are more results available. If there are no more results,
+        /// no token is included in the response.
+        /// </para>
+        ///  
+        /// <para>
+        /// The value of <c>nextToken</c> is a unique pagination token for each page. To retrieve
+        /// the next page of results, make the call again using the returned token. Keep all other
+        /// arguments unchanged.
+        /// </para>
+        ///  
+        /// <para>
+        ///  Using an expired pagination token results in an <c>HTTP 400 InvalidToken</c> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -70,7 +82,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if PartnerEventSourceAccounts property is set
         internal bool IsSetPartnerEventSourceAccounts()
         {
-            return this._partnerEventSourceAccounts != null && this._partnerEventSourceAccounts.Count > 0; 
+            return this._partnerEventSourceAccounts != null && (this._partnerEventSourceAccounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

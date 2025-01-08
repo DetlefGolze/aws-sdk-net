@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
     /// Discovery failed to get a record from the streaming source because of the Kinesis
-    /// Streams <code>ProvisionedThroughputExceededException</code>. For more information,
-    /// see <a href="http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetRecords.html">GetRecords</a>
+    /// Streams <c>ProvisionedThroughputExceededException</c>. For more information, see <a
+    /// href="http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetRecords.html">GetRecords</a>
     /// in the Amazon Kinesis Streams API Reference.
     /// </summary>
     #if !NETSTANDARD

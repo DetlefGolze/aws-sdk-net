@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudWatchEvents.Model
     {
         private string _eventSourceName;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property EventSourceName. 
@@ -67,7 +68,7 @@ namespace Amazon.CloudWatchEvents.Model
         /// </para>
         ///  
         /// <para>
-        /// Event bus names cannot contain the / character. You can't use the name <code>default</code>
+        /// Event bus names cannot contain the / character. You can't use the name <c>default</c>
         /// for a custom event bus, as this name is already used for your account's default event
         /// bus.
         /// </para>
@@ -105,7 +106,7 @@ namespace Amazon.CloudWatchEvents.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

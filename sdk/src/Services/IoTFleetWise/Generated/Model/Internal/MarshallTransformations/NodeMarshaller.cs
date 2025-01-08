@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Node requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetActuator())
             {
                 context.Writer.WritePropertyName("actuator");
@@ -78,6 +81,17 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetProperty())
+            {
+                context.Writer.WritePropertyName("property");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = CustomPropertyMarshaller.Instance;
+                marshaller.Marshall(requestObject.Property, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetSensor())
             {
                 context.Writer.WritePropertyName("sensor");
@@ -85,6 +99,17 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 
                 var marshaller = SensorMarshaller.Instance;
                 marshaller.Marshall(requestObject.Sensor, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetStruct())
+            {
+                context.Writer.WritePropertyName("struct");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = CustomStructMarshaller.Instance;
+                marshaller.Marshall(requestObject.Struct, context);
 
                 context.Writer.WriteObjectEnd();
             }

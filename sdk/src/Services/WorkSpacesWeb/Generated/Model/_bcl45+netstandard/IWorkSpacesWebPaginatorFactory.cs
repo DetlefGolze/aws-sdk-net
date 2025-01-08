@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the workspaces-web-2020-07-08.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpacesWeb.Model
 {
     /// <summary>
@@ -29,6 +30,11 @@ namespace Amazon.WorkSpacesWeb.Model
         /// Paginator for ListBrowserSettings operation
         ///</summary>
         IListBrowserSettingsPaginator ListBrowserSettings(ListBrowserSettingsRequest request);
+
+        /// <summary>
+        /// Paginator for ListDataProtectionSettings operation
+        ///</summary>
+        IListDataProtectionSettingsPaginator ListDataProtectionSettings(ListDataProtectionSettingsRequest request);
 
         /// <summary>
         /// Paginator for ListIdentityProviders operation
@@ -49,6 +55,11 @@ namespace Amazon.WorkSpacesWeb.Model
         /// Paginator for ListPortals operation
         ///</summary>
         IListPortalsPaginator ListPortals(ListPortalsRequest request);
+
+        /// <summary>
+        /// Paginator for ListSessions operation
+        ///</summary>
+        IListSessionsPaginator ListSessions(ListSessionsRequest request);
 
         /// <summary>
         /// Paginator for ListTrustStoreCertificates operation

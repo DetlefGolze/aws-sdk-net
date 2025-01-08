@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.DirectConnect.Model
         private string _connectionId;
         private string _connectionName;
         private string _ownerAccount;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private int? _vlan;
 
         /// <summary>
         /// Gets and sets the property Bandwidth. 
         /// <para>
         /// The bandwidth of the connection. The possible values are 50Mbps, 100Mbps, 200Mbps,
-        /// 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, and 10Gbps. Note that only those Direct
-        /// Connect Partners who have met specific requirements are allowed to create a 1Gbps,
-        /// 2Gbps, 5Gbps or 10Gbps hosted connection. 
+        /// 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, 10Gbps, and 25Gbps. Note that only
+        /// those Direct Connect Partners who have met specific requirements are allowed to create
+        /// a 1Gbps, 2Gbps, 5Gbps, 10Gbps, or 25Gbps hosted connection. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -150,7 +151,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

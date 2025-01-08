@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
-    /// The format of the <code>StreamARN</code> is invalid.
+    /// The format of the <c>StreamARN</c> is invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

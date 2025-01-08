@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -40,7 +41,9 @@ namespace Amazon.FSx.Model
         private DataRepositoryConfiguration _dataRepositoryConfiguration;
         private LustreDeploymentType _deploymentType;
         private DriveCacheType _driveCacheType;
+        private bool? _efaEnabled;
         private LustreLogConfiguration _logConfiguration;
+        private FileSystemLustreMetadataConfiguration _metadataConfiguration;
         private string _mountName;
         private int? _perUnitStorageThroughput;
         private LustreRootSquashConfiguration _rootSquashConfiguration;
@@ -104,16 +107,16 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property DataCompressionType. 
         /// <para>
-        /// The data compression configuration for the file system. <code>DataCompressionType</code>
+        /// The data compression configuration for the file system. <c>DataCompressionType</c>
         /// can have the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> - Data compression is turned off for the file system.
+        ///  <c>NONE</c> - Data compression is turned off for the file system.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LZ4</code> - Data compression is turned on with the LZ4 algorithm.
+        ///  <c>LZ4</c> - Data compression is turned on with the LZ4 algorithm.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -156,23 +159,23 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>SCRATCH_1</code> and <code>SCRATCH_2</code> deployment types are best suited
-        /// for when you need temporary storage and shorter-term processing of data. The <code>SCRATCH_2</code>
-        /// deployment type provides in-transit encryption of data and higher burst throughput
-        /// capacity than <code>SCRATCH_1</code>.
+        ///  <c>SCRATCH_1</c> and <c>SCRATCH_2</c> deployment types are best suited for when you
+        /// need temporary storage and shorter-term processing of data. The <c>SCRATCH_2</c> deployment
+        /// type provides in-transit encryption of data and higher burst throughput capacity than
+        /// <c>SCRATCH_1</c>.
         /// </para>
         ///  
         /// <para>
-        /// The <code>PERSISTENT_1</code> and <code>PERSISTENT_2</code> deployment type is used
-        /// for longer-term storage and workloads and encryption of data in transit. <code>PERSISTENT_2</code>
-        /// offers higher <code>PerUnitStorageThroughput</code> (up to 1000 MB/s/TiB) along with
-        /// a lower minimum storage capacity requirement (600 GiB). To learn more about FSx for
-        /// Lustre deployment types, see <a href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-deployment-types.html">
+        /// The <c>PERSISTENT_1</c> and <c>PERSISTENT_2</c> deployment type is used for longer-term
+        /// storage and workloads and encryption of data in transit. <c>PERSISTENT_2</c> offers
+        /// higher <c>PerUnitStorageThroughput</c> (up to 1000 MB/s/TiB) along with a lower minimum
+        /// storage capacity requirement (600 GiB). To learn more about FSx for Lustre deployment
+        /// types, see <a href="https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-deployment-types.html">
         /// FSx for Lustre deployment options</a>.
         /// </para>
         ///  
         /// <para>
-        /// The default is <code>SCRATCH_1</code>.
+        /// The default is <c>SCRATCH_1</c>.
         /// </para>
         /// </summary>
         public LustreDeploymentType DeploymentType
@@ -190,15 +193,15 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property DriveCacheType. 
         /// <para>
-        /// The type of drive cache used by <code>PERSISTENT_1</code> file systems that are provisioned
-        /// with HDD storage devices. This parameter is required when <code>StorageType</code>
-        /// is HDD. When set to <code>READ</code> the file system has an SSD storage cache that
-        /// is sized to 20% of the file system's storage capacity. This improves the performance
-        /// for frequently accessed files by caching up to 20% of the total storage capacity.
+        /// The type of drive cache used by <c>PERSISTENT_1</c> file systems that are provisioned
+        /// with HDD storage devices. This parameter is required when <c>StorageType</c> is HDD.
+        /// When set to <c>READ</c> the file system has an SSD storage cache that is sized to
+        /// 20% of the file system's storage capacity. This improves the performance for frequently
+        /// accessed files by caching up to 20% of the total storage capacity.
         /// </para>
         ///  
         /// <para>
-        /// This parameter is required when <code>StorageType</code> is set to HDD.
+        /// This parameter is required when <c>StorageType</c> is set to HDD.
         /// </para>
         /// </summary>
         public DriveCacheType DriveCacheType
@@ -211,6 +214,25 @@ namespace Amazon.FSx.Model
         internal bool IsSetDriveCacheType()
         {
             return this._driveCacheType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EfaEnabled. 
+        /// <para>
+        /// Specifies whether Elastic Fabric Adapter (EFA) and GPUDirect Storage (GDS) support
+        /// is enabled for the Amazon FSx for Lustre file system.
+        /// </para>
+        /// </summary>
+        public bool EfaEnabled
+        {
+            get { return this._efaEnabled.GetValueOrDefault(); }
+            set { this._efaEnabled = value; }
+        }
+
+        // Check to see if EfaEnabled property is set
+        internal bool IsSetEfaEnabled()
+        {
+            return this._efaEnabled.HasValue; 
         }
 
         /// <summary>
@@ -233,16 +255,34 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MetadataConfiguration. 
+        /// <para>
+        /// The Lustre metadata performance configuration for an Amazon FSx for Lustre file system
+        /// using a <c>PERSISTENT_2</c> deployment type.
+        /// </para>
+        /// </summary>
+        public FileSystemLustreMetadataConfiguration MetadataConfiguration
+        {
+            get { return this._metadataConfiguration; }
+            set { this._metadataConfiguration = value; }
+        }
+
+        // Check to see if MetadataConfiguration property is set
+        internal bool IsSetMetadataConfiguration()
+        {
+            return this._metadataConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property MountName. 
         /// <para>
-        /// You use the <code>MountName</code> value when mounting the file system.
+        /// You use the <c>MountName</c> value when mounting the file system.
         /// </para>
         ///  
         /// <para>
-        /// For the <code>SCRATCH_1</code> deployment type, this value is always "<code>fsx</code>".
-        /// For <code>SCRATCH_2</code>, <code>PERSISTENT_1</code>, and <code>PERSISTENT_2</code>
-        /// deployment types, this value is a string that is unique within an Amazon Web Services
-        /// Region. 
+        /// For the <c>SCRATCH_1</c> deployment type, this value is always "<c>fsx</c>". For <c>SCRATCH_2</c>,
+        /// <c>PERSISTENT_1</c>, and <c>PERSISTENT_2</c> deployment types, this value is a string
+        /// that is unique within an Amazon Web Services Region. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8)]
@@ -264,8 +304,7 @@ namespace Amazon.FSx.Model
         /// Per unit storage throughput represents the megabytes per second of read or write throughput
         /// per 1 tebibyte of storage provisioned. File system throughput capacity is equal to
         /// Storage capacity (TiB) * PerUnitStorageThroughput (MB/s/TiB). This option is only
-        /// valid for <code>PERSISTENT_1</code> and <code>PERSISTENT_2</code> deployment types.
-        /// 
+        /// valid for <c>PERSISTENT_1</c> and <c>PERSISTENT_2</c> deployment types. 
         /// </para>
         ///  
         /// <para>
@@ -273,15 +312,15 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For <code>PERSISTENT_1</code> SSD storage: 50, 100, 200.
+        /// For <c>PERSISTENT_1</c> SSD storage: 50, 100, 200.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>PERSISTENT_1</code> HDD storage: 12, 40.
+        /// For <c>PERSISTENT_1</c> HDD storage: 12, 40.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For <code>PERSISTENT_2</code> SSD storage: 125, 250, 500, 1000.
+        /// For <c>PERSISTENT_2</c> SSD storage: 125, 250, 500, 1000.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -322,8 +361,8 @@ namespace Amazon.FSx.Model
         /// Gets and sets the property WeeklyMaintenanceStartTime. 
         /// <para>
         /// The preferred start time to perform weekly maintenance, formatted d:HH:MM in the UTC
-        /// time zone. Here, <code>d</code> is the weekday number, from 1 through 7, beginning
-        /// with Monday and ending with Sunday.
+        /// time zone. Here, <c>d</c> is the weekday number, from 1 through 7, beginning with
+        /// Monday and ending with Sunday.
         /// </para>
         /// </summary>
         [AWSProperty(Min=7, Max=7)]

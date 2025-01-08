@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.OpenSearchService.Model
     {
         private string _account;
         private string _domainName;
+        private AWSServicePrincipal _service;
 
         /// <summary>
         /// Gets and sets the property Account. 
@@ -44,7 +46,6 @@ namespace Amazon.OpenSearchService.Model
         /// The account ID to revoke access from.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string Account
         {
             get { return this._account; }
@@ -74,6 +75,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetDomainName()
         {
             return this._domainName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Service. 
+        /// <para>
+        /// The service SP to revoke access from.
+        /// </para>
+        /// </summary>
+        public AWSServicePrincipal Service
+        {
+            get { return this._service; }
+            set { this._service = value; }
+        }
+
+        // Check to see if Service property is set
+        internal bool IsSetService()
+        {
+            return this._service != null;
         }
 
     }

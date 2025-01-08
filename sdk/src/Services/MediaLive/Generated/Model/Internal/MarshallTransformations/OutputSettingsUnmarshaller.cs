@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public OutputSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            OutputSettings unmarshalledObject = new OutputSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            OutputSettings unmarshalledObject = new OutputSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = ArchiveOutputSettingsUnmarshaller.Instance;
                     unmarshalledObject.ArchiveOutputSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("cmafIngestOutputSettings", targetDepth))
+                {
+                    var unmarshaller = CmafIngestOutputSettingsUnmarshaller.Instance;
+                    unmarshalledObject.CmafIngestOutputSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("frameCaptureOutputSettings", targetDepth))
@@ -106,6 +114,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.RtmpOutputSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("srtOutputSettings", targetDepth))
+                {
+                    var unmarshaller = SrtOutputSettingsUnmarshaller.Instance;
+                    unmarshalledObject.SrtOutputSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("udpOutputSettings", targetDepth))
                 {
                     var unmarshaller = UdpOutputSettingsUnmarshaller.Instance;
@@ -113,7 +127,6 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

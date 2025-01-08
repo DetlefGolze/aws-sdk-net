@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -40,12 +41,16 @@ namespace Amazon.NetworkManager.Model
         private string _coreNetworkId;
         private DateTime? _createdAt;
         private string _edgeLocation;
+        private List<string> _edgeLocations = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<AttachmentError> _lastModificationErrors = AWSConfigs.InitializeCollections ? new List<AttachmentError>() : null;
+        private string _networkFunctionGroupName;
         private string _ownerAccountId;
+        private ProposedNetworkFunctionGroupChange _proposedNetworkFunctionGroupChange;
         private ProposedSegmentChange _proposedSegmentChange;
         private string _resourceArn;
         private string _segmentName;
         private AttachmentState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DateTime? _updatedAt;
 
         /// <summary>
@@ -162,7 +167,8 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property EdgeLocation. 
         /// <para>
-        /// The Region where the edge is located.
+        /// The Region where the edge is located. This is returned for all attachment types except
+        /// a Direct Connect gateway attachment, which instead returns <c>EdgeLocations</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=63)]
@@ -176,6 +182,62 @@ namespace Amazon.NetworkManager.Model
         internal bool IsSetEdgeLocation()
         {
             return this._edgeLocation != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EdgeLocations. 
+        /// <para>
+        /// The edge locations that the Direct Connect gateway is associated with. This is returned
+        /// only for Direct Connect gateway attachments. All other attachment types retrun <c>EdgeLocation</c>.
+        /// </para>
+        /// </summary>
+        public List<string> EdgeLocations
+        {
+            get { return this._edgeLocations; }
+            set { this._edgeLocations = value; }
+        }
+
+        // Check to see if EdgeLocations property is set
+        internal bool IsSetEdgeLocations()
+        {
+            return this._edgeLocations != null && (this._edgeLocations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LastModificationErrors. 
+        /// <para>
+        /// Describes the error associated with the attachment request.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=20)]
+        public List<AttachmentError> LastModificationErrors
+        {
+            get { return this._lastModificationErrors; }
+            set { this._lastModificationErrors = value; }
+        }
+
+        // Check to see if LastModificationErrors property is set
+        internal bool IsSetLastModificationErrors()
+        {
+            return this._lastModificationErrors != null && (this._lastModificationErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkFunctionGroupName. 
+        /// <para>
+        /// The name of the network function group.
+        /// </para>
+        /// </summary>
+        public string NetworkFunctionGroupName
+        {
+            get { return this._networkFunctionGroupName; }
+            set { this._networkFunctionGroupName = value; }
+        }
+
+        // Check to see if NetworkFunctionGroupName property is set
+        internal bool IsSetNetworkFunctionGroupName()
+        {
+            return this._networkFunctionGroupName != null;
         }
 
         /// <summary>
@@ -195,6 +257,24 @@ namespace Amazon.NetworkManager.Model
         internal bool IsSetOwnerAccountId()
         {
             return this._ownerAccountId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProposedNetworkFunctionGroupChange. 
+        /// <para>
+        /// Describes a proposed change to a network function group associated with the attachment.
+        /// </para>
+        /// </summary>
+        public ProposedNetworkFunctionGroupChange ProposedNetworkFunctionGroupChange
+        {
+            get { return this._proposedNetworkFunctionGroupChange; }
+            set { this._proposedNetworkFunctionGroupChange = value; }
+        }
+
+        // Check to see if ProposedNetworkFunctionGroupChange property is set
+        internal bool IsSetProposedNetworkFunctionGroupChange()
+        {
+            return this._proposedNetworkFunctionGroupChange != null;
         }
 
         /// <summary>
@@ -286,7 +366,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

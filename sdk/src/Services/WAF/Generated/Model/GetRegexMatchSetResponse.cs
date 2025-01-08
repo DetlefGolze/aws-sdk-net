@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property RegexMatchSet. 
         /// <para>
-        /// Information about the <a>RegexMatchSet</a> that you specified in the <code>GetRegexMatchSet</code>
+        /// Information about the <a>RegexMatchSet</a> that you specified in the <c>GetRegexMatchSet</c>
         /// request. For more information, see <a>RegexMatchTuple</a>.
         /// </para>
         /// </summary>

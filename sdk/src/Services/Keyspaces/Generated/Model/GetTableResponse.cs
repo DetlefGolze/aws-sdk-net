@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
@@ -41,6 +42,7 @@ namespace Amazon.Keyspaces.Model
         private EncryptionSpecification _encryptionSpecification;
         private string _keyspaceName;
         private PointInTimeRecoverySummary _pointInTimeRecovery;
+        private List<ReplicaSpecificationSummary> _replicaSpecifications = AWSConfigs.InitializeCollections ? new List<ReplicaSpecificationSummary>() : null;
         private string _resourceArn;
         private SchemaDefinition _schemaDefinition;
         private TableStatus _status;
@@ -54,11 +56,11 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>throughputMode:PAY_PER_REQUEST</code> 
+        ///  <c>throughputMode:PAY_PER_REQUEST</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>throughputMode:PROVISIONED</code> 
+        ///  <c>throughputMode:PROVISIONED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -134,7 +136,7 @@ namespace Amazon.Keyspaces.Model
         /// The default Time to Live settings in seconds of the specified table.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=630720000)]
+        [AWSProperty(Min=0, Max=630720000)]
         public int DefaultTimeToLive
         {
             get { return this._defaultTimeToLive.GetValueOrDefault(); }
@@ -200,6 +202,26 @@ namespace Amazon.Keyspaces.Model
         internal bool IsSetPointInTimeRecovery()
         {
             return this._pointInTimeRecovery != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ReplicaSpecifications. 
+        /// <para>
+        /// Returns the Amazon Web Services Region specific settings of all Regions a multi-Region
+        /// table is replicated in.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public List<ReplicaSpecificationSummary> ReplicaSpecifications
+        {
+            get { return this._replicaSpecifications; }
+            set { this._replicaSpecifications = value; }
+        }
+
+        // Check to see if ReplicaSpecifications property is set
+        internal bool IsSetReplicaSpecifications()
+        {
+            return this._replicaSpecifications != null && (this._replicaSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

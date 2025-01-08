@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsCodeBuildProjectEnvironment
     {
         private string _certificate;
-        private List<AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails> _environmentVariables = new List<AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails>();
+        private List<AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails> _environmentVariables = AWSConfigs.InitializeCollections ? new List<AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails>() : null;
         private string _imagePullCredentialsType;
         private bool? _privilegedMode;
         private AwsCodeBuildProjectEnvironmentRegistryCredential _registryCredential;
@@ -73,7 +74,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,18 +88,17 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CODEBUILD</code> specifies that CodeBuild uses its own credentials. This requires
+        ///  <c>CODEBUILD</c> specifies that CodeBuild uses its own credentials. This requires
         /// that you modify your ECR repository policy to trust the CodeBuild service principal.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SERVICE_ROLE</code> specifies that CodeBuild uses your build project's service
-        /// role.
+        ///  <c>SERVICE_ROLE</c> specifies that CodeBuild uses your build project's service role.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When you use a cross-account or private registry image, you must use <code>SERVICE_ROLE</code>
-        /// credentials. When you use an CodeBuild curated image, you must use <code>CODEBUILD</code>
+        /// When you use a cross-account or private registry image, you must use <c>SERVICE_ROLE</c>
+        /// credentials. When you use an CodeBuild curated image, you must use <c>CODEBUILD</c>
         /// credentials.
         /// </para>
         /// </summary>
@@ -117,7 +117,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property PrivilegedMode. 
         /// <para>
-        /// Whether to allow the Docker daemon to run inside a Docker container. Set to <code>true</code>
+        /// Whether to allow the Docker daemon to run inside a Docker container. Set to <c>true</c>
         /// if the build project is used to build Docker images.
         /// </para>
         /// </summary>
@@ -158,13 +158,13 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// The environment type <code>ARM_CONTAINER</code> is available only in Regions US East
-        /// (N. Virginia), US East (Ohio), US West (Oregon), Europe (Ireland), Asia Pacific (Mumbai),
+        /// The environment type <c>ARM_CONTAINER</c> is available only in Regions US East (N.
+        /// Virginia), US East (Ohio), US West (Oregon), Europe (Ireland), Asia Pacific (Mumbai),
         /// Asia Pacific (Tokyo), Asia Pacific (Sydney), and Europe (Frankfurt).
         /// </para>
         ///  
         /// <para>
-        /// The environment type <code>LINUX_CONTAINER</code> with compute type build.general1.2xlarge
+        /// The environment type <c>LINUX_CONTAINER</c> with compute type build.general1.2xlarge
         /// is available only in Regions US East (N. Virginia), US East (N. Virginia), US West
         /// (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt),
         /// Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific
@@ -172,16 +172,15 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// The environment type <code>LINUX_GPU_CONTAINER</code> is available only in Regions
-        /// US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central),
-        /// Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia
-        /// Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing),
-        /// and China (Ningxia).
+        /// The environment type <c>LINUX_GPU_CONTAINER</c> is available only in Regions US East
+        /// (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland),
+        /// Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia
+        /// Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>WINDOWS_CONTAINER</code> | <code>LINUX_CONTAINER</code> | <code>LINUX_GPU_CONTAINER</code>
-        /// | <code>ARM_CONTAINER</code> 
+        /// Valid values: <c>WINDOWS_CONTAINER</c> | <c>LINUX_CONTAINER</c> | <c>LINUX_GPU_CONTAINER</c>
+        /// | <c>ARM_CONTAINER</c> 
         /// </para>
         /// </summary>
         public string Type

@@ -26,19 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribePlacementGroups operation.
-    /// Describes the specified placement groups or all of your placement groups. For more
-    /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+    /// Describes the specified placement groups or all of your placement groups.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// To describe a specific placement group that is <i>shared</i> with your account, you
+    /// must specify the ID of the placement group using the <c>GroupId</c> parameter. Specifying
+    /// the name of a <i>shared</i> placement group using the <c>GroupNames</c> parameter
+    /// will result in an error.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
     /// groups</a> in the <i>Amazon EC2 User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class DescribePlacementGroupsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _groupIds = new List<string>();
-        private List<string> _groupNames = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _groupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _groupNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -47,39 +59,38 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>group-name</code> - The name of the placement group.
+        ///  <c>group-name</c> - The name of the placement group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>group-arn</code> - The Amazon Resource Name (ARN) of the placement group.
+        ///  <c>group-arn</c> - The Amazon Resource Name (ARN) of the placement group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>spread-level</code> - The spread level for the placement group (<code>host</code>
-        /// | <code>rack</code>). 
+        ///  <c>spread-level</c> - The spread level for the placement group (<c>host</c> | <c>rack</c>).
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>state</code> - The state of the placement group (<code>pending</code> | <code>available</code>
-        /// | <code>deleting</code> | <code>deleted</code>).
+        ///  <c>state</c> - The state of the placement group (<c>pending</c> | <c>available</c>
+        /// | <c>deleting</c> | <c>deleted</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>strategy</code> - The strategy of the placement group (<code>cluster</code>
-        /// | <code>spread</code> | <code>partition</code>).
+        ///  <c>strategy</c> - The strategy of the placement group (<c>cluster</c> | <c>spread</c>
+        /// | <c>partition</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag:&lt;key&gt;</c> - The key/value combination of a tag assigned to the resource.
+        /// Use the tag key in the filter name and the tag value as the filter value. For example,
+        /// to find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources that have a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources that have a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -92,7 +103,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,7 +121,7 @@ namespace Amazon.EC2.Model
         // Check to see if GroupIds property is set
         internal bool IsSetGroupIds()
         {
-            return this._groupIds != null && this._groupIds.Count > 0; 
+            return this._groupIds != null && (this._groupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,8 +131,18 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: Describes all your placement groups, or only those otherwise specified.
+        /// Constraints:
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You can specify a name only if the placement group is owned by your account.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If a placement group is <i>shared</i> with your account, specifying the name results
+        /// in an error. You must use the <c>GroupId</c> parameter instead.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public List<string> GroupNames
         {
@@ -132,7 +153,7 @@ namespace Amazon.EC2.Model
         // Check to see if GroupNames property is set
         internal bool IsSetGroupNames()
         {
-            return this._groupNames != null && this._groupNames.Count > 0; 
+            return this._groupNames != null && (this._groupNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.RDS.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>AuthorizeDBSecurityGroupIngress</code> 
+    ///  <c>AuthorizeDBSecurityGroupIngress</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeDBSecurityGroups</code> 
+    ///  <c>DescribeDBSecurityGroups</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RevokeDBSecurityGroupIngress</code> 
+    ///  <c>RevokeDBSecurityGroupIngress</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -97,7 +98,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property EC2SecurityGroupOwnerId. 
         /// <para>
         /// Specifies the Amazon Web Services ID of the owner of the EC2 security group specified
-        /// in the <code>EC2SecurityGroupName</code> field.
+        /// in the <c>EC2SecurityGroupName</c> field.
         /// </para>
         /// </summary>
         public string EC2SecurityGroupOwnerId

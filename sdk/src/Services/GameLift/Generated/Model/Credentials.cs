@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -45,13 +46,13 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// To upload a game server build directly to Amazon GameLift S3 storage using <code>CreateBuild</code>.
-    /// To get access for this task, call <a>RequestUploadCredentials</a>.
+    /// To upload a game server build directly to Amazon GameLift S3 storage using <c>CreateBuild</c>.
+    /// To get access for this task, call <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_RequestUploadCredentials.html">https://docs.aws.amazon.com/gamelift/latest/apireference/API_RequestUploadCredentials.html</a>.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// To remotely connect to an active Amazon GameLift fleet instances. To get remote access,
-    /// call <a>GetComputeAccess</a>.
+    /// call <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetComputeAccess.html">https://docs.aws.amazon.com/gamelift/latest/apireference/API_GetComputeAccess.html</a>.
     /// </para>
     ///  </li> </ul>
     /// </summary>

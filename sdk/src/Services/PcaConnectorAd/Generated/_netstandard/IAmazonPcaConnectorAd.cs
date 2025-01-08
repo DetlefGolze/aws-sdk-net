@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.PcaConnectorAd.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.PcaConnectorAd
 {
     /// <summary>
-    /// Interface for accessing PcaConnectorAd
+    /// <para>Interface for accessing PcaConnectorAd</para>
     ///
     /// Amazon Web Services Private CA Connector for Active Directory creates a connector
     /// between Amazon Web Services Private CA and Active Directory (AD) that enables you

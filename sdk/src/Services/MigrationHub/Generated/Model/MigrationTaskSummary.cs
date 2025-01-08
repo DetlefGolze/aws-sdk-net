@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
-    /// MigrationTaskSummary includes <code>MigrationTaskName</code>, <code>ProgressPercent</code>,
-    /// <code>ProgressUpdateStream</code>, <code>Status</code>, and <code>UpdateDateTime</code>
-    /// for each task.
+    /// MigrationTaskSummary includes <c>MigrationTaskName</c>, <c>ProgressPercent</c>, <c>ProgressUpdateStream</c>,
+    /// <c>Status</c>, and <c>UpdateDateTime</c> for each task.
     /// </summary>
     public partial class MigrationTaskSummary
     {
@@ -125,7 +125,7 @@ namespace Amazon.MigrationHub.Model
         /// Detail information of what is being done within the overall status state.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=500)]
+        [AWSProperty(Min=0, Max=2500)]
         public string StatusDetail
         {
             get { return this._statusDetail; }

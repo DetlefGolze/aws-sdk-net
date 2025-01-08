@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAmazonOpenSearchServerlessDestinationUpdate())
@@ -140,6 +142,17 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetIcebergDestinationUpdate())
+                {
+                    context.Writer.WritePropertyName("IcebergDestinationUpdate");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = IcebergDestinationUpdateMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.IcebergDestinationUpdate, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetRedshiftDestinationUpdate())
                 {
                     context.Writer.WritePropertyName("RedshiftDestinationUpdate");
@@ -158,6 +171,17 @@ namespace Amazon.KinesisFirehose.Model.Internal.MarshallTransformations
 
                     var marshaller = S3DestinationUpdateMarshaller.Instance;
                     marshaller.Marshall(publicRequest.S3DestinationUpdate, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetSnowflakeDestinationUpdate())
+                {
+                    context.Writer.WritePropertyName("SnowflakeDestinationUpdate");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SnowflakeDestinationUpdateMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SnowflakeDestinationUpdate, context);
 
                     context.Writer.WriteObjectEnd();
                 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ResilienceHub.Model
     public partial class ListAppVersionResourceMappingsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ResourceMapping> _resourceMappings = new List<ResourceMapping>();
+        private List<ResourceMapping> _resourceMappings = AWSConfigs.InitializeCollections ? new List<ResourceMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -58,10 +59,10 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property ResourceMappings. 
         /// <para>
         /// Mappings used to map logical resources from the template to physical resources. You
-        /// can use the mapping type <code>CFN_STACK</code> if the application template uses a
-        /// logical stack name. Or you can map individual resources by using the mapping type
-        /// <code>RESOURCE</code>. We recommend using the mapping type <code>CFN_STACK</code>
-        /// if the application is backed by a CloudFormation stack.
+        /// can use the mapping type <c>CFN_STACK</c> if the application template uses a logical
+        /// stack name. Or you can map individual resources by using the mapping type <c>RESOURCE</c>.
+        /// We recommend using the mapping type <c>CFN_STACK</c> if the application is backed
+        /// by a CloudFormation stack.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -74,7 +75,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if ResourceMappings property is set
         internal bool IsSetResourceMappings()
         {
-            return this._resourceMappings != null && this._resourceMappings.Count > 0; 
+            return this._resourceMappings != null && (this._resourceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

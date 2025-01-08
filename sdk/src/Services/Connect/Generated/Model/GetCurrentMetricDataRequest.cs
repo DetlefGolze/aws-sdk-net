@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -40,13 +41,13 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class GetCurrentMetricDataRequest : AmazonConnectRequest
     {
-        private List<CurrentMetric> _currentMetrics = new List<CurrentMetric>();
+        private List<CurrentMetric> _currentMetrics = AWSConfigs.InitializeCollections ? new List<CurrentMetric>() : null;
         private Filters _filters;
-        private List<string> _groupings = new List<string>();
+        private List<string> _groupings = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
-        private List<CurrentMetricSortCriteria> _sortCriteria = new List<CurrentMetricSortCriteria>();
+        private List<CurrentMetricSortCriteria> _sortCriteria = AWSConfigs.InitializeCollections ? new List<CurrentMetricSortCriteria>() : null;
 
         /// <summary>
         /// Gets and sets the property CurrentMetrics. 
@@ -160,12 +161,20 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0
-        /// </code>}
+        ///  <c>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0
+        /// </c>}
         /// </para>
         ///  
         /// <para>
         /// The actual OLDEST_CONTACT_AGE is 24 seconds.
+        /// </para>
+        ///  
+        /// <para>
+        /// When the filter <c>RoutingStepExpression</c> is used, this metric is still calculated
+        /// from enqueue time. For example, if a contact that has been queued under <c>&lt;Expression
+        /// 1&gt;</c> for 10 seconds has expired and <c>&lt;Expression 2&gt;</c> becomes active,
+        /// then <c>OLDEST_CONTACT_AGE</c> for this queue will be counted starting from 10, not
+        /// 0.
         /// </para>
         ///  
         /// <para>
@@ -202,7 +211,7 @@ namespace Amazon.Connect.Model
         // Check to see if CurrentMetrics property is set
         internal bool IsSetCurrentMetrics()
         {
-            return this._currentMetrics != null && this._currentMetrics.Count > 0; 
+            return this._currentMetrics != null && (this._currentMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -222,12 +231,22 @@ namespace Amazon.Connect.Model
         /// <para>
         /// Channels: 3 (VOICE, CHAT, and TASK channels are supported.)
         /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// RoutingStepExpressions: 50
+        /// </para>
         ///  </li> </ul> 
         /// <para>
         /// Metric data is retrieved only for the resources associated with the queues or routing
         /// profiles, and by any channels included in the filter. (You cannot filter by both queue
         /// AND routing profile.) You can include both resource IDs and resource ARNs in the same
-        /// request. 
+        /// request.
+        /// </para>
+        ///  
+        /// <para>
+        /// When using the <c>RoutingStepExpression</c> filter, you need to pass exactly one <c>QueueId</c>.
+        /// The filter is also case sensitive so when using the <c>RoutingStepExpression</c> filter,
+        /// grouping by <c>ROUTING_STEP_EXPRESSION</c> is required.
         /// </para>
         ///  
         /// <para>
@@ -250,23 +269,28 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property Groupings. 
         /// <para>
-        /// The grouping applied to the metrics returned. For example, when grouped by <code>QUEUE</code>,
+        /// The grouping applied to the metrics returned. For example, when grouped by <c>QUEUE</c>,
         /// the metrics returned apply to each queue rather than aggregated for all queues. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you group by <code>CHANNEL</code>, you should include a Channels filter. VOICE,
-        /// CHAT, and TASK channels are supported.
+        /// If you group by <c>CHANNEL</c>, you should include a Channels filter. VOICE, CHAT,
+        /// and TASK channels are supported.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you group by <code>ROUTING_PROFILE</code>, you must include either a queue or routing
-        /// profile filter. In addition, a routing profile filter is required for metrics <code>CONTACTS_SCHEDULED</code>,
-        /// <code>CONTACTS_IN_QUEUE</code>, and <code> OLDEST_CONTACT_AGE</code>.
+        /// If you group by <c>ROUTING_PROFILE</c>, you must include either a queue or routing
+        /// profile filter. In addition, a routing profile filter is required for metrics <c>CONTACTS_SCHEDULED</c>,
+        /// <c>CONTACTS_IN_QUEUE</c>, and <c> OLDEST_CONTACT_AGE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If no <code>Grouping</code> is included in the request, a summary of metrics is returned.
+        /// If no <c>Grouping</c> is included in the request, a summary of metrics is returned.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// When using the <c>RoutingStepExpression</c> filter, group by <c>ROUTING_STEP_EXPRESSION</c>
+        /// is required.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -280,7 +304,7 @@ namespace Amazon.Connect.Model
         // Check to see if Groupings property is set
         internal bool IsSetGroupings()
         {
-            return this._groupings != null && this._groupings.Count > 0; 
+            return this._groupings != null && (this._groupings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -351,7 +375,7 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property SortCriteria. 
         /// <para>
         /// The way to sort the resulting response based on metrics. You can enter one sort criteria.
-        /// By default resources are sorted based on <code>AGENTS_ONLINE</code>, <code>DESCENDING</code>.
+        /// By default resources are sorted based on <c>AGENTS_ONLINE</c>, <c>DESCENDING</c>.
         /// The metric collection is sorted based on the input metrics.
         /// </para>
         ///  
@@ -360,7 +384,7 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Sorting on <code>SLOTS_ACTIVE</code> and <code>SLOTS_AVAILABLE</code> is not supported.
+        /// Sorting on <c>SLOTS_ACTIVE</c> and <c>SLOTS_AVAILABLE</c> is not supported.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -374,7 +398,7 @@ namespace Amazon.Connect.Model
         // Check to see if SortCriteria property is set
         internal bool IsSetSortCriteria()
         {
-            return this._sortCriteria != null && this._sortCriteria.Count > 0; 
+            return this._sortCriteria != null && (this._sortCriteria.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

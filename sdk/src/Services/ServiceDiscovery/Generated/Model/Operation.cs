@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ServiceDiscovery.Model
         private string _errorMessage;
         private string _id;
         private OperationStatus _status;
-        private Dictionary<string, string> _targets = new Dictionary<string, string>();
+        private Dictionary<string, string> _targets = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private OperationType _type;
         private DateTime? _updateDate;
 
@@ -46,9 +47,9 @@ namespace Amazon.ServiceDiscovery.Model
         /// Gets and sets the property CreateDate. 
         /// <para>
         /// The date and time that the request was submitted, in Unix date/time format and Coordinated
-        /// Universal Time (UTC). The value of <code>CreateDate</code> is accurate to milliseconds.
-        /// For example, the value <code>1516925490.087</code> represents Friday, January 26,
-        /// 2018 12:11:30.087 AM.
+        /// Universal Time (UTC). The value of <c>CreateDate</c> is accurate to milliseconds.
+        /// For example, the value <c>1516925490.087</c> represents Friday, January 26, 2018 12:11:30.087
+        /// AM.
         /// </para>
         /// </summary>
         public DateTime CreateDate
@@ -66,36 +67,36 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property ErrorCode. 
         /// <para>
-        /// The code associated with <code>ErrorMessage</code>. Values for <code>ErrorCode</code>
-        /// include the following:
+        /// The code associated with <c>ErrorMessage</c>. Values for <c>ErrorCode</c> include
+        /// the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACCESS_DENIED</code> 
+        ///  <c>ACCESS_DENIED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANNOT_CREATE_HOSTED_ZONE</code> 
+        ///  <c>CANNOT_CREATE_HOSTED_ZONE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EXPIRED_TOKEN</code> 
+        ///  <c>EXPIRED_TOKEN</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HOSTED_ZONE_NOT_FOUND</code> 
+        ///  <c>HOSTED_ZONE_NOT_FOUND</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INTERNAL_FAILURE</code> 
+        ///  <c>INTERNAL_FAILURE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INVALID_CHANGE_BATCH</code> 
+        ///  <c>INVALID_CHANGE_BATCH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>THROTTLED_REQUEST</code> 
+        ///  <c>THROTTLED_REQUEST</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -114,8 +115,7 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        /// If the value of <code>Status</code> is <code>FAIL</code>, the reason that the operation
-        /// failed.
+        /// If the value of <c>Status</c> is <c>FAIL</c>, the reason that the operation failed.
         /// </para>
         /// </summary>
         public string ErrorMessage
@@ -168,7 +168,7 @@ namespace Amazon.ServiceDiscovery.Model
         /// </para>
         ///  </dd> <dt>FAIL</dt> <dd> 
         /// <para>
-        /// The operation failed. For the failure reason, see <code>ErrorMessage</code>.
+        /// The operation failed. For the failure reason, see <c>ErrorMessage</c>.
         /// </para>
         ///  </dd> </dl>
         /// </summary>
@@ -191,15 +191,15 @@ namespace Amazon.ServiceDiscovery.Model
         /// </para>
         ///  <dl> <dt>NAMESPACE</dt> <dd> 
         /// <para>
-        /// The namespace ID is returned in the <code>ResourceId</code> property.
+        /// The namespace ID is returned in the <c>ResourceId</c> property.
         /// </para>
         ///  </dd> <dt>SERVICE</dt> <dd> 
         /// <para>
-        /// The service ID is returned in the <code>ResourceId</code> property.
+        /// The service ID is returned in the <c>ResourceId</c> property.
         /// </para>
         ///  </dd> <dt>INSTANCE</dt> <dd> 
         /// <para>
-        /// The instance ID is returned in the <code>ResourceId</code> property.
+        /// The instance ID is returned in the <c>ResourceId</c> property.
         /// </para>
         ///  </dd> </dl>
         /// </summary>
@@ -212,7 +212,7 @@ namespace Amazon.ServiceDiscovery.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -236,9 +236,9 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property UpdateDate. 
         /// <para>
-        /// The date and time that the value of <code>Status</code> changed to the current value,
-        /// in Unix date/time format and Coordinated Universal Time (UTC). The value of <code>UpdateDate</code>
-        /// is accurate to milliseconds. For example, the value <code>1516925490.087</code> represents
+        /// The date and time that the value of <c>Status</c> changed to the current value, in
+        /// Unix date/time format and Coordinated Universal Time (UTC). The value of <c>UpdateDate</c>
+        /// is accurate to milliseconds. For example, the value <c>1516925490.087</c> represents
         /// Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>

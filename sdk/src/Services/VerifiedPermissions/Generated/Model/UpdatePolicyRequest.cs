@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.VerifiedPermissions.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// When you edit a static policy, You can change only certain elements of a static policy:
+    /// When you edit a static policy, you can change only certain elements of a static policy:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -81,9 +82,8 @@ namespace Amazon.VerifiedPermissions.Model
     ///  </li> </ul> </note> <note> 
     /// <para>
     /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-    /// propagate through the service and be visible in the results of other Verified Permissions
-    /// operations.
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+    /// through the service and be visible in the results of other Verified Permissions operations.
     /// </para>
     ///  </note>
     /// </summary>
@@ -105,11 +105,11 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The <code>action</code> referenced by the policy.
+        /// The <c>action</c> referenced by the policy.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Any conditional clauses, such as <code>when</code> or <code>unless</code> clauses.
+        /// Any conditional clauses, such as <c>when</c> or <c>unless</c> clauses.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -117,19 +117,19 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Changing from <code>static</code> to <code>templateLinked</code>.
+        /// Changing from <c>static</c> to <c>templateLinked</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Changing the effect of the policy from <code>permit</code> or <code>forbid</code>.
+        /// Changing the effect of the policy from <c>permit</c> or <c>forbid</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>principal</code> referenced by the policy.
+        /// The <c>principal</c> referenced by the policy.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>resource</code> referenced by the policy.
+        /// The <c>resource</c> referenced by the policy.
         /// </para>
         ///  </li> </ul>
         /// </summary>

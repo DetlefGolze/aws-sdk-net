@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -129,6 +130,14 @@ namespace Amazon.Omics.Model
         public IListReferenceStoresPaginator ListReferenceStores(ListReferenceStoresRequest request) 
         {
             return new ListReferenceStoresPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListRunCaches operation
+        ///</summary>
+        public IListRunCachesPaginator ListRunCaches(ListRunCachesRequest request) 
+        {
+            return new ListRunCachesPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -80,8 +81,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property VolumeKmsKeyId. 
         /// <para>
-        /// The Key Management Service (KMS) key that Amazon SageMaker uses to encrypt data on
-        /// the storage volume attached to the ML compute instance(s) that run the model monitoring
+        /// The Key Management Service (KMS) key that Amazon SageMaker AI uses to encrypt data
+        /// on the storage volume attached to the ML compute instance(s) that run the model monitoring
         /// job.
         /// </para>
         /// </summary>

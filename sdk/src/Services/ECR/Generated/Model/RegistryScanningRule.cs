@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ECR.Model
     /// </summary>
     public partial class RegistryScanningRule
     {
-        private List<ScanningRepositoryFilter> _repositoryFilters = new List<ScanningRepositoryFilter>();
+        private List<ScanningRepositoryFilter> _repositoryFilters = AWSConfigs.InitializeCollections ? new List<ScanningRepositoryFilter>() : null;
         private ScanFrequency _scanFrequency;
 
         /// <summary>
@@ -52,17 +53,17 @@ namespace Amazon.ECR.Model
         // Check to see if RepositoryFilters property is set
         internal bool IsSetRepositoryFilters()
         {
-            return this._repositoryFilters != null && this._repositoryFilters.Count > 0; 
+            return this._repositoryFilters != null && (this._repositoryFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ScanFrequency. 
         /// <para>
-        /// The frequency that scans are performed at for a private registry. When the <code>ENHANCED</code>
-        /// scan type is specified, the supported scan frequencies are <code>CONTINUOUS_SCAN</code>
-        /// and <code>SCAN_ON_PUSH</code>. When the <code>BASIC</code> scan type is specified,
-        /// the <code>SCAN_ON_PUSH</code> scan frequency is supported. If scan on push is not
-        /// specified, then the <code>MANUAL</code> scan frequency is set by default.
+        /// The frequency that scans are performed at for a private registry. When the <c>ENHANCED</c>
+        /// scan type is specified, the supported scan frequencies are <c>CONTINUOUS_SCAN</c>
+        /// and <c>SCAN_ON_PUSH</c>. When the <c>BASIC</c> scan type is specified, the <c>SCAN_ON_PUSH</c>
+        /// scan frequency is supported. If scan on push is not specified, then the <c>MANUAL</c>
+        /// scan frequency is set by default.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

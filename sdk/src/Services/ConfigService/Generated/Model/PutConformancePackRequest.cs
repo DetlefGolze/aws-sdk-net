@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -37,20 +38,20 @@ namespace Amazon.ConfigService.Model
     /// 
     ///  
     /// <para>
-    /// This API creates a service-linked role <code>AWSServiceRoleForConfigConforms</code>
-    /// in your account. The service-linked role is created only when the role does not exist
-    /// in your account. 
+    /// This API creates a service-linked role <c>AWSServiceRoleForConfigConforms</c> in your
+    /// account. The service-linked role is created only when the role does not exist in your
+    /// account. 
     /// </para>
     ///  <note> 
     /// <para>
-    /// You must specify only one of the follow parameters: <code>TemplateS3Uri</code>, <code>TemplateBody</code>
-    /// or <code>TemplateSSMDocumentDetails</code>.
+    /// You must specify only one of the follow parameters: <c>TemplateS3Uri</c>, <c>TemplateBody</c>
+    /// or <c>TemplateSSMDocumentDetails</c>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class PutConformancePackRequest : AmazonConfigServiceRequest
     {
-        private List<ConformancePackInputParameter> _conformancePackInputParameters = new List<ConformancePackInputParameter>();
+        private List<ConformancePackInputParameter> _conformancePackInputParameters = AWSConfigs.InitializeCollections ? new List<ConformancePackInputParameter>() : null;
         private string _conformancePackName;
         private string _deliveryS3Bucket;
         private string _deliveryS3KeyPrefix;
@@ -61,7 +62,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ConformancePackInputParameters. 
         /// <para>
-        /// A list of <code>ConformancePackInputParameter</code> objects.
+        /// A list of <c>ConformancePackInputParameter</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=60)]
@@ -74,7 +75,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConformancePackInputParameters property is set
         internal bool IsSetConformancePackInputParameters()
         {
-            return this._conformancePackInputParameters != null && this._conformancePackInputParameters.Count > 0; 
+            return this._conformancePackInputParameters != null && (this._conformancePackInputParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,8 +153,8 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You can use a YAML template with two resource types: Config rule (<code>AWS::Config::ConfigRule</code>)
-        /// and remediation action (<code>AWS::Config::RemediationConfiguration</code>).
+        /// You can use a YAML template with two resource types: Config rule (<c>AWS::Config::ConfigRule</c>)
+        /// and remediation action (<c>AWS::Config::RemediationConfiguration</c>).
         /// </para>
         ///  </note>
         /// </summary>
@@ -173,13 +174,15 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property TemplateS3Uri. 
         /// <para>
-        /// The location of the file containing the template body (<code>s3://bucketname/prefix</code>).
+        /// The location of the file containing the template body (<c>s3://bucketname/prefix</c>).
         /// The uri must point to a conformance pack template (max size: 300 KB) that is located
         /// in an Amazon S3 bucket in the same Region as the conformance pack. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must have access to read Amazon S3 bucket.
+        /// You must have access to read Amazon S3 bucket. In addition, in order to ensure a successful
+        /// deployment, the template object must not be in an <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html">archived
+        /// storage class</a> if this parameter is passed.
         /// </para>
         ///  </note>
         /// </summary>
@@ -199,9 +202,9 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property TemplateSSMDocumentDetails. 
         /// <para>
-        /// An object of type <code>TemplateSSMDocumentDetails</code>, which contains the name
-        /// or the Amazon Resource Name (ARN) of the Amazon Web Services Systems Manager document
-        /// (SSM document) and the version of the SSM document that is used to create a conformance
+        /// An object of type <c>TemplateSSMDocumentDetails</c>, which contains the name or the
+        /// Amazon Resource Name (ARN) of the Amazon Web Services Systems Manager document (SSM
+        /// document) and the version of the SSM document that is used to create a conformance
         /// pack.
         /// </para>
         /// </summary>

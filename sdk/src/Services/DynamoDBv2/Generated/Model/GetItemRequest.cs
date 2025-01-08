@@ -26,28 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// Container for the parameters to the GetItem operation.
-    /// The <code>GetItem</code> operation returns a set of attributes for the item with the
-    /// given primary key. If there is no matching item, <code>GetItem</code> does not return
-    /// any data and there will be no <code>Item</code> element in the response.
+    /// The <c>GetItem</c> operation returns a set of attributes for the item with the given
+    /// primary key. If there is no matching item, <c>GetItem</c> does not return any data
+    /// and there will be no <c>Item</c> element in the response.
     /// 
     ///  
     /// <para>
-    ///  <code>GetItem</code> provides an eventually consistent read by default. If your application
-    /// requires a strongly consistent read, set <code>ConsistentRead</code> to <code>true</code>.
-    /// Although a strongly consistent read might take more time than an eventually consistent
-    /// read, it always returns the last updated value.
+    ///  <c>GetItem</c> provides an eventually consistent read by default. If your application
+    /// requires a strongly consistent read, set <c>ConsistentRead</c> to <c>true</c>. Although
+    /// a strongly consistent read might take more time than an eventually consistent read,
+    /// it always returns the last updated value.
     /// </para>
     /// </summary>
     public partial class GetItemRequest : AmazonDynamoDBRequest
     {
-        private List<string> _attributesToGet = new List<string>();
+        private List<string> _attributesToGet = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _consistentRead;
-        private Dictionary<string, string> _expressionAttributeNames = new Dictionary<string, string>();
-        private Dictionary<string, AttributeValue> _key = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, string> _expressionAttributeNames = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, AttributeValue> _key = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private string _projectionExpression;
         private ReturnConsumedCapacity _returnConsumedCapacity;
         private string _tableName;
@@ -60,8 +61,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates GetItemRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table containing the requested item.</param>
-        /// <param name="key">A map of attribute names to <code>AttributeValue</code> objects, representing the primary key of the item to retrieve. For the primary key, you must provide all of the attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
+        /// <param name="tableName">The name of the table containing the requested item. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
+        /// <param name="key">A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item to retrieve. For the primary key, you must provide all of the attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
         public GetItemRequest(string tableName, Dictionary<string, AttributeValue> key)
         {
             _tableName = tableName;
@@ -71,9 +72,9 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Instantiates GetItemRequest with the parameterized properties
         /// </summary>
-        /// <param name="tableName">The name of the table containing the requested item.</param>
-        /// <param name="key">A map of attribute names to <code>AttributeValue</code> objects, representing the primary key of the item to retrieve. For the primary key, you must provide all of the attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
-        /// <param name="consistentRead">Determines the read consistency model: If set to <code>true</code>, then the operation uses strongly consistent reads; otherwise, the operation uses eventually consistent reads.</param>
+        /// <param name="tableName">The name of the table containing the requested item. You can also provide the Amazon Resource Name (ARN) of the table in this parameter.</param>
+        /// <param name="key">A map of attribute names to <c>AttributeValue</c> objects, representing the primary key of the item to retrieve. For the primary key, you must provide all of the attributes. For example, with a simple primary key, you only need to provide a value for the partition key. For a composite primary key, you must provide values for both the partition key and the sort key.</param>
+        /// <param name="consistentRead">Determines the read consistency model: If set to <c>true</c>, then the operation uses strongly consistent reads; otherwise, the operation uses eventually consistent reads.</param>
         public GetItemRequest(string tableName, Dictionary<string, AttributeValue> key, bool consistentRead)
         {
             _tableName = tableName;
@@ -84,8 +85,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property AttributesToGet. 
         /// <para>
-        /// This is a legacy parameter. Use <code>ProjectionExpression</code> instead. For more
-        /// information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a>
+        /// This is a legacy parameter. Use <c>ProjectionExpression</c> instead. For more information,
+        /// see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.AttributesToGet.html">AttributesToGet</a>
         /// in the <i>Amazon DynamoDB Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -99,15 +100,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if AttributesToGet property is set
         internal bool IsSetAttributesToGet()
         {
-            return this._attributesToGet != null && this._attributesToGet.Count > 0; 
+            return this._attributesToGet != null && (this._attributesToGet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ConsistentRead. 
         /// <para>
-        /// Determines the read consistency model: If set to <code>true</code>, then the operation
-        /// uses strongly consistent reads; otherwise, the operation uses eventually consistent
-        /// reads.
+        /// Determines the read consistency model: If set to <c>true</c>, then the operation uses
+        /// strongly consistent reads; otherwise, the operation uses eventually consistent reads.
         /// </para>
         /// </summary>
         public bool ConsistentRead
@@ -126,7 +126,7 @@ namespace Amazon.DynamoDBv2.Model
         /// Gets and sets the property ExpressionAttributeNames. 
         /// <para>
         /// One or more substitution tokens for attribute names in an expression. The following
-        /// are some use cases for using <code>ExpressionAttributeNames</code>:
+        /// are some use cases for using <c>ExpressionAttributeNames</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -148,18 +148,18 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Percentile</code> 
+        ///  <c>Percentile</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// The name of this attribute conflicts with a reserved word, so it cannot be used directly
         /// in an expression. (For the complete list of reserved words, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html">Reserved
         /// Words</a> in the <i>Amazon DynamoDB Developer Guide</i>). To work around this, you
-        /// could specify the following for <code>ExpressionAttributeNames</code>:
+        /// could specify the following for <c>ExpressionAttributeNames</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>{"#P":"Percentile"}</code> 
+        ///  <c>{"#P":"Percentile"}</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -167,7 +167,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>#P = :val</code> 
+        ///  <c>#P = :val</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -189,14 +189,14 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExpressionAttributeNames property is set
         internal bool IsSetExpressionAttributeNames()
         {
-            return this._expressionAttributeNames != null && this._expressionAttributeNames.Count > 0; 
+            return this._expressionAttributeNames != null && (this._expressionAttributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// A map of attribute names to <code>AttributeValue</code> objects, representing the
-        /// primary key of the item to retrieve.
+        /// A map of attribute names to <c>AttributeValue</c> objects, representing the primary
+        /// key of the item to retrieve.
         /// </para>
         ///  
         /// <para>
@@ -215,7 +215,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Key property is set
         internal bool IsSetKey()
         {
-            return this._key != null && this._key.Count > 0; 
+            return this._key != null && (this._key.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -266,10 +266,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// The name of the table containing the requested item.
+        /// The name of the table containing the requested item. You can also provide the Amazon
+        /// Resource Name (ARN) of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }

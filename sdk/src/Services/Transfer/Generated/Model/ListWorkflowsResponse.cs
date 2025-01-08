@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.Transfer.Model
     public partial class ListWorkflowsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ListedWorkflow> _workflows = new List<ListedWorkflow>();
+        private List<ListedWorkflow> _workflows = AWSConfigs.InitializeCollections ? new List<ListedWorkflow>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  <code>ListWorkflows</code> returns the <code>NextToken</code> parameter in the output.
-        /// You can then pass the <code>NextToken</code> parameter in a subsequent command to
-        /// continue listing additional workflows.
+        ///  <c>ListWorkflows</c> returns the <c>NextToken</c> parameter in the output. You can
+        /// then pass the <c>NextToken</c> parameter in a subsequent command to continue listing
+        /// additional workflows.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]
@@ -60,8 +61,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property Workflows. 
         /// <para>
-        /// Returns the <code>Arn</code>, <code>WorkflowId</code>, and <code>Description</code>
-        /// for each workflow.
+        /// Returns the <c>Arn</c>, <c>WorkflowId</c>, and <c>Description</c> for each workflow.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -74,7 +74,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Workflows property is set
         internal bool IsSetWorkflows()
         {
-            return this._workflows != null && this._workflows.Count > 0; 
+            return this._workflows != null && (this._workflows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class PutBackupVaultNotificationsRequest : AmazonBackupRequest
     {
-        private List<string> _backupVaultEvents = new List<string>();
+        private List<string> _backupVaultEvents = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _backupVaultName;
         private string _snsTopicArn;
 
@@ -55,27 +56,26 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BACKUP_JOB_STARTED</code> | <code>BACKUP_JOB_COMPLETED</code> 
+        ///  <c>BACKUP_JOB_STARTED</c> | <c>BACKUP_JOB_COMPLETED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COPY_JOB_STARTED</code> | <code>COPY_JOB_SUCCESSFUL</code> | <code>COPY_JOB_FAILED</code>
+        ///  <c>COPY_JOB_STARTED</c> | <c>COPY_JOB_SUCCESSFUL</c> | <c>COPY_JOB_FAILED</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>RESTORE_JOB_STARTED</c> | <c>RESTORE_JOB_COMPLETED</c> | <c>RECOVERY_POINT_MODIFIED</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RESTORE_JOB_STARTED</code> | <code>RESTORE_JOB_COMPLETED</code> | <code>RECOVERY_POINT_MODIFIED</code>
-        /// 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>S3_BACKUP_OBJECT_FAILED</code> | <code>S3_RESTORE_OBJECT_FAILED</code> 
+        ///  <c>S3_BACKUP_OBJECT_FAILED</c> | <c>S3_RESTORE_OBJECT_FAILED</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// The list below shows items that are deprecated events (for reference) and are no longer
-        /// in use. They are no longer supported and will not return statuses or notifications.
-        /// Refer to the list above for current supported events.
+        /// The list below includes both supported events and deprecated events that are no longer
+        /// in use (for reference). Deprecated events do not return statuses or notifications.
+        /// Refer to the list above for the supported events.
         /// </para>
         ///  </note>
         /// </summary>
@@ -89,7 +89,7 @@ namespace Amazon.Backup.Model
         // Check to see if BackupVaultEvents property is set
         internal bool IsSetBackupVaultEvents()
         {
-            return this._backupVaultEvents != null && this._backupVaultEvents.Count > 0; 
+            return this._backupVaultEvents != null && (this._backupVaultEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -117,7 +117,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property SNSTopicArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) that specifies the topic for a backup vault’s events;
-        /// for example, <code>arn:aws:sns:us-west-2:111122223333:MyVaultTopic</code>.
+        /// for example, <c>arn:aws:sns:us-west-2:111122223333:MyVaultTopic</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

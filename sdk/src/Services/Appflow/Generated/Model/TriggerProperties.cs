@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
     /// Specifies the configuration details that control the trigger for a flow. Currently,
-    /// these settings only apply to the <code>Scheduled</code> trigger type.
+    /// these settings only apply to the <c>Scheduled</c> trigger type.
     /// </summary>
     public partial class TriggerProperties
     {

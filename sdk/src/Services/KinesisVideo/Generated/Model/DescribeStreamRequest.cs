@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeStream operation.
     /// Returns the most current information about the specified stream. You must specify
-    /// either the <code>StreamName</code> or the <code>StreamARN</code>.
+    /// either the <c>StreamName</c> or the <c>StreamARN</c>.
     /// </summary>
     public partial class DescribeStreamRequest : AmazonKinesisVideoRequest
     {

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
-    /// Information about the S3 bucket where you saved your unsigned code.
+    /// Information about the Amazon S3 bucket where you saved your unsigned code.
     /// </summary>
     public partial class S3Source
     {

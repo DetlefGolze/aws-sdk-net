@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetComponentUpdates())
@@ -84,6 +86,25 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
 
                         var marshaller = ComponentUpdateRequestMarshaller.Instance;
                         marshaller.Marshall(publicRequestComponentUpdatesValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetCompositeComponentUpdates())
+                {
+                    context.Writer.WritePropertyName("compositeComponentUpdates");
+                    context.Writer.WriteObjectStart();
+                    foreach (var publicRequestCompositeComponentUpdatesKvp in publicRequest.CompositeComponentUpdates)
+                    {
+                        context.Writer.WritePropertyName(publicRequestCompositeComponentUpdatesKvp.Key);
+                        var publicRequestCompositeComponentUpdatesValue = publicRequestCompositeComponentUpdatesKvp.Value;
+
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = CompositeComponentUpdateRequestMarshaller.Instance;
+                        marshaller.Marshall(publicRequestCompositeComponentUpdatesValue, context);
 
                         context.Writer.WriteObjectEnd();
                     }

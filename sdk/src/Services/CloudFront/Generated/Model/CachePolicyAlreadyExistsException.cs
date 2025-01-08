@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// A cache policy with this name already exists. You must provide a unique name. To modify
-    /// an existing cache policy, use <code>UpdateCachePolicy</code>.
+    /// an existing cache policy, use <c>UpdateCachePolicy</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

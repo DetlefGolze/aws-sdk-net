@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Finspace.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Finspace.Model
         /// The size of cache in Gigabytes.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1200, Max=33600)]
+        [AWSProperty(Required=true)]
         public int Size
         {
             get { return this._size.GetValueOrDefault(); }
@@ -58,13 +59,26 @@ namespace Amazon.Finspace.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of cache storage . The valid values are: 
+        /// The type of cache storage. The valid values are: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
         /// CACHE_1000 – This type provides at least 1000 MB/s disk access throughput. 
         /// </para>
-        ///  </li> </ul>
+        ///  </li> <li> 
+        /// <para>
+        /// CACHE_250 – This type provides at least 250 MB/s disk access throughput. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// CACHE_12 – This type provides at least 12 MB/s disk access throughput. 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For cache type <c>CACHE_1000</c> and <c>CACHE_250</c> you can select cache size as
+        /// 1200 GB or increments of 2400 GB. For cache type <c>CACHE_12</c> you can select the
+        /// cache size in increments of 6000 GB.
+        /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=8, Max=10)]
         public string Type

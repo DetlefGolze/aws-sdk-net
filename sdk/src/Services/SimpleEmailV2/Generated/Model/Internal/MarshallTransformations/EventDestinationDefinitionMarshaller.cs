@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(EventDestinationDefinition requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCloudWatchDestination())
             {
                 context.Writer.WritePropertyName("CloudWatchDestination");
@@ -60,6 +63,17 @@ namespace Amazon.SimpleEmailV2.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("Enabled");
                 context.Writer.Write(requestObject.Enabled);
+            }
+
+            if(requestObject.IsSetEventBridgeDestination())
+            {
+                context.Writer.WritePropertyName("EventBridgeDestination");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = EventBridgeDestinationMarshaller.Instance;
+                marshaller.Marshall(requestObject.EventBridgeDestination, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetKinesisFirehoseDestination())

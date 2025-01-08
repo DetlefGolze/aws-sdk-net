@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages.
         /// </para>
         /// </summary>
@@ -82,7 +83,7 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// A token that indicates the start of the next sequential page of results. Use the token
         /// that is returned with a previous call to this operation. To start at the beginning
-        /// of the result set, don't specify a value.
+        /// of the result set, do not specify a value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]

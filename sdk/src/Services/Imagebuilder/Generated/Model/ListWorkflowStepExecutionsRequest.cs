@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
     /// Container for the parameters to the ListWorkflowStepExecutions operation.
-    /// Shows runtime data for each step in a runtime instance of the workflow that you specify
-    /// in the request.
+    /// Returns runtime data for each step in a runtime instance of the workflow that you
+    /// specify in the request.
     /// </summary>
     public partial class ListWorkflowStepExecutionsRequest : AmazonImagebuilderRequest
     {
@@ -61,7 +62,7 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token to specify where to start paginating. This is the NextToken from a previously
+        /// A token to specify where to start paginating. This is the nextToken from a previously
         /// truncated response.
         /// </para>
         /// </summary>

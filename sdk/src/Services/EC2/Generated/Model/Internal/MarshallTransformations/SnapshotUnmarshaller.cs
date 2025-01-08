@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -54,6 +55,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
             {
                 if (context.IsStartElement || context.IsAttribute)
                 {
+                    if (context.TestExpression("availabilityZone", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.AvailabilityZone = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("completionDurationMinutes", targetDepth))
+                    {
+                        var unmarshaller = IntUnmarshaller.Instance;
+                        unmarshalledObject.CompletionDurationMinutes = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("completionTime", targetDepth))
+                    {
+                        var unmarshaller = DateTimeUnmarshaller.Instance;
+                        unmarshalledObject.CompletionTime = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("dataEncryptionKeyId", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -147,8 +166,18 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if (context.TestExpression("tagSet/item", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.Tags == null)
+                        {
+                            unmarshalledObject.Tags = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Tags.Add(item);
+                        continue;
+                    }
+                    if (context.TestExpression("transferType", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.TransferType = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("volumeId", targetDepth))

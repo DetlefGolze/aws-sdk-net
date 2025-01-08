@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,14 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AnalysisRuleCustom requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAdditionalAnalyses())
+            {
+                context.Writer.WritePropertyName("additionalAnalyses");
+                context.Writer.Write(requestObject.AdditionalAnalyses);
+            }
+
             if(requestObject.IsSetAllowedAnalyses())
             {
                 context.Writer.WritePropertyName("allowedAnalyses");
@@ -63,6 +72,28 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                 foreach(var requestObjectAllowedAnalysisProvidersListValue in requestObject.AllowedAnalysisProviders)
                 {
                         context.Writer.Write(requestObjectAllowedAnalysisProvidersListValue);
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetDifferentialPrivacy())
+            {
+                context.Writer.WritePropertyName("differentialPrivacy");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = DifferentialPrivacyConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.DifferentialPrivacy, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetDisallowedOutputColumns())
+            {
+                context.Writer.WritePropertyName("disallowedOutputColumns");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectDisallowedOutputColumnsListValue in requestObject.DisallowedOutputColumns)
+                {
+                        context.Writer.Write(requestObjectDisallowedOutputColumnsListValue);
                 }
                 context.Writer.WriteArrayEnd();
             }

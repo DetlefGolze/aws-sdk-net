@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.RAM.Model
         private string _resourceShareArn;
         private ResourceShareStatus _status;
         private string _statusMessage;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowExternalPrincipals. 
@@ -52,13 +53,12 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>True</code> – the resource share can be shared with any Amazon Web Services
-        /// account.
+        ///  <c>True</c> – the resource share can be shared with any Amazon Web Services account.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>False</code> – the resource share can be shared with only accounts in the same
-        /// organization as the account that owns the resource share.
+        ///  <c>False</c> – the resource share can be shared with only accounts in the same organization
+        /// as the account that owns the resource share.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -117,9 +117,9 @@ namespace Amazon.RAM.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>PROMOTING_TO_STANDARD</b> – This resource share was originally <code>CREATED_FROM_POLICY</code>,
+        ///  <b>PROMOTING_TO_STANDARD</b> – This resource share was originally <c>CREATED_FROM_POLICY</c>,
         /// but the customer ran the <a>PromoteResourceShareCreatedFromPolicy</a> and that operation
-        /// is still in progress. This value changes to <code>STANDARD</code> when complete.
+        /// is still in progress. This value changes to <c>STANDARD</c> when complete.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -259,7 +259,7 @@ namespace Amazon.RAM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

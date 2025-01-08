@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.WAFV2.Model
     ///  
     /// <para>
     /// You can use overrides for testing, for example you can override all of rule actions
-    /// to <code>Count</code> and then monitor the resulting count metrics to understand how
-    /// the rule group would handle your web traffic. You can also permanently override some
-    /// or all actions, to modify how the rule group manages your web traffic.
+    /// to <c>Count</c> and then monitor the resulting count metrics to understand how the
+    /// rule group would handle your web traffic. You can also permanently override some or
+    /// all actions, to modify how the rule group manages your web traffic.
     /// </para>
     /// </summary>
     public partial class RuleActionOverride

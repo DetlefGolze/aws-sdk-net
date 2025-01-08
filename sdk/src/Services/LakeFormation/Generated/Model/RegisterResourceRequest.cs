@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -48,16 +49,15 @@ namespace Amazon.LakeFormation.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>ResourceArn = arn:aws:s3:::my-bucket UseServiceLinkedRole = true</code> 
+    ///  <c>ResourceArn = arn:aws:s3:::my-bucket/ UseServiceLinkedRole = true</c> 
     /// </para>
     ///  
     /// <para>
-    /// If <code>UseServiceLinkedRole</code> is not set to true, you must provide or set the
-    /// <code>RoleArn</code>:
+    /// If <c>UseServiceLinkedRole</c> is not set to true, you must provide or set the <c>RoleArn</c>:
     /// </para>
     ///  
     /// <para>
-    ///  <code>arn:aws:iam::12345:role/my-data-access-role</code> 
+    ///  <c>arn:aws:iam::12345:role/my-data-access-role</c> 
     /// </para>
     /// </summary>
     public partial class RegisterResourceRequest : AmazonLakeFormationRequest

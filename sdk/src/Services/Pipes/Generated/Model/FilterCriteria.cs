@@ -26,16 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
-    /// The collection of event patterns used to filter events. For more information, see
-    /// <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html">Events
+    /// The collection of event patterns used to filter events.
+    /// 
+    ///  
+    /// <para>
+    /// To remove a filter, specify a <c>FilterCriteria</c> object with an empty array of
+    /// <c>Filter</c> objects.
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html">Events
     /// and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class FilterCriteria
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -53,7 +63,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

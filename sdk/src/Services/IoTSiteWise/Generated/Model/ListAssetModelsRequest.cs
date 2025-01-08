@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -34,8 +35,62 @@ namespace Amazon.IoTSiteWise.Model
     /// </summary>
     public partial class ListAssetModelsRequest : AmazonIoTSiteWiseRequest
     {
+        private List<string> _assetModelTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _assetModelVersion;
         private int? _maxResults;
         private string _nextToken;
+
+        /// <summary>
+        /// Gets and sets the property AssetModelTypes. 
+        /// <para>
+        /// The type of asset model. If you don't provide an <c>assetModelTypes</c>, all types
+        /// of asset models are returned.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>ASSET_MODEL</b> – An asset model that you can use to create assets. Can't be included
+        /// as a component in another asset model.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>COMPONENT_MODEL</b> – A reusable component that you can include in the composite
+        /// models of other asset models. You can't create assets directly from this type of asset
+        /// model. 
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public List<string> AssetModelTypes
+        {
+            get { return this._assetModelTypes; }
+            set { this._assetModelTypes = value; }
+        }
+
+        // Check to see if AssetModelTypes property is set
+        internal bool IsSetAssetModelTypes()
+        {
+            return this._assetModelTypes != null && (this._assetModelTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property AssetModelVersion. 
+        /// <para>
+        /// The version alias that specifies the latest or active version of the asset model.
+        /// The details are returned in the response. The default value is <c>LATEST</c>. See
+        /// <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/model-active-version.html">
+        /// Asset model versions</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        public string AssetModelVersion
+        {
+            get { return this._assetModelVersion; }
+            set { this._assetModelVersion = value; }
+        }
+
+        // Check to see if AssetModelVersion property is set
+        internal bool IsSetAssetModelVersion()
+        {
+            return this._assetModelVersion != null;
+        }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 

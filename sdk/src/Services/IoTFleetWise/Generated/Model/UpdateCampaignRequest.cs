@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.IoTFleetWise.Model
     public partial class UpdateCampaignRequest : AmazonIoTFleetWiseRequest
     {
         private UpdateCampaignAction _action;
-        private List<string> _dataExtraDimensions = new List<string>();
+        private List<string> _dataExtraDimensions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
         private string _name;
 
@@ -46,22 +47,21 @@ namespace Amazon.IoTFleetWise.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>APPROVE</code> - To approve delivering a data collection scheme to vehicles.
-        /// 
+        ///  <c>APPROVE</c> - To approve delivering a data collection scheme to vehicles. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUSPEND</code> - To suspend collecting signal data. The campaign is deleted
-        /// from vehicles and all vehicles in the suspended campaign will stop sending data.
+        ///  <c>SUSPEND</c> - To suspend collecting signal data. The campaign is deleted from
+        /// vehicles and all vehicles in the suspended campaign will stop sending data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RESUME</code> - To reactivate the <code>SUSPEND</code> campaign. The campaign
-        /// is redeployed to all vehicles and the vehicles will resume sending data.
+        ///  <c>RESUME</c> - To reactivate the <c>SUSPEND</c> campaign. The campaign is redeployed
+        /// to all vehicles and the vehicles will resume sending data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATE</code> - To update a campaign. 
+        ///  <c>UPDATE</c> - To update a campaign. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -88,7 +88,7 @@ namespace Amazon.IoTFleetWise.Model
         /// Default: An empty array
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=5)]
+        [AWSProperty(Sensitive=true, Min=0, Max=5)]
         public List<string> DataExtraDimensions
         {
             get { return this._dataExtraDimensions; }
@@ -98,7 +98,7 @@ namespace Amazon.IoTFleetWise.Model
         // Check to see if DataExtraDimensions property is set
         internal bool IsSetDataExtraDimensions()
         {
-            return this._dataExtraDimensions != null && this._dataExtraDimensions.Count > 0; 
+            return this._dataExtraDimensions != null && (this._dataExtraDimensions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.MediaTailor
 {
     /// <summary>
-    /// Implementation for accessing MediaTailor
+    /// <para>Implementation for accessing MediaTailor</para>
     ///
     /// Use the AWS Elemental MediaTailor SDKs and CLI to configure scalable ad insertion
     /// and linear channels. With MediaTailor, you can assemble existing content into a linear
@@ -937,7 +938,7 @@ namespace Amazon.MediaTailor
         #region  DeletePrefetchSchedule
 
         /// <summary>
-        /// Deletes a prefetch schedule for a specific playback configuration. If you call <code>DeletePrefetchSchedule</code>
+        /// Deletes a prefetch schedule for a specific playback configuration. If you call <c>DeletePrefetchSchedule</c>
         /// on an expired prefetch schedule, MediaTailor returns an HTTP 404 status code. For
         /// more information about ad prefetching, see <a href="https://docs.aws.amazon.com/mediatailor/latest/ug/prefetching-ads.html">Using
         /// ad prefetching</a> in the <i>MediaTailor User Guide</i>.
@@ -2717,11 +2718,11 @@ namespace Amazon.MediaTailor
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

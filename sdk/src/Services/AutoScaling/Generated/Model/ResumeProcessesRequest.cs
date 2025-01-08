@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -35,14 +36,15 @@ namespace Amazon.AutoScaling.Model
     /// 
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html">Suspending
-    /// and resuming scaling processes</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html">Suspend
+    /// and resume Amazon EC2 Auto Scaling processes</a> in the <i>Amazon EC2 Auto Scaling
+    /// User Guide</i>.
     /// </para>
     /// </summary>
     public partial class ResumeProcessesRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _scalingProcesses = new List<string>();
+        private List<string> _scalingProcesses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -70,39 +72,39 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Launch</code> 
+        ///  <c>Launch</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Terminate</code> 
+        ///  <c>Terminate</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AddToLoadBalancer</code> 
+        ///  <c>AddToLoadBalancer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AlarmNotification</code> 
+        ///  <c>AlarmNotification</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AZRebalance</code> 
+        ///  <c>AZRebalance</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HealthCheck</code> 
+        ///  <c>HealthCheck</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>InstanceRefresh</code> 
+        ///  <c>InstanceRefresh</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReplaceUnhealthy</code> 
+        ///  <c>ReplaceUnhealthy</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ScheduledActions</code> 
+        ///  <c>ScheduledActions</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -118,7 +120,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if ScalingProcesses property is set
         internal bool IsSetScalingProcesses()
         {
-            return this._scalingProcesses != null && this._scalingProcesses.Count > 0; 
+            return this._scalingProcesses != null && (this._scalingProcesses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

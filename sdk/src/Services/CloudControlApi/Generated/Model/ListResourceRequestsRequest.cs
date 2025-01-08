@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudControlApi.Model
 {
     /// <summary>
@@ -51,13 +52,13 @@ namespace Amazon.CloudControlApi.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to be returned with a single call. If the number of
-        /// available results exceeds this maximum, the response includes a <code>NextToken</code>
-        /// value that you can assign to the <code>NextToken</code> request parameter to get the
-        /// next set of results.
+        /// available results exceeds this maximum, the response includes a <c>NextToken</c> value
+        /// that you can assign to the <c>NextToken</c> request parameter to get the next set
+        /// of results.
         /// </para>
         ///  
         /// <para>
-        /// The default is <code>20</code>.
+        /// The default is <c>20</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -77,10 +78,10 @@ namespace Amazon.CloudControlApi.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous paginated request didn't return all of the remaining results, the
-        /// response object's <code>NextToken</code> parameter value is set to a token. To retrieve
+        /// response object's <c>NextToken</c> parameter value is set to a token. To retrieve
         /// the next set of results, call this action again and assign that token to the request
-        /// object's <code>NextToken</code> parameter. If there are no remaining results, the
-        /// previous response object's <code>NextToken</code> parameter is set to <code>null</code>.
+        /// object's <c>NextToken</c> parameter. If there are no remaining results, the previous
+        /// response object's <c>NextToken</c> parameter is set to <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

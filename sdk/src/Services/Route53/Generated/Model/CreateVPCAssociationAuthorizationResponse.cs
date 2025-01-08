@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A complex type that contains the response information from a <code>CreateVPCAssociationAuthorization</code>
+    /// A complex type that contains the response information from a <c>CreateVPCAssociationAuthorization</c>
     /// request.
     /// </summary>
     public partial class CreateVPCAssociationAuthorizationResponse : AmazonWebServiceResponse

@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
-    /// Describes a <code>ClusterDbRevision</code>.
+    /// Describes a <c>ClusterDbRevision</c>.
     /// </summary>
     public partial class ClusterDbRevision
     {
         private string _clusterIdentifier;
         private string _currentDatabaseRevision;
         private DateTime? _databaseRevisionReleaseDate;
-        private List<RevisionTarget> _revisionTargets = new List<RevisionTarget>();
+        private List<RevisionTarget> _revisionTargets = AWSConfigs.InitializeCollections ? new List<RevisionTarget>() : null;
 
         /// <summary>
         /// Gets and sets the property ClusterIdentifier. 
@@ -97,7 +98,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property RevisionTargets. 
         /// <para>
-        /// A list of <code>RevisionTarget</code> objects, where each object describes the database
+        /// A list of <c>RevisionTarget</c> objects, where each object describes the database
         /// revision that a cluster can be updated to.
         /// </para>
         /// </summary>
@@ -110,7 +111,7 @@ namespace Amazon.Redshift.Model
         // Check to see if RevisionTargets property is set
         internal bool IsSetRevisionTargets()
         {
-            return this._revisionTargets != null && this._revisionTargets.Count > 0; 
+            return this._revisionTargets != null && (this._revisionTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

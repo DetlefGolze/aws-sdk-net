@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ApiGatewayManagementApi.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ApiGatewayManagementApi
 {
     /// <summary>
-    /// Interface for accessing ApiGatewayManagementApi
+    /// <para>Interface for accessing ApiGatewayManagementApi</para>
     ///
     /// The Amazon API Gateway Management API allows you to directly manage runtime aspects
     /// of your deployed APIs. To use it, you must explicitly set the SDK's endpoint to point

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public StageState Unmarshall(JsonUnmarshallerContext context)
         {
+            StageState unmarshalledObject = new StageState();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            StageState unmarshalledObject = new StageState();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,10 +72,22 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     unmarshalledObject.ActionStates = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("beforeEntryConditionState", targetDepth))
+                {
+                    var unmarshaller = StageConditionStateUnmarshaller.Instance;
+                    unmarshalledObject.BeforeEntryConditionState = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("inboundExecution", targetDepth))
                 {
                     var unmarshaller = StageExecutionUnmarshaller.Instance;
                     unmarshalledObject.InboundExecution = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("inboundExecutions", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StageExecution, StageExecutionUnmarshaller>(StageExecutionUnmarshaller.Instance);
+                    unmarshalledObject.InboundExecutions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("inboundTransitionState", targetDepth))
@@ -88,6 +102,24 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     unmarshalledObject.LatestExecution = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("onFailureConditionState", targetDepth))
+                {
+                    var unmarshaller = StageConditionStateUnmarshaller.Instance;
+                    unmarshalledObject.OnFailureConditionState = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("onSuccessConditionState", targetDepth))
+                {
+                    var unmarshaller = StageConditionStateUnmarshaller.Instance;
+                    unmarshalledObject.OnSuccessConditionState = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("retryStageMetadata", targetDepth))
+                {
+                    var unmarshaller = RetryStageMetadataUnmarshaller.Instance;
+                    unmarshalledObject.RetryStageMetadata = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("stageName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -95,7 +127,6 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

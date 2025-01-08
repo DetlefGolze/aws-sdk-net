@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.IdentityManagement.Model
     /// 
     ///  
     /// <para>
-    /// If the <code>UserName</code> field is not specified, the user name is determined implicitly
+    /// If the <c>UserName</c> field is not specified, the user name is determined implicitly
     /// based on the Amazon Web Services access key ID used to sign the request. This operation
     /// works for access keys under the Amazon Web Services account. Consequently, you can
     /// use this operation to manage Amazon Web Services account root user credentials even
@@ -58,7 +59,7 @@ namespace Amazon.IdentityManagement.Model
         /// Instantiates UpdateSigningCertificateRequest with the parameterized properties
         /// </summary>
         /// <param name="certificateId">The ID of the signing certificate you want to update. This parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters that can consist of any upper or lowercased letter or digit.</param>
-        /// <param name="status"> The status you want to assign to the certificate. <code>Active</code> means that the certificate can be used for programmatic calls to Amazon Web Services <code>Inactive</code> means that the certificate cannot be used.</param>
+        /// <param name="status"> The status you want to assign to the certificate. <c>Active</c> means that the certificate can be used for programmatic calls to Amazon Web Services <c>Inactive</c> means that the certificate cannot be used.</param>
         public UpdateSigningCertificateRequest(string certificateId, StatusType status)
         {
             _certificateId = certificateId;
@@ -93,9 +94,9 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The status you want to assign to the certificate. <code>Active</code> means that
-        /// the certificate can be used for programmatic calls to Amazon Web Services <code>Inactive</code>
-        /// means that the certificate cannot be used.
+        ///  The status you want to assign to the certificate. <c>Active</c> means that the certificate
+        /// can be used for programmatic calls to Amazon Web Services <c>Inactive</c> means that
+        /// the certificate cannot be used.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

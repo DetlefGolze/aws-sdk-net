@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
-    /// The summary information for the routes as a response to <code>ListRoutes</code>.
+    /// The summary information for the routes as a response to <c>ListRoutes</c>.
     /// </summary>
     public partial class RouteSummary
     {
@@ -42,21 +43,20 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         private ErrorResponse _error;
         private bool? _includeChildPaths;
         private DateTime? _lastUpdatedTime;
-        private List<string> _methods = new List<string>();
+        private List<string> _methods = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _ownerAccountId;
-        private Dictionary<string, string> _pathResourceToId = new Dictionary<string, string>();
+        private Dictionary<string, string> _pathResourceToId = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _routeId;
         private RouteType _routeType;
         private string _serviceId;
         private string _sourcePath;
         private RouteState _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AppendSourcePath. 
         /// <para>
-        /// If set to <code>true</code>, this option appends the source path to the service URL
-        /// endpoint.
+        /// If set to <c>true</c>, this option appends the source path to the service URL endpoint.
         /// </para>
         /// </summary>
         public bool AppendSourcePath
@@ -187,7 +187,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// Gets and sets the property IncludeChildPaths. 
         /// <para>
         /// Indicates whether to match all subpaths of the given source path. If this value is
-        /// <code>false</code>, requests must match the source path exactly before they are forwarded
+        /// <c>false</c>, requests must match the source path exactly before they are forwarded
         /// to this route's service.
         /// </para>
         /// </summary>
@@ -238,7 +238,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         // Check to see if Methods property is set
         internal bool IsSetMethods()
         {
-            return this._methods != null && this._methods.Count > 0; 
+            return this._methods != null && (this._methods.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         // Check to see if PathResourceToId property is set
         internal bool IsSetPathResourceToId()
         {
-            return this._pathResourceToId != null && this._pathResourceToId.Count > 0; 
+            return this._pathResourceToId != null && (this._pathResourceToId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -338,9 +338,9 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// Gets and sets the property SourcePath. 
         /// <para>
         /// This is the path that Refactor Spaces uses to match traffic. Paths must start with
-        /// <code>/</code> and are relative to the base of the application. To use path parameters
-        /// in the source path, add a variable in curly braces. For example, the resource path
-        /// {user} represents a path parameter called 'user'.
+        /// <c>/</c> and are relative to the base of the application. To use path parameters in
+        /// the source path, add a variable in curly braces. For example, the resource path {user}
+        /// represents a path parameter called 'user'.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -390,7 +390,7 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

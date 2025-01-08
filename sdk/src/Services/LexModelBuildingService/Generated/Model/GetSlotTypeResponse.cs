@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -36,18 +37,18 @@ namespace Amazon.LexModelBuildingService.Model
         private string _checksum;
         private DateTime? _createdDate;
         private string _description;
-        private List<EnumerationValue> _enumerationValues = new List<EnumerationValue>();
+        private List<EnumerationValue> _enumerationValues = AWSConfigs.InitializeCollections ? new List<EnumerationValue>() : null;
         private DateTime? _lastUpdatedDate;
         private string _name;
         private string _parentSlotTypeSignature;
-        private List<SlotTypeConfiguration> _slotTypeConfigurations = new List<SlotTypeConfiguration>();
+        private List<SlotTypeConfiguration> _slotTypeConfigurations = AWSConfigs.InitializeCollections ? new List<SlotTypeConfiguration>() : null;
         private SlotValueSelectionStrategy _valueSelectionStrategy;
         private string _version;
 
         /// <summary>
         /// Gets and sets the property Checksum. 
         /// <para>
-        /// Checksum of the <code>$LATEST</code> version of the slot type.
+        /// Checksum of the <c>$LATEST</c> version of the slot type.
         /// </para>
         /// </summary>
         public string Checksum
@@ -102,8 +103,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property EnumerationValues. 
         /// <para>
-        /// A list of <code>EnumerationValue</code> objects that defines the values that the slot
-        /// type can take.
+        /// A list of <c>EnumerationValue</c> objects that defines the values that the slot type
+        /// can take.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10000)]
@@ -116,7 +117,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if EnumerationValues property is set
         internal bool IsSetEnumerationValues()
         {
-            return this._enumerationValues != null && this._enumerationValues.Count > 0; 
+            return this._enumerationValues != null && (this._enumerationValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -192,7 +193,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if SlotTypeConfigurations property is set
         internal bool IsSetSlotTypeConfigurations()
         {
-            return this._slotTypeConfigurations != null && this._slotTypeConfigurations.Count > 0; 
+            return this._slotTypeConfigurations != null && (this._slotTypeConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

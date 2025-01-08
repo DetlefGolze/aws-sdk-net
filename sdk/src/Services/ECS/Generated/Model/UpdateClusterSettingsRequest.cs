@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.ECS.Model
     public partial class UpdateClusterSettingsRequest : AmazonECSRequest
     {
         private string _cluster;
-        private List<ClusterSetting> _settings = new List<ClusterSetting>();
+        private List<ClusterSetting> _settings = AWSConfigs.InitializeCollections ? new List<ClusterSetting>() : null;
 
         /// <summary>
         /// Gets and sets the property Cluster. 
@@ -60,8 +61,9 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Settings. 
         /// <para>
         /// The setting to use by default for a cluster. This parameter is used to turn on CloudWatch
-        /// Container Insights for a cluster. If this value is specified, it overrides the <code>containerInsights</code>
-        /// value set with <a>PutAccountSetting</a> or <a>PutAccountSettingDefault</a>.
+        /// Container Insights for a cluster. If this value is specified, it overrides the <c>containerInsights</c>
+        /// value set with <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSetting.html">PutAccountSetting</a>
+        /// or <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutAccountSettingDefault.html">PutAccountSettingDefault</a>.
         /// </para>
         ///  <important> 
         /// <para>
@@ -83,7 +85,7 @@ namespace Amazon.ECS.Model
         // Check to see if Settings property is set
         internal bool IsSetSettings()
         {
-            return this._settings != null && this._settings.Count > 0; 
+            return this._settings != null && (this._settings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

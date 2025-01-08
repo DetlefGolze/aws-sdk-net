@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -59,13 +60,14 @@ namespace Amazon.SimpleEmailV2.Model
         private string _configurationSetName;
         private EmailContent _content;
         private Destination _destination;
-        private List<MessageTag> _emailTags = new List<MessageTag>();
+        private List<MessageTag> _emailTags = AWSConfigs.InitializeCollections ? new List<MessageTag>() : null;
+        private string _endpointId;
         private string _feedbackForwardingEmailAddress;
         private string _feedbackForwardingEmailAddressIdentityArn;
         private string _fromEmailAddress;
         private string _fromEmailAddressIdentityArn;
         private ListManagementOptions _listManagementOptions;
-        private List<string> _replyToAddresses = new List<string>();
+        private List<string> _replyToAddresses = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ConfigurationSetName. 
@@ -88,8 +90,8 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property Content. 
         /// <para>
-        /// An object that contains the body of the message. You can send either a Simple message
-        /// Raw message or a template Message.
+        /// An object that contains the body of the message. You can send either a Simple message,
+        /// Raw message, or a Templated message.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -127,8 +129,8 @@ namespace Amazon.SimpleEmailV2.Model
         /// Gets and sets the property EmailTags. 
         /// <para>
         /// A list of tags, in the form of name/value pairs, to apply to an email that you send
-        /// using the <code>SendEmail</code> operation. Tags correspond to characteristics of
-        /// the email that you define, so that you can publish email sending events. 
+        /// using the <c>SendEmail</c> operation. Tags correspond to characteristics of the email
+        /// that you define, so that you can publish email sending events. 
         /// </para>
         /// </summary>
         public List<MessageTag> EmailTags
@@ -140,7 +142,25 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if EmailTags property is set
         internal bool IsSetEmailTags()
         {
-            return this._emailTags != null && this._emailTags.Count > 0; 
+            return this._emailTags != null && (this._emailTags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EndpointId. 
+        /// <para>
+        /// The ID of the multi-region endpoint (global-endpoint).
+        /// </para>
+        /// </summary>
+        public string EndpointId
+        {
+            get { return this._endpointId; }
+            set { this._endpointId = value; }
+        }
+
+        // Check to see if EndpointId property is set
+        internal bool IsSetEndpointId()
+        {
+            return this._endpointId != null;
         }
 
         /// <summary>
@@ -166,14 +186,14 @@ namespace Amazon.SimpleEmailV2.Model
         /// <para>
         /// This parameter is used only for sending authorization. It is the ARN of the identity
         /// that is associated with the sending authorization policy that permits you to use the
-        /// email address specified in the <code>FeedbackForwardingEmailAddress</code> parameter.
+        /// email address specified in the <c>FeedbackForwardingEmailAddress</c> parameter.
         /// </para>
         ///  
         /// <para>
         /// For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com)
         /// attaches a policy to it that authorizes you to use feedback@example.com, then you
-        /// would specify the <code>FeedbackForwardingEmailAddressIdentityArn</code> to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
-        /// and the <code>FeedbackForwardingEmailAddress</code> to be feedback@example.com.
+        /// would specify the <c>FeedbackForwardingEmailAddressIdentityArn</c> to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
+        /// and the <c>FeedbackForwardingEmailAddress</c> to be feedback@example.com.
         /// </para>
         ///  
         /// <para>
@@ -217,14 +237,14 @@ namespace Amazon.SimpleEmailV2.Model
         /// <para>
         /// This parameter is used only for sending authorization. It is the ARN of the identity
         /// that is associated with the sending authorization policy that permits you to use the
-        /// email address specified in the <code>FromEmailAddress</code> parameter.
+        /// email address specified in the <c>FromEmailAddress</c> parameter.
         /// </para>
         ///  
         /// <para>
         /// For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com)
         /// attaches a policy to it that authorizes you to use sender@example.com, then you would
-        /// specify the <code>FromEmailAddressIdentityArn</code> to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
-        /// and the <code>FromEmailAddress</code> to be sender@example.com.
+        /// specify the <c>FromEmailAddressIdentityArn</c> to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
+        /// and the <c>FromEmailAddress</c> to be sender@example.com.
         /// </para>
         ///  
         /// <para>
@@ -233,7 +253,7 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  
         /// <para>
-        /// For Raw emails, the <code>FromEmailAddressIdentityArn</code> value overrides the X-SES-SOURCE-ARN
+        /// For Raw emails, the <c>FromEmailAddressIdentityArn</c> value overrides the X-SES-SOURCE-ARN
         /// and X-SES-FROM-ARN headers specified in raw email message content.
         /// </para>
         /// </summary>
@@ -284,7 +304,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if ReplyToAddresses property is set
         internal bool IsSetReplyToAddresses()
         {
-            return this._replyToAddresses != null && this._replyToAddresses.Count > 0; 
+            return this._replyToAddresses != null && (this._replyToAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

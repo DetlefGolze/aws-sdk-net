@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>GreengrassContainer</code> 
+        /// Default: <c>GreengrassContainer</c> 
         /// </para>
         /// </summary>
         public LambdaIsolationMode IsolationMode

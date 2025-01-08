@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
     /// An object that represents a retry policy. Specify at least one value for at least
-    /// one of the types of <code>RetryEvents</code>, a value for <code>maxRetries</code>,
-    /// and a value for <code>perRetryTimeout</code>. Both <code>server-error</code> and <code>gateway-error</code>
-    /// under <code>httpRetryEvents</code> include the Envoy <code>reset</code> policy. For
-    /// more information on the <code>reset</code> policy, see the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on">Envoy
+    /// one of the types of <c>RetryEvents</c>, a value for <c>maxRetries</c>, and a value
+    /// for <c>perRetryTimeout</c>. Both <c>server-error</c> and <c>gateway-error</c> under
+    /// <c>httpRetryEvents</c> include the Envoy <c>reset</c> policy. For more information
+    /// on the <c>reset</c> policy, see the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on">Envoy
     /// documentation</a>.
     /// </summary>
     public partial class GrpcRetryPolicy
     {
-        private List<string> _grpcRetryEvents = new List<string>();
-        private List<string> _httpRetryEvents = new List<string>();
+        private List<string> _grpcRetryEvents = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _httpRetryEvents = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private long? _maxRetries;
         private Duration _perRetryTimeout;
-        private List<string> _tcpRetryEvents = new List<string>();
+        private List<string> _tcpRetryEvents = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property GrpcRetryEvents. 
@@ -60,7 +61,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if GrpcRetryEvents property is set
         internal bool IsSetGrpcRetryEvents()
         {
-            return this._grpcRetryEvents != null && this._grpcRetryEvents.Count > 0; 
+            return this._grpcRetryEvents != null && (this._grpcRetryEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if HttpRetryEvents property is set
         internal bool IsSetHttpRetryEvents()
         {
-            return this._httpRetryEvents != null && this._httpRetryEvents.Count > 0; 
+            return this._httpRetryEvents != null && (this._httpRetryEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if TcpRetryEvents property is set
         internal bool IsSetTcpRetryEvents()
         {
-            return this._tcpRetryEvents != null && this._tcpRetryEvents.Count > 0; 
+            return this._tcpRetryEvents != null && (this._tcpRetryEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

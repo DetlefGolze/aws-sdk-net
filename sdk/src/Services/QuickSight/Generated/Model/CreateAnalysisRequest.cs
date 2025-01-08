@@ -26,23 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAnalysis operation.
     /// Creates an analysis in Amazon QuickSight. Analyses can be created either from a template
-    /// or from an <code>AnalysisDefinition</code>.
+    /// or from an <c>AnalysisDefinition</c>.
     /// </summary>
     public partial class CreateAnalysisRequest : AmazonQuickSightRequest
     {
         private string _analysisId;
         private string _awsAccountId;
         private AnalysisDefinition _definition;
+        private List<string> _folderArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private Parameters _parameters;
-        private List<ResourcePermission> _permissions = new List<ResourcePermission>();
+        private List<ResourcePermission> _permissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
         private AnalysisSourceEntity _sourceEntity;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _themeArn;
         private ValidationStrategy _validationStrategy;
 
@@ -95,8 +97,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in
-        /// order for the request to be valid.
+        /// Either a <c>SourceEntity</c> or a <c>Definition</c> must be provided in order for
+        /// the request to be valid.
         /// </para>
         /// </summary>
         public AnalysisDefinition Definition
@@ -109,6 +111,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetDefinition()
         {
             return this._definition != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FolderArns. 
+        /// <para>
+        /// When you create the analysis, Amazon QuickSight adds the analysis to these folders.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1)]
+        public List<string> FolderArns
+        {
+            get { return this._folderArns; }
+            set { this._folderArns = value; }
+        }
+
+        // Check to see if FolderArns property is set
+        internal bool IsSetFolderArns()
+        {
+            return this._folderArns != null && (this._folderArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -154,13 +175,13 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property Permissions. 
         /// <para>
         /// A structure that describes the principals and the resource-level permissions on an
-        /// analysis. You can use the <code>Permissions</code> structure to grant permissions
-        /// by providing a list of Identity and Access Management (IAM) action information for
-        /// each principal listed by Amazon Resource Name (ARN). 
+        /// analysis. You can use the <c>Permissions</c> structure to grant permissions by providing
+        /// a list of Identity and Access Management (IAM) action information for each principal
+        /// listed by Amazon Resource Name (ARN). 
         /// </para>
         ///  
         /// <para>
-        /// To specify no permissions, omit <code>Permissions</code>.
+        /// To specify no permissions, omit <c>Permissions</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -173,7 +194,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -184,8 +205,8 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// Either a <code>SourceEntity</code> or a <code>Definition</code> must be provided in
-        /// order for the request to be valid.
+        /// Either a <c>SourceEntity</c> or a <c>Definition</c> must be provided in order for
+        /// the request to be valid.
         /// </para>
         /// </summary>
         public AnalysisSourceEntity SourceEntity
@@ -217,7 +238,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

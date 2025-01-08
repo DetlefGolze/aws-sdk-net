@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// To specify the number of CPU cores, use the <code>coreCount</code> feature name for
-    /// the <code>Name</code> parameter. To specify the number of threads per core, use the
-    /// <code>threadsPerCore</code> feature name for the <code>Name</code> parameter.
+    /// To specify the number of CPU cores, use the <c>coreCount</c> feature name for the
+    /// <c>Name</c> parameter. To specify the number of threads per core, use the <c>threadsPerCore</c>
+    /// feature name for the <c>Name</c> parameter.
     /// </para>
     ///  
     /// <para>
@@ -44,29 +45,29 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>CreateDBInstance</code> 
+    ///  <c>CreateDBInstance</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ModifyDBInstance</code> 
+    ///  <c>ModifyDBInstance</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RestoreDBInstanceFromDBSnapshot</code> 
+    ///  <c>RestoreDBInstanceFromDBSnapshot</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RestoreDBInstanceFromS3</code> 
+    ///  <c>RestoreDBInstanceFromS3</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>RestoreDBInstanceToPointInTime</code> 
+    ///  <c>RestoreDBInstanceToPointInTime</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
     /// You can view the valid processor values for a particular instance class by calling
-    /// the <code>DescribeOrderableDBInstanceOptions</code> action and specifying the instance
-    /// class for the <code>DBInstanceClass</code> parameter.
+    /// the <c>DescribeOrderableDBInstanceOptions</c> action and specifying the instance class
+    /// for the <c>DBInstanceClass</c> parameter.
     /// </para>
     ///  
     /// <para>
@@ -74,20 +75,20 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>DescribeDBInstances</code> 
+    ///  <c>DescribeDBInstances</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeDBSnapshots</code> 
+    ///  <c>DescribeDBSnapshots</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DescribeValidDBInstanceModifications</code> 
+    ///  <c>DescribeValidDBInstanceModifications</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// If you call <code>DescribeDBInstances</code>, <code>ProcessorFeature</code> returns
-    /// non-null values only if the following conditions are met:
+    /// If you call <c>DescribeDBInstances</c>, <c>ProcessorFeature</c> returns non-null values
+    /// only if the following conditions are met:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -104,8 +105,9 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor">Configuring
-    /// the Processor of the DB Instance Class</a> in the <i>Amazon RDS User Guide. </i> 
+    /// For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor">
+    /// Configuring the processor for a DB instance class in RDS for Oracle</a> in the <i>Amazon
+    /// RDS User Guide. </i> 
     /// </para>
     /// </summary>
     public partial class ProcessorFeature
@@ -116,7 +118,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the processor feature. Valid names are <code>coreCount</code> and <code>threadsPerCore</code>.
+        /// The name of the processor feature. Valid names are <c>coreCount</c> and <c>threadsPerCore</c>.
         /// </para>
         /// </summary>
         public string Name
@@ -134,7 +136,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The value of a processor feature name.
+        /// The value of a processor feature.
         /// </para>
         /// </summary>
         public string Value

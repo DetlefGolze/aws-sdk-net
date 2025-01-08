@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.ElasticBeanstalk.Model
     /// 
     ///  <note> 
     /// <para>
-    /// If a property (for example, <code>ApplicationName</code>) is not provided, its value
-    /// remains unchanged. To clear such properties, specify an empty string.
+    /// If a property (for example, <c>ApplicationName</c>) is not provided, its value remains
+    /// unchanged. To clear such properties, specify an empty string.
     /// </para>
     ///  </note> 
     /// <para>
@@ -52,8 +53,8 @@ namespace Amazon.ElasticBeanstalk.Model
     {
         private string _applicationName;
         private string _description;
-        private List<ConfigurationOptionSetting> _optionSettings = new List<ConfigurationOptionSetting>();
-        private List<OptionSpecification> _optionsToRemove = new List<OptionSpecification>();
+        private List<ConfigurationOptionSetting> _optionSettings = AWSConfigs.InitializeCollections ? new List<ConfigurationOptionSetting>() : null;
+        private List<OptionSpecification> _optionsToRemove = AWSConfigs.InitializeCollections ? new List<OptionSpecification>() : null;
         private string _templateName;
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// <summary>
         /// Instantiates UpdateConfigurationTemplateRequest with the parameterized properties
         /// </summary>
-        /// <param name="applicationName">The name of the application associated with the configuration template to update.  If no application is found with this name, <code>UpdateConfigurationTemplate</code> returns an <code>InvalidParameterValue</code> error. </param>
-        /// <param name="templateName">The name of the configuration template to update.  If no configuration template is found with this name, <code>UpdateConfigurationTemplate</code> returns an <code>InvalidParameterValue</code> error. </param>
+        /// <param name="applicationName">The name of the application associated with the configuration template to update.  If no application is found with this name, <c>UpdateConfigurationTemplate</c> returns an <c>InvalidParameterValue</c> error. </param>
+        /// <param name="templateName">The name of the configuration template to update.  If no configuration template is found with this name, <c>UpdateConfigurationTemplate</c> returns an <c>InvalidParameterValue</c> error. </param>
         public UpdateConfigurationTemplateRequest(string applicationName, string templateName)
         {
             _applicationName = applicationName;
@@ -79,8 +80,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        ///  If no application is found with this name, <code>UpdateConfigurationTemplate</code>
-        /// returns an <code>InvalidParameterValue</code> error. 
+        ///  If no application is found with this name, <c>UpdateConfigurationTemplate</c> returns
+        /// an <c>InvalidParameterValue</c> error. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -130,7 +131,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if OptionSettings property is set
         internal bool IsSetOptionSettings()
         {
-            return this._optionSettings != null && this._optionSettings.Count > 0; 
+            return this._optionSettings != null && (this._optionSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        ///  Constraint: You can remove only <code>UserDefined</code> configuration options. 
+        ///  Constraint: You can remove only <c>UserDefined</c> configuration options. 
         /// </para>
         /// </summary>
         public List<OptionSpecification> OptionsToRemove
@@ -152,7 +153,7 @@ namespace Amazon.ElasticBeanstalk.Model
         // Check to see if OptionsToRemove property is set
         internal bool IsSetOptionsToRemove()
         {
-            return this._optionsToRemove != null && this._optionsToRemove.Count > 0; 
+            return this._optionsToRemove != null && (this._optionsToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,8 +163,8 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        ///  If no configuration template is found with this name, <code>UpdateConfigurationTemplate</code>
-        /// returns an <code>InvalidParameterValue</code> error. 
+        ///  If no configuration template is found with this name, <c>UpdateConfigurationTemplate</c>
+        /// returns an <c>InvalidParameterValue</c> error. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

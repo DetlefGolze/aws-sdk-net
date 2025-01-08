@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CodeBuild.Model
     public partial class TestReportSummary
     {
         private long? _durationInNanoSeconds;
-        private Dictionary<string, int> _statusCounts = new Dictionary<string, int>();
+        private Dictionary<string, int> _statusCounts = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
         private int? _total;
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.CodeBuild.Model
         /// Gets and sets the property StatusCounts. 
         /// <para>
         ///  A map that contains the number of each type of status returned by the test results
-        /// in this <code>TestReportSummary</code>. 
+        /// in this <c>TestReportSummary</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -73,14 +74,14 @@ namespace Amazon.CodeBuild.Model
         // Check to see if StatusCounts property is set
         internal bool IsSetStatusCounts()
         {
-            return this._statusCounts != null && this._statusCounts.Count > 0; 
+            return this._statusCounts != null && (this._statusCounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Total. 
         /// <para>
-        ///  The number of test cases in this <code>TestReportSummary</code>. The total includes
-        /// truncated test cases. 
+        ///  The number of test cases in this <c>TestReportSummary</c>. The total includes truncated
+        /// test cases. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

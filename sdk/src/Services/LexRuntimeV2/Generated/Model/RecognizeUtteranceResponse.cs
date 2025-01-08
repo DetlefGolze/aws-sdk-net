@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -49,8 +50,8 @@ namespace Amazon.LexRuntimeV2.Model
         /// <para>
         /// The prompt or statement to send to the user. This is based on the bot configuration
         /// and context. For example, if Amazon Lex V2 did not understand the user intent, it
-        /// sends the <code>clarificationPrompt</code> configured for the bot. If the intent requires
-        /// confirmation before taking the fulfillment action, it sends the <code>confirmationPrompt</code>.
+        /// sends the <c>clarificationPrompt</c> configured for the bot. If the intent requires
+        /// confirmation before taking the fulfillment action, it sends the <c>confirmationPrompt</c>.
         /// Another example: Suppose that the Lambda function successfully fulfilled the intent,
         /// and sent a message to convey to the user. Then Amazon Lex V2 sends that message in
         /// the response.
@@ -71,7 +72,7 @@ namespace Amazon.LexRuntimeV2.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// Content type as specified in the <code>responseContentType</code> in the request.
+        /// Content type as specified in the <c>responseContentType</c> in the request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -84,13 +85,14 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
         /// Gets and sets the property InputMode. 
         /// <para>
-        /// Indicates whether the input mode to the operation was text or speech. 
+        /// Indicates whether the input mode to the operation was text, speech, or from a touch-tone
+        /// keypad. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -103,7 +105,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if InputMode property is set
         internal bool IsSetInputMode()
         {
-            return this._inputMode != null;
+            return !string.IsNullOrEmpty(this._inputMode);
         }
 
         /// <summary>
@@ -113,14 +115,14 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  
         /// <para>
-        /// If the input was an audio stream, the <code>inputTranscript</code> field contains
-        /// the text extracted from the audio stream. This is the text that is actually processed
-        /// to recognize intents and slot values. You can use this information to determine if
-        /// Amazon Lex V2 is correctly processing the audio that you send.
+        /// If the input was an audio stream, the <c>inputTranscript</c> field contains the text
+        /// extracted from the audio stream. This is the text that is actually processed to recognize
+        /// intents and slot values. You can use this information to determine if Amazon Lex V2
+        /// is correctly processing the audio that you send.
         /// </para>
         ///  
         /// <para>
-        /// The <code>inputTranscript</code> field is compressed with gzip and then base64 encoded.
+        /// The <c>inputTranscript</c> field is compressed with gzip and then base64 encoded.
         /// Before you can use the contents of the field, you must decode and decompress the contents.
         /// See the example for a simple function to decode and decompress the contents.
         /// </para>
@@ -135,7 +137,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if InputTranscript property is set
         internal bool IsSetInputTranscript()
         {
-            return this._inputTranscript != null;
+            return !string.IsNullOrEmpty(this._inputTranscript);
         }
 
         /// <summary>
@@ -151,7 +153,7 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>interpretations</code> field is compressed with gzip and then base64 encoded.
+        /// The <c>interpretations</c> field is compressed with gzip and then base64 encoded.
         /// Before you can use the contents of the field, you must decode and decompress the contents.
         /// See the example for a simple function to decode and decompress the contents.
         /// </para>
@@ -166,7 +168,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if Interpretations property is set
         internal bool IsSetInterpretations()
         {
-            return this._interpretations != null;
+            return !string.IsNullOrEmpty(this._interpretations);
         }
 
         /// <summary>
@@ -178,7 +180,7 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>messages</code> field is compressed with gzip and then base64 encoded. Before
+        /// The <c>messages</c> field is compressed with gzip and then base64 encoded. Before
         /// you can use the contents of the field, you must decode and decompress the contents.
         /// See the example for a simple function to decode and decompress the contents.
         /// </para>
@@ -193,7 +195,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if Messages property is set
         internal bool IsSetMessages()
         {
-            return this._messages != null;
+            return !string.IsNullOrEmpty(this._messages);
         }
 
         /// <summary>
@@ -212,7 +214,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if RecognizedBotMember property is set
         internal bool IsSetRecognizedBotMember()
         {
-            return this._recognizedBotMember != null;
+            return !string.IsNullOrEmpty(this._recognizedBotMember);
         }
 
         /// <summary>
@@ -222,7 +224,7 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>requestAttributes</code> field is compressed with gzip and then base64 encoded.
+        /// The <c>requestAttributes</c> field is compressed with gzip and then base64 encoded.
         /// Before you can use the contents of the field, you must decode and decompress the contents.
         /// </para>
         /// </summary>
@@ -236,7 +238,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if RequestAttributes property is set
         internal bool IsSetRequestAttributes()
         {
-            return this._requestAttributes != null;
+            return !string.IsNullOrEmpty(this._requestAttributes);
         }
 
         /// <summary>
@@ -255,7 +257,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if SessionId property is set
         internal bool IsSetSessionId()
         {
-            return this._sessionId != null;
+            return !string.IsNullOrEmpty(this._sessionId);
         }
 
         /// <summary>
@@ -270,8 +272,8 @@ namespace Amazon.LexRuntimeV2.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>sessionState</code> field is compressed with gzip and then base64 encoded.
-        /// Before you can use the contents of the field, you must decode and decompress the contents.
+        /// The <c>sessionState</c> field is compressed with gzip and then base64 encoded. Before
+        /// you can use the contents of the field, you must decode and decompress the contents.
         /// See the example for a simple function to decode and decompress the contents.
         /// </para>
         /// </summary>
@@ -285,7 +287,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if SessionStateValue property is set
         internal bool IsSetSessionStateValue()
         {
-            return this._sessionStateValue != null;
+            return !string.IsNullOrEmpty(this._sessionStateValue);
         }
 
         #region Dispose Pattern
@@ -301,6 +303,9 @@ namespace Amazon.LexRuntimeV2.Model
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of all managed and unmanaged resources.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

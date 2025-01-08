@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -125,7 +126,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property DestinationPrefixListId. 
         /// <para>
-        ///  The prefix of the destination Amazon Web Service. 
+        ///  The prefix of the destination Amazon Web Services service. 
         /// </para>
         /// </summary>
         public string DestinationPrefixListId

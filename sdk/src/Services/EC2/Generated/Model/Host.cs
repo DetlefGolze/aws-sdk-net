@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -46,13 +47,13 @@ namespace Amazon.EC2.Model
         private HostProperties _hostProperties;
         private HostRecovery _hostRecovery;
         private string _hostReservationId;
-        private List<HostInstance> _instances = new List<HostInstance>();
+        private List<HostInstance> _instances = AWSConfigs.InitializeCollections ? new List<HostInstance>() : null;
         private bool? _memberOfServiceLinkedResourceGroup;
         private string _outpostArn;
         private string _ownerId;
         private DateTime? _releaseTime;
         private AllocationState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocationTime. 
@@ -76,9 +77,9 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property AllowsMultipleInstanceTypes. 
         /// <para>
         /// Indicates whether the Dedicated Host supports multiple instance types of the same
-        /// instance family. If the value is <code>on</code>, the Dedicated Host supports multiple
-        /// instance types in the instance family. If the value is <code>off</code>, the Dedicated
-        /// Host supports a single instance type only.
+        /// instance family. If the value is <c>on</c>, the Dedicated Host supports multiple instance
+        /// types in the instance family. If the value is <c>off</c>, the Dedicated Host supports
+        /// a single instance type only.
         /// </para>
         /// </summary>
         public AllowsMultipleInstanceTypes AllowsMultipleInstanceTypes
@@ -278,8 +279,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property HostReservationId. 
         /// <para>
-        /// The reservation ID of the Dedicated Host. This returns a <code>null</code> response
-        /// if the Dedicated Host doesn't have an associated reservation.
+        /// The reservation ID of the Dedicated Host. This returns a <c>null</c> response if the
+        /// Dedicated Host doesn't have an associated reservation.
         /// </para>
         /// </summary>
         public string HostReservationId
@@ -309,14 +310,14 @@ namespace Amazon.EC2.Model
         // Check to see if Instances property is set
         internal bool IsSetInstances()
         {
-            return this._instances != null && this._instances.Count > 0; 
+            return this._instances != null && (this._instances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MemberOfServiceLinkedResourceGroup. 
         /// <para>
         /// Indicates whether the Dedicated Host is in a host resource group. If <b>memberOfServiceLinkedResourceGroup</b>
-        /// is <code>true</code>, the host is in a host resource group; otherwise, it is not.
+        /// is <c>true</c>, the host is in a host resource group; otherwise, it is not.
         /// </para>
         /// </summary>
         public bool MemberOfServiceLinkedResourceGroup
@@ -419,7 +420,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

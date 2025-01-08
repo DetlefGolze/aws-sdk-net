@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
-    /// Represents the output of a <code>ListDeploymentConfigs</code> operation.
+    /// Represents the output of a <c>ListDeploymentConfigs</c> operation.
     /// </summary>
     public partial class ListDeploymentConfigsResponse : AmazonWebServiceResponse
     {
-        private List<string> _deploymentConfigsList = new List<string>();
+        private List<string> _deploymentConfigsList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property DeploymentConfigsList. 
         /// <para>
-        /// A list of deployment configurations, including built-in configurations such as <code>CodeDeployDefault.OneAtATime</code>.
+        /// A list of deployment configurations, including built-in configurations such as <c>CodeDeployDefault.OneAtATime</c>.
         /// </para>
         /// </summary>
         public List<string> DeploymentConfigsList
@@ -51,7 +52,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if DeploymentConfigsList property is set
         internal bool IsSetDeploymentConfigsList()
         {
-            return this._deploymentConfigsList != null && this._deploymentConfigsList.Count > 0; 
+            return this._deploymentConfigsList != null && (this._deploymentConfigsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

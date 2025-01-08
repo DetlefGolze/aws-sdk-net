@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
-        /// The group to be added or removed. The possible value is <code>all</code>.
+        /// The group to be added or removed. The possible value is <c>all</c>.
         /// </para>
         /// </summary>
         public PermissionGroup Group

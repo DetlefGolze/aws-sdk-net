@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -41,16 +42,16 @@ namespace Amazon.DataSync.Model
     /// </summary>
     public partial class ListLocationsRequest : AmazonDataSyncRequest
     {
-        private List<LocationFilter> _filters = new List<LocationFilter>();
+        private List<LocationFilter> _filters = AWSConfigs.InitializeCollections ? new List<LocationFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// You can use API filters to narrow down the list of resources returned by <code>ListLocations</code>.
-        /// For example, to retrieve all tasks on a specific source location, you can use <code>ListLocations</code>
-        /// with filter name <code>LocationType S3</code> and <code>Operator Equals</code>.
+        /// You can use API filters to narrow down the list of resources returned by <c>ListLocations</c>.
+        /// For example, to retrieve all tasks on a specific source location, you can use <c>ListLocations</c>
+        /// with filter name <c>LocationType S3</c> and <c>Operator Equals</c>.
         /// </para>
         /// </summary>
         public List<LocationFilter> Filters
@@ -62,7 +63,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

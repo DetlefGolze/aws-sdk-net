@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
@@ -144,7 +145,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         /// Gets and sets the property IsArray. 
         /// <para>
         /// Specifies whether to render the field as an array. This property is ignored if the
-        /// <code>dataSourceType</code> for the form is a Data Store.
+        /// <c>dataSourceType</c> for the form is a Data Store.
         /// </para>
         /// </summary>
         public bool IsArray

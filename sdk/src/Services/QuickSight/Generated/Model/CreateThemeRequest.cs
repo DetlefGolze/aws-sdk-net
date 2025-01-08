@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -45,8 +46,8 @@ namespace Amazon.QuickSight.Model
         private string _baseThemeId;
         private ThemeConfiguration _configuration;
         private string _name;
-        private List<ResourcePermission> _permissions = new List<ResourcePermission>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<ResourcePermission> _permissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _themeId;
         private string _versionDescription;
 
@@ -74,8 +75,7 @@ namespace Amazon.QuickSight.Model
         /// <para>
         /// The ID of the theme that a custom theme will inherit from. All themes inherit from
         /// one of the starting themes defined by Amazon QuickSight. For a list of the starting
-        /// themes, use <code>ListThemes</code> or choose <b>Themes</b> from within an analysis.
-        /// 
+        /// themes, use <c>ListThemes</c> or choose <b>Themes</b> from within an analysis. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -145,7 +145,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -191,9 +191,9 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property VersionDescription. 
         /// <para>
-        /// A description of the first version of the theme that you're creating. Every time <code>UpdateTheme</code>
+        /// A description of the first version of the theme that you're creating. Every time <c>UpdateTheme</c>
         /// is called, a new version is created. Each version of the theme has a description of
-        /// the version in the <code>VersionDescription</code> field.
+        /// the version in the <c>VersionDescription</c> field.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]

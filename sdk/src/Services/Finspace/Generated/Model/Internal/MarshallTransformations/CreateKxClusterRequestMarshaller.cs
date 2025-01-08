@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Finspace.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAutoScalingConfiguration())
@@ -219,6 +221,17 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetScalingGroupConfiguration())
+                {
+                    context.Writer.WritePropertyName("scalingGroupConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = KxScalingGroupConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ScalingGroupConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetTags())
                 {
                     context.Writer.WritePropertyName("tags");
@@ -230,6 +243,17 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
 
                             context.Writer.Write(publicRequestTagsValue);
                     }
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetTickerplantLogConfiguration())
+                {
+                    context.Writer.WritePropertyName("tickerplantLogConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = TickerplantLogConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.TickerplantLogConfiguration, context);
+
                     context.Writer.WriteObjectEnd();
                 }
 

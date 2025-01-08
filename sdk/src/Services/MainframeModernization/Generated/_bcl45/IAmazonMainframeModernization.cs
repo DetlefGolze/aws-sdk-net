@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.MainframeModernization.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.MainframeModernization
 {
     /// <summary>
-    /// Interface for accessing MainframeModernization
+    /// <para>Interface for accessing MainframeModernization</para>
     ///
     /// Amazon Web Services Mainframe Modernization provides tools and resources to help you
     /// plan and implement migration and modernization from mainframes to Amazon Web Services
@@ -757,11 +758,20 @@ namespace Amazon.MainframeModernization
         /// <exception cref="Amazon.MainframeModernization.Model.AccessDeniedException">
         /// The account or role doesn't have the right permissions to make the request.
         /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ConflictException">
+        /// The parameters provided in the request conflict with existing resources.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ExecutionTimeoutException">
+        /// Failed to connect to server, or didn’t receive response within expected time period.
+        /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.InternalServerException">
         /// An unexpected error occurred during the processing of the request.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ResourceNotFoundException">
         /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ServiceUnavailableException">
+        /// Server cannot process the request at the moment.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ThrottlingException">
         /// The number of requests made exceeds the limit.
@@ -786,11 +796,20 @@ namespace Amazon.MainframeModernization
         /// <exception cref="Amazon.MainframeModernization.Model.AccessDeniedException">
         /// The account or role doesn't have the right permissions to make the request.
         /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ConflictException">
+        /// The parameters provided in the request conflict with existing resources.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ExecutionTimeoutException">
+        /// Failed to connect to server, or didn’t receive response within expected time period.
+        /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.InternalServerException">
         /// An unexpected error occurred during the processing of the request.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ResourceNotFoundException">
         /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ServiceUnavailableException">
+        /// Server cannot process the request at the moment.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ThrottlingException">
         /// The number of requests made exceeds the limit.
@@ -1259,6 +1278,72 @@ namespace Amazon.MainframeModernization
 
         #endregion
         
+        #region  ListBatchJobRestartPoints
+
+
+        /// <summary>
+        /// Lists all the job steps for a JCL file to restart a batch job. This is only applicable
+        /// for Micro Focus engine with versions 8.0.6 and above.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListBatchJobRestartPoints service method.</param>
+        /// 
+        /// <returns>The response from the ListBatchJobRestartPoints service method, as returned by MainframeModernization.</returns>
+        /// <exception cref="Amazon.MainframeModernization.Model.AccessDeniedException">
+        /// The account or role doesn't have the right permissions to make the request.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ConflictException">
+        /// The parameters provided in the request conflict with existing resources.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.InternalServerException">
+        /// An unexpected error occurred during the processing of the request.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ThrottlingException">
+        /// The number of requests made exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ValidationException">
+        /// One or more parameters provided in the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobRestartPoints">REST API Reference for ListBatchJobRestartPoints Operation</seealso>
+        ListBatchJobRestartPointsResponse ListBatchJobRestartPoints(ListBatchJobRestartPointsRequest request);
+
+
+
+        /// <summary>
+        /// Lists all the job steps for a JCL file to restart a batch job. This is only applicable
+        /// for Micro Focus engine with versions 8.0.6 and above.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListBatchJobRestartPoints service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListBatchJobRestartPoints service method, as returned by MainframeModernization.</returns>
+        /// <exception cref="Amazon.MainframeModernization.Model.AccessDeniedException">
+        /// The account or role doesn't have the right permissions to make the request.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ConflictException">
+        /// The parameters provided in the request conflict with existing resources.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.InternalServerException">
+        /// An unexpected error occurred during the processing of the request.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ResourceNotFoundException">
+        /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ThrottlingException">
+        /// The number of requests made exceeds the limit.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ValidationException">
+        /// One or more parameters provided in the request is not valid.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/m2-2021-04-28/ListBatchJobRestartPoints">REST API Reference for ListBatchJobRestartPoints Operation</seealso>
+        Task<ListBatchJobRestartPointsResponse> ListBatchJobRestartPointsAsync(ListBatchJobRestartPointsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  ListDataSetImportHistory
 
 
@@ -1332,11 +1417,20 @@ namespace Amazon.MainframeModernization
         /// <exception cref="Amazon.MainframeModernization.Model.AccessDeniedException">
         /// The account or role doesn't have the right permissions to make the request.
         /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ConflictException">
+        /// The parameters provided in the request conflict with existing resources.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ExecutionTimeoutException">
+        /// Failed to connect to server, or didn’t receive response within expected time period.
+        /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.InternalServerException">
         /// An unexpected error occurred during the processing of the request.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ResourceNotFoundException">
         /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ServiceUnavailableException">
+        /// Server cannot process the request at the moment.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ThrottlingException">
         /// The number of requests made exceeds the limit.
@@ -1364,11 +1458,20 @@ namespace Amazon.MainframeModernization
         /// <exception cref="Amazon.MainframeModernization.Model.AccessDeniedException">
         /// The account or role doesn't have the right permissions to make the request.
         /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ConflictException">
+        /// The parameters provided in the request conflict with existing resources.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ExecutionTimeoutException">
+        /// Failed to connect to server, or didn’t receive response within expected time period.
+        /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.InternalServerException">
         /// An unexpected error occurred during the processing of the request.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ResourceNotFoundException">
         /// The specified resource was not found.
+        /// </exception>
+        /// <exception cref="Amazon.MainframeModernization.Model.ServiceUnavailableException">
+        /// Server cannot process the request at the moment.
         /// </exception>
         /// <exception cref="Amazon.MainframeModernization.Model.ThrottlingException">
         /// The number of requests made exceeds the limit.

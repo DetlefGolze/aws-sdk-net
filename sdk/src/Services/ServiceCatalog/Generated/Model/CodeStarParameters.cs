@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
-    /// The subtype containing details about the Codestar connection <code>Type</code>.
+    /// The subtype containing details about the Codestar connection <c>Type</c>.
     /// </summary>
     public partial class CodeStarParameters
     {

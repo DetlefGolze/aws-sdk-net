@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ScatterPlotConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetDataLabels())
             {
                 context.Writer.WritePropertyName("DataLabels");
@@ -67,6 +70,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetInteractions())
+            {
+                context.Writer.WritePropertyName("Interactions");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = VisualInteractionOptionsMarshaller.Instance;
+                marshaller.Marshall(requestObject.Interactions, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetLegend())
             {
                 context.Writer.WritePropertyName("Legend");
@@ -74,6 +88,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = LegendOptionsMarshaller.Instance;
                 marshaller.Marshall(requestObject.Legend, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetSortConfiguration())
+            {
+                context.Writer.WritePropertyName("SortConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ScatterPlotSortConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.SortConfiguration, context);
 
                 context.Writer.WriteObjectEnd();
             }

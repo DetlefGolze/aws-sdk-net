@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Finspace.Model
 {
     /// <summary>
@@ -45,6 +46,7 @@ namespace Amazon.Finspace.Model
         private string _releaseLabel;
         private KxClusterStatus _status;
         private string _statusReason;
+        private List<Volume> _volumes = AWSConfigs.InitializeCollections ? new List<Volume>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZoneId. 
@@ -52,6 +54,7 @@ namespace Amazon.Finspace.Model
         ///  The availability zone identifiers for the requested regions. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=8, Max=12)]
         public string AvailabilityZoneId
         {
             get { return this._availabilityZoneId; }
@@ -71,11 +74,11 @@ namespace Amazon.Finspace.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SINGLE</code> – Assigns one availability zone per cluster.
+        ///  <c>SINGLE</c> – Assigns one availability zone per cluster.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MULTI</code> – Assigns all the availability zones per cluster.
+        ///  <c>MULTI</c> – Assigns all the availability zones per cluster.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -146,13 +149,28 @@ namespace Amazon.Finspace.Model
         /// plant and stores it in memory until the end of day, after which it writes all of its
         /// data to a disk and reloads the HDB. This cluster type requires local storage for temporary
         /// storage of data during the savedown process. If you specify this field in your request,
-        /// you must provide the <code>savedownStorageConfiguration</code> parameter.
+        /// you must provide the <c>savedownStorageConfiguration</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// GATEWAY – A gateway cluster allows you to access data across processes in kdb systems.
         /// It allows you to create your own routing logic using the initialization scripts and
         /// custom code. This type of cluster does not require a writable local storage.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// GP – A general purpose cluster allows you to quickly iterate on code during development
+        /// by granting greater access to system commands and enabling a fast reload of custom
+        /// code. This cluster type can optionally mount databases including cache and savedown
+        /// storage. For this cluster type, the node count is fixed at 1. It does not support
+        /// autoscaling and supports only <c>SINGLE</c> AZ mode.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Tickerplant – A tickerplant cluster allows you to subscribe to feed handlers based
+        /// on IAM permissions. It can publish to RDBs, other Tickerplants, and real-time subscribers
+        /// (RTS). Tickerplants can persist messages to log, which is readable by any RDB environment.
+        /// It supports only single-node that is only one kdb process.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -213,7 +231,7 @@ namespace Amazon.Finspace.Model
         /// <para>
         /// Specifies a Q program that will be run at launch of a cluster. It is a relative path
         /// within <i>.zip</i> file that contains the custom code, which will be loaded on the
-        /// cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.
+        /// cluster. It must include the file name itself. For example, <c>somedir/init.q</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -336,6 +354,25 @@ namespace Amazon.Finspace.Model
         internal bool IsSetStatusReason()
         {
             return this._statusReason != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Volumes. 
+        /// <para>
+        ///  A list of volumes attached to the cluster. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=5)]
+        public List<Volume> Volumes
+        {
+            get { return this._volumes; }
+            set { this._volumes = value; }
+        }
+
+        // Check to see if Volumes property is set
+        internal bool IsSetVolumes()
+        {
+            return this._volumes != null && (this._volumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

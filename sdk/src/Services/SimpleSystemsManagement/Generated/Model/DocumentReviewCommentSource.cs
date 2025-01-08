@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of information added to a review request. Currently, only the value <code>Comment</code>
+        /// The type of information added to a review request. Currently, only the value <c>Comment</c>
         /// is supported.
         /// </para>
         /// </summary>

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the ListAssignmentsForHIT operation.
-    /// The <code>ListAssignmentsForHIT</code> operation retrieves completed assignments
-    /// for a HIT. You can use this operation to retrieve the results for a HIT. 
+    /// The <c>ListAssignmentsForHIT</c> operation retrieves completed assignments for a
+    /// HIT. You can use this operation to retrieve the results for a HIT. 
     /// 
     ///  
     /// <para>
@@ -62,7 +63,7 @@ namespace Amazon.MTurk.Model
     /// </summary>
     public partial class ListAssignmentsForHITRequest : AmazonMTurkRequest
     {
-        private List<string> _assignmentStatuses = new List<string>();
+        private List<string> _assignmentStatuses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _hitId;
         private int? _maxResults;
         private string _nextToken;
@@ -82,7 +83,7 @@ namespace Amazon.MTurk.Model
         // Check to see if AssignmentStatuses property is set
         internal bool IsSetAssignmentStatuses()
         {
-            return this._assignmentStatuses != null && this._assignmentStatuses.Count > 0; 
+            return this._assignmentStatuses != null && (this._assignmentStatuses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

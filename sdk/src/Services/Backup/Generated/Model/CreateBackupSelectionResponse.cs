@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupPlanId. 
         /// <para>
-        /// Uniquely identifies a backup plan.
+        /// The ID of the backup plan.
         /// </para>
         /// </summary>
         public string BackupPlanId
@@ -59,9 +60,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationDate. 
         /// <para>
         /// The date and time a backup selection is created, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CreationDate</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CreationDate

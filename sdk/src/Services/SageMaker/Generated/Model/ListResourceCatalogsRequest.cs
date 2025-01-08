@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the ListResourceCatalogs operation.
     /// Lists Amazon SageMaker Catalogs based on given filters and orders. The maximum number
-    /// of <code>ResourceCatalog</code>s viewable is 1000.
+    /// of <c>ResourceCatalog</c>s viewable is 1000.
     /// </summary>
     public partial class ListResourceCatalogsRequest : AmazonSageMakerRequest
     {
@@ -46,7 +47,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property CreationTimeAfter. 
         /// <para>
-        ///  Use this parameter to search for <code>ResourceCatalog</code>s created after a specific
+        ///  Use this parameter to search for <c>ResourceCatalog</c>s created after a specific
         /// date and time. 
         /// </para>
         /// </summary>
@@ -65,7 +66,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property CreationTimeBefore. 
         /// <para>
-        ///  Use this parameter to search for <code>ResourceCatalog</code>s created before a specific
+        ///  Use this parameter to search for <c>ResourceCatalog</c>s created before a specific
         /// date and time. 
         /// </para>
         /// </summary>
@@ -84,7 +85,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        ///  The maximum number of results returned by <code>ListResourceCatalogs</code>. 
+        ///  The maximum number of results returned by <c>ListResourceCatalogs</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -103,8 +104,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NameContains. 
         /// <para>
-        ///  A string that partially matches one or more <code>ResourceCatalog</code>s names.
-        /// Filters <code>ResourceCatalog</code> by name. 
+        ///  A string that partially matches one or more <c>ResourceCatalog</c>s names. Filters
+        /// <c>ResourceCatalog</c> by name. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -123,7 +124,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A token to resume pagination of <code>ListResourceCatalogs</code> results. 
+        ///  A token to resume pagination of <c>ListResourceCatalogs</c> results. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]

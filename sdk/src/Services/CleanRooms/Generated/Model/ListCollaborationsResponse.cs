@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.CleanRooms.Model
     /// </summary>
     public partial class ListCollaborationsResponse : AmazonWebServiceResponse
     {
-        private List<CollaborationSummary> _collaborationList = new List<CollaborationSummary>();
+        private List<CollaborationSummary> _collaborationList = AWSConfigs.InitializeCollections ? new List<CollaborationSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,13 +53,13 @@ namespace Amazon.CleanRooms.Model
         // Check to see if CollaborationList property is set
         internal bool IsSetCollaborationList()
         {
-            return this._collaborationList != null && this._collaborationList.Count > 0; 
+            return this._collaborationList != null && (this._collaborationList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token value retrieved from a previous call to access the next page of results.
+        /// The pagination token that's used to fetch the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10240)]

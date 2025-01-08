@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property DestinationBackupVaultArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies the destination backup vault
-        /// for the copied backup. For example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// for the copied backup. For example, <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

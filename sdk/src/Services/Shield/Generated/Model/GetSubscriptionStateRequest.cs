@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
     /// Container for the parameters to the GetSubscriptionState operation.
-    /// Returns the <code>SubscriptionState</code>, either <code>Active</code> or <code>Inactive</code>.
+    /// Returns the <c>SubscriptionState</c>, either <c>Active</c> or <c>Inactive</c>.
     /// </summary>
     public partial class GetSubscriptionStateRequest : AmazonShieldRequest
     {

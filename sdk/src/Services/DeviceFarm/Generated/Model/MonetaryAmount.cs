@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -57,7 +58,7 @@ namespace Amazon.DeviceFarm.Model
         /// <summary>
         /// Gets and sets the property CurrencyCode. 
         /// <para>
-        /// The currency code of a monetary amount. For example, <code>USD</code> means U.S. dollars.
+        /// The currency code of a monetary amount. For example, <c>USD</c> means U.S. dollars.
         /// </para>
         /// </summary>
         public CurrencyCode CurrencyCode

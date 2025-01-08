@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkMailMessageFlow.Model
 {
     /// <summary>
@@ -40,10 +41,10 @@ namespace Amazon.WorkMailMessageFlow.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// Updates to an in-transit message only appear when you call <code>PutRawMessageContent</code>
+    /// Updates to an in-transit message only appear when you call <c>PutRawMessageContent</c>
     /// from an AWS Lambda function configured with a synchronous <a href="https://docs.aws.amazon.com/workmail/latest/adminguide/lambda.html#synchronous-rules">
-    /// Run Lambda</a> rule. If you call <code>PutRawMessageContent</code> on a delivered
-    /// or sent message, the message remains unchanged, even though <a href="https://docs.aws.amazon.com/workmail/latest/APIReference/API_messageflow_GetRawMessageContent.html">GetRawMessageContent</a>
+    /// Run Lambda</a> rule. If you call <c>PutRawMessageContent</c> on a delivered or sent
+    /// message, the message remains unchanged, even though <a href="https://docs.aws.amazon.com/workmail/latest/APIReference/API_messageflow_GetRawMessageContent.html">GetRawMessageContent</a>
     /// returns an updated message. 
     /// </para>
     ///  </note>

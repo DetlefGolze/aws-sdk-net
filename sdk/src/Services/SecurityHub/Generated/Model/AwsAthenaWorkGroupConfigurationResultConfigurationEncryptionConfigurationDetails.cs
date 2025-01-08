@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property KmsKey. 
         /// <para>
-        ///  For <code>SSE_KMS</code> and <code>CSE_KMS</code>, this is the KMS key Amazon Resource
-        /// Name (ARN) or ID. 
+        ///  For <c>SSE_KMS</c> and <c>CSE_KMS</c>, this is the KMS key Amazon Resource Name (ARN)
+        /// or ID. 
         /// </para>
         /// </summary>
         public string KmsKey

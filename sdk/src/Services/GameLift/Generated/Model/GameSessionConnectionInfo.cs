@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.GameLift.Model
         private string _dnsName;
         private string _gameSessionArn;
         private string _ipAddress;
-        private List<MatchedPlayerSession> _matchedPlayerSessions = new List<MatchedPlayerSession>();
+        private List<MatchedPlayerSession> _matchedPlayerSessions = AWSConfigs.InitializeCollections ? new List<MatchedPlayerSession>() : null;
         private int? _port;
 
         /// <summary>
@@ -50,11 +51,11 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// TLS-enabled fleets: <code>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</code>.
+        /// TLS-enabled fleets: <c>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Non-TLS-enabled fleets: <code>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</code>.
+        /// Non-TLS-enabled fleets: <c>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</c>.
         /// (See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-public-addresses">Amazon
         /// EC2 Instance IP Addressing</a>.)
         /// </para>
@@ -82,7 +83,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the game session. Use the game session ID.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=1, Max=512)]
         public string GameSessionArn
         {
             get { return this._gameSessionArn; }
@@ -102,7 +103,7 @@ namespace Amazon.GameLift.Model
         /// app needs both the IP address and port number.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string IpAddress
         {
             get { return this._ipAddress; }
@@ -131,7 +132,7 @@ namespace Amazon.GameLift.Model
         // Check to see if MatchedPlayerSessions property is set
         internal bool IsSetMatchedPlayerSessions()
         {
-            return this._matchedPlayerSessions != null && this._matchedPlayerSessions.Count > 0; 
+            return this._matchedPlayerSessions != null && (this._matchedPlayerSessions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

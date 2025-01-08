@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the memorydb-2021-01-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -44,6 +45,11 @@ namespace Amazon.MemoryDB.Model
         /// Paginator for DescribeEvents operation
         ///</summary>
         IDescribeEventsPaginator DescribeEvents(DescribeEventsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeMultiRegionClusters operation
+        ///</summary>
+        IDescribeMultiRegionClustersPaginator DescribeMultiRegionClusters(DescribeMultiRegionClustersRequest request);
 
         /// <summary>
         /// Paginator for DescribeParameterGroups operation

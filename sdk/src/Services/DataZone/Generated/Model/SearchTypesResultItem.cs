@@ -26,20 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
-    /// The details of the results of the <code>SearchTypes</code> action.
+    /// The details of the results of the <c>SearchTypes</c> action.
     /// </summary>
     public partial class SearchTypesResultItem
     {
         private AssetTypeItem _assetTypeItem;
         private FormTypeData _formTypeItem;
+        private LineageNodeTypeItem _lineageNodeTypeItem;
 
         /// <summary>
         /// Gets and sets the property AssetTypeItem. 
         /// <para>
-        /// The asset type included in the results of the <code>SearchTypes</code> action.
+        /// The asset type included in the results of the <c>SearchTypes</c> action.
         /// </para>
         /// </summary>
         public AssetTypeItem AssetTypeItem
@@ -57,7 +59,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property FormTypeItem. 
         /// <para>
-        /// The form type included in the results of the <code>SearchTypes</code> action.
+        /// The form type included in the results of the <c>SearchTypes</c> action.
         /// </para>
         /// </summary>
         public FormTypeData FormTypeItem
@@ -70,6 +72,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetFormTypeItem()
         {
             return this._formTypeItem != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LineageNodeTypeItem. 
+        /// <para>
+        /// The details of a data lineage node type.
+        /// </para>
+        /// </summary>
+        public LineageNodeTypeItem LineageNodeTypeItem
+        {
+            get { return this._lineageNodeTypeItem; }
+            set { this._lineageNodeTypeItem = value; }
+        }
+
+        // Check to see if LineageNodeTypeItem property is set
+        internal bool IsSetLineageNodeTypeItem()
+        {
+            return this._lineageNodeTypeItem != null;
         }
 
     }

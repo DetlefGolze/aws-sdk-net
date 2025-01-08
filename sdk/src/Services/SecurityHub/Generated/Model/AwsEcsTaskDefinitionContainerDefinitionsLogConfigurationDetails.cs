@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails
     {
         private string _logDriver;
-        private Dictionary<string, string> _options = new Dictionary<string, string>();
-        private List<AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails> _secretOptions = new List<AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails>();
+        private Dictionary<string, string> _options = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails> _secretOptions = AWSConfigs.InitializeCollections ? new List<AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails>() : null;
 
         /// <summary>
         /// Gets and sets the property LogDriver. 
@@ -48,15 +49,15 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>awsfirelens</code> 
+        ///  <c>awsfirelens</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>awslogs</code> 
+        ///  <c>awslogs</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>splunk</code> 
+        ///  <c>splunk</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -64,39 +65,39 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>awsfirelens</code> 
+        ///  <c>awsfirelens</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>awslogs</code> 
+        ///  <c>awslogs</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>fluentd</code> 
+        ///  <c>fluentd</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>gelf</code> 
+        ///  <c>gelf</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>journald</code> 
+        ///  <c>journald</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>json-file</code> 
+        ///  <c>json-file</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>logentries</code> 
+        ///  <c>logentries</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>splunk</code> 
+        ///  <c>splunk</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>syslog</code> 
+        ///  <c>syslog</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -128,7 +129,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Options property is set
         internal bool IsSetOptions()
         {
-            return this._options != null && this._options.Count > 0; 
+            return this._options != null && (this._options.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -146,7 +147,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SecretOptions property is set
         internal bool IsSetSecretOptions()
         {
-            return this._secretOptions != null && this._secretOptions.Count > 0; 
+            return this._secretOptions != null && (this._secretOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

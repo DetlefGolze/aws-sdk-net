@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</code>
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</c>
         /// 
         /// </para>
         /// </summary>
@@ -65,7 +66,8 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetModelId. 
         /// <para>
-        /// The ID of the asset model. You can use this ID when you call other IoT SiteWise APIs.
+        /// The ID of the asset model, in UUID format. You can use this ID when you call other
+        /// IoT SiteWise API operations.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]
@@ -84,8 +86,8 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetModelStatus. 
         /// <para>
-        /// The status of the asset model, which contains a state (<code>CREATING</code> after
-        /// successfully calling this operation) and any error message.
+        /// The status of the asset model, which contains a state (<c>CREATING</c> after successfully
+        /// calling this operation) and any error message.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

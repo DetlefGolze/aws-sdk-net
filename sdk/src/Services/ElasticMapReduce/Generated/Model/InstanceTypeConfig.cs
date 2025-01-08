@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -48,18 +49,19 @@ namespace Amazon.ElasticMapReduce.Model
     {
         private string _bidPrice;
         private double? _bidPriceAsPercentageOfOnDemandPrice;
-        private List<Configuration> _configurations = new List<Configuration>();
+        private List<Configuration> _configurations = AWSConfigs.InitializeCollections ? new List<Configuration>() : null;
         private string _customAmiId;
         private EbsConfiguration _ebsConfiguration;
         private string _instanceType;
+        private double? _priority;
         private int? _weightedCapacity;
 
         /// <summary>
         /// Gets and sets the property BidPrice. 
         /// <para>
-        /// The bid price for each Amazon EC2 Spot Instance type as defined by <code>InstanceType</code>.
-        /// Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code>
-        /// is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%. 
+        /// The bid price for each Amazon EC2 Spot Instance type as defined by <c>InstanceType</c>.
+        /// Expressed in USD. If neither <c>BidPrice</c> nor <c>BidPriceAsPercentageOfOnDemandPrice</c>
+        /// is provided, <c>BidPriceAsPercentageOfOnDemandPrice</c> defaults to 100%. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -79,9 +81,9 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property BidPriceAsPercentageOfOnDemandPrice. 
         /// <para>
         /// The bid price, as a percentage of On-Demand price, for each Amazon EC2 Spot Instance
-        /// as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies
-        /// 20%). If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code>
-        /// is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.
+        /// as defined by <c>InstanceType</c>. Expressed as a number (for example, 20 specifies
+        /// 20%). If neither <c>BidPrice</c> nor <c>BidPriceAsPercentageOfOnDemandPrice</c> is
+        /// provided, <c>BidPriceAsPercentageOfOnDemandPrice</c> defaults to 100%.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -113,7 +115,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,7 +141,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property EbsConfiguration. 
         /// <para>
         /// The configuration of Amazon Elastic Block Store (Amazon EBS) attached to each instance
-        /// as defined by <code>InstanceType</code>. 
+        /// as defined by <c>InstanceType</c>. 
         /// </para>
         /// </summary>
         public EbsConfiguration EbsConfiguration
@@ -157,7 +159,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// An Amazon EC2 instance type, such as <code>m3.xlarge</code>. 
+        /// An Amazon EC2 instance type, such as <c>m3.xlarge</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
@@ -171,6 +173,27 @@ namespace Amazon.ElasticMapReduce.Model
         internal bool IsSetInstanceType()
         {
             return this._instanceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Priority. 
+        /// <para>
+        /// The priority at which Amazon EMR launches the Amazon EC2 instances with this instance
+        /// type. Priority starts at 0, which is the highest priority. Amazon EMR considers the
+        /// highest priority first.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public double Priority
+        {
+            get { return this._priority.GetValueOrDefault(); }
+            set { this._priority = value; }
+        }
+
+        // Check to see if Priority property is set
+        internal bool IsSetPriority()
+        {
+            return this._priority.HasValue; 
         }
 
         /// <summary>

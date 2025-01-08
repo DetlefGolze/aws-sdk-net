@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -45,12 +46,18 @@ namespace Amazon.Lambda.Model
     /// </para>
     ///  
     /// <para>
-    /// To send an invocation record to a queue, topic, function, or event bus, specify a
-    /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</a>.
+    /// To send an invocation record to a queue, topic, S3 bucket, function, or event bus,
+    /// specify a <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</a>.
     /// You can configure separate destinations for successful invocations (on-success) and
     /// events that fail all processing attempts (on-failure). You can configure destinations
     /// in addition to or instead of a dead-letter queue.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// S3 buckets are supported only for on-failure destinations. To retain records of successful
+    /// invocations, use another destination type.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class PutFunctionEventInvokeConfigRequest : AmazonLambdaRequest
     {
@@ -79,13 +86,22 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
+        ///  <b>Bucket</b> - The ARN of an Amazon S3 bucket.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         ///  <b>Topic</b> - The ARN of a standard SNS topic.
         /// </para>
         ///  </li> <li> 
         /// <para>
         ///  <b>Event Bus</b> - The ARN of an Amazon EventBridge event bus.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// S3 buckets are supported only for on-failure destinations. To retain records of successful
+        /// invocations, use another destination type.
+        /// </para>
+        ///  </note>
         /// </summary>
         public DestinationConfig DestinationConfig
         {
@@ -102,7 +118,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function, version, or alias.
+        /// The name or ARN of the Lambda function, version, or alias.
         /// </para>
         ///  
         /// <para>
@@ -110,16 +126,16 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> - <code>my-function</code> (name-only), <code>my-function:v1</code>
-        /// (with alias).
+        ///  <b>Function name</b> - <c>my-function</c> (name-only), <c>my-function:v1</c> (with
+        /// alias).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
+        ///  <b>Function ARN</b> - <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
+        ///  <b>Partial ARN</b> - <c>123456789012:function:my-function</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>

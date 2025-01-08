@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property FilterGeometry. 
         /// <para>
-        /// The geomerty used to filter device positions.
+        /// The geometry used to filter device positions.
         /// </para>
         /// </summary>
         public TrackingFilterGeometry FilterGeometry
@@ -64,7 +65,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>100</code> 
+        /// Default value: <c>100</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -88,7 +89,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>null</code> 
+        /// Default value: <c>null</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,7 +56,6 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         public IRequest Marshall(RestoreAnalysisRequest publicRequest)
         {
             IRequest request = new DefaultRequest(publicRequest, "Amazon.QuickSight");
-            request.Headers["Content-Type"] = "application/json";
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2018-04-01";
             request.HttpMethod = "POST";
 
@@ -65,7 +65,11 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetAwsAccountId())
                 throw new AmazonQuickSightException("Request object does not have required field AwsAccountId set");
             request.AddPathResource("{AwsAccountId}", StringUtils.FromString(publicRequest.AwsAccountId));
+            
+            if (publicRequest.IsSetRestoreToFolders())
+                request.Parameters.Add("restore-to-folders", StringUtils.FromBool(publicRequest.RestoreToFolders));
             request.ResourcePath = "/accounts/{AwsAccountId}/restore/analyses/{AnalysisId}";
+            request.UseQueryString = true;
 
             return request;
         }

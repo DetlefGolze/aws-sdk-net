@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// A response to a <code>PollForThirdPartyJobs</code> request returned by CodePipeline
-    /// when there is a job to be worked on by a partner action.
+    /// A response to a <c>PollForThirdPartyJobs</c> request returned by CodePipeline when
+    /// there is a job to be worked on by a partner action.
     /// </summary>
     public partial class ThirdPartyJob
     {
@@ -40,8 +41,8 @@ namespace Amazon.CodePipeline.Model
         /// <summary>
         /// Gets and sets the property ClientId. 
         /// <para>
-        /// The <code>clientToken</code> portion of the <code>clientId</code> and <code>clientToken</code>
-        /// pair used to verify that the calling entity is allowed access to the job and its details.
+        /// The <c>clientToken</c> portion of the <c>clientId</c> and <c>clientToken</c> pair
+        /// used to verify that the calling entity is allowed access to the job and its details.
         /// </para>
         /// </summary>
         public string ClientId

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -75,34 +76,39 @@ namespace Amazon.Lambda.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// The following error handling options are available only for stream sources (DynamoDB
-    /// and Kinesis):
+    /// The following error handling options are available only for DynamoDB and Kinesis event
+    /// sources:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>BisectBatchOnFunctionError</code> – If the function returns an error, split
-    /// the batch in two and retry.
+    ///  <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch
+    /// in two and retry.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>DestinationConfig</code> – Send discarded records to an Amazon SQS queue or
-    /// Amazon SNS topic.
+    ///  <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age.
+    /// The default value is infinite (-1). When set to infinite (-1), failed records are
+    /// retried until the record expires
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>MaximumRecordAgeInSeconds</code> – Discard records older than the specified
-    /// age. The default value is infinite (-1). When set to infinite (-1), failed records
-    /// are retried until the record expires
+    ///  <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries.
+    /// The default value is infinite (-1). When set to infinite (-1), failed records are
+    /// retried until the record expires.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>MaximumRetryAttempts</code> – Discard records after the specified number of
-    /// retries. The default value is infinite (-1). When set to infinite (-1), failed records
-    /// are retried until the record expires.
+    ///  <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
     /// </para>
-    ///  </li> <li> 
+    ///  </li> </ul> 
     /// <para>
-    ///  <code>ParallelizationFactor</code> – Process multiple batches from each shard concurrently.
+    /// For stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka),
+    /// the following option is also available:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <c>DestinationConfig</c> – Send discarded records to an Amazon SQS queue, Amazon
+    /// SNS topic, or Amazon S3 bucket.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -157,19 +163,23 @@ namespace Amazon.Lambda.Model
         private string _eventSourceArn;
         private FilterCriteria _filterCriteria;
         private string _functionName;
-        private List<string> _functionResponseTypes = new List<string>();
+        private List<string> _functionResponseTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private string _kmsKeyArn;
         private int? _maximumBatchingWindowInSeconds;
         private int? _maximumRecordAgeInSeconds;
         private int? _maximumRetryAttempts;
+        private EventSourceMappingMetricsConfig _metricsConfig;
         private int? _parallelizationFactor;
-        private List<string> _queues = new List<string>();
+        private ProvisionedPollerConfig _provisionedPollerConfig;
+        private List<string> _queues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ScalingConfig _scalingConfig;
         private SelfManagedEventSource _selfManagedEventSource;
         private SelfManagedKafkaEventSourceConfig _selfManagedKafkaEventSourceConfig;
-        private List<SourceAccessConfiguration> _sourceAccessConfigurations = new List<SourceAccessConfiguration>();
+        private List<SourceAccessConfiguration> _sourceAccessConfigurations = AWSConfigs.InitializeCollections ? new List<SourceAccessConfiguration>() : null;
         private EventSourcePosition _startingPosition;
         private DateTime? _startingPositionTimestamp;
-        private List<string> _topics = new List<string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _topics = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _tumblingWindowInSeconds;
 
         /// <summary>
@@ -265,8 +275,8 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property DestinationConfig. 
         /// <para>
-        /// (Kinesis and DynamoDB Streams only) A standard Amazon SQS queue or standard Amazon
-        /// SNS topic destination for discarded records.
+        /// (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Kafka only) A configuration
+        /// object that specifies the destination of an event after Lambda processes it.
         /// </para>
         /// </summary>
         public DestinationConfig DestinationConfig
@@ -341,7 +351,9 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Amazon Managed Streaming for Apache Kafka</b> – The ARN of the cluster.
+        ///  <b>Amazon Managed Streaming for Apache Kafka</b> – The ARN of the cluster or the
+        /// ARN of the VPC connection (for <a href="https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#msk-multi-vpc">cross-account
+        /// event source mappings</a>).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -388,7 +400,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function.
+        /// The name or ARN of the Lambda function.
         /// </para>
         ///  
         /// <para>
@@ -396,19 +408,19 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> – <code>MyFunction</code>.
+        ///  <b>Function name</b> – <c>MyFunction</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.
+        ///  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Version or Alias ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</code>.
+        ///  <b>Version or Alias ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> – <code>123456789012:function:MyFunction</code>.
+        ///  <b>Partial ARN</b> – <c>123456789012:function:MyFunction</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -446,29 +458,50 @@ namespace Amazon.Lambda.Model
         // Check to see if FunctionResponseTypes property is set
         internal bool IsSetFunctionResponseTypes()
         {
-            return this._functionResponseTypes != null && this._functionResponseTypes.Count > 0; 
+            return this._functionResponseTypes != null && (this._functionResponseTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property KMSKeyArn. 
+        /// <para>
+        ///  The ARN of the Key Management Service (KMS) customer managed key that Lambda uses
+        /// to encrypt your function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-basics">filter
+        /// criteria</a>. By default, Lambda does not encrypt your filter criteria object. Specify
+        /// this property to encrypt data using your own customer managed key. 
+        /// </para>
+        /// </summary>
+        public string KMSKeyArn
+        {
+            get { return this._kmsKeyArn; }
+            set { this._kmsKeyArn = value; }
+        }
+
+        // Check to see if KMSKeyArn property is set
+        internal bool IsSetKMSKeyArn()
+        {
+            return this._kmsKeyArn != null;
         }
 
         /// <summary>
         /// Gets and sets the property MaximumBatchingWindowInSeconds. 
         /// <para>
         /// The maximum amount of time, in seconds, that Lambda spends gathering records before
-        /// invoking the function. You can configure <code>MaximumBatchingWindowInSeconds</code>
-        /// to any value from 0 seconds to 300 seconds in increments of seconds.
+        /// invoking the function. You can configure <c>MaximumBatchingWindowInSeconds</c> to
+        /// any value from 0 seconds to 300 seconds in increments of seconds.
         /// </para>
         ///  
         /// <para>
-        /// For streams and Amazon SQS event sources, the default batching window is 0 seconds.
-        /// For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources,
-        /// the default batching window is 500 ms. Note that because you can only change <code>MaximumBatchingWindowInSeconds</code>
-        /// in increments of seconds, you cannot revert back to the 500 ms default batching window
-        /// after you have changed it. To restore the default batching window, you must create
-        /// a new event source mapping.
+        /// For Kinesis, DynamoDB, and Amazon SQS event sources, the default batching window is
+        /// 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event
+        /// sources, the default batching window is 500 ms. Note that because you can only change
+        /// <c>MaximumBatchingWindowInSeconds</c> in increments of seconds, you cannot revert
+        /// back to the 500 ms default batching window after you have changed it. To restore the
+        /// default batching window, you must create a new event source mapping.
         /// </para>
         ///  
         /// <para>
-        /// Related setting: For streams and Amazon SQS event sources, when you set <code>BatchSize</code>
-        /// to a value greater than 10, you must set <code>MaximumBatchingWindowInSeconds</code>
+        /// Related setting: For Kinesis, DynamoDB, and Amazon SQS event sources, when you set
+        /// <c>BatchSize</c> to a value greater than 10, you must set <c>MaximumBatchingWindowInSeconds</c>
         /// to at least 1.
         /// </para>
         /// </summary>
@@ -527,6 +560,25 @@ namespace Amazon.Lambda.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MetricsConfig. 
+        /// <para>
+        /// The metrics configuration for your event source. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics-types.html#event-source-mapping-metrics">Event
+        /// source mapping metrics</a>.
+        /// </para>
+        /// </summary>
+        public EventSourceMappingMetricsConfig MetricsConfig
+        {
+            get { return this._metricsConfig; }
+            set { this._metricsConfig = value; }
+        }
+
+        // Check to see if MetricsConfig property is set
+        internal bool IsSetMetricsConfig()
+        {
+            return this._metricsConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ParallelizationFactor. 
         /// <para>
         /// (Kinesis and DynamoDB Streams only) The number of batches to process from each shard
@@ -547,6 +599,26 @@ namespace Amazon.Lambda.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ProvisionedPollerConfig. 
+        /// <para>
+        /// (Amazon MSK and self-managed Apache Kafka only) The Provisioned Mode configuration
+        /// for the event source. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html#invocation-eventsourcemapping-provisioned-mode">Provisioned
+        /// Mode</a>.
+        /// </para>
+        /// </summary>
+        public ProvisionedPollerConfig ProvisionedPollerConfig
+        {
+            get { return this._provisionedPollerConfig; }
+            set { this._provisionedPollerConfig = value; }
+        }
+
+        // Check to see if ProvisionedPollerConfig property is set
+        internal bool IsSetProvisionedPollerConfig()
+        {
+            return this._provisionedPollerConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Queues. 
         /// <para>
         ///  (MQ) The name of the Amazon MQ broker destination queue to consume. 
@@ -562,7 +634,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Queues property is set
         internal bool IsSetQueues()
         {
-            return this._queues != null && this._queues.Count > 0; 
+            return this._queues != null && (this._queues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -638,16 +710,15 @@ namespace Amazon.Lambda.Model
         // Check to see if SourceAccessConfigurations property is set
         internal bool IsSetSourceAccessConfigurations()
         {
-            return this._sourceAccessConfigurations != null && this._sourceAccessConfigurations.Count > 0; 
+            return this._sourceAccessConfigurations != null && (this._sourceAccessConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property StartingPosition. 
         /// <para>
         /// The position in a stream from which to start reading. Required for Amazon Kinesis
-        /// and Amazon DynamoDB Stream event sources. <code>AT_TIMESTAMP</code> is supported only
-        /// for Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache
-        /// Kafka.
+        /// and Amazon DynamoDB Stream event sources. <c>AT_TIMESTAMP</c> is supported only for
+        /// Amazon Kinesis streams, Amazon DocumentDB, Amazon MSK, and self-managed Apache Kafka.
         /// </para>
         /// </summary>
         public EventSourcePosition StartingPosition
@@ -665,8 +736,8 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property StartingPositionTimestamp. 
         /// <para>
-        /// With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from
-        /// which to start reading. <code>StartingPositionTimestamp</code> cannot be in the future.
+        /// With <c>StartingPosition</c> set to <c>AT_TIMESTAMP</c>, the time from which to start
+        /// reading. <c>StartingPositionTimestamp</c> cannot be in the future.
         /// </para>
         /// </summary>
         public DateTime StartingPositionTimestamp
@@ -679,6 +750,24 @@ namespace Amazon.Lambda.Model
         internal bool IsSetStartingPositionTimestamp()
         {
             return this._startingPositionTimestamp.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Tags. 
+        /// <para>
+        /// A list of tags to apply to the event source mapping.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, string> Tags
+        {
+            get { return this._tags; }
+            set { this._tags = value; }
+        }
+
+        // Check to see if Tags property is set
+        internal bool IsSetTags()
+        {
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -697,7 +786,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Topics property is set
         internal bool IsSetTopics()
         {
-            return this._topics != null && this._topics.Count > 0; 
+            return this._topics != null && (this._topics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

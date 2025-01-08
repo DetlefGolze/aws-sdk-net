@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ListAlgorithmsResponse : AmazonWebServiceResponse
     {
-        private List<AlgorithmSummary> _algorithmSummaryList = new List<AlgorithmSummary>();
+        private List<AlgorithmSummary> _algorithmSummaryList = AWSConfigs.InitializeCollections ? new List<AlgorithmSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AlgorithmSummaryList. 
         /// <para>
-        /// &gt;An array of <code>AlgorithmSummary</code> objects, each of which lists an algorithm.
+        /// &gt;An array of <c>AlgorithmSummary</c> objects, each of which lists an algorithm.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,7 +53,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AlgorithmSummaryList property is set
         internal bool IsSetAlgorithmSummaryList()
         {
-            return this._algorithmSummaryList != null && this._algorithmSummaryList.Count > 0; 
+            return this._algorithmSummaryList != null && (this._algorithmSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -34,19 +35,19 @@ namespace Amazon.SSMIncidents.Model
     /// </summary>
     public partial class UpdateResponsePlanRequest : AmazonSSMIncidentsRequest
     {
-        private List<Action> _actions = new List<Action>();
+        private List<Action> _actions = AWSConfigs.InitializeCollections ? new List<Action>() : null;
         private string _arn;
         private ChatChannel _chatChannel;
         private string _clientToken;
         private string _displayName;
-        private List<string> _engagements = new List<string>();
+        private List<string> _engagements = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _incidentTemplateDedupeString;
         private int? _incidentTemplateImpact;
-        private List<NotificationTargetItem> _incidentTemplateNotificationTargets = new List<NotificationTargetItem>();
+        private List<NotificationTargetItem> _incidentTemplateNotificationTargets = AWSConfigs.InitializeCollections ? new List<NotificationTargetItem>() : null;
         private string _incidentTemplateSummary;
-        private Dictionary<string, string> _incidentTemplateTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _incidentTemplateTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _incidentTemplateTitle;
-        private List<Integration> _integrations = new List<Integration>();
+        private List<Integration> _integrations = AWSConfigs.InitializeCollections ? new List<Integration>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
@@ -64,7 +65,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -163,7 +164,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if Engagements property is set
         internal bool IsSetEngagements()
         {
-            return this._engagements != null && this._engagements.Count > 0; 
+            return this._engagements != null && (this._engagements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -194,27 +195,27 @@ namespace Amazon.SSMIncidents.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>Possible impacts:</b> 
+        ///  <b>Supported impact codes</b> 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>5</code> - Severe impact
+        ///  <c>1</c> - Critical
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>4</code> - High impact
+        ///  <c>2</c> - High
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>3</code> - Medium impact
+        ///  <c>3</c> - Medium
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>2</code> - Low impact
+        ///  <c>4</c> - Low
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>1</code> - No impact
+        ///  <c>5</c> - No Impact
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -247,7 +248,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if IncidentTemplateNotificationTargets property is set
         internal bool IsSetIncidentTemplateNotificationTargets()
         {
-            return this._incidentTemplateNotificationTargets != null && this._incidentTemplateNotificationTargets.Count > 0; 
+            return this._incidentTemplateNotificationTargets != null && (this._incidentTemplateNotificationTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -273,10 +274,10 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property IncidentTemplateTags. 
         /// <para>
-        /// Tags to assign to the template. When the <code>StartIncident</code> API action is
-        /// called, Incident Manager assigns the tags specified in the template to the incident.
-        /// To call this action, you must also have permission to call the <code>TagResource</code>
-        /// API action for the incident record resource.
+        /// Tags to assign to the template. When the <c>StartIncident</c> API action is called,
+        /// Incident Manager assigns the tags specified in the template to the incident. To call
+        /// this action, you must also have permission to call the <c>TagResource</c> API action
+        /// for the incident record resource.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -289,7 +290,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if IncidentTemplateTags property is set
         internal bool IsSetIncidentTemplateTags()
         {
-            return this._incidentTemplateTags != null && this._incidentTemplateTags.Count > 0; 
+            return this._incidentTemplateTags != null && (this._incidentTemplateTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -327,7 +328,7 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if Integrations property is set
         internal bool IsSetIntegrations()
         {
-            return this._integrations != null && this._integrations.Count > 0; 
+            return this._integrations != null && (this._integrations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

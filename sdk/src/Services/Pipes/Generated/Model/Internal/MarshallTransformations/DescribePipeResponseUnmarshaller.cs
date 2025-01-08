@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Pipes.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -93,10 +94,22 @@ namespace Amazon.Pipes.Model.Internal.MarshallTransformations
                     response.EnrichmentParameters = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("KmsKeyIdentifier", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.KmsKeyIdentifier = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("LastModifiedTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.LastModifiedTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LogConfiguration", targetDepth))
+                {
+                    var unmarshaller = PipeLogConfigurationUnmarshaller.Instance;
+                    response.LogConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Name", targetDepth))

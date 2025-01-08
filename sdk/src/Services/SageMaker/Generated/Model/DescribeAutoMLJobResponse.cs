@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -45,12 +46,12 @@ namespace Amazon.SageMaker.Model
         private DateTime? _endTime;
         private string _failureReason;
         private bool? _generateCandidateDefinitionsOnly;
-        private List<AutoMLChannel> _inputDataConfig = new List<AutoMLChannel>();
+        private List<AutoMLChannel> _inputDataConfig = AWSConfigs.InitializeCollections ? new List<AutoMLChannel>() : null;
         private DateTime? _lastModifiedTime;
         private ModelDeployConfig _modelDeployConfig;
         private ModelDeployResult _modelDeployResult;
         private AutoMLOutputDataConfig _outputDataConfig;
-        private List<AutoMLPartialFailureReason> _partialFailureReasons = new List<AutoMLPartialFailureReason>();
+        private List<AutoMLPartialFailureReason> _partialFailureReasons = AWSConfigs.InitializeCollections ? new List<AutoMLPartialFailureReason>() : null;
         private ProblemType _problemType;
         private ResolvedAttributes _resolvedAttributes;
         private string _roleArn;
@@ -77,7 +78,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property AutoMLJobArtifacts. 
         /// <para>
-        /// Returns information on the job's artifacts found in <code>AutoMLJobArtifacts</code>.
+        /// Returns information on the job's artifacts found in <c>AutoMLJobArtifacts</c>.
         /// </para>
         /// </summary>
         public AutoMLJobArtifacts AutoMLJobArtifacts
@@ -188,7 +189,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property BestCandidate. 
         /// <para>
-        /// The best model candidate selected by SageMaker Autopilot using both the best objective
+        /// The best model candidate selected by SageMaker AI Autopilot using both the best objective
         /// metric and lowest <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-metrics-validation.html">InferenceLatency</a>
         /// for an experiment.
         /// </para>
@@ -295,7 +296,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if InputDataConfig property is set
         internal bool IsSetInputDataConfig()
         {
-            return this._inputDataConfig != null && this._inputDataConfig.Count > 0; 
+            return this._inputDataConfig != null && (this._inputDataConfig.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -389,7 +390,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if PartialFailureReasons property is set
         internal bool IsSetPartialFailureReasons()
         {
-            return this._partialFailureReasons != null && this._partialFailureReasons.Count > 0; 
+            return this._partialFailureReasons != null && (this._partialFailureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -413,7 +414,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ResolvedAttributes. 
         /// <para>
-        /// Contains <code>ProblemType</code>, <code>AutoMLJobObjective</code>, and <code>CompletionCriteria</code>.
+        /// Contains <c>ProblemType</c>, <c>AutoMLJobObjective</c>, and <c>CompletionCriteria</c>.
         /// If you do not provide these values, they are inferred.
         /// </para>
         /// </summary>
@@ -432,9 +433,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that
-        /// has read permission to the input data location and write permission to the output
-        /// data location in Amazon S3.
+        /// The ARN of the IAM role that has read permission to the input data location and write
+        /// permission to the output data location in Amazon S3.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]

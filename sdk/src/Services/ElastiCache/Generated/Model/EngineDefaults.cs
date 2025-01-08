@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// Represents the output of a <code>DescribeEngineDefaultParameters</code> operation.
+    /// Represents the output of a <c>DescribeEngineDefaultParameters</c> operation.
     /// </summary>
     public partial class EngineDefaults
     {
-        private List<CacheNodeTypeSpecificParameter> _cacheNodeTypeSpecificParameters = new List<CacheNodeTypeSpecificParameter>();
+        private List<CacheNodeTypeSpecificParameter> _cacheNodeTypeSpecificParameters = AWSConfigs.InitializeCollections ? new List<CacheNodeTypeSpecificParameter>() : null;
         private string _cacheParameterGroupFamily;
         private string _marker;
-        private List<Parameter> _parameters = new List<Parameter>();
+        private List<Parameter> _parameters = AWSConfigs.InitializeCollections ? new List<Parameter>() : null;
 
         /// <summary>
         /// Gets and sets the property CacheNodeTypeSpecificParameters. 
@@ -54,7 +55,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheNodeTypeSpecificParameters property is set
         internal bool IsSetCacheNodeTypeSpecificParameters()
         {
-            return this._cacheNodeTypeSpecificParameters != null && this._cacheNodeTypeSpecificParameters.Count > 0; 
+            return this._cacheNodeTypeSpecificParameters != null && (this._cacheNodeTypeSpecificParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -65,10 +66,9 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>memcached1.6</code>
-        /// | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code>
-        /// | <code>redis5.0</code> | <code>redis6.0</code> | <code>redis6.x</code> | <code>redis7</code>
-        /// 
+        /// Valid values are: <c>memcached1.4</c> | <c>memcached1.5</c> | <c>memcached1.6</c>
+        /// | <c>redis2.6</c> | <c>redis2.8</c> | <c>redis3.2</c> | <c>redis4.0</c> | <c>redis5.0</c>
+        /// | <c>redis6.0</c> | <c>redis6.x</c> | <c>redis7</c> 
         /// </para>
         /// </summary>
         public string CacheParameterGroupFamily
@@ -116,7 +116,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

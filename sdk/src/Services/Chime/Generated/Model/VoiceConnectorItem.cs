@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
     /// For Amazon Chime Voice Connector groups, the Amazon Chime Voice Connectors to which
-    /// to route inbound calls. Includes priority configuration settings. Limit: 3 <code>VoiceConnectorItems</code>
+    /// to route inbound calls. Includes priority configuration settings. Limit: 3 <c>VoiceConnectorItems</c>
     /// per Amazon Chime Voice Connector group.
     /// </summary>
     public partial class VoiceConnectorItem

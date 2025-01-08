@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -37,10 +38,12 @@ namespace Amazon.DataZone.Model
         private string _clientToken;
         private string _description;
         private string _domainExecutionRole;
+        private DomainVersion _domainVersion;
         private string _kmsKeyIdentifier;
         private string _name;
+        private string _serviceRole;
         private SingleSignOn _singleSignOn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -101,6 +104,24 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DomainVersion. 
+        /// <para>
+        /// The version of the domain that is created.
+        /// </para>
+        /// </summary>
+        public DomainVersion DomainVersion
+        {
+            get { return this._domainVersion; }
+            set { this._domainVersion = value; }
+        }
+
+        // Check to see if DomainVersion property is set
+        internal bool IsSetDomainVersion()
+        {
+            return this._domainVersion != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property KmsKeyIdentifier. 
         /// <para>
         /// The identifier of the Amazon Web Services Key Management Service (KMS) key that is
@@ -140,6 +161,24 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ServiceRole. 
+        /// <para>
+        /// The service role of the domain that is created.
+        /// </para>
+        /// </summary>
+        public string ServiceRole
+        {
+            get { return this._serviceRole; }
+            set { this._serviceRole = value; }
+        }
+
+        // Check to see if ServiceRole property is set
+        internal bool IsSetServiceRole()
+        {
+            return this._serviceRole != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SingleSignOn. 
         /// <para>
         /// The single-sign on configuration of the Amazon DataZone domain.
@@ -172,7 +211,7 @@ namespace Amazon.DataZone.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

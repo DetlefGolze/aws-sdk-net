@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>UpdateScalingParameters</code> request. Contains the status
-    /// of the newly-configured scaling parameters.
+    /// The result of a <c>UpdateScalingParameters</c> request. Contains the status of the
+    /// newly-configured scaling parameters.
     /// </summary>
     public partial class UpdateScalingParametersResponse : AmazonWebServiceResponse
     {

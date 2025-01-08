@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateImagePipeline operation.
     /// Updates an image pipeline. Image pipelines enable you to automate the creation and
-    /// distribution of images.
+    /// distribution of images. You must specify exactly one recipe for your image, using
+    /// either a <c>containerRecipeArn</c> or an <c>imageRecipeArn</c>.
     /// 
     ///  <note> 
     /// <para>
@@ -48,6 +50,7 @@ namespace Amazon.Imagebuilder.Model
         private string _description;
         private string _distributionConfigurationArn;
         private bool? _enhancedImageMetadataEnabled;
+        private string _executionRole;
         private string _imagePipelineArn;
         private string _imageRecipeArn;
         private ImageScanningConfiguration _imageScanningConfiguration;
@@ -55,11 +58,14 @@ namespace Amazon.Imagebuilder.Model
         private string _infrastructureConfigurationArn;
         private Schedule _schedule;
         private PipelineStatus _status;
+        private List<WorkflowConfiguration> _workflows = AWSConfigs.InitializeCollections ? new List<WorkflowConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The idempotency token used to make this request idempotent.
+        /// Unique, case-sensitive identifier you provide to ensure idempotency of the request.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html">Ensuring
+        /// idempotency</a> in the <i>Amazon EC2 API Reference</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=36)]
@@ -149,6 +155,26 @@ namespace Amazon.Imagebuilder.Model
         internal bool IsSetEnhancedImageMetadataEnabled()
         {
             return this._enhancedImageMetadataEnabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExecutionRole. 
+        /// <para>
+        /// The name or Amazon Resource Name (ARN) for the IAM role you create that grants Image
+        /// Builder access to perform workflow actions.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2048)]
+        public string ExecutionRole
+        {
+            get { return this._executionRole; }
+            set { this._executionRole = value; }
+        }
+
+        // Check to see if ExecutionRole property is set
+        internal bool IsSetExecutionRole()
+        {
+            return this._executionRole != null;
         }
 
         /// <summary>
@@ -279,6 +305,24 @@ namespace Amazon.Imagebuilder.Model
         internal bool IsSetStatus()
         {
             return this._status != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Workflows. 
+        /// <para>
+        /// Contains the workflows to run for the pipeline.
+        /// </para>
+        /// </summary>
+        public List<WorkflowConfiguration> Workflows
+        {
+            get { return this._workflows; }
+            set { this._workflows = value; }
+        }
+
+        // Check to see if Workflows property is set
+        internal bool IsSetWorkflows()
+        {
+            return this._workflows != null && (this._workflows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

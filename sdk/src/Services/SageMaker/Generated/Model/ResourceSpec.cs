@@ -26,17 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Specifies the ARN's of a SageMaker image and SageMaker image version, and the instance
-    /// type that the version runs on.
+    /// Specifies the ARN's of a SageMaker AI image and SageMaker AI image version, and the
+    /// instance type that the version runs on.
     /// </summary>
     public partial class ResourceSpec
     {
         private AppInstanceType _instanceType;
         private string _lifecycleConfigArn;
         private string _sageMakerImageArn;
+        private string _sageMakerImageVersionAlias;
         private string _sageMakerImageVersionArn;
 
         /// <summary>
@@ -46,11 +48,11 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <note> 
         /// <para>
-        ///  <b>JupyterServer apps</b> only support the <code>system</code> value.
+        ///  <b>JupyterServer apps</b> only support the <c>system</c> value.
         /// </para>
         ///  
         /// <para>
-        /// For <b>KernelGateway apps</b>, the <code>system</code> value is translated to <code>ml.t3.medium</code>.
+        /// For <b>KernelGateway apps</b>, the <c>system</c> value is translated to <c>ml.t3.medium</c>.
         /// KernelGateway apps also support all other values for available instance types.
         /// </para>
         ///  </note>
@@ -89,7 +91,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SageMakerImageArn. 
         /// <para>
-        /// The ARN of the SageMaker image that the image version belongs to.
+        /// The ARN of the SageMaker AI image that the image version belongs to.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -103,6 +105,26 @@ namespace Amazon.SageMaker.Model
         internal bool IsSetSageMakerImageArn()
         {
             return this._sageMakerImageArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SageMakerImageVersionAlias. 
+        /// <para>
+        /// The SageMakerImageVersionAlias of the image to launch with. This value is in SemVer
+        /// 2.0.0 versioning format.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=128)]
+        public string SageMakerImageVersionAlias
+        {
+            get { return this._sageMakerImageVersionAlias; }
+            set { this._sageMakerImageVersionAlias = value; }
+        }
+
+        // Check to see if SageMakerImageVersionAlias property is set
+        internal bool IsSetSageMakerImageVersionAlias()
+        {
+            return this._sageMakerImageVersionAlias != null;
         }
 
         /// <summary>

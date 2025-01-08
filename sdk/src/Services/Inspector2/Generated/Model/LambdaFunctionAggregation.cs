@@ -26,24 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
-    /// The details that define a findings aggregation based on AWS Lambda functions.
+    /// The details that define a findings aggregation based on Amazon Web Services Lambda
+    /// functions.
     /// </summary>
     public partial class LambdaFunctionAggregation
     {
-        private List<StringFilter> _functionNames = new List<StringFilter>();
-        private List<MapFilter> _functionTags = new List<MapFilter>();
-        private List<StringFilter> _resourceIds = new List<StringFilter>();
-        private List<StringFilter> _runtimes = new List<StringFilter>();
+        private List<StringFilter> _functionNames = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<MapFilter> _functionTags = AWSConfigs.InitializeCollections ? new List<MapFilter>() : null;
+        private List<StringFilter> _resourceIds = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
+        private List<StringFilter> _runtimes = AWSConfigs.InitializeCollections ? new List<StringFilter>() : null;
         private LambdaFunctionSortBy _sortBy;
         private SortOrder _sortOrder;
 
         /// <summary>
         /// Gets and sets the property FunctionNames. 
         /// <para>
-        /// The AWS Lambda function names to include in the aggregation results.
+        /// The Amazon Web Services Lambda function names to include in the aggregation results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -56,7 +58,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if FunctionNames property is set
         internal bool IsSetFunctionNames()
         {
-            return this._functionNames != null && this._functionNames.Count > 0; 
+            return this._functionNames != null && (this._functionNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if FunctionTags property is set
         internal bool IsSetFunctionTags()
         {
-            return this._functionTags != null && this._functionTags.Count > 0; 
+            return this._functionTags != null && (this._functionTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -94,13 +96,13 @@ namespace Amazon.Inspector2.Model
         // Check to see if ResourceIds property is set
         internal bool IsSetResourceIds()
         {
-            return this._resourceIds != null && this._resourceIds.Count > 0; 
+            return this._resourceIds != null && (this._resourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Runtimes. 
         /// <para>
-        /// Returns findings aggregated by AWS Lambda function runtime environments.
+        /// Returns findings aggregated by Amazon Web Services Lambda function runtime environments.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -113,7 +115,7 @@ namespace Amazon.Inspector2.Model
         // Check to see if Runtimes property is set
         internal bool IsSetRuntimes()
         {
-            return this._runtimes != null && this._runtimes.Count > 0; 
+            return this._runtimes != null && (this._runtimes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

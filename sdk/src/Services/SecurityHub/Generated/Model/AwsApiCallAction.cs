@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// Provided if <code>ActionType</code> is <code>AWS_API_CALL</code>. It provides details
-    /// about the API call that was detected.
+    /// Provided if <c>ActionType</c> is <c>AWS_API_CALL</c>. It provides details about the
+    /// API call that was detected.
     /// </summary>
     public partial class AwsApiCallAction
     {
-        private Dictionary<string, string> _affectedResources = new Dictionary<string, string>();
+        private Dictionary<string, string> _affectedResources = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _api;
         private string _callerType;
         private AwsApiCallActionDomainDetails _domainDetails;
@@ -58,13 +59,17 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AffectedResources property is set
         internal bool IsSetAffectedResources()
         {
-            return this._affectedResources != null && this._affectedResources.Count > 0; 
+            return this._affectedResources != null && (this._affectedResources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Api. 
         /// <para>
         /// The name of the API method that was issued.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: 128.
         /// </para>
         /// </summary>
         public string Api
@@ -82,8 +87,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CallerType. 
         /// <para>
-        /// Indicates whether the API call originated from a remote IP address (<code>remoteip</code>)
-        /// or from a DNS domain (<code>domain</code>).
+        /// Indicates whether the API call originated from a remote IP address (<c>remoteip</c>)
+        /// or from a DNS domain (<c>domain</c>).
         /// </para>
         /// </summary>
         public string CallerType
@@ -101,8 +106,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property DomainDetails. 
         /// <para>
-        /// Provided if <code>CallerType</code> is <code>domain</code>. Provides information about
-        /// the DNS domain that the API call originated from.
+        /// Provided if <c>CallerType</c> is <c>domain</c>. Provides information about the DNS
+        /// domain that the API call originated from.
         /// </para>
         /// </summary>
         public AwsApiCallActionDomainDetails DomainDetails
@@ -120,14 +125,12 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property FirstSeen. 
         /// <para>
-        /// An ISO8601-formatted timestamp that indicates when the API call was first observed.
+        /// A timestamp that indicates when the API call was first observed.
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string FirstSeen
@@ -145,15 +148,12 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property LastSeen. 
         /// <para>
-        /// An ISO8601-formatted timestamp that indicates when the API call was most recently
-        /// observed.
+        /// A timestamp that indicates when the API call was most recently observed.
         /// </para>
         ///  
         /// <para>
-        /// A correctly formatted example is <code>2020-05-21T20:16:34.724Z</code>. The value
-        /// cannot contain spaces, and date and time should be separated by <code>T</code>. For
-        /// more information, see <a href="https://www.rfc-editor.org/rfc/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string LastSeen
@@ -171,8 +171,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property RemoteIpDetails. 
         /// <para>
-        /// Provided if <code>CallerType</code> is <code>remoteIp</code>. Provides information
-        /// about the remote IP address that the API call originated from.
+        /// Provided if <c>CallerType</c> is <c>remoteip</c>. Provides information about the remote
+        /// IP address that the API call originated from.
         /// </para>
         /// </summary>
         public ActionRemoteIpDetails RemoteIpDetails
@@ -191,6 +191,10 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property ServiceName. 
         /// <para>
         /// The name of the Amazon Web Services service that the API method belongs to.
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: 128.
         /// </para>
         /// </summary>
         public string ServiceName

@@ -26,17 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
-    /// Returned if there is no subnet with ID <code>SubnetId</code> provided in the request.
+    /// Returned if there is no subnet with ID <c>SubnetId</c> provided in the request.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
     #endif
     public partial class SubnetNotFoundException : AmazonElasticFileSystemException
     {
-        private string _errorCode;
 
         /// <summary>
         /// Constructs a new SubnetNotFoundException with the specified error
@@ -122,22 +122,6 @@ namespace Amazon.ElasticFileSystem.Model
             info.AddValue("ErrorCode", this.ErrorCode);
         }
 #endif
-
-        /// <summary>
-        /// Gets and sets the property ErrorCode.
-        /// </summary>
-        [AWSProperty(Required=true, Min=1)]
-        public string ErrorCode
-        {
-            get { return this._errorCode; }
-            set { this._errorCode = value; }
-        }
-
-        // Check to see if ErrorCode property is set
-        internal bool IsSetErrorCode()
-        {
-            return this._errorCode != null;
-        }
 
     }
 }

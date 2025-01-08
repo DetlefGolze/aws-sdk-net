@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -42,13 +43,13 @@ namespace Amazon.Batch.Model
     {
         private string _containerPath;
         private string _hostPath;
-        private List<string> _permissions = new List<string>();
+        private List<string> _permissions = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ContainerPath. 
         /// <para>
         /// The path inside the container that's used to expose the host device. By default, the
-        /// <code>hostPath</code> value is used.
+        /// <c>hostPath</c> value is used.
         /// </para>
         /// </summary>
         public string ContainerPath
@@ -86,8 +87,8 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property Permissions. 
         /// <para>
         /// The explicit permissions to provide to the container for the device. By default, the
-        /// container has permissions for <code>read</code>, <code>write</code>, and <code>mknod</code>
-        /// for the device.
+        /// container has permissions for <c>read</c>, <c>write</c>, and <c>mknod</c> for the
+        /// device.
         /// </para>
         /// </summary>
         public List<string> Permissions
@@ -99,7 +100,7 @@ namespace Amazon.Batch.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -108,13 +109,13 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property FinalDBSnapshotIdentifier. 
         /// <para>
-        /// The DB cluster snapshot identifier of the new DB cluster snapshot created when <code>SkipFinalSnapshot</code>
+        /// The DB cluster snapshot identifier of the new DB cluster snapshot created when <c>SkipFinalSnapshot</c>
         /// is disabled.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Specifying this parameter and also skipping the creation of a final DB cluster snapshot
-        /// with the <code>SkipFinalShapshot</code> parameter results in an error.
+        /// If you specify this parameter and also skip the creation of a final DB cluster snapshot
+        /// with the <c>SkipFinalShapshot</c> parameter, the request results in an error.
         /// </para>
         ///  </note> 
         /// <para>
@@ -149,16 +150,16 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property SkipFinalSnapshot. 
         /// <para>
-        /// Specifies whether to skip the creation of a final DB cluster snapshot before the DB
-        /// cluster is deleted. If skip is specified, no DB cluster snapshot is created. If skip
-        /// isn't specified, a DB cluster snapshot is created before the DB cluster is deleted.
-        /// By default, skip isn't specified, and the DB cluster snapshot is created. By default,
-        /// this parameter is disabled.
+        /// Specifies whether to skip the creation of a final DB cluster snapshot before RDS deletes
+        /// the DB cluster. If you set this value to <c>true</c>, RDS doesn't create a final DB
+        /// cluster snapshot. If you set this value to <c>false</c> or don't specify it, RDS creates
+        /// a DB cluster snapshot before it deletes the DB cluster. By default, this parameter
+        /// is disabled, so RDS creates a final DB cluster snapshot.
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must specify a <code>FinalDBSnapshotIdentifier</code> parameter if <code>SkipFinalSnapshot</code>
-        /// is disabled.
+        /// If <c>SkipFinalSnapshot</c> is disabled, you must specify a value for the <c>FinalDBSnapshotIdentifier</c>
+        /// parameter.
         /// </para>
         ///  </note>
         /// </summary>

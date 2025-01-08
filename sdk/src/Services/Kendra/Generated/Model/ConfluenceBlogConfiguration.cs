@@ -26,30 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
     /// Configuration of blog settings for the Confluence data source. Blogs are always indexed
-    /// unless filtered from the index by the <code>ExclusionPatterns</code> or <code>InclusionPatterns</code>
-    /// fields in the <code>ConfluenceConfiguration</code> object.
+    /// unless filtered from the index by the <c>ExclusionPatterns</c> or <c>InclusionPatterns</c>
+    /// fields in the <c>ConfluenceConfiguration</c> object.
     /// </summary>
     public partial class ConfluenceBlogConfiguration
     {
-        private List<ConfluenceBlogToIndexFieldMapping> _blogFieldMappings = new List<ConfluenceBlogToIndexFieldMapping>();
+        private List<ConfluenceBlogToIndexFieldMapping> _blogFieldMappings = AWSConfigs.InitializeCollections ? new List<ConfluenceBlogToIndexFieldMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property BlogFieldMappings. 
         /// <para>
         /// Maps attributes or field names of Confluence blogs to Amazon Kendra index field names.
-        /// To create custom fields, use the <code>UpdateIndex</code> API before you map to Confluence
+        /// To create custom fields, use the <c>UpdateIndex</c> API before you map to Confluence
         /// fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Confluence data source field names must exist in your
         /// Confluence custom metadata.
         /// </para>
         ///  
         /// <para>
-        /// If you specify the <code>BlogFieldMappings</code> parameter, you must specify at least
-        /// one field mapping.
+        /// If you specify the <c>BlogFieldMappings</c> parameter, you must specify at least one
+        /// field mapping.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=9)]
@@ -62,7 +63,7 @@ namespace Amazon.Kendra.Model
         // Check to see if BlogFieldMappings property is set
         internal bool IsSetBlogFieldMappings()
         {
-            return this._blogFieldMappings != null && this._blogFieldMappings.Count > 0; 
+            return this._blogFieldMappings != null && (this._blogFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

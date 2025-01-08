@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property BotLocaleStatus. 
         /// <para>
-        /// The status of deleting the bot locale. The locale first enters the <code>Deleting</code>
+        /// The status of deleting the bot locale. The locale first enters the <c>Deleting</c>
         /// status. Once the locale is deleted it no longer appears in the list of locales for
         /// the bot.
         /// </para>

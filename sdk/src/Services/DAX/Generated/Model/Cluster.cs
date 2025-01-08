@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
@@ -40,13 +41,13 @@ namespace Amazon.DAX.Model
         private string _clusterName;
         private string _description;
         private string _iamRoleArn;
-        private List<string> _nodeIdsToRemove = new List<string>();
-        private List<Node> _nodes = new List<Node>();
+        private List<string> _nodeIdsToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Node> _nodes = AWSConfigs.InitializeCollections ? new List<Node>() : null;
         private string _nodeType;
         private NotificationConfiguration _notificationConfiguration;
         private ParameterGroupStatus _parameterGroup;
         private string _preferredMaintenanceWindow;
-        private List<SecurityGroupMembership> _securityGroups = new List<SecurityGroupMembership>();
+        private List<SecurityGroupMembership> _securityGroups = AWSConfigs.InitializeCollections ? new List<SecurityGroupMembership>() : null;
         private SSEDescription _sseDescription;
         private string _status;
         private string _subnetGroup;
@@ -114,11 +115,11 @@ namespace Amazon.DAX.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code> for no encryption
+        ///  <c>NONE</c> for no encryption
         /// </para>
         ///  
         /// <para>
-        ///  <code>TLS</code> for Transport Layer Security
+        ///  <c>TLS</c> for Transport Layer Security
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -204,7 +205,7 @@ namespace Amazon.DAX.Model
         // Check to see if NodeIdsToRemove property is set
         internal bool IsSetNodeIdsToRemove()
         {
-            return this._nodeIdsToRemove != null && this._nodeIdsToRemove.Count > 0; 
+            return this._nodeIdsToRemove != null && (this._nodeIdsToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -222,7 +223,7 @@ namespace Amazon.DAX.Model
         // Check to see if Nodes property is set
         internal bool IsSetNodes()
         {
-            return this._nodes != null && this._nodes.Count > 0; 
+            return this._nodes != null && (this._nodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -285,8 +286,8 @@ namespace Amazon.DAX.Model
         /// Gets and sets the property PreferredMaintenanceWindow. 
         /// <para>
         /// A range of time when maintenance of DAX cluster software will be performed. For example:
-        /// <code>sun:01:00-sun:09:00</code>. Cluster maintenance normally takes less than 30
-        /// minutes, and is performed automatically within the maintenance window.
+        /// <c>sun:01:00-sun:09:00</c>. Cluster maintenance normally takes less than 30 minutes,
+        /// and is performed automatically within the maintenance window.
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow
@@ -316,7 +317,7 @@ namespace Amazon.DAX.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -38,8 +39,7 @@ namespace Amazon.IoTSiteWise.Model
     /// The maximum number of dependent/cascading variables used in any one metric calculation
     /// is 10. Therefore, a <i>root</i> metric can have up to 10 cascading metrics in its
     /// computational dependency tree. Additionally, a metric can only have a data type of
-    /// <code>DOUBLE</code> and consume properties with data types of <code>INTEGER</code>
-    /// or <code>DOUBLE</code>.
+    /// <c>DOUBLE</c> and consume properties with data types of <c>INTEGER</c> or <c>DOUBLE</c>.
     /// </para>
     ///  
     /// <para>
@@ -51,7 +51,7 @@ namespace Amazon.IoTSiteWise.Model
     {
         private string _expression;
         private MetricProcessingConfig _processingConfig;
-        private List<ExpressionVariable> _variables = new List<ExpressionVariable>();
+        private List<ExpressionVariable> _variables = AWSConfigs.InitializeCollections ? new List<ExpressionVariable>() : null;
         private MetricWindow _window;
 
         /// <summary>
@@ -116,14 +116,14 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Variables property is set
         internal bool IsSetVariables()
         {
-            return this._variables != null && this._variables.Count > 0; 
+            return this._variables != null && (this._variables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Window. 
         /// <para>
         /// The window (time interval) over which IoT SiteWise computes the metric's aggregation
-        /// expression. IoT SiteWise computes one data point per <code>window</code>.
+        /// expression. IoT SiteWise computes one data point per <c>window</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

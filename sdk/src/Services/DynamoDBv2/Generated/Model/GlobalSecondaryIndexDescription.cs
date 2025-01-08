@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -39,9 +40,11 @@ namespace Amazon.DynamoDBv2.Model
         private long? _indexSizeBytes;
         private IndexStatus _indexStatus;
         private long? _itemCount;
-        private List<KeySchemaElement> _keySchema = new List<KeySchemaElement>();
+        private List<KeySchemaElement> _keySchema = AWSConfigs.InitializeCollections ? new List<KeySchemaElement>() : null;
+        private OnDemandThroughput _onDemandThroughput;
         private Projection _projection;
         private ProvisionedThroughputDescription _provisionedThroughput;
+        private GlobalSecondaryIndexWarmThroughputDescription _warmThroughput;
 
         /// <summary>
         /// Gets and sets the property Backfilling. 
@@ -50,20 +53,20 @@ namespace Amazon.DynamoDBv2.Model
         /// of reading items from the table and determining whether they can be added to the index.
         /// (Not all items will qualify: For example, a partition key cannot have any duplicate
         /// values.) If an item can be added to the index, DynamoDB will do so. After all items
-        /// have been processed, the backfilling operation is complete and <code>Backfilling</code>
+        /// have been processed, the backfilling operation is complete and <c>Backfilling</c>
         /// is false.
         /// </para>
         ///  
         /// <para>
-        /// You can delete an index that is being created during the <code>Backfilling</code>
-        /// phase when <code>IndexStatus</code> is set to CREATING and <code>Backfilling</code>
-        /// is true. You can't delete the index that is being created when <code>IndexStatus</code>
-        /// is set to CREATING and <code>Backfilling</code> is false. 
+        /// You can delete an index that is being created during the <c>Backfilling</c> phase
+        /// when <c>IndexStatus</c> is set to CREATING and <c>Backfilling</c> is true. You can't
+        /// delete the index that is being created when <c>IndexStatus</c> is set to CREATING
+        /// and <c>Backfilling</c> is false. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// For indexes that were created during a <code>CreateTable</code> operation, the <code>Backfilling</code>
-        /// attribute does not appear in the <code>DescribeTable</code> output.
+        /// For indexes that were created during a <c>CreateTable</c> operation, the <c>Backfilling</c>
+        /// attribute does not appear in the <c>DescribeTable</c> output.
         /// </para>
         ///  </note>
         /// </summary>
@@ -142,19 +145,19 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATING</code> - The index is being created.
+        ///  <c>CREATING</c> - The index is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> - The index is being updated.
+        ///  <c>UPDATING</c> - The index is being updated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The index is being deleted.
+        ///  <c>DELETING</c> - The index is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - The index is ready for use.
+        ///  <c>ACTIVE</c> - The index is ready for use.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -197,11 +200,11 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HASH</code> - partition key
+        ///  <c>HASH</c> - partition key
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RANGE</code> - sort key
+        ///  <c>RANGE</c> - sort key
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -227,7 +230,27 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if KeySchema property is set
         internal bool IsSetKeySchema()
         {
-            return this._keySchema != null && this._keySchema.Count > 0; 
+            return this._keySchema != null && (this._keySchema.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughput. 
+        /// <para>
+        /// The maximum number of read and write units for the specified global secondary index.
+        /// If you use this parameter, you must specify <c>MaxReadRequestUnits</c>, <c>MaxWriteRequestUnits</c>,
+        /// or both.
+        /// </para>
+        /// </summary>
+        public OnDemandThroughput OnDemandThroughput
+        {
+            get { return this._onDemandThroughput; }
+            set { this._onDemandThroughput = value; }
+        }
+
+        // Check to see if OnDemandThroughput property is set
+        internal bool IsSetOnDemandThroughput()
+        {
+            return this._onDemandThroughput != null;
         }
 
         /// <summary>
@@ -272,6 +295,25 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetProvisionedThroughput()
         {
             return this._provisionedThroughput != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WarmThroughput. 
+        /// <para>
+        /// Represents the warm throughput value (in read units per second and write units per
+        /// second) for the specified secondary index.
+        /// </para>
+        /// </summary>
+        public GlobalSecondaryIndexWarmThroughputDescription WarmThroughput
+        {
+            get { return this._warmThroughput; }
+            set { this._warmThroughput = value; }
+        }
+
+        // Check to see if WarmThroughput property is set
+        internal bool IsSetWarmThroughput()
+        {
+            return this._warmThroughput != null;
         }
 
     }

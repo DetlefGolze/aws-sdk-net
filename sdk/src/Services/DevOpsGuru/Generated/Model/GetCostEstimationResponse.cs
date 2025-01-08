@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DevOpsGuru.Model
     /// </summary>
     public partial class GetCostEstimationResponse : AmazonWebServiceResponse
     {
-        private List<ServiceResourceCost> _costs = new List<ServiceResourceCost>();
+        private List<ServiceResourceCost> _costs = AWSConfigs.InitializeCollections ? new List<ServiceResourceCost>() : null;
         private string _nextToken;
         private CostEstimationResourceCollectionFilter _resourceCollection;
         private CostEstimationStatus _status;
@@ -43,8 +44,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Costs. 
         /// <para>
-        /// An array of <code>ResourceCost</code> objects that each contains details about the
-        /// monthly cost estimate to analyze one of your Amazon Web Services resources.
+        /// An array of <c>ResourceCost</c> objects that each contains details about the monthly
+        /// cost estimate to analyze one of your Amazon Web Services resources.
         /// </para>
         /// </summary>
         public List<ServiceResourceCost> Costs
@@ -56,7 +57,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Costs property is set
         internal bool IsSetCosts()
         {
-            return this._costs != null && this._costs.Count > 0; 
+            return this._costs != null && (this._costs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,8 +102,8 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of creating this cost estimate. If it's still in progress, the status <code>ONGOING</code>
-        /// is returned. If it is finished, the status <code>COMPLETED</code> is returned.
+        /// The status of creating this cost estimate. If it's still in progress, the status <c>ONGOING</c>
+        /// is returned. If it is finished, the status <c>COMPLETED</c> is returned.
         /// </para>
         /// </summary>
         public CostEstimationStatus Status
@@ -139,8 +140,8 @@ namespace Amazon.DevOpsGuru.Model
         /// Gets and sets the property TotalCost. 
         /// <para>
         /// The estimated monthly cost to analyze the Amazon Web Services resources. This value
-        /// is the sum of the estimated costs to analyze each resource in the <code>Costs</code>
-        /// object in this response.
+        /// is the sum of the estimated costs to analyze each resource in the <c>Costs</c> object
+        /// in this response.
         /// </para>
         /// </summary>
         public double TotalCost

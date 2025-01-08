@@ -26,19 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DisassociateTrunkInterface operation.
-    /// <note> 
-    /// <para>
-    /// This API action is currently in <b>limited preview only</b>. If you are interested
-    /// in using this feature, contact your account manager.
-    /// </para>
-    ///  </note> 
-    /// <para>
     /// Removes an association between a branch network interface with a trunk network interface.
-    /// </para>
     /// </summary>
     public partial class DisassociateTrunkInterfaceRequest : AmazonEC2Request
     {
@@ -68,8 +61,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html">How
-        /// to Ensure Idempotency</a>.
+        /// request. For more information, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-api-idempotency.html">Ensuring
+        /// idempotency</a>.
         /// </para>
         /// </summary>
         public string ClientToken

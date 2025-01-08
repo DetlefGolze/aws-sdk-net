@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(DataPathValue requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetDataPathType())
+            {
+                context.Writer.WritePropertyName("DataPathType");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = DataPathTypeMarshaller.Instance;
+                marshaller.Marshall(requestObject.DataPathType, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetFieldId())
             {
                 context.Writer.WritePropertyName("FieldId");

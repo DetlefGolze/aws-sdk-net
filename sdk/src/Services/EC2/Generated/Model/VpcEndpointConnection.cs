@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,15 +35,16 @@ namespace Amazon.EC2.Model
     public partial class VpcEndpointConnection
     {
         private DateTime? _creationTimestamp;
-        private List<DnsEntry> _dnsEntries = new List<DnsEntry>();
-        private List<string> _gatewayLoadBalancerArns = new List<string>();
+        private List<DnsEntry> _dnsEntries = AWSConfigs.InitializeCollections ? new List<DnsEntry>() : null;
+        private List<string> _gatewayLoadBalancerArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private IpAddressType _ipAddressType;
-        private List<string> _networkLoadBalancerArns = new List<string>();
+        private List<string> _networkLoadBalancerArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _serviceId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcEndpointConnectionId;
         private string _vpcEndpointId;
         private string _vpcEndpointOwner;
+        private string _vpcEndpointRegion;
         private State _vpcEndpointState;
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace Amazon.EC2.Model
         // Check to see if DnsEntries property is set
         internal bool IsSetDnsEntries()
         {
-            return this._dnsEntries != null && this._dnsEntries.Count > 0; 
+            return this._dnsEntries != null && (this._dnsEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace Amazon.EC2.Model
         // Check to see if GatewayLoadBalancerArns property is set
         internal bool IsSetGatewayLoadBalancerArns()
         {
-            return this._gatewayLoadBalancerArns != null && this._gatewayLoadBalancerArns.Count > 0; 
+            return this._gatewayLoadBalancerArns != null && (this._gatewayLoadBalancerArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace Amazon.EC2.Model
         // Check to see if NetworkLoadBalancerArns property is set
         internal bool IsSetNetworkLoadBalancerArns()
         {
-            return this._networkLoadBalancerArns != null && this._networkLoadBalancerArns.Count > 0; 
+            return this._networkLoadBalancerArns != null && (this._networkLoadBalancerArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -168,7 +170,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -223,6 +225,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetVpcEndpointOwner()
         {
             return this._vpcEndpointOwner != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property VpcEndpointRegion. 
+        /// <para>
+        /// The Region of the endpoint.
+        /// </para>
+        /// </summary>
+        public string VpcEndpointRegion
+        {
+            get { return this._vpcEndpointRegion; }
+            set { this._vpcEndpointRegion = value; }
+        }
+
+        // Check to see if VpcEndpointRegion property is set
+        internal bool IsSetVpcEndpointRegion()
+        {
+            return this._vpcEndpointRegion != null;
         }
 
         /// <summary>

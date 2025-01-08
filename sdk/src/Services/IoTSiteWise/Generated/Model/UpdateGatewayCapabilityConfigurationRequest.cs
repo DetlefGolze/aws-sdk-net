@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.IoTSiteWise.Model
         /// data sources (CLI)</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=104857600)]
+        [AWSProperty(Required=true, Min=1, Max=10000000)]
         public string CapabilityConfiguration
         {
             get { return this._capabilityConfiguration; }
@@ -69,8 +70,8 @@ namespace Amazon.IoTSiteWise.Model
         /// <para>
         /// The namespace of the gateway capability configuration to be updated. For example,
         /// if you configure OPC-UA sources from the IoT SiteWise console, your OPC-UA capability
-        /// configuration has the namespace <code>iotsitewise:opcuacollector:version</code>, where
-        /// <code>version</code> is a number such as <code>1</code>.
+        /// configuration has the namespace <c>iotsitewise:opcuacollector:version</c>, where <c>version</c>
+        /// is a number such as <c>1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]

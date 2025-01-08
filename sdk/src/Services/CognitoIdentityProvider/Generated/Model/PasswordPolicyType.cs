@@ -26,14 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The password policy type.
+    /// The password policy settings for a user pool, including complexity, history, and length
+    /// requirements.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request and response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>.
+    /// </para>
     /// </summary>
     public partial class PasswordPolicyType
     {
         private int? _minimumLength;
+        private int? _passwordHistorySize;
         private bool? _requireLowercase;
         private bool? _requireNumbers;
         private bool? _requireSymbols;
@@ -61,10 +71,38 @@ namespace Amazon.CognitoIdentityProvider.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PasswordHistorySize. 
+        /// <para>
+        /// The number of previous passwords that you want Amazon Cognito to restrict each user
+        /// from reusing. Users can't set a password that matches any of <c>n</c> previous passwords,
+        /// where <c>n</c> is the value of <c>PasswordHistorySize</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Password history isn't enforced and isn't displayed in <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>
+        /// responses when you set this value to <c>0</c> or don't provide it. To activate this
+        /// setting, <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html">
+        /// advanced security features</a> must be active in your user pool.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=24)]
+        public int PasswordHistorySize
+        {
+            get { return this._passwordHistorySize.GetValueOrDefault(); }
+            set { this._passwordHistorySize = value; }
+        }
+
+        // Check to see if PasswordHistorySize property is set
+        internal bool IsSetPasswordHistorySize()
+        {
+            return this._passwordHistorySize.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property RequireLowercase. 
         /// <para>
-        /// In the password policy that you have set, refers to whether you have required users
-        /// to use at least one lowercase letter in their password.
+        /// The requirement in a password policy that users must include at least one lowercase
+        /// letter in their password.
         /// </para>
         /// </summary>
         public bool RequireLowercase
@@ -82,8 +120,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property RequireNumbers. 
         /// <para>
-        /// In the password policy that you have set, refers to whether you have required users
-        /// to use at least one number in their password.
+        /// The requirement in a password policy that users must include at least one number in
+        /// their password.
         /// </para>
         /// </summary>
         public bool RequireNumbers
@@ -101,8 +139,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property RequireSymbols. 
         /// <para>
-        /// In the password policy that you have set, refers to whether you have required users
-        /// to use at least one symbol in their password.
+        /// The requirement in a password policy that users must include at least one symbol in
+        /// their password.
         /// </para>
         /// </summary>
         public bool RequireSymbols
@@ -120,8 +158,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property RequireUppercase. 
         /// <para>
-        /// In the password policy that you have set, refers to whether you have required users
-        /// to use at least one uppercase letter in their password.
+        /// The requirement in a password policy that users must include at least one uppercase
+        /// letter in their password.
         /// </para>
         /// </summary>
         public bool RequireUppercase
@@ -140,13 +178,15 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// Gets and sets the property TemporaryPasswordValidityDays. 
         /// <para>
         /// The number of days a temporary password is valid in the password policy. If the user
-        /// doesn't sign in during this time, an administrator must reset their password.
+        /// doesn't sign in during this time, an administrator must reset their password. Defaults
+        /// to <c>7</c>. If you submit a value of <c>0</c>, Amazon Cognito treats it as a null
+        /// value and sets <c>TemporaryPasswordValidityDays</c> to its default value.
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you set <code>TemporaryPasswordValidityDays</code> for a user pool, you can no
-        /// longer set a value for the legacy <code>UnusedAccountValidityDays</code> parameter
-        /// in that user pool.
+        /// When you set <c>TemporaryPasswordValidityDays</c> for a user pool, you can no longer
+        /// set a value for the legacy <c>UnusedAccountValidityDays</c> parameter in that user
+        /// pool.
         /// </para>
         ///  </note>
         /// </summary>

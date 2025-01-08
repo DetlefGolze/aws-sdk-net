@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ResilienceHub.Model
     /// </summary>
     public partial class DescribeAppVersionResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, List<string>> _additionalInfo = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _additionalInfo = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private string _appArn;
         private string _appVersion;
 
@@ -41,8 +42,8 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property AdditionalInfo. 
         /// <para>
         /// Additional configuration parameters for an Resilience Hub application. If you want
-        /// to implement <code>additionalInfo</code> through the Resilience Hub console rather
-        /// than using an API call, see <a href="https://docs.aws.amazon.com/resilience-hub/latest/userguide/app-config-param.html">Configure
+        /// to implement <c>additionalInfo</c> through the Resilience Hub console rather than
+        /// using an API call, see <a href="https://docs.aws.amazon.com/resilience-hub/latest/userguide/app-config-param.html">Configure
         /// the application configuration parameters</a>.
         /// </para>
         ///  <note> 
@@ -60,16 +61,17 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if AdditionalInfo property is set
         internal bool IsSetAdditionalInfo()
         {
-            return this._additionalInfo != null && this._additionalInfo.Count > 0; 
+            return this._additionalInfo != null && (this._additionalInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

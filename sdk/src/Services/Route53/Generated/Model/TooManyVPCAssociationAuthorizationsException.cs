@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
     /// You've created the maximum number of authorizations that can be created for the specified
     /// hosted zone. To authorize another VPC to be associated with the hosted zone, submit
-    /// a <code>DeleteVPCAssociationAuthorization</code> request to remove an existing authorization.
-    /// To get a list of existing authorizations, submit a <code>ListVPCAssociationAuthorizations</code>
+    /// a <c>DeleteVPCAssociationAuthorization</c> request to remove an existing authorization.
+    /// To get a list of existing authorizations, submit a <c>ListVPCAssociationAuthorizations</c>
     /// request.
     /// </summary>
     #if !NETSTANDARD

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public LoRaWANMulticastGet Unmarshall(JsonUnmarshallerContext context)
         {
+            LoRaWANMulticastGet unmarshalledObject = new LoRaWANMulticastGet();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            LoRaWANMulticastGet unmarshalledObject = new LoRaWANMulticastGet();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,6 +84,12 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
                     unmarshalledObject.NumberOfDevicesRequested = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ParticipatingGateways", targetDepth))
+                {
+                    var unmarshaller = ParticipatingGatewaysMulticastUnmarshaller.Instance;
+                    unmarshalledObject.ParticipatingGateways = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("RfRegion", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -89,7 +97,6 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

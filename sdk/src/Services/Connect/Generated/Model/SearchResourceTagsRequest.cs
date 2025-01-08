@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Connect.Model
         private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _resourceTypes = new List<string>();
+        private List<string> _resourceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ResourceTagsSearchCriteria _searchCriteria;
 
         /// <summary>
@@ -105,6 +106,43 @@ namespace Amazon.Connect.Model
         /// The list of resource types to be used to search tags from. If not provided or if any
         /// empty list is provided, this API will search from all supported resource types.
         /// </para>
+        ///  
+        /// <para>
+        ///  <b>Supported resource types</b> 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// AGENT
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// ROUTING_PROFILE
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// STANDARD_QUEUE
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// SECURITY_PROFILE
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// OPERATING_HOURS
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// PROMPT
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// CONTACT_FLOW
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// FLOW_MODULE
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public List<string> ResourceTypes
         {
@@ -115,7 +153,7 @@ namespace Amazon.Connect.Model
         // Check to see if ResourceTypes property is set
         internal bool IsSetResourceTypes()
         {
-            return this._resourceTypes != null && this._resourceTypes.Count > 0; 
+            return this._resourceTypes != null && (this._resourceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

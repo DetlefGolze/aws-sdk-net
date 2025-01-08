@@ -26,19 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// <note> 
-    /// <para>
-    /// Currently available in <b>limited preview only</b>. If you are interested in using
-    /// this feature, contact your account manager.
-    /// </para>
-    ///  </note> 
-    /// <para>
     /// Information about an association between a branch network interface with a trunk network
     /// interface.
-    /// </para>
     /// </summary>
     public partial class TrunkInterfaceAssociation
     {
@@ -46,7 +39,7 @@ namespace Amazon.EC2.Model
         private string _branchInterfaceId;
         private int? _greKey;
         private InterfaceProtocolType _interfaceProtocol;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _trunkInterfaceId;
         private int? _vlanId;
 
@@ -107,7 +100,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property InterfaceProtocol. 
         /// <para>
-        /// The interface protocol. Valid values are <code>VLAN</code> and <code>GRE</code>.
+        /// The interface protocol. Valid values are <c>VLAN</c> and <c>GRE</c>.
         /// </para>
         /// </summary>
         public InterfaceProtocolType InterfaceProtocol
@@ -137,7 +130,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

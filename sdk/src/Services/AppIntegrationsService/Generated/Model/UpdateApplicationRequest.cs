@@ -26,16 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppIntegrationsService.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateApplication operation.
-    /// This API is in preview release and subject to change.
-    /// 
-    ///  
-    /// <para>
     /// Updates and persists an Application resource.
-    /// </para>
     /// </summary>
     public partial class UpdateApplicationRequest : AmazonAppIntegrationsServiceRequest
     {
@@ -43,8 +39,9 @@ namespace Amazon.AppIntegrationsService.Model
         private string _arn;
         private string _description;
         private string _name;
-        private List<Publication> _publications = new List<Publication>();
-        private List<Subscription> _subscriptions = new List<Subscription>();
+        private List<string> _permissions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Publication> _publications = AWSConfigs.InitializeCollections ? new List<Publication>() : null;
+        private List<Subscription> _subscriptions = AWSConfigs.InitializeCollections ? new List<Subscription>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationSourceConfig. 
@@ -89,7 +86,7 @@ namespace Amazon.AppIntegrationsService.Model
         /// The description of the application.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Min=0, Max=1000)]
         public string Description
         {
             get { return this._description; }
@@ -122,11 +119,31 @@ namespace Amazon.AppIntegrationsService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Permissions. 
+        /// <para>
+        /// The configuration of events or requests that the application has access to.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=150)]
+        public List<string> Permissions
+        {
+            get { return this._permissions; }
+            set { this._permissions = value; }
+        }
+
+        // Check to see if Permissions property is set
+        internal bool IsSetPermissions()
+        {
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Publications. 
         /// <para>
         /// The events that the application publishes.
         /// </para>
         /// </summary>
+        [Obsolete("Publications has been replaced with Permissions")]
         [AWSProperty(Min=0, Max=50)]
         public List<Publication> Publications
         {
@@ -137,7 +154,7 @@ namespace Amazon.AppIntegrationsService.Model
         // Check to see if Publications property is set
         internal bool IsSetPublications()
         {
-            return this._publications != null && this._publications.Count > 0; 
+            return this._publications != null && (this._publications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -146,6 +163,7 @@ namespace Amazon.AppIntegrationsService.Model
         /// The events that the application subscribes.
         /// </para>
         /// </summary>
+        [Obsolete("Subscriptions has been replaced with Permissions")]
         [AWSProperty(Min=0, Max=50)]
         public List<Subscription> Subscriptions
         {
@@ -156,7 +174,7 @@ namespace Amazon.AppIntegrationsService.Model
         // Check to see if Subscriptions property is set
         internal bool IsSetSubscriptions()
         {
-            return this._subscriptions != null && this._subscriptions.Count > 0; 
+            return this._subscriptions != null && (this._subscriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

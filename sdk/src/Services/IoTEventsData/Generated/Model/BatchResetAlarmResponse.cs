@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEventsData.Model
 {
     /// <summary>
@@ -33,14 +34,13 @@ namespace Amazon.IoTEventsData.Model
     /// </summary>
     public partial class BatchResetAlarmResponse : AmazonWebServiceResponse
     {
-        private List<BatchAlarmActionErrorEntry> _errorEntries = new List<BatchAlarmActionErrorEntry>();
+        private List<BatchAlarmActionErrorEntry> _errorEntries = AWSConfigs.InitializeCollections ? new List<BatchAlarmActionErrorEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property ErrorEntries. 
         /// <para>
-        /// A list of errors associated with the request, or <code>null</code> if there are no
-        /// errors. Each error entry contains an entry ID that helps you identify the entry that
-        /// failed.
+        /// A list of errors associated with the request, or <c>null</c> if there are no errors.
+        /// Each error entry contains an entry ID that helps you identify the entry that failed.
         /// </para>
         /// </summary>
         public List<BatchAlarmActionErrorEntry> ErrorEntries
@@ -52,7 +52,7 @@ namespace Amazon.IoTEventsData.Model
         // Check to see if ErrorEntries property is set
         internal bool IsSetErrorEntries()
         {
-            return this._errorEntries != null && this._errorEntries.Count > 0; 
+            return this._errorEntries != null && (this._errorEntries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

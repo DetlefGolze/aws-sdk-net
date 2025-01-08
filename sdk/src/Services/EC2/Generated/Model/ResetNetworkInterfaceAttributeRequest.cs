@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SourceDestCheck. 
         /// <para>
-        /// The source/destination checking attribute. Resets the value to <code>true</code>.
+        /// The source/destination checking attribute. Resets the value to <c>true</c>.
         /// </para>
         /// </summary>
         public string SourceDestCheck

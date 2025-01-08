@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Redshift.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -176,6 +177,10 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                 {
                     return InvalidVPCNetworkStateExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("Ipv6CidrBlockNotFoundFault"))
+                {
+                    return Ipv6CidrBlockNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("LimitExceededFault"))
                 {
                     return LimitExceededExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
@@ -188,6 +193,10 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                 {
                     return NumberOfNodesQuotaExceededExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("RedshiftIdcApplicationNotExists"))
+                {
+                    return RedshiftIdcApplicationNotExistsExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("SnapshotScheduleNotFound"))
                 {
                     return SnapshotScheduleNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
@@ -199,6 +208,10 @@ namespace Amazon.Redshift.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("UnauthorizedOperation"))
                 {
                     return UnauthorizedOperationExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("UnsupportedOperation"))
+                {
+                    return UnsupportedOperationExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
             }
             return new AmazonRedshiftException(errorResponse.Message, innerException, errorResponse.Type, errorResponse.Code, errorResponse.RequestId, statusCode);

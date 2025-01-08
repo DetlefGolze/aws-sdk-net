@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -33,11 +34,11 @@ namespace Amazon.ElastiCache.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>ModifyCacheParameterGroup</code> 
+    ///  <c>ModifyCacheParameterGroup</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ResetCacheParameterGroup</code> 
+    ///  <c>ResetCacheParameterGroup</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>

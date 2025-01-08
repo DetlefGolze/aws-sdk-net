@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the ListWorkersWithQualificationType operation.
-    /// The <code>ListWorkersWithQualificationType</code> operation returns all of the Workers
+    /// The <c>ListWorkersWithQualificationType</c> operation returns all of the Workers
     /// that have been associated with a given Qualification type.
     /// </summary>
     public partial class ListWorkersWithQualificationTypeRequest : AmazonMTurkRequest
@@ -100,8 +101,7 @@ namespace Amazon.MTurk.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The status of the Qualifications to return. Can be <code>Granted | Revoked</code>.
-        /// 
+        ///  The status of the Qualifications to return. Can be <c>Granted | Revoked</c>. 
         /// </para>
         /// </summary>
         public QualificationStatus Status

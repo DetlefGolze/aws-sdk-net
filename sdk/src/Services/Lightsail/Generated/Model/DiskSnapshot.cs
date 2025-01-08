@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.Lightsail.Model
         private int? _sizeInGb;
         private DiskSnapshotState _state;
         private string _supportCode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -199,7 +200,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the disk snapshot (e.g., <code>my-disk-snapshot</code>).
+        /// The name of the disk snapshot (<c>my-disk-snapshot</c>).
         /// </para>
         /// </summary>
         public string Name
@@ -235,7 +236,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The Lightsail resource type (e.g., <code>DiskSnapshot</code>).
+        /// The Lightsail resource type (<c>DiskSnapshot</c>).
         /// </para>
         /// </summary>
         public ResourceType ResourceType
@@ -323,7 +324,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTWireless.Model
 {
     /// <summary>
@@ -117,8 +118,8 @@ namespace Amazon.IoTWireless.Model
         /// <summary>
         /// Gets and sets the property MaxAllowedSignature. 
         /// <para>
-        /// The maximum number of signatures that the DAK can sign. A value of <code>-1</code>
-        /// indicates that there's no device limit.
+        /// The maximum number of signatures that the DAK can sign. A value of <c>-1</c> indicates
+        /// that there's no device limit.
         /// </para>
         /// </summary>
         public int MaxAllowedSignature

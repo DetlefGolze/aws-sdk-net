@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
@@ -82,6 +84,12 @@ namespace Amazon.WorkMail.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("DeleteDirectory");
                     context.Writer.Write(publicRequest.DeleteDirectory);
+                }
+
+                if(publicRequest.IsSetDeleteIdentityCenterApplication())
+                {
+                    context.Writer.WritePropertyName("DeleteIdentityCenterApplication");
+                    context.Writer.Write(publicRequest.DeleteIdentityCenterApplication);
                 }
 
                 if(publicRequest.IsSetForceDelete())

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.VoiceID.Model
         /// <para>
         /// The identifier of the fraudster that is the closest match to the speaker. If there
         /// are no fraudsters registered in a given domain, or if there are no fraudsters with
-        /// a non-zero RiskScore, this value is <code>null</code>.
+        /// a non-zero RiskScore, this value is <c>null</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=25, Max=25)]

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the managedblockchain-query-2023-05-04.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -24,6 +25,16 @@ namespace Amazon.ManagedBlockchainQuery.Model
     ///</summary>
     public interface IManagedBlockchainQueryPaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for ListAssetContracts operation
+        ///</summary>
+        IListAssetContractsPaginator ListAssetContracts(ListAssetContractsRequest request);
+
+        /// <summary>
+        /// Paginator for ListFilteredTransactionEvents operation
+        ///</summary>
+        IListFilteredTransactionEventsPaginator ListFilteredTransactionEvents(ListFilteredTransactionEventsRequest request);
 
         /// <summary>
         /// Paginator for ListTokenBalances operation

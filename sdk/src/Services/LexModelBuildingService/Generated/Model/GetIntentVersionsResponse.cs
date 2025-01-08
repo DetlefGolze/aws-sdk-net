@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.LexModelBuildingService.Model
     /// </summary>
     public partial class GetIntentVersionsResponse : AmazonWebServiceResponse
     {
-        private List<IntentMetadata> _intents = new List<IntentMetadata>();
+        private List<IntentMetadata> _intents = AWSConfigs.InitializeCollections ? new List<IntentMetadata>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Intents. 
         /// <para>
-        /// An array of <code>IntentMetadata</code> objects, one for each numbered version of
-        /// the intent plus one for the <code>$LATEST</code> version.
+        /// An array of <c>IntentMetadata</c> objects, one for each numbered version of the intent
+        /// plus one for the <c>$LATEST</c> version.
         /// </para>
         /// </summary>
         public List<IntentMetadata> Intents
@@ -52,7 +53,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if Intents property is set
         internal bool IsSetIntents()
         {
-            return this._intents != null && this._intents.Count > 0; 
+            return this._intents != null && (this._intents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

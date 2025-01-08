@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.IoTEvents.Model
     /// </summary>
     public partial class InputDefinition
     {
-        private List<Attribute> _attributes = new List<Attribute>();
+        private List<Attribute> _attributes = AWSConfigs.InitializeCollections ? new List<Attribute>() : null;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
         /// <para>
         /// The attributes from the JSON payload that are made available by the input. Inputs
-        /// are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>.
+        /// are derived from messages sent to the AWS IoT Events system using <c>BatchPutMessage</c>.
         /// Each such message contains a JSON payload, and those attributes (and their paired
-        /// values) specified here are available for use in the <code>condition</code> expressions
-        /// used by detectors that monitor this input. 
+        /// values) specified here are available for use in the <c>condition</c> expressions used
+        /// by detectors that monitor this input. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=200)]
@@ -55,7 +56,7 @@ namespace Amazon.IoTEvents.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

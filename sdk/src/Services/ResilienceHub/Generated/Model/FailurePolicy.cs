@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property RpoInSecs. 
         /// <para>
-        /// The Recovery Point Objective (RPO), in seconds.
+        /// Recovery Point Objective (RPO) in seconds.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]
@@ -58,7 +59,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property RtoInSecs. 
         /// <para>
-        /// The Recovery Time Objective (RTO), in seconds.
+        /// Recovery Time Objective (RTO) in seconds.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]

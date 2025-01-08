@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.CloudFront.Model
         /// <para>
         /// Specify the Amazon Web Services Region that has the lowest latency to your origin.
         /// To specify a region, use the region code, not the region name. For example, specify
-        /// the US East (Ohio) region as <code>us-east-2</code>.
+        /// the US East (Ohio) region as <c>us-east-2</c>.
         /// </para>
         ///  
         /// <para>

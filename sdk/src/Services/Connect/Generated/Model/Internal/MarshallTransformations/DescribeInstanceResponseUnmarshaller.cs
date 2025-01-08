@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Connect.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -55,6 +56,12 @@ namespace Amazon.Connect.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = InstanceUnmarshaller.Instance;
                     response.Instance = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ReplicationConfiguration", targetDepth))
+                {
+                    var unmarshaller = ReplicationConfigurationUnmarshaller.Instance;
+                    response.ReplicationConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

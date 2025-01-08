@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The request was rejected because the lifecycle status of the source backup isn't <code>AVAILABLE</code>.
+    /// The request was rejected because the lifecycle status of the source backup isn't <c>AVAILABLE</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

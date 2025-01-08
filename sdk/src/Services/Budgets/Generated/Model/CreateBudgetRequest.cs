@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Budgets.Model
 {
     /// <summary>
@@ -34,10 +35,9 @@ namespace Amazon.Budgets.Model
     /// 
     ///  <important> 
     /// <para>
-    /// Only one of <code>BudgetLimit</code> or <code>PlannedBudgetLimits</code> can be present
-    /// in the syntax at one time. Use the syntax that matches your case. The Request Syntax
-    /// section shows the <code>BudgetLimit</code> syntax. For <code>PlannedBudgetLimits</code>,
-    /// see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateBudget.html#API_CreateBudget_Examples">Examples</a>
+    /// Only one of <c>BudgetLimit</c> or <c>PlannedBudgetLimits</c> can be present in the
+    /// syntax at one time. Use the syntax that matches your case. The Request Syntax section
+    /// shows the <c>BudgetLimit</c> syntax. For <c>PlannedBudgetLimits</c>, see the <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_budgets_CreateBudget.html#API_CreateBudget_Examples">Examples</a>
     /// section. 
     /// </para>
     ///  </important>
@@ -46,12 +46,13 @@ namespace Amazon.Budgets.Model
     {
         private string _accountId;
         private Budget _budget;
-        private List<NotificationWithSubscribers> _notificationsWithSubscribers = new List<NotificationWithSubscribers>();
+        private List<NotificationWithSubscribers> _notificationsWithSubscribers = AWSConfigs.InitializeCollections ? new List<NotificationWithSubscribers>() : null;
+        private List<ResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<ResourceTag>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The <code>accountId</code> that is associated with the budget.
+        /// The <c>accountId</c> that is associated with the budget.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=12, Max=12)]
@@ -91,7 +92,7 @@ namespace Amazon.Budgets.Model
         /// <para>
         /// A notification that you want to associate with a budget. A budget can have up to five
         /// notifications, and each notification can have one SNS subscriber and up to 10 email
-        /// subscribers. If you include notifications and subscribers in your <code>CreateBudget</code>
+        /// subscribers. If you include notifications and subscribers in your <c>CreateBudget</c>
         /// call, Amazon Web Services creates the notifications and subscribers for you.
         /// </para>
         /// </summary>
@@ -105,7 +106,27 @@ namespace Amazon.Budgets.Model
         // Check to see if NotificationsWithSubscribers property is set
         internal bool IsSetNotificationsWithSubscribers()
         {
-            return this._notificationsWithSubscribers != null && this._notificationsWithSubscribers.Count > 0; 
+            return this._notificationsWithSubscribers != null && (this._notificationsWithSubscribers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ResourceTags. 
+        /// <para>
+        /// An optional list of tags to associate with the specified budget. Each tag consists
+        /// of a key and a value, and each key must be unique for the resource.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=200)]
+        public List<ResourceTag> ResourceTags
+        {
+            get { return this._resourceTags; }
+            set { this._resourceTags = value; }
+        }
+
+        // Check to see if ResourceTags property is set
+        internal bool IsSetResourceTags()
+        {
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
@@ -33,11 +34,39 @@ namespace Amazon.DLM.Model
     /// </summary>
     public partial class LifecyclePolicySummary
     {
+        private bool? _defaultPolicy;
         private string _description;
         private string _policyId;
         private PolicyTypeValues _policyType;
         private GettablePolicyStateValues _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property DefaultPolicy. 
+        /// <para>
+        ///  <b>[Default policies only]</b> The type of default policy. Values include:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>VOLUME</c> - Default policy for EBS snapshots
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>INSTANCE</c> - Default policy for EBS-backed AMIs
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public bool DefaultPolicy
+        {
+            get { return this._defaultPolicy.GetValueOrDefault(); }
+            set { this._defaultPolicy = value; }
+        }
+
+        // Check to see if DefaultPolicy property is set
+        internal bool IsSetDefaultPolicy()
+        {
+            return this._defaultPolicy.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -80,11 +109,11 @@ namespace Amazon.DLM.Model
         /// <summary>
         /// Gets and sets the property PolicyType. 
         /// <para>
-        /// The type of policy. <code>EBS_SNAPSHOT_MANAGEMENT</code> indicates that the policy
-        /// manages the lifecycle of Amazon EBS snapshots. <code>IMAGE_MANAGEMENT</code> indicates
-        /// that the policy manages the lifecycle of EBS-backed AMIs. <code>EVENT_BASED_POLICY</code>
-        /// indicates that the policy automates cross-account snapshot copies for snapshots that
-        /// are shared with your account.
+        /// The type of policy. <c>EBS_SNAPSHOT_MANAGEMENT</c> indicates that the policy manages
+        /// the lifecycle of Amazon EBS snapshots. <c>IMAGE_MANAGEMENT</c> indicates that the
+        /// policy manages the lifecycle of EBS-backed AMIs. <c>EVENT_BASED_POLICY</c> indicates
+        /// that the policy automates cross-account snapshot copies for snapshots that are shared
+        /// with your account.
         /// </para>
         /// </summary>
         public PolicyTypeValues PolicyType
@@ -133,7 +162,7 @@ namespace Amazon.DLM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

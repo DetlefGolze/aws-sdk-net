@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.ECS.Model
     {
         private SettingName _name;
         private string _principalArn;
+        private SettingType _type;
         private string _value;
 
         /// <summary>
@@ -72,6 +74,31 @@ namespace Amazon.ECS.Model
         internal bool IsSetPrincipalArn()
         {
             return this._principalArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Type. 
+        /// <para>
+        /// Indicates whether Amazon Web Services manages the account setting, or if the user
+        /// manages it.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>aws_managed</c> account settings are read-only, as Amazon Web Services manages
+        /// such on the customer's behalf. Currently, the <c>guardDutyActivate</c> account setting
+        /// is the only one Amazon Web Services manages.
+        /// </para>
+        /// </summary>
+        public SettingType Type
+        {
+            get { return this._type; }
+            set { this._type = value; }
+        }
+
+        // Check to see if Type property is set
+        internal bool IsSetType()
+        {
+            return this._type != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Redshift.Model
         private UsageLimitFeatureType _featureType;
         private UsageLimitLimitType _limitType;
         private UsageLimitPeriod _period;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _usageLimitId;
 
         /// <summary>
@@ -152,8 +153,8 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property Period. 
         /// <para>
-        /// The time period that the amount applies to. A <code>weekly</code> period begins on
-        /// Sunday. The default is <code>monthly</code>. 
+        /// The time period that the amount applies to. A <c>weekly</c> period begins on Sunday.
+        /// The default is <c>monthly</c>. 
         /// </para>
         /// </summary>
         public UsageLimitPeriod Period
@@ -183,7 +184,7 @@ namespace Amazon.Redshift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the GetUICustomization operation.
     /// Gets the user interface (UI) Customization information for a particular app client's
     /// app UI, if any such information exists for the client. If nothing is set for the particular
-    /// client, but there is an existing pool level customization (the app <code>clientId</code>
-    /// is <code>ALL</code>), then that information is returned. If nothing is present, then
-    /// an empty shape is returned.
+    /// client, but there is an existing pool level customization (the app <c>clientId</c>
+    /// is <c>ALL</c>), then that information is returned. If nothing is present, then an
+    /// empty shape is returned.
     /// </summary>
     public partial class GetUICustomizationRequest : AmazonCognitoIdentityProviderRequest
     {
@@ -63,7 +64,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool.
+        /// The ID of the user pool.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

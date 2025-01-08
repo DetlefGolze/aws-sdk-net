@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// Describe details about a fast-launch enabled Windows image that meets the requested
-    /// criteria. Criteria are defined by the <code>DescribeFastLaunchImages</code> action
-    /// filters.
+    /// Describe details about a Windows image with Windows fast launch enabled that meets
+    /// the requested criteria. Criteria are defined by the <c>DescribeFastLaunchImages</c>
+    /// action filters.
     /// </summary>
     public partial class DescribeFastLaunchImagesSuccessItem
     {
@@ -48,7 +49,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ImageId. 
         /// <para>
-        /// The image ID that identifies the fast-launch enabled Windows image.
+        /// The image ID that identifies the Windows fast launch enabled image.
         /// </para>
         /// </summary>
         public string ImageId
@@ -66,7 +67,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property LaunchTemplate. 
         /// <para>
-        /// The launch template that the fast-launch enabled Windows AMI uses when it launches
+        /// The launch template that the Windows fast launch enabled AMI uses when it launches
         /// Windows instances from pre-provisioned snapshots.
         /// </para>
         /// </summary>
@@ -86,7 +87,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property MaxParallelLaunches. 
         /// <para>
         /// The maximum number of instances that Amazon EC2 can launch at the same time to create
-        /// pre-provisioned snapshots for Windows faster launching.
+        /// pre-provisioned snapshots for Windows fast launch.
         /// </para>
         /// </summary>
         public int MaxParallelLaunches
@@ -104,7 +105,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OwnerId. 
         /// <para>
-        /// The owner ID for the fast-launch enabled Windows AMI.
+        /// The owner ID for the Windows fast launch enabled AMI.
         /// </para>
         /// </summary>
         public string OwnerId
@@ -122,8 +123,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The resource type that is used for pre-provisioning the Windows AMI. Supported values
-        /// include: <code>snapshot</code>.
+        /// The resource type that Amazon EC2 uses for pre-provisioning the Windows AMI. Supported
+        /// values include: <c>snapshot</c>.
         /// </para>
         /// </summary>
         public FastLaunchResourceType ResourceType
@@ -160,7 +161,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The current state of faster launching for the specified Windows AMI.
+        /// The current state of Windows fast launch for the specified Windows AMI.
         /// </para>
         /// </summary>
         public FastLaunchStateCode State
@@ -178,7 +179,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property StateTransitionReason. 
         /// <para>
-        /// The reason that faster launching for the Windows AMI changed to the current state.
+        /// The reason that Windows fast launch for the AMI changed to the current state.
         /// </para>
         /// </summary>
         public string StateTransitionReason
@@ -196,7 +197,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property StateTransitionTime. 
         /// <para>
-        /// The time that faster launching for the Windows AMI changed to the current state.
+        /// The time that Windows fast launch for the AMI changed to the current state.
         /// </para>
         /// </summary>
         public DateTime StateTransitionTime

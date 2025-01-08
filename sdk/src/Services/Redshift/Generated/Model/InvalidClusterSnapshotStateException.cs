@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
-    /// The specified cluster snapshot is not in the <code>available</code> state, or other
-    /// accounts are authorized to access the snapshot.
+    /// The specified cluster snapshot is not in the <c>available</c> state, or other accounts
+    /// are authorized to access the snapshot.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

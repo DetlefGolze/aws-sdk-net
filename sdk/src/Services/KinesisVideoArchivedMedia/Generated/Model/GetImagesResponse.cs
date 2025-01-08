@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideoArchivedMedia.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
     /// </summary>
     public partial class GetImagesResponse : AmazonWebServiceResponse
     {
-        private List<Image> _images = new List<Image>();
+        private List<Image> _images = AWSConfigs.InitializeCollections ? new List<Image>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Images. 
         /// <para>
         /// The list of images generated from the video stream. If there is no media available
-        /// for the given timestamp, the <code>NO_MEDIA</code> error will be listed in the output.
-        /// If an error occurs while the image is being generated, the <code>MEDIA_ERROR</code>
-        /// will be listed in the output as the cause of the missing image. 
+        /// for the given timestamp, the <c>NO_MEDIA</c> error will be listed in the output. If
+        /// an error occurs while the image is being generated, the <c>MEDIA_ERROR</c> will be
+        /// listed in the output as the cause of the missing image. 
         /// </para>
         /// </summary>
         public List<Image> Images
@@ -54,7 +55,7 @@ namespace Amazon.KinesisVideoArchivedMedia.Model
         // Check to see if Images property is set
         internal bool IsSetImages()
         {
-            return this._images != null && this._images.Count > 0; 
+            return this._images != null && (this._images.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

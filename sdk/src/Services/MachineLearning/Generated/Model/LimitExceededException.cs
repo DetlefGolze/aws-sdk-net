@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MachineLearning.Model
 {
     /// <summary>
     /// The subscriber exceeded the maximum number of operations. This exception can occur
-    /// when listing objects such as <code>DataSource</code>.
+    /// when listing objects such as <c>DataSource</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

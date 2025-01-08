@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property Success. 
         /// <para>
-        /// Returns <code>true</code> if the work team was successfully deleted; otherwise, returns
-        /// <code>false</code>.
+        /// Returns <c>true</c> if the work team was successfully deleted; otherwise, returns
+        /// <c>false</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

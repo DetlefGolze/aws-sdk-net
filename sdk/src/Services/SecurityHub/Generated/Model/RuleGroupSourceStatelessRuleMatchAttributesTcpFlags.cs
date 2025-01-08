@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class RuleGroupSourceStatelessRuleMatchAttributesTcpFlags
     {
-        private List<string> _flags = new List<string>();
-        private List<string> _masks = new List<string>();
+        private List<string> _flags = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _masks = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Flags. 
         /// <para>
-        /// Defines the flags from the <code>Masks</code> setting that must be set in order for
-        /// the packet to match. Flags that are listed must be set. Flags that are not listed
-        /// must not be set.
+        /// Defines the flags from the <c>Masks</c> setting that must be set in order for the
+        /// packet to match. Flags that are listed must be set. Flags that are not listed must
+        /// not be set.
         /// </para>
         /// </summary>
         public List<string> Flags
@@ -53,7 +54,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Flags property is set
         internal bool IsSetFlags()
         {
-            return this._flags != null && this._flags.Count > 0; 
+            return this._flags != null && (this._flags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Masks property is set
         internal bool IsSetMasks()
         {
-            return this._masks != null && this._masks.Count > 0; 
+            return this._masks != null && (this._masks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

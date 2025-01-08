@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.ApplicationInsights.Model
         private RecommendationType _recommendationType;
         private string _resourceGroupName;
         private Tier _tier;
+        private string _workloadName;
 
         /// <summary>
         /// Gets and sets the property ComponentName. 
@@ -112,6 +114,26 @@ namespace Amazon.ApplicationInsights.Model
         internal bool IsSetTier()
         {
             return this._tier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkloadName. 
+        /// <para>
+        /// The name of the workload. The name of the workload is required when the tier of the
+        /// application component is <c>SAP_ASE_SINGLE_NODE</c> or <c>SAP_ASE_HIGH_AVAILABILITY</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=12)]
+        public string WorkloadName
+        {
+            get { return this._workloadName; }
+            set { this._workloadName = value; }
+        }
+
+        // Check to see if WorkloadName property is set
+        internal bool IsSetWorkloadName()
+        {
+            return this._workloadName != null;
         }
 
     }

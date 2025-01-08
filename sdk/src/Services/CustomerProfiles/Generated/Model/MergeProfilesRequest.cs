@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -34,21 +35,19 @@ namespace Amazon.CustomerProfiles.Model
     /// 
     ///  <ol> <li> 
     /// <para>
-    /// All the profileKeys in the <code>ProfileToBeMerged</code> will be moved to the main
-    /// profile.
+    /// All the profileKeys in the <c>ProfileToBeMerged</c> will be moved to the main profile.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// All the objects in the <code>ProfileToBeMerged</code> will be moved to the main profile.
+    /// All the objects in the <c>ProfileToBeMerged</c> will be moved to the main profile.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// All the <code>ProfileToBeMerged</code> will be deleted at the end.
+    /// All the <c>ProfileToBeMerged</c> will be deleted at the end.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// All the profileKeys in the <code>ProfileIdsToBeMerged</code> will be moved to the
-    /// main profile.
+    /// All the profileKeys in the <c>ProfileIdsToBeMerged</c> will be moved to the main profile.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -64,13 +63,13 @@ namespace Amazon.CustomerProfiles.Model
     /// </para>
     ///  <ol> <li> 
     /// <para>
-    /// If no <code>SourceProfileIds</code> entry is specified, the main Profile value is
-    /// always taken. 
+    /// If no <c>SourceProfileIds</c> entry is specified, the main Profile value is always
+    /// taken. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If a <code>SourceProfileIds</code> entry is specified, the specified profileId is
-    /// always taken, even if it is a NULL value.
+    /// If a <c>SourceProfileIds</c> entry is specified, the specified profileId is always
+    /// taken, even if it is a NULL value.
     /// </para>
     ///  </li> </ol> </li> </ol> </li> </ol> 
     /// <para>
@@ -84,7 +83,7 @@ namespace Amazon.CustomerProfiles.Model
         private string _domainName;
         private FieldSourceProfileIds _fieldSourceProfileIds;
         private string _mainProfileId;
-        private List<string> _profileIdsToBeMerged = new List<string>();
+        private List<string> _profileIdsToBeMerged = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainName. 
@@ -161,7 +160,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if ProfileIdsToBeMerged property is set
         internal bool IsSetProfileIdsToBeMerged()
         {
-            return this._profileIdsToBeMerged != null && this._profileIdsToBeMerged.Count > 0; 
+            return this._profileIdsToBeMerged != null && (this._profileIdsToBeMerged.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

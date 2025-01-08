@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Configured. 
         /// <para>
-        ///  If you set this parameter to <code>true</code>, the instance is enabled for hibernation.
+        ///  If you set this parameter to <c>true</c>, the instance is enabled for hibernation.
         /// 
         /// </para>
         /// </summary>

@@ -26,17 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateDomainConfig operation.
-    /// Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.sl
+    /// Modifies the cluster configuration of the specified Amazon OpenSearch Service domain.
     /// </summary>
     public partial class UpdateDomainConfigRequest : AmazonOpenSearchServiceRequest
     {
         private string _accessPolicies;
-        private Dictionary<string, string> _advancedOptions = new Dictionary<string, string>();
+        private Dictionary<string, string> _advancedOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private AdvancedSecurityOptionsInput _advancedSecurityOptions;
+        private AIMLOptionsInput _aimlOptions;
         private AutoTuneOptions _autoTuneOptions;
         private ClusterConfig _clusterConfig;
         private CognitoOptions _cognitoOptions;
@@ -46,7 +48,9 @@ namespace Amazon.OpenSearchService.Model
         private DryRunMode _dryRunMode;
         private EBSOptions _ebsOptions;
         private EncryptionAtRestOptions _encryptionAtRestOptions;
-        private Dictionary<string, LogPublishingOption> _logPublishingOptions = new Dictionary<string, LogPublishingOption>();
+        private IdentityCenterOptionsInput _identityCenterOptions;
+        private IPAddressType _ipAddressType;
+        private Dictionary<string, LogPublishingOption> _logPublishingOptions = AWSConfigs.InitializeCollections ? new Dictionary<string, LogPublishingOption>() : null;
         private NodeToNodeEncryptionOptions _nodeToNodeEncryptionOptions;
         private OffPeakWindowOptions _offPeakWindowOptions;
         private SnapshotOptions _snapshotOptions;
@@ -80,24 +84,24 @@ namespace Amazon.OpenSearchService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>"rest.action.multi.allow_explicit_index": "true" | "false"</code> - Note the
-        /// use of a string rather than a boolean. Specifies whether explicit references to indexes
+        ///  <c>"rest.action.multi.allow_explicit_index": "true" | "false"</c> - Note the use
+        /// of a string rather than a boolean. Specifies whether explicit references to indexes
         /// are allowed inside the body of HTTP requests. If you want to configure access policies
         /// for domain sub-resources, such as specific indexes and domain APIs, you must disable
         /// this property. Default is true.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"indices.fielddata.cache.size": "80" </code> - Note the use of a string rather
-        /// than a boolean. Specifies the percentage of heap space allocated to field data. Default
+        ///  <c>"indices.fielddata.cache.size": "80" </c> - Note the use of a string rather than
+        /// a boolean. Specifies the percentage of heap space allocated to field data. Default
         /// is unbounded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>"indices.query.bool.max_clause_count": "1024"</code> - Note the use of a string
-        /// rather than a boolean. Specifies the maximum number of clauses allowed in a Lucene
-        /// boolean query. Default is 1,024. Queries with more than the permitted number of clauses
-        /// result in a <code>TooManyClauses</code> error.
+        ///  <c>"indices.query.bool.max_clause_count": "1024"</c> - Note the use of a string rather
+        /// than a boolean. Specifies the maximum number of clauses allowed in a Lucene boolean
+        /// query. Default is 1,024. Queries with more than the permitted number of clauses result
+        /// in a <c>TooManyClauses</c> error.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -114,7 +118,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if AdvancedOptions property is set
         internal bool IsSetAdvancedOptions()
         {
-            return this._advancedOptions != null && this._advancedOptions.Count > 0; 
+            return this._advancedOptions != null && (this._advancedOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -133,6 +137,24 @@ namespace Amazon.OpenSearchService.Model
         internal bool IsSetAdvancedSecurityOptions()
         {
             return this._advancedSecurityOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AIMLOptions. 
+        /// <para>
+        /// Options for all machine learning features for the specified domain.
+        /// </para>
+        /// </summary>
+        public AIMLOptionsInput AIMLOptions
+        {
+            get { return this._aimlOptions; }
+            set { this._aimlOptions = value; }
+        }
+
+        // Check to see if AIMLOptions property is set
+        internal bool IsSetAIMLOptions()
+        {
+            return this._aimlOptions != null;
         }
 
         /// <summary>
@@ -231,9 +253,9 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property DryRun. 
         /// <para>
-        /// This flag, when set to True, specifies whether the <code>UpdateDomain</code> request
-        /// should return the results of a dry run analysis without actually applying the change.
-        /// A dry run determines what type of deployment the update will cause.
+        /// This flag, when set to True, specifies whether the <c>UpdateDomain</c> request should
+        /// return the results of a dry run analysis without actually applying the change. A dry
+        /// run determines what type of deployment the update will cause.
         /// </para>
         /// </summary>
         public bool DryRun
@@ -255,13 +277,13 @@ namespace Amazon.OpenSearchService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Basic</code> only returns the type of deployment (blue/green or dynamic) that
-        /// the update will cause.
+        ///  <c>Basic</c> only returns the type of deployment (blue/green or dynamic) that the
+        /// update will cause.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Verbose</code> runs an additional check to validate the changes you're making.
-        /// For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-configuration-changes#validation-check">Validating
+        ///  <c>Verbose</c> runs an additional check to validate the changes you're making. For
+        /// more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-configuration-changes#validation-check">Validating
         /// a domain update</a>.
         /// </para>
         ///  </li> </ul>
@@ -315,6 +337,42 @@ namespace Amazon.OpenSearchService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IdentityCenterOptions.
+        /// </summary>
+        public IdentityCenterOptionsInput IdentityCenterOptions
+        {
+            get { return this._identityCenterOptions; }
+            set { this._identityCenterOptions = value; }
+        }
+
+        // Check to see if IdentityCenterOptions property is set
+        internal bool IsSetIdentityCenterOptions()
+        {
+            return this._identityCenterOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IPAddressType. 
+        /// <para>
+        /// Specify either dual stack or IPv4 as your IP address type. Dual stack allows you to
+        /// share domain resources across IPv4 and IPv6 address types, and is the recommended
+        /// option. If your IP address type is currently set to dual stack, you can't change it.
+        /// 
+        /// </para>
+        /// </summary>
+        public IPAddressType IPAddressType
+        {
+            get { return this._ipAddressType; }
+            set { this._ipAddressType = value; }
+        }
+
+        // Check to see if IPAddressType property is set
+        internal bool IsSetIPAddressType()
+        {
+            return this._ipAddressType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LogPublishingOptions. 
         /// <para>
         /// Options to publish OpenSearch logs to Amazon CloudWatch Logs.
@@ -329,7 +387,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if LogPublishingOptions property is set
         internal bool IsSetLogPublishingOptions()
         {
-            return this._logPublishingOptions != null && this._logPublishingOptions.Count > 0; 
+            return this._logPublishingOptions != null && (this._logPublishingOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -372,7 +430,7 @@ namespace Amazon.OpenSearchService.Model
         /// Gets and sets the property SnapshotOptions. 
         /// <para>
         /// Option to set the time, in UTC format, for the daily automated snapshot. Default value
-        /// is <code>0</code> hours. 
+        /// is <c>0</c> hours. 
         /// </para>
         /// </summary>
         public SnapshotOptions SnapshotOptions

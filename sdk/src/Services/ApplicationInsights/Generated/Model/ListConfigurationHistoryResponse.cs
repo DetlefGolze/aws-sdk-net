@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ApplicationInsights.Model
     /// </summary>
     public partial class ListConfigurationHistoryResponse : AmazonWebServiceResponse
     {
-        private List<ConfigurationEvent> _eventList = new List<ConfigurationEvent>();
+        private List<ConfigurationEvent> _eventList = AWSConfigs.InitializeCollections ? new List<ConfigurationEvent>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.ApplicationInsights.Model
         // Check to see if EventList property is set
         internal bool IsSetEventList()
         {
-            return this._eventList != null && this._eventList.Count > 0; 
+            return this._eventList != null && (this._eventList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>NextToken</code> value to include in a future <code>ListConfigurationHistory</code>
-        /// request. When the results of a <code>ListConfigurationHistory</code> request exceed
-        /// <code>MaxResults</code>, this value can be used to retrieve the next page of results.
-        /// This value is <code>null</code> when there are no more results to return.
+        /// The <c>NextToken</c> value to include in a future <c>ListConfigurationHistory</c>
+        /// request. When the results of a <c>ListConfigurationHistory</c> request exceed <c>MaxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is <c>null</c>
+        /// when there are no more results to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// A DB security group with the name specified in <code>DBSecurityGroupName</code> already
+    /// A DB security group with the name specified in <c>DBSecurityGroupName</c> already
     /// exists.
     /// </summary>
     #if !NETSTANDARD

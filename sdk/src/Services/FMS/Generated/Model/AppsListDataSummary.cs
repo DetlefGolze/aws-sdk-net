@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.FMS.Model
     /// </summary>
     public partial class AppsListDataSummary
     {
-        private List<App> _appsList = new List<App>();
+        private List<App> _appsList = AWSConfigs.InitializeCollections ? new List<App>() : null;
         private string _listArn;
         private string _listId;
         private string _listName;
@@ -41,7 +42,7 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property AppsList. 
         /// <para>
-        /// An array of <code>App</code> objects in the Firewall Manager applications list.
+        /// An array of <c>App</c> objects in the Firewall Manager applications list.
         /// </para>
         /// </summary>
         public List<App> AppsList
@@ -53,7 +54,7 @@ namespace Amazon.FMS.Model
         // Check to see if AppsList property is set
         internal bool IsSetAppsList()
         {
-            return this._appsList != null && this._appsList.Count > 0; 
+            return this._appsList != null && (this._appsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

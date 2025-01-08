@@ -349,6 +349,56 @@ namespace Amazon.BillingConductor
 
 
     /// <summary>
+    /// Constants used for properties of type GroupByAttributeName.
+    /// </summary>
+    public class GroupByAttributeName : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant BILLING_PERIOD for GroupByAttributeName
+        /// </summary>
+        public static readonly GroupByAttributeName BILLING_PERIOD = new GroupByAttributeName("BILLING_PERIOD");
+        /// <summary>
+        /// Constant PRODUCT_NAME for GroupByAttributeName
+        /// </summary>
+        public static readonly GroupByAttributeName PRODUCT_NAME = new GroupByAttributeName("PRODUCT_NAME");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public GroupByAttributeName(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static GroupByAttributeName FindValue(string value)
+        {
+            return FindValue<GroupByAttributeName>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator GroupByAttributeName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type LineItemFilterAttributeName.
     /// </summary>
     public class LineItemFilterAttributeName : ConstantClass
@@ -636,6 +686,10 @@ namespace Amazon.BillingConductor
         /// Constant FIELD_VALIDATION_FAILED for ValidationExceptionReason
         /// </summary>
         public static readonly ValidationExceptionReason FIELD_VALIDATION_FAILED = new ValidationExceptionReason("FIELD_VALIDATION_FAILED");
+        /// <summary>
+        /// Constant ILLEGAL_ACCOUNT_ID for ValidationExceptionReason
+        /// </summary>
+        public static readonly ValidationExceptionReason ILLEGAL_ACCOUNT_ID = new ValidationExceptionReason("ILLEGAL_ACCOUNT_ID");
         /// <summary>
         /// Constant ILLEGAL_ACCOUNTS for ValidationExceptionReason
         /// </summary>

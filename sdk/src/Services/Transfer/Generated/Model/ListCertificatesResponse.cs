@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Transfer.Model
     /// </summary>
     public partial class ListCertificatesResponse : AmazonWebServiceResponse
     {
-        private List<ListedCertificate> _certificates = new List<ListedCertificate>();
+        private List<ListedCertificate> _certificates = AWSConfigs.InitializeCollections ? new List<ListedCertificate>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Certificates. 
         /// <para>
-        /// Returns an array of the certificates that are specified in the <code>ListCertificates</code>
+        /// Returns an array of the certificates that are specified in the <c>ListCertificates</c>
         /// call.
         /// </para>
         /// </summary>
@@ -53,7 +54,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Certificates property is set
         internal bool IsSetCertificates()
         {
-            return this._certificates != null && this._certificates.Count > 0; 
+            return this._certificates != null && (this._certificates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

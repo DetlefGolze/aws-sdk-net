@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
     /// Container for the parameters to the UnlinkDeveloperIdentity operation.
-    /// Unlinks a <code>DeveloperUserIdentifier</code> from an existing identity. Unlinked
-    /// developer users will be considered new identities next time they are seen. If, for
-    /// a given Cognito identity, you remove all federated identities as well as the developer
-    /// user identifier, the Cognito identity becomes inaccessible.
+    /// Unlinks a <c>DeveloperUserIdentifier</c> from an existing identity. Unlinked developer
+    /// users will be considered new identities next time they are seen. If, for a given Cognito
+    /// identity, you remove all federated identities as well as the developer user identifier,
+    /// the Cognito identity becomes inaccessible.
     /// 
     ///  
     /// <para>

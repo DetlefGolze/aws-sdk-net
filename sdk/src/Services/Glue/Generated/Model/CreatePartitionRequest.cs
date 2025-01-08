@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property PartitionInput. 
         /// <para>
-        /// A <code>PartitionInput</code> structure defining the partition to be created.
+        /// A <c>PartitionInput</c> structure defining the partition to be created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

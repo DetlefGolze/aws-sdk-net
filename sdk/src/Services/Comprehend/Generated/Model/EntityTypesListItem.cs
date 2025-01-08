@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.Comprehend.Model
         /// <para>
         /// Entity types must not contain the following invalid characters: \n (line break), \\n
         /// (escaped line break, \r (carriage return), \\r (escaped carriage return), \t (tab),
-        /// \\t (escaped tab), space, and , (comma).
+        /// \\t (escaped tab), and , (comma).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=64)]

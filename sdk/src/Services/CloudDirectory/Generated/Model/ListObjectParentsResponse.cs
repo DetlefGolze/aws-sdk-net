@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.CloudDirectory.Model
     public partial class ListObjectParentsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ObjectIdentifierAndLinkNameTuple> _parentLinks = new List<ObjectIdentifierAndLinkNameTuple>();
-        private Dictionary<string, string> _parents = new Dictionary<string, string>();
+        private List<ObjectIdentifierAndLinkNameTuple> _parentLinks = AWSConfigs.InitializeCollections ? new List<ObjectIdentifierAndLinkNameTuple>() : null;
+        private Dictionary<string, string> _parents = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -70,14 +71,14 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if ParentLinks property is set
         internal bool IsSetParentLinks()
         {
-            return this._parentLinks != null && this._parentLinks.Count > 0; 
+            return this._parentLinks != null && (this._parentLinks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Parents. 
         /// <para>
-        /// The parent structure, which is a map with key as the <code>ObjectIdentifier</code>
-        /// and LinkName as the value.
+        /// The parent structure, which is a map with key as the <c>ObjectIdentifier</c> and LinkName
+        /// as the value.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Parents
@@ -89,7 +90,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if Parents property is set
         internal bool IsSetParents()
         {
-            return this._parents != null && this._parents.Count > 0; 
+            return this._parents != null && (this._parents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

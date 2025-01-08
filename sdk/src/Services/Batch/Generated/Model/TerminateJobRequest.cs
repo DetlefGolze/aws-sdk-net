@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
     /// Container for the parameters to the TerminateJob operation.
-    /// Terminates a job in a job queue. Jobs that are in the <code>STARTING</code> or <code>RUNNING</code>
-    /// state are terminated, which causes them to transition to <code>FAILED</code>. Jobs
-    /// that have not progressed to the <code>STARTING</code> state are cancelled.
+    /// Terminates a job in a job queue. Jobs that are in the <c>STARTING</c> or <c>RUNNING</c>
+    /// state are terminated, which causes them to transition to <c>FAILED</c>. Jobs that
+    /// have not progressed to the <c>STARTING</c> state are cancelled.
     /// </summary>
     public partial class TerminateJobRequest : AmazonBatchRequest
     {
@@ -62,8 +63,12 @@ namespace Amazon.Batch.Model
         /// Gets and sets the property Reason. 
         /// <para>
         /// A message to attach to the job that explains the reason for canceling it. This message
-        /// is returned by future <a>DescribeJobs</a> operations on the job. This message is also
-        /// recorded in the Batch activity logs.
+        /// is returned by future <a>DescribeJobs</a> operations on the job. It is also recorded
+        /// in the Batch activity logs.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter has as limit of 1024 characters.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
-    /// A summary of the request sent by using <code>SearchPlaceIndexForText</code>.
+    /// A summary of the request sent by using <c>SearchPlaceIndexForText</c>.
     /// </summary>
     public partial class SearchPlaceIndexForTextSummary
     {
-        private List<double> _biasPosition = new List<double>();
+        private List<double> _biasPosition = AWSConfigs.InitializeCollections ? new List<double>() : null;
         private string _dataSource;
-        private List<double> _filterBBox = new List<double>();
-        private List<string> _filterCategories = new List<string>();
-        private List<string> _filterCountries = new List<string>();
+        private List<double> _filterBBox = AWSConfigs.InitializeCollections ? new List<double>() : null;
+        private List<string> _filterCategories = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _filterCountries = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _language;
         private int? _maxResults;
-        private List<double> _resultBBox = new List<double>();
+        private List<double> _resultBBox = AWSConfigs.InitializeCollections ? new List<double>() : null;
         private string _text;
 
         /// <summary>
@@ -55,8 +56,8 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>[-123.1174, 49.2847]</code> represents the position with longitude
-        /// <code>-123.1174</code> and latitude <code>49.2847</code>.
+        /// For example, <c>[-123.1174, 49.2847]</c> represents the position with longitude <c>-123.1174</c>
+        /// and latitude <c>49.2847</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=2, Max=2)]
@@ -69,7 +70,7 @@ namespace Amazon.LocationService.Model
         // Check to see if BiasPosition property is set
         internal bool IsSetBiasPosition()
         {
-            return this._biasPosition != null && this._biasPosition.Count > 0; 
+            return this._biasPosition != null && (this._biasPosition.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -125,7 +126,7 @@ namespace Amazon.LocationService.Model
         // Check to see if FilterBBox property is set
         internal bool IsSetFilterBBox()
         {
-            return this._filterBBox != null && this._filterBBox.Count > 0; 
+            return this._filterBBox != null && (this._filterBBox.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -144,7 +145,7 @@ namespace Amazon.LocationService.Model
         // Check to see if FilterCategories property is set
         internal bool IsSetFilterCategories()
         {
-            return this._filterCategories != null && this._filterCategories.Count > 0; 
+            return this._filterCategories != null && (this._filterCategories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -163,7 +164,7 @@ namespace Amazon.LocationService.Model
         // Check to see if FilterCountries property is set
         internal bool IsSetFilterCountries()
         {
-            return this._filterCountries != null && this._filterCountries.Count > 0; 
+            return this._filterCountries != null && (this._filterCountries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -171,7 +172,7 @@ namespace Amazon.LocationService.Model
         /// <para>
         /// The preferred language used to return results. Matches the language in the request.
         /// The value is a valid <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
-        /// tag, for example, <code>en</code> for English.
+        /// tag, for example, <c>en</c> for English.
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=35)]
@@ -213,8 +214,8 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you specified the optional <code>FilterBBox</code> parameter in the request, <code>ResultBBox</code>
-        /// is contained within <code>FilterBBox</code>.
+        /// If you specified the optional <c>FilterBBox</c> parameter in the request, <c>ResultBBox</c>
+        /// is contained within <c>FilterBBox</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -228,7 +229,7 @@ namespace Amazon.LocationService.Model
         // Check to see if ResultBBox property is set
         internal bool IsSetResultBBox()
         {
-            return this._resultBBox != null && this._resultBBox.Count > 0; 
+            return this._resultBBox != null && (this._resultBBox.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

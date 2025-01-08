@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// Specifies the maximum number of workflows to return.
+        /// The maximum number of items to return.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -60,9 +61,9 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  <code>ListWorkflows</code> returns the <code>NextToken</code> parameter in the output.
-        /// You can then pass the <code>NextToken</code> parameter in a subsequent command to
-        /// continue listing additional workflows.
+        ///  <c>ListWorkflows</c> returns the <c>NextToken</c> parameter in the output. You can
+        /// then pass the <c>NextToken</c> parameter in a subsequent command to continue listing
+        /// additional workflows.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=6144)]

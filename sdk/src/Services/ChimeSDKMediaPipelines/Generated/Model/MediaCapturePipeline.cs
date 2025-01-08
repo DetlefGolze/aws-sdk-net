@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -39,17 +40,18 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         private string _mediaPipelineArn;
         private string _mediaPipelineId;
         private string _sinkArn;
+        private string _sinkIamRoleArn;
         private MediaPipelineSinkType _sinkType;
         private string _sourceArn;
         private MediaPipelineSourceType _sourceType;
+        private SseAwsKeyManagementParams _sseAwsKeyManagementParams;
         private MediaPipelineStatus _status;
         private DateTime? _updatedTimestamp;
 
         /// <summary>
         /// Gets and sets the property ChimeSdkMeetingConfiguration. 
         /// <para>
-        /// The configuration for a specified media pipeline. <code>SourceType</code> must be
-        /// <code>ChimeSdkMeeting</code>.
+        /// The configuration for a specified media pipeline. <c>SourceType</c> must be <c>ChimeSdkMeeting</c>.
         /// </para>
         /// </summary>
         public ChimeSdkMeetingConfiguration ChimeSdkMeetingConfiguration
@@ -140,6 +142,26 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SinkIamRoleArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the sink role to be used with <c>AwsKmsKeyId</c>
+        /// in <c>SseAwsKeyManagementParams</c>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=1, Max=1024)]
+        public string SinkIamRoleArn
+        {
+            get { return this._sinkIamRoleArn; }
+            set { this._sinkIamRoleArn = value; }
+        }
+
+        // Check to see if SinkIamRoleArn property is set
+        internal bool IsSetSinkIamRoleArn()
+        {
+            return this._sinkIamRoleArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SinkType. 
         /// <para>
         /// Destination type to which the media artifacts are saved. You must use an S3 Bucket.
@@ -179,7 +201,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property SourceType. 
         /// <para>
-        /// Source type from which media artifacts are saved. You must use <code>ChimeMeeting</code>.
+        /// Source type from which media artifacts are saved. You must use <c>ChimeMeeting</c>.
         /// </para>
         /// </summary>
         public MediaPipelineSourceType SourceType
@@ -192,6 +214,26 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         internal bool IsSetSourceType()
         {
             return this._sourceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SseAwsKeyManagementParams. 
+        /// <para>
+        /// An object that contains server side encryption parameters to be used by media capture
+        /// pipeline. The parameters can also be used by media concatenation pipeline taking media
+        /// capture pipeline as a media source.
+        /// </para>
+        /// </summary>
+        public SseAwsKeyManagementParams SseAwsKeyManagementParams
+        {
+            get { return this._sseAwsKeyManagementParams; }
+            set { this._sseAwsKeyManagementParams = value; }
+        }
+
+        // Check to see if SseAwsKeyManagementParams property is set
+        internal bool IsSetSseAwsKeyManagementParams()
+        {
+            return this._sseAwsKeyManagementParams != null;
         }
 
         /// <summary>

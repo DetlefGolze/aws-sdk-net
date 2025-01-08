@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfigData.Model
 {
     /// <summary>
@@ -74,20 +75,20 @@ namespace Amazon.AppConfigData.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
         /// Gets and sets the property NextPollConfigurationToken. 
         /// <para>
         /// The latest token describing the current state of the configuration session. This <i>must</i>
-        /// be provided to the next call to <code>GetLatestConfiguration.</code> 
+        /// be provided to the next call to <c>GetLatestConfiguration.</c> 
         /// </para>
         ///  <important> 
         /// <para>
         /// This token should only be used once. To support long poll use cases, the token is
-        /// valid for up to 24 hours. If a <code>GetLatestConfiguration</code> call uses an expired
-        /// token, the system returns <code>BadRequestException</code>.
+        /// valid for up to 24 hours. If a <c>GetLatestConfiguration</c> call uses an expired
+        /// token, the system returns <c>BadRequestException</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -100,15 +101,14 @@ namespace Amazon.AppConfigData.Model
         // Check to see if NextPollConfigurationToken property is set
         internal bool IsSetNextPollConfigurationToken()
         {
-            return this._nextPollConfigurationToken != null;
+            return !string.IsNullOrEmpty(this._nextPollConfigurationToken);
         }
 
         /// <summary>
         /// Gets and sets the property NextPollIntervalInSeconds. 
         /// <para>
         /// The amount of time the client should wait before polling for configuration updates
-        /// again. Use <code>RequiredMinimumPollIntervalInSeconds</code> to set the desired poll
-        /// interval.
+        /// again. Use <c>RequiredMinimumPollIntervalInSeconds</c> to set the desired poll interval.
         /// </para>
         /// </summary>
         public int NextPollIntervalInSeconds
@@ -141,7 +141,7 @@ namespace Amazon.AppConfigData.Model
         // Check to see if VersionLabel property is set
         internal bool IsSetVersionLabel()
         {
-            return this._versionLabel != null;
+            return !string.IsNullOrEmpty(this._versionLabel);
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
@@ -44,6 +45,7 @@ namespace Amazon.AppRegistry.Model
         /// The Amazon resource name (ARN) of the resource.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=1600)]
         public string Arn
         {
             get { return this._arn; }

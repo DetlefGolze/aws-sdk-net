@@ -41,6 +41,7 @@ namespace Amazon.S3.Model
         private string _checksumCRC32C;
         private string _checksumSHA1;
         private string _checksumSHA256;
+        private long? _size;
 
         /// <summary>
         /// Gets and sets the Expiration property.
@@ -51,7 +52,11 @@ namespace Amazon.S3.Model
         /// the response includes this header. 
         /// It includes the expiry-date and rule-id key-value pairs that provide information about object expiration. 
         /// The value of the rule-id is URL encoded."
-
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public Expiration Expiration
         {
@@ -60,10 +65,8 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// The Server-side encryption algorithm used when storing this object in S3.
         /// <para>
-        /// The server-side encryption algorithm used when storing this object in Amazon S3 (for
-        /// example, AES256, <code>aws:kms</code>).
+        /// The server-side encryption algorithm used when you store this object in Amazon S3.
         /// </para>
         /// </summary>
         public ServerSideEncryptionMethod ServerSideEncryptionMethod
@@ -73,8 +76,22 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ETag. 
+        /// <para>
         /// Entity tag for the uploaded object.
+        /// </para>
         ///  
+        /// <para>
+        ///  <b>General purpose buckets </b> - To ensure that data is not corrupted traversing
+        /// the network, for objects where the ETag is the MD5 digest of the object, you can calculate
+        /// the MD5 while putting an object to Amazon S3 and compare the returned ETag to the
+        /// calculated MD5 value.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Directory buckets </b> - The ETag for the object in a directory bucket isn't the
+        /// MD5 digest of the object.
+        /// </para>
         /// </summary>
         public string ETag
         {
@@ -89,8 +106,26 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Version of the object.
+        /// Gets and sets the property VersionId. 
+        /// <para>
+        /// Version ID of the object.
+        /// </para>
         ///  
+        /// <para>
+        /// If you enable versioning for a bucket, Amazon S3 automatically generates a unique
+        /// version ID for the object being stored. Amazon S3 returns this ID in the response.
+        /// When you enable versioning for a bucket, if Amazon S3 receives multiple write requests
+        /// for the same object simultaneously, it stores all of the objects. For more information
+        /// about versioning, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/AddingObjectstoVersioningEnabledBuckets.html">Adding
+        /// Objects to Versioning-Enabled Buckets</a> in the <i>Amazon S3 User Guide</i>. For
+        /// information about returning the versioning state of a bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html">GetBucketVersioning</a>.
+        /// 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string VersionId
         {
@@ -106,12 +141,8 @@ namespace Amazon.S3.Model
 
 
         /// <summary>
-        /// The id of the AWS Key Management Service key that Amazon S3 uses to encrypt and decrypt the object.
         /// <para>
-        /// If <code>x-amz-server-side-encryption</code> is has a valid value of <code>aws:kms</code>,
-        /// this header specifies the ID of the Amazon Web Services Key Management Service (Amazon
-        /// Web Services KMS) symmetric encryption customer managed key that was used for the
-        /// object. 
+        /// If present, indicates the ID of the KMS key that was used for object encryption.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -132,6 +163,11 @@ namespace Amazon.S3.Model
 
         /// <summary>
         /// The Server-side encryption algorithm to be used with the customer provided key.
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public ServerSideEncryptionCustomerMethod ServerSideEncryptionCustomerMethod
         {
@@ -142,6 +178,11 @@ namespace Amazon.S3.Model
         /// <summary>
         /// The MD5 of the customer encryption key specified in the ServerSideEncryptionCustomerProvidedKey property. The MD5 is
         /// base 64 encoded. This field is optional, the SDK will calculate the MD5 if this is not set.
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string ServerSideEncryptionCustomerProvidedKeyMD5
         {
@@ -150,14 +191,10 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Specifies the AWS KMS Encryption Context to use for object encryption.
-        /// The value of this header is a base64-encoded UTF-8 string holding JSON with the encryption context key-value pairs.
         /// <para>
-        /// If present, specifies the Amazon Web Services KMS Encryption Context to use for object
-        /// encryption. The value of this header is a base64-encoded UTF-8 string holding JSON
-        /// with the encryption context key-value pairs. This value is stored as object metadata
-        /// and automatically gets passed on to Amazon Web Services KMS for future <code>GetObject</code>
-        /// or <code>CopyObject</code> operations on this object.
+        /// If present, indicates the Amazon Web Services KMS Encryption Context to use for object encryption. 
+        /// The value of this header is a Base64-encoded string of a UTF-8 encoded JSON, which contains the encryption context as key-value pairs. 
+        /// This value is stored as object metadata and automatically gets passed on to Amazon Web Services KMS for future <c>GetObject</c> operations on this object.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -189,7 +226,7 @@ namespace Amazon.S3.Model
         /// Gets and sets the property BucketKeyEnabled. 
         /// <para>
         /// Indicates whether the uploaded object uses an S3 Bucket Key for server-side encryption
-        /// with Amazon Web Services KMS (SSE-KMS).
+        /// with Key Management Service (KMS) keys (SSE-KMS).
         /// </para>
         /// </summary>
         public bool BucketKeyEnabled
@@ -207,7 +244,13 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumCRC32. 
         /// <para>
-        /// The base64-encoded, 32-bit CRC32 checksum of the object.
+        /// The base64-encoded, 32-bit CRC-32 checksum of the object. This will only be present
+        /// if it was uploaded with the object. When you use an API operation on an object that
+        /// was uploaded using multipart uploads, this value may not be a direct checksum value
+        /// of the full object. Instead, it's a calculation based on the checksum values of each
+        /// individual part. For more information about how checksums are calculated with multipart
+        /// uploads, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">
+        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
         public string ChecksumCRC32
@@ -225,7 +268,13 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumCRC32C. 
         /// <para>
-        /// The base64-encoded, 32-bit CRC32C checksum of the object.
+        /// The base64-encoded, 32-bit CRC-32C checksum of the object. This will only be present
+        /// if it was uploaded with the object. When you use an API operation on an object that
+        /// was uploaded using multipart uploads, this value may not be a direct checksum value
+        /// of the full object. Instead, it's a calculation based on the checksum values of each
+        /// individual part. For more information about how checksums are calculated with multipart
+        /// uploads, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">
+        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
         public string ChecksumCRC32C
@@ -243,7 +292,13 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumSHA1. 
         /// <para>
-        /// The base64-encoded, 160-bit SHA-1 digest of the object.
+        /// The base64-encoded, 160-bit SHA-1 digest of the object. This will only be present
+        /// if it was uploaded with the object. When you use the API operation on an object that
+        /// was uploaded using multipart uploads, this value may not be a direct checksum value
+        /// of the full object. Instead, it's a calculation based on the checksum values of each
+        /// individual part. For more information about how checksums are calculated with multipart
+        /// uploads, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">
+        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
         public string ChecksumSHA1
@@ -261,7 +316,13 @@ namespace Amazon.S3.Model
         /// <summary>
         /// Gets and sets the property ChecksumSHA256. 
         /// <para>
-        /// The base64-encoded, 256-bit SHA-256 digest of the object.
+        /// The base64-encoded, 256-bit SHA-256 digest of the object. This will only be present
+        /// if it was uploaded with the object. When you use an API operation on an object that
+        /// was uploaded using multipart uploads, this value may not be a direct checksum value
+        /// of the full object. Instead, it's a calculation based on the checksum values of each
+        /// individual part. For more information about how checksums are calculated with multipart
+        /// uploads, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html#large-object-checksums">
+        /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
         public string ChecksumSHA256
@@ -274,6 +335,24 @@ namespace Amazon.S3.Model
         internal bool IsSetChecksumSHA256()
         {
             return this._checksumSHA256 != null;
+        }
+
+        /// <summary>
+        /// <para>
+        /// The size of the object in bytes.This will only be present if you append to an object.
+        /// </para>
+        /// <note><para>This functionality is only supported for objects in the S3; Express One Zone storage class in directory buckets.</para></note>
+        /// </summary>
+        public long Size
+        {
+            get { return this._size.GetValueOrDefault(); }
+            set { this._size = value; }
+        }
+
+        // Check to see if Size property is set
+        internal bool IsSetSize()
+        {
+            return this._size.HasValue;
         }
     }
 }

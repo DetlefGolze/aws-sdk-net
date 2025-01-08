@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.DevOpsGuru.Model
     /// </summary>
     public partial class AnomalySourceDetails
     {
-        private List<CloudWatchMetricsDetail> _cloudWatchMetrics = new List<CloudWatchMetricsDetail>();
-        private List<PerformanceInsightsMetricsDetail> _performanceInsightsMetrics = new List<PerformanceInsightsMetricsDetail>();
+        private List<CloudWatchMetricsDetail> _cloudWatchMetrics = AWSConfigs.InitializeCollections ? new List<CloudWatchMetricsDetail>() : null;
+        private List<PerformanceInsightsMetricsDetail> _performanceInsightsMetrics = AWSConfigs.InitializeCollections ? new List<PerformanceInsightsMetricsDetail>() : null;
 
         /// <summary>
         /// Gets and sets the property CloudWatchMetrics. 
         /// <para>
-        /// An array of <code>CloudWatchMetricsDetail</code> objects that contain information
-        /// about analyzed CloudWatch metrics that show anomalous behavior. 
+        /// An array of <c>CloudWatchMetricsDetail</c> objects that contain information about
+        /// analyzed CloudWatch metrics that show anomalous behavior. 
         /// </para>
         /// </summary>
         public List<CloudWatchMetricsDetail> CloudWatchMetrics
@@ -52,13 +53,13 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if CloudWatchMetrics property is set
         internal bool IsSetCloudWatchMetrics()
         {
-            return this._cloudWatchMetrics != null && this._cloudWatchMetrics.Count > 0; 
+            return this._cloudWatchMetrics != null && (this._cloudWatchMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PerformanceInsightsMetrics. 
         /// <para>
-        /// An array of <code>PerformanceInsightsMetricsDetail</code> objects that contain information
+        /// An array of <c>PerformanceInsightsMetricsDetail</c> objects that contain information
         /// about analyzed Performance Insights metrics that show anomalous behavior.
         /// </para>
         /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if PerformanceInsightsMetrics property is set
         internal bool IsSetPerformanceInsightsMetrics()
         {
-            return this._performanceInsightsMetrics != null && this._performanceInsightsMetrics.Count > 0; 
+            return this._performanceInsightsMetrics != null && (this._performanceInsightsMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -58,9 +59,10 @@ namespace Amazon.EKS.Model
     ///  
     /// <para>
     /// When a node in a managed node group is terminated due to a scaling action or update,
-    /// the pods in that node are drained first. Amazon EKS attempts to drain the nodes gracefully
-    /// and will fail if it is unable to do so. You can <code>force</code> the update if Amazon
-    /// EKS is unable to drain the nodes as a result of a pod disruption budget issue.
+    /// every <c>Pod</c> on that node is drained first. Amazon EKS attempts to drain the nodes
+    /// gracefully and will fail if it is unable to do so. You can <c>force</c> the update
+    /// if Amazon EKS is unable to drain the nodes as a result of a <c>Pod</c> disruption
+    /// budget issue.
     /// </para>
     /// </summary>
     public partial class UpdateNodegroupVersionRequest : AmazonEKSRequest
@@ -76,8 +78,8 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// Unique, case-sensitive identifier that you provide to ensure the idempotency of the
-        /// request.
+        /// A unique, case-sensitive identifier that you provide to ensure the idempotency of
+        /// the request.
         /// </para>
         /// </summary>
         public string ClientRequestToken
@@ -95,8 +97,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the Amazon EKS cluster that is associated with the managed node group
-        /// to update.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -115,10 +116,10 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Force. 
         /// <para>
-        /// Force the update if the existing node group's pods are unable to be drained due to
-        /// a pod disruption budget issue. If an update fails because pods could not be drained,
-        /// you can force the update after it fails to terminate the old node whether or not any
-        /// pods are running on the node.
+        /// Force the update if any <c>Pod</c> on the existing node group can't be drained due
+        /// to a <c>Pod</c> disruption budget issue. If an update fails because all Pods can't
+        /// be drained, you can force the update after it fails to terminate the old node whether
+        /// or not any <c>Pod</c> is running on the node.
         /// </para>
         /// </summary>
         public bool Force
@@ -185,10 +186,10 @@ namespace Amazon.EKS.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>launchTemplate</code>, and your launch template uses a custom
-        /// AMI, then don't specify <code>releaseVersion</code>, or the node group update will
-        /// fail. For more information about using launch templates with Amazon EKS, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html">Launch
-        /// template support</a> in the <i>Amazon EKS User Guide</i>.
+        /// If you specify <c>launchTemplate</c>, and your launch template uses a custom AMI,
+        /// then don't specify <c>releaseVersion</c>, or the node group update will fail. For
+        /// more information about using launch templates with Amazon EKS, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html">Customizing
+        /// managed nodes with launch templates</a> in the <i>Amazon EKS User Guide</i>.
         /// </para>
         /// </summary>
         public string ReleaseVersion
@@ -209,11 +210,10 @@ namespace Amazon.EKS.Model
         /// The Kubernetes version to update to. If no version is specified, then the Kubernetes
         /// version of the node group does not change. You can specify the Kubernetes version
         /// of the cluster to update the node group to the latest AMI version of the cluster's
-        /// Kubernetes version. If you specify <code>launchTemplate</code>, and your launch template
-        /// uses a custom AMI, then don't specify <code>version</code>, or the node group update
-        /// will fail. For more information about using launch templates with Amazon EKS, see
-        /// <a href="https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html">Launch
-        /// template support</a> in the <i>Amazon EKS User Guide</i>.
+        /// Kubernetes version. If you specify <c>launchTemplate</c>, and your launch template
+        /// uses a custom AMI, then don't specify <c>version</c>, or the node group update will
+        /// fail. For more information about using launch templates with Amazon EKS, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html">Customizing
+        /// managed nodes with launch templates</a> in the <i>Amazon EKS User Guide</i>.
         /// </para>
         /// </summary>
         public string Version

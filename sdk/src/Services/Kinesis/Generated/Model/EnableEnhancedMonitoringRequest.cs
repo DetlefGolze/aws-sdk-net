@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kinesis.Model
 {
     /// <summary>
@@ -34,14 +35,15 @@ namespace Amazon.Kinesis.Model
     /// 
     ///  <note> 
     /// <para>
-    /// When invoking this API, it is recommended you use the <code>StreamARN</code> input
-    /// parameter rather than the <code>StreamName</code> input parameter.
+    /// When invoking this API, you must use either the <c>StreamARN</c> or the <c>StreamName</c>
+    /// parameter, or both. It is recommended that you use the <c>StreamARN</c> input parameter
+    /// when you invoke this API.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class EnableEnhancedMonitoringRequest : AmazonKinesisRequest
     {
-        private List<string> _shardLevelMetrics = new List<string>();
+        private List<string> _shardLevelMetrics = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _streamARN;
         private string _streamName;
 
@@ -52,40 +54,40 @@ namespace Amazon.Kinesis.Model
         /// </para>
         ///  
         /// <para>
-        /// The following are the valid shard-level metrics. The value "<code>ALL</code>" enables
-        /// every metric.
+        /// The following are the valid shard-level metrics. The value "<c>ALL</c>" enables every
+        /// metric.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IncomingBytes</code> 
+        ///  <c>IncomingBytes</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IncomingRecords</code> 
+        ///  <c>IncomingRecords</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutgoingBytes</code> 
+        ///  <c>OutgoingBytes</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OutgoingRecords</code> 
+        ///  <c>OutgoingRecords</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>WriteProvisionedThroughputExceeded</code> 
+        ///  <c>WriteProvisionedThroughputExceeded</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReadProvisionedThroughputExceeded</code> 
+        ///  <c>ReadProvisionedThroughputExceeded</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IteratorAgeMilliseconds</code> 
+        ///  <c>IteratorAgeMilliseconds</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL</code> 
+        ///  <c>ALL</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -104,7 +106,7 @@ namespace Amazon.Kinesis.Model
         // Check to see if ShardLevelMetrics property is set
         internal bool IsSetShardLevelMetrics()
         {
-            return this._shardLevelMetrics != null && this._shardLevelMetrics.Count > 0; 
+            return this._shardLevelMetrics != null && (this._shardLevelMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

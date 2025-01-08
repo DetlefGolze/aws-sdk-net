@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
     /// Object that determines whether tracking should be used during a contact executed with
-    /// this <code>Config</code> in the mission profile.
+    /// this <c>Config</c> in the mission profile.
     /// </summary>
     public partial class TrackingConfig
     {

@@ -26,13 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminConfirmSignUp operation.
-    /// Confirms user registration as an admin without using a confirmation code. Works on
-    /// any user.
+    /// Confirms user sign-up as an administrator. Unlike <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmSignUp.html">ConfirmSignUp</a>,
+    /// your IAM credentials authorize user account confirmation. No confirmation code is
+    /// required.
     /// 
+    ///  
+    /// <para>
+    /// This request sets a user account active in a user pool that <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#signing-up-users-in-your-app-and-confirming-them-as-admin">requires
+    /// confirmation of new user accounts</a> before they can sign in. You can configure your
+    /// user pool to not send confirmation codes to new users and instead confirm them with
+    /// this API operation on the back end.
+    /// </para>
     ///  <note> 
     /// <para>
     /// Amazon Cognito evaluates Identity and Access Management (IAM) policies in requests
@@ -53,11 +62,15 @@ namespace Amazon.CognitoIdentityProvider.Model
     ///  <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
     /// the Amazon Cognito user pools API and user pool endpoints</a> 
     /// </para>
-    ///  </li> </ul> </note>
+    ///  </li> </ul> </note> 
+    /// <para>
+    /// To configure your user pool to require administrative confirmation of users, set <c>AllowAdminCreateUserOnly</c>
+    /// to <c>true</c> in a <c>CreateUserPool</c> or <c>UpdateUserPool</c> request.
+    /// </para>
     /// </summary>
     public partial class AdminConfirmSignUpRequest : AmazonCognitoIdentityProviderRequest
     {
-        private Dictionary<string, string> _clientMetadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _clientMetadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _username;
         private string _userPoolId;
 
@@ -72,8 +85,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// If your user pool configuration includes triggers, the AdminConfirmSignUp API action
         /// invokes the Lambda function that is specified for the <i>post confirmation</i> trigger.
         /// When Amazon Cognito invokes this function, it passes a JSON payload, which the function
-        /// receives as input. In this payload, the <code>clientMetadata</code> attribute provides
-        /// the data that you assigned to the ClientMetadata parameter in your AdminConfirmSignUp
+        /// receives as input. In this payload, the <c>clientMetadata</c> attribute provides the
+        /// data that you assigned to the ClientMetadata parameter in your AdminConfirmSignUp
         /// request. In your function code in Lambda, you can process the ClientMetadata value
         /// to enhance your workflow for your specific needs.
         /// </para>
@@ -85,22 +98,23 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// When you use the ClientMetadata parameter, remember that Amazon Cognito won't do the
-        /// following:
+        /// When you use the <c>ClientMetadata</c> parameter, note that Amazon Cognito won't do
+        /// the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Store the ClientMetadata value. This data is available only to Lambda triggers that
-        /// are assigned to a user pool to support custom workflows. If your user pool configuration
-        /// doesn't include triggers, the ClientMetadata parameter serves no purpose.
+        /// Store the <c>ClientMetadata</c> value. This data is available only to Lambda triggers
+        /// that are assigned to a user pool to support custom workflows. If your user pool configuration
+        /// doesn't include triggers, the <c>ClientMetadata</c> parameter serves no purpose.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Validate the ClientMetadata value.
+        /// Validate the <c>ClientMetadata</c> value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide sensitive information.
+        /// Encrypt the <c>ClientMetadata</c> value. Don't send sensitive information in this
+        /// parameter.
         /// </para>
         ///  </li> </ul> </note>
         /// </summary>
@@ -113,13 +127,16 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if ClientMetadata property is set
         internal bool IsSetClientMetadata()
         {
-            return this._clientMetadata != null && this._clientMetadata.Count > 0; 
+            return this._clientMetadata != null && (this._clientMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name for which you want to confirm user registration.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -138,7 +155,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for which you want to confirm user registration.
+        /// The ID of the user pool where you want to confirm a user's sign-up request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.XRay.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.XRay.Model
         /// <summary>
         /// Gets and sets the property ResourcePolicy. 
         /// <para>
-        /// The resource policy document, as provided in the <code>PutResourcePolicyRequest</code>.
+        /// The resource policy document, as provided in the <c>PutResourcePolicyRequest</c>.
         /// </para>
         /// </summary>
         public ResourcePolicy ResourcePolicy

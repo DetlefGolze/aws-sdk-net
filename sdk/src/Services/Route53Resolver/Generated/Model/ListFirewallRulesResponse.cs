@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Route53Resolver.Model
     /// </summary>
     public partial class ListFirewallRulesResponse : AmazonWebServiceResponse
     {
-        private List<FirewallRule> _firewallRules = new List<FirewallRule>();
+        private List<FirewallRule> _firewallRules = AWSConfigs.InitializeCollections ? new List<FirewallRule>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.Route53Resolver.Model
         ///  
         /// <para>
         /// This might be a partial list of the firewall rules that you've defined. For information,
-        /// see <code>MaxResults</code>. 
+        /// see <c>MaxResults</c>. 
         /// </para>
         /// </summary>
         public List<FirewallRule> FirewallRules
@@ -56,7 +57,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if FirewallRules property is set
         internal bool IsSetFirewallRules()
         {
-            return this._firewallRules != null && this._firewallRules.Count > 0; 
+            return this._firewallRules != null && (this._firewallRules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

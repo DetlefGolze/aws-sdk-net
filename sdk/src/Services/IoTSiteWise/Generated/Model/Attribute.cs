@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -45,7 +46,6 @@ namespace Amazon.IoTSiteWise.Model
         /// attribute values</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1024)]
         public string DefaultValue
         {
             get { return this._defaultValue; }

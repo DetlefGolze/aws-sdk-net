@@ -26,36 +26,42 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
     /// Container for the parameters to the RemoveTags operation.
-    /// Removes the specified tags from a trail, event data store, or channel.
+    /// Removes the specified tags from a trail, event data store, dashboard, or channel.
     /// </summary>
     public partial class RemoveTagsRequest : AmazonCloudTrailRequest
     {
         private string _resourceId;
-        private List<Tag> _tagsList = new List<Tag>();
+        private List<Tag> _tagsList = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceId. 
         /// <para>
-        /// Specifies the ARN of the trail, event data store, or channel from which tags should
-        /// be removed.
+        /// Specifies the ARN of the trail, event data store, dashboard, or channel from which
+        /// tags should be removed.
         /// </para>
         ///  
         /// <para>
-        ///  Example trail ARN format: <code>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</code>
+        ///  Example trail ARN format: <c>arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Example event data store ARN format: <code>arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE</code>
+        /// Example event data store ARN format: <c>arn:aws:cloudtrail:us-east-2:123456789012:eventdatastore/EXAMPLE-f852-4e8f-8bd1-bcf6cEXAMPLE</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        /// Example channel ARN format: <code>arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890</code>
+        /// Example dashboard ARN format: <c>arn:aws:cloudtrail:us-east-1:123456789012:dashboard/exampleDash</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// Example channel ARN format: <c>arn:aws:cloudtrail:us-east-2:123456789012:channel/01234567890</c>
         /// 
         /// </para>
         /// </summary>
@@ -88,7 +94,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if TagsList property is set
         internal bool IsSetTagsList()
         {
-            return this._tagsList != null && this._tagsList.Count > 0; 
+            return this._tagsList != null && (this._tagsList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

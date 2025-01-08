@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.WAFV2.Model
     public partial class ListWebACLsResponse : AmazonWebServiceResponse
     {
         private string _nextMarker;
-        private List<WebACLSummary> _webACLs = new List<WebACLSummary>();
+        private List<WebACLSummary> _webACLs = AWSConfigs.InitializeCollections ? new List<WebACLSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// When you request a list of objects with a <code>Limit</code> setting, if the number
-        /// of objects that are still available for retrieval exceeds the limit, WAF returns a
-        /// <code>NextMarker</code> value in the response. To retrieve the next batch of objects,
-        /// provide the marker from the prior call in your next request.
+        /// When you request a list of objects with a <c>Limit</c> setting, if the number of objects
+        /// that are still available for retrieval exceeds the limit, WAF returns a <c>NextMarker</c>
+        /// value in the response. To retrieve the next batch of objects, provide the marker from
+        /// the prior call in your next request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -61,8 +62,8 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property WebACLs. 
         /// <para>
-        /// Array of web ACLs. If you specified a <code>Limit</code> in your request, this might
-        /// not be the full list. 
+        /// Array of web ACLs. If you specified a <c>Limit</c> in your request, this might not
+        /// be the full list. 
         /// </para>
         /// </summary>
         public List<WebACLSummary> WebACLs
@@ -74,7 +75,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if WebACLs property is set
         internal bool IsSetWebACLs()
         {
-            return this._webACLs != null && this._webACLs.Count > 0; 
+            return this._webACLs != null && (this._webACLs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

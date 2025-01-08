@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -43,13 +44,13 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>open</code> - The instance can run in any <code>open</code> Capacity Reservation
-        /// that has matching attributes (instance type, platform, Availability Zone).
+        ///  <c>open</c> - The instance can run in any <c>open</c> Capacity Reservation that has
+        /// matching attributes (instance type, platform, Availability Zone).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>none</code> - The instance avoids running in a Capacity Reservation even if
-        /// one is available. The instance runs in On-Demand capacity.
+        ///  <c>none</c> - The instance avoids running in a Capacity Reservation even if one is
+        /// available. The instance runs in On-Demand capacity.
         /// </para>
         ///  </li> </ul>
         /// </summary>

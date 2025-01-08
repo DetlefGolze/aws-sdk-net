@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
-    /// Describes a resume cluster operation. For example, a scheduled action to run the <code>ResumeCluster</code>
+    /// Describes a resume cluster operation. For example, a scheduled action to run the <c>ResumeCluster</c>
     /// API operation.
     /// </summary>
     public partial class ResumeClusterMessage

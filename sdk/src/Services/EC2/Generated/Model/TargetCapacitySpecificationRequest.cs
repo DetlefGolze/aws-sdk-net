@@ -26,25 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// The number of units to request. You can choose to set the target capacity as the number
     /// of instances. Or you can set the target capacity to a performance characteristic that
     /// is important to your application workload, such as vCPUs, memory, or I/O. If the request
-    /// type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity
-    /// later.
+    /// type is <c>maintain</c>, you can specify a target capacity of 0 and add capacity later.
     /// 
     ///  
     /// <para>
-    /// You can use the On-Demand Instance <code>MaxTotalPrice</code> parameter, the Spot
-    /// Instance <code>MaxTotalPrice</code> parameter, or both parameters to ensure that your
-    /// fleet cost does not exceed your budget. If you set a maximum price per hour for the
-    /// On-Demand Instances and Spot Instances in your request, EC2 Fleet will launch instances
-    /// until it reaches the maximum amount that you're willing to pay. When the maximum amount
-    /// you're willing to pay is reached, the fleet stops launching instances even if it hasn’t
-    /// met the target capacity. The <code>MaxTotalPrice</code> parameters are located in
-    /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_OnDemandOptionsRequest">OnDemandOptionsRequest</a>
+    /// You can use the On-Demand Instance <c>MaxTotalPrice</c> parameter, the Spot Instance
+    /// <c>MaxTotalPrice</c> parameter, or both parameters to ensure that your fleet cost
+    /// does not exceed your budget. If you set a maximum price per hour for the On-Demand
+    /// Instances and Spot Instances in your request, EC2 Fleet will launch instances until
+    /// it reaches the maximum amount that you're willing to pay. When the maximum amount
+    /// you're willing to pay is reached, the fleet stops launching instances even if it hasn't
+    /// met the target capacity. The <c>MaxTotalPrice</c> parameters are located in <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_OnDemandOptionsRequest">OnDemandOptionsRequest</a>
     /// and <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotOptionsRequest">SpotOptionsRequest</a>.
     /// </para>
     /// </summary>
@@ -59,8 +58,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DefaultTargetCapacityType. 
         /// <para>
-        /// The default <code>TotalTargetCapacity</code>, which is either <code>Spot</code> or
-        /// <code>On-Demand</code>.
+        /// The default target capacity type.
         /// </para>
         /// </summary>
         public DefaultTargetCapacityType DefaultTargetCapacityType
@@ -114,12 +112,12 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property TargetCapacityUnitType. 
         /// <para>
-        /// The unit for the target capacity. <code>TargetCapacityUnitType</code> can only be
-        /// specified when <code>InstanceRequirements</code> is specified.
+        /// The unit for the target capacity. You can specify this parameter only when using attributed-based
+        /// instance type selection.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>units</code> (translates to number of instances)
+        /// Default: <c>units</c> (the number of instances)
         /// </para>
         /// </summary>
         public TargetCapacityUnitType TargetCapacityUnitType
@@ -137,7 +135,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property TotalTargetCapacity. 
         /// <para>
-        /// The number of units to request, filled using <code>DefaultTargetCapacityType</code>.
+        /// The number of units to request, filled using the default target capacity type.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

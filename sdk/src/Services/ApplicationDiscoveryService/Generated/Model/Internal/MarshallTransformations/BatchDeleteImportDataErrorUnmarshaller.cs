@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationDiscoveryService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ApplicationDiscoveryService.Model.Internal.MarshallTransformati
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public BatchDeleteImportDataError Unmarshall(JsonUnmarshallerContext context)
         {
+            BatchDeleteImportDataError unmarshalledObject = new BatchDeleteImportDataError();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            BatchDeleteImportDataError unmarshalledObject = new BatchDeleteImportDataError();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -83,7 +85,6 @@ namespace Amazon.ApplicationDiscoveryService.Model.Internal.MarshallTransformati
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

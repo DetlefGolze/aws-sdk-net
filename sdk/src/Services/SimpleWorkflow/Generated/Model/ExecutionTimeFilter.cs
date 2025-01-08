@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
     /// Used to filter the workflow executions in visibility APIs by various time-based rules.
     /// Each parameter, if specified, defines a rule that must be satisfied by each returned
     /// query result. The parameter values are in the <a href="https://en.wikipedia.org/wiki/Unix_time">Unix
-    /// Time format</a>. For example: <code>"oldestDate": 1325376070.</code>
+    /// Time format</a>. For example: <c>"oldestDate": 1325376070.</c>
     /// </summary>
     public partial class ExecutionTimeFilter
     {

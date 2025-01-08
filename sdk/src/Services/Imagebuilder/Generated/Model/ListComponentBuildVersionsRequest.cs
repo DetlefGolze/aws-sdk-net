@@ -26,25 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
     /// Container for the parameters to the ListComponentBuildVersions operation.
-    /// Returns the list of component build versions for the specified semantic version.
-    /// 
-    ///  <note> 
-    /// <para>
-    /// The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;.
-    /// You can assign values for the first three, and can filter on all of them.
-    /// </para>
-    ///  
-    /// <para>
-    ///  <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards
-    /// (x) to specify the most recent versions or nodes when selecting the base image or
-    /// components for your recipe. When you use a wildcard in any node, all nodes to the
-    /// right of the first wildcard must also be wildcards.
-    /// </para>
-    ///  </note>
+    /// Returns the list of component build versions for the specified component version Amazon
+    /// Resource Name (ARN).
     /// </summary>
     public partial class ListComponentBuildVersionsRequest : AmazonImagebuilderRequest
     {
@@ -93,7 +81,7 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A token to specify where to start paginating. This is the NextToken from a previously
+        /// A token to specify where to start paginating. This is the nextToken from a previously
         /// truncated response.
         /// </para>
         /// </summary>

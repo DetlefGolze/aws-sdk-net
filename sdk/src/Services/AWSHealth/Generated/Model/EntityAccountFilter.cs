@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
-    /// A JSON set of elements including the <code>awsAccountId</code>, <code>eventArn</code>
-    /// and a set of <code>statusCodes</code>.
+    /// A JSON set of elements including the <c>awsAccountId</c>, <c>eventArn</c> and a set
+    /// of <c>statusCodes</c>.
     /// </summary>
     public partial class EntityAccountFilter
     {
         private string _awsAccountId;
         private string _eventArn;
-        private List<string> _statusCodes = new List<string>();
+        private List<string> _statusCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountId. 
@@ -60,8 +61,8 @@ namespace Amazon.AWSHealth.Model
         /// <summary>
         /// Gets and sets the property EventArn. 
         /// <para>
-        /// The unique identifier for the event. The event ARN has the <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
-        /// </code> format.
+        /// The unique identifier for the event. The event ARN has the <c>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i>
+        /// </c> format.
         /// </para>
         ///  
         /// <para>
@@ -69,7 +70,7 @@ namespace Amazon.AWSHealth.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code>
+        ///  <c>arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</c>
         /// 
         /// </para>
         /// </summary>
@@ -102,7 +103,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if StatusCodes property is set
         internal bool IsSetStatusCodes()
         {
-            return this._statusCodes != null && this._statusCodes.Count > 0; 
+            return this._statusCodes != null && (this._statusCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

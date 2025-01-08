@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The value of <code>Id</code> for the traffic policy that you want to update the comment
+        /// The value of <c>Id</c> for the traffic policy that you want to update the comment
         /// for.
         /// </para>
         /// </summary>
@@ -61,8 +62,8 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The value of <code>Version</code> for the traffic policy that you want to update the
-        /// comment for.
+        /// The value of <c>Version</c> for the traffic policy that you want to update the comment
+        /// for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1000)]

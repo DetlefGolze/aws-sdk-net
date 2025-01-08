@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.InternetMonitor.Model
 {
     /// <summary>
@@ -49,8 +50,8 @@ namespace Amazon.InternetMonitor.Model
         private InternetMeasurementsLogDelivery _internetMeasurementsLogDelivery;
         private int? _maxCityNetworksToMonitor;
         private string _monitorName;
-        private List<string> _resourcesToAdd = new List<string>();
-        private List<string> _resourcesToRemove = new List<string>();
+        private List<string> _resourcesToAdd = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resourcesToRemove = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private MonitorConfigState _status;
         private int? _trafficPercentageToMonitor;
 
@@ -189,7 +190,7 @@ namespace Amazon.InternetMonitor.Model
         // Check to see if ResourcesToAdd property is set
         internal bool IsSetResourcesToAdd()
         {
-            return this._resourcesToAdd != null && this._resourcesToAdd.Count > 0; 
+            return this._resourcesToAdd != null && (this._resourcesToAdd.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -208,15 +209,15 @@ namespace Amazon.InternetMonitor.Model
         // Check to see if ResourcesToRemove property is set
         internal bool IsSetResourcesToRemove()
         {
-            return this._resourcesToRemove != null && this._resourcesToRemove.Count > 0; 
+            return this._resourcesToRemove != null && (this._resourcesToRemove.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status for a monitor. The accepted values for <code>Status</code> with the <code>UpdateMonitor</code>
-        /// API call are the following: <code>ACTIVE</code> and <code>INACTIVE</code>. The following
-        /// values are <i>not</i> accepted: <code>PENDING</code>, and <code>ERROR</code>.
+        /// The status for a monitor. The accepted values for <c>Status</c> with the <c>UpdateMonitor</c>
+        /// API call are the following: <c>ACTIVE</c> and <c>INACTIVE</c>. The following values
+        /// are <i>not</i> accepted: <c>PENDING</c>, and <c>ERROR</c>.
         /// </para>
         /// </summary>
         public MonitorConfigState Status

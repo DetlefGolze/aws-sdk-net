@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
-    /// The detailed configuration of a specified resource.
+    /// The detailed configurations of a specified resource.
     /// </summary>
     public partial class BaseConfigurationItem
     {
@@ -39,13 +40,15 @@ namespace Amazon.ConfigService.Model
         private string _awsRegion;
         private string _configuration;
         private DateTime? _configurationItemCaptureTime;
+        private DateTime? _configurationItemDeliveryTime;
         private ConfigurationItemStatus _configurationItemStatus;
         private string _configurationStateId;
+        private RecordingFrequency _recordingFrequency;
         private DateTime? _resourceCreationTime;
         private string _resourceId;
         private string _resourceName;
         private ResourceType _resourceType;
-        private Dictionary<string, string> _supplementaryConfiguration = new Dictionary<string, string>();
+        private Dictionary<string, string> _supplementaryConfiguration = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _version;
 
         /// <summary>
@@ -142,7 +145,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ConfigurationItemCaptureTime. 
         /// <para>
-        /// The time when the configuration recording was initiated.
+        /// The time when the recording of configuration changes was initiated for the resource.
         /// </para>
         /// </summary>
         public DateTime ConfigurationItemCaptureTime
@@ -158,22 +161,50 @@ namespace Amazon.ConfigService.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConfigurationItemDeliveryTime. 
+        /// <para>
+        /// The time when configuration changes for the resource were delivered.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This field is optional and is not guaranteed to be present in a configuration item
+        /// (CI). If you are using daily recording, this field will be populated. However, if
+        /// you are using continuous recording, this field will be omitted since the delivery
+        /// time is instantaneous as the CI is available right away. For more information on daily
+        /// recording and continuous recording, see <a href="https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html#select-resources-recording-frequency">Recording
+        /// Frequency</a> in the <i>Config Developer Guide</i>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public DateTime ConfigurationItemDeliveryTime
+        {
+            get { return this._configurationItemDeliveryTime.GetValueOrDefault(); }
+            set { this._configurationItemDeliveryTime = value; }
+        }
+
+        // Check to see if ConfigurationItemDeliveryTime property is set
+        internal bool IsSetConfigurationItemDeliveryTime()
+        {
+            return this._configurationItemDeliveryTime.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ConfigurationItemStatus. 
         /// <para>
-        /// The configuration item status. The valid values are:
+        /// The configuration item status. Valid values include:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// OK – The resource configuration has been updated
+        /// OK – The resource configuration has been updated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ResourceDiscovered – The resource was newly discovered
+        /// ResourceDiscovered – The resource was newly discovered.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ResourceNotRecorded – The resource was discovered but its configuration was not recorded
-        /// since the recorder excludes the recording of resources of this type
+        /// ResourceNotRecorded – The resource was discovered, but its configuration was not recorded
+        /// since the recorder doesn't record resources of this type.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -181,14 +212,10 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// ResourceDeletedNotRecorded – The resource was deleted but its configuration was not
-        /// recorded since the recorder excludes the recording of resources of this type
+        /// ResourceDeletedNotRecorded – The resource was deleted, but its configuration was not
+        /// recorded since the recorder doesn't record resources of this type.
         /// </para>
-        ///  </li> </ul> <note> 
-        /// <para>
-        /// The CIs do not incur any cost.
-        /// </para>
-        ///  </note>
+        ///  </li> </ul>
         /// </summary>
         public ConfigurationItemStatus ConfigurationItemStatus
         {
@@ -218,6 +245,24 @@ namespace Amazon.ConfigService.Model
         internal bool IsSetConfigurationStateId()
         {
             return this._configurationStateId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RecordingFrequency. 
+        /// <para>
+        /// The recording frequency that Config uses to record configuration changes for the resource.
+        /// </para>
+        /// </summary>
+        public RecordingFrequency RecordingFrequency
+        {
+            get { return this._recordingFrequency; }
+            set { this._recordingFrequency = value; }
+        }
+
+        // Check to see if RecordingFrequency property is set
+        internal bool IsSetRecordingFrequency()
+        {
+            return this._recordingFrequency != null;
         }
 
         /// <summary>
@@ -309,7 +354,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if SupplementaryConfiguration property is set
         internal bool IsSetSupplementaryConfiguration()
         {
-            return this._supplementaryConfiguration != null && this._supplementaryConfiguration.Count > 0; 
+            return this._supplementaryConfiguration != null && (this._supplementaryConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

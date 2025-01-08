@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,12 +66,36 @@ namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetDeadLetterConfig())
+                {
+                    context.Writer.WritePropertyName("DeadLetterConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = DeadLetterConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.DeadLetterConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetDescription())
+                {
+                    context.Writer.WritePropertyName("Description");
+                    context.Writer.Write(publicRequest.Description);
+                }
+
                 if(publicRequest.IsSetEventSourceName())
                 {
                     context.Writer.WritePropertyName("EventSourceName");
                     context.Writer.Write(publicRequest.EventSourceName);
+                }
+
+                if(publicRequest.IsSetKmsKeyIdentifier())
+                {
+                    context.Writer.WritePropertyName("KmsKeyIdentifier");
+                    context.Writer.Write(publicRequest.KmsKeyIdentifier);
                 }
 
                 if(publicRequest.IsSetName())

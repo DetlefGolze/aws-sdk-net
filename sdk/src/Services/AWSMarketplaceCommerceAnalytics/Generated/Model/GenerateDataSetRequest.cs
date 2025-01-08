@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSMarketplaceCommerceAnalytics.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics.Model
     /// </summary>
     public partial class GenerateDataSetRequest : AmazonAWSMarketplaceCommerceAnalyticsRequest
     {
-        private Dictionary<string, string> _customerDefinedValues = new Dictionary<string, string>();
+        private Dictionary<string, string> _customerDefinedValues = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _dataSetPublicationDate;
         private DataSetType _dataSetType;
         private string _destinations3BucketName;
@@ -66,7 +67,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics.Model
         // Check to see if CustomerDefinedValues property is set
         internal bool IsSetCustomerDefinedValues()
         {
-            return this._customerDefinedValues != null && this._customerDefinedValues.Count > 0; 
+            return this._customerDefinedValues != null && (this._customerDefinedValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -225,7 +226,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics.Model
         /// Gets and sets the property DestinationS3BucketName. The name (friendly name, not ARN)
         /// of the destination S3 bucket.
         /// </summary>
-        [AWSProperty(Required=true, Min=1)]
+        [AWSProperty(Required=true, Min=1, Max=63)]
         public string DestinationS3BucketName
         {
             get { return this._destinations3BucketName; }
@@ -262,7 +263,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics.Model
         /// Gets and sets the property RoleNameArn. The Amazon Resource Name (ARN) of the Role
         /// with an attached permissions policy to interact with the provided AWS services.
         /// </summary>
-        [AWSProperty(Required=true, Min=1)]
+        [AWSProperty(Required=true, Min=1, Max=2048)]
         public string RoleNameArn
         {
             get { return this._roleNameArn; }
@@ -279,7 +280,7 @@ namespace Amazon.AWSMarketplaceCommerceAnalytics.Model
         /// Gets and sets the property SnsTopicArn. Amazon Resource Name (ARN) for the SNS Topic
         /// that will be notified when the data set has been published or if an error has occurred.
         /// </summary>
-        [AWSProperty(Required=true, Min=1)]
+        [AWSProperty(Required=true, Min=1, Max=256)]
         public string SnsTopicArn
         {
             get { return this._snsTopicArn; }

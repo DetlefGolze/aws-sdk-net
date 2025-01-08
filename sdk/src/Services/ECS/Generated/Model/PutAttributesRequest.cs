@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// Container for the parameters to the PutAttributes operation.
     /// Create or update an attribute on an Amazon ECS resource. If the attribute doesn't
     /// exist, it's created. If the attribute exists, its value is replaced with the specified
-    /// value. To delete an attribute, use <a>DeleteAttributes</a>. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes">Attributes</a>
+    /// value. To delete an attribute, use <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteAttributes.html">DeleteAttributes</a>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html#attributes">Attributes</a>
     /// in the <i>Amazon Elastic Container Service Developer Guide</i>.
     /// </summary>
     public partial class PutAttributesRequest : AmazonECSRequest
     {
-        private List<Attribute> _attributes = new List<Attribute>();
+        private List<Attribute> _attributes = AWSConfigs.InitializeCollections ? new List<Attribute>() : null;
         private string _cluster;
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.ECS.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

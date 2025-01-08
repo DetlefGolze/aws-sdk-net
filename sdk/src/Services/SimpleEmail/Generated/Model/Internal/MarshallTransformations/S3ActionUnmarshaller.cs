@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SimpleEmail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,12 @@ namespace Amazon.SimpleEmail.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.BucketName = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("IamRoleArn", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.IamRoleArn = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("KmsKeyArn", targetDepth))

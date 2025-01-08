@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.DataSync.Model
     /// 
     ///  
     /// <para>
-    /// There are several phases to a task execution. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#understand-task-execution-statuses">Task
+    /// There are several steps to a task execution. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#understand-task-execution-statuses">Task
     /// execution statuses</a>.
     /// </para>
     ///  <important> 
@@ -48,10 +49,11 @@ namespace Amazon.DataSync.Model
     /// </summary>
     public partial class StartTaskExecutionRequest : AmazonDataSyncRequest
     {
-        private List<FilterRule> _excludes = new List<FilterRule>();
-        private List<FilterRule> _includes = new List<FilterRule>();
+        private List<FilterRule> _excludes = AWSConfigs.InitializeCollections ? new List<FilterRule>() : null;
+        private List<FilterRule> _includes = AWSConfigs.InitializeCollections ? new List<FilterRule>() : null;
+        private ManifestConfig _manifestConfig;
         private Options _overrideOptions;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
         private string _taskArn;
         private TaskReportConfig _taskReportConfig;
 
@@ -60,7 +62,7 @@ namespace Amazon.DataSync.Model
         /// <para>
         /// Specifies a list of filter rules that determines which files to exclude from a task.
         /// The list contains a single filter string that consists of the patterns to exclude.
-        /// The patterns are delimited by "|" (that is, a pipe), for example, <code>"/folder1|/folder2"</code>.
+        /// The patterns are delimited by "|" (that is, a pipe), for example, <c>"/folder1|/folder2"</c>.
         /// 
         /// </para>
         /// </summary>
@@ -74,7 +76,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Excludes property is set
         internal bool IsSetExcludes()
         {
-            return this._excludes != null && this._excludes.Count > 0; 
+            return this._excludes != null && (this._excludes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,7 +84,7 @@ namespace Amazon.DataSync.Model
         /// <para>
         /// Specifies a list of filter rules that determines which files to include when running
         /// a task. The pattern should contain a single filter string that consists of the patterns
-        /// to include. The patterns are delimited by "|" (that is, a pipe), for example, <code>"/folder1|/folder2"</code>.
+        /// to include. The patterns are delimited by "|" (that is, a pipe), for example, <c>"/folder1|/folder2"</c>.
         /// 
         /// </para>
         /// </summary>
@@ -96,7 +98,37 @@ namespace Amazon.DataSync.Model
         // Check to see if Includes property is set
         internal bool IsSetIncludes()
         {
-            return this._includes != null && this._includes.Count > 0; 
+            return this._includes != null && (this._includes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManifestConfig. 
+        /// <para>
+        /// Configures a manifest, which is a list of files or objects that you want DataSync
+        /// to transfer. For more information and configuration examples, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/transferring-with-manifest.html">Specifying
+        /// what DataSync transfers by using a manifest</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// When using this parameter, your caller identity (the role that you're using DataSync
+        /// with) must have the <c>iam:PassRole</c> permission. The <a href="https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess">AWSDataSyncFullAccess</a>
+        /// policy includes this permission.
+        /// </para>
+        ///  
+        /// <para>
+        /// To remove a manifest configuration, specify this parameter with an empty value.
+        /// </para>
+        /// </summary>
+        public ManifestConfig ManifestConfig
+        {
+            get { return this._manifestConfig; }
+            set { this._manifestConfig = value; }
+        }
+
+        // Check to see if ManifestConfig property is set
+        internal bool IsSetManifestConfig()
+        {
+            return this._manifestConfig != null;
         }
 
         /// <summary>
@@ -136,7 +168,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +194,18 @@ namespace Amazon.DataSync.Model
         /// Gets and sets the property TaskReportConfig. 
         /// <para>
         /// Specifies how you want to configure a task report, which provides detailed information
-        /// about for your DataSync transfer.
+        /// about your DataSync transfer. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/task-reports.html">Monitoring
+        /// your DataSync transfers with task reports</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// When using this parameter, your caller identity (the role that you're using DataSync
+        /// with) must have the <c>iam:PassRole</c> permission. The <a href="https://docs.aws.amazon.com/datasync/latest/userguide/security-iam-awsmanpol.html#security-iam-awsmanpol-awsdatasyncfullaccess">AWSDataSyncFullAccess</a>
+        /// policy includes this permission.
+        /// </para>
+        ///  
+        /// <para>
+        /// To remove a task report configuration, specify this parameter as empty.
         /// </para>
         /// </summary>
         public TaskReportConfig TaskReportConfig

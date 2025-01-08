@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DirectoryService.Model
     /// Retrieves information about the type of client authentication for the specified directory,
     /// if the type is specified. If no type is specified, information about all client authentication
     /// types that are supported for the specified directory is retrieved. Currently, only
-    /// <code>SmartCard</code> is supported.
+    /// <c>SmartCard</c> is supported.
     /// </summary>
     public partial class DescribeClientAuthenticationSettingsRequest : AmazonDirectoryServiceRequest
     {

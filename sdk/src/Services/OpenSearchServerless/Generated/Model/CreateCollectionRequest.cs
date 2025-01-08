@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchServerless.Model
 {
     /// <summary>
@@ -38,7 +39,8 @@ namespace Amazon.OpenSearchServerless.Model
         private string _clientToken;
         private string _description;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private StandbyReplicas _standbyReplicas;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private CollectionType _type;
 
         /// <summary>
@@ -99,6 +101,24 @@ namespace Amazon.OpenSearchServerless.Model
         }
 
         /// <summary>
+        /// Gets and sets the property StandbyReplicas. 
+        /// <para>
+        /// Indicates whether standby replicas should be used for a collection.
+        /// </para>
+        /// </summary>
+        public StandbyReplicas StandbyReplicas
+        {
+            get { return this._standbyReplicas; }
+            set { this._standbyReplicas = value; }
+        }
+
+        // Check to see if StandbyReplicas property is set
+        internal bool IsSetStandbyReplicas()
+        {
+            return this._standbyReplicas != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// An arbitrary set of tags (key–value pairs) to associate with the OpenSearch Serverless
@@ -115,7 +135,7 @@ namespace Amazon.OpenSearchServerless.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

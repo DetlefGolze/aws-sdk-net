@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateAgent operation.
-    /// Updates the name of an agent.
+    /// Updates the name of an DataSync agent.
     /// </summary>
     public partial class UpdateAgentRequest : AmazonDataSyncRequest
     {
@@ -62,7 +63,7 @@ namespace Amazon.DataSync.Model
         /// The name that you want to use to configure the agent.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string Name
         {
             get { return this._name; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.IdentityManagement.Model
         /// <summary>
         /// Instantiates CreateLoginProfileRequest with the parameterized properties
         /// </summary>
-        /// <param name="userName">The name of the IAM user to create a password for. The user must already exist. This parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-</param>
-        /// <param name="password">The new password for the user. The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> that is used to validate this parameter is a string of characters. That string can include almost any printable ASCII character from the space (<code>\u0020</code>) through the end of the ASCII character range (<code>\u00FF</code>). You can also include the tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and carriage return (<code>\u000D</code>) characters. Any of these characters are valid in a password. However, many tools, such as the Amazon Web Services Management Console, might restrict the ability to type certain characters because they have special meaning within that tool.</param>
+        /// <param name="userName">The name of the IAM user to create a password for. The user must already exist. This parameter is optional. If no user name is included, it defaults to the principal making the request. When you make this request with root user credentials, you must use an <a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoot.html">AssumeRoot</a> session to omit the user name. This parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex pattern</a>) a string of characters consisting of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: _+=,.@-</param>
+        /// <param name="password">The new password for the user. This parameter must be omitted when you make the request with an <a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoot.html">AssumeRoot</a> session. It is required in all other cases. The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> that is used to validate this parameter is a string of characters. That string can include almost any printable ASCII character from the space (<c>\u0020</c>) through the end of the ASCII character range (<c>\u00FF</c>). You can also include the tab (<c>\u0009</c>), line feed (<c>\u000A</c>), and carriage return (<c>\u000D</c>) characters. Any of these characters are valid in a password. However, many tools, such as the Amazon Web Services Management Console, might restrict the ability to type certain characters because they have special meaning within that tool.</param>
         public CreateLoginProfileRequest(string userName, string password)
         {
             _userName = userName;
@@ -75,17 +76,22 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  
         /// <para>
+        /// This parameter must be omitted when you make the request with an <a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoot.html">AssumeRoot</a>
+        /// session. It is required in all other cases.
+        /// </para>
+        ///  
+        /// <para>
         /// The <a href="http://wikipedia.org/wiki/regex">regex pattern</a> that is used to validate
         /// this parameter is a string of characters. That string can include almost any printable
-        /// ASCII character from the space (<code>\u0020</code>) through the end of the ASCII
-        /// character range (<code>\u00FF</code>). You can also include the tab (<code>\u0009</code>),
-        /// line feed (<code>\u000A</code>), and carriage return (<code>\u000D</code>) characters.
-        /// Any of these characters are valid in a password. However, many tools, such as the
-        /// Amazon Web Services Management Console, might restrict the ability to type certain
-        /// characters because they have special meaning within that tool.
+        /// ASCII character from the space (<c>\u0020</c>) through the end of the ASCII character
+        /// range (<c>\u00FF</c>). You can also include the tab (<c>\u0009</c>), line feed (<c>\u000A</c>),
+        /// and carriage return (<c>\u000D</c>) characters. Any of these characters are valid
+        /// in a password. However, many tools, such as the Amazon Web Services Management Console,
+        /// might restrict the ability to type certain characters because they have special meaning
+        /// within that tool.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string Password
         {
             get { return this._password; }
@@ -123,12 +129,19 @@ namespace Amazon.IdentityManagement.Model
         /// </para>
         ///  
         /// <para>
+        /// This parameter is optional. If no user name is included, it defaults to the principal
+        /// making the request. When you make this request with root user credentials, you must
+        /// use an <a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoot.html">AssumeRoot</a>
+        /// session to omit the user name.
+        /// </para>
+        ///  
+        /// <para>
         /// This parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex
         /// pattern</a>) a string of characters consisting of upper and lowercase alphanumeric
         /// characters with no spaces. You can also include any of the following characters: _+=,.@-
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=64)]
+        [AWSProperty(Min=1, Max=64)]
         public string UserName
         {
             get { return this._userName; }

@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SageMakerMetrics.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.SageMakerMetrics
 {
     /// <summary>
-    /// Interface for accessing SageMakerMetrics
+    /// <para>Interface for accessing SageMakerMetrics</para>
     ///
     /// Contains all data plane API operations and data types for Amazon SageMaker Metrics.
     /// Use these APIs to put and retrieve (get) features related to your training run.
@@ -44,13 +45,31 @@ namespace Amazon.SageMakerMetrics
     public partial interface IAmazonSageMakerMetrics : IAmazonService, IDisposable
     {
                 
+        #region  BatchGetMetrics
+
+
+
+        /// <summary>
+        /// Used to retrieve training metrics from SageMaker.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetMetrics service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchGetMetrics service method, as returned by SageMakerMetrics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-metrics-2022-09-30/BatchGetMetrics">REST API Reference for BatchGetMetrics Operation</seealso>
+        Task<BatchGetMetricsResponse> BatchGetMetricsAsync(BatchGetMetricsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+                
         #region  BatchPutMetrics
 
 
 
         /// <summary>
         /// Used to ingest training metrics into SageMaker. These metrics can be visualized in
-        /// SageMaker Studio and retrieved with the <code>GetMetrics</code> API.
+        /// SageMaker Studio.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchPutMetrics service method.</param>
         /// <param name="cancellationToken">

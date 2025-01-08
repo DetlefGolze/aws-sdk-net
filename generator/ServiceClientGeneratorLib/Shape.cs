@@ -39,6 +39,8 @@ namespace ServiceClientGenerator
         public const string TimestampFormatKey = "timestampFormat";
         public const string DocumentKey = "document";
         public const string EventKey = "event";
+        public const string EventPayloadKey = "eventpayload";
+        public const string EventHeaderKey = "eventheader";
 
         public static readonly HashSet<string> NullableTypes = new HashSet<string> {
             "bool",
@@ -130,7 +132,7 @@ namespace ServiceClientGenerator
         /// </summary>
         /// <returns>The name of the shape as a string</returns>
         public override string ToString()
-        {   
+        {
             return this.Name;
         }
 
@@ -186,7 +188,48 @@ namespace ServiceClientGenerator
                 return this.model.FindShape(extendsNode.ToString());
             }
         }
-
+        /// <summary>
+        /// Gets the map's key node's xmlnamespace.
+        /// </summary>
+        public string KeyShapeXmlNamespace
+        {
+            /*
+            "type": "map",
+            "key": {
+                "shape": "String",
+                "locationName": "K",
+                "xmlNamespace": "https://the-key.example.com"
+            },
+             */
+            get
+            {
+                if (!this.IsMap)
+                {
+                    return null;
+                }
+                var keyNode = this.data[KeyKey];
+                if (keyNode == null || keyNode[ServiceModel.XmlNamespaceKey] == null)
+                    return "";
+                return (string)keyNode[ServiceModel.XmlNamespaceKey];
+            }
+        }
+        /// <summary>
+        /// Gets the map's value node's xmlnamespace
+        /// </summary>
+        public string ValueShapeXmlNamespace
+        {
+            get
+            {
+                if (!this.IsMap) 
+                {
+                    return null; 
+                }
+                var valueNode = this.data[ValueKey];
+                if (valueNode == null || valueNode[ServiceModel.XmlNamespaceKey] == null)
+                    return "";
+                return (string)valueNode[ServiceModel.XmlNamespaceKey];
+            }
+        }
         /// <summary>
         /// The marshall name used for the key part of a dictionary.
         /// </summary>
@@ -321,7 +364,21 @@ namespace ServiceClientGenerator
                     var injectedProperties = shapeModifier.InjectedPropertyNames;
                     foreach (var p in injectedProperties)
                     {
-                        map.Add(new Member(this.model, this, p, p, shapeModifier.InjectedPropertyData(p)));
+                        var injectedPropertyData = shapeModifier.InjectedPropertyData(p);
+                        JsonData originalMember;
+                        // if a modeled property was excluded and replaced by an injected property, then we want to store a copy
+                        // of the original property's JSON so we can access data such as the context params.
+                        if (injectedPropertyData.Data[CustomizationsModel.OriginalMemberKey] != null)
+                        {
+                            var shapeData = this.model.FindShape(this.Name).data;
+                            originalMember = shapeData["members"][injectedPropertyData.Data[CustomizationsModel.OriginalMemberKey].ToString()];
+                            map.Add(new Member(this.model, this, originalMember, p, p, shapeModifier.InjectedPropertyData(p)));
+                        }
+                        else
+                        {
+                            map.Add(new Member(this.model, this, p, p, shapeModifier.InjectedPropertyData(p)));
+                        }
+
                     }
                 }
 
@@ -329,7 +386,7 @@ namespace ServiceClientGenerator
                     return map;
                 else
                     return map.OrderBy(x => x.PropertyName).ToList();
-                
+
             }
         }
 
@@ -373,20 +430,6 @@ namespace ServiceClientGenerator
             {
                 return Members.SingleOrDefault<Member>(m => string.Equals(m.ModeledName, PayloadMemberName
                     , StringComparison.InvariantCultureIgnoreCase));
-            }
-        }
-
-        public bool IsEventStream
-        {
-            get
-            {
-                var isEventStream = data[EventStreamKey];
-                if (isEventStream != null && isEventStream.IsBoolean)
-                {
-                    return (bool) isEventStream;
-                }
-
-                return false;
             }
         }
 
@@ -546,20 +589,6 @@ namespace ServiceClientGenerator
             }
         }
 
-        /// <summary>
-        /// Determines if the shape's json has a streaming attribute
-        /// </summary>
-        public bool IsStreaming
-        {
-            get
-            {
-                var streamingNode = this.data[StreamingKey];
-                if (streamingNode == null)
-                    return false;
-
-                return bool.Parse(streamingNode.ToString());
-            }
-        }
 
         public bool Sensitive
         {
@@ -578,7 +607,7 @@ namespace ServiceClientGenerator
             get
             {
                 var value = data[MinKey];
-                
+
                 if(value != null)
                 {
                     long min;
@@ -809,11 +838,16 @@ namespace ServiceClientGenerator
             if (this.IsDateTime)
             {
                 var timestampFormat = GetTimestampFormat(marshallLocation);
-                return "StringUtils.FromDateTimeTo" + timestampFormat;
+                string formatAppend = string.Empty;
+                if(timestampFormat == TimestampFormat.ISO8601)
+                {
+                    formatAppend = "WithOptionalMs";
+                }
+                return $"StringUtils.FromDateTimeTo{timestampFormat}{formatAppend}";
             }
             else
             {
-                return "StringUtils.From" + this.GetPrimitiveType();
+                return $"StringUtils.From{this.GetPrimitiveType()}";
             }
         }
 
@@ -853,6 +887,63 @@ namespace ServiceClientGenerator
             {
                 return this.data.PropertyNames.Contains(EventKey);
             }
+        }
+        public bool IsException
+        {
+            get
+            {
+                var exceptionNode = data[ExceptionKey];
+                if (exceptionNode == null)
+                {
+                    return false;
+                }
+                return (bool)exceptionNode;
+            }
+        }
+
+        /// <summary>
+        /// Unbound Event members are members of an event which are not marked with the eventHeader or EventPayload trait.
+        /// </summary>
+        /// <returns>Returns the list of members who are not marked with the event header or eventPayload trait</returns>
+        public List<Member> GetUnboundEventMembers()
+        {
+            if (Members == null)
+                return new List<Member>();
+            return Members.Where(m => !m.IsEventPayload && !m.IsEventHeader).ToList();
+
+        }
+
+        /// <summary>
+        /// A structure with an implicit payload is one where there is no eventPayload
+        /// trait marked on one of the members.
+        /// </summary>
+        /// <returns>True if the number of members marked without eventPayload or EventHeader is greater than 0. False otherwise</returns>
+        public bool HasImplicitEventPayloadMembers()
+        {
+            return IsEvent && GetUnboundEventMembers().Count > 0;
+        }
+
+        /// <summary>
+        /// An explicity payload member must have the "eventpayload" trait and can be the only
+        /// member marked as such. 
+        /// </summary>
+        /// <returns>The member marked with the "eventpayload" trait. Null if none found</returns>
+        public Member GetExplicitEventPayloadMember()
+        {
+            if (Members == null)
+            {
+                return null;
+            }
+            return Members.Where(m => m.IsEventPayload).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// If all members of an event are marked with eventheader then there is no event payload
+        /// </summary>
+        /// <returns>True if the structure contains only eventHeaders. False otherwise</returns>
+        public bool HasNoEventPayload()
+        {
+            return Members == null || Members.All(m => m.IsEventHeader);
         }
     }
 }

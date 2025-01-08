@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
     /// Provides information for filtering a list of entity recognizers. You can only specify
-    /// one filtering parameter in a request. For more information, see the <code>ListEntityRecognizers</code>
+    /// one filtering parameter in a request. For more information, see the <c>ListEntityRecognizers</c>
     /// operation./&gt;
     /// </summary>
     public partial class EntityRecognizerFilter

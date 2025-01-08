@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.EC2.Model
     {
         private string _groupId;
         private string _referencingVpcId;
+        private string _transitGatewayId;
         private string _vpcPeeringConnectionId;
 
         /// <summary>
@@ -74,9 +76,33 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property TransitGatewayId. <note> 
+        /// <para>
+        /// This parameter is in preview and may not be available for your account.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// The ID of the transit gateway (if applicable).
+        /// </para>
+        /// </summary>
+        public string TransitGatewayId
+        {
+            get { return this._transitGatewayId; }
+            set { this._transitGatewayId = value; }
+        }
+
+        // Check to see if TransitGatewayId property is set
+        internal bool IsSetTransitGatewayId()
+        {
+            return this._transitGatewayId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VpcPeeringConnectionId. 
         /// <para>
-        /// The ID of the VPC peering connection.
+        /// The ID of the VPC peering connection (if applicable). For more information about security
+        /// group referencing for peering connections, see <a href="https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html">Update
+        /// your security groups to reference peer security groups</a> in the <i>VPC Peering Guide</i>.
         /// </para>
         /// </summary>
         public string VpcPeeringConnectionId

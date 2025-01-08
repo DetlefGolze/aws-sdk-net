@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IVS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,12 +64,19 @@ namespace Amazon.IVS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAuthorized())
                 {
                     context.Writer.WritePropertyName("authorized");
                     context.Writer.Write(publicRequest.Authorized);
+                }
+
+                if(publicRequest.IsSetContainerFormat())
+                {
+                    context.Writer.WritePropertyName("containerFormat");
+                    context.Writer.Write(publicRequest.ContainerFormat);
                 }
 
                 if(publicRequest.IsSetInsecureIngest())
@@ -83,10 +91,27 @@ namespace Amazon.IVS.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.LatencyMode);
                 }
 
+                if(publicRequest.IsSetMultitrackInputConfiguration())
+                {
+                    context.Writer.WritePropertyName("multitrackInputConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = MultitrackInputConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.MultitrackInputConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetName())
                 {
                     context.Writer.WritePropertyName("name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetPlaybackRestrictionPolicyArn())
+                {
+                    context.Writer.WritePropertyName("playbackRestrictionPolicyArn");
+                    context.Writer.Write(publicRequest.PlaybackRestrictionPolicyArn);
                 }
 
                 if(publicRequest.IsSetPreset())

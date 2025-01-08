@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityToken.Model
 {
     /// <summary>
-    /// The error returned if the message passed to <code>DecodeAuthorizationMessage</code>
-    /// was invalid. This can happen if the token contains invalid characters, such as linebreaks.
+    /// The error returned if the message passed to <c>DecodeAuthorizationMessage</c> was
+    /// invalid. This can happen if the token contains invalid characters, such as line breaks,
+    /// or if the message has expired.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

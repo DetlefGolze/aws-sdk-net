@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.RAM.Model
     public partial class AssociateResourceShareResponse : AmazonWebServiceResponse
     {
         private string _clientToken;
-        private List<ResourceShareAssociation> _resourceShareAssociations = new List<ResourceShareAssociation>();
+        private List<ResourceShareAssociation> _resourceShareAssociations = AWSConfigs.InitializeCollections ? new List<ResourceShareAssociation>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
         /// The idempotency identifier associated with this request. If you want to repeat the
-        /// same operation in an idempotent manner then you must include this value in the <code>clientToken</code>
+        /// same operation in an idempotent manner then you must include this value in the <c>clientToken</c>
         /// request parameter of that later call. All other parameters must also have the same
         /// values that you used in the first call.
         /// </para>
@@ -72,7 +73,7 @@ namespace Amazon.RAM.Model
         // Check to see if ResourceShareAssociations property is set
         internal bool IsSetResourceShareAssociations()
         {
-            return this._resourceShareAssociations != null && this._resourceShareAssociations.Count > 0; 
+            return this._resourceShareAssociations != null && (this._resourceShareAssociations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

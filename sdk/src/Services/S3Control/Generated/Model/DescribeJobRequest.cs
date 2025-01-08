@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -34,7 +35,12 @@ namespace Amazon.S3Control.Model
     /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html">S3
     /// Batch Operations</a> in the <i>Amazon S3 User Guide</i>.
     /// 
-    ///   
+    ///  <dl> <dt>Permissions</dt> <dd> 
+    /// <para>
+    /// To use the <c>DescribeJob</c> operation, you must have permission to perform the <c>s3:DescribeJob</c>
+    /// action.
+    /// </para>
+    ///  </dd> </dl> 
     /// <para>
     /// Related actions include:
     /// </para>
@@ -81,7 +87,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>

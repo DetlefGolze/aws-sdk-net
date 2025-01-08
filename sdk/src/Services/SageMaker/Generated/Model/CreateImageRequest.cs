@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateImage operation.
-    /// Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each
-    /// image version represents a container image stored in Amazon Elastic Container Registry
-    /// (ECR). For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring
-    /// your own SageMaker image</a>.
+    /// Creates a custom SageMaker AI image. A SageMaker AI image is a set of image versions.
+    /// Each image version represents a container image stored in Amazon ECR. For more information,
+    /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring
+    /// your own SageMaker AI image</a>.
     /// </summary>
     public partial class CreateImageRequest : AmazonSageMakerRequest
     {
@@ -41,7 +42,7 @@ namespace Amazon.SageMaker.Model
         private string _displayName;
         private string _imageName;
         private string _roleArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -65,7 +66,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DisplayName. 
         /// <para>
-        /// The display name of the image. If not provided, <code>ImageName</code> is displayed.
+        /// The display name of the image. If not provided, <c>ImageName</c> is displayed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -103,7 +104,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The ARN of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.
+        /// The ARN of an IAM role that enables Amazon SageMaker AI to perform tasks on your behalf.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -135,7 +136,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

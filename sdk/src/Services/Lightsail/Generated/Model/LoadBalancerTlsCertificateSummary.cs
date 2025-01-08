@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,8 +40,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property IsAttached. 
         /// <para>
-        /// When <code>true</code>, the SSL/TLS certificate is attached to the Lightsail load
-        /// balancer.
+        /// When <c>true</c>, the SSL/TLS certificate is attached to the Lightsail load balancer.
         /// </para>
         /// </summary>
         public bool IsAttached

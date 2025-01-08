@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -34,20 +35,23 @@ namespace Amazon.MediaLive.Model
     public partial class DescribeInputResponse : AmazonWebServiceResponse
     {
         private string _arn;
-        private List<string> _attachedChannels = new List<string>();
-        private List<InputDestination> _destinations = new List<InputDestination>();
+        private List<string> _attachedChannels = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<InputDestination> _destinations = AWSConfigs.InitializeCollections ? new List<InputDestination>() : null;
         private string _id;
         private InputClass _inputClass;
-        private List<InputDeviceSettings> _inputDevices = new List<InputDeviceSettings>();
-        private List<string> _inputPartnerIds = new List<string>();
+        private List<InputDeviceSettings> _inputDevices = AWSConfigs.InitializeCollections ? new List<InputDeviceSettings>() : null;
+        private InputNetworkLocation _inputNetworkLocation;
+        private List<string> _inputPartnerIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private InputSourceType _inputSourceType;
-        private List<MediaConnectFlow> _mediaConnectFlows = new List<MediaConnectFlow>();
+        private List<MediaConnectFlow> _mediaConnectFlows = AWSConfigs.InitializeCollections ? new List<MediaConnectFlow>() : null;
+        private MulticastSettings _multicastSettings;
         private string _name;
         private string _roleArn;
-        private List<string> _securityGroups = new List<string>();
-        private List<InputSource> _sources = new List<InputSource>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<InputSource> _sources = AWSConfigs.InitializeCollections ? new List<InputSource>() : null;
+        private SrtSettings _srtSettings;
         private InputState _state;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private InputType _type;
 
         /// <summary>
@@ -78,7 +82,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if AttachedChannels property is set
         internal bool IsSetAttachedChannels()
         {
-            return this._attachedChannels != null && this._attachedChannels.Count > 0; 
+            return this._attachedChannels != null && (this._attachedChannels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -93,7 +97,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -117,7 +121,7 @@ namespace Amazon.MediaLive.Model
         /// be connected to this input. If the channel is also STANDARD, both sources will be
         /// ingested. If the channel is SINGLE_PIPELINE, only the first source will be ingested;
         /// the second source will always be ignored, even if the first source fails.SINGLE_PIPELINE
-        /// - You can connect only one source to this input. If the ChannelClass is also  SINGLE_PIPELINE,
+        /// - You can connect only one source to this input. If the ChannelClass is also SINGLE_PIPELINE,
         /// this value is valid. If the ChannelClass is STANDARD, this value is not valid because
         /// the channel requires two sources in the input.
         /// </summary>
@@ -145,7 +149,23 @@ namespace Amazon.MediaLive.Model
         // Check to see if InputDevices property is set
         internal bool IsSetInputDevices()
         {
-            return this._inputDevices != null && this._inputDevices.Count > 0; 
+            return this._inputDevices != null && (this._inputDevices.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property InputNetworkLocation. The location of this input. AWS,
+        /// for an input existing in the AWS Cloud, On-Prem foran input in a customer network.
+        /// </summary>
+        public InputNetworkLocation InputNetworkLocation
+        {
+            get { return this._inputNetworkLocation; }
+            set { this._inputNetworkLocation = value; }
+        }
+
+        // Check to see if InputNetworkLocation property is set
+        internal bool IsSetInputNetworkLocation()
+        {
+            return this._inputNetworkLocation != null;
         }
 
         /// <summary>
@@ -161,7 +181,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if InputPartnerIds property is set
         internal bool IsSetInputPartnerIds()
         {
-            return this._inputPartnerIds != null && this._inputPartnerIds.Count > 0; 
+            return this._inputPartnerIds != null && (this._inputPartnerIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -194,7 +214,22 @@ namespace Amazon.MediaLive.Model
         // Check to see if MediaConnectFlows property is set
         internal bool IsSetMediaConnectFlows()
         {
-            return this._mediaConnectFlows != null && this._mediaConnectFlows.Count > 0; 
+            return this._mediaConnectFlows != null && (this._mediaConnectFlows.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MulticastSettings. Multicast Input settings.
+        /// </summary>
+        public MulticastSettings MulticastSettings
+        {
+            get { return this._multicastSettings; }
+            set { this._multicastSettings = value; }
+        }
+
+        // Check to see if MulticastSettings property is set
+        internal bool IsSetMulticastSettings()
+        {
+            return this._multicastSettings != null;
         }
 
         /// <summary>
@@ -241,7 +276,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -256,7 +291,22 @@ namespace Amazon.MediaLive.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SrtSettings. The settings associated with an SRT input.
+        /// </summary>
+        public SrtSettings SrtSettings
+        {
+            get { return this._srtSettings; }
+            set { this._srtSettings = value; }
+        }
+
+        // Check to see if SrtSettings property is set
+        internal bool IsSetSrtSettings()
+        {
+            return this._srtSettings != null;
         }
 
         /// <summary>
@@ -286,7 +336,7 @@ namespace Amazon.MediaLive.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

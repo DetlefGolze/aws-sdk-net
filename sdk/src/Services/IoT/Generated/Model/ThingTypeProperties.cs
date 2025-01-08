@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -34,8 +35,27 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class ThingTypeProperties
     {
-        private List<string> _searchableAttributes = new List<string>();
+        private Mqtt5Configuration _mqtt5Configuration;
+        private List<string> _searchableAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _thingTypeDescription;
+
+        /// <summary>
+        /// Gets and sets the property Mqtt5Configuration. 
+        /// <para>
+        /// The configuration to add user-defined properties to enrich MQTT 5 messages.
+        /// </para>
+        /// </summary>
+        public Mqtt5Configuration Mqtt5Configuration
+        {
+            get { return this._mqtt5Configuration; }
+            set { this._mqtt5Configuration = value; }
+        }
+
+        // Check to see if Mqtt5Configuration property is set
+        internal bool IsSetMqtt5Configuration()
+        {
+            return this._mqtt5Configuration != null;
+        }
 
         /// <summary>
         /// Gets and sets the property SearchableAttributes. 
@@ -52,7 +72,7 @@ namespace Amazon.IoT.Model
         // Check to see if SearchableAttributes property is set
         internal bool IsSetSearchableAttributes()
         {
-            return this._searchableAttributes != null && this._searchableAttributes.Count > 0; 
+            return this._searchableAttributes != null && (this._searchableAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

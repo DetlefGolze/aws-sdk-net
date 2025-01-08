@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -33,13 +34,16 @@ namespace Amazon.GuardDuty.Model
     /// </summary>
     public partial class KubernetesWorkloadDetails
     {
-        private List<Container> _containers = new List<Container>();
+        private List<Container> _containers = AWSConfigs.InitializeCollections ? new List<Container>() : null;
+        private bool? _hostIPC;
         private bool? _hostNetwork;
+        private bool? _hostPID;
         private string _name;
         private string _awsNamespace;
+        private string _serviceAccountName;
         private string _type;
         private string _uid;
-        private List<Volume> _volumes = new List<Volume>();
+        private List<Volume> _volumes = AWSConfigs.InitializeCollections ? new List<Volume>() : null;
 
         /// <summary>
         /// Gets and sets the property Containers. 
@@ -56,7 +60,25 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Containers property is set
         internal bool IsSetContainers()
         {
-            return this._containers != null && this._containers.Count > 0; 
+            return this._containers != null && (this._containers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property HostIPC. 
+        /// <para>
+        /// Whether the host IPC flag is enabled for the pods in the workload.
+        /// </para>
+        /// </summary>
+        public bool HostIPC
+        {
+            get { return this._hostIPC.GetValueOrDefault(); }
+            set { this._hostIPC = value; }
+        }
+
+        // Check to see if HostIPC property is set
+        internal bool IsSetHostIPC()
+        {
+            return this._hostIPC.HasValue; 
         }
 
         /// <summary>
@@ -75,6 +97,24 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetHostNetwork()
         {
             return this._hostNetwork.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property HostPID. 
+        /// <para>
+        /// Whether the host PID flag is enabled for the pods in the workload. 
+        /// </para>
+        /// </summary>
+        public bool HostPID
+        {
+            get { return this._hostPID.GetValueOrDefault(); }
+            set { this._hostPID = value; }
+        }
+
+        // Check to see if HostPID property is set
+        internal bool IsSetHostPID()
+        {
+            return this._hostPID.HasValue; 
         }
 
         /// <summary>
@@ -111,6 +151,24 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetNamespace()
         {
             return this._awsNamespace != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ServiceAccountName. 
+        /// <para>
+        /// The service account name that is associated with a Kubernetes workload.
+        /// </para>
+        /// </summary>
+        public string ServiceAccountName
+        {
+            get { return this._serviceAccountName; }
+            set { this._serviceAccountName = value; }
+        }
+
+        // Check to see if ServiceAccountName property is set
+        internal bool IsSetServiceAccountName()
+        {
+            return this._serviceAccountName != null;
         }
 
         /// <summary>
@@ -164,7 +222,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Volumes property is set
         internal bool IsSetVolumes()
         {
-            return this._volumes != null && this._volumes.Count > 0; 
+            return this._volumes != null && (this._volumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

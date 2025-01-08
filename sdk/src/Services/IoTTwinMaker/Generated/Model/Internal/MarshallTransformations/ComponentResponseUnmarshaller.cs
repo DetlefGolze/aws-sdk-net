@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,31 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ComponentResponse Unmarshall(JsonUnmarshallerContext context)
         {
+            ComponentResponse unmarshalledObject = new ComponentResponse();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ComponentResponse unmarshalledObject = new ComponentResponse();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("areAllCompositeComponentsReturned", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.AreAllCompositeComponentsReturned = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("areAllPropertiesReturned", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.AreAllPropertiesReturned = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("componentName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -74,6 +88,12 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ComponentTypeId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("compositeComponents", targetDepth))
+                {
+                    var unmarshaller = new DictionaryUnmarshaller<string, ComponentSummary, StringUnmarshaller, ComponentSummaryUnmarshaller>(StringUnmarshaller.Instance, ComponentSummaryUnmarshaller.Instance);
+                    unmarshalledObject.CompositeComponents = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("definedIn", targetDepth))
@@ -113,7 +133,6 @@ namespace Amazon.IoTTwinMaker.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

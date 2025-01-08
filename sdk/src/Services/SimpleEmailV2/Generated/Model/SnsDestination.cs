@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
     /// An object that defines an Amazon SNS destination for email events. You can use Amazon
-    /// SNS to send notification when certain email events occur.
+    /// SNS to send notifications when certain email events occur.
     /// </summary>
     public partial class SnsDestination
     {

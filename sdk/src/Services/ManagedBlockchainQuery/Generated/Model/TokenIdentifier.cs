@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Only the native tokens BTC,ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
+    /// Only the native tokens BTC and ETH, and the ERC-20, ERC-721, and ERC 1155 token standards
     /// are supported.
     /// </para>
     ///  </note>
@@ -87,6 +88,13 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <para>
         /// The unique identifier of the token.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// For native tokens, use the 3 character abbreviation that best matches your token.
+        /// For example, btc for Bitcoin, eth for Ether, etc. For all other token types you must
+        /// specify the <c>tokenId</c> in the 64 character hexadecimal <c>tokenid</c> format.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string TokenId
         {

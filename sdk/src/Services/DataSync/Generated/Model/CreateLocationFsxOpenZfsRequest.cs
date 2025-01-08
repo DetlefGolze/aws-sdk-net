@@ -26,17 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateLocationFsxOpenZfs operation.
-    /// Creates an endpoint for an Amazon FSx for OpenZFS file system that DataSync can access
-    /// for a transfer. For more information, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html">Creating
-    /// a location for FSx for OpenZFS</a>.
+    /// Creates a transfer <i>location</i> for an Amazon FSx for OpenZFS file system. DataSync
+    /// can use this location as a source or destination for transferring data.
     /// 
+    ///  
+    /// <para>
+    /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-openzfs-location.html#create-openzfs-access">accesses
+    /// FSx for OpenZFS file systems</a>.
+    /// </para>
     ///  <note> 
     /// <para>
-    /// Request parameters related to <code>SMB</code> aren't supported with the <code>CreateLocationFsxOpenZfs</code>
+    /// Request parameters related to <c>SMB</c> aren't supported with the <c>CreateLocationFsxOpenZfs</c>
     /// operation.
     /// </para>
     ///  </note>
@@ -45,9 +50,9 @@ namespace Amazon.DataSync.Model
     {
         private string _fsxFilesystemArn;
         private FsxProtocol _protocol;
-        private List<string> _securityGroupArns = new List<string>();
+        private List<string> _securityGroupArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subdirectory;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property FsxFilesystemArn. 
@@ -104,15 +109,15 @@ namespace Amazon.DataSync.Model
         // Check to see if SecurityGroupArns property is set
         internal bool IsSetSecurityGroupArns()
         {
-            return this._securityGroupArns != null && this._securityGroupArns.Count > 0; 
+            return this._securityGroupArns != null && (this._securityGroupArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Subdirectory. 
         /// <para>
-        /// A subdirectory in the location's path that must begin with <code>/fsx</code>. DataSync
-        /// uses this subdirectory to read or write data (depending on whether the file system
-        /// is a source or destination location).
+        /// A subdirectory in the location's path that must begin with <c>/fsx</c>. DataSync uses
+        /// this subdirectory to read or write data (depending on whether the file system is a
+        /// source or destination location).
         /// </para>
         /// </summary>
         [AWSProperty(Max=4096)]
@@ -146,7 +151,7 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

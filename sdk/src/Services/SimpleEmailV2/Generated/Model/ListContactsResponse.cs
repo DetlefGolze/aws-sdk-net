@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class ListContactsResponse : AmazonWebServiceResponse
     {
-        private List<Contact> _contacts = new List<Contact>();
+        private List<Contact> _contacts = AWSConfigs.InitializeCollections ? new List<Contact>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,15 +52,15 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Contacts property is set
         internal bool IsSetContacts()
         {
-            return this._contacts != null && this._contacts.Count > 0; 
+            return this._contacts != null && (this._contacts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A string token indicating that there might be additional contacts available to be
-        /// listed. Copy this token to a subsequent call to <code>ListContacts</code> with the
-        /// same parameters to retrieve the next page of contacts.
+        /// listed. Copy this token to a subsequent call to <c>ListContacts</c> with the same
+        /// parameters to retrieve the next page of contacts.
         /// </para>
         /// </summary>
         public string NextToken

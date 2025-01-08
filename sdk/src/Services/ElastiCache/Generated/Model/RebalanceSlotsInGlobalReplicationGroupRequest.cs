@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property ApplyImmediately. 
         /// <para>
-        /// If <code>True</code>, redistribution is applied immediately.
+        /// If <c>True</c>, redistribution is applied immediately.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

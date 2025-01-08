@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.ForecastService.Model
     public partial class DescribePredictorResponse : AmazonWebServiceResponse
     {
         private string _algorithmArn;
-        private List<string> _autoMLAlgorithmArns = new List<string>();
+        private List<string> _autoMLAlgorithmArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AutoMLOverrideStrategy _autoMLOverrideStrategy;
         private DateTime? _creationTime;
-        private List<string> _datasetImportJobArns = new List<string>();
+        private List<string> _datasetImportJobArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private EncryptionConfig _encryptionConfig;
         private long? _estimatedTimeRemainingInMinutes;
         private EvaluationParameters _evaluationParameters;
         private FeaturizationConfig _featurizationConfig;
         private int? _forecastHorizon;
-        private List<string> _forecastTypes = new List<string>();
+        private List<string> _forecastTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private HyperParameterTuningJobConfig _hpoConfig;
         private InputDataConfig _inputDataConfig;
         private bool? _isAutoPredictor;
@@ -56,7 +57,7 @@ namespace Amazon.ForecastService.Model
         private PredictorExecutionDetails _predictorExecutionDetails;
         private string _predictorName;
         private string _status;
-        private Dictionary<string, string> _trainingParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _trainingParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AlgorithmArn. 
@@ -80,7 +81,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property AutoMLAlgorithmArns. 
         /// <para>
-        /// When <code>PerformAutoML</code> is specified, the ARN of the chosen algorithm.
+        /// When <c>PerformAutoML</c> is specified, the ARN of the chosen algorithm.
         /// </para>
         /// </summary>
         public List<string> AutoMLAlgorithmArns
@@ -92,20 +93,20 @@ namespace Amazon.ForecastService.Model
         // Check to see if AutoMLAlgorithmArns property is set
         internal bool IsSetAutoMLAlgorithmArns()
         {
-            return this._autoMLAlgorithmArns != null && this._autoMLAlgorithmArns.Count > 0; 
+            return this._autoMLAlgorithmArns != null && (this._autoMLAlgorithmArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property AutoMLOverrideStrategy. <note> 
         /// <para>
-        ///  The <code>LatencyOptimized</code> AutoML override strategy is only available in private
+        ///  The <c>LatencyOptimized</c> AutoML override strategy is only available in private
         /// beta. Contact Amazon Web Services Support or your account manager to learn more about
         /// access privileges. 
         /// </para>
         ///  </note> 
         /// <para>
-        /// The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code>
-        /// is specified, the AutoML strategy optimizes predictor accuracy.
+        /// The AutoML strategy used to train the predictor. Unless <c>LatencyOptimized</c> is
+        /// specified, the AutoML strategy optimizes predictor accuracy.
         /// </para>
         ///  
         /// <para>
@@ -158,7 +159,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if DatasetImportJobArns property is set
         internal bool IsSetDatasetImportJobArns()
         {
-            return this._datasetImportJobArns != null && this._datasetImportJobArns.Count > 0; 
+            return this._datasetImportJobArns != null && (this._datasetImportJobArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -259,7 +260,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property ForecastTypes. 
         /// <para>
-        /// The forecast types used during predictor training. Default value is <code>["0.1","0.5","0.9"]</code>
+        /// The forecast types used during predictor training. Default value is <c>["0.1","0.5","0.9"]</c>
         /// 
         /// </para>
         /// </summary>
@@ -273,7 +274,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if ForecastTypes property is set
         internal bool IsSetForecastTypes()
         {
-            return this._forecastTypes != null && this._forecastTypes.Count > 0; 
+            return this._forecastTypes != null && (this._forecastTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -338,23 +339,23 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATE_PENDING</code> - The <code>CreationTime</code>.
+        ///  <c>CREATE_PENDING</c> - The <c>CreationTime</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_IN_PROGRESS</code> - The current timestamp.
+        ///  <c>CREATE_IN_PROGRESS</c> - The current timestamp.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_STOPPING</code> - The current timestamp.
+        ///  <c>CREATE_STOPPING</c> - The current timestamp.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_STOPPED</code> - When the job stopped.
+        ///  <c>CREATE_STOPPED</c> - When the job stopped.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.
+        ///  <c>ACTIVE</c> or <c>CREATE_FAILED</c> - When the job finished or failed.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -507,26 +508,24 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> 
+        ///  <c>ACTIVE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code>
-        /// 
+        ///  <c>CREATE_PENDING</c>, <c>CREATE_IN_PROGRESS</c>, <c>CREATE_FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code>
-        /// 
+        ///  <c>DELETE_PENDING</c>, <c>DELETE_IN_PROGRESS</c>, <c>DELETE_FAILED</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> 
+        ///  <c>CREATE_STOPPING</c>, <c>CREATE_STOPPED</c> 
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
-        /// The <code>Status</code> of the predictor must be <code>ACTIVE</code> before you can
-        /// use the predictor to create a forecast.
+        /// The <c>Status</c> of the predictor must be <c>ACTIVE</c> before you can use the predictor
+        /// to create a forecast.
         /// </para>
         ///  </note>
         /// </summary>
@@ -561,7 +560,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if TrainingParameters property is set
         internal bool IsSetTrainingParameters()
         {
-            return this._trainingParameters != null && this._trainingParameters.Count > 0; 
+            return this._trainingParameters != null && (this._trainingParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
     /// Container for the parameters to the GetEffectivePermissionsForPath operation.
     /// Returns the Lake Formation permissions for a specified table or database resource
-    /// located at a path in Amazon S3. <code>GetEffectivePermissionsForPath</code> will not
-    /// return databases and tables if the catalog is encrypted.
+    /// located at a path in Amazon S3. <c>GetEffectivePermissionsForPath</c> will not return
+    /// databases and tables if the catalog is encrypted.
     /// </summary>
     public partial class GetEffectivePermissionsForPathRequest : AmazonLakeFormationRequest
     {

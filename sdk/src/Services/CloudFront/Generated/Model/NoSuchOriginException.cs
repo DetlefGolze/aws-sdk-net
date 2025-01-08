@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// No origin exists with the specified <code>Origin Id</code>.
+    /// No origin exists with the specified <c>Origin Id</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

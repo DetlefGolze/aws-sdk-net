@@ -26,11 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCommit.Model
 {
     /// <summary>
-    /// The pull request status is not valid. The only valid values are <code>OPEN</code>
-    /// and <code>CLOSED</code>.
+    /// The pull request status is not valid. The only valid values are <c>OPEN</c> and <c>CLOSED</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

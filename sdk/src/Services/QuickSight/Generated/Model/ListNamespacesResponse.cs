@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class ListNamespacesResponse : AmazonWebServiceResponse
     {
-        private List<NamespaceInfoV2> _namespaces = new List<NamespaceInfoV2>();
+        private List<NamespaceInfoV2> _namespaces = AWSConfigs.InitializeCollections ? new List<NamespaceInfoV2>() : null;
         private string _nextToken;
         private string _requestId;
         private int? _status;
@@ -55,18 +56,18 @@ namespace Amazon.QuickSight.Model
         // Check to see if Namespaces property is set
         internal bool IsSetNamespaces()
         {
-            return this._namespaces != null && this._namespaces.Count > 0; 
+            return this._namespaces != null && (this._namespaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A unique pagination token that can be used in a subsequent request. Receiving <code>NextToken</code>
+        /// A unique pagination token that can be used in a subsequent request. Receiving <c>NextToken</c>
         /// in your response inticates that there is more data that can be returned. To receive
-        /// the data, make another <code>ListNamespaces</code> API call with the returned token
-        /// to retrieve the next page of data. Each token is valid for 24 hours. If you try to
-        /// make a <code>ListNamespaces</code> API call with an expired token, you will receive
-        /// a <code>HTTP 400 InvalidNextTokenException</code> error.
+        /// the data, make another <c>ListNamespaces</c> API call with the returned token to retrieve
+        /// the next page of data. Each token is valid for 24 hours. If you try to make a <c>ListNamespaces</c>
+        /// API call with an expired token, you will receive a <c>HTTP 400 InvalidNextTokenException</c>
+        /// error.
         /// </para>
         /// </summary>
         public string NextToken

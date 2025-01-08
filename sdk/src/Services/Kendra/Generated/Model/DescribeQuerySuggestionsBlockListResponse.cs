@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -250,8 +251,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current status of the block list. When the value is <code>ACTIVE</code>, the block
-        /// list is ready for use.
+        /// The current status of the block list. When the value is <c>ACTIVE</c>, the block list
+        /// is ready for use.
         /// </para>
         /// </summary>
         public QuerySuggestionsBlockListStatus Status

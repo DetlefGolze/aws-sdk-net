@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.WorkSpaces.Model
     /// </summary>
     public partial class DescribeWorkspaceImagesRequest : AmazonWorkSpacesRequest
     {
-        private List<string> _imageIds = new List<string>();
+        private List<string> _imageIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ImageType _imageType;
         private int? _maxResults;
         private string _nextToken;
@@ -56,7 +57,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if ImageIds property is set
         internal bool IsSetImageIds()
         {
-            return this._imageIds != null && this._imageIds.Count > 0; 
+            return this._imageIds != null && (this._imageIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -99,8 +100,8 @@ namespace Amazon.WorkSpaces.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you received a <code>NextToken</code> from a previous call that was paginated,
-        /// provide this token to receive the next set of results.
+        /// If you received a <c>NextToken</c> from a previous call that was paginated, provide
+        /// this token to receive the next set of results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

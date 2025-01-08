@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Finspace.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -159,6 +160,12 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
                     response.SavedownStorageConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("scalingGroupConfiguration", targetDepth))
+                {
+                    var unmarshaller = KxScalingGroupConfigurationUnmarshaller.Instance;
+                    response.ScalingGroupConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -169,6 +176,18 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.StatusReason = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("tickerplantLogConfiguration", targetDepth))
+                {
+                    var unmarshaller = TickerplantLogConfigurationUnmarshaller.Instance;
+                    response.TickerplantLogConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("volumes", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<Volume, VolumeUnmarshaller>(VolumeUnmarshaller.Instance);
+                    response.Volumes = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("vpcConfiguration", targetDepth))

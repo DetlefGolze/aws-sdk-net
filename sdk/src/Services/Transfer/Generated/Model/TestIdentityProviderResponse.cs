@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -105,7 +106,7 @@ namespace Amazon.Transfer.Model
         /// The endpoint of the service used to authenticate a user.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=255)]
+        [AWSProperty(Required=true, Min=0, Max=255)]
         public string Url
         {
             get { return this._url; }

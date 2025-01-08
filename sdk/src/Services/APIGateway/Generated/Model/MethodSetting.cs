@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -104,7 +105,9 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property DataTraceEnabled. 
         /// <para>
         /// Specifies whether data trace logging is enabled for this method, which affects the
-        /// log entries pushed to Amazon CloudWatch Logs.
+        /// log entries pushed to Amazon CloudWatch Logs. This can be useful to troubleshoot APIs,
+        /// but can result in logging sensitive data. We recommend that you don't enable this
+        /// option for production APIs.
         /// </para>
         /// </summary>
         public bool DataTraceEnabled
@@ -123,10 +126,9 @@ namespace Amazon.APIGateway.Model
         /// Gets and sets the property LoggingLevel. 
         /// <para>
         /// Specifies the logging level for this method, which affects the log entries pushed
-        /// to Amazon CloudWatch Logs. Valid values are <code>OFF</code>, <code>ERROR</code>,
-        /// and <code>INFO</code>. Choose <code>ERROR</code> to write only error-level entries
-        /// to CloudWatch Logs, or choose <code>INFO</code> to include all <code>ERROR</code>
-        /// events as well as extra informational events.
+        /// to Amazon CloudWatch Logs. Valid values are <c>OFF</c>, <c>ERROR</c>, and <c>INFO</c>.
+        /// Choose <c>ERROR</c> to write only error-level entries to CloudWatch Logs, or choose
+        /// <c>INFO</c> to include all <c>ERROR</c> events as well as extra informational events.
         /// </para>
         /// </summary>
         public string LoggingLevel

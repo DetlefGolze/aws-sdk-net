@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -37,6 +38,7 @@ namespace Amazon.AppStream.Model
         private SessionConnectionState _connectionState;
         private string _fleetName;
         private string _id;
+        private string _instanceId;
         private DateTime? _maxExpirationTime;
         private NetworkAccessConfiguration _networkAccessConfiguration;
         private string _stackName;
@@ -47,8 +49,8 @@ namespace Amazon.AppStream.Model
         /// <summary>
         /// Gets and sets the property AuthenticationType. 
         /// <para>
-        /// The authentication method. The user is authenticated using a streaming URL (<code>API</code>)
-        /// or SAML 2.0 federation (<code>SAML</code>).
+        /// The authentication method. The user is authenticated using a streaming URL (<c>API</c>)
+        /// or SAML 2.0 federation (<c>SAML</c>).
         /// </para>
         /// </summary>
         public AuthenticationType AuthenticationType
@@ -120,15 +122,34 @@ namespace Amazon.AppStream.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        /// The identifier for the instance hosting the session.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property MaxExpirationTime. 
         /// <para>
-        /// The time when the streaming session is set to expire. This time is based on the <code>MaxUserDurationinSeconds</code>
+        /// The time when the streaming session is set to expire. This time is based on the <c>MaxUserDurationinSeconds</c>
         /// value, which determines the maximum length of time that a streaming session can run.
-        /// A streaming session might end earlier than the time specified in <code>SessionMaxExpirationTime</code>,
-        /// when the <code>DisconnectTimeOutInSeconds</code> elapses or the user chooses to end
-        /// his or her session. If the <code>DisconnectTimeOutInSeconds</code> elapses, or the
-        /// user chooses to end his or her session, the streaming instance is terminated and the
-        /// streaming session ends.
+        /// A streaming session might end earlier than the time specified in <c>SessionMaxExpirationTime</c>,
+        /// when the <c>DisconnectTimeOutInSeconds</c> elapses or the user chooses to end his
+        /// or her session. If the <c>DisconnectTimeOutInSeconds</c> elapses, or the user chooses
+        /// to end his or her session, the streaming instance is terminated and the streaming
+        /// session ends.
         /// </para>
         /// </summary>
         public DateTime MaxExpirationTime

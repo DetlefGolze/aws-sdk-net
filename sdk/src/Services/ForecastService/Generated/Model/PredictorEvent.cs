@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -57,8 +58,8 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property Detail. 
         /// <para>
-        /// The type of event. For example, <code>Retrain</code>. A retraining event denotes the
-        /// timepoint when a predictor was retrained. Any monitor results from before the <code>Datetime</code>
+        /// The type of event. For example, <c>Retrain</c>. A retraining event denotes the timepoint
+        /// when a predictor was retrained. Any monitor results from before the <c>Datetime</c>
         /// are from the previous predictor. Any new metrics are for the newly retrained predictor.
         /// </para>
         /// </summary>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationDiscoveryService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,8 +66,15 @@ namespace Amazon.ApplicationDiscoveryService.Model.Internal.MarshallTransformati
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetDeleteHistory())
+                {
+                    context.Writer.WritePropertyName("deleteHistory");
+                    context.Writer.Write(publicRequest.DeleteHistory);
+                }
+
                 if(publicRequest.IsSetImportTaskIds())
                 {
                     context.Writer.WritePropertyName("importTaskIds");

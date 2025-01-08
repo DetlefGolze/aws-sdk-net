@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property DedicatedMasterCount. 
         /// <para>
         /// The number of instances to use for the master node. If this attribute is specified,
-        /// then <code>DedicatedMasterEnabled</code> must be <code>true</code>.
+        /// then <c>DedicatedMasterEnabled</c> must be <c>true</c>.
         /// </para>
         /// </summary>
         public int DedicatedMasterCount
@@ -84,8 +85,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property DedicatedMasterType. 
         /// <para>
         /// The hardware configuration of the computer that hosts the dedicated master node. A
-        /// sample value is <code>m3.medium.elasticsearch</code>. If this attribute is specified,
-        /// then <code>DedicatedMasterEnabled</code> must be <code>true</code>.
+        /// sample value is <c>m3.medium.elasticsearch</c>. If this attribute is specified, then
+        /// <c>DedicatedMasterEnabled</c> must be <c>true</c>.
         /// </para>
         ///  
         /// <para>
@@ -127,7 +128,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The instance type for your data nodes. For example, <code>m3.medium.elasticsearch</code>.
+        /// The instance type for your data nodes. For example, <c>m3.medium.elasticsearch</c>.
         /// </para>
         ///  
         /// <para>
@@ -151,8 +152,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ZoneAwarenessConfig. 
         /// <para>
-        /// Configuration options for zone awareness. Provided if <code>ZoneAwarenessEnabled</code>
-        /// is <code>true</code>.
+        /// Configuration options for zone awareness. Provided if <c>ZoneAwarenessEnabled</c>
+        /// is <c>true</c>.
         /// </para>
         /// </summary>
         public AwsElasticsearchDomainElasticsearchClusterConfigZoneAwarenessConfigDetails ZoneAwarenessConfig

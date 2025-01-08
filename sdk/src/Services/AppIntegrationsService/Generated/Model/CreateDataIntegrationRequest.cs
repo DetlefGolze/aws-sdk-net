@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppIntegrationsService.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.AppIntegrationsService.Model
     /// <para>
     /// You cannot create a DataIntegration association for a DataIntegration that has been
     /// previously associated. Use a different DataIntegration, or recreate the DataIntegration
-    /// using the <code>CreateDataIntegration</code> API.
+    /// using the <c>CreateDataIntegration</c> API.
     /// </para>
     ///  </note>
     /// </summary>
@@ -47,10 +48,10 @@ namespace Amazon.AppIntegrationsService.Model
         private FileConfiguration _fileConfiguration;
         private string _kmsKey;
         private string _name;
-        private Dictionary<string, Dictionary<string, List<string>>> _objectConfiguration = new Dictionary<string, Dictionary<string, List<string>>>();
+        private Dictionary<string, Dictionary<string, List<string>>> _objectConfiguration = AWSConfigs.InitializeCollections ? new Dictionary<string, Dictionary<string, List<string>>>() : null;
         private ScheduleConfiguration _scheduleConfig;
         private string _sourceURI;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -80,7 +81,7 @@ namespace Amazon.AppIntegrationsService.Model
         /// A description of the DataIntegration.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Min=0, Max=1000)]
         public string Description
         {
             get { return this._description; }
@@ -114,7 +115,7 @@ namespace Amazon.AppIntegrationsService.Model
         /// <summary>
         /// Gets and sets the property KmsKey. 
         /// <para>
-        /// The KMS key for the DataIntegration.
+        /// The KMS key ARN for the DataIntegration.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -164,7 +165,7 @@ namespace Amazon.AppIntegrationsService.Model
         // Check to see if ObjectConfiguration property is set
         internal bool IsSetObjectConfiguration()
         {
-            return this._objectConfiguration != null && this._objectConfiguration.Count > 0; 
+            return this._objectConfiguration != null && (this._objectConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,7 +174,6 @@ namespace Amazon.AppIntegrationsService.Model
         /// The name of the data and how often it should be pulled from the source.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public ScheduleConfiguration ScheduleConfig
         {
             get { return this._scheduleConfig; }
@@ -192,7 +192,7 @@ namespace Amazon.AppIntegrationsService.Model
         /// The URI of the data source.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=1000)]
+        [AWSProperty(Min=1, Max=1000)]
         public string SourceURI
         {
             get { return this._sourceURI; }
@@ -222,7 +222,7 @@ namespace Amazon.AppIntegrationsService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

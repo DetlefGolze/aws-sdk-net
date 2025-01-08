@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DynamoDBv2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,23 @@ namespace Amazon.DynamoDBv2.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UpdateGlobalSecondaryIndexAction requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetIndexName())
             {
                 context.Writer.WritePropertyName("IndexName");
                 context.Writer.Write(requestObject.IndexName);
+            }
+
+            if(requestObject.IsSetOnDemandThroughput())
+            {
+                context.Writer.WritePropertyName("OnDemandThroughput");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = OnDemandThroughputMarshaller.Instance;
+                marshaller.Marshall(requestObject.OnDemandThroughput, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetProvisionedThroughput())
@@ -58,6 +72,17 @@ namespace Amazon.DynamoDBv2.Model.Internal.MarshallTransformations
 
                 var marshaller = ProvisionedThroughputMarshaller.Instance;
                 marshaller.Marshall(requestObject.ProvisionedThroughput, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetWarmThroughput())
+            {
+                context.Writer.WritePropertyName("WarmThroughput");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = WarmThroughputMarshaller.Instance;
+                marshaller.Marshall(requestObject.WarmThroughput, context);
 
                 context.Writer.WriteObjectEnd();
             }

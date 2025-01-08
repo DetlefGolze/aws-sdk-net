@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHub.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.MigrationHub.Model
     /// </summary>
     public partial class ListMigrationTasksResponse : AmazonWebServiceResponse
     {
-        private List<MigrationTaskSummary> _migrationTaskSummaryList = new List<MigrationTaskSummary>();
+        private List<MigrationTaskSummary> _migrationTaskSummaryList = AWSConfigs.InitializeCollections ? new List<MigrationTaskSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property MigrationTaskSummaryList. 
         /// <para>
-        /// Lists the migration task's summary which includes: <code>MigrationTaskName</code>,
-        /// <code>ProgressPercent</code>, <code>ProgressUpdateStream</code>, <code>Status</code>,
-        /// and the <code>UpdateDateTime</code> for each task.
+        /// Lists the migration task's summary which includes: <c>MigrationTaskName</c>, <c>ProgressPercent</c>,
+        /// <c>ProgressUpdateStream</c>, <c>Status</c>, and the <c>UpdateDateTime</c> for each
+        /// task.
         /// </para>
         /// </summary>
         public List<MigrationTaskSummary> MigrationTaskSummaryList
@@ -53,7 +54,7 @@ namespace Amazon.MigrationHub.Model
         // Check to see if MigrationTaskSummaryList property is set
         internal bool IsSetMigrationTaskSummaryList()
         {
-            return this._migrationTaskSummaryList != null && this._migrationTaskSummaryList.Count > 0; 
+            return this._migrationTaskSummaryList != null && (this._migrationTaskSummaryList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

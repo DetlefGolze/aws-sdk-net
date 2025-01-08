@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property CertificateS3ObjectKey. 
         /// <para>
         /// The Amazon S3 object key where the certificate, certificate chain, and encrypted private
-        /// key bundle are stored. The object key is formatted as follows: <code>role_arn</code>/<code>certificate_arn</code>.
+        /// key bundle are stored. The object key is formatted as follows: <c>role_arn</c>/<c>certificate_arn</c>.
         /// </para>
         /// </summary>
         public string CertificateS3ObjectKey

@@ -26,32 +26,107 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the ListCompute operation.
-    /// Retrieves the compute resources in an Amazon GameLift fleet. You can request information
-    /// for either managed EC2 fleets or Anywhere fleets. 
+    /// Retrieves information on the compute resources in an Amazon GameLift fleet. Use the
+    /// pagination parameters to retrieve results in a set of sequential pages.
     /// 
     ///  
     /// <para>
-    /// To request a list of computes, specify the fleet ID. You can filter the result set
-    /// by location. Use the pagination parameters to retrieve results in a set of sequential
-    /// pages.
+    ///  <b>Request options:</b> 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// Retrieve a list of all computes in a fleet. Specify a fleet ID. 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Retrieve a list of all computes in a specific fleet location. Specify a fleet ID and
+    /// location.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Results:</b> 
     /// </para>
     ///  
     /// <para>
-    /// If successful, this operation returns the compute resource for the requested fleet.
-    /// For managed EC2 fleets, it returns a list of EC2 instances. For Anywhere fleets, it
-    /// returns a list of registered compute names.
+    /// If successful, this operation returns information on a set of computes. Depending
+    /// on the type of fleet, the result includes the following information: 
     /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// For managed EC2 fleets (compute type <c>EC2</c>), this operation returns information
+    /// about the EC2 instance. Compute names are EC2 instance IDs.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For Anywhere fleets (compute type <c>ANYWHERE</c>), this operation returns compute
+    /// names and details as provided when the compute was registered with <c>RegisterCompute</c>.
+    /// This includes <c>GameLiftServiceSdkEndpoint</c> or <c>GameLiftAgentEndpoint</c>.
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class ListComputeRequest : AmazonGameLiftRequest
     {
+        private ListComputeInputStatus _computeStatus;
+        private string _containerGroupDefinitionName;
         private string _fleetId;
         private int? _limit;
         private string _location;
         private string _nextToken;
+
+        /// <summary>
+        /// Gets and sets the property ComputeStatus. 
+        /// <para>
+        /// The status of computes in a managed container fleet, based on the success of the latest
+        /// update deployment.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>ACTIVE</c> -- The compute is deployed with the correct container definitions.
+        /// It is ready to process game servers and host game sessions.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>IMPAIRED</c> -- An update deployment to the compute failed, and the compute is
+        /// deployed with incorrect container definitions.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public ListComputeInputStatus ComputeStatus
+        {
+            get { return this._computeStatus; }
+            set { this._computeStatus = value; }
+        }
+
+        // Check to see if ComputeStatus property is set
+        internal bool IsSetComputeStatus()
+        {
+            return this._computeStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ContainerGroupDefinitionName. 
+        /// <para>
+        /// For computes in a managed container fleet, the name of the deployed container group
+        /// definition. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=512)]
+        public string ContainerGroupDefinitionName
+        {
+            get { return this._containerGroupDefinitionName; }
+            set { this._containerGroupDefinitionName = value; }
+        }
+
+        // Check to see if ContainerGroupDefinitionName property is set
+        internal bool IsSetContainerGroupDefinitionName()
+        {
+            return this._containerGroupDefinitionName != null;
+        }
 
         /// <summary>
         /// Gets and sets the property FleetId. 
@@ -59,7 +134,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet to retrieve compute resources for.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -75,7 +150,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages.
         /// </para>
         /// </summary>
@@ -95,7 +170,9 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Location. 
         /// <para>
-        /// The name of a location to retrieve compute resources for.
+        /// The name of a location to retrieve compute resources for. For an Amazon GameLift Anywhere
+        /// fleet, use a custom location. For a managed fleet, provide a Amazon Web Services Region
+        /// or Local Zone code (for example: <c>us-west-2</c> or <c>us-west-2-lax-1</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

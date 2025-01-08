@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -34,15 +35,16 @@ namespace Amazon.GuardDuty.Model
     public partial class EcsTaskDetails
     {
         private string _arn;
-        private List<Container> _containers = new List<Container>();
+        private List<Container> _containers = AWSConfigs.InitializeCollections ? new List<Container>() : null;
         private string _definitionArn;
         private string _group;
+        private string _launchType;
         private DateTime? _startedAt;
         private string _startedBy;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DateTime? _taskCreatedAt;
         private string _version;
-        private List<Volume> _volumes = new List<Volume>();
+        private List<Volume> _volumes = AWSConfigs.InitializeCollections ? new List<Volume>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -77,7 +79,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Containers property is set
         internal bool IsSetContainers()
         {
-            return this._containers != null && this._containers.Count > 0; 
+            return this._containers != null && (this._containers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,6 +116,24 @@ namespace Amazon.GuardDuty.Model
         internal bool IsSetGroup()
         {
             return this._group != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property LaunchType. 
+        /// <para>
+        /// A capacity on which the task is running. For example, <c>Fargate</c> and <c>EC2</c>.
+        /// </para>
+        /// </summary>
+        public string LaunchType
+        {
+            get { return this._launchType; }
+            set { this._launchType = value; }
+        }
+
+        // Check to see if LaunchType property is set
+        internal bool IsSetLaunchType()
+        {
+            return this._launchType != null;
         }
 
         /// <summary>
@@ -167,7 +187,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -221,7 +241,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Volumes property is set
         internal bool IsSetVolumes()
         {
-            return this._volumes != null && this._volumes.Count > 0; 
+            return this._volumes != null && (this._volumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

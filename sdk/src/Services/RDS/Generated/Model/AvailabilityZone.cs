@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as an element in the <code>OrderableDBInstanceOption</code>
-    /// data type.
+    /// This data type is used as an element in the <c>OrderableDBInstanceOption</c> data
+    /// type.
     /// </para>
     /// </summary>
     public partial class AvailabilityZone

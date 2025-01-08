@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAlgorithmSpecification())
@@ -173,6 +175,17 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     context.Writer.WriteObjectEnd();
                 }
 
+                if(publicRequest.IsSetInfraCheckConfig())
+                {
+                    context.Writer.WritePropertyName("InfraCheckConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = InfraCheckConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.InfraCheckConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetInputDataConfig())
                 {
                     context.Writer.WritePropertyName("InputDataConfig");
@@ -227,6 +240,17 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetRemoteDebugConfig())
+                {
+                    context.Writer.WritePropertyName("RemoteDebugConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = RemoteDebugConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.RemoteDebugConfig, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetResourceConfig())
                 {
                     context.Writer.WritePropertyName("ResourceConfig");
@@ -253,6 +277,17 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("RoleArn");
                     context.Writer.Write(publicRequest.RoleArn);
+                }
+
+                if(publicRequest.IsSetSessionChainingConfig())
+                {
+                    context.Writer.WritePropertyName("SessionChainingConfig");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SessionChainingConfigMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SessionChainingConfig, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetStoppingCondition())

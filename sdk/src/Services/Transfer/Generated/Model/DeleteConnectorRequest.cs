@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteConnector operation.
-    /// Deletes the connector that's specified in the provided <code>ConnectorId</code>.
+    /// Deletes the connector that's specified in the provided <c>ConnectorId</c>.
     /// </summary>
     public partial class DeleteConnectorRequest : AmazonTransferRequest
     {

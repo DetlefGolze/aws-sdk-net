@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,18 +34,18 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class InstanceAttribute
     {
-        private List<InstanceBlockDeviceMapping> _blockDeviceMappings = new List<InstanceBlockDeviceMapping>();
+        private List<InstanceBlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<InstanceBlockDeviceMapping>() : null;
         private bool? _disableApiStop;
         private bool? _disableApiTermination;
         private bool? _ebsOptimized;
         private bool? _enaSupport;
         private EnclaveOptions _enclaveOptions;
-        private List<GroupIdentifier> _groups = new List<GroupIdentifier>();
+        private List<GroupIdentifier> _groups = AWSConfigs.InitializeCollections ? new List<GroupIdentifier>() : null;
         private string _instanceId;
         private string _instanceInitiatedShutdownBehavior;
         private string _instanceType;
         private string _kernelId;
-        private List<ProductCode> _productCodes = new List<ProductCode>();
+        private List<ProductCode> _productCodes = AWSConfigs.InitializeCollections ? new List<ProductCode>() : null;
         private string _ramdiskId;
         private string _rootDeviceName;
         private bool? _sourceDestCheck;
@@ -66,14 +67,14 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DisableApiStop. 
         /// <para>
         /// To enable the instance for Amazon Web Services Stop Protection, set this parameter
-        /// to <code>true</code>; otherwise, set it to <code>false</code>.
+        /// to <c>true</c>; otherwise, set it to <c>false</c>.
         /// </para>
         /// </summary>
         public bool DisableApiStop
@@ -91,8 +92,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property DisableApiTermination. 
         /// <para>
-        /// If the value is <code>true</code>, you can't terminate the instance through the Amazon
-        /// EC2 console, CLI, or API; otherwise, you can.
+        /// If the value is <c>true</c>, you can't terminate the instance through the Amazon EC2
+        /// console, CLI, or API; otherwise, you can.
         /// </para>
         /// </summary>
         public bool DisableApiTermination
@@ -147,7 +148,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property EnclaveOptions. 
         /// <para>
         /// To enable the instance for Amazon Web Services Nitro Enclaves, set this parameter
-        /// to <code>true</code>; otherwise, set it to <code>false</code>.
+        /// to <c>true</c>; otherwise, set it to <c>false</c>.
         /// </para>
         /// </summary>
         public EnclaveOptions EnclaveOptions
@@ -177,7 +178,7 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -268,7 +269,7 @@ namespace Amazon.EC2.Model
         // Check to see if ProductCodes property is set
         internal bool IsSetProductCodes()
         {
-            return this._productCodes != null && this._productCodes.Count > 0; 
+            return this._productCodes != null && (this._productCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -292,7 +293,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property RootDeviceName. 
         /// <para>
-        /// The device name of the root device volume (for example, <code>/dev/sda1</code>).
+        /// The device name of the root device volume (for example, <c>/dev/sda1</c>).
         /// </para>
         /// </summary>
         public string RootDeviceName
@@ -311,10 +312,10 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property SourceDestCheck. 
         /// <para>
         /// Enable or disable source/destination checks, which ensure that the instance is either
-        /// the source or the destination of any traffic that it receives. If the value is <code>true</code>,
+        /// the source or the destination of any traffic that it receives. If the value is <c>true</c>,
         /// source/destination checks are enabled; otherwise, they are disabled. The default value
-        /// is <code>true</code>. You must disable source/destination checks if the instance runs
-        /// services such as network address translation, routing, or firewalls.
+        /// is <c>true</c>. You must disable source/destination checks if the instance runs services
+        /// such as network address translation, routing, or firewalls.
         /// </para>
         /// </summary>
         public bool SourceDestCheck

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
@@ -35,7 +36,9 @@ namespace Amazon.Bedrock.Model
     {
         private string _baseModelArn;
         private DateTime? _creationTime;
-        private Dictionary<string, string> _hyperParameters = new Dictionary<string, string>();
+        private CustomizationConfig _customizationConfig;
+        private CustomizationType _customizationType;
+        private Dictionary<string, string> _hyperParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _jobArn;
         private string _jobName;
         private string _modelArn;
@@ -45,12 +48,12 @@ namespace Amazon.Bedrock.Model
         private TrainingDataConfig _trainingDataConfig;
         private TrainingMetrics _trainingMetrics;
         private ValidationDataConfig _validationDataConfig;
-        private List<ValidatorMetric> _validationMetrics = new List<ValidatorMetric>();
+        private List<ValidatorMetric> _validationMetrics = AWSConfigs.InitializeCollections ? new List<ValidatorMetric>() : null;
 
         /// <summary>
         /// Gets and sets the property BaseModelArn. 
         /// <para>
-        /// ARN of the base model.
+        /// Amazon Resource Name (ARN) of the base model.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1011)]
@@ -86,9 +89,47 @@ namespace Amazon.Bedrock.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CustomizationConfig. 
+        /// <para>
+        /// The customization configuration for the custom model.
+        /// </para>
+        /// </summary>
+        public CustomizationConfig CustomizationConfig
+        {
+            get { return this._customizationConfig; }
+            set { this._customizationConfig = value; }
+        }
+
+        // Check to see if CustomizationConfig property is set
+        internal bool IsSetCustomizationConfig()
+        {
+            return this._customizationConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomizationType. 
+        /// <para>
+        /// The type of model customization.
+        /// </para>
+        /// </summary>
+        public CustomizationType CustomizationType
+        {
+            get { return this._customizationType; }
+            set { this._customizationType = value; }
+        }
+
+        // Check to see if CustomizationType property is set
+        internal bool IsSetCustomizationType()
+        {
+            return this._customizationType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property HyperParameters. 
         /// <para>
-        /// Hyperparameter values associated with this model.
+        /// Hyperparameter values associated with this model. For details on the format for different
+        /// models, see <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models-hp.html">Custom
+        /// model hyperparameters</a>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> HyperParameters
@@ -100,13 +141,13 @@ namespace Amazon.Bedrock.Model
         // Check to see if HyperParameters property is set
         internal bool IsSetHyperParameters()
         {
-            return this._hyperParameters != null && this._hyperParameters.Count > 0; 
+            return this._hyperParameters != null && (this._hyperParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property JobArn. 
         /// <para>
-        /// Job ARN associated with this model.
+        /// Job Amazon Resource Name (ARN) associated with this model.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1011)]
@@ -144,7 +185,7 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property ModelArn. 
         /// <para>
-        /// ARN associated with this model.
+        /// Amazon Resource Name (ARN) associated with this model.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=1011)]
@@ -220,7 +261,7 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property TrainingDataConfig. 
         /// <para>
-        /// Information about the training dataset.
+        /// Contains information about the training dataset.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -239,7 +280,7 @@ namespace Amazon.Bedrock.Model
         /// <summary>
         /// Gets and sets the property TrainingMetrics. 
         /// <para>
-        /// The training metrics from the job creation.
+        /// Contains training metrics from the job creation.
         /// </para>
         /// </summary>
         public TrainingMetrics TrainingMetrics
@@ -255,7 +296,10 @@ namespace Amazon.Bedrock.Model
         }
 
         /// <summary>
-        /// Gets and sets the property ValidationDataConfig.
+        /// Gets and sets the property ValidationDataConfig. 
+        /// <para>
+        /// Contains information about the validation dataset.
+        /// </para>
         /// </summary>
         public ValidationDataConfig ValidationDataConfig
         {
@@ -284,7 +328,7 @@ namespace Amazon.Bedrock.Model
         // Check to see if ValidationMetrics property is set
         internal bool IsSetValidationMetrics()
         {
-            return this._validationMetrics != null && this._validationMetrics.Count > 0; 
+            return this._validationMetrics != null && (this._validationMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

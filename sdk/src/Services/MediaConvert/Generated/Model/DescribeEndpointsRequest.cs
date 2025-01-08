@@ -26,13 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeEndpoints operation.
-    /// Send an request with an empty body to the regional API endpoint to get your account
-    /// API endpoint.
+    /// Send a request with an empty body to the regional API endpoint to get your account
+    /// API endpoint. Note that DescribeEndpoints is no longer required. We recommend that
+    /// you send your requests directly to the regional endpoint instead.
     /// </summary>
+    [Obsolete("DescribeEndpoints and account specific endpoints are no longer required. We recommend that you send your requests directly to the regional endpoint instead.")]
     public partial class DescribeEndpointsRequest : AmazonMediaConvertRequest
     {
         private int? _maxResults;

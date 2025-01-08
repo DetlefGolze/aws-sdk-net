@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -41,9 +42,10 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property EksClusterArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Amazon Elastic Kubernetes Service cluster. The format
-        /// for this ARN is: arn:<code>aws</code>:eks:<code>region</code>:<code>account-id</code>:cluster/<code>cluster-name</code>.
+        /// for this ARN is: arn:<c>aws</c>:eks:<c>region</c>:<c>account-id</c>:cluster/<c>cluster-name</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

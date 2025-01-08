@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAssetModelCompositeModels())
@@ -87,6 +89,12 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.AssetModelDescription);
                 }
 
+                if(publicRequest.IsSetAssetModelExternalId())
+                {
+                    context.Writer.WritePropertyName("assetModelExternalId");
+                    context.Writer.Write(publicRequest.AssetModelExternalId);
+                }
+
                 if(publicRequest.IsSetAssetModelHierarchies())
                 {
                     context.Writer.WritePropertyName("assetModelHierarchies");
@@ -101,6 +109,12 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetAssetModelId())
+                {
+                    context.Writer.WritePropertyName("assetModelId");
+                    context.Writer.Write(publicRequest.AssetModelId);
                 }
 
                 if(publicRequest.IsSetAssetModelName())
@@ -123,6 +137,12 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetAssetModelType())
+                {
+                    context.Writer.WritePropertyName("assetModelType");
+                    context.Writer.Write(publicRequest.AssetModelType);
                 }
 
                 if(publicRequest.IsSetClientToken())

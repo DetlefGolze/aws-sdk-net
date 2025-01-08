@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(SignalDecoder requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCanSignal())
             {
                 context.Writer.WritePropertyName("canSignal");
@@ -52,6 +55,17 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 
                 var marshaller = CanSignalMarshaller.Instance;
                 marshaller.Marshall(requestObject.CanSignal, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetCustomDecodingSignal())
+            {
+                context.Writer.WritePropertyName("customDecodingSignal");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = CustomDecodingSignalMarshaller.Instance;
+                marshaller.Marshall(requestObject.CustomDecodingSignal, context);
 
                 context.Writer.WriteObjectEnd();
             }
@@ -66,6 +80,17 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("interfaceId");
                 context.Writer.Write(requestObject.InterfaceId);
+            }
+
+            if(requestObject.IsSetMessageSignal())
+            {
+                context.Writer.WritePropertyName("messageSignal");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = MessageSignalMarshaller.Instance;
+                marshaller.Marshall(requestObject.MessageSignal, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetObdSignal())

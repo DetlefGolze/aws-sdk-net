@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -101,7 +102,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// <summary>
         /// Gets and sets the property ShutdownMeCollectors. 
         /// <para>
-        ///  The number of Migration Evaluator collectors with <code>SHUTDOWN</code> status. 
+        ///  The number of Migration Evaluator collectors with <c>SHUTDOWN</c> status. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

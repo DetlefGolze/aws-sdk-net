@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.QuickSight.Model
     public partial class KPIConfiguration
     {
         private KPIFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private KPIOptions _kpiOptions;
         private KPISortConfiguration _sortConfiguration;
 
@@ -53,6 +55,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetFieldWells()
         {
             return this._fieldWells != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,10 +36,10 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeTransitGatewayRouteTablesRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _transitGatewayRouteTableIds = new List<string>();
+        private List<string> _transitGatewayRouteTableIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -47,27 +48,26 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>default-association-route-table</code> - Indicates whether this is the default
-        /// association route table for the transit gateway (<code>true</code> | <code>false</code>).
+        ///  <c>default-association-route-table</c> - Indicates whether this is the default association
+        /// route table for the transit gateway (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>default-propagation-route-table</code> - Indicates whether this is the default
-        /// propagation route table for the transit gateway (<code>true</code> | <code>false</code>).
+        ///  <c>default-propagation-route-table</c> - Indicates whether this is the default propagation
+        /// route table for the transit gateway (<c>true</c> | <c>false</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>state</code> - The state of the route table (<code>available</code> | <code>deleting</code>
-        /// | <code>deleted</code> | <code>pending</code>).
+        ///  <c>state</c> - The state of the route table (<c>available</c> | <c>deleting</c> |
+        /// <c>deleted</c> | <c>pending</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-id</code> - The ID of the transit gateway.
+        ///  <c>transit-gateway-id</c> - The ID of the transit gateway.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-route-table-id</code> - The ID of the transit gateway route
-        /// table.
+        ///  <c>transit-gateway-route-table-id</c> - The ID of the transit gateway route table.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -80,14 +80,14 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1000)]
@@ -136,7 +136,7 @@ namespace Amazon.EC2.Model
         // Check to see if TransitGatewayRouteTableIds property is set
         internal bool IsSetTransitGatewayRouteTableIds()
         {
-            return this._transitGatewayRouteTableIds != null && this._transitGatewayRouteTableIds.Count > 0; 
+            return this._transitGatewayRouteTableIds != null && (this._transitGatewayRouteTableIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

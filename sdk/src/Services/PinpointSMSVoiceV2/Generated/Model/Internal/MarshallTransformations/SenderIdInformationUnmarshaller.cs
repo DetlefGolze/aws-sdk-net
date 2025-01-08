@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.PinpointSMSVoiceV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SenderIdInformation Unmarshall(JsonUnmarshallerContext context)
         {
+            SenderIdInformation unmarshalledObject = new SenderIdInformation();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SenderIdInformation unmarshalledObject = new SenderIdInformation();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("DeletionProtectionEnabled", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.DeletionProtectionEnabled = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("IsoCountryCode", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -82,6 +90,18 @@ namespace Amazon.PinpointSMSVoiceV2.Model.Internal.MarshallTransformations
                     unmarshalledObject.MonthlyLeasingPrice = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Registered", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.Registered = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("RegistrationId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RegistrationId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SenderId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -95,7 +115,6 @@ namespace Amazon.PinpointSMSVoiceV2.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

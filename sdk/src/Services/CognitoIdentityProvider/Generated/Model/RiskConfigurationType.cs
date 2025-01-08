@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// The risk configuration type.
+    /// The settings of risk configuration for threat protection with advanced security features
+    /// in a user pool.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeRiskConfiguration.html">DescribeRiskConfiguration</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetRiskConfiguration.html">SetRiskConfiguration</a>.
+    /// </para>
     /// </summary>
     public partial class RiskConfigurationType
     {
@@ -43,8 +51,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property AccountTakeoverRiskConfiguration. 
         /// <para>
-        /// The account takeover risk configuration object, including the <code>NotifyConfiguration</code>
-        /// object and <code>Actions</code> to take if there is an account takeover.
+        /// The settings for automated responses and notification templates for adaptive authentication
+        /// with advanced security features.
         /// </para>
         /// </summary>
         public AccountTakeoverRiskConfigurationType AccountTakeoverRiskConfiguration
@@ -62,7 +70,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property ClientId. 
         /// <para>
-        /// The app client ID.
+        /// The app client where this configuration is applied. When this parameter isn't present,
+        /// the risk configuration applies to all user pool app clients that don't have client-level
+        /// settings.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=128)]
@@ -81,8 +91,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CompromisedCredentialsRiskConfiguration. 
         /// <para>
-        /// The compromised credentials risk configuration object, including the <code>EventFilter</code>
-        /// and the <code>EventAction</code>.
+        /// Settings for compromised-credentials actions and authentication types with advanced
+        /// security features in full-function <c>ENFORCED</c> mode.
         /// </para>
         /// </summary>
         public CompromisedCredentialsRiskConfigurationType CompromisedCredentialsRiskConfiguration
@@ -100,8 +110,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LastModifiedDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was modified.
+        /// The date and time when the item was modified. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime LastModifiedDate
@@ -119,7 +130,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property RiskExceptionConfiguration. 
         /// <para>
-        /// The configuration to override the risk decision.
+        /// Exceptions to the risk evaluation configuration, including always-allow and always-block
+        /// IP address ranges. 
         /// </para>
         /// </summary>
         public RiskExceptionConfigurationType RiskExceptionConfiguration
@@ -137,7 +149,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID.
+        /// The ID of the user pool that has the risk configuration applied.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=55)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ConfigService.Model
     public partial class Scope
     {
         private string _complianceResourceId;
-        private List<string> _complianceResourceTypes = new List<string>();
+        private List<string> _complianceResourceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _tagKey;
         private string _tagValue;
 
@@ -47,7 +48,7 @@ namespace Amazon.ConfigService.Model
         /// <para>
         /// The ID of the only Amazon Web Services resource that you want to trigger an evaluation
         /// for the rule. If you specify a resource ID, you must specify one resource type for
-        /// <code>ComplianceResourceTypes</code>.
+        /// <c>ComplianceResourceTypes</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=768)]
@@ -68,7 +69,7 @@ namespace Amazon.ConfigService.Model
         /// <para>
         /// The resource types of only those Amazon Web Services resources that you want to trigger
         /// an evaluation for the rule. You can only specify one type if you also specify a resource
-        /// ID for <code>ComplianceResourceId</code>.
+        /// ID for <c>ComplianceResourceId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]
@@ -81,7 +82,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ComplianceResourceTypes property is set
         internal bool IsSetComplianceResourceTypes()
         {
-            return this._complianceResourceTypes != null && this._complianceResourceTypes.Count > 0; 
+            return this._complianceResourceTypes != null && (this._complianceResourceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -108,8 +109,8 @@ namespace Amazon.ConfigService.Model
         /// Gets and sets the property TagValue. 
         /// <para>
         /// The tag value applied to only those Amazon Web Services resources that you want to
-        /// trigger an evaluation for the rule. If you specify a value for <code>TagValue</code>,
-        /// you must also specify a value for <code>TagKey</code>.
+        /// trigger an evaluation for the rule. If you specify a value for <c>TagValue</c>, you
+        /// must also specify a value for <c>TagKey</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

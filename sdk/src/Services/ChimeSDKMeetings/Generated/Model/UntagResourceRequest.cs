@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.ChimeSDKMeetings.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// You can only tag resources that are located in the specified AWS Region for the calling
-    /// AWS account.
+    /// You can only tag resources that are located in the specified Amazon Web Services Region
+    /// for the calling Amazon Web Services account.
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -52,24 +53,24 @@ namespace Amazon.ChimeSDKMeetings.Model
     /// </para>
     ///  
     /// <para>
-    /// In addition to the <code>tag:UntagResources</code> permission required by this operation,
+    /// In addition to the <c>tag:UntagResources</c> permission required by this operation,
     /// you must also have the remove tags permission defined by the service that created
     /// the resource. For example, to remove the tags from an Amazon EC2 instance using the
-    /// <code>UntagResources</code> operation, you must have both of the following permissions:
+    /// <c>UntagResources</c> operation, you must have both of the following permissions:
     /// </para>
     ///  
     /// <para>
-    ///  <code>tag:UntagResource</code> 
+    ///  <c>tag:UntagResource</c> 
     /// </para>
     ///  
     /// <para>
-    ///  <code>ChimeSDKMeetings:DeleteTags</code> 
+    ///  <c>ChimeSDKMeetings:DeleteTags</c> 
     /// </para>
     /// </summary>
     public partial class UntagResourceRequest : AmazonChimeSDKMeetingsRequest
     {
         private string _resourceARN;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
@@ -106,7 +107,7 @@ namespace Amazon.ChimeSDKMeetings.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

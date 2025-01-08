@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
-    /// A filter collection that you can use to restrict the results from a <code>List</code>
-    /// operation to only those you want to include.
+    /// A filter collection that you can use to restrict the results from a <c>List</c> operation
+    /// to only those you want to include.
     /// </summary>
     public partial class GroupFilter
     {
         private GroupFilterName _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -73,7 +74,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

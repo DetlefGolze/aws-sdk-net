@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.ServiceCatalog.Model
     {
         private string _acceptLanguage;
         private string _id;
+        private string _idempotencyToken;
 
         /// <summary>
         /// Gets and sets the property AcceptLanguage. 
@@ -44,11 +46,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -68,7 +70,7 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.
+        /// The self-service action identifier. For example, <c>act-fs7abcd89wxyz</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -82,6 +84,27 @@ namespace Amazon.ServiceCatalog.Model
         internal bool IsSetId()
         {
             return this._id != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdempotencyToken. 
+        /// <para>
+        /// A unique identifier that you provide to ensure idempotency. If multiple requests from
+        /// the same Amazon Web Services account use the same idempotency token, the same response
+        /// is returned for each repeated request. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=128)]
+        public string IdempotencyToken
+        {
+            get { return this._idempotencyToken; }
+            set { this._idempotencyToken = value; }
+        }
+
+        // Check to see if IdempotencyToken property is set
+        internal bool IsSetIdempotencyToken()
+        {
+            return this._idempotencyToken != null;
         }
 
     }

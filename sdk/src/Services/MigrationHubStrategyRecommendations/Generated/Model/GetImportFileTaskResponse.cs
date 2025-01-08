@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubStrategyRecommendations.Model
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        ///  The import file task <code>id</code> returned in the response of <a>StartImportFileTask</a>.
+        ///  The import file task <c>id</c> returned in the response of <a>StartImportFileTask</a>.
         /// 
         /// </para>
         /// </summary>

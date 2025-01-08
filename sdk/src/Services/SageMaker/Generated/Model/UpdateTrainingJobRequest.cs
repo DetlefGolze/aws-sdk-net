@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,7 +37,8 @@ namespace Amazon.SageMaker.Model
     public partial class UpdateTrainingJobRequest : AmazonSageMakerRequest
     {
         private ProfilerConfigForUpdate _profilerConfig;
-        private List<ProfilerRuleConfiguration> _profilerRuleConfigurations = new List<ProfilerRuleConfiguration>();
+        private List<ProfilerRuleConfiguration> _profilerRuleConfigurations = AWSConfigs.InitializeCollections ? new List<ProfilerRuleConfiguration>() : null;
+        private RemoteDebugConfigForUpdate _remoteDebugConfig;
         private ResourceConfigForUpdate _resourceConfig;
         private string _trainingJobName;
 
@@ -76,13 +78,36 @@ namespace Amazon.SageMaker.Model
         // Check to see if ProfilerRuleConfigurations property is set
         internal bool IsSetProfilerRuleConfigurations()
         {
-            return this._profilerRuleConfigurations != null && this._profilerRuleConfigurations.Count > 0; 
+            return this._profilerRuleConfigurations != null && (this._profilerRuleConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RemoteDebugConfig. 
+        /// <para>
+        /// Configuration for remote debugging while the training job is running. You can update
+        /// the remote debugging configuration when the <c>SecondaryStatus</c> of the job is <c>Downloading</c>
+        /// or <c>Training</c>.To learn more about the remote debugging functionality of SageMaker,
+        /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-remote-debugging.html">Access
+        /// a training container through Amazon Web Services Systems Manager (SSM) for remote
+        /// debugging</a>.
+        /// </para>
+        /// </summary>
+        public RemoteDebugConfigForUpdate RemoteDebugConfig
+        {
+            get { return this._remoteDebugConfig; }
+            set { this._remoteDebugConfig = value; }
+        }
+
+        // Check to see if RemoteDebugConfig property is set
+        internal bool IsSetRemoteDebugConfig()
+        {
+            return this._remoteDebugConfig != null;
         }
 
         /// <summary>
         /// Gets and sets the property ResourceConfig. 
         /// <para>
-        /// The training job <code>ResourceConfig</code> to update warm pool retention length.
+        /// The training job <c>ResourceConfig</c> to update warm pool retention length.
         /// </para>
         /// </summary>
         public ResourceConfigForUpdate ResourceConfig

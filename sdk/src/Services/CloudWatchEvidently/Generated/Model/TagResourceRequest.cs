@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -46,11 +47,11 @@ namespace Amazon.CloudWatchEvidently.Model
     /// </para>
     ///  
     /// <para>
-    /// You can use the <code>TagResource</code> action with a resource that already has tags.
-    /// If you specify a new tag key for the resource, this tag is appended to the list of
-    /// tags associated with the alarm. If you specify a tag key that is already associated
-    /// with the resource, the new tag value that you specify replaces the previous value
-    /// for that tag.
+    /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+    /// you specify a new tag key for the resource, this tag is appended to the list of tags
+    /// associated with the alarm. If you specify a tag key that is already associated with
+    /// the resource, the new tag value that you specify replaces the previous value for that
+    /// tag.
     /// </para>
     ///  
     /// <para>
@@ -65,7 +66,7 @@ namespace Amazon.CloudWatchEvidently.Model
     public partial class TagResourceRequest : AmazonCloudWatchEvidentlyRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -102,7 +103,7 @@ namespace Amazon.CloudWatchEvidently.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

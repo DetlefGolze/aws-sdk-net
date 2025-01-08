@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The resource type. Note that the <code>tgw-peering</code> resource type has been deprecated.
+        /// The resource type. Note that the <c>tgw-peering</c> resource type has been deprecated.
         /// </para>
         /// </summary>
         public TransitGatewayAttachmentResourceType ResourceType

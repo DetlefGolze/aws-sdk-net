@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -99,8 +100,8 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property ChargeDetails. 
         /// <para>
-        ///  A <code>ListCustomLineItemChargeDetails</code> containing the charge details of the
-        /// successfully updated custom line item. 
+        ///  A <c>ListCustomLineItemChargeDetails</c> containing the charge details of the successfully
+        /// updated custom line item. 
         /// </para>
         /// </summary>
         public ListCustomLineItemChargeDetails ChargeDetails

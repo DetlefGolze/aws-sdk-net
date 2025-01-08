@@ -49,6 +49,7 @@ namespace NETCore.SetupTests
             Assert.Equal(RegionEndpoint.USWest2, options.Region);
             Assert.Equal("arn:aws:iam::123456789012:role/fake_role", options.SessionRoleArn);
             Assert.Equal("TestSessionName", options.SessionName);
+            Assert.Equal("TestExternalId", options.ExternalId);
 
             IAmazonS3 client = options.CreateServiceClient<IAmazonS3>();
             Assert.NotNull(client);
@@ -142,7 +143,7 @@ namespace NETCore.SetupTests
             Assert.Equal(TimeSpan.FromMilliseconds(1000), options.DefaultClientConfig.Timeout);
             Assert.Equal("us-east-1", options.DefaultClientConfig.AuthenticationRegion);
             Assert.Equal(DefaultConfigurationMode.Standard, options.DefaultConfigurationMode);
-            Assert.Equal("https://localhost:9021", options.DefaultClientConfig.ServiceURL);
+            Assert.Equal("https://localhost:9021/", options.DefaultClientConfig.ServiceURL);
 
             IAmazonS3 client = options.CreateServiceClient<IAmazonS3>();
             Assert.NotNull(client);
@@ -152,7 +153,7 @@ namespace NETCore.SetupTests
             Assert.Equal("us-east-1", client.Config.AuthenticationRegion);
             Assert.Equal(DefaultConfigurationMode.Standard, client.Config.DefaultConfigurationMode);
             Assert.Equal(RequestRetryMode.Standard, client.Config.RetryMode);
-            Assert.Equal("https://localhost:9021", client.Config.ServiceURL);
+            Assert.Equal("https://localhost:9021/", client.Config.ServiceURL);
 
             // Verify that setting the standard mode doesn't override explicit settings of retry mode to a non-legacy mode.
             options.DefaultClientConfig.RetryMode = RequestRetryMode.Adaptive;

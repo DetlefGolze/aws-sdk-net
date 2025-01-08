@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -83,13 +84,13 @@ namespace Amazon.QLDB.Model
         /// Gets and sets the property DeletionProtection. 
         /// <para>
         /// Specifies whether the ledger is protected from being deleted by any user. If not defined
-        /// during ledger creation, this feature is enabled (<code>true</code>) by default.
+        /// during ledger creation, this feature is enabled (<c>true</c>) by default.
         /// </para>
         ///  
         /// <para>
         /// If deletion protection is enabled, you must first disable it before you can delete
-        /// the ledger. You can disable it by calling the <code>UpdateLedger</code> operation
-        /// to set this parameter to <code>false</code>.
+        /// the ledger. You can disable it by calling the <c>UpdateLedger</c> operation to set
+        /// this parameter to <c>false</c>.
         /// </para>
         /// </summary>
         public bool DeletionProtection
@@ -109,7 +110,8 @@ namespace Amazon.QLDB.Model
         /// <para>
         /// Information about the encryption of data at rest in the ledger. This includes the
         /// current status, the KMS key, and when the key became inaccessible (in the case of
-        /// an error).
+        /// an error). If this parameter is undefined, the ledger uses an Amazon Web Services
+        /// owned KMS key for encryption.
         /// </para>
         /// </summary>
         public LedgerEncryptionDescription EncryptionDescription

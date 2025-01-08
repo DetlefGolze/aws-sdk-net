@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeDomainEndpointOptions</code> request. Contains the status
+    /// The result of a <c>DescribeDomainEndpointOptions</c> request. Contains the status
     /// and configuration of a search domain's endpoint options.
     /// </summary>
     public partial class DescribeDomainEndpointOptionsResponse : AmazonWebServiceResponse

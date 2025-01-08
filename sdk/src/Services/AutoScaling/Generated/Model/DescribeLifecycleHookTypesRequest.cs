@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -38,11 +39,11 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>autoscaling:EC2_INSTANCE_LAUNCHING</code> 
+    ///  <c>autoscaling:EC2_INSTANCE_LAUNCHING</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>autoscaling:EC2_INSTANCE_TERMINATING</code> 
+    ///  <c>autoscaling:EC2_INSTANCE_TERMINATING</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>

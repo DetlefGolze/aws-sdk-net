@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
     /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-    /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-    /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+    /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+    /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
     /// quotas</a> in the <i>WAF Developer Guide</i>.
     /// </summary>
     #if !NETSTANDARD
@@ -39,6 +40,7 @@ namespace Amazon.WAFV2.Model
     #endif
     public partial class WAFLimitsExceededException : AmazonWAFV2Exception
     {
+        private string _sourceType;
 
         /// <summary>
         /// Constructs a new WAFLimitsExceededException with the specified error
@@ -100,6 +102,7 @@ namespace Amazon.WAFV2.Model
         protected WAFLimitsExceededException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
+            this.SourceType = (string)info.GetValue("SourceType", typeof(string));
         }
 
         /// <summary>
@@ -120,8 +123,27 @@ namespace Amazon.WAFV2.Model
         public override void GetObjectData(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
         {
             base.GetObjectData(info, context);
+            info.AddValue("SourceType", this.SourceType);
         }
 #endif
+
+        /// <summary>
+        /// Gets and sets the property SourceType. 
+        /// <para>
+        /// Source type for the exception. 
+        /// </para>
+        /// </summary>
+        public string SourceType
+        {
+            get { return this._sourceType; }
+            set { this._sourceType = value; }
+        }
+
+        // Check to see if SourceType property is set
+        internal bool IsSetSourceType()
+        {
+            return this._sourceType != null;
+        }
 
     }
 }

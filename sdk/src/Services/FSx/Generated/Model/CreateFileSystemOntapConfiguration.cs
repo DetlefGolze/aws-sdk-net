@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -39,9 +40,11 @@ namespace Amazon.FSx.Model
         private DiskIopsConfiguration _diskIopsConfiguration;
         private string _endpointIpAddressRange;
         private string _fsxAdminPassword;
+        private int? _haPairs;
         private string _preferredSubnetId;
-        private List<string> _routeTableIds = new List<string>();
+        private List<string> _routeTableIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _throughputCapacity;
+        private int? _throughputCapacityPerHAPair;
         private string _weeklyMaintenanceStartTime;
 
         /// <summary>
@@ -84,12 +87,25 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>MULTI_AZ_1</code> - (Default) A high availability file system configured for
-        /// Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability. 
+        ///  <c>MULTI_AZ_1</c> - A high availability file system configured for Multi-AZ redundancy
+        /// to tolerate temporary Availability Zone (AZ) unavailability. This is a first-generation
+        /// FSx for ONTAP file system.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SINGLE_AZ_1</code> - A file system configured for Single-AZ redundancy.
+        ///  <c>MULTI_AZ_2</c> - A high availability file system configured for Multi-AZ redundancy
+        /// to tolerate temporary AZ unavailability. This is a second-generation FSx for ONTAP
+        /// file system.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SINGLE_AZ_1</c> - A file system configured for Single-AZ redundancy. This is a
+        /// first-generation FSx for ONTAP file system.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>SINGLE_AZ_2</c> - A file system configured with multiple high-availability (HA)
+        /// pairs for Single-AZ redundancy. This is a second-generation FSx for ONTAP file system.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -157,8 +173,8 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property FsxAdminPassword. 
         /// <para>
-        /// The ONTAP administrative password for the <code>fsxadmin</code> user with which you
-        /// administer your file system using the NetApp ONTAP CLI and REST API.
+        /// The ONTAP administrative password for the <c>fsxadmin</c> user with which you administer
+        /// your file system using the NetApp ONTAP CLI and REST API.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=8, Max=50)]
@@ -175,10 +191,52 @@ namespace Amazon.FSx.Model
         }
 
         /// <summary>
+        /// Gets and sets the property HAPairs. 
+        /// <para>
+        /// Specifies how many high-availability (HA) pairs of file servers will power your file
+        /// system. First-generation file systems are powered by 1 HA pair. Second-generation
+        /// multi-AZ file systems are powered by 1 HA pair. Second generation single-AZ file systems
+        /// are powered by up to 12 HA pairs. The default value is 1. The value of this property
+        /// affects the values of <c>StorageCapacity</c>, <c>Iops</c>, and <c>ThroughputCapacity</c>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/administering-file-systems.html#HA-pairs">High-availability
+        /// (HA) pairs</a> in the FSx for ONTAP user guide. Block storage protocol support (iSCSI
+        /// and NVMe over TCP) is disabled on file systems with more than 6 HA pairs. For more
+        /// information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/supported-fsx-clients.html#using-block-storage">Using
+        /// block storage protocols</a>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following conditions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The value of <c>HAPairs</c> is less than 1 or greater than 12.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The value of <c>HAPairs</c> is greater than 1 and the value of <c>DeploymentType</c>
+        /// is <c>SINGLE_AZ_1</c>, <c>MULTI_AZ_1</c>, or <c>MULTI_AZ_2</c>.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=1, Max=12)]
+        public int HAPairs
+        {
+            get { return this._haPairs.GetValueOrDefault(); }
+            set { this._haPairs = value; }
+        }
+
+        // Check to see if HAPairs property is set
+        internal bool IsSetHAPairs()
+        {
+            return this._haPairs.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property PreferredSubnetId. 
         /// <para>
-        /// Required when <code>DeploymentType</code> is set to <code>MULTI_AZ_1</code>. This
-        /// specifies the subnet in which you want the preferred file server to be located.
+        /// Required when <c>DeploymentType</c> is set to <c>MULTI_AZ_1</c> or <c>MULTI_AZ_2</c>.
+        /// This specifies the subnet in which you want the preferred file server to be located.
         /// </para>
         /// </summary>
         [AWSProperty(Min=15, Max=24)]
@@ -202,6 +260,14 @@ namespace Amazon.FSx.Model
         /// cloud (VPC) route tables associated with the subnets in which your clients are located.
         /// By default, Amazon FSx selects your VPC's default route table.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Amazon FSx manages these route tables for Multi-AZ file systems using tag-based authentication.
+        /// These route tables are tagged with <c>Key: AmazonFSx; Value: ManagedByAmazonFSx</c>.
+        /// When creating FSx for ONTAP Multi-AZ file systems using CloudFormation we recommend
+        /// that you add the <c>Key: AmazonFSx; Value: ManagedByAmazonFSx</c> tag manually.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Max=50)]
         public List<string> RouteTableIds
@@ -213,17 +279,33 @@ namespace Amazon.FSx.Model
         // Check to see if RouteTableIds property is set
         internal bool IsSetRouteTableIds()
         {
-            return this._routeTableIds != null && this._routeTableIds.Count > 0; 
+            return this._routeTableIds != null && (this._routeTableIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ThroughputCapacity. 
         /// <para>
-        /// Sets the throughput capacity for the file system that you're creating. Valid values
-        /// are 128, 256, 512, 1024, 2048, and 4096 MBps.
+        /// Sets the throughput capacity for the file system that you're creating in megabytes
+        /// per second (MBps). For more information, see <a href="https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-throughput-capacity.html">Managing
+        /// throughput capacity</a> in the FSx for ONTAP User Guide.
         /// </para>
+        ///  
+        /// <para>
+        /// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following conditions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacity</c> and <c>ThroughputCapacityPerHAPair</c> are
+        /// not the same value.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacity</c> when divided by the value of <c>HAPairs</c>
+        /// is outside of the valid range for <c>ThroughputCapacity</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Required=true, Min=8, Max=100000)]
+        [AWSProperty(Min=8, Max=100000)]
         public int ThroughputCapacity
         {
             get { return this._throughputCapacity.GetValueOrDefault(); }
@@ -234,6 +316,68 @@ namespace Amazon.FSx.Model
         internal bool IsSetThroughputCapacity()
         {
             return this._throughputCapacity.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ThroughputCapacityPerHAPair. 
+        /// <para>
+        /// Use to choose the throughput capacity per HA pair, rather than the total throughput
+        /// for the file system. 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can define either the <c>ThroughputCapacityPerHAPair</c> or the <c>ThroughputCapacity</c>
+        /// when creating a file system, but not both.
+        /// </para>
+        ///  
+        /// <para>
+        /// This field and <c>ThroughputCapacity</c> are the same for file systems powered by
+        /// one HA pair.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// For <c>SINGLE_AZ_1</c> and <c>MULTI_AZ_1</c> file systems, valid values are 128, 256,
+        /// 512, 1024, 2048, or 4096 MBps.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For <c>SINGLE_AZ_2</c>, valid values are 1536, 3072, or 6144 MBps.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// For <c>MULTI_AZ_2</c>, valid values are 384, 768, 1536, 3072, or 6144 MBps.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Amazon FSx responds with an HTTP status code 400 (Bad Request) for the following conditions:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacity</c> and <c>ThroughputCapacityPerHAPair</c> are
+        /// not the same value for file systems with one HA pair.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The value of deployment type is <c>SINGLE_AZ_2</c> and <c>ThroughputCapacity</c> /
+        /// <c>ThroughputCapacityPerHAPair</c> is not a valid HA pair (a value between 1 and 12).
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The value of <c>ThroughputCapacityPerHAPair</c> is not a valid value.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        [AWSProperty(Min=128, Max=6144)]
+        public int ThroughputCapacityPerHAPair
+        {
+            get { return this._throughputCapacityPerHAPair.GetValueOrDefault(); }
+            set { this._throughputCapacityPerHAPair = value; }
+        }
+
+        // Check to see if ThroughputCapacityPerHAPair property is set
+        internal bool IsSetThroughputCapacityPerHAPair()
+        {
+            return this._throughputCapacityPerHAPair.HasValue; 
         }
 
         /// <summary>

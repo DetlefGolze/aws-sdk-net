@@ -35,9 +35,9 @@ namespace Amazon.S3.Model
         private RequestCharged _requestCharged;
         private bool? isTruncated;
 
-        private List<MultipartUpload> multipartUploads;
+        private List<MultipartUpload> multipartUploads = AWSConfigs.InitializeCollections ? new List<MultipartUpload>() : null;
         private string delimiter;
-        private List<string> commonPrefixes;
+        private List<string> commonPrefixes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string prefix;
 
         /// <summary>
@@ -76,7 +76,19 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Upload ID after which listing began.
+        /// Gets and sets the property UploadIdMarker. 
+        /// <para>
+        /// Together with key-marker, specifies the multipart upload after which listing should
+        /// begin. If key-marker is not specified, the upload-id-marker parameter is ignored.
+        /// Otherwise, any multipart uploads for a key equal to the key-marker might be included
+        /// in the list only if they have an upload ID lexicographically greater than the specified
+        /// <c>upload-id-marker</c>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string UploadIdMarker
         {
@@ -107,9 +119,16 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// When a list is truncated, this element specifies the value that should be used for the upload-id-marker request parameter in a subsequent
-        /// request.
-        ///  
+        /// Gets and sets the property NextUploadIdMarker. 
+        /// <para>
+        /// When a list is truncated, this element specifies the value that should be used for
+        /// the <c>upload-id-marker</c> request parameter in a subsequent request.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported for directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string NextUploadIdMarker
         {
@@ -165,18 +184,22 @@ namespace Amazon.S3.Model
         /// </summary>
         public List<MultipartUpload> MultipartUploads
         {
-            get 
-            {
-                if (this.multipartUploads == null)
-                    this.multipartUploads = new List<MultipartUpload>();
-
-                return this.multipartUploads; 
-            }
+            get { return this.multipartUploads; }
             set { this.multipartUploads = value; }
         }
 
         /// <summary>
-        /// Gets and sets the Prefix property.
+        /// Gets and sets the property Prefix. 
+        /// <para>
+        /// When a prefix is provided in the request, this field contains the specified prefix.
+        /// The result contains only keys starting with the specified prefix.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter
+        /// (<c>/</c>) are supported.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string Prefix
         {
@@ -200,7 +223,17 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Gets and sets the Delimiter property.
+        /// Gets and sets the property Delimiter. 
+        /// <para>
+        /// Contains the delimiter you specified in the request. If you don't specify a delimiter
+        /// in your request, this element is absent from the response.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - For directory buckets, <c>/</c> is the only supported
+        /// delimiter.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string Delimiter
         {
@@ -209,24 +242,23 @@ namespace Amazon.S3.Model
         }
 
         /// <summary>
-        /// Gets the CommonPrefixes property. 
-        /// A response can contain CommonPrefixes only if you specify a delimiter. 
-        /// When you do, CommonPrefixes contains all (if there are any) keys between 
-        /// Prefix and the next occurrence of the string specified by delimiter. In effect, 
-        /// CommonPrefixes lists keys that act like subdirectories in the directory specified 
-        /// by Prefix. For example, if prefix is notes/ and delimiter is a slash (/), in 
-        /// notes/summer/july, the common prefix is notes/summer/.
+        /// Gets and sets the property CommonPrefixes. 
+        /// <para>
+        /// If you specify a delimiter in the request, then the result returns each distinct key
+        /// prefix containing the delimiter in a <c>CommonPrefixes</c> element. The distinct
+        /// key prefixes are returned in the <c>Prefix</c> child element.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - For directory buckets, only prefixes that end in a delimiter
+        /// (<c>/</c>) are supported.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<string> CommonPrefixes
         {
-            get
-            {
-                if (this.commonPrefixes == null)
-                {
-                    this.commonPrefixes = new List<string>();
-                }
-                return this.commonPrefixes;
-            }
+            get { return this.commonPrefixes; }
+            set { this.commonPrefixes = value; }
         }
     }
 }

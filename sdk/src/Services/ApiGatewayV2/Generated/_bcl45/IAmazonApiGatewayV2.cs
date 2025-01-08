@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ApiGatewayV2.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ApiGatewayV2
 {
     /// <summary>
-    /// Interface for accessing ApiGatewayV2
+    /// <para>Interface for accessing ApiGatewayV2</para>
     ///
     /// Amazon API Gateway V2
     /// </summary>

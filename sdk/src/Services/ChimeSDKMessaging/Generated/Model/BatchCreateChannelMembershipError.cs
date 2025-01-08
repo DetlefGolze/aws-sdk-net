@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMessaging.Model
 {
     /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.ChimeSDKMessaging.Model
         /// <summary>
         /// Gets and sets the property MemberArn. 
         /// <para>
-        /// The <code>AppInstanceUserArn</code> of the member that the service couldn't add.
+        /// The <c>AppInstanceUserArn</c> of the member that the service couldn't add.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]

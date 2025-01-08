@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.ConfigService.Model
     /// 
     ///  
     /// <para>
-    /// Config sets the conformance pack to <code>DELETE_IN_PROGRESS</code> until the deletion
-    /// is complete. You cannot update a conformance pack while it is in this state.
+    /// Config sets the conformance pack to <c>DELETE_IN_PROGRESS</c> until the deletion is
+    /// complete. You cannot update a conformance pack while it is in this state.
     /// </para>
     /// </summary>
     public partial class DeleteConformancePackRequest : AmazonConfigServiceRequest

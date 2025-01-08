@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.VPCLattice.Model
     /// </summary>
     public partial class ForwardAction
     {
-        private List<WeightedTargetGroup> _targetGroups = new List<WeightedTargetGroup>();
+        private List<WeightedTargetGroup> _targetGroups = AWSConfigs.InitializeCollections ? new List<WeightedTargetGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property TargetGroups. 
@@ -48,10 +49,10 @@ namespace Amazon.VPCLattice.Model
         ///  
         /// <para>
         /// The default value is 1. This means that if only one target group is provided, there
-        /// is no need to set the weight; 100% of traffic will go to that target group.
+        /// is no need to set the weight; 100% of the traffic goes to that target group.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=2)]
+        [AWSProperty(Required=true, Min=1, Max=10)]
         public List<WeightedTargetGroup> TargetGroups
         {
             get { return this._targetGroups; }
@@ -61,7 +62,7 @@ namespace Amazon.VPCLattice.Model
         // Check to see if TargetGroups property is set
         internal bool IsSetTargetGroups()
         {
-            return this._targetGroups != null && this._targetGroups.Count > 0; 
+            return this._targetGroups != null && (this._targetGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

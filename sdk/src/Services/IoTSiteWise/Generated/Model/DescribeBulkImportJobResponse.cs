@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -33,8 +34,10 @@ namespace Amazon.IoTSiteWise.Model
     /// </summary>
     public partial class DescribeBulkImportJobResponse : AmazonWebServiceResponse
     {
+        private bool? _adaptiveIngestion;
+        private bool? _deleteFilesAfterImport;
         private ErrorReportLocation _errorReportLocation;
-        private List<File> _files = new List<File>();
+        private List<File> _files = AWSConfigs.InitializeCollections ? new List<File>() : null;
         private JobConfiguration _jobConfiguration;
         private DateTime? _jobCreationDate;
         private string _jobId;
@@ -42,6 +45,45 @@ namespace Amazon.IoTSiteWise.Model
         private string _jobName;
         private string _jobRoleArn;
         private JobStatus _jobStatus;
+
+        /// <summary>
+        /// Gets and sets the property AdaptiveIngestion. 
+        /// <para>
+        /// If set to true, ingest new data into IoT SiteWise storage. Measurements with notifications,
+        /// metrics and transforms are computed. If set to false, historical data is ingested
+        /// into IoT SiteWise as is.
+        /// </para>
+        /// </summary>
+        public bool AdaptiveIngestion
+        {
+            get { return this._adaptiveIngestion.GetValueOrDefault(); }
+            set { this._adaptiveIngestion = value; }
+        }
+
+        // Check to see if AdaptiveIngestion property is set
+        internal bool IsSetAdaptiveIngestion()
+        {
+            return this._adaptiveIngestion.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DeleteFilesAfterImport. 
+        /// <para>
+        /// If set to true, your data files is deleted from S3, after ingestion into IoT SiteWise
+        /// storage.
+        /// </para>
+        /// </summary>
+        public bool DeleteFilesAfterImport
+        {
+            get { return this._deleteFilesAfterImport.GetValueOrDefault(); }
+            set { this._deleteFilesAfterImport = value; }
+        }
+
+        // Check to see if DeleteFilesAfterImport property is set
+        internal bool IsSetDeleteFilesAfterImport()
+        {
+            return this._deleteFilesAfterImport.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property ErrorReportLocation. 
@@ -79,7 +121,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Files property is set
         internal bool IsSetFiles()
         {
-            return this._files != null && this._files.Count > 0; 
+            return this._files != null && (this._files.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -201,38 +243,37 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property JobStatus. 
         /// <para>
-        /// The status of the bulk import job can be one of following values.
+        /// The status of the bulk import job can be one of following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> – IoT SiteWise is waiting for the current bulk import job to
-        /// finish.
+        ///  <c>PENDING</c> – IoT SiteWise is waiting for the current bulk import job to finish.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CANCELLED</code> – The bulk import job has been canceled.
+        ///  <c>CANCELLED</c> – The bulk import job has been canceled.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RUNNING</code> – IoT SiteWise is processing your request to import your data
+        ///  <c>RUNNING</c> – IoT SiteWise is processing your request to import your data from
+        /// Amazon S3.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>COMPLETED</c> – IoT SiteWise successfully completed your request to import data
         /// from Amazon S3.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>COMPLETED</code> – IoT SiteWise successfully completed your request to import
-        /// data from Amazon S3.
+        ///  <c>FAILED</c> – IoT SiteWise couldn't process your request to import data from Amazon
+        /// S3. You can use logs saved in the specified error report location in Amazon S3 to
+        /// troubleshoot issues.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> – IoT SiteWise couldn't process your request to import data from
-        /// Amazon S3. You can use logs saved in the specified error report location in Amazon
-        /// S3 to troubleshoot issues.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>COMPLETED_WITH_FAILURES</code> – IoT SiteWise completed your request to import
-        /// data from Amazon S3 with errors. You can use logs saved in the specified error report
-        /// location in Amazon S3 to troubleshoot issues.
+        ///  <c>COMPLETED_WITH_FAILURES</c> – IoT SiteWise completed your request to import data
+        /// from Amazon S3 with errors. You can use logs saved in the specified error report location
+        /// in Amazon S3 to troubleshoot issues.
         /// </para>
         ///  </li> </ul>
         /// </summary>

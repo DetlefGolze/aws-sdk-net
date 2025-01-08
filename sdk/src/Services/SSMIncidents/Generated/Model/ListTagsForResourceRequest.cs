@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTagsForResource operation.
-    /// Lists the tags that are attached to the specified response plan.
+    /// Lists the tags that are attached to the specified response plan or incident.
     /// </summary>
     public partial class ListTagsForResourceRequest : AmazonSSMIncidentsRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.SSMIncidents.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the response plan.
+        /// The Amazon Resource Name (ARN) of the response plan or incident.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

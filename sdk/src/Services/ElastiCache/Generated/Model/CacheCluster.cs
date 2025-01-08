@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
@@ -41,17 +42,17 @@ namespace Amazon.ElastiCache.Model
         private DateTime? _cacheClusterCreateTime;
         private string _cacheClusterId;
         private string _cacheClusterStatus;
-        private List<CacheNode> _cacheNodes = new List<CacheNode>();
+        private List<CacheNode> _cacheNodes = AWSConfigs.InitializeCollections ? new List<CacheNode>() : null;
         private string _cacheNodeType;
         private CacheParameterGroupStatus _cacheParameterGroup;
-        private List<CacheSecurityGroupMembership> _cacheSecurityGroups = new List<CacheSecurityGroupMembership>();
+        private List<CacheSecurityGroupMembership> _cacheSecurityGroups = AWSConfigs.InitializeCollections ? new List<CacheSecurityGroupMembership>() : null;
         private string _cacheSubnetGroupName;
         private string _clientDownloadLandingPage;
         private Endpoint _configurationEndpoint;
         private string _engine;
         private string _engineVersion;
         private IpDiscovery _ipDiscovery;
-        private List<LogDeliveryConfiguration> _logDeliveryConfigurations = new List<LogDeliveryConfiguration>();
+        private List<LogDeliveryConfiguration> _logDeliveryConfigurations = AWSConfigs.InitializeCollections ? new List<LogDeliveryConfiguration>() : null;
         private NetworkType _networkType;
         private NotificationConfiguration _notificationConfiguration;
         private int? _numCacheNodes;
@@ -61,7 +62,7 @@ namespace Amazon.ElastiCache.Model
         private string _preferredOutpostArn;
         private string _replicationGroupId;
         private bool? _replicationGroupLogDeliveryEnabled;
-        private List<SecurityGroupMembership> _securityGroups = new List<SecurityGroupMembership>();
+        private List<SecurityGroupMembership> _securityGroups = AWSConfigs.InitializeCollections ? new List<SecurityGroupMembership>() : null;
         private int? _snapshotRetentionLimit;
         private string _snapshotWindow;
         private bool? _transitEncryptionEnabled;
@@ -88,22 +89,22 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AtRestEncryptionEnabled. 
         /// <para>
-        /// A flag that enables encryption at-rest when set to <code>true</code>.
+        /// A flag that enables encryption at-rest when set to <c>true</c>.
         /// </para>
         ///  
         /// <para>
-        /// You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the cluster
-        /// is created. To enable at-rest encryption on a cluster you must set <code>AtRestEncryptionEnabled</code>
-        /// to <code>true</code> when you create a cluster.
+        /// You cannot modify the value of <c>AtRestEncryptionEnabled</c> after the cluster is
+        /// created. To enable at-rest encryption on a cluster you must set <c>AtRestEncryptionEnabled</c>
+        /// to <c>true</c> when you create a cluster.
         /// </para>
         ///  
         /// <para>
         ///  <b>Required:</b> Only available when creating a replication group in an Amazon VPC
-        /// using redis version <code>3.2.6</code>, <code>4.x</code> or later.
+        /// using Redis OSS version <c>3.2.6</c>, <c>4.x</c> or later.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool AtRestEncryptionEnabled
@@ -121,12 +122,12 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AuthTokenEnabled. 
         /// <para>
-        /// A flag that enables using an <code>AuthToken</code> (password) when issuing Redis
-        /// commands.
+        /// A flag that enables using an <c>AuthToken</c> (password) when issuing Valkey or Redis
+        /// OSS commands.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool AuthTokenEnabled
@@ -162,9 +163,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property AutoMinorVersionUpgrade. 
         /// <para>
-        ///  If you are running Redis engine version 6.0 or later, set this parameter to yes if
-        /// you want to opt-in to the next auto minor version upgrade campaign. This parameter
-        /// is disabled for previous versions.  
+        ///  If you are running Valkey or Redis OSS engine version 6.0 or later, set this parameter
+        /// to yes if you want to opt-in to the next auto minor version upgrade campaign. This
+        /// parameter is disabled for previous versions.  
         /// </para>
         /// </summary>
         public bool AutoMinorVersionUpgrade
@@ -219,10 +220,9 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property CacheClusterStatus. 
         /// <para>
-        /// The current state of this cluster, one of the following values: <code>available</code>,
-        /// <code>creating</code>, <code>deleted</code>, <code>deleting</code>, <code>incompatible-network</code>,
-        /// <code>modifying</code>, <code>rebooting cluster nodes</code>, <code>restore-failed</code>,
-        /// or <code>snapshotting</code>.
+        /// The current state of this cluster, one of the following values: <c>available</c>,
+        /// <c>creating</c>, <c>deleted</c>, <c>deleting</c>, <c>incompatible-network</c>, <c>modifying</c>,
+        /// <c>rebooting cluster nodes</c>, <c>restore-failed</c>, or <c>snapshotting</c>.
         /// </para>
         /// </summary>
         public string CacheClusterStatus
@@ -252,7 +252,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheNodes property is set
         internal bool IsSetCacheNodes()
         {
-            return this._cacheNodes != null && this._cacheNodes.Count > 0; 
+            return this._cacheNodes != null && (this._cacheNodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -276,42 +276,46 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>M6g node types</b> (available only for Redis engine version 5.0.6 onward and for
-        /// Memcached engine version 1.5.16 onward): <code>cache.m6g.large</code>, <code>cache.m6g.xlarge</code>,
-        /// <code>cache.m6g.2xlarge</code>, <code>cache.m6g.4xlarge</code>, <code>cache.m6g.8xlarge</code>,
-        /// <code>cache.m6g.12xlarge</code>, <code>cache.m6g.16xlarge</code> 
+        ///  <b>M7g node types</b>: <c>cache.m7g.large</c>, <c>cache.m7g.xlarge</c>, <c>cache.m7g.2xlarge</c>,
+        /// <c>cache.m7g.4xlarge</c>, <c>cache.m7g.8xlarge</c>, <c>cache.m7g.12xlarge</c>, <c>cache.m7g.16xlarge</c>
+        /// 
         /// </para>
         ///  <note> 
         /// <para>
-        /// For region availability, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion">Supported
+        /// For region availability, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion">Supported
         /// Node Types</a> 
         /// </para>
         ///  </note> 
         /// <para>
-        ///  <b>M5 node types:</b> <code>cache.m5.large</code>, <code>cache.m5.xlarge</code>,
-        /// <code>cache.m5.2xlarge</code>, <code>cache.m5.4xlarge</code>, <code>cache.m5.12xlarge</code>,
-        /// <code>cache.m5.24xlarge</code> 
+        ///  <b>M6g node types</b> (available only for Redis OSS engine version 5.0.6 onward and
+        /// for Memcached engine version 1.5.16 onward): <c>cache.m6g.large</c>, <c>cache.m6g.xlarge</c>,
+        /// <c>cache.m6g.2xlarge</c>, <c>cache.m6g.4xlarge</c>, <c>cache.m6g.8xlarge</c>, <c>cache.m6g.12xlarge</c>,
+        /// <c>cache.m6g.16xlarge</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <b>M4 node types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>,
-        /// <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>, <code>cache.m4.10xlarge</code>
+        ///  <b>M5 node types:</b> <c>cache.m5.large</c>, <c>cache.m5.xlarge</c>, <c>cache.m5.2xlarge</c>,
+        /// <c>cache.m5.4xlarge</c>, <c>cache.m5.12xlarge</c>, <c>cache.m5.24xlarge</c> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>M4 node types:</b> <c>cache.m4.large</c>, <c>cache.m4.xlarge</c>, <c>cache.m4.2xlarge</c>,
+        /// <c>cache.m4.4xlarge</c>, <c>cache.m4.10xlarge</c> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>T4g node types</b> (available only for Redis OSS engine version 5.0.6 onward and
+        /// Memcached engine version 1.5.16 onward): <c>cache.t4g.micro</c>, <c>cache.t4g.small</c>,
+        /// <c>cache.t4g.medium</c> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>T3 node types:</b> <c>cache.t3.micro</c>, <c>cache.t3.small</c>, <c>cache.t3.medium</c>
         /// 
         /// </para>
         ///  
         /// <para>
-        ///  <b>T4g node types</b> (available only for Redis engine version 5.0.6 onward and Memcached
-        /// engine version 1.5.16 onward): <code>cache.t4g.micro</code>, <code>cache.t4g.small</code>,
-        /// <code>cache.t4g.medium</code> 
-        /// </para>
-        ///  
-        /// <para>
-        ///  <b>T3 node types:</b> <code>cache.t3.micro</code>, <code>cache.t3.small</code>, <code>cache.t3.medium</code>
-        /// 
-        /// </para>
-        ///  
-        /// <para>
-        ///  <b>T2 node types:</b> <code>cache.t2.micro</code>, <code>cache.t2.small</code>, <code>cache.t2.medium</code>
+        ///  <b>T2 node types:</b> <c>cache.t2.micro</c>, <c>cache.t2.small</c>, <c>cache.t2.medium</c>
         /// 
         /// </para>
         ///  </li> <li> 
@@ -321,17 +325,17 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>T1 node types:</b> <code>cache.t1.micro</code> 
+        ///  <b>T1 node types:</b> <c>cache.t1.micro</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>,
-        /// <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> 
+        ///  <b>M1 node types:</b> <c>cache.m1.small</c>, <c>cache.m1.medium</c>, <c>cache.m1.large</c>,
+        /// <c>cache.m1.xlarge</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <b>M3 node types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>,
-        /// <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> 
+        ///  <b>M3 node types:</b> <c>cache.m3.medium</c>, <c>cache.m3.large</c>, <c>cache.m3.xlarge</c>,
+        /// <c>cache.m3.2xlarge</c> 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -344,7 +348,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>C1 node types:</b> <code>cache.c1.xlarge</code> 
+        ///  <b>C1 node types:</b> <c>cache.c1.xlarge</c> 
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
@@ -356,31 +360,31 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>R6g node types</b> (available only for Redis engine version 5.0.6 onward and for
-        /// Memcached engine version 1.5.16 onward).
-        /// </para>
-        ///  
-        /// <para>
-        ///  <code>cache.r6g.large</code>, <code>cache.r6g.xlarge</code>, <code>cache.r6g.2xlarge</code>,
-        /// <code>cache.r6g.4xlarge</code>, <code>cache.r6g.8xlarge</code>, <code>cache.r6g.12xlarge</code>,
-        /// <code>cache.r6g.16xlarge</code> 
+        ///  <b>R7g node types</b>: <c>cache.r7g.large</c>, <c>cache.r7g.xlarge</c>, <c>cache.r7g.2xlarge</c>,
+        /// <c>cache.r7g.4xlarge</c>, <c>cache.r7g.8xlarge</c>, <c>cache.r7g.12xlarge</c>, <c>cache.r7g.16xlarge</c>
+        /// 
         /// </para>
         ///  <note> 
         /// <para>
-        /// For region availability, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion">Supported
+        /// For region availability, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion">Supported
         /// Node Types</a> 
         /// </para>
         ///  </note> 
         /// <para>
-        ///  <b>R5 node types:</b> <code>cache.r5.large</code>, <code>cache.r5.xlarge</code>,
-        /// <code>cache.r5.2xlarge</code>, <code>cache.r5.4xlarge</code>, <code>cache.r5.12xlarge</code>,
-        /// <code>cache.r5.24xlarge</code> 
+        ///  <b>R6g node types</b> (available only for Redis OSS engine version 5.0.6 onward and
+        /// for Memcached engine version 1.5.16 onward): <c>cache.r6g.large</c>, <c>cache.r6g.xlarge</c>,
+        /// <c>cache.r6g.2xlarge</c>, <c>cache.r6g.4xlarge</c>, <c>cache.r6g.8xlarge</c>, <c>cache.r6g.12xlarge</c>,
+        /// <c>cache.r6g.16xlarge</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <b>R4 node types:</b> <code>cache.r4.large</code>, <code>cache.r4.xlarge</code>,
-        /// <code>cache.r4.2xlarge</code>, <code>cache.r4.4xlarge</code>, <code>cache.r4.8xlarge</code>,
-        /// <code>cache.r4.16xlarge</code> 
+        ///  <b>R5 node types:</b> <c>cache.r5.large</c>, <c>cache.r5.xlarge</c>, <c>cache.r5.2xlarge</c>,
+        /// <c>cache.r5.4xlarge</c>, <c>cache.r5.12xlarge</c>, <c>cache.r5.24xlarge</c> 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>R4 node types:</b> <c>cache.r4.large</c>, <c>cache.r4.xlarge</c>, <c>cache.r4.2xlarge</c>,
+        /// <c>cache.r4.4xlarge</c>, <c>cache.r4.8xlarge</c>, <c>cache.r4.16xlarge</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -389,14 +393,13 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>M2 node types:</b> <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>,
-        /// <code>cache.m2.4xlarge</code> 
+        ///  <b>M2 node types:</b> <c>cache.m2.xlarge</c>, <c>cache.m2.2xlarge</c>, <c>cache.m2.4xlarge</c>
+        /// 
         /// </para>
         ///  
         /// <para>
-        ///  <b>R3 node types:</b> <code>cache.r3.large</code>, <code>cache.r3.xlarge</code>,
-        /// <code>cache.r3.2xlarge</code>, <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code>
-        /// 
+        ///  <b>R3 node types:</b> <c>cache.r3.large</c>, <c>cache.r3.xlarge</c>, <c>cache.r3.2xlarge</c>,
+        /// <c>cache.r3.4xlarge</c>, <c>cache.r3.8xlarge</c> 
         /// </para>
         ///  </li> </ul> </li> </ul> 
         /// <para>
@@ -408,16 +411,16 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Redis append-only files (AOF) are not supported for T1 or T2 instances.
+        /// Valkey or Redis OSS append-only files (AOF) are not supported for T1 or T2 instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Redis Multi-AZ with automatic failover is not supported on T1 instances.
+        /// Valkey or Redis OSS Multi-AZ with automatic failover is not supported on T1 instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Redis configuration variables <code>appendonly</code> and <code>appendfsync</code>
-        /// are not supported on Redis version 2.8.22 and later.
+        /// The configuration variables <c>appendonly</c> and <c>appendfsync</c> are not supported
+        /// on Valkey, or on Redis OSS version 2.8.22 and later.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -466,7 +469,7 @@ namespace Amazon.ElastiCache.Model
         // Check to see if CacheSecurityGroups property is set
         internal bool IsSetCacheSecurityGroups()
         {
-            return this._cacheSecurityGroups != null && this._cacheSecurityGroups.Count > 0; 
+            return this._cacheSecurityGroups != null && (this._cacheSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -509,12 +512,12 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ConfigurationEndpoint. 
         /// <para>
         /// Represents a Memcached cluster endpoint which can be used by an application to connect
-        /// to any node in the cluster. The configuration endpoint will always have <code>.cfg</code>
+        /// to any node in the cluster. The configuration endpoint will always have <c>.cfg</c>
         /// in it.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mem-3.9dvc4r<u>.cfg</u>.usw2.cache.amazonaws.com:11211</code> 
+        /// Example: <c>mem-3.9dvc4r<u>.cfg</u>.usw2.cache.amazonaws.com:11211</c> 
         /// </para>
         /// </summary>
         public Endpoint ConfigurationEndpoint
@@ -532,8 +535,8 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The name of the cache engine (<code>memcached</code> or <code>redis</code>) to be
-        /// used for this cluster.
+        /// The name of the cache engine (<c>memcached</c> or <c>redis</c>) to be used for this
+        /// cluster.
         /// </para>
         /// </summary>
         public string Engine
@@ -569,10 +572,10 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property IpDiscovery. 
         /// <para>
-        /// The network type associated with the cluster, either <code>ipv4</code> | <code>ipv6</code>.
-        /// IPv6 is supported for workloads using Redis engine version 6.2 onward or Memcached
-        /// engine version 1.6.6 on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
-        /// system</a>.
+        /// The network type associated with the cluster, either <c>ipv4</c> | <c>ipv6</c>. IPv6
+        /// is supported for workloads using Valkey 7.2 and above, Redis OSS engine version 6.2
+        /// and above or Memcached engine version 1.6.6 and above on all instances built on the
+        /// <a href="http://aws.amazon.com/ec2/nitro/">Nitro system</a>.
         /// </para>
         /// </summary>
         public IpDiscovery IpDiscovery
@@ -602,15 +605,15 @@ namespace Amazon.ElastiCache.Model
         // Check to see if LogDeliveryConfigurations property is set
         internal bool IsSetLogDeliveryConfigurations()
         {
-            return this._logDeliveryConfigurations != null && this._logDeliveryConfigurations.Count > 0; 
+            return this._logDeliveryConfigurations != null && (this._logDeliveryConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NetworkType. 
         /// <para>
-        /// Must be either <code>ipv4</code> | <code>ipv6</code> | <code>dual_stack</code>. IPv6
-        /// is supported for workloads using Redis engine version 6.2 onward or Memcached engine
-        /// version 1.6.6 on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
+        /// Must be either <c>ipv4</c> | <c>ipv6</c> | <c>dual_stack</c>. IPv6 is supported for
+        /// workloads using Valkey 7.2 and above, Redis OSS engine version 6.2 and above or Memcached
+        /// engine version 1.6.6 and above on all instances built on the <a href="http://aws.amazon.com/ec2/nitro/">Nitro
         /// system</a>.
         /// </para>
         /// </summary>
@@ -653,8 +656,8 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// For clusters running Redis, this value must be 1. For clusters running Memcached,
-        /// this value must be between 1 and 40.
+        /// For clusters running Valkey or Redis OSS, this value must be 1. For clusters running
+        /// Memcached, this value must be between 1 and 40.
         /// </para>
         /// </summary>
         public int NumCacheNodes
@@ -712,39 +715,39 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values for <code>ddd</code> are:
+        /// Valid values for <c>ddd</c> are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>sun</code> 
+        ///  <c>sun</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>mon</code> 
+        ///  <c>mon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tue</code> 
+        ///  <c>tue</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>wed</code> 
+        ///  <c>wed</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>thu</code> 
+        ///  <c>thu</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>fri</code> 
+        ///  <c>fri</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sat</code> 
+        ///  <c>sat</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>sun:23:00-mon:01:30</code> 
+        /// Example: <c>sun:23:00-mon:01:30</c> 
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow
@@ -829,15 +832,15 @@ namespace Amazon.ElastiCache.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SnapshotRetentionLimit. 
         /// <para>
         /// The number of days for which ElastiCache retains automatic cluster snapshots before
-        /// deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a
-        /// snapshot that was taken today is retained for 5 days before being deleted.
+        /// deleting them. For example, if you set <c>SnapshotRetentionLimit</c> to 5, a snapshot
+        /// that was taken today is retained for 5 days before being deleted.
         /// </para>
         ///  <important> 
         /// <para>
@@ -865,7 +868,7 @@ namespace Amazon.ElastiCache.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>05:00-09:00</code> 
+        /// Example: <c>05:00-09:00</c> 
         /// </para>
         /// </summary>
         public string SnapshotWindow
@@ -883,16 +886,16 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property TransitEncryptionEnabled. 
         /// <para>
-        /// A flag that enables in-transit encryption when set to <code>true</code>.
+        /// A flag that enables in-transit encryption when set to <c>true</c>.
         /// </para>
         ///  
         /// <para>
         ///  <b>Required:</b> Only available when creating a replication group in an Amazon VPC
-        /// using redis version <code>3.2.6</code>, <code>4.x</code> or later.
+        /// using Redis OSS version <c>3.2.6</c>, <c>4.x</c> or later.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool TransitEncryptionEnabled

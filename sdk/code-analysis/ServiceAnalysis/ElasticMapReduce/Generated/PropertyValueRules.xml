@@ -66,9 +66,19 @@
     <max>256</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.CreateStudioRequest.EncryptionKeyArn</property>
+    <min>0</min>
+    <max>10280</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.CreateStudioRequest.EngineSecurityGroupId</property>
     <min>0</min>
     <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.CreateStudioRequest.IdcInstanceArn</property>
+    <min>20</min>
+    <max>2048</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.CreateStudioRequest.IdpAuthUrl</property>
@@ -356,6 +366,11 @@
     <max>256</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.UpdateStudioRequest.EncryptionKeyArn</property>
+    <min>0</min>
+    <max>10280</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.UpdateStudioRequest.Name</property>
     <min>0</min>
     <max>256</max>
@@ -466,6 +481,11 @@
     <max>256</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.InstanceFleet.Context</property>
+    <min>0</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.InstanceFleet.Name</property>
     <min>0</min>
     <max>256</max>
@@ -487,6 +507,11 @@
     <min>0</min>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.InstanceFleetConfig.Context</property>
+    <min>0</min>
+    <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.InstanceFleetConfig.Name</property>
     <min>0</min>
     <max>256</max>
@@ -498,6 +523,11 @@
   <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.InstanceFleetConfig.TargetSpotCapacity</property>
     <min>0</min>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.InstanceFleetModifyConfig.Context</property>
+    <min>0</min>
+    <max>256</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.InstanceFleetModifyConfig.TargetOnDemandCapacity</property>
@@ -592,6 +622,10 @@
     <max>256</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.InstanceTypeConfig.Priority</property>
+    <min>0</min>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.InstanceTypeConfig.WeightedCapacity</property>
     <min>0</min>
   </property-value-rule>
@@ -613,6 +647,10 @@
     <property>Amazon.ElasticMapReduce.Model.InstanceTypeSpecification.InstanceType</property>
     <min>1</min>
     <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.InstanceTypeSpecification.Priority</property>
+    <min>0</min>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.InstanceTypeSpecification.WeightedCapacity</property>
@@ -777,6 +815,11 @@
     <property>Amazon.ElasticMapReduce.Model.KeyValue.Value</property>
     <min>0</min>
     <max>10280</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.ManagedScalingPolicy.UtilizationPerformanceIndex</property>
+    <min>1</min>
+    <max>100</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.NotebookExecution.Arn</property>
@@ -994,9 +1037,19 @@
     <max>256</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.Studio.EncryptionKeyArn</property>
+    <min>0</min>
+    <max>10280</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.Studio.EngineSecurityGroupId</property>
     <min>0</min>
     <max>256</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.ElasticMapReduce.Model.Studio.IdcInstanceArn</property>
+    <min>20</min>
+    <max>2048</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.ElasticMapReduce.Model.Studio.IdpAuthUrl</property>

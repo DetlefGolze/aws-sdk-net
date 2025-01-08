@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// A list of IP address ranges (<a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html">CIDRs</a>).
     /// Used to create an allow list of IP addresses for a private workforce. Workers will
-    /// only be able to login to their worker portal from an IP address within this range.
+    /// only be able to log in to their worker portal from an IP address within this range.
     /// By default, a workforce isn't restricted to specific IP addresses.
     /// </summary>
     public partial class SourceIpConfig
     {
-        private List<string> _cidrs = new List<string>();
+        private List<string> _cidrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Cidrs. 
@@ -65,7 +66,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Cidrs property is set
         internal bool IsSetCidrs()
         {
-            return this._cidrs != null && this._cidrs.Count > 0; 
+            return this._cidrs != null && (this._cidrs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

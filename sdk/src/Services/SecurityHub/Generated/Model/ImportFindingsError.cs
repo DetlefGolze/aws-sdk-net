@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ErrorCode. 
         /// <para>
-        /// The code of the error returned by the <code>BatchImportFindings</code> operation.
+        /// The code of the error returned by the <c>BatchImportFindings</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        /// The message of the error returned by the <code>BatchImportFindings</code> operation.
+        /// The message of the error returned by the <c>BatchImportFindings</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

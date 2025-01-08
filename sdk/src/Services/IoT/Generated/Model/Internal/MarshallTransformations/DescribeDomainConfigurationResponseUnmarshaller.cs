@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoT.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -51,10 +52,28 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("applicationProtocol", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ApplicationProtocol = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("authenticationType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.AuthenticationType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("authorizerConfig", targetDepth))
                 {
                     var unmarshaller = AuthorizerConfigUnmarshaller.Instance;
                     response.AuthorizerConfig = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("clientCertificateConfig", targetDepth))
+                {
+                    var unmarshaller = ClientCertificateConfigUnmarshaller.Instance;
+                    response.ClientCertificateConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("domainConfigurationArn", targetDepth))
@@ -91,6 +110,12 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     response.LastStatusChangeDate = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("serverCertificateConfig", targetDepth))
+                {
+                    var unmarshaller = ServerCertificateConfigUnmarshaller.Instance;
+                    response.ServerCertificateConfig = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("serverCertificates", targetDepth))

@@ -18,6 +18,7 @@
  */
 using Amazon.Runtime;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -29,5 +30,10 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// Enumerable containing all full responses for the operation
         /// </summary>
         IPaginatedEnumerable<DescribeImportTasksResponse> Responses { get; }
+
+        /// <summary>
+        /// Enumerable containing all of the Tasks
+        /// </summary>
+        IPaginatedEnumerable<ImportTask> Tasks { get; }
     }
 }

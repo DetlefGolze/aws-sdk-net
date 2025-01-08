@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Details about an antenna demod decode <code>Config</code> used in a contact.
+    /// Details about an antenna demod decode <c>Config</c> used in a contact.
     /// </summary>
     public partial class AntennaDemodDecodeDetails
     {

@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SageMakerMetrics
 {
     /// <summary>
-    /// Implementation for accessing SageMakerMetrics
+    /// <para>Implementation for accessing SageMakerMetrics</para>
     ///
     /// Contains all data plane API operations and data types for Amazon SageMaker Metrics.
     /// Use these APIs to put and retrieve (get) features related to your training run.
@@ -255,12 +256,53 @@ namespace Amazon.SageMakerMetrics
         #endregion
 
 
+        #region  BatchGetMetrics
+
+
+        /// <summary>
+        /// Used to retrieve training metrics from SageMaker.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetMetrics service method.</param>
+        /// 
+        /// <returns>The response from the BatchGetMetrics service method, as returned by SageMakerMetrics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-metrics-2022-09-30/BatchGetMetrics">REST API Reference for BatchGetMetrics Operation</seealso>
+        public virtual BatchGetMetricsResponse BatchGetMetrics(BatchGetMetricsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetMetricsResponseUnmarshaller.Instance;
+
+            return Invoke<BatchGetMetricsResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Used to retrieve training metrics from SageMaker.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the BatchGetMetrics service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the BatchGetMetrics service method, as returned by SageMakerMetrics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/sagemaker-metrics-2022-09-30/BatchGetMetrics">REST API Reference for BatchGetMetrics Operation</seealso>
+        public virtual Task<BatchGetMetricsResponse> BatchGetMetricsAsync(BatchGetMetricsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = BatchGetMetricsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = BatchGetMetricsResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<BatchGetMetricsResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  BatchPutMetrics
 
 
         /// <summary>
         /// Used to ingest training metrics into SageMaker. These metrics can be visualized in
-        /// SageMaker Studio and retrieved with the <code>GetMetrics</code> API.
+        /// SageMaker Studio.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchPutMetrics service method.</param>
         /// 
@@ -278,7 +320,7 @@ namespace Amazon.SageMakerMetrics
 
         /// <summary>
         /// Used to ingest training metrics into SageMaker. These metrics can be visualized in
-        /// SageMaker Studio and retrieved with the <code>GetMetrics</code> API.
+        /// SageMaker Studio.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchPutMetrics service method.</param>
         /// <param name="cancellationToken">
@@ -307,11 +349,11 @@ namespace Amazon.SageMakerMetrics
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

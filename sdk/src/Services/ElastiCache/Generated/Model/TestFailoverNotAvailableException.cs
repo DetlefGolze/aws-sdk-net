@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// The <code>TestFailover</code> action is not available.
+    /// The <c>TestFailover</c> action is not available.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

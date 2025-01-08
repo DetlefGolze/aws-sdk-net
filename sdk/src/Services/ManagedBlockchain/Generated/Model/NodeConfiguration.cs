@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -97,9 +98,9 @@ namespace Amazon.ManagedBlockchain.Model
         /// <summary>
         /// Gets and sets the property StateDB. 
         /// <para>
-        /// The state database that the node uses. Values are <code>LevelDB</code> or <code>CouchDB</code>.
+        /// The state database that the node uses. Values are <c>LevelDB</c> or <c>CouchDB</c>.
         /// When using an Amazon Managed Blockchain network with Hyperledger Fabric version 1.4
-        /// or later, the default is <code>CouchDB</code>.
+        /// or later, the default is <c>CouchDB</c>.
         /// </para>
         ///  
         /// <para>

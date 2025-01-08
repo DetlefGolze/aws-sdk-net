@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruProfiler.Model
 {
     /// <summary>
-    /// The structure representing the <code>putPermissionResponse</code>.
+    /// The structure representing the <c>putPermissionResponse</c>.
     /// </summary>
     public partial class PutPermissionResponse : AmazonWebServiceResponse
     {
@@ -60,7 +61,7 @@ namespace Amazon.CodeGuruProfiler.Model
         /// Gets and sets the property RevisionId. 
         /// <para>
         ///  A universally unique identifier (UUID) for the revision of the resource-based policy
-        /// that includes the added permissions. The JSON-formatted policy is in the <code>policy</code>
+        /// that includes the added permissions. The JSON-formatted policy is in the <c>policy</c>
         /// element of the response. 
         /// </para>
         /// </summary>

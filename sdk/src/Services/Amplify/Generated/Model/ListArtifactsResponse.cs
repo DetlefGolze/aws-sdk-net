@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Amplify.Model
     /// </summary>
     public partial class ListArtifactsResponse : AmazonWebServiceResponse
     {
-        private List<Artifact> _artifacts = new List<Artifact>();
+        private List<Artifact> _artifacts = AWSConfigs.InitializeCollections ? new List<Artifact>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Artifacts. 
         /// <para>
-        ///  A list of artifacts. 
+        /// A list of artifacts. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -52,14 +53,14 @@ namespace Amazon.Amplify.Model
         // Check to see if Artifacts property is set
         internal bool IsSetArtifacts()
         {
-            return this._artifacts != null && this._artifacts.Count > 0; 
+            return this._artifacts != null && (this._artifacts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  A pagination token. If a non-null pagination token is returned in a result, pass
-        /// its value in another request to retrieve more entries. 
+        /// A pagination token. If a non-null pagination token is returned in a result, pass its
+        /// value in another request to retrieve more entries. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2000)]

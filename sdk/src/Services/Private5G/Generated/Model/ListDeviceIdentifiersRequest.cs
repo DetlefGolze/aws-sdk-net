@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Private5G.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Private5G.Model
     /// </summary>
     public partial class ListDeviceIdentifiersRequest : AmazonPrivate5GRequest
     {
-        private Dictionary<string, List<string>> _filters = new Dictionary<string, List<string>>();
+        private Dictionary<string, List<string>> _filters = AWSConfigs.InitializeCollections ? new Dictionary<string, List<string>>() : null;
         private int? _maxResults;
         private string _networkArn;
         private string _startToken;
@@ -54,21 +55,21 @@ namespace Amazon.Private5G.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ORDER</code> - The Amazon Resource Name (ARN) of the order.
+        ///  <c>ORDER</c> - The Amazon Resource Name (ARN) of the order.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STATUS</code> - The status (<code>ACTIVE</code> | <code>INACTIVE</code>).
+        ///  <c>STATUS</c> - The status (<c>ACTIVE</c> | <c>INACTIVE</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TRAFFIC_GROUP</code> - The Amazon Resource Name (ARN) of the traffic group.
+        ///  <c>TRAFFIC_GROUP</c> - The Amazon Resource Name (ARN) of the traffic group.
         /// </para>
         ///  </li> </ul> 
         /// <para>
         /// Filter values are case sensitive. If you specify multiple values for a filter, the
-        /// values are joined with an <code>OR</code>, and the request returns all results that
-        /// match any of the specified values.
+        /// values are joined with an <c>OR</c>, and the request returns all results that match
+        /// any of the specified values.
         /// </para>
         /// </summary>
         public Dictionary<string, List<string>> Filters
@@ -80,7 +81,7 @@ namespace Amazon.Private5G.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

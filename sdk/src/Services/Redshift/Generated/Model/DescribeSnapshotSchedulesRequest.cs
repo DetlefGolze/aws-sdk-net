@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Redshift.Model
         private string _marker;
         private int? _maxRecords;
         private string _scheduleIdentifier;
-        private List<string> _tagKeys = new List<string>();
-        private List<string> _tagValues = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _tagValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClusterIdentifier. 
@@ -65,9 +66,9 @@ namespace Amazon.Redshift.Model
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>marker</code>
-        /// parameter and retrying the command. If the <code>marker</code> field is empty, all
-        /// response records have been retrieved for the request.
+        /// set of records by providing this returned marker value in the <c>marker</c> parameter
+        /// and retrying the command. If the <c>marker</c> field is empty, all response records
+        /// have been retrieved for the request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -87,9 +88,9 @@ namespace Amazon.Redshift.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number or response records to return in each call. If the number of remaining
-        /// response records exceeds the specified <code>MaxRecords</code> value, a value is returned
-        /// in a <code>marker</code> field of the response. You can retrieve the next set of records
-        /// by retrying the command with the returned <code>marker</code> value.
+        /// response records exceeds the specified <c>MaxRecords</c> value, a value is returned
+        /// in a <c>marker</c> field of the response. You can retrieve the next set of records
+        /// by retrying the command with the returned <c>marker</c> value.
         /// </para>
         /// </summary>
         public int MaxRecords
@@ -138,7 +139,7 @@ namespace Amazon.Redshift.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -156,7 +157,7 @@ namespace Amazon.Redshift.Model
         // Check to see if TagValues property is set
         internal bool IsSetTagValues()
         {
-            return this._tagValues != null && this._tagValues.Count > 0; 
+            return this._tagValues != null && (this._tagValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

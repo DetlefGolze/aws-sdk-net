@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.IoTFleetWise.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.IoTFleetWise
 {
     /// <summary>
-    /// Interface for accessing IoTFleetWise
+    /// <para>Interface for accessing IoTFleetWise</para>
     ///
     /// Amazon Web Services IoT FleetWise is a fully managed service that you can use to collect,
     /// model, and transfer vehicle data to the Amazon Web Services cloud at scale. With Amazon
@@ -43,6 +44,14 @@ namespace Amazon.IoTFleetWise
     /// is Amazon Web Services IoT FleetWise?</a> in the <i>Amazon Web Services IoT FleetWise
     /// Developer Guide</i>.
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+    /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+    /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+    /// FleetWise Developer Guide</i>.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial interface IAmazonIoTFleetWise : IAmazonService, IDisposable
     {
@@ -67,6 +76,9 @@ namespace Amazon.IoTFleetWise
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
         /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
         /// The resource wasn't found.
@@ -96,6 +108,9 @@ namespace Amazon.IoTFleetWise
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
         /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
         /// The resource wasn't found.
@@ -220,6 +235,9 @@ namespace Amazon.IoTFleetWise
         /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
         /// The request couldn't be completed because the server temporarily failed.
         /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
+        /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
         /// The request couldn't be completed due to throttling.
         /// </exception>
@@ -258,6 +276,9 @@ namespace Amazon.IoTFleetWise
         /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
         /// The request couldn't be completed because the server temporarily failed.
         /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
+        /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
         /// The request couldn't be completed due to throttling.
         /// </exception>
@@ -285,6 +306,14 @@ namespace Amazon.IoTFleetWise
         /// and transfer data with campaigns</a> in the <i>Amazon Web Services IoT FleetWise Developer
         /// Guide</i>.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCampaign service method.</param>
         /// 
@@ -329,6 +358,14 @@ namespace Amazon.IoTFleetWise
         /// and transfer data with campaigns</a> in the <i>Amazon Web Services IoT FleetWise Developer
         /// Guide</i>.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateCampaign service method.</param>
         /// <param name="cancellationToken">
@@ -749,6 +786,106 @@ namespace Amazon.IoTFleetWise
 
         #endregion
         
+        #region  CreateStateTemplate
+
+
+        /// <summary>
+        /// Creates a state template. State templates contain state properties, which are signals
+        /// that belong to a signal catalog that is synchronized between the Amazon Web Services
+        /// IoT FleetWise Edge and the Amazon Web Services Cloud.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateStateTemplate service method.</param>
+        /// 
+        /// <returns>The response from the CreateStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ConflictException">
+        /// The request has conflicting operations. This can occur if you're trying to perform
+        /// more than one operation on the same resource at the same time.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InvalidSignalsException">
+        /// The request couldn't be completed because it contains signals that aren't valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
+        /// The resource wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/CreateStateTemplate">REST API Reference for CreateStateTemplate Operation</seealso>
+        CreateStateTemplateResponse CreateStateTemplate(CreateStateTemplateRequest request);
+
+
+
+        /// <summary>
+        /// Creates a state template. State templates contain state properties, which are signals
+        /// that belong to a signal catalog that is synchronized between the Amazon Web Services
+        /// IoT FleetWise Edge and the Amazon Web Services Cloud.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateStateTemplate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the CreateStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ConflictException">
+        /// The request has conflicting operations. This can occur if you're trying to perform
+        /// more than one operation on the same resource at the same time.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InvalidSignalsException">
+        /// The request couldn't be completed because it contains signals that aren't valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
+        /// The resource wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/CreateStateTemplate">REST API Reference for CreateStateTemplate Operation</seealso>
+        Task<CreateStateTemplateResponse> CreateStateTemplateAsync(CreateStateTemplateRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  CreateVehicle
 
 
@@ -912,14 +1049,7 @@ namespace Amazon.IoTFleetWise
 
         /// <summary>
         /// Deletes a decoder manifest. You can't delete a decoder manifest if it has vehicles
-        /// associated with it. 
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the decoder manifest is successfully deleted, Amazon Web Services IoT FleetWise
-        /// sends back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
+        /// associated with it.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDecoderManifest service method.</param>
         /// 
@@ -947,14 +1077,7 @@ namespace Amazon.IoTFleetWise
 
         /// <summary>
         /// Deletes a decoder manifest. You can't delete a decoder manifest if it has vehicles
-        /// associated with it. 
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the decoder manifest is successfully deleted, Amazon Web Services IoT FleetWise
-        /// sends back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
+        /// associated with it.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDecoderManifest service method.</param>
         /// <param name="cancellationToken">
@@ -990,13 +1113,6 @@ namespace Amazon.IoTFleetWise
         /// Deletes a fleet. Before you delete a fleet, all vehicles must be dissociated from
         /// the fleet. For more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/delete-fleet-cli.html">Delete
         /// a fleet (AWS CLI)</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the fleet is successfully deleted, Amazon Web Services IoT FleetWise sends back
-        /// an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFleet service method.</param>
         /// 
@@ -1022,13 +1138,6 @@ namespace Amazon.IoTFleetWise
         /// Deletes a fleet. Before you delete a fleet, all vehicles must be dissociated from
         /// the fleet. For more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/delete-fleet-cli.html">Delete
         /// a fleet (AWS CLI)</a> in the <i>Amazon Web Services IoT FleetWise Developer Guide</i>.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the fleet is successfully deleted, Amazon Web Services IoT FleetWise sends back
-        /// an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFleet service method.</param>
         /// <param name="cancellationToken">
@@ -1058,13 +1167,6 @@ namespace Amazon.IoTFleetWise
 
         /// <summary>
         /// Deletes a vehicle model (model manifest).
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the vehicle model is successfully deleted, Amazon Web Services IoT FleetWise sends
-        /// back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModelManifest service method.</param>
         /// 
@@ -1092,13 +1194,6 @@ namespace Amazon.IoTFleetWise
 
         /// <summary>
         /// Deletes a vehicle model (model manifest).
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the vehicle model is successfully deleted, Amazon Web Services IoT FleetWise sends
-        /// back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteModelManifest service method.</param>
         /// <param name="cancellationToken">
@@ -1131,14 +1226,7 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Deletes a signal catalog. 
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the signal catalog is successfully deleted, Amazon Web Services IoT FleetWise sends
-        /// back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
+        /// Deletes a signal catalog.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteSignalCatalog service method.</param>
         /// 
@@ -1165,14 +1253,7 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Deletes a signal catalog. 
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the signal catalog is successfully deleted, Amazon Web Services IoT FleetWise sends
-        /// back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
+        /// Deletes a signal catalog.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteSignalCatalog service method.</param>
         /// <param name="cancellationToken">
@@ -1201,18 +1282,63 @@ namespace Amazon.IoTFleetWise
 
         #endregion
         
+        #region  DeleteStateTemplate
+
+
+        /// <summary>
+        /// Deletes a state template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteStateTemplate service method.</param>
+        /// 
+        /// <returns>The response from the DeleteStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/DeleteStateTemplate">REST API Reference for DeleteStateTemplate Operation</seealso>
+        DeleteStateTemplateResponse DeleteStateTemplate(DeleteStateTemplateRequest request);
+
+
+
+        /// <summary>
+        /// Deletes a state template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteStateTemplate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/DeleteStateTemplate">REST API Reference for DeleteStateTemplate Operation</seealso>
+        Task<DeleteStateTemplateResponse> DeleteStateTemplateAsync(DeleteStateTemplateRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  DeleteVehicle
 
 
         /// <summary>
         /// Deletes a vehicle and removes it from any campaigns.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the vehicle is successfully deleted, Amazon Web Services IoT FleetWise sends back
-        /// an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteVehicle service method.</param>
         /// 
@@ -1236,13 +1362,6 @@ namespace Amazon.IoTFleetWise
 
         /// <summary>
         /// Deletes a vehicle and removes it from any campaigns.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the vehicle is successfully deleted, Amazon Web Services IoT FleetWise sends back
-        /// an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteVehicle service method.</param>
         /// <param name="cancellationToken">
@@ -1273,13 +1392,6 @@ namespace Amazon.IoTFleetWise
         /// <summary>
         /// Removes, or disassociates, a vehicle from a fleet. Disassociating a vehicle from a
         /// fleet doesn't delete the vehicle.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the vehicle is successfully dissociated from a fleet, Amazon Web Services IoT FleetWise
-        /// sends back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateVehicleFleet service method.</param>
         /// 
@@ -1307,13 +1419,6 @@ namespace Amazon.IoTFleetWise
         /// <summary>
         /// Removes, or disassociates, a vehicle from a fleet. Disassociating a vehicle from a
         /// fleet doesn't delete the vehicle.
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the vehicle is successfully dissociated from a fleet, Amazon Web Services IoT FleetWise
-        /// sends back an HTTP 200 response with an empty body.
-        /// </para>
-        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateVehicleFleet service method.</param>
         /// <param name="cancellationToken">
@@ -1345,7 +1450,16 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Retrieves information about a campaign.
+        /// Retrieves information about a campaign. 
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCampaign service method.</param>
         /// 
@@ -1371,7 +1485,16 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Retrieves information about a campaign.
+        /// Retrieves information about a campaign. 
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetCampaign service method.</param>
         /// <param name="cancellationToken">
@@ -1821,6 +1944,82 @@ namespace Amazon.IoTFleetWise
 
         #endregion
         
+        #region  GetStateTemplate
+
+
+        /// <summary>
+        /// Retrieves information about a state template.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetStateTemplate service method.</param>
+        /// 
+        /// <returns>The response from the GetStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
+        /// The resource wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/GetStateTemplate">REST API Reference for GetStateTemplate Operation</seealso>
+        GetStateTemplateResponse GetStateTemplate(GetStateTemplateRequest request);
+
+
+
+        /// <summary>
+        /// Retrieves information about a state template.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetStateTemplate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
+        /// The resource wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/GetStateTemplate">REST API Reference for GetStateTemplate Operation</seealso>
+        Task<GetStateTemplateResponse> GetStateTemplateAsync(GetStateTemplateRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  GetVehicle
 
 
@@ -1883,7 +2082,8 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Retrieves information about the status of a vehicle with any associated campaigns.
+        /// Retrieves information about the status of campaigns, decoder manifests, or state
+        /// templates associated with a vehicle.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetVehicleStatus service method.</param>
         /// 
@@ -1909,7 +2109,8 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Retrieves information about the status of a vehicle with any associated campaigns.
+        /// Retrieves information about the status of campaigns, decoder manifests, or state
+        /// templates associated with a vehicle.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetVehicleStatus service method.</param>
         /// <param name="cancellationToken">
@@ -1942,6 +2143,13 @@ namespace Amazon.IoTFleetWise
 
         /// <summary>
         /// Creates a decoder manifest using your existing CAN DBC file from your local device.
+        /// 
+        /// 
+        ///  
+        /// <para>
+        /// The CAN signal name must be unique and not repeated across CAN message definitions
+        /// in a .dbc file. 
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportDecoderManifest service method.</param>
         /// 
@@ -1979,6 +2187,13 @@ namespace Amazon.IoTFleetWise
 
         /// <summary>
         /// Creates a decoder manifest using your existing CAN DBC file from your local device.
+        /// 
+        /// 
+        ///  
+        /// <para>
+        /// The CAN signal name must be unique and not repeated across CAN message definitions
+        /// in a .dbc file. 
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportDecoderManifest service method.</param>
         /// <param name="cancellationToken">
@@ -2105,8 +2320,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2135,8 +2350,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2171,8 +2386,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2204,8 +2419,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2243,8 +2458,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2273,8 +2488,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2309,8 +2524,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2342,8 +2557,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2381,8 +2596,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2414,8 +2629,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2453,8 +2668,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2486,8 +2701,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2525,8 +2740,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2561,8 +2776,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2603,8 +2818,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2633,8 +2848,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2669,8 +2884,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2705,8 +2920,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2751,8 +2966,8 @@ namespace Amazon.IoTFleetWise
         /// </para>
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2785,8 +3000,8 @@ namespace Amazon.IoTFleetWise
         /// </para>
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2810,6 +3025,76 @@ namespace Amazon.IoTFleetWise
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/ListSignalCatalogs">REST API Reference for ListSignalCatalogs Operation</seealso>
         Task<ListSignalCatalogsResponse> ListSignalCatalogsAsync(ListSignalCatalogsRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
+        #region  ListStateTemplates
+
+
+        /// <summary>
+        /// Lists information about created state templates.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListStateTemplates service method.</param>
+        /// 
+        /// <returns>The response from the ListStateTemplates service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/ListStateTemplates">REST API Reference for ListStateTemplates Operation</seealso>
+        ListStateTemplatesResponse ListStateTemplates(ListStateTemplatesRequest request);
+
+
+
+        /// <summary>
+        /// Lists information about created state templates.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListStateTemplates service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListStateTemplates service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/ListStateTemplates">REST API Reference for ListStateTemplates Operation</seealso>
+        Task<ListStateTemplatesResponse> ListStateTemplatesAsync(ListStateTemplatesRequest request, CancellationToken cancellationToken = default(CancellationToken));
 
         #endregion
         
@@ -2879,8 +3164,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2909,8 +3194,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2945,8 +3230,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2978,8 +3263,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  <note> 
         /// <para>
-        /// This API operation uses pagination. Specify the <code>nextToken</code> parameter in
-        /// the request to return more results.
+        /// This API operation uses pagination. Specify the <c>nextToken</c> parameter in the
+        /// request to return more results.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3173,18 +3458,23 @@ namespace Amazon.IoTFleetWise
         /// metrics. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html">DeleteServiceLinkedRole</a>
         /// in the <i>Identity and Access Management API Reference</i>.
         /// </para>
-        ///  </important> <pre><code> &lt;p&gt;Registers your Amazon Web Services account, IAM,
-        /// and Amazon Timestream resources so Amazon Web Services IoT FleetWise can transfer
-        /// your vehicle data to the Amazon Web Services Cloud. For more information, including
-        /// step-by-step procedures, see &lt;a href=&quot;https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html&quot;&gt;Setting
-        /// up Amazon Web Services IoT FleetWise&lt;/a&gt;. &lt;/p&gt; &lt;note&gt; &lt;p&gt;An
-        /// Amazon Web Services account is &lt;b&gt;not&lt;/b&gt; the same thing as a &quot;user.&quot;
-        /// An &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users&quot;&gt;Amazon
-        /// Web Services user&lt;/a&gt; is an identity that you create using Identity and Access
-        /// Management (IAM) and takes the form of either an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html&quot;&gt;IAM
-        /// user&lt;/a&gt; or an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM
-        /// role, both with credentials&lt;/a&gt;. A single Amazon Web Services account can, and
-        /// typically does, contain many users and roles.&lt;/p&gt; &lt;/note&gt; </code></pre>
+        ///  </important> 
+        /// <para>
+        /// Registers your Amazon Web Services account, IAM, and Amazon Timestream resources so
+        /// Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web
+        /// Services Cloud. For more information, including step-by-step procedures, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html">Setting
+        /// up Amazon Web Services IoT FleetWise</a>. 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// An Amazon Web Services account is <b>not</b> the same thing as a "user." An <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users">Amazon
+        /// Web Services user</a> is an identity that you create using Identity and Access Management
+        /// (IAM) and takes the form of either an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html">IAM
+        /// user</a> or an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
+        /// role, both with credentials</a>. A single Amazon Web Services account can, and typically
+        /// does, contain many users and roles.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RegisterAccount service method.</param>
         /// 
@@ -3236,18 +3526,23 @@ namespace Amazon.IoTFleetWise
         /// metrics. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/APIReference/API_DeleteServiceLinkedRole.html">DeleteServiceLinkedRole</a>
         /// in the <i>Identity and Access Management API Reference</i>.
         /// </para>
-        ///  </important> <pre><code> &lt;p&gt;Registers your Amazon Web Services account, IAM,
-        /// and Amazon Timestream resources so Amazon Web Services IoT FleetWise can transfer
-        /// your vehicle data to the Amazon Web Services Cloud. For more information, including
-        /// step-by-step procedures, see &lt;a href=&quot;https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html&quot;&gt;Setting
-        /// up Amazon Web Services IoT FleetWise&lt;/a&gt;. &lt;/p&gt; &lt;note&gt; &lt;p&gt;An
-        /// Amazon Web Services account is &lt;b&gt;not&lt;/b&gt; the same thing as a &quot;user.&quot;
-        /// An &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users&quot;&gt;Amazon
-        /// Web Services user&lt;/a&gt; is an identity that you create using Identity and Access
-        /// Management (IAM) and takes the form of either an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html&quot;&gt;IAM
-        /// user&lt;/a&gt; or an &lt;a href=&quot;https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html&quot;&gt;IAM
-        /// role, both with credentials&lt;/a&gt;. A single Amazon Web Services account can, and
-        /// typically does, contain many users and roles.&lt;/p&gt; &lt;/note&gt; </code></pre>
+        ///  </important> 
+        /// <para>
+        /// Registers your Amazon Web Services account, IAM, and Amazon Timestream resources so
+        /// Amazon Web Services IoT FleetWise can transfer your vehicle data to the Amazon Web
+        /// Services Cloud. For more information, including step-by-step procedures, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/setting-up.html">Setting
+        /// up Amazon Web Services IoT FleetWise</a>. 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// An Amazon Web Services account is <b>not</b> the same thing as a "user." An <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users">Amazon
+        /// Web Services user</a> is an identity that you create using Identity and Access Management
+        /// (IAM) and takes the form of either an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html">IAM
+        /// user</a> or an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM
+        /// role, both with credentials</a>. A single Amazon Web Services account can, and typically
+        /// does, contain many users and roles.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RegisterAccount service method.</param>
         /// <param name="cancellationToken">
@@ -3471,8 +3766,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  
         /// <para>
-        /// A decoder manifest can only be updated when the status is <code>DRAFT</code>. Only
-        /// <code>ACTIVE</code> decoder manifests can be associated with vehicles.
+        /// A decoder manifest can only be updated when the status is <c>DRAFT</c>. Only <c>ACTIVE</c>
+        /// decoder manifests can be associated with vehicles.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateDecoderManifest service method.</param>
@@ -3514,8 +3809,8 @@ namespace Amazon.IoTFleetWise
         /// 
         ///  
         /// <para>
-        /// A decoder manifest can only be updated when the status is <code>DRAFT</code>. Only
-        /// <code>ACTIVE</code> decoder manifests can be associated with vehicles.
+        /// A decoder manifest can only be updated when the status is <c>DRAFT</c>. Only <c>ACTIVE</c>
+        /// decoder manifests can be associated with vehicles.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateDecoderManifest service method.</param>
@@ -3559,14 +3854,7 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Updates the description of an existing fleet. 
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the fleet is successfully updated, Amazon Web Services IoT FleetWise sends back
-        /// an HTTP 200 response with an empty HTTP body.
-        /// </para>
-        ///  </note>
+        /// Updates the description of an existing fleet.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFleet service method.</param>
         /// 
@@ -3596,14 +3884,7 @@ namespace Amazon.IoTFleetWise
 
 
         /// <summary>
-        /// Updates the description of an existing fleet. 
-        /// 
-        ///  <note> 
-        /// <para>
-        /// If the fleet is successfully updated, Amazon Web Services IoT FleetWise sends back
-        /// an HTTP 200 response with an empty HTTP body.
-        /// </para>
-        ///  </note>
+        /// Updates the description of an existing fleet.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFleet service method.</param>
         /// <param name="cancellationToken">
@@ -3795,6 +4076,94 @@ namespace Amazon.IoTFleetWise
 
         #endregion
         
+        #region  UpdateStateTemplate
+
+
+        /// <summary>
+        /// Updates a state template.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateStateTemplate service method.</param>
+        /// 
+        /// <returns>The response from the UpdateStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InvalidSignalsException">
+        /// The request couldn't be completed because it contains signals that aren't valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
+        /// The resource wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/UpdateStateTemplate">REST API Reference for UpdateStateTemplate Operation</seealso>
+        UpdateStateTemplateResponse UpdateStateTemplate(UpdateStateTemplateRequest request);
+
+
+
+        /// <summary>
+        /// Updates a state template.
+        /// 
+        ///  <important> 
+        /// <para>
+        /// Access to certain Amazon Web Services IoT FleetWise features is currently gated. For
+        /// more information, see <a href="https://docs.aws.amazon.com/iot-fleetwise/latest/developerguide/fleetwise-regions.html">Amazon
+        /// Web Services Region and feature availability</a> in the <i>Amazon Web Services IoT
+        /// FleetWise Developer Guide</i>.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateStateTemplate service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the UpdateStateTemplate service method, as returned by IoTFleetWise.</returns>
+        /// <exception cref="Amazon.IoTFleetWise.Model.AccessDeniedException">
+        /// You don't have sufficient permission to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
+        /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.InvalidSignalsException">
+        /// The request couldn't be completed because it contains signals that aren't valid.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
+        /// The resource wasn't found.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ThrottlingException">
+        /// The request couldn't be completed due to throttling.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/iotfleetwise-2021-06-17/UpdateStateTemplate">REST API Reference for UpdateStateTemplate Operation</seealso>
+        Task<UpdateStateTemplateResponse> UpdateStateTemplateAsync(UpdateStateTemplateRequest request, CancellationToken cancellationToken = default(CancellationToken));
+
+        #endregion
+        
         #region  UpdateVehicle
 
 
@@ -3813,6 +4182,9 @@ namespace Amazon.IoTFleetWise
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
         /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
         /// The resource wasn't found.
@@ -3846,6 +4218,9 @@ namespace Amazon.IoTFleetWise
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.InternalServerException">
         /// The request couldn't be completed because the server temporarily failed.
+        /// </exception>
+        /// <exception cref="Amazon.IoTFleetWise.Model.LimitExceededException">
+        /// A service quota was exceeded.
         /// </exception>
         /// <exception cref="Amazon.IoTFleetWise.Model.ResourceNotFoundException">
         /// The resource wasn't found.

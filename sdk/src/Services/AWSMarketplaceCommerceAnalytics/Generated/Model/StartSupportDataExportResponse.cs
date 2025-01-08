@@ -26,19 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSMarketplaceCommerceAnalytics.Model
 {
     /// <summary>
-    /// Container for the result of the StartSupportDataExport operation.
+    /// <i>This target has been deprecated.</i> Container for the result of the StartSupportDataExport
+    /// operation.
     /// </summary>
+    [Obsolete("This target has been deprecated. As of December 2022 Product Support Connection is no longer supported.")]
     public partial class StartSupportDataExportResponse : AmazonWebServiceResponse
     {
         private string _dataSetRequestId;
 
         /// <summary>
-        /// Gets and sets the property DataSetRequestId. A unique identifier representing a specific
-        /// request to the StartSupportDataExport operation. This identifier can be used to correlate
-        /// a request with notifications from the SNS topic.
+        /// Gets and sets the property DataSetRequestId. <i>This target has been deprecated.</i>
+        /// A unique identifier representing a specific request to the StartSupportDataExport
+        /// operation. This identifier can be used to correlate a request with notifications from
+        /// the SNS topic.
         /// </summary>
         public string DataSetRequestId
         {

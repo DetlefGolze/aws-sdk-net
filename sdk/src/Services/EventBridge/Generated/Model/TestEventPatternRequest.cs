@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -54,31 +55,31 @@ namespace Amazon.EventBridge.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>id</code> 
+        ///  <c>id</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>account</code> 
+        ///  <c>account</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>source</code> 
+        ///  <c>source</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>time</code> 
+        ///  <c>time</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>region</code> 
+        ///  <c>region</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>resources</code> 
+        ///  <c>resources</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>detail-type</code> 
+        ///  <c>detail-type</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -99,7 +100,7 @@ namespace Amazon.EventBridge.Model
         /// Gets and sets the property EventPattern. 
         /// <para>
         /// The event pattern. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html">Events
-        /// and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.
+        /// and Event Patterns</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=4096)]

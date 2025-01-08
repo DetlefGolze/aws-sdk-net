@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeCustomDomainAssociations operation.
-    /// Contains information for custom domain associations for a cluster.
+    /// Contains information about custom domain associations for a cluster.
     /// </summary>
     public partial class DescribeCustomDomainAssociationsRequest : AmazonRedshiftRequest
     {

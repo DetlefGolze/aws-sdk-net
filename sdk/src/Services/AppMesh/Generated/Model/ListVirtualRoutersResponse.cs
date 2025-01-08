@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppMesh.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.AppMesh.Model
     public partial class ListVirtualRoutersResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<VirtualRouterRef> _virtualRouters = new List<VirtualRouterRef>();
+        private List<VirtualRouterRef> _virtualRouters = AWSConfigs.InitializeCollections ? new List<VirtualRouterRef>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>ListVirtualRouters</code>
-        /// request. When the results of a <code>ListVirtualRouters</code> request exceed <code>limit</code>,
-        /// you can use this value to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>ListVirtualRouters</c> request.
+        /// When the results of a <c>ListVirtualRouters</c> request exceed <c>limit</c>, you can
+        /// use this value to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -73,7 +74,7 @@ namespace Amazon.AppMesh.Model
         // Check to see if VirtualRouters property is set
         internal bool IsSetVirtualRouters()
         {
-            return this._virtualRouters != null && this._virtualRouters.Count > 0; 
+            return this._virtualRouters != null && (this._virtualRouters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

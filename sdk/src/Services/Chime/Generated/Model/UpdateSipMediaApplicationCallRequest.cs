@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -49,14 +50,14 @@ namespace Amazon.Chime.Model
     /// </summary>
     public partial class UpdateSipMediaApplicationCallRequest : AmazonChimeRequest
     {
-        private Dictionary<string, string> _arguments = new Dictionary<string, string>();
+        private Dictionary<string, string> _arguments = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _sipMediaApplicationId;
         private string _transactionId;
 
         /// <summary>
         /// Gets and sets the property Arguments. 
         /// <para>
-        /// Arguments made available to the Lambda function as part of the <code>CALL_UPDATE_REQUESTED</code>
+        /// Arguments made available to the Lambda function as part of the <c>CALL_UPDATE_REQUESTED</c>
         /// event. Can contain 0-20 key-value pairs.
         /// </para>
         /// </summary>
@@ -70,7 +71,7 @@ namespace Amazon.Chime.Model
         // Check to see if Arguments property is set
         internal bool IsSetArguments()
         {
-            return this._arguments != null && this._arguments.Count > 0; 
+            return this._arguments != null && (this._arguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

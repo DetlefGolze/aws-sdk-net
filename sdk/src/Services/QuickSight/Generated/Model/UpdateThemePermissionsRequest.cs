@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateThemePermissions operation.
     /// Updates the resource permissions for a theme. Permissions apply to the action to grant
-    /// or revoke permissions on, for example <code>"quicksight:DescribeTheme"</code>.
+    /// or revoke permissions on, for example <c>"quicksight:DescribeTheme"</c>.
     /// 
     ///  
     /// <para>
@@ -44,19 +45,19 @@ namespace Amazon.QuickSight.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>"quicksight:DescribeTheme"</code> 
+    ///  <c>"quicksight:DescribeTheme"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:DescribeThemeAlias"</code> 
+    ///  <c>"quicksight:DescribeThemeAlias"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:ListThemeAliases"</code> 
+    ///  <c>"quicksight:ListThemeAliases"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:ListThemeVersions"</code> 
+    ///  <c>"quicksight:ListThemeVersions"</c> 
     /// </para>
     ///  </li> </ul> </li> <li> 
     /// <para>
@@ -64,47 +65,47 @@ namespace Amazon.QuickSight.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>"quicksight:DescribeTheme"</code> 
+    ///  <c>"quicksight:DescribeTheme"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:DescribeThemeAlias"</code> 
+    ///  <c>"quicksight:DescribeThemeAlias"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:ListThemeAliases"</code> 
+    ///  <c>"quicksight:ListThemeAliases"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:ListThemeVersions"</code> 
+    ///  <c>"quicksight:ListThemeVersions"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:DeleteTheme"</code> 
+    ///  <c>"quicksight:DeleteTheme"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:UpdateTheme"</code> 
+    ///  <c>"quicksight:UpdateTheme"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:CreateThemeAlias"</code> 
+    ///  <c>"quicksight:CreateThemeAlias"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:DeleteThemeAlias"</code> 
+    ///  <c>"quicksight:DeleteThemeAlias"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:UpdateThemeAlias"</code> 
+    ///  <c>"quicksight:UpdateThemeAlias"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:UpdateThemePermissions"</code> 
+    ///  <c>"quicksight:UpdateThemePermissions"</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>"quicksight:DescribeThemePermissions"</code> 
+    ///  <c>"quicksight:DescribeThemePermissions"</c> 
     /// </para>
     ///  </li> </ul> </li> <li> 
     /// <para>
@@ -115,8 +116,8 @@ namespace Amazon.QuickSight.Model
     public partial class UpdateThemePermissionsRequest : AmazonQuickSightRequest
     {
         private string _awsAccountId;
-        private List<ResourcePermission> _grantPermissions = new List<ResourcePermission>();
-        private List<ResourcePermission> _revokePermissions = new List<ResourcePermission>();
+        private List<ResourcePermission> _grantPermissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
+        private List<ResourcePermission> _revokePermissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
         private string _themeId;
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if GrantPermissions property is set
         internal bool IsSetGrantPermissions()
         {
-            return this._grantPermissions != null && this._grantPermissions.Count > 0; 
+            return this._grantPermissions != null && (this._grantPermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -173,7 +174,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if RevokePermissions property is set
         internal bool IsSetRevokePermissions()
         {
-            return this._revokePermissions != null && this._revokePermissions.Count > 0; 
+            return this._revokePermissions != null && (this._revokePermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

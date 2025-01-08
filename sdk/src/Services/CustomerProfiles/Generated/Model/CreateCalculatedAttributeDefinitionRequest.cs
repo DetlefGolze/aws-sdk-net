@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.CustomerProfiles.Model
     /// into Customer Profiles will be included in the calculated attribute, which can be
     /// retrieved for a profile using the <a href="https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetCalculatedAttributeForProfile.html">GetCalculatedAttributeForProfile</a>
     /// API. Defining a calculated attribute makes it available for all profiles within a
-    /// domain. Each calculated attribute can only reference one <code>ObjectType</code> and
-    /// at most, two fields from that <code>ObjectType</code>.
+    /// domain. Each calculated attribute can only reference one <c>ObjectType</c> and at
+    /// most, two fields from that <c>ObjectType</c>.
     /// </summary>
     public partial class CreateCalculatedAttributeDefinitionRequest : AmazonCustomerProfilesRequest
     {
@@ -45,8 +46,9 @@ namespace Amazon.CustomerProfiles.Model
         private string _description;
         private string _displayName;
         private string _domainName;
+        private Filter _filter;
         private Statistic _statistic;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AttributeDetails. 
@@ -111,7 +113,7 @@ namespace Amazon.CustomerProfiles.Model
         /// The description of the calculated attribute.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Sensitive=true, Min=1, Max=1000)]
         public string Description
         {
             get { return this._description; }
@@ -163,6 +165,24 @@ namespace Amazon.CustomerProfiles.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Filter. 
+        /// <para>
+        /// Defines how to filter incoming objects to include part of the Calculated Attribute.
+        /// </para>
+        /// </summary>
+        public Filter Filter
+        {
+            get { return this._filter; }
+            set { this._filter = value; }
+        }
+
+        // Check to see if Filter property is set
+        internal bool IsSetFilter()
+        {
+            return this._filter != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Statistic. 
         /// <para>
         /// The aggregation operation to perform for the calculated attribute.
@@ -197,7 +217,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

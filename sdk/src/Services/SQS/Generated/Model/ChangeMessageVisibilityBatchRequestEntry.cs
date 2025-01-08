@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
-    /// Encloses a receipt handle and an entry ID for each message in <code> <a>ChangeMessageVisibilityBatch</a>.</code>
+    /// Encloses a receipt handle and an entry ID for each message in <c> <a>ChangeMessageVisibilityBatch</a>.</c>
     /// </summary>
     public partial class ChangeMessageVisibilityBatchRequestEntry
     {
@@ -45,7 +46,7 @@ namespace Amazon.SQS.Model
         /// <summary>
         /// Instantiates ChangeMessageVisibilityBatchRequestEntry with the parameterized properties
         /// </summary>
-        /// <param name="id">An identifier for this particular receipt handle used to communicate the result. <note> The <code>Id</code>s of a batch request need to be unique within a request. This identifier can have up to 80 characters. The following characters are accepted: alphanumeric characters, hyphens(-), and underscores (_). </note></param>
+        /// <param name="id">An identifier for this particular receipt handle used to communicate the result. <note> The <c>Id</c>s of a batch request need to be unique within a request. This identifier can have up to 80 characters. The following characters are accepted: alphanumeric characters, hyphens(-), and underscores (_). </note></param>
         /// <param name="receiptHandle">A receipt handle.</param>
         public ChangeMessageVisibilityBatchRequestEntry(string id, string receiptHandle)
         {
@@ -60,7 +61,7 @@ namespace Amazon.SQS.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>Id</code>s of a batch request need to be unique within a request.
+        /// The <c>Id</c>s of a batch request need to be unique within a request.
         /// </para>
         ///  
         /// <para>

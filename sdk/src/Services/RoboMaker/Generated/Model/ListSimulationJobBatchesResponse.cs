@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -34,17 +35,16 @@ namespace Amazon.RoboMaker.Model
     public partial class ListSimulationJobBatchesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SimulationJobBatchSummary> _simulationJobBatchSummaries = new List<SimulationJobBatchSummary>();
+        private List<SimulationJobBatchSummary> _simulationJobBatchSummaries = AWSConfigs.InitializeCollections ? new List<SimulationJobBatchSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous paginated request did not return all of the remaining results, the
-        /// response object's <code>nextToken</code> parameter value is set to a token. To retrieve
-        /// the next set of results, call <code>ListSimulationJobBatches</code> again and assign
-        /// that token to the request object's <code>nextToken</code> parameter. If there are
-        /// no remaining results, the previous response object's NextToken parameter is set to
-        /// null. 
+        /// response object's <c>nextToken</c> parameter value is set to a token. To retrieve
+        /// the next set of results, call <c>ListSimulationJobBatches</c> again and assign that
+        /// token to the request object's <c>nextToken</c> parameter. If there are no remaining
+        /// results, the previous response object's NextToken parameter is set to null. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -75,7 +75,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if SimulationJobBatchSummaries property is set
         internal bool IsSetSimulationJobBatchSummaries()
         {
-            return this._simulationJobBatchSummaries != null && this._simulationJobBatchSummaries.Count > 0; 
+            return this._simulationJobBatchSummaries != null && (this._simulationJobBatchSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

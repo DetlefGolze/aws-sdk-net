@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:GetGroupConfiguration</code> 
+    ///  <c>resource-groups:GetGroupConfiguration</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -55,8 +56,8 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
-        /// The name or the ARN of the resource group for which you want to retrive the service
-        /// configuration.
+        /// The name or the Amazon resource name (ARN) of the resource group for which you want
+        /// to retrive the service configuration.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1600)]

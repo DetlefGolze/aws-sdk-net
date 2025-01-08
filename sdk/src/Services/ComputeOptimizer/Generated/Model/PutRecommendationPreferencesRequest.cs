@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -44,8 +45,12 @@ namespace Amazon.ComputeOptimizer.Model
         private EnhancedInfrastructureMetrics _enhancedInfrastructureMetrics;
         private ExternalMetricsPreference _externalMetricsPreference;
         private InferredWorkloadTypesPreference _inferredWorkloadTypes;
+        private LookBackPeriodPreference _lookBackPeriod;
+        private List<PreferredResource> _preferredResources = AWSConfigs.InitializeCollections ? new List<PreferredResource>() : null;
         private ResourceType _resourceType;
+        private SavingsEstimationMode _savingsEstimationMode;
         private Scope _scope;
+        private List<UtilizationPreference> _utilizationPreferences = AWSConfigs.InitializeCollections ? new List<UtilizationPreference>() : null;
 
         /// <summary>
         /// Gets and sets the property EnhancedInfrastructureMetrics. 
@@ -55,7 +60,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify the <code>Active</code> status to activate the preference, or specify <code>Inactive</code>
+        /// Specify the <c>Active</c> status to activate the preference, or specify <c>Inactive</c>
         /// to deactivate the preference.
         /// </para>
         ///  
@@ -83,12 +88,12 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// Specify a valid provider in the <code>source</code> field to activate the preference.
-        /// To delete this preference, see the <a>DeleteRecommendationPreferences</a> action.
+        /// Specify a valid provider in the <c>source</c> field to activate the preference. To
+        /// delete this preference, see the <a>DeleteRecommendationPreferences</a> action.
         /// </para>
         ///  
         /// <para>
-        /// This preference can only be set for the <code>Ec2Instance</code> resource type.
+        /// This preference can only be set for the <c>Ec2Instance</c> resource type.
         /// </para>
         ///  
         /// <para>
@@ -120,7 +125,7 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  </note> 
         /// <para>
-        /// Specify the <code>Inactive</code> status to deactivate the feature, or specify <code>Active</code>
+        /// Specify the <c>Inactive</c> status to deactivate the feature, or specify <c>Active</c>
         /// to activate it.
         /// </para>
         ///  
@@ -142,21 +147,78 @@ namespace Amazon.ComputeOptimizer.Model
         }
 
         /// <summary>
+        /// Gets and sets the property LookBackPeriod. 
+        /// <para>
+        ///  The preference to control the number of days the utilization metrics of the Amazon
+        /// Web Services resource are analyzed. When this preference isn't specified, we use the
+        /// default value <c>DAYS_14</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// You can only set this preference for the Amazon EC2 instance and Auto Scaling group
+        /// resource types. 
+        /// </para>
+        ///  <note> <ul> <li> 
+        /// <para>
+        /// Amazon EC2 instance lookback preferences can be set at the organization, account,
+        /// and resource levels.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Auto Scaling group lookback preferences can only be set at the resource level.
+        /// </para>
+        ///  </li> </ul> </note>
+        /// </summary>
+        public LookBackPeriodPreference LookBackPeriod
+        {
+            get { return this._lookBackPeriod; }
+            set { this._lookBackPeriod = value; }
+        }
+
+        // Check to see if LookBackPeriod property is set
+        internal bool IsSetLookBackPeriod()
+        {
+            return this._lookBackPeriod != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PreferredResources. 
+        /// <para>
+        ///  The preference to control which resource type values are considered when generating
+        /// rightsizing recommendations. You can specify this preference as a combination of include
+        /// and exclude lists. You must specify either an <c>includeList</c> or <c>excludeList</c>.
+        /// If the preference is an empty set of resource type values, an error occurs. 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// You can only set this preference for the Amazon EC2 instance and Auto Scaling group
+        /// resource types.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public List<PreferredResource> PreferredResources
+        {
+            get { return this._preferredResources; }
+            set { this._preferredResources = value; }
+        }
+
+        // Check to see if PreferredResources property is set
+        internal bool IsSetPreferredResources()
+        {
+            return this._preferredResources != null && (this._preferredResources.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
         /// The target resource type of the recommendation preference to create.
         /// </para>
         ///  
         /// <para>
-        /// The <code>Ec2Instance</code> option encompasses standalone instances and instances
-        /// that are part of Auto Scaling groups. The <code>AutoScalingGroup</code> option encompasses
-        /// only instances that are part of an Auto Scaling group.
+        /// The <c>Ec2Instance</c> option encompasses standalone instances and instances that
+        /// are part of Auto Scaling groups. The <c>AutoScalingGroup</c> option encompasses only
+        /// instances that are part of an Auto Scaling group.
         /// </para>
-        ///  <note> 
-        /// <para>
-        /// The valid values for this parameter are <code>Ec2Instance</code> and <code>AutoScalingGroup</code>.
-        /// </para>
-        ///  </note>
         /// </summary>
         [AWSProperty(Required=true)]
         public ResourceType ResourceType
@@ -169,6 +231,39 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetResourceType()
         {
             return this._resourceType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SavingsEstimationMode. 
+        /// <para>
+        ///  The status of the savings estimation mode preference to create or update. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Specify the <c>AfterDiscounts</c> status to activate the preference, or specify <c>BeforeDiscounts</c>
+        /// to deactivate the preference.
+        /// </para>
+        ///  
+        /// <para>
+        /// Only the account manager or delegated administrator of your organization can activate
+        /// this preference.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/savings-estimation-mode.html">
+        /// Savings estimation mode</a> in the <i>Compute Optimizer User Guide</i>.
+        /// </para>
+        /// </summary>
+        public SavingsEstimationMode SavingsEstimationMode
+        {
+            get { return this._savingsEstimationMode; }
+            set { this._savingsEstimationMode = value; }
+        }
+
+        // Check to see if SavingsEstimationMode property is set
+        internal bool IsSetSavingsEstimationMode()
+        {
+            return this._savingsEstimationMode != null;
         }
 
         /// <summary>
@@ -187,11 +282,11 @@ namespace Amazon.ComputeOptimizer.Model
         /// <para>
         /// You cannot create recommendation preferences for Auto Scaling groups at the organization
         /// and account levels. You can create recommendation preferences for Auto Scaling groups
-        /// only at the resource level by specifying a scope name of <code>ResourceArn</code>
-        /// and a scope value of the Auto Scaling group Amazon Resource Name (ARN). This will
-        /// configure the preference for all instances that are part of the specified Auto Scaling
-        /// group. You also cannot create recommendation preferences at the resource level for
-        /// instances that are part of an Auto Scaling group. You can create recommendation preferences
+        /// only at the resource level by specifying a scope name of <c>ResourceArn</c> and a
+        /// scope value of the Auto Scaling group Amazon Resource Name (ARN). This will configure
+        /// the preference for all instances that are part of the specified Auto Scaling group.
+        /// You also cannot create recommendation preferences at the resource level for instances
+        /// that are part of an Auto Scaling group. You can create recommendation preferences
         /// at the resource level only for standalone instances.
         /// </para>
         ///  </note>
@@ -206,6 +301,56 @@ namespace Amazon.ComputeOptimizer.Model
         internal bool IsSetScope()
         {
             return this._scope != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UtilizationPreferences. 
+        /// <para>
+        ///  The preference to control the resource’s CPU utilization threshold, CPU utilization
+        /// headroom, and memory utilization headroom. When this preference isn't specified, we
+        /// use the following default values. 
+        /// </para>
+        ///  
+        /// <para>
+        /// CPU utilization:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>P99_5</c> for threshold
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>PERCENT_20</c> for headroom
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Memory utilization:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>PERCENT_20</c> for headroom
+        /// </para>
+        ///  </li> </ul> <note> <ul> <li> 
+        /// <para>
+        /// You can only set CPU and memory utilization preferences for the Amazon EC2 instance
+        /// resource type.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The threshold setting isn’t available for memory utilization.
+        /// </para>
+        ///  </li> </ul> </note>
+        /// </summary>
+        public List<UtilizationPreference> UtilizationPreferences
+        {
+            get { return this._utilizationPreferences; }
+            set { this._utilizationPreferences = value; }
+        }
+
+        // Check to see if UtilizationPreferences property is set
+        internal bool IsSetUtilizationPreferences()
+        {
+            return this._utilizationPreferences != null && (this._utilizationPreferences.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

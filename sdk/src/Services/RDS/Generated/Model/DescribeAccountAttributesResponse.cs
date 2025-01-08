@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class DescribeAccountAttributesResponse : AmazonWebServiceResponse
     {
-        private List<AccountQuota> _accountQuotas = new List<AccountQuota>();
+        private List<AccountQuota> _accountQuotas = AWSConfigs.InitializeCollections ? new List<AccountQuota>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountQuotas. 
         /// <para>
-        /// A list of <code>AccountQuota</code> objects. Within this list, each quota has a name,
-        /// a count of usage toward the quota maximum, and a maximum value for the quota.
+        /// A list of <c>AccountQuota</c> objects. Within this list, each quota has a name, a
+        /// count of usage toward the quota maximum, and a maximum value for the quota.
         /// </para>
         /// </summary>
         public List<AccountQuota> AccountQuotas
@@ -51,7 +52,7 @@ namespace Amazon.RDS.Model
         // Check to see if AccountQuotas property is set
         internal bool IsSetAccountQuotas()
         {
-            return this._accountQuotas != null && this._accountQuotas.Count > 0; 
+            return this._accountQuotas != null && (this._accountQuotas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

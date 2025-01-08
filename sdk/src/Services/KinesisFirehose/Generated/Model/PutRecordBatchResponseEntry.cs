@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Contains the result for an individual record from a <a>PutRecordBatch</a> request.
-    /// If the record is successfully added to your delivery stream, it receives a record
-    /// ID. If the record fails to be added to your delivery stream, the result includes an
+    /// If the record is successfully added to your Firehose stream, it receives a record
+    /// ID. If the record fails to be added to your Firehose stream, the result includes an
     /// error code and an error message.
     /// </summary>
     public partial class PutRecordBatchResponseEntry

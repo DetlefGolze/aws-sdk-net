@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,28 +53,53 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PackageDetails Unmarshall(JsonUnmarshallerContext context)
         {
+            PackageDetails unmarshalledObject = new PackageDetails();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PackageDetails unmarshalledObject = new PackageDetails();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AllowListedUserList", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.AllowListedUserList = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AvailablePackageConfiguration", targetDepth))
+                {
+                    var unmarshaller = PackageConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.AvailablePackageConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("AvailablePackageVersion", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.AvailablePackageVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("AvailablePluginProperties", targetDepth))
+                {
+                    var unmarshaller = PluginPropertiesUnmarshaller.Instance;
+                    unmarshalledObject.AvailablePluginProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("CreatedAt", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.CreatedAt = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("EngineVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.EngineVersion = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("ErrorDetails", targetDepth))
@@ -94,6 +120,12 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     unmarshalledObject.PackageDescription = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("PackageEncryptionOptions", targetDepth))
+                {
+                    var unmarshaller = PackageEncryptionOptionsUnmarshaller.Instance;
+                    unmarshalledObject.PackageEncryptionOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("PackageID", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -104,6 +136,12 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.PackageName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("PackageOwner", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.PackageOwner = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("PackageStatus", targetDepth))
@@ -118,8 +156,13 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     unmarshalledObject.PackageType = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("PackageVendingOptions", targetDepth))
+                {
+                    var unmarshaller = PackageVendingOptionsUnmarshaller.Instance;
+                    unmarshalledObject.PackageVendingOptions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

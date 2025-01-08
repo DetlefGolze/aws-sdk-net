@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -64,8 +65,8 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property PoolName. 
         /// <para>
-        /// The name of the custom tape pool. <code>PoolName</code> can use all ASCII characters,
-        /// except '/' and '\'.
+        /// The name of the custom tape pool. <c>PoolName</c> can use all ASCII characters, except
+        /// '/' and '\'.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -84,7 +85,7 @@ namespace Amazon.StorageGateway.Model
         /// <summary>
         /// Gets and sets the property PoolStatus. 
         /// <para>
-        /// Status of the custom tape pool. Pool can be <code>ACTIVE</code> or <code>DELETED</code>.
+        /// Status of the custom tape pool. Pool can be <c>ACTIVE</c> or <c>DELETED</c>.
         /// </para>
         /// </summary>
         public PoolStatus PoolStatus

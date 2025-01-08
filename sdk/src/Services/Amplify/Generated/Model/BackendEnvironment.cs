@@ -26,10 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
-    /// Describes the backend environment for an Amplify app.
+    /// Describes the backend environment associated with a <c>Branch</c> of a Gen 1 Amplify
+    /// app. Amplify Gen 1 applications are created using Amplify Studio or the Amplify command
+    /// line interface (CLI).
     /// </summary>
     public partial class BackendEnvironment
     {
@@ -43,7 +46,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property BackendEnvironmentArn. 
         /// <para>
-        ///  The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify
+        /// The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify
         /// app. 
         /// </para>
         /// </summary>
@@ -63,7 +66,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property CreateTime. 
         /// <para>
-        ///  The creation date and time for a backend environment that is part of an Amplify app.
+        /// The creation date and time for a backend environment that is part of an Amplify app.
         /// 
         /// </para>
         /// </summary>
@@ -83,7 +86,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property DeploymentArtifacts. 
         /// <para>
-        ///  The name of deployment artifacts. 
+        /// The name of deployment artifacts. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -102,7 +105,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property EnvironmentName. 
         /// <para>
-        ///  The name for a backend environment that is part of an Amplify app. 
+        /// The name for a backend environment that is part of an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -121,7 +124,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property StackName. 
         /// <para>
-        ///  The AWS CloudFormation stack name of a backend environment. 
+        /// The AWS CloudFormation stack name of a backend environment. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -140,7 +143,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property UpdateTime. 
         /// <para>
-        ///  The last updated date and time for a backend environment that is part of an Amplify
+        /// The last updated date and time for a backend environment that is part of an Amplify
         /// app. 
         /// </para>
         /// </summary>

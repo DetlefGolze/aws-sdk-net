@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -39,10 +40,11 @@ namespace Amazon.EC2.Model
         private string _ipamResourceDiscoveryId;
         private string _ipamResourceDiscoveryRegion;
         private bool? _isDefault;
-        private List<IpamOperatingRegion> _operatingRegions = new List<IpamOperatingRegion>();
+        private List<IpamOperatingRegion> _operatingRegions = AWSConfigs.InitializeCollections ? new List<IpamOperatingRegion>() : null;
+        private List<IpamOrganizationalUnitExclusion> _organizationalUnitExclusions = AWSConfigs.InitializeCollections ? new List<IpamOrganizationalUnitExclusion>() : null;
         private string _ownerId;
         private IpamResourceDiscoveryState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -153,7 +155,27 @@ namespace Amazon.EC2.Model
         // Check to see if OperatingRegions property is set
         internal bool IsSetOperatingRegions()
         {
-            return this._operatingRegions != null && this._operatingRegions.Count > 0; 
+            return this._operatingRegions != null && (this._operatingRegions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property OrganizationalUnitExclusions. 
+        /// <para>
+        /// If your IPAM is integrated with Amazon Web Services Organizations and you add an organizational
+        /// unit (OU) exclusion, IPAM will not manage the IP addresses in accounts in that OU
+        /// exclusion.
+        /// </para>
+        /// </summary>
+        public List<IpamOrganizationalUnitExclusion> OrganizationalUnitExclusions
+        {
+            get { return this._organizationalUnitExclusions; }
+            set { this._organizationalUnitExclusions = value; }
+        }
+
+        // Check to see if OrganizationalUnitExclusions property is set
+        internal bool IsSetOrganizationalUnitExclusions()
+        {
+            return this._organizationalUnitExclusions != null && (this._organizationalUnitExclusions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -181,52 +203,52 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>create-in-progress</code> - Resource discovery is being created.
+        ///  <c>create-in-progress</c> - Resource discovery is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>create-complete</code> - Resource discovery creation is complete.
+        ///  <c>create-complete</c> - Resource discovery creation is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>create-failed</code> - Resource discovery creation has failed.
+        ///  <c>create-failed</c> - Resource discovery creation has failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modify-in-progress</code> - Resource discovery is being modified.
+        ///  <c>modify-in-progress</c> - Resource discovery is being modified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modify-complete</code> - Resource discovery modification is complete.
+        ///  <c>modify-complete</c> - Resource discovery modification is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>modify-failed</code> - Resource discovery modification has failed.
+        ///  <c>modify-failed</c> - Resource discovery modification has failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>delete-in-progress</code> - Resource discovery is being deleted.
+        ///  <c>delete-in-progress</c> - Resource discovery is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>delete-complete</code> - Resource discovery deletion is complete.
+        ///  <c>delete-complete</c> - Resource discovery deletion is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>delete-failed</code> - Resource discovery deletion has failed.
+        ///  <c>delete-failed</c> - Resource discovery deletion has failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>isolate-in-progress</code> - Amazon Web Services account that created the resource
+        ///  <c>isolate-in-progress</c> - Amazon Web Services account that created the resource
         /// discovery has been removed and the resource discovery is being isolated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>isolate-complete</code> - Resource discovery isolation is complete.
+        ///  <c>isolate-complete</c> - Resource discovery isolation is complete.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>restore-in-progress</code> - Amazon Web Services account that created the resource
+        ///  <c>restore-in-progress</c> - Amazon Web Services account that created the resource
         /// discovery and was isolated has been restored.
         /// </para>
         ///  </li> </ul>
@@ -260,7 +282,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

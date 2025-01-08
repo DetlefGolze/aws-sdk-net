@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
-    /// Specifies the customer input Amazon S3 file location. If it is used inside <code>copyStepDetails.DestinationFileLocation</code>,
+    /// Specifies the customer input Amazon S3 file location. If it is used inside <c>copyStepDetails.DestinationFileLocation</c>,
     /// it should be the S3 copy destination.
     /// 
     ///  
@@ -43,9 +44,9 @@ namespace Amazon.Transfer.Model
     /// </para>
     ///  
     /// <para>
-    /// For example, if your path is <code>shared-files/bob/</code>, your uploaded files are
-    /// copied to the <code>shared-files/bob/</code>, folder. If your path is <code>shared-files/today</code>,
-    /// each uploaded file is copied to the <code>shared-files</code> folder and named <code>today</code>:
+    /// For example, if your path is <c>shared-files/bob/</c>, your uploaded files are copied
+    /// to the <c>shared-files/bob/</c>, folder. If your path is <c>shared-files/today</c>,
+    /// each uploaded file is copied to the <c>shared-files</c> folder and named <c>today</c>:
     /// each upload overwrites the previous version of the <i>bob</i> file.
     /// </para>
     /// </summary>
@@ -80,7 +81,7 @@ namespace Amazon.Transfer.Model
         /// key to retrieve the object.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=1024)]
+        [AWSProperty(Min=0, Max=1024)]
         public string Key
         {
             get { return this._key; }

@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
-    /// A <code>controlSet</code> entity that represents a collection of controls in Audit
-    /// Manager. This doesn't contain the control set ID.
+    /// A <c>controlSet</c> entity that represents a collection of controls in Audit Manager.
+    /// This doesn't contain the control set ID.
     /// </summary>
     public partial class CreateAssessmentFrameworkControlSet
     {
-        private List<CreateAssessmentFrameworkControl> _controls = new List<CreateAssessmentFrameworkControl>();
+        private List<CreateAssessmentFrameworkControl> _controls = AWSConfigs.InitializeCollections ? new List<CreateAssessmentFrameworkControl>() : null;
         private string _name;
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace Amazon.AuditManager.Model
         // Check to see if Controls property is set
         internal bool IsSetControls()
         {
-            return this._controls != null && this._controls.Count > 0; 
+            return this._controls != null && (this._controls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

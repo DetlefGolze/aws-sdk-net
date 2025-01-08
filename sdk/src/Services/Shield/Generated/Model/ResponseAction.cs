@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -44,12 +45,12 @@ namespace Amazon.Shield.Model
         /// <summary>
         /// Gets and sets the property Block. 
         /// <para>
-        /// Specifies that Shield Advanced should configure its WAF rules with the WAF <code>Block</code>
+        /// Specifies that Shield Advanced should configure its WAF rules with the WAF <c>Block</c>
         /// action. 
         /// </para>
         ///  
         /// <para>
-        /// You must specify exactly one action, either <code>Block</code> or <code>Count</code>.
+        /// You must specify exactly one action, either <c>Block</c> or <c>Count</c>.
         /// </para>
         /// </summary>
         public BlockAction Block
@@ -67,12 +68,12 @@ namespace Amazon.Shield.Model
         /// <summary>
         /// Gets and sets the property Count. 
         /// <para>
-        /// Specifies that Shield Advanced should configure its WAF rules with the WAF <code>Count</code>
+        /// Specifies that Shield Advanced should configure its WAF rules with the WAF <c>Count</c>
         /// action. 
         /// </para>
         ///  
         /// <para>
-        /// You must specify exactly one action, either <code>Block</code> or <code>Count</code>.
+        /// You must specify exactly one action, either <c>Block</c> or <c>Count</c>.
         /// </para>
         /// </summary>
         public CountAction Count

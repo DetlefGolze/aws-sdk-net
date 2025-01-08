@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -41,13 +42,13 @@ namespace Amazon.CodeBuild.Model
         private DateTime? _lastModified;
         private string _name;
         private ReportGroupStatusType _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private ReportType _type;
 
         /// <summary>
         /// Gets and sets the property Arn. 
         /// <para>
-        /// The ARN of the <code>ReportGroup</code>. 
+        /// The ARN of the <c>ReportGroup</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -66,7 +67,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property Created. 
         /// <para>
-        /// The date and time this <code>ReportGroup</code> was created. 
+        /// The date and time this <c>ReportGroup</c> was created. 
         /// </para>
         /// </summary>
         public DateTime Created
@@ -84,8 +85,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property ExportConfig. 
         /// <para>
-        /// Information about the destination where the raw data of this <code>ReportGroup</code>
-        /// is exported. 
+        /// Information about the destination where the raw data of this <c>ReportGroup</c> is
+        /// exported. 
         /// </para>
         /// </summary>
         public ReportExportConfig ExportConfig
@@ -103,7 +104,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property LastModified. 
         /// <para>
-        /// The date and time this <code>ReportGroup</code> was last modified. 
+        /// The date and time this <c>ReportGroup</c> was last modified. 
         /// </para>
         /// </summary>
         public DateTime LastModified
@@ -121,7 +122,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>ReportGroup</code>. 
+        /// The name of the <c>ReportGroup</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=128)]
@@ -189,13 +190,13 @@ namespace Amazon.CodeBuild.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the <code>ReportGroup</code>. This can be one of the following values:
+        /// The type of the <c>ReportGroup</c>. This can be one of the following values:
         /// </para>
         ///  <dl> <dt>CODE_COVERAGE</dt> <dd> 
         /// <para>

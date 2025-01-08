@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// Unable to stop the pipeline execution. The execution might already be in a <code>Stopped</code>
+    /// Unable to stop the pipeline execution. The execution might already be in a <c>Stopped</c>
     /// state, or it might no longer be in progress.
     /// </summary>
     #if !NETSTANDARD

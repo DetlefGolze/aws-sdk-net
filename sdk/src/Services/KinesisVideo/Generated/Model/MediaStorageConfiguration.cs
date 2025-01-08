@@ -26,10 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
     /// A structure that encapsulates, or contains, the media storage configuration properties.
+    /// 
+    ///  <ul> <li> 
+    /// <para>
+    /// If <c>StorageStatus</c> is enabled, the data will be stored in the <c>StreamARN</c>
+    /// provided. In order for WebRTC Ingestion to work, the stream must have data retention
+    /// enabled.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// If <c>StorageStatus</c> is disabled, no data will be stored, and the <c>StreamARN</c>
+    /// parameter will not be needed. 
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class MediaStorageConfiguration
     {
@@ -58,7 +72,7 @@ namespace Amazon.KinesisVideo.Model
         /// <summary>
         /// Gets and sets the property StreamARN. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the stream 
+        /// The Amazon Resource Name (ARN) of the stream. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

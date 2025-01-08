@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(Visual requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBarChartVisual())
             {
                 context.Writer.WritePropertyName("BarChartVisual");
@@ -188,6 +191,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                 context.Writer.WriteObjectEnd();
             }
 
+            if(requestObject.IsSetLayerMapVisual())
+            {
+                context.Writer.WritePropertyName("LayerMapVisual");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = LayerMapVisualMarshaller.Instance;
+                marshaller.Marshall(requestObject.LayerMapVisual, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetLineChartVisual())
             {
                 context.Writer.WritePropertyName("LineChartVisual");
@@ -217,6 +231,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = PivotTableVisualMarshaller.Instance;
                 marshaller.Marshall(requestObject.PivotTableVisual, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetPluginVisual())
+            {
+                context.Writer.WritePropertyName("PluginVisual");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = PluginVisualMarshaller.Instance;
+                marshaller.Marshall(requestObject.PluginVisual, context);
 
                 context.Writer.WriteObjectEnd();
             }

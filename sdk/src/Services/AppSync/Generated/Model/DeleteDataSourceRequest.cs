@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteDataSource operation.
-    /// Deletes a <code>DataSource</code> object.
+    /// Deletes a <c>DataSource</c> object.
     /// </summary>
     public partial class DeleteDataSourceRequest : AmazonAppSyncRequest
     {

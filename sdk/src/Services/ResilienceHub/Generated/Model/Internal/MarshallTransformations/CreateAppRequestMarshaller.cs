@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,12 +64,19 @@ namespace Amazon.ResilienceHub.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAssessmentSchedule())
                 {
                     context.Writer.WritePropertyName("assessmentSchedule");
                     context.Writer.Write(publicRequest.AssessmentSchedule);
+                }
+
+                if(publicRequest.IsSetAwsApplicationArn())
+                {
+                    context.Writer.WritePropertyName("awsApplicationArn");
+                    context.Writer.Write(publicRequest.AwsApplicationArn);
                 }
 
                 if(publicRequest.IsSetClientToken())

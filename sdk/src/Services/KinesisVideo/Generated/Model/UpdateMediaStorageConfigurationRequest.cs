@@ -26,35 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisVideo.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateMediaStorageConfiguration operation.
-    /// <important> 
-    /// <para>
-    /// This API is related to <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html">WebRTC
-    /// Ingestion</a> and is only available in the <code>us-west-2</code> region.
-    /// </para>
-    ///  </important> 
-    /// <para>
-    /// Associates a <code>SignalingChannel</code> to a stream to store the media. There are
-    /// two signaling modes that can specified :
-    /// </para>
+    /// Associates a <c>SignalingChannel</c> to a stream to store the media. There are two
+    /// signaling modes that you can specify :
+    /// 
     ///  <ul> <li> 
     /// <para>
-    /// If the <code>StorageStatus</code> is disabled, no data will be stored, and the <code>StreamARN</code>
-    /// parameter will not be needed. 
+    /// If <c>StorageStatus</c> is enabled, the data will be stored in the <c>StreamARN</c>
+    /// provided. In order for WebRTC Ingestion to work, the stream must have data retention
+    /// enabled.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If the <code>StorageStatus</code> is enabled, the data will be stored in the <code>StreamARN</code>
-    /// provided. 
+    /// If <c>StorageStatus</c> is disabled, no data will be stored, and the <c>StreamARN</c>
+    /// parameter will not be needed. 
     /// </para>
     ///  </li> </ul> <important> 
     /// <para>
-    /// If <code>StorageStatus</code> is enabled, direct peer-to-peer (master-viewer) connections
+    /// If <c>StorageStatus</c> is enabled, direct peer-to-peer (master-viewer) connections
     /// no longer occur. Peers connect directly to the storage session. You must call the
-    /// <code>JoinStorageSession</code> API to trigger an SDP offer send and establish a connection
+    /// <c>JoinStorageSession</c> API to trigger an SDP offer send and establish a connection
     /// between a peer and the storage session. 
     /// </para>
     ///  </important>

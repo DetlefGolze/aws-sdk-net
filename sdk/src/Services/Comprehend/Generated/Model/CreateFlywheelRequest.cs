@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -66,14 +67,15 @@ namespace Amazon.Comprehend.Model
         private DataSecurityConfig _dataSecurityConfig;
         private string _flywheelName;
         private ModelType _modelType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private TaskConfig _taskConfig;
 
         /// <summary>
         /// Gets and sets the property ActiveModelArn. 
         /// <para>
         /// To associate an existing model with the flywheel, specify the Amazon Resource Number
-        /// (ARN) of the model version.
+        /// (ARN) of the model version. Do not set <c>TaskConfig</c> or <c>ModelType</c> if you
+        /// specify an <c>ActiveModelArn</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -189,7 +191,8 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property ModelType. 
         /// <para>
-        /// The model type.
+        /// The model type. You need to set <c>ModelType</c> if you are creating a flywheel for
+        /// a new model.
         /// </para>
         /// </summary>
         public ModelType ModelType
@@ -219,13 +222,14 @@ namespace Amazon.Comprehend.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TaskConfig. 
         /// <para>
-        /// Configuration about the custom classifier associated with the flywheel.
+        /// Configuration about the model associated with the flywheel. You need to set <c>TaskConfig</c>
+        /// if you are creating a flywheel for a new model.
         /// </para>
         /// </summary>
         public TaskConfig TaskConfig

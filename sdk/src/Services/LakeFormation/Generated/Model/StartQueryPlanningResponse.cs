@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.LakeFormation.Model
         /// <para>
         /// The ID of the plan query operation can be used to fetch the actual work unit descriptors
         /// that are produced as the result of the operation. The ID is also used to get the query
-        /// state and as an input to the <code>Execute</code> operation.
+        /// state and as an input to the <c>Execute</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

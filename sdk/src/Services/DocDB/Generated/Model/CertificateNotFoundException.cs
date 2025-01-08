@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
-    /// <code>CertificateIdentifier</code> doesn't refer to an existing certificate.
+    /// <c>CertificateIdentifier</c> doesn't refer to an existing certificate.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

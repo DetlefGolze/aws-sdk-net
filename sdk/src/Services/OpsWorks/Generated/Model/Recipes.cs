@@ -26,16 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// AWS OpsWorks Stacks supports five lifecycle events: <b>setup</b>, <b>configuration</b>,
-    /// <b>deploy</b>, <b>undeploy</b>, and <b>shutdown</b>. For each layer, AWS OpsWorks
-    /// Stacks runs a set of standard recipes for each event. In addition, you can provide
-    /// custom recipes for any or all layers and events. AWS OpsWorks Stacks runs custom event
-    /// recipes after the standard recipes. <code>LayerCustomRecipes</code> specifies the
-    /// custom recipes for a particular layer to be run in response to each of the five events.
-    /// 
+    /// OpsWorks Stacks supports five lifecycle events: <b>setup</b>, <b>configuration</b>,
+    /// <b>deploy</b>, <b>undeploy</b>, and <b>shutdown</b>. For each layer, OpsWorks Stacks
+    /// runs a set of standard recipes for each event. In addition, you can provide custom
+    /// recipes for any or all layers and events. OpsWorks Stacks runs custom event recipes
+    /// after the standard recipes. <c>LayerCustomRecipes</c> specifies the custom recipes
+    /// for a particular layer to be run in response to each of the five events. 
     /// 
     ///  
     /// <para>
@@ -47,16 +47,16 @@ namespace Amazon.OpsWorks.Model
     /// </summary>
     public partial class Recipes
     {
-        private List<string> _configure = new List<string>();
-        private List<string> _deploy = new List<string>();
-        private List<string> _setup = new List<string>();
-        private List<string> _shutdown = new List<string>();
-        private List<string> _undeploy = new List<string>();
+        private List<string> _configure = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _deploy = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _setup = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _shutdown = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _undeploy = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Configure. 
         /// <para>
-        /// An array of custom recipe names to be run following a <code>configure</code> event.
+        /// An array of custom recipe names to be run following a <c>configure</c> event.
         /// </para>
         /// </summary>
         public List<string> Configure
@@ -68,13 +68,13 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Configure property is set
         internal bool IsSetConfigure()
         {
-            return this._configure != null && this._configure.Count > 0; 
+            return this._configure != null && (this._configure.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Deploy. 
         /// <para>
-        /// An array of custom recipe names to be run following a <code>deploy</code> event.
+        /// An array of custom recipe names to be run following a <c>deploy</c> event.
         /// </para>
         /// </summary>
         public List<string> Deploy
@@ -86,13 +86,13 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Deploy property is set
         internal bool IsSetDeploy()
         {
-            return this._deploy != null && this._deploy.Count > 0; 
+            return this._deploy != null && (this._deploy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Setup. 
         /// <para>
-        /// An array of custom recipe names to be run following a <code>setup</code> event.
+        /// An array of custom recipe names to be run following a <c>setup</c> event.
         /// </para>
         /// </summary>
         public List<string> Setup
@@ -104,13 +104,13 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Setup property is set
         internal bool IsSetSetup()
         {
-            return this._setup != null && this._setup.Count > 0; 
+            return this._setup != null && (this._setup.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Shutdown. 
         /// <para>
-        /// An array of custom recipe names to be run following a <code>shutdown</code> event.
+        /// An array of custom recipe names to be run following a <c>shutdown</c> event.
         /// </para>
         /// </summary>
         public List<string> Shutdown
@@ -122,13 +122,13 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Shutdown property is set
         internal bool IsSetShutdown()
         {
-            return this._shutdown != null && this._shutdown.Count > 0; 
+            return this._shutdown != null && (this._shutdown.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Undeploy. 
         /// <para>
-        /// An array of custom recipe names to be run following a <code>undeploy</code> event.
+        /// An array of custom recipe names to be run following a <c>undeploy</c> event.
         /// </para>
         /// </summary>
         public List<string> Undeploy
@@ -140,7 +140,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Undeploy property is set
         internal bool IsSetUndeploy()
         {
-            return this._undeploy != null && this._undeploy.Count > 0; 
+            return this._undeploy != null && (this._undeploy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

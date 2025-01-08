@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Specifies where to store data classification results, and the encryption settings
-    /// to use when storing results in that location. The location must be an S3 bucket.
+    /// to use when storing results in that location. The location must be an S3 general purpose
+    /// bucket.
     /// </summary>
     public partial class ClassificationExportConfiguration
     {

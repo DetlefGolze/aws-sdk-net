@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
     /// Container for the parameters to the GetClusterCredentials operation.
     /// Returns a database user name and temporary password with temporary authorization to
     /// log on to an Amazon Redshift database. The action returns the database user name prefixed
-    /// with <code>IAM:</code> if <code>AutoCreate</code> is <code>False</code> or <code>IAMA:</code>
-    /// if <code>AutoCreate</code> is <code>True</code>. You can optionally specify one or
-    /// more database user groups that the user will join at log on. By default, the temporary
-    /// credentials expire in 900 seconds. You can optionally specify a duration between 900
-    /// seconds (15 minutes) and 3600 seconds (60 minutes). For more information, see <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html">Using
+    /// with <c>IAM:</c> if <c>AutoCreate</c> is <c>False</c> or <c>IAMA:</c> if <c>AutoCreate</c>
+    /// is <c>True</c>. You can optionally specify one or more database user groups that the
+    /// user will join at log on. By default, the temporary credentials expire in 900 seconds.
+    /// You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds
+    /// (60 minutes). For more information, see <a href="https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html">Using
     /// IAM Authentication to Generate Database User Credentials</a> in the Amazon Redshift
     /// Cluster Management Guide.
     /// 
@@ -49,19 +50,18 @@ namespace Amazon.Redshift.Model
     /// </para>
     ///  
     /// <para>
-    /// If the <code>DbGroups</code> parameter is specified, the IAM policy must allow the
-    /// <code>redshift:JoinGroup</code> action with access to the listed <code>dbgroups</code>.
-    /// 
+    /// If the <c>DbGroups</c> parameter is specified, the IAM policy must allow the <c>redshift:JoinGroup</c>
+    /// action with access to the listed <c>dbgroups</c>. 
     /// </para>
     ///  
     /// <para>
-    /// In addition, if the <code>AutoCreate</code> parameter is set to <code>True</code>,
-    /// then the policy must include the <code>redshift:CreateClusterUser</code> permission.
+    /// In addition, if the <c>AutoCreate</c> parameter is set to <c>True</c>, then the policy
+    /// must include the <c>redshift:CreateClusterUser</c> permission.
     /// </para>
     ///  
     /// <para>
-    /// If the <code>DbName</code> parameter is specified, the IAM policy must allow access
-    /// to the resource <code>dbname</code> for the specified database name. 
+    /// If the <c>DbName</c> parameter is specified, the IAM policy must allow access to the
+    /// resource <c>dbname</c> for the specified database name. 
     /// </para>
     /// </summary>
     public partial class GetClusterCredentialsRequest : AmazonRedshiftRequest
@@ -69,7 +69,7 @@ namespace Amazon.Redshift.Model
         private bool? _autoCreate;
         private string _clusterIdentifier;
         private string _customDomainName;
-        private List<string> _dbGroups = new List<string>();
+        private List<string> _dbGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _dbName;
         private string _dbUser;
         private int? _durationSeconds;
@@ -77,7 +77,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property AutoCreate. 
         /// <para>
-        /// Create a database user with the name specified for the user named in <code>DbUser</code>
+        /// Create a database user with the name specified for the user named in <c>DbUser</c>
         /// if one does not exist.
         /// </para>
         /// </summary>
@@ -135,7 +135,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property DbGroups. 
         /// <para>
-        /// A list of the names of existing database groups that the user named in <code>DbUser</code>
+        /// A list of the names of existing database groups that the user named in <c>DbUser</c>
         /// will join for the current session, in addition to any group memberships for an existing
         /// user. If not specified, a new user is added only to PUBLIC.
         /// </para>
@@ -176,14 +176,14 @@ namespace Amazon.Redshift.Model
         // Check to see if DbGroups property is set
         internal bool IsSetDbGroups()
         {
-            return this._dbGroups != null && this._dbGroups.Count > 0; 
+            return this._dbGroups != null && (this._dbGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DbName. 
         /// <para>
-        /// The name of a database that <code>DbUser</code> is authorized to log on to. If <code>DbName</code>
-        /// is not specified, <code>DbUser</code> can log on to any existing database.
+        /// The name of a database that <c>DbUser</c> is authorized to log on to. If <c>DbName</c>
+        /// is not specified, <c>DbUser</c> can log on to any existing database.
         /// </para>
         ///  
         /// <para>
@@ -229,14 +229,13 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property DbUser. 
         /// <para>
-        /// The name of a database user. If a user name matching <code>DbUser</code> exists in
-        /// the database, the temporary user credentials have the same permissions as the existing
-        /// user. If <code>DbUser</code> doesn't exist in the database and <code>Autocreate</code>
-        /// is <code>True</code>, a new user is created using the value for <code>DbUser</code>
-        /// with PUBLIC permissions. If a database user matching the value for <code>DbUser</code>
-        /// doesn't exist and <code>Autocreate</code> is <code>False</code>, then the command
-        /// succeeds but the connection attempt will fail because the user doesn't exist in the
-        /// database.
+        /// The name of a database user. If a user name matching <c>DbUser</c> exists in the database,
+        /// the temporary user credentials have the same permissions as the existing user. If
+        /// <c>DbUser</c> doesn't exist in the database and <c>Autocreate</c> is <c>True</c>,
+        /// a new user is created using the value for <c>DbUser</c> with PUBLIC permissions. If
+        /// a database user matching the value for <c>DbUser</c> doesn't exist and <c>Autocreate</c>
+        /// is <c>False</c>, then the command succeeds but the connection attempt will fail because
+        /// the user doesn't exist in the database.
         /// </para>
         ///  
         /// <para>
@@ -249,7 +248,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be 1 to 64 alphanumeric characters or hyphens. The user name can't be <code>PUBLIC</code>.
+        /// Must be 1 to 64 alphanumeric characters or hyphens. The user name can't be <c>PUBLIC</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>

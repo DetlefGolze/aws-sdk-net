@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.MediaLive.Model
         private string _inputDeviceId;
 
         /// <summary>
-        /// Gets and sets the property InputDeviceId. The unique ID of the input device to reboot.
+        /// Gets and sets the property InputDeviceId. The unique ID of the input device to stop.
         /// For example, hd-123456789abcdef.
         /// </summary>
         [AWSProperty(Required=true)]

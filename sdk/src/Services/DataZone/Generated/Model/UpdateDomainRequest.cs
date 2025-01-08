@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.DataZone.Model
         private string _domainExecutionRole;
         private string _identifier;
         private string _name;
+        private string _serviceRole;
         private SingleSignOn _singleSignOn;
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
-        /// The description to be updated as part of the <code>UpdateDomain</code> action.
+        /// The description to be updated as part of the <c>UpdateDomain</c> action.
         /// </para>
         /// </summary>
         public string Description
@@ -81,7 +83,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property DomainExecutionRole. 
         /// <para>
-        /// The domain execution role to be updated as part of the <code>UpdateDomain</code> action.
+        /// The domain execution role to be updated as part of the <c>UpdateDomain</c> action.
         /// </para>
         /// </summary>
         public string DomainExecutionRole
@@ -118,7 +120,7 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name to be updated as part of the <code>UpdateDomain</code> action.
+        /// The name to be updated as part of the <c>UpdateDomain</c> action.
         /// </para>
         /// </summary>
         public string Name
@@ -134,9 +136,27 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ServiceRole. 
+        /// <para>
+        /// The service role of the domain.
+        /// </para>
+        /// </summary>
+        public string ServiceRole
+        {
+            get { return this._serviceRole; }
+            set { this._serviceRole = value; }
+        }
+
+        // Check to see if ServiceRole property is set
+        internal bool IsSetServiceRole()
+        {
+            return this._serviceRole != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SingleSignOn. 
         /// <para>
-        /// The single sign-on option to be updated as part of the <code>UpdateDomain</code> action.
+        /// The single sign-on option to be updated as part of the <c>UpdateDomain</c> action.
         /// </para>
         /// </summary>
         public SingleSignOn SingleSignOn

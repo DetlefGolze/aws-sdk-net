@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Container for the parameters to the DefineExpression operation.
-    /// Configures an <code><a>Expression</a></code> for the search domain. Used to create
-    /// new expressions and modify existing ones. If the expression exists, the new configuration
-    /// replaces the old one. For more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
+    /// Configures an <c><a>Expression</a></c> for the search domain. Used to create new expressions
+    /// and modify existing ones. If the expression exists, the new configuration replaces
+    /// the old one. For more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
     /// target="_blank">Configuring Expressions</a> in the <i>Amazon CloudSearch Developer
     /// Guide</i>.
     /// </summary>

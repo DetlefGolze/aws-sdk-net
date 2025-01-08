@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Amplify.Model
     /// </summary>
     public partial class CreateDeploymentResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, string> _fileUploadUrls = new Dictionary<string, string>();
+        private Dictionary<string, string> _fileUploadUrls = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _jobId;
         private string _zipUploadUrl;
 
         /// <summary>
         /// Gets and sets the property FileUploadUrls. 
         /// <para>
-        ///  When the <code>fileMap</code> argument is provided in the request, <code>fileUploadUrls</code>
+        ///  When the <c>fileMap</c> argument is provided in the request, <c>fileUploadUrls</c>
         /// will contain a map of file names to upload URLs. 
         /// </para>
         /// </summary>
@@ -54,7 +55,7 @@ namespace Amazon.Amplify.Model
         // Check to see if FileUploadUrls property is set
         internal bool IsSetFileUploadUrls()
         {
-            return this._fileUploadUrls != null && this._fileUploadUrls.Count > 0; 
+            return this._fileUploadUrls != null && (this._fileUploadUrls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property ZipUploadUrl. 
         /// <para>
-        ///  When the <code>fileMap</code> argument is not provided in the request, this <code>zipUploadUrl</code>
+        ///  When the <c>fileMap</c> argument is not provided in the request, this <c>zipUploadUrl</c>
         /// is returned. 
         /// </para>
         /// </summary>

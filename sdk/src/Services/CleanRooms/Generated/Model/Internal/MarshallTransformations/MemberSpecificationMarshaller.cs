@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(MemberSpecification requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAccountId())
             {
                 context.Writer.WritePropertyName("accountId");
@@ -66,6 +69,28 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                         context.Writer.Write(requestObjectMemberAbilitiesListValue);
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetMlMemberAbilities())
+            {
+                context.Writer.WritePropertyName("mlMemberAbilities");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = MLMemberAbilitiesMarshaller.Instance;
+                marshaller.Marshall(requestObject.MlMemberAbilities, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetPaymentConfiguration())
+            {
+                context.Writer.WritePropertyName("paymentConfiguration");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = PaymentConfigurationMarshaller.Instance;
+                marshaller.Marshall(requestObject.PaymentConfiguration, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
         }

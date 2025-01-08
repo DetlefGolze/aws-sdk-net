@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.IdentityManagement.Model
     ///  
     /// <para>
     /// By default, Security Token Service (STS) is available as a global service, and all
-    /// STS requests go to a single endpoint at <code>https://sts.amazonaws.com</code>. Amazon
-    /// Web Services recommends using Regional STS endpoints to reduce latency, build in redundancy,
+    /// STS requests go to a single endpoint at <c>https://sts.amazonaws.com</c>. Amazon Web
+    /// Services recommends using Regional STS endpoints to reduce latency, build in redundancy,
     /// and increase session token availability. For information about Regional endpoints
     /// for STS, see <a href="https://docs.aws.amazon.com/general/latest/gr/sts.html">Security
     /// Token Service endpoints and quotas</a> in the <i>Amazon Web Services General Reference</i>.
@@ -55,7 +56,7 @@ namespace Amazon.IdentityManagement.Model
     /// </para>
     ///  
     /// <para>
-    /// To view the current session token version, see the <code>GlobalEndpointTokenVersion</code>
+    /// To view the current session token version, see the <c>GlobalEndpointTokenVersion</c>
     /// entry in the response of the <a>GetAccountSummary</a> operation.
     /// </para>
     /// </summary>

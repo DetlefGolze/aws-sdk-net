@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecurityHub.Model
     public partial class AwsRdsDbInstanceDetails
     {
         private int? _allocatedStorage;
-        private List<AwsRdsDbInstanceAssociatedRole> _associatedRoles = new List<AwsRdsDbInstanceAssociatedRole>();
+        private List<AwsRdsDbInstanceAssociatedRole> _associatedRoles = AWSConfigs.InitializeCollections ? new List<AwsRdsDbInstanceAssociatedRole>() : null;
         private bool? _autoMinorVersionUpgrade;
         private string _availabilityZone;
         private int? _backupRetentionPeriod;
@@ -48,12 +49,12 @@ namespace Amazon.SecurityHub.Model
         private string _dbInstanceStatus;
         private string _dbiResourceId;
         private string _dbName;
-        private List<AwsRdsDbParameterGroup> _dbParameterGroups = new List<AwsRdsDbParameterGroup>();
-        private List<string> _dbSecurityGroups = new List<string>();
+        private List<AwsRdsDbParameterGroup> _dbParameterGroups = AWSConfigs.InitializeCollections ? new List<AwsRdsDbParameterGroup>() : null;
+        private List<string> _dbSecurityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AwsRdsDbSubnetGroup _dbSubnetGroup;
         private bool? _deletionProtection;
-        private List<AwsRdsDbDomainMembership> _domainMemberships = new List<AwsRdsDbDomainMembership>();
-        private List<string> _enabledCloudWatchLogsExports = new List<string>();
+        private List<AwsRdsDbDomainMembership> _domainMemberships = AWSConfigs.InitializeCollections ? new List<AwsRdsDbDomainMembership>() : null;
+        private List<string> _enabledCloudWatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AwsRdsDbInstanceEndpoint _endpoint;
         private string _engine;
         private string _engineVersion;
@@ -70,26 +71,26 @@ namespace Amazon.SecurityHub.Model
         private int? _monitoringInterval;
         private string _monitoringRoleArn;
         private bool? _multiAz;
-        private List<AwsRdsDbOptionGroupMembership> _optionGroupMemberships = new List<AwsRdsDbOptionGroupMembership>();
+        private List<AwsRdsDbOptionGroupMembership> _optionGroupMemberships = AWSConfigs.InitializeCollections ? new List<AwsRdsDbOptionGroupMembership>() : null;
         private AwsRdsDbPendingModifiedValues _pendingModifiedValues;
         private bool? _performanceInsightsEnabled;
         private string _performanceInsightsKmsKeyId;
         private int? _performanceInsightsRetentionPeriod;
         private string _preferredBackupWindow;
         private string _preferredMaintenanceWindow;
-        private List<AwsRdsDbProcessorFeature> _processorFeatures = new List<AwsRdsDbProcessorFeature>();
+        private List<AwsRdsDbProcessorFeature> _processorFeatures = AWSConfigs.InitializeCollections ? new List<AwsRdsDbProcessorFeature>() : null;
         private int? _promotionTier;
         private bool? _publiclyAccessible;
-        private List<string> _readReplicaDBClusterIdentifiers = new List<string>();
-        private List<string> _readReplicaDBInstanceIdentifiers = new List<string>();
+        private List<string> _readReplicaDBClusterIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _readReplicaDBInstanceIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _readReplicaSourceDBInstanceIdentifier;
         private string _secondaryAvailabilityZone;
-        private List<AwsRdsDbStatusInfo> _statusInfos = new List<AwsRdsDbStatusInfo>();
+        private List<AwsRdsDbStatusInfo> _statusInfos = AWSConfigs.InitializeCollections ? new List<AwsRdsDbStatusInfo>() : null;
         private bool? _storageEncrypted;
         private string _storageType;
         private string _tdeCredentialArn;
         private string _timezone;
-        private List<AwsRdsDbInstanceVpcSecurityGroup> _vpcSecurityGroups = new List<AwsRdsDbInstanceVpcSecurityGroup>();
+        private List<AwsRdsDbInstanceVpcSecurityGroup> _vpcSecurityGroups = AWSConfigs.InitializeCollections ? new List<AwsRdsDbInstanceVpcSecurityGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
@@ -124,7 +125,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if AssociatedRoles property is set
         internal bool IsSetAssociatedRoles()
         {
-            return this._associatedRoles != null && this._associatedRoles.Count > 0; 
+            return this._associatedRoles != null && (this._associatedRoles.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -370,7 +371,7 @@ namespace Amazon.SecurityHub.Model
         ///  
         /// <para>
         /// Contains the Oracle System ID (SID) of the created DB instance. Not shown when the
-        /// returned parameters do not apply to an Oracle DB instance. 
+        /// returned parameters don't apply to an Oracle DB instance. 
         /// </para>
         /// </summary>
         public string DBName
@@ -400,7 +401,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DbParameterGroups property is set
         internal bool IsSetDbParameterGroups()
         {
-            return this._dbParameterGroups != null && this._dbParameterGroups.Count > 0; 
+            return this._dbParameterGroups != null && (this._dbParameterGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -418,7 +419,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DbSecurityGroups property is set
         internal bool IsSetDbSecurityGroups()
         {
-            return this._dbSecurityGroups != null && this._dbSecurityGroups.Count > 0; 
+            return this._dbSecurityGroups != null && (this._dbSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -476,7 +477,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if DomainMemberships property is set
         internal bool IsSetDomainMemberships()
         {
-            return this._domainMemberships != null && this._domainMemberships.Count > 0; 
+            return this._domainMemberships != null && (this._domainMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -494,7 +495,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if EnabledCloudWatchLogsExports property is set
         internal bool IsSetEnabledCloudWatchLogsExports()
         {
-            return this._enabledCloudWatchLogsExports != null && this._enabledCloudWatchLogsExports.Count > 0; 
+            return this._enabledCloudWatchLogsExports != null && (this._enabledCloudWatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -612,9 +613,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string InstanceCreateTime
@@ -650,8 +650,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// If <code>StorageEncrypted</code> is true, the KMS key identifier for the encrypted
-        /// DB instance.
+        /// If <c>StorageEncrypted</c> is true, the KMS key identifier for the encrypted DB instance.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -673,9 +672,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string LatestRestorableTime
@@ -831,7 +829,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if OptionGroupMemberships property is set
         internal bool IsSetOptionGroupMemberships()
         {
-            return this._optionGroupMemberships != null && this._optionGroupMemberships.Count > 0; 
+            return this._optionGroupMemberships != null && (this._optionGroupMemberships.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -914,7 +912,7 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the format <code>HH:MM-HH:MM</code>. For example, <code>04:52-05:22</code>.
+        /// Uses the format <c>HH:MM-HH:MM</c>. For example, <c>04:52-05:22</c>.
         /// </para>
         /// </summary>
         public string PreferredBackupWindow
@@ -937,15 +935,15 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the format <code>&lt;day&gt;:HH:MM-&lt;day&gt;:HH:MM</code>.
+        /// Uses the format <c>&lt;day&gt;:HH:MM-&lt;day&gt;:HH:MM</c>.
         /// </para>
         ///  
         /// <para>
-        /// For the day values, use <code>mon</code>|<code>tue</code>|<code>wed</code>|<code>thu</code>|<code>fri</code>|<code>sat</code>|<code>sun</code>.
+        /// For the day values, use <c>mon</c>|<c>tue</c>|<c>wed</c>|<c>thu</c>|<c>fri</c>|<c>sat</c>|<c>sun</c>.
         /// </para>
         ///  
         /// <para>
-        /// For example, <code>sun:09:32-sun:10:02</code>.
+        /// For example, <c>sun:09:32-sun:10:02</c>.
         /// </para>
         /// </summary>
         public string PreferredMaintenanceWindow
@@ -976,7 +974,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ProcessorFeatures property is set
         internal bool IsSetProcessorFeatures()
         {
-            return this._processorFeatures != null && this._processorFeatures.Count > 0; 
+            return this._processorFeatures != null && (this._processorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1042,7 +1040,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ReadReplicaDBClusterIdentifiers property is set
         internal bool IsSetReadReplicaDBClusterIdentifiers()
         {
-            return this._readReplicaDBClusterIdentifiers != null && this._readReplicaDBClusterIdentifiers.Count > 0; 
+            return this._readReplicaDBClusterIdentifiers != null && (this._readReplicaDBClusterIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1060,7 +1058,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ReadReplicaDBInstanceIdentifiers property is set
         internal bool IsSetReadReplicaDBInstanceIdentifiers()
         {
-            return this._readReplicaDBInstanceIdentifiers != null && this._readReplicaDBInstanceIdentifiers.Count > 0; 
+            return this._readReplicaDBInstanceIdentifiers != null && (this._readReplicaDBInstanceIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1115,7 +1113,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if StatusInfos property is set
         internal bool IsSetStatusInfos()
         {
-            return this._statusInfos != null && this._statusInfos.Count > 0; 
+            return this._statusInfos != null && (this._statusInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -1205,7 +1203,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if VpcSecurityGroups property is set
         internal bool IsSetVpcSecurityGroups()
         {
-            return this._vpcSecurityGroups != null && this._vpcSecurityGroups.Count > 0; 
+            return this._vpcSecurityGroups != null && (this._vpcSecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

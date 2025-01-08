@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     ///  
     /// <para>
     /// If the specified opt-out list name doesn't exist or is in-use by an origination phone
-    /// number or pool, an Error is returned.
+    /// number or pool, an error is returned.
     /// </para>
     /// </summary>
     public partial class DeleteOptOutListRequest : AmazonPinpointSMSVoiceV2Request
@@ -49,6 +50,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// The OptOutListName or OptOutListArn of the OptOutList to delete. You can use <a>DescribeOptOutLists</a>
         /// to find the values for OptOutListName and OptOutListArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OptOutListName

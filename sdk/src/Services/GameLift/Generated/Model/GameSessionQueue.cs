@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.GameLift.Model
     public partial class GameSessionQueue
     {
         private string _customEventData;
-        private List<GameSessionQueueDestination> _destinations = new List<GameSessionQueueDestination>();
+        private List<GameSessionQueueDestination> _destinations = AWSConfigs.InitializeCollections ? new List<GameSessionQueueDestination>() : null;
         private FilterConfiguration _filterConfiguration;
         private string _gameSessionQueueArn;
         private string _name;
         private string _notificationTarget;
-        private List<PlayerLatencyPolicy> _playerLatencyPolicies = new List<PlayerLatencyPolicy>();
+        private List<PlayerLatencyPolicy> _playerLatencyPolicies = AWSConfigs.InitializeCollections ? new List<PlayerLatencyPolicy>() : null;
         private PriorityConfiguration _priorityConfiguration;
         private int? _timeoutInSeconds;
 
@@ -80,14 +81,14 @@ namespace Amazon.GameLift.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FilterConfiguration. 
         /// <para>
         /// A list of locations where a queue is allowed to place new game sessions. Locations
-        /// are specified in the form of Amazon Web Services Region codes, such as <code>us-west-2</code>.
+        /// are specified in the form of Amazon Web Services Region codes, such as <c>us-west-2</c>.
         /// If this parameter is not set, game sessions can be placed in any queue location. 
         /// </para>
         /// </summary>
@@ -108,8 +109,8 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The Amazon Resource Name (<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-arn-format.html">ARN</a>)
         /// that is assigned to a Amazon GameLift game session queue resource and uniquely identifies
-        /// it. ARNs are unique across all Regions. Format is <code>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
-        /// name&gt;</code>. In a Amazon GameLift game session queue ARN, the resource ID matches
+        /// it. ARNs are unique across all Regions. Format is <c>arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue
+        /// name&gt;</c>. In a Amazon GameLift game session queue ARN, the resource ID matches
         /// the <i>Name</i> value.
         /// </para>
         /// </summary>
@@ -170,11 +171,10 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property PlayerLatencyPolicies. 
         /// <para>
-        /// A set of policies that act as a sliding cap on player latency. FleetIQ works to deliver
-        /// low latency for most players in a game session. These policies ensure that no individual
-        /// player can be placed into a game with unreasonably high latency. Use multiple policies
-        /// to gradually relax latency requirements a step at a time. Multiple policies are applied
-        /// based on their maximum allowed latency, starting with the lowest value. 
+        /// A set of policies that enforce a sliding cap on player latency when processing game
+        /// sessions placement requests. Use multiple policies to gradually relax the cap over
+        /// time if Amazon GameLift can't make a placement. Policies are evaluated in order starting
+        /// with the lowest maximum latency value. 
         /// </para>
         /// </summary>
         public List<PlayerLatencyPolicy> PlayerLatencyPolicies
@@ -186,7 +186,7 @@ namespace Amazon.GameLift.Model
         // Check to see if PlayerLatencyPolicies property is set
         internal bool IsSetPlayerLatencyPolicies()
         {
-            return this._playerLatencyPolicies != null && this._playerLatencyPolicies.Count > 0; 
+            return this._playerLatencyPolicies != null && (this._playerLatencyPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The maximum time, in seconds, that a new game session placement request remains in
         /// the queue. When a request exceeds this time, the game session placement changes to
-        /// a <code>TIMED_OUT</code> status. By default, this property is set to <code>600</code>.
+        /// a <c>TIMED_OUT</c> status.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

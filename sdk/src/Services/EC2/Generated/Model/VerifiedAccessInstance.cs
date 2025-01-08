@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,13 +34,32 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class VerifiedAccessInstance
     {
+        private VerifiedAccessInstanceCustomSubDomain _cidrEndpointsCustomSubDomain;
         private string _creationTime;
         private string _description;
         private bool? _fipsEnabled;
         private string _lastUpdatedTime;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _verifiedAccessInstanceId;
-        private List<VerifiedAccessTrustProviderCondensed> _verifiedAccessTrustProviders = new List<VerifiedAccessTrustProviderCondensed>();
+        private List<VerifiedAccessTrustProviderCondensed> _verifiedAccessTrustProviders = AWSConfigs.InitializeCollections ? new List<VerifiedAccessTrustProviderCondensed>() : null;
+
+        /// <summary>
+        /// Gets and sets the property CidrEndpointsCustomSubDomain. 
+        /// <para>
+        /// The custom subdomain.
+        /// </para>
+        /// </summary>
+        public VerifiedAccessInstanceCustomSubDomain CidrEndpointsCustomSubDomain
+        {
+            get { return this._cidrEndpointsCustomSubDomain; }
+            set { this._cidrEndpointsCustomSubDomain = value; }
+        }
+
+        // Check to see if CidrEndpointsCustomSubDomain property is set
+        internal bool IsSetCidrEndpointsCustomSubDomain()
+        {
+            return this._cidrEndpointsCustomSubDomain != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
@@ -80,7 +100,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property FipsEnabled. 
         /// <para>
-        /// Describes whether support for Federal Information Processing Standards (FIPS) is enabled
+        /// Indicates whether support for Federal Information Processing Standards (FIPS) is enabled
         /// on the instance.
         /// </para>
         /// </summary>
@@ -129,7 +149,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -165,7 +185,7 @@ namespace Amazon.EC2.Model
         // Check to see if VerifiedAccessTrustProviders property is set
         internal bool IsSetVerifiedAccessTrustProviders()
         {
-            return this._verifiedAccessTrustProviders != null && this._verifiedAccessTrustProviders.Count > 0; 
+            return this._verifiedAccessTrustProviders != null && (this._verifiedAccessTrustProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -76,6 +77,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = IntUnmarshaller.Instance;
                         unmarshalledObject.DeviceIndex = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("enaSrdSpecification", targetDepth))
+                    {
+                        var unmarshaller = InstanceAttachmentEnaSrdSpecificationUnmarshaller.Instance;
+                        unmarshalledObject.EnaSrdSpecification = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("networkCardIndex", targetDepth))

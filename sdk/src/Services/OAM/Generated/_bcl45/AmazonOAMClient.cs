@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.OAM
 {
     /// <summary>
-    /// Implementation for accessing OAM
+    /// <para>Implementation for accessing OAM</para>
     ///
     /// Use Amazon CloudWatch Observability Access Manager to create and manage links between
     /// source accounts and monitoring accounts by using <i>CloudWatch cross-account observability</i>.
@@ -285,6 +286,9 @@ namespace Amazon.OAM
 
         /// <summary>
         /// Creates a link between a source account and a sink that you have created in a monitoring
+        /// account. After the link is created, data is sent from the source account to the monitoring
+        /// account. When you create a link, you can optionally specify filters that specify which
+        /// metric namespaces and which log groups are shared from the source account to the monitoring
         /// account.
         /// 
         ///  
@@ -339,6 +343,9 @@ namespace Amazon.OAM
 
         /// <summary>
         /// Creates a link between a source account and a sink that you have created in a monitoring
+        /// account. After the link is created, data is sent from the source account to the monitoring
+        /// account. When you create a link, you can optionally specify filters that specify which
+        /// metric namespaces and which log groups are shared from the source account to the monitoring
         /// account.
         /// 
         ///  
@@ -411,8 +418,8 @@ namespace Amazon.OAM
         /// </para>
         ///  
         /// <para>
-        /// Each account can contain one sink. If you delete a sink, you can then create a new
-        /// one in that account.
+        /// Each account can contain one sink per Region. If you delete a sink, you can then create
+        /// a new one in that Region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateSink service method.</param>
@@ -457,8 +464,8 @@ namespace Amazon.OAM
         /// </para>
         ///  
         /// <para>
-        /// Each account can contain one sink. If you delete a sink, you can then create a new
-        /// one in that account.
+        /// Each account can contain one sink per Region. If you delete a sink, you can then create
+        /// a new one in that Region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateSink service method.</param>
@@ -1144,19 +1151,19 @@ namespace Amazon.OAM
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Metrics</b> - Specify with <code>AWS::CloudWatch::Metric</code> 
+        ///  <b>Metrics</b> - Specify with <c>AWS::CloudWatch::Metric</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Log groups</b> - Specify with <code>AWS::Logs::LogGroup</code> 
+        ///  <b>Log groups</b> - Specify with <c>AWS::Logs::LogGroup</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Traces</b> - Specify with <code>AWS::XRay::Trace</code> 
+        ///  <b>Traces</b> - Specify with <c>AWS::XRay::Trace</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Application Insights - Applications</b> - Specify with <code>AWS::ApplicationInsights::Application</code>
+        ///  <b>Application Insights - Applications</b> - Specify with <c>AWS::ApplicationInsights::Application</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -1203,19 +1210,19 @@ namespace Amazon.OAM
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Metrics</b> - Specify with <code>AWS::CloudWatch::Metric</code> 
+        ///  <b>Metrics</b> - Specify with <c>AWS::CloudWatch::Metric</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Log groups</b> - Specify with <code>AWS::Logs::LogGroup</code> 
+        ///  <b>Log groups</b> - Specify with <c>AWS::Logs::LogGroup</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Traces</b> - Specify with <code>AWS::XRay::Trace</code> 
+        ///  <b>Traces</b> - Specify with <c>AWS::XRay::Trace</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Application Insights - Applications</b> - Specify with <code>AWS::ApplicationInsights::Application</code>
+        ///  <b>Application Insights - Applications</b> - Specify with <c>AWS::ApplicationInsights::Application</c>
         /// 
         /// </para>
         ///  </li> </ul> 
@@ -1274,8 +1281,8 @@ namespace Amazon.OAM
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> action with a resource that already has tags.
-        /// If you specify a new tag key for the alarm, this tag is appended to the list of tags
+        /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+        /// you specify a new tag key for the alarm, this tag is appended to the list of tags
         /// associated with the alarm. If you specify a tag key that is already associated with
         /// the alarm, the new tag value that you specify replaces the previous value for that
         /// tag.
@@ -1287,7 +1294,7 @@ namespace Amazon.OAM
         ///  <important> 
         /// <para>
         /// Unlike tagging permissions in other Amazon Web Services services, to tag or untag
-        /// links and sinks you must have the <code>oam:ResourceTag</code> permission. The <code>iam:ResourceTag</code>
+        /// links and sinks you must have the <c>oam:ResourceTag</c> permission. The <c>iam:ResourceTag</c>
         /// permission does not allow you to tag and untag links and sinks.
         /// </para>
         ///  </important>
@@ -1332,8 +1339,8 @@ namespace Amazon.OAM
         /// </para>
         ///  
         /// <para>
-        /// You can use the <code>TagResource</code> action with a resource that already has tags.
-        /// If you specify a new tag key for the alarm, this tag is appended to the list of tags
+        /// You can use the <c>TagResource</c> action with a resource that already has tags. If
+        /// you specify a new tag key for the alarm, this tag is appended to the list of tags
         /// associated with the alarm. If you specify a tag key that is already associated with
         /// the alarm, the new tag value that you specify replaces the previous value for that
         /// tag.
@@ -1345,7 +1352,7 @@ namespace Amazon.OAM
         ///  <important> 
         /// <para>
         /// Unlike tagging permissions in other Amazon Web Services services, to tag or untag
-        /// links and sinks you must have the <code>oam:ResourceTag</code> permission. The <code>iam:ResourceTag</code>
+        /// links and sinks you must have the <c>oam:ResourceTag</c> permission. The <c>iam:ResourceTag</c>
         /// permission does not allow you to tag and untag links and sinks.
         /// </para>
         ///  </important>
@@ -1386,7 +1393,7 @@ namespace Amazon.OAM
         ///  <important> 
         /// <para>
         /// Unlike tagging permissions in other Amazon Web Services services, to tag or untag
-        /// links and sinks you must have the <code>oam:ResourceTag</code> permission. The <code>iam:TagResource</code>
+        /// links and sinks you must have the <c>oam:ResourceTag</c> permission. The <c>iam:TagResource</c>
         /// permission does not allow you to tag and untag links and sinks.
         /// </para>
         ///  </important>
@@ -1417,7 +1424,7 @@ namespace Amazon.OAM
         ///  <important> 
         /// <para>
         /// Unlike tagging permissions in other Amazon Web Services services, to tag or untag
-        /// links and sinks you must have the <code>oam:ResourceTag</code> permission. The <code>iam:TagResource</code>
+        /// links and sinks you must have the <c>oam:ResourceTag</c> permission. The <c>iam:TagResource</c>
         /// permission does not allow you to tag and untag links and sinks.
         /// </para>
         ///  </important>
@@ -1456,6 +1463,12 @@ namespace Amazon.OAM
         /// 
         ///  
         /// <para>
+        /// When you update a link, you can optionally specify filters that specify which metric
+        /// namespaces and which log groups are shared from the source account to the monitoring
+        /// account.
+        /// </para>
+        ///  
+        /// <para>
         /// To update the list of tags associated with the sink, use <a href="https://docs.aws.amazon.com/OAM/latest/APIReference/API_TagResource.html">TagResource</a>.
         /// </para>
         /// </summary>
@@ -1490,6 +1503,12 @@ namespace Amazon.OAM
         /// its linked monitoring account sink. You can't change the sink or change the monitoring
         /// account with this operation.
         /// 
+        ///  
+        /// <para>
+        /// When you update a link, you can optionally specify filters that specify which metric
+        /// namespaces and which log groups are shared from the source account to the monitoring
+        /// account.
+        /// </para>
         ///  
         /// <para>
         /// To update the list of tags associated with the sink, use <a href="https://docs.aws.amazon.com/OAM/latest/APIReference/API_TagResource.html">TagResource</a>.
@@ -1534,11 +1553,11 @@ namespace Amazon.OAM
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

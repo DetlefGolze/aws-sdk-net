@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.CloudFront.Model
     public partial class FunctionConfig
     {
         private string _comment;
+        private KeyValueStoreAssociations _keyValueStoreAssociations;
         private FunctionRuntime _runtime;
 
         /// <summary>
@@ -56,9 +58,27 @@ namespace Amazon.CloudFront.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KeyValueStoreAssociations. 
+        /// <para>
+        /// The configuration for the key value store associations.
+        /// </para>
+        /// </summary>
+        public KeyValueStoreAssociations KeyValueStoreAssociations
+        {
+            get { return this._keyValueStoreAssociations; }
+            set { this._keyValueStoreAssociations = value; }
+        }
+
+        // Check to see if KeyValueStoreAssociations property is set
+        internal bool IsSetKeyValueStoreAssociations()
+        {
+            return this._keyValueStoreAssociations != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Runtime. 
         /// <para>
-        /// The function's runtime environment verion.
+        /// The function's runtime environment version.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

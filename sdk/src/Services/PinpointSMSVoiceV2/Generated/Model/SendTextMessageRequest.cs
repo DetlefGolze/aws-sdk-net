@@ -26,33 +26,37 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
     /// Container for the parameters to the SendTextMessage operation.
-    /// Creates a new text message and sends it to a recipient's phone number.
+    /// Creates a new text message and sends it to a recipient's phone number. SendTextMessage
+    /// only sends an SMS message to one recipient each time it is invoked.
     /// 
     ///  
     /// <para>
     /// SMS throughput limits are measured in Message Parts per Second (MPS). Your MPS limit
     /// depends on the destination country of your messages, as well as the type of phone
-    /// number (origination number) that you use to send the message. For more information,
-    /// see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-limitations-mps.html">Message
-    /// Parts per Second (MPS) limits</a> in the <i>Amazon Pinpoint User Guide</i>.
+    /// number (origination number) that you use to send the message. For more information
+    /// about MPS, see <a href="https://docs.aws.amazon.com/sms-voice/latest/userguide/sms-limitations-mps.html">Message
+    /// Parts per Second (MPS) limits</a> in the <i>AWS End User Messaging SMS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class SendTextMessageRequest : AmazonPinpointSMSVoiceV2Request
     {
         private string _configurationSetName;
-        private Dictionary<string, string> _context = new Dictionary<string, string>();
-        private Dictionary<string, string> _destinationCountryParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _context = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, string> _destinationCountryParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _destinationPhoneNumber;
         private bool? _dryRun;
         private string _keyword;
         private string _maxPrice;
         private string _messageBody;
+        private bool? _messageFeedbackEnabled;
         private MessageType _messageType;
         private string _originationIdentity;
+        private string _protectConfigurationId;
         private int? _timeToLive;
 
         /// <summary>
@@ -92,7 +96,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Context property is set
         internal bool IsSetContext()
         {
-            return this._context != null && this._context.Count > 0; 
+            return this._context != null && (this._context.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,6 +107,23 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// ID. For more information see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-senderid-india.html">Special
         /// requirements for sending SMS messages to recipients in India</a>. 
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>IN_ENTITY_ID</c> The entity ID or Principal Entity (PE) ID that you received after
+        /// completing the sender ID registration process.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>IN_TEMPLATE_ID</c> The template ID that you received after completing the sender
+        /// ID registration process.
+        /// </para>
+        ///  <important> 
+        /// <para>
+        /// Make sure that the Template ID that you specify matches your message template exactly.
+        /// If your message doesn't match the template that you provided during the registration
+        /// process, the mobile carriers might reject your message.
+        /// </para>
+        ///  </important> </li> </ul>
         /// </summary>
         [AWSProperty(Min=0, Max=10)]
         public Dictionary<string, string> DestinationCountryParameters
@@ -114,7 +135,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if DestinationCountryParameters property is set
         internal bool IsSetDestinationCountryParameters()
         {
-            return this._destinationCountryParameters != null && this._destinationCountryParameters.Count > 0; 
+            return this._destinationCountryParameters != null && (this._destinationCountryParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,7 +161,14 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// Gets and sets the property DryRun. 
         /// <para>
         /// When set to true, the message is checked and validated, but isn't sent to the end
-        /// recipient.
+        /// recipient. You are not charged for using <c>DryRun</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// The Message Parts per Second (MPS) limit when using <c>DryRun</c> is five. If your
+        /// origination identity has a lower MPS limit then the lower MPS limit is used. For more
+        /// information about MPS limits, see <a href="https://docs.aws.amazon.com/sms-voice/latest/userguide/sms-limitations-mps.html">Message
+        /// Parts per Second (MPS) limits</a> in the <i>AWS End User Messaging SMS User Guide</i>..
         /// </para>
         /// </summary>
         public bool DryRun
@@ -178,8 +206,9 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <summary>
         /// Gets and sets the property MaxPrice. 
         /// <para>
-        /// The maximum amount that you want to spend, in US dollars, per each text message part.
-        /// A text message can contain multiple parts.
+        /// The maximum amount that you want to spend, in US dollars, per each text message. If
+        /// the calculated amount to send the text message is greater than <c>MaxPrice</c>, the
+        /// message is not sent and an error is returned.
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=8)]
@@ -215,10 +244,29 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MessageFeedbackEnabled. 
+        /// <para>
+        /// Set to true to enable message feedback for the message. When a user receives the message
+        /// you need to update the message status using <a>PutMessageFeedback</a>.
+        /// </para>
+        /// </summary>
+        public bool MessageFeedbackEnabled
+        {
+            get { return this._messageFeedbackEnabled.GetValueOrDefault(); }
+            set { this._messageFeedbackEnabled = value; }
+        }
+
+        // Check to see if MessageFeedbackEnabled property is set
+        internal bool IsSetMessageFeedbackEnabled()
+        {
+            return this._messageFeedbackEnabled.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property MessageType. 
         /// <para>
-        /// The type of message. Valid values are TRANSACTIONAL for messages that are critical
-        /// or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.
+        /// The type of message. Valid values are for messages that are critical or time-sensitive
+        /// and PROMOTIONAL for messages that aren't critical or time-sensitive.
         /// </para>
         /// </summary>
         public MessageType MessageType
@@ -239,6 +287,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId,
         /// PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
         public string OriginationIdentity
@@ -254,9 +308,30 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ProtectConfigurationId. 
+        /// <para>
+        /// The unique identifier for the protect configuration.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string ProtectConfigurationId
+        {
+            get { return this._protectConfigurationId; }
+            set { this._protectConfigurationId = value; }
+        }
+
+        // Check to see if ProtectConfigurationId property is set
+        internal bool IsSetProtectConfigurationId()
+        {
+            return this._protectConfigurationId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property TimeToLive. 
         /// <para>
-        /// How long the text message is valid for. By default this is 72 hours.
+        /// How long the text message is valid for, in seconds. By default this is 72 hours. If
+        /// the messages isn't handed off before the TTL expires we stop attempting to hand off
+        /// the message and return <c>TTL_EXPIRED</c> event.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=259200)]

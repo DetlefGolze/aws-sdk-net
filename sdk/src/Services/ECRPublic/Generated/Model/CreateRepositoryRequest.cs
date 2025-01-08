@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ECRPublic.Model
     {
         private RepositoryCatalogDataInput _catalogData;
         private string _repositoryName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CatalogData. 
@@ -62,9 +63,9 @@ namespace Amazon.ECRPublic.Model
         /// Gets and sets the property RepositoryName. 
         /// <para>
         /// The name to use for the repository. This appears publicly in the Amazon ECR Public
-        /// Gallery. The repository name can be specified on its own (for example <code>nginx-web-app</code>)
+        /// Gallery. The repository name can be specified on its own (for example <c>nginx-web-app</c>)
         /// or prepended with a namespace to group the repository into a category (for example
-        /// <code>project-a/nginx-web-app</code>).
+        /// <c>project-a/nginx-web-app</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=2, Max=205)]
@@ -99,7 +100,7 @@ namespace Amazon.ECRPublic.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

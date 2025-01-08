@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
     /// Information about the compliance as defined by the resource type. For example, for
-    /// a patch resource type, <code>Items</code> includes information about the PatchSeverity,
+    /// a patch resource type, <c>Items</c> includes information about the PatchSeverity,
     /// Classification, and so on.
     /// </summary>
     public partial class ComplianceItem
     {
         private string _complianceType;
-        private Dictionary<string, string> _details = new Dictionary<string, string>();
+        private Dictionary<string, string> _details = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ComplianceExecutionSummary _executionSummary;
         private string _id;
         private string _resourceId;
@@ -49,7 +50,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property ComplianceType. 
         /// <para>
         /// The compliance type. For example, Association (for a State Manager association), Patch,
-        /// or Custom:<code>string</code> are all valid compliance types.
+        /// or Custom:<c>string</c> are all valid compliance types.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -80,7 +81,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Details property is set
         internal bool IsSetDetails()
         {
-            return this._details != null && this._details.Count > 0; 
+            return this._details != null && (this._details.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -143,8 +144,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The type of resource. <code>ManagedInstance</code> is currently the only supported
-        /// resource type.
+        /// The type of resource. <c>ManagedInstance</c> is currently the only supported resource
+        /// type.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]

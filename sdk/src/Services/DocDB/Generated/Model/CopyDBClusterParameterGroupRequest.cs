@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.DocDB.Model
     public partial class CopyDBClusterParameterGroupRequest : AmazonDocDBRequest
     {
         private string _sourceDBClusterParameterGroupIdentifier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _targetDBClusterParameterGroupDescription;
         private string _targetDBClusterParameterGroupIdentifier;
 
@@ -55,13 +56,13 @@ namespace Amazon.DocDB.Model
         ///  </li> <li> 
         /// <para>
         /// If the source cluster parameter group is in the same Amazon Web Services Region as
-        /// the copy, specify a valid parameter group identifier; for example, <code>my-db-cluster-param-group</code>,
+        /// the copy, specify a valid parameter group identifier; for example, <c>my-db-cluster-param-group</c>,
         /// or a valid ARN.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// If the source parameter group is in a different Amazon Web Services Region than the
-        /// copy, specify a valid cluster parameter group ARN; for example, <code>arn:aws:rds:us-east-1:123456789012:sample-cluster:sample-parameter-group</code>.
+        /// copy, specify a valid cluster parameter group ARN; for example, <c>arn:aws:rds:us-east-1:123456789012:sample-cluster:sample-parameter-group</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -93,7 +94,7 @@ namespace Amazon.DocDB.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,7 +143,7 @@ namespace Amazon.DocDB.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster-param-group1</code> 
+        /// Example: <c>my-cluster-param-group1</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

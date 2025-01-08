@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -45,19 +46,20 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:UngroupResources</code> 
+    ///  <c>resource-groups:UngroupResources</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class UngroupResourcesRequest : AmazonResourceGroupsRequest
     {
         private string _group;
-        private List<string> _resourceArns = new List<string>();
+        private List<string> _resourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Group. 
         /// <para>
-        /// The name or the ARN of the resource group from which to remove the resources.
+        /// The name or the Amazon resource name (ARN) of the resource group from which to remove
+        /// the resources.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]
@@ -76,7 +78,7 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property ResourceArns. 
         /// <para>
-        /// The ARNs of the resources to be removed from the group.
+        /// The Amazon resource names (ARNs) of the resources to be removed from the group.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -89,7 +91,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if ResourceArns property is set
         internal bool IsSetResourceArns()
         {
-            return this._resourceArns != null && this._resourceArns.Count > 0; 
+            return this._resourceArns != null && (this._resourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerRuntime.Model
 {
     /// <summary>
@@ -47,8 +48,8 @@ namespace Amazon.SageMakerRuntime.Model
     /// </para>
     ///  
     /// <para>
-    /// Calls to <code>InvokeEndpoint</code> are authenticated by using Amazon Web Services
-    /// Signature Version 4. For information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Authenticating
+    /// Calls to <c>InvokeEndpoint</c> are authenticated by using Amazon Web Services Signature
+    /// Version 4. For information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Authenticating
     /// Requests (Amazon Web Services Signature Version 4)</a> in the <i>Amazon S3 API Reference</i>.
     /// </para>
     ///  
@@ -74,7 +75,9 @@ namespace Amazon.SageMakerRuntime.Model
         private string _customAttributes;
         private string _enableExplanations;
         private string _endpointName;
+        private string _inferenceComponentName;
         private string _inferenceId;
+        private string _sessionId;
         private string _targetContainerHostname;
         private string _targetModel;
         private string _targetVariant;
@@ -95,14 +98,14 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if Accept property is set
         internal bool IsSetAccept()
         {
-            return this._accept != null;
+            return !string.IsNullOrEmpty(this._accept);
         }
 
         /// <summary>
         /// Gets and sets the property Body. 
         /// <para>
-        /// Provides input data, in the format specified in the <code>ContentType</code> request
-        /// header. Amazon SageMaker passes all of the data in the body to the model. 
+        /// Provides input data, in the format specified in the <c>ContentType</c> request header.
+        /// Amazon SageMaker passes all of the data in the body to the model. 
         /// </para>
         ///  
         /// <para>
@@ -139,7 +142,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
@@ -158,8 +161,8 @@ namespace Amazon.SageMakerRuntime.Model
         /// The code in your model is responsible for setting or updating any custom attributes
         /// in the response. If your code does not set this value in the response, an empty value
         /// is returned. For example, if a custom attribute represents the trace ID, your model
-        /// can prepend the custom attribute with <code>Trace ID:</code> in your post-processing
-        /// function. 
+        /// can prepend the custom attribute with <c>Trace ID:</c> in your post-processing function.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -177,14 +180,14 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if CustomAttributes property is set
         internal bool IsSetCustomAttributes()
         {
-            return this._customAttributes != null;
+            return !string.IsNullOrEmpty(this._customAttributes);
         }
 
         /// <summary>
         /// Gets and sets the property EnableExplanations. 
         /// <para>
-        /// An optional JMESPath expression used to override the <code>EnableExplanations</code>
-        /// parameter of the <code>ClarifyExplainerConfig</code> API. See the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable">EnableExplanations</a>
+        /// An optional JMESPath expression used to override the <c>EnableExplanations</c> parameter
+        /// of the <c>ClarifyExplainerConfig</c> API. See the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-online-explainability-create-endpoint.html#clarify-online-explainability-create-endpoint-enable">EnableExplanations</a>
         /// section in the developer guide for more information. 
         /// </para>
         /// </summary>
@@ -198,7 +201,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if EnableExplanations property is set
         internal bool IsSetEnableExplanations()
         {
-            return this._enableExplanations != null;
+            return !string.IsNullOrEmpty(this._enableExplanations);
         }
 
         /// <summary>
@@ -223,6 +226,26 @@ namespace Amazon.SageMakerRuntime.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InferenceComponentName. 
+        /// <para>
+        /// If the endpoint hosts one or more inference components, this parameter specifies the
+        /// name of inference component to invoke.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=63)]
+        public string InferenceComponentName
+        {
+            get { return this._inferenceComponentName; }
+            set { this._inferenceComponentName = value; }
+        }
+
+        // Check to see if InferenceComponentName property is set
+        internal bool IsSetInferenceComponentName()
+        {
+            return !string.IsNullOrEmpty(this._inferenceComponentName);
+        }
+
+        /// <summary>
         /// Gets and sets the property InferenceId. 
         /// <para>
         /// If you provide a value, it is added to the captured data when you enable data capture
@@ -240,7 +263,43 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if InferenceId property is set
         internal bool IsSetInferenceId()
         {
-            return this._inferenceId != null;
+            return !string.IsNullOrEmpty(this._inferenceId);
+        }
+
+        /// <summary>
+        /// Gets and sets the property SessionId. 
+        /// <para>
+        /// Creates a stateful session or identifies an existing one. You can do one of the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Create a stateful session by specifying the value <c>NEW_SESSION</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Send your request to an existing stateful session by specifying the ID of that session.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// With a stateful session, you can send multiple requests to a stateful model. When
+        /// you create a session with a stateful model, the model must create the session ID and
+        /// set the expiration time. The model must also provide that information in the response
+        /// to your request. You can get the ID and timestamp from the <c>NewSessionId</c> response
+        /// parameter. For any subsequent request where you specify that session ID, SageMaker
+        /// routes the request to the same instance that supports the session.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=256)]
+        public string SessionId
+        {
+            get { return this._sessionId; }
+            set { this._sessionId = value; }
+        }
+
+        // Check to see if SessionId property is set
+        internal bool IsSetSessionId()
+        {
+            return !string.IsNullOrEmpty(this._sessionId);
         }
 
         /// <summary>
@@ -260,7 +319,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if TargetContainerHostname property is set
         internal bool IsSetTargetContainerHostname()
         {
-            return this._targetContainerHostname != null;
+            return !string.IsNullOrEmpty(this._targetContainerHostname);
         }
 
         /// <summary>
@@ -279,7 +338,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if TargetModel property is set
         internal bool IsSetTargetModel()
         {
-            return this._targetModel != null;
+            return !string.IsNullOrEmpty(this._targetModel);
         }
 
         /// <summary>
@@ -307,7 +366,7 @@ namespace Amazon.SageMakerRuntime.Model
         // Check to see if TargetVariant property is set
         internal bool IsSetTargetVariant()
         {
-            return this._targetVariant != null;
+            return !string.IsNullOrEmpty(this._targetVariant);
         }
 
     }

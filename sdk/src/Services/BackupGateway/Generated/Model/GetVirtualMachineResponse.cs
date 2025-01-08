@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BackupGateway.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.BackupGateway.Model
         /// <summary>
         /// Gets and sets the property VirtualMachine. 
         /// <para>
-        /// This object contains the basic attributes of <code>VirtualMachine</code> contained
-        /// by the output of <code>GetVirtualMachine</code> 
+        /// This object contains the basic attributes of <c>VirtualMachine</c> contained by the
+        /// output of <c>GetVirtualMachine</c> 
         /// </para>
         /// </summary>
         public VirtualMachineDetails VirtualMachine

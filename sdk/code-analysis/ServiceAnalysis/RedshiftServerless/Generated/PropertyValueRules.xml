@@ -1,10 +1,79 @@
 <?xml version="1.0" encoding="utf-16"?>
 <property-value-rules>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateCustomDomainAssociationRequest.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateCustomDomainAssociationRequest.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateCustomDomainAssociationRequest.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateCustomDomainAssociationResponse.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateCustomDomainAssociationResponse.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateCustomDomainAssociationResponse.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateEndpointAccessRequest.OwnerAccount</property>
+    <min>1</min>
+    <max>12</max>
+    <pattern>(\d{12})</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.CreateNamespaceRequest.NamespaceName</property>
     <min>3</min>
     <max>64</max>
     <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateNamespaceRequest.RedshiftIdcApplicationArn</property>
+    <min>1</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateScheduledActionRequest.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateScheduledActionRequest.ScheduledActionName</property>
+    <min>3</min>
+    <max>60</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateSnapshotCopyConfigurationRequest.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateWorkgroupRequest.IpAddressType</property>
+    <pattern>^(ipv4|dualstack)$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.CreateWorkgroupRequest.NamespaceName</property>
@@ -19,9 +88,27 @@
     <pattern>^[a-z0-9-]+$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.DeleteCustomDomainAssociationRequest.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.DeleteCustomDomainAssociationRequest.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.DeleteNamespaceRequest.NamespaceName</property>
     <min>3</min>
     <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.DeleteScheduledActionRequest.ScheduledActionName</property>
+    <min>3</min>
+    <max>60</max>
     <pattern>^[a-z0-9-]+$</pattern>
   </property-value-rule>
   <property-value-rule>
@@ -31,7 +118,43 @@
     <pattern>^[a-z0-9-]+$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.GetCredentialsRequest.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.GetCredentialsRequest.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.GetCustomDomainAssociationRequest.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.GetCustomDomainAssociationRequest.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.GetCustomDomainAssociationResponse.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.GetCustomDomainAssociationResponse.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.GetCustomDomainAssociationResponse.WorkgroupName</property>
     <min>3</min>
     <max>64</max>
     <pattern>^[a-z0-9-]+$</pattern>
@@ -43,15 +166,73 @@
     <pattern>^[a-z0-9-]+$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.GetScheduledActionRequest.ScheduledActionName</property>
+    <min>3</min>
+    <max>60</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.GetWorkgroupRequest.WorkgroupName</property>
     <min>3</min>
     <max>64</max>
     <pattern>^[a-z0-9-]+$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListCustomDomainAssociationsRequest.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListCustomDomainAssociationsRequest.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListCustomDomainAssociationsRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListCustomDomainAssociationsRequest.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListCustomDomainAssociationsResponse.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.ListEndpointAccessRequest.MaxResults</property>
     <min>1</min>
     <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListEndpointAccessRequest.OwnerAccount</property>
+    <min>1</min>
+    <max>12</max>
+    <pattern>(\d{12})</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListManagedWorkgroupsRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListManagedWorkgroupsRequest.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListManagedWorkgroupsRequest.SourceArn</property>
+    <pattern>^arn:aws[a-z-]*:glue:[a-z0-9-]+:\d+:(database|catalog)[a-z0-9-:]*(?:/[A-Za-z0-9-_]{1,255})*$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListManagedWorkgroupsResponse.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.ListNamespacesRequest.MaxResults</property>
@@ -68,6 +249,48 @@
     <min>3</min>
     <max>64</max>
     <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListScheduledActionsRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListScheduledActionsRequest.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListScheduledActionsRequest.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListScheduledActionsResponse.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListSnapshotCopyConfigurationsRequest.MaxResults</property>
+    <min>1</min>
+    <max>100</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListSnapshotCopyConfigurationsRequest.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListSnapshotCopyConfigurationsRequest.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListSnapshotCopyConfigurationsResponse.NextToken</property>
+    <min>8</min>
+    <max>1024</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.ListSnapshotsRequest.MaxResults</property>
@@ -115,6 +338,12 @@
     <max>100</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ListWorkgroupsRequest.OwnerAccount</property>
+    <min>1</min>
+    <max>12</max>
+    <pattern>(\d{12})</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.RestoreFromRecoveryPointRequest.NamespaceName</property>
     <min>3</min>
     <max>64</max>
@@ -149,10 +378,56 @@
     <max>1011</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateCustomDomainAssociationRequest.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateCustomDomainAssociationRequest.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateCustomDomainAssociationRequest.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateCustomDomainAssociationResponse.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateCustomDomainAssociationResponse.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateCustomDomainAssociationResponse.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.UpdateNamespaceRequest.NamespaceName</property>
     <min>3</min>
     <max>64</max>
     <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateScheduledActionRequest.ScheduledActionName</property>
+    <min>3</min>
+    <max>60</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.UpdateWorkgroupRequest.IpAddressType</property>
+    <pattern>^(ipv4|dualstack)$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.UpdateWorkgroupRequest.WorkgroupName</property>
@@ -161,10 +436,54 @@
     <pattern>^[a-z0-9-]+$</pattern>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.Association.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.Association.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.Association.WorkgroupName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateSnapshotScheduleActionParameters.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.CreateSnapshotScheduleActionParameters.SnapshotNamePrefix</property>
+    <min>1</min>
+    <max>235</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ManagedWorkgroupListItem.ManagedWorkgroupName</property>
+    <min>3</min>
+    <max>255</max>
+    <pattern>^[a-zA-Z0-9_:\-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ManagedWorkgroupListItem.SourceArn</property>
+    <pattern>^arn:aws[a-z-]*:glue:[a-z0-9-]+:\d+:(database|catalog)[a-z0-9-:]*(?:/[A-Za-z0-9-_]{1,255})*$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.Namespace.NamespaceName</property>
     <min>3</min>
     <max>64</max>
     <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.PerformanceTarget.Level</property>
+    <min>1</min>
+    <max>100</max>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.RecoveryPoint.NamespaceName</property>
@@ -184,6 +503,36 @@
     <max>1011</max>
   </property-value-rule>
   <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ScheduledActionAssociation.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ScheduledActionAssociation.ScheduledActionName</property>
+    <min>3</min>
+    <max>60</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ScheduledActionResponse.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.ScheduledActionResponse.ScheduledActionName</property>
+    <min>3</min>
+    <max>60</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.SnapshotCopyConfiguration.NamespaceName</property>
+    <min>3</min>
+    <max>64</max>
+    <pattern>^[a-z0-9-]+$</pattern>
+  </property-value-rule>
+  <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.Tag.Key</property>
     <min>1</min>
     <max>128</max>
@@ -197,6 +546,22 @@
     <property>Amazon.RedshiftServerless.Model.TooManyTagsException.ResourceName</property>
     <min>1</min>
     <max>1011</max>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.Workgroup.CustomDomainCertificateArn</property>
+    <min>20</min>
+    <max>2048</max>
+    <pattern>arn:[\w+=/,.@-]+:acm:[\w+=/,.@-]*:[0-9]+:[\w+=,.@-]+(/[\w+=,.@-]+)*</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.Workgroup.CustomDomainName</property>
+    <min>1</min>
+    <max>253</max>
+    <pattern>^(((?!-)[A-Za-z0-9-]{0,62}[A-Za-z0-9])\.)+((?!-)[A-Za-z0-9-]{1,62}[A-Za-z0-9])$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.RedshiftServerless.Model.Workgroup.IpAddressType</property>
+    <pattern>^(ipv4|dualstack)$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.RedshiftServerless.Model.Workgroup.WorkgroupName</property>

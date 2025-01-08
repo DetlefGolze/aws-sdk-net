@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.Backup.Model
     ///  
     /// <para>
     /// If the Vault Lock configuration is immutable, then you cannot delete Vault Lock using
-    /// API operations, and you will receive an <code>InvalidRequestException</code> if you
-    /// attempt to do so. For more information, see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html">Vault
+    /// API operations, and you will receive an <c>InvalidRequestException</c> if you attempt
+    /// to do so. For more information, see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html">Vault
     /// Lock</a> in the <i>Backup Developer Guide</i>.
     /// </para>
     /// </summary>

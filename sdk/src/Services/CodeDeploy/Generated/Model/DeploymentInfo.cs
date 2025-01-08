@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.CodeDeploy.Model
         private string _deploymentGroupName;
         private string _deploymentId;
         private DeploymentOverview _deploymentOverview;
-        private List<string> _deploymentStatusMessages = new List<string>();
+        private List<string> _deploymentStatusMessages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DeploymentStyle _deploymentStyle;
         private string _description;
         private ErrorInformation _errorInformation;
@@ -159,8 +160,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property ComputePlatform. 
         /// <para>
-        /// The destination platform type for the deployment (<code>Lambda</code>, <code>Server</code>,
-        /// or <code>ECS</code>).
+        /// The destination platform type for the deployment (<c>Lambda</c>, <c>Server</c>, or
+        /// <c>ECS</c>).
         /// </para>
         /// </summary>
         public ComputePlatform ComputePlatform
@@ -200,20 +201,20 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>user</code>: A user created the deployment.
+        ///  <c>user</c>: A user created the deployment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>autoscaling</code>: Amazon EC2 Auto Scaling created the deployment.
+        ///  <c>autoscaling</c>: Amazon EC2 Auto Scaling created the deployment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>codeDeployRollback</code>: A rollback process created the deployment.
+        ///  <c>codeDeployRollback</c>: A rollback process created the deployment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CodeDeployAutoUpdate</code>: An auto-update process created the deployment
-        /// when it detected outdated Amazon EC2 instances.
+        ///  <c>CodeDeployAutoUpdate</c>: An auto-update process created the deployment when it
+        /// detected outdated Amazon EC2 instances.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -318,7 +319,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if DeploymentStatusMessages property is set
         internal bool IsSetDeploymentStatusMessages()
         {
-            return this._deploymentStatusMessages != null && this._deploymentStatusMessages.Count > 0; 
+            return this._deploymentStatusMessages != null && (this._deploymentStatusMessages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -403,18 +404,18 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>DISALLOW</code>: The deployment fails. This is also the default behavior if
-        /// no option is specified.
+        ///  <c>DISALLOW</c>: The deployment fails. This is also the default behavior if no option
+        /// is specified.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>OVERWRITE</code>: The version of the file from the application revision currently
+        ///  <c>OVERWRITE</c>: The version of the file from the application revision currently
         /// being deployed replaces the version already on the instance.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RETAIN</code>: The version of the file already on the instance is kept and
-        /// used as part of the new deployment.
+        ///  <c>RETAIN</c>: The version of the file already on the instance is kept and used as
+        /// part of the new deployment.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -433,13 +434,12 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property IgnoreApplicationStopFailures. 
         /// <para>
-        ///  If true, then if an <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>,
-        /// or <code>AfterBlockTraffic</code> deployment lifecycle event to an instance fails,
-        /// then the deployment continues to the next deployment lifecycle event. For example,
-        /// if <code>ApplicationStop</code> fails, the deployment continues with DownloadBundle.
-        /// If <code>BeforeBlockTraffic</code> fails, the deployment continues with <code>BlockTraffic</code>.
-        /// If <code>AfterBlockTraffic</code> fails, the deployment continues with <code>ApplicationStop</code>.
-        /// 
+        ///  If true, then if an <c>ApplicationStop</c>, <c>BeforeBlockTraffic</c>, or <c>AfterBlockTraffic</c>
+        /// deployment lifecycle event to an instance fails, then the deployment continues to
+        /// the next deployment lifecycle event. For example, if <c>ApplicationStop</c> fails,
+        /// the deployment continues with DownloadBundle. If <c>BeforeBlockTraffic</c> fails,
+        /// the deployment continues with <c>BlockTraffic</c>. If <c>AfterBlockTraffic</c> fails,
+        /// the deployment continues with <c>ApplicationStop</c>. 
         /// </para>
         ///  
         /// <para>
@@ -450,18 +450,18 @@ namespace Amazon.CodeDeploy.Model
         /// </para>
         ///  
         /// <para>
-        ///  During a deployment, the CodeDeploy agent runs the scripts specified for <code>ApplicationStop</code>,
-        /// <code>BeforeBlockTraffic</code>, and <code>AfterBlockTraffic</code> in the AppSpec
-        /// file from the previous successful deployment. (All other scripts are run from the
-        /// AppSpec file in the current deployment.) If one of these scripts contains an error
-        /// and does not run successfully, the deployment can fail. 
+        ///  During a deployment, the CodeDeploy agent runs the scripts specified for <c>ApplicationStop</c>,
+        /// <c>BeforeBlockTraffic</c>, and <c>AfterBlockTraffic</c> in the AppSpec file from the
+        /// previous successful deployment. (All other scripts are run from the AppSpec file in
+        /// the current deployment.) If one of these scripts contains an error and does not run
+        /// successfully, the deployment can fail. 
         /// </para>
         ///  
         /// <para>
         ///  If the cause of the failure is a script from the last successful deployment that
-        /// will never run successfully, create a new deployment and use <code>ignoreApplicationStopFailures</code>
-        /// to specify that the <code>ApplicationStop</code>, <code>BeforeBlockTraffic</code>,
-        /// and <code>AfterBlockTraffic</code> failures should be ignored. 
+        /// will never run successfully, create a new deployment and use <c>ignoreApplicationStopFailures</c>
+        /// to specify that the <c>ApplicationStop</c>, <c>BeforeBlockTraffic</c>, and <c>AfterBlockTraffic</c>
+        /// failures should be ignored. 
         /// </para>
         /// </summary>
         public bool IgnoreApplicationStopFailures

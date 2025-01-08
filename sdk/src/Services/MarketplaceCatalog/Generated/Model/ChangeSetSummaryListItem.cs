@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MarketplaceCatalog.Model
 {
     /// <summary>
-    /// A summary of a change set returned in a list of change sets when the <code>ListChangeSets</code>
+    /// A summary of a change set returned in a list of change sets when the <c>ListChangeSets</c>
     /// action is called.
     /// </summary>
     public partial class ChangeSetSummaryListItem
@@ -38,7 +39,7 @@ namespace Amazon.MarketplaceCatalog.Model
         private string _changeSetId;
         private string _changeSetName;
         private string _endTime;
-        private List<string> _entityIdList = new List<string>();
+        private List<string> _entityIdList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private FailureCode _failureCode;
         private string _startTime;
         private ChangeStatus _status;
@@ -136,16 +137,16 @@ namespace Amazon.MarketplaceCatalog.Model
         // Check to see if EntityIdList property is set
         internal bool IsSetEntityIdList()
         {
-            return this._entityIdList != null && this._entityIdList.Count > 0; 
+            return this._entityIdList != null && (this._entityIdList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FailureCode. 
         /// <para>
-        /// Returned if the change set is in <code>FAILED</code> status. Can be either <code>CLIENT_ERROR</code>,
-        /// which means that there are issues with the request (see the <code>ErrorDetailList</code>
-        /// of <code>DescribeChangeSet</code>), or <code>SERVER_FAULT</code>, which means that
-        /// there is a problem in the system, and you should retry your request.
+        /// Returned if the change set is in <c>FAILED</c> status. Can be either <c>CLIENT_ERROR</c>,
+        /// which means that there are issues with the request (see the <c>ErrorDetailList</c>
+        /// of <c>DescribeChangeSet</c>), or <c>SERVER_FAULT</c>, which means that there is a
+        /// problem in the system, and you should retry your request.
         /// </para>
         /// </summary>
         public FailureCode FailureCode

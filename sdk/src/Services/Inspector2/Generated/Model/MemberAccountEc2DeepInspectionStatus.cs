@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property ActivateDeepInspection. 
         /// <para>
-        /// Whether Amazon Inspector deep inspection is active in the account. If <code>TRUE</code>
-        /// Amazon Inspector deep inspection is active, if <code>FALSE</code> it is not active.
+        /// Whether Amazon Inspector deep inspection is active in the account. If <c>TRUE</c>
+        /// Amazon Inspector deep inspection is active, if <c>FALSE</c> it is not active.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

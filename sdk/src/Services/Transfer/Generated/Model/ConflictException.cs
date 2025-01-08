@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
-    /// This exception is thrown when the <code>UpdateServer</code> is called for a file transfer
-    /// protocol-enabled server that has VPC as the endpoint type and the server's <code>VpcEndpointID</code>
+    /// This exception is thrown when the <c>UpdateServer</c> is called for a file transfer
+    /// protocol-enabled server that has VPC as the endpoint type and the server's <c>VpcEndpointID</c>
     /// is not in the available state.
     /// </summary>
     #if !NETSTANDARD

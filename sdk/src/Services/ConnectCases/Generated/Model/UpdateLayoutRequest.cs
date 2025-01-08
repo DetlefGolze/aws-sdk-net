@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ConnectCases.Model
     /// </para>
     ///  
     /// <para>
-    /// A <code>ValidationException</code> is returned when you add non-existent <code>fieldIds</code>
+    /// A <c>ValidationException</c> is returned when you add non-existent <c>fieldIds</c>
     /// to a layout.
     /// </para>
     ///  <note> 
@@ -58,8 +59,7 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property Content. 
         /// <para>
-        /// Information about which fields will be present in the layout, the order of the fields,
-        /// and a read-only attribute of the field. 
+        /// Information about which fields will be present in the layout, the order of the fields.
         /// </para>
         /// </summary>
         public LayoutContent Content

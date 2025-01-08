@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.S3Control.Model
     public partial class GetMultiRegionAccessPointRoutesResponse : AmazonWebServiceResponse
     {
         private string _mrap;
-        private List<MultiRegionAccessPointRoute> _routes = new List<MultiRegionAccessPointRoute>();
+        private List<MultiRegionAccessPointRoute> _routes = AWSConfigs.InitializeCollections ? new List<MultiRegionAccessPointRoute>() : null;
 
         /// <summary>
         /// Gets and sets the property Mrap. 
@@ -59,7 +60,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property Routes. 
         /// <para>
         /// The different routes that make up the route configuration. Active routes return a
-        /// value of <code>100</code>, and passive routes return a value of <code>0</code>.
+        /// value of <c>100</c>, and passive routes return a value of <c>0</c>.
         /// </para>
         /// </summary>
         public List<MultiRegionAccessPointRoute> Routes
@@ -71,7 +72,7 @@ namespace Amazon.S3Control.Model
         // Check to see if Routes property is set
         internal bool IsSetRoutes()
         {
-            return this._routes != null && this._routes.Count > 0; 
+            return this._routes != null && (this._routes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property ApprovalDate. 
         /// <para>
-        /// The date the patch was approved (or will be approved if the status is <code>PENDING_APPROVAL</code>).
+        /// The date the patch was approved (or will be approved if the status is <c>PENDING_APPROVAL</c>).
         /// </para>
         /// </summary>
         public DateTime ApprovalDate

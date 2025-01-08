@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.MemoryDB.Model
         /// <summary>
         /// Gets and sets the property SnapshotName. 
         /// <para>
-        /// The name of the snapshot to delete
+        /// The name of the snapshot to delete.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

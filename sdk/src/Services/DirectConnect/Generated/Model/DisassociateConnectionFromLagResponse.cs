@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -47,13 +48,13 @@ namespace Amazon.DirectConnect.Model
         private DateTime? _loaIssueTime;
         private string _location;
         private bool? _macSecCapable;
-        private List<MacSecKey> _macSecKeys = new List<MacSecKey>();
+        private List<MacSecKey> _macSecKeys = AWSConfigs.InitializeCollections ? new List<MacSecKey>() : null;
         private string _ownerAccount;
         private string _partnerName;
         private string _portEncryptionStatus;
         private string _providerName;
         private string _region;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private int? _vlan;
 
         /// <summary>
@@ -172,44 +173,43 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ordering</code>: The initial state of a hosted connection provisioned on an
-        /// interconnect. The connection stays in the ordering state until the owner of the hosted
-        /// connection confirms or declines the connection order.
+        ///  <c>ordering</c>: The initial state of a hosted connection provisioned on an interconnect.
+        /// The connection stays in the ordering state until the owner of the hosted connection
+        /// confirms or declines the connection order.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>requested</code>: The initial state of a standard connection. The connection
-        /// stays in the requested state until the Letter of Authorization (LOA) is sent to the
-        /// customer.
+        ///  <c>requested</c>: The initial state of a standard connection. The connection stays
+        /// in the requested state until the Letter of Authorization (LOA) is sent to the customer.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>pending</code>: The connection has been approved and is being initialized.
+        ///  <c>pending</c>: The connection has been approved and is being initialized.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>available</code>: The network link is up and the connection is ready for use.
+        ///  <c>available</c>: The network link is up and the connection is ready for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>down</code>: The network link is down.
+        ///  <c>down</c>: The network link is down.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleting</code>: The connection is being deleted.
+        ///  <c>deleting</c>: The connection is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deleted</code>: The connection has been deleted.
+        ///  <c>deleted</c>: The connection has been deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>rejected</code>: A hosted connection in the <code>ordering</code> state enters
-        /// the <code>rejected</code> state if it is deleted by the customer.
+        ///  <c>rejected</c>: A hosted connection in the <c>ordering</c> state enters the <c>rejected</c>
+        /// state if it is deleted by the customer.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>unknown</code>: The state of the connection is not available.
+        ///  <c>unknown</c>: The state of the connection is not available.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -232,7 +232,7 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  
         /// <para>
-        /// The valid values are <code>no_encrypt</code>, <code>should_encrypt</code>, and <code>must_encrypt</code>.
+        /// The valid values are <c>no_encrypt</c>, <c>should_encrypt</c>, and <c>must_encrypt</c>.
         /// </para>
         /// </summary>
         public string EncryptionMode
@@ -371,7 +371,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if MacSecKeys property is set
         internal bool IsSetMacSecKeys()
         {
-            return this._macSecKeys != null && this._macSecKeys.Count > 0; 
+            return this._macSecKeys != null && (this._macSecKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -417,8 +417,8 @@ namespace Amazon.DirectConnect.Model
         /// </para>
         ///  
         /// <para>
-        /// The valid values are <code>Encryption Up</code>, which means that there is an active
-        /// Connection Key Name, or <code>Encryption Down</code>.
+        /// The valid values are <c>Encryption Up</c>, which means that there is an active Connection
+        /// Key Name, or <c>Encryption Down</c>.
         /// </para>
         /// </summary>
         public string PortEncryptionStatus
@@ -485,7 +485,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

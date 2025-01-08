@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
     /// Container for the parameters to the CancelHandshake operation.
-    /// Cancels a handshake. Canceling a handshake sets the handshake state to <code>CANCELED</code>.
+    /// Cancels a handshake. Canceling a handshake sets the handshake state to <c>CANCELED</c>.
     /// 
     ///  
     /// <para>

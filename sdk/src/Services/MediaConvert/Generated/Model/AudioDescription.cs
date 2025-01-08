@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -50,13 +51,11 @@ namespace Amazon.MediaConvert.Model
         private string _streamName;
 
         /// <summary>
-        /// Gets and sets the property AudioChannelTaggingSettings. When you mimic a multi-channel
-        /// audio layout with multiple mono-channel tracks, you can tag each channel layout manually.
-        /// For example, you would tag the tracks that contain your left, right, and center audio
-        /// with Left (L), Right (R), and Center (C), respectively. When you don't specify a value,
-        /// MediaConvert labels your track as Center (C) by default. To use audio layout tagging,
-        /// your output must be in a QuickTime (.mov) container; your audio codec must be AAC,
-        /// WAV, or AIFF; and you must set up your audio track to have only one channel.
+        /// Gets and sets the property AudioChannelTaggingSettings. Specify the QuickTime audio
+        /// channel layout tags for the audio channels in this audio track. When you don't specify
+        /// a value, MediaConvert labels your track as Center (C) by default. To use Audio layout
+        /// tagging, your output must be in a QuickTime (MOV) container and your audio codec must
+        /// be AAC, WAV, or AIFF.
         /// </summary>
         public AudioChannelTaggingSettings AudioChannelTaggingSettings
         {
@@ -97,6 +96,7 @@ namespace Amazon.MediaConvert.Model
         /// name may be specified, with similar default/silence behavior. If no audio_source_name
         /// is specified, then "Audio Selector 1" will be chosen automatically.
         /// </summary>
+        [AWSProperty(Max=2048)]
         public string AudioSourceName
         {
             get { return this._audioSourceName; }

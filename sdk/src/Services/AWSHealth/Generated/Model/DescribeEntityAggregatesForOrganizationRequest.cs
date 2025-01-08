@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSHealth.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.AWSHealth.Model
     /// </summary>
     public partial class DescribeEntityAggregatesForOrganizationRequest : AmazonAWSHealthRequest
     {
-        private List<string> _awsAccountIds = new List<string>();
-        private List<string> _eventArns = new List<string>();
+        private List<string> _awsAccountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _eventArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountIds. 
@@ -55,14 +56,14 @@ namespace Amazon.AWSHealth.Model
         // Check to see if AwsAccountIds property is set
         internal bool IsSetAwsAccountIds()
         {
-            return this._awsAccountIds != null && this._awsAccountIds.Count > 0; 
+            return this._awsAccountIds != null && (this._awsAccountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property EventArns. 
         /// <para>
-        /// A list of event ARNs (unique identifiers). For example: <code>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456",
-        /// "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</code>
+        /// A list of event ARNs (unique identifiers). For example: <c>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456",
+        /// "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</c>
         /// 
         /// </para>
         /// </summary>
@@ -76,7 +77,7 @@ namespace Amazon.AWSHealth.Model
         // Check to see if EventArns property is set
         internal bool IsSetEventArns()
         {
-            return this._eventArns != null && this._eventArns.Count > 0; 
+            return this._eventArns != null && (this._eventArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.DatabaseMigrationService.Model
         private string _certificateIdentifier;
         private string _certificatePem;
         private MemoryStream _certificateWallet;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CertificateIdentifier. 
@@ -63,7 +64,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property CertificatePem. 
         /// <para>
-        /// The contents of a <code>.pem</code> file, which contains an X.509 certificate.
+        /// The contents of a <c>.pem</c> file, which contains an X.509 certificate.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -83,12 +84,12 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property CertificateWallet. 
         /// <para>
         /// The location of an imported Oracle Wallet certificate for use with SSL. Provide the
-        /// name of a <code>.sso</code> file using the <code>fileb://</code> prefix. You can't
-        /// provide the certificate inline.
+        /// name of a <c>.sso</c> file using the <c>fileb://</c> prefix. You can't provide the
+        /// certificate inline.
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>filebase64("${path.root}/rds-ca-2019-root.sso")</code> 
+        /// Example: <c>filebase64("${path.root}/rds-ca-2019-root.sso")</c> 
         /// </para>
         /// </summary>
         public MemoryStream CertificateWallet
@@ -118,7 +119,7 @@ namespace Amazon.DatabaseMigrationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

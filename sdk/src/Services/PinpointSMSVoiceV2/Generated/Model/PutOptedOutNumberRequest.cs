@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     ///  
     /// <para>
     /// If the destination phone number isn't valid or if the specified opt-out list doesn't
-    /// exist, an Error is returned.
+    /// exist, an error is returned.
     /// </para>
     /// </summary>
     public partial class PutOptedOutNumberRequest : AmazonPinpointSMSVoiceV2Request
@@ -67,6 +68,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <para>
         /// The OptOutListName or OptOutListArn to add the phone number to.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OptOutListName

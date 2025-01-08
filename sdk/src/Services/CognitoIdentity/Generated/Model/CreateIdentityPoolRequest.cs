@@ -26,33 +26,34 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentity.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateIdentityPool operation.
     /// Creates a new identity pool. The identity pool is a store of user identity information
-    /// that is specific to your AWS account. The keys for <code>SupportedLoginProviders</code>
+    /// that is specific to your AWS account. The keys for <c>SupportedLoginProviders</c>
     /// are as follows:
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// Facebook: <code>graph.facebook.com</code> 
+    /// Facebook: <c>graph.facebook.com</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Google: <code>accounts.google.com</code> 
+    /// Google: <c>accounts.google.com</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Amazon: <code>www.amazon.com</code> 
+    /// Amazon: <c>www.amazon.com</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Twitter: <code>api.twitter.com</code> 
+    /// Twitter: <c>api.twitter.com</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Digits: <code>www.digits.com</code> 
+    /// Digits: <c>www.digits.com</c> 
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -63,13 +64,13 @@ namespace Amazon.CognitoIdentity.Model
     {
         private bool? _allowClassicFlow;
         private bool? _allowUnauthenticatedIdentities;
-        private List<CognitoIdentityProviderInfo> _cognitoIdentityProviders = new List<CognitoIdentityProviderInfo>();
+        private List<CognitoIdentityProviderInfo> _cognitoIdentityProviders = AWSConfigs.InitializeCollections ? new List<CognitoIdentityProviderInfo>() : null;
         private string _developerProviderName;
         private string _identityPoolName;
-        private Dictionary<string, string> _identityPoolTags = new Dictionary<string, string>();
-        private List<string> _openIdConnectProviderARNs = new List<string>();
-        private List<string> _samlProviderARNs = new List<string>();
-        private Dictionary<string, string> _supportedLoginProviders = new Dictionary<string, string>();
+        private Dictionary<string, string> _identityPoolTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _openIdConnectProviderARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _samlProviderARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _supportedLoginProviders = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowClassicFlow. 
@@ -126,7 +127,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if CognitoIdentityProviders property is set
         internal bool IsSetCognitoIdentityProviders()
         {
-            return this._cognitoIdentityProviders != null && this._cognitoIdentityProviders.Count > 0; 
+            return this._cognitoIdentityProviders != null && (this._cognitoIdentityProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -134,8 +135,8 @@ namespace Amazon.CognitoIdentity.Model
         /// <para>
         /// The "domain" by which Cognito will refer to your users. This name acts as a placeholder
         /// that allows your backend and the Cognito service to communicate about the developer
-        /// provider. For the <code>DeveloperProviderName</code>, you can use letters as well
-        /// as period (<code>.</code>), underscore (<code>_</code>), and dash (<code>-</code>).
+        /// provider. For the <c>DeveloperProviderName</c>, you can use letters as well as period
+        /// (<c>.</c>), underscore (<c>_</c>), and dash (<c>-</c>).
         /// </para>
         ///  
         /// <para>
@@ -192,7 +193,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if IdentityPoolTags property is set
         internal bool IsSetIdentityPoolTags()
         {
-            return this._identityPoolTags != null && this._identityPoolTags.Count > 0; 
+            return this._identityPoolTags != null && (this._identityPoolTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -210,7 +211,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if OpenIdConnectProviderARNs property is set
         internal bool IsSetOpenIdConnectProviderARNs()
         {
-            return this._openIdConnectProviderARNs != null && this._openIdConnectProviderARNs.Count > 0; 
+            return this._openIdConnectProviderARNs != null && (this._openIdConnectProviderARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -228,7 +229,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if SamlProviderARNs property is set
         internal bool IsSetSamlProviderARNs()
         {
-            return this._samlProviderARNs != null && this._samlProviderARNs.Count > 0; 
+            return this._samlProviderARNs != null && (this._samlProviderARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -247,7 +248,7 @@ namespace Amazon.CognitoIdentity.Model
         // Check to see if SupportedLoginProviders property is set
         internal bool IsSetSupportedLoginProviders()
         {
-            return this._supportedLoginProviders != null && this._supportedLoginProviders.Count > 0; 
+            return this._supportedLoginProviders != null && (this._supportedLoginProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.Glue.Model
         /// The maximum size of the response.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Min=1, Max=200)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }

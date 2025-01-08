@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -38,26 +39,26 @@ namespace Amazon.Pipes.Model
         /// <summary>
         /// Gets and sets the property InvocationType. 
         /// <para>
-        /// Choose from the following options.
+        /// Specify whether to invoke the function synchronously or asynchronously.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RequestResponse</code> (default) - Invoke the function synchronously. Keep
-        /// the connection open until the function returns a response or times out. The API response
-        /// includes the function response and additional data.
+        ///  <c>REQUEST_RESPONSE</c> (default) - Invoke synchronously. This corresponds to the
+        /// <c>RequestResponse</c> option in the <c>InvocationType</c> parameter for the Lambda
+        /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax">Invoke</a>
+        /// API.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Event</code> - Invoke the function asynchronously. Send events that fail multiple
-        /// times to the function's dead-letter queue (if it's configured). The API response only
-        /// includes a status code.
+        ///  <c>FIRE_AND_FORGET</c> - Invoke asynchronously. This corresponds to the <c>Event</c>
+        /// option in the <c>InvocationType</c> parameter for the Lambda <a href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html#API_Invoke_RequestSyntax">Invoke</a>
+        /// API.
         /// </para>
-        ///  </li> <li> 
+        ///  </li> </ul> 
         /// <para>
-        ///  <code>DryRun</code> - Validate parameter values and verify that the user or role
-        /// has permission to invoke the function.
+        /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html#pipes-invocation">Invocation
+        /// types</a> in the <i>Amazon EventBridge User Guide</i>.
         /// </para>
-        ///  </li> </ul>
         /// </summary>
         public PipeTargetInvocationType InvocationType
         {

@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
-    /// Add tags to a CloudFront resource.
+    /// Add tags to a CloudFront resource. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/tagging.html">Tagging
+    /// a distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.
     /// </summary>
     public partial class TagResourceRequest : AmazonCloudFrontRequest
     {
@@ -59,7 +61,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A complex type that contains zero or more <code>Tag</code> elements.
+        /// A complex type that contains zero or more <c>Tag</c> elements.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

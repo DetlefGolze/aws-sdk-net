@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptune.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Neptune.Model
     /// 
     ///  
     /// <para>
-    /// For the data structure that represents Amazon Neptune DB cluster endpoints, see <code>DBClusterEndpoint</code>.
+    /// For the data structure that represents Amazon Neptune DB cluster endpoints, see <c>DBClusterEndpoint</c>.
     /// </para>
     /// </summary>
     public partial class Endpoint

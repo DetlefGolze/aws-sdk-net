@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property InstanceCount. 
         /// <para>
-        /// The number of instances of the type specified by <code>InstanceType</code>. Choose
-        /// an instance count larger than 1 for distributed training algorithms. See <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel-use-api.html">Step
+        /// The number of instances of the type specified by <c>InstanceType</c>. Choose an instance
+        /// count larger than 1 for distributed training algorithms. See <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/data-parallel-use-api.html">Step
         /// 2: Launch a SageMaker Distributed Training Job Using the SageMaker Python SDK</a>
         /// for more information.
         /// </para>

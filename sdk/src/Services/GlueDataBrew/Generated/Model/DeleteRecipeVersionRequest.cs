@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlueDataBrew.Model
 {
     /// <summary>
@@ -59,8 +60,8 @@ namespace Amazon.GlueDataBrew.Model
         /// <summary>
         /// Gets and sets the property RecipeVersion. 
         /// <para>
-        /// The version of the recipe to be deleted. You can specify a numeric versions (<code>X.Y</code>)
-        /// or <code>LATEST_WORKING</code>. <code>LATEST_PUBLISHED</code> is not supported.
+        /// The version of the recipe to be deleted. You can specify a numeric versions (<c>X.Y</c>)
+        /// or <c>LATEST_WORKING</c>. <c>LATEST_PUBLISHED</c> is not supported.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=16)]

@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Contains the configuration parameters for a PUT Copy object operation. S3 Batch Operations
-    /// passes every object to the underlying <code>CopyObject</code> API operation. For more
-    /// information about the parameters for this operation, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html">CopyObject</a>.
+    /// passes every object to the underlying <c>CopyObject</c> API operation. For more information
+    /// about the parameters for this operation, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html">CopyObject</a>.
     /// </summary>
     public partial class S3CopyObjectOperation
     {
-        private List<S3Grant> _accessControlGrants = new List<S3Grant>();
+        private List<S3Grant> _accessControlGrants = AWSConfigs.InitializeCollections ? new List<S3Grant>() : null;
         private bool? _bucketKeyEnabled;
         private S3CannedAccessControlList _cannedAccessControlList;
         private S3ChecksumAlgorithm _checksumAlgorithm;
         private S3MetadataDirective _metadataDirective;
         private DateTime? _modifiedSinceConstraint;
         private S3ObjectMetadata _newObjectMetadata;
-        private List<S3Tag> _newObjectTagging = new List<S3Tag>();
+        private List<S3Tag> _newObjectTagging = AWSConfigs.InitializeCollections ? new List<S3Tag>() : null;
         private S3ObjectLockLegalHoldStatus _objectLockLegalHoldStatus;
         private S3ObjectLockMode _objectLockMode;
         private DateTime? _objectLockRetainUntilDate;
@@ -55,7 +56,11 @@ namespace Amazon.S3Control.Model
         private DateTime? _unModifiedSinceConstraint;
 
         /// <summary>
-        /// Gets and sets the property AccessControlGrants.
+        /// Gets and sets the property AccessControlGrants.  <note> 
+        /// <para>
+        /// This functionality is not supported by directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<S3Grant> AccessControlGrants
         {
@@ -66,7 +71,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccessControlGrants property is set
         internal bool IsSetAccessControlGrants()
         {
-            return this._accessControlGrants != null && this._accessControlGrants.Count > 0; 
+            return this._accessControlGrants != null && (this._accessControlGrants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,14 +79,23 @@ namespace Amazon.S3Control.Model
         /// <para>
         /// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with
         /// server-side encryption using Amazon Web Services KMS (SSE-KMS). Setting this header
-        /// to <code>true</code> causes Amazon S3 to use an S3 Bucket Key for object encryption
-        /// with SSE-KMS.
+        /// to <c>true</c> causes Amazon S3 to use an S3 Bucket Key for object encryption with
+        /// SSE-KMS.
         /// </para>
         ///  
         /// <para>
-        /// Specifying this header with an <i>object</i> action doesn’t affect <i>bucket-level</i>
+        /// Specifying this header with an <i>Copy</i> action doesn’t affect <i>bucket-level</i>
         /// settings for S3 Bucket Key.
         /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - S3 Bucket Keys aren't supported, when you copy SSE-KMS
+        /// encrypted objects from general purpose buckets to directory buckets, from directory
+        /// buckets to general purpose buckets, or between directory buckets, through <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-buckets-objects-Batch-Ops">the
+        /// Copy operation in Batch Operations</a>. In this case, Amazon S3 makes a call to KMS
+        /// every time a copy request is made for a KMS-encrypted object.
+        /// </para>
+        ///  </note>
         /// </summary>
         public bool BucketKeyEnabled
         {
@@ -96,7 +110,11 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property CannedAccessControlList.
+        /// Gets and sets the property CannedAccessControlList.  <note> 
+        /// <para>
+        /// This functionality is not supported by directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public S3CannedAccessControlList CannedAccessControlList
         {
@@ -114,7 +132,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property ChecksumAlgorithm. 
         /// <para>
         /// Indicates the algorithm that you want Amazon S3 to use to create the checksum. For
-        /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml">
+        /// more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html">
         /// Checking object integrity</a> in the <i>Amazon S3 User Guide</i>.
         /// </para>
         /// </summary>
@@ -181,7 +199,20 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property NewObjectTagging.
+        /// Gets and sets the property NewObjectTagging. 
+        /// <para>
+        /// Specifies a list of tags to add to the destination objects after they are copied.
+        /// If <c>NewObjectTagging</c> is not specified, the tags of the source objects are copied
+        /// to destination objects by default.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - Tags aren't supported by directory buckets. If your source
+        /// objects have tags and your destination bucket is a directory bucket, specify an empty
+        /// tag set in the <c>NewObjectTagging</c> field to prevent copying the source object
+        /// tags to the directory bucket.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<S3Tag> NewObjectTagging
         {
@@ -192,7 +223,7 @@ namespace Amazon.S3Control.Model
         // Check to see if NewObjectTagging property is set
         internal bool IsSetNewObjectTagging()
         {
-            return this._newObjectTagging != null && this._newObjectTagging.Count > 0; 
+            return this._newObjectTagging != null && (this._newObjectTagging.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,6 +231,11 @@ namespace Amazon.S3Control.Model
         /// <para>
         /// The legal hold status to be applied to all objects in the Batch Operations job.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported by directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public S3ObjectLockLegalHoldStatus ObjectLockLegalHoldStatus
         {
@@ -218,6 +254,11 @@ namespace Amazon.S3Control.Model
         /// <para>
         /// The retention mode to be applied to all objects in the Batch Operations job.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported by directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public S3ObjectLockMode ObjectLockMode
         {
@@ -237,6 +278,11 @@ namespace Amazon.S3Control.Model
         /// The date when the applied object retention configuration expires on all objects in
         /// the Batch Operations job.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported by directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public DateTime ObjectLockRetainUntilDate
         {
@@ -253,9 +299,15 @@ namespace Amazon.S3Control.Model
         /// <summary>
         /// Gets and sets the property RedirectLocation. 
         /// <para>
-        /// Specifies an optional metadata property for website redirects, <code>x-amz-website-redirect-location</code>.
-        /// Allows webpage redirects if the object is accessed through a website endpoint.
+        /// If the destination bucket is configured as a website, specifies an optional metadata
+        /// property for website redirects, <c>x-amz-website-redirect-location</c>. Allows webpage
+        /// redirects if the object copy is accessed through a website endpoint.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// This functionality is not supported by directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
         public string RedirectLocation
@@ -271,7 +323,11 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property RequesterPays.
+        /// Gets and sets the property RequesterPays.  <note> 
+        /// <para>
+        /// This functionality is not supported by directory buckets.
+        /// </para>
+        ///  </note>
         /// </summary>
         public bool RequesterPays
         {
@@ -286,7 +342,32 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SSEAwsKmsKeyId.
+        /// Gets and sets the property SSEAwsKmsKeyId. 
+        /// <para>
+        /// Specifies the KMS key ID (Key ID, Key ARN, or Key Alias) to use for object encryption.
+        /// If the KMS key doesn't exist in the same account that's issuing the command, you must
+        /// use the full Key ARN not the Key ID.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets</b> - If you specify <c>SSEAlgorithm</c> with <c>KMS</c>, you
+        /// must specify the <c> SSEAwsKmsKeyId</c> parameter with the ID (Key ID or Key ARN)
+        /// of the KMS symmetric encryption customer managed key to use. Otherwise, you get an
+        /// HTTP <c>400 Bad Request</c> error. The key alias format of the KMS key isn't supported.
+        /// To encrypt new object copies in a directory bucket with SSE-KMS, you must specify
+        /// SSE-KMS as the directory bucket's default encryption configuration with a KMS key
+        /// (specifically, a <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk">customer
+        /// managed key</a>). The <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk">Amazon
+        /// Web Services managed key</a> (<c>aws/s3</c>) isn't supported. Your SSE-KMS configuration
+        /// can only support 1 <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk">customer
+        /// managed key</a> per directory bucket for the lifetime of the bucket. After you specify
+        /// a customer managed key for SSE-KMS as the bucket default encryption, you can't override
+        /// the customer managed key for the bucket's SSE-KMS configuration. Then, when you specify
+        /// server-side encryption settings for new object copies with SSE-KMS, you must make
+        /// sure the encryption key is the same customer managed key that you specified for the
+        /// directory bucket's default encryption configuration. 
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]
         public string SSEAwsKmsKeyId
@@ -302,7 +383,16 @@ namespace Amazon.S3Control.Model
         }
 
         /// <summary>
-        /// Gets and sets the property StorageClass.
+        /// Gets and sets the property StorageClass. 
+        /// <para>
+        /// Specify the storage class for the destination objects in a <c>Copy</c> operation.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        ///  <b>Directory buckets </b> - This functionality is not supported by directory buckets.
+        /// 
+        /// </para>
+        ///  </note>
         /// </summary>
         public S3StorageClass StorageClass
         {
@@ -320,8 +410,8 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property TargetKeyPrefix. 
         /// <para>
         /// Specifies the folder prefix that you want the objects to be copied into. For example,
-        /// to copy objects into a folder named <code>Folder1</code> in the destination bucket,
-        /// set the <code>TargetKeyPrefix</code> property to <code>Folder1</code>.
+        /// to copy objects into a folder named <c>Folder1</c> in the destination bucket, set
+        /// the <c>TargetKeyPrefix</c> property to <c>Folder1</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -341,9 +431,19 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property TargetResource. 
         /// <para>
         /// Specifies the destination bucket Amazon Resource Name (ARN) for the batch copy operation.
-        /// For example, to copy objects to a bucket named <code>destinationBucket</code>, set
-        /// the <code>TargetResource</code> property to <code>arn:aws:s3:::destinationBucket</code>.
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>General purpose buckets</b> - For example, to copy objects to a general purpose
+        /// bucket named <c>destinationBucket</c>, set the <c>TargetResource</c> property to <c>arn:aws:s3:::destinationBucket</c>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>Directory buckets</b> - For example, to copy objects to a directory bucket named
+        /// <c>destinationBucket</c> in the Availability Zone; identified by the AZ ID <c>usw2-az1</c>,
+        /// set the <c>TargetResource</c> property to <c>arn:aws:s3express:<i>region</i>:<i>account_id</i>:/bucket/<i>destination_bucket_base_name</i>--<i>usw2-az1</i>--x-s3</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
         public string TargetResource

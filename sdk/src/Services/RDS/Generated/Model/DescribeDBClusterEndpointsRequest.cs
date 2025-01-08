@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.RDS.Model
     {
         private string _dbClusterEndpointIdentifier;
         private string _dbClusterIdentifier;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
 
@@ -88,14 +89,14 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property Filters. 
         /// <para>
         /// A set of name-value pairs that define which endpoints to include in the output. The
-        /// filters are specified as name-value pairs, in the format <code>Name=<i>endpoint_type</i>,Values=<i>endpoint_type1</i>,<i>endpoint_type2</i>,...</code>.
-        /// <code>Name</code> can be one of: <code>db-cluster-endpoint-type</code>, <code>db-cluster-endpoint-custom-type</code>,
-        /// <code>db-cluster-endpoint-id</code>, <code>db-cluster-endpoint-status</code>. <code>Values</code>
-        /// for the <code> db-cluster-endpoint-type</code> filter can be one or more of: <code>reader</code>,
-        /// <code>writer</code>, <code>custom</code>. <code>Values</code> for the <code>db-cluster-endpoint-custom-type</code>
-        /// filter can be one or more of: <code>reader</code>, <code>any</code>. <code>Values</code>
-        /// for the <code>db-cluster-endpoint-status</code> filter can be one or more of: <code>available</code>,
-        /// <code>creating</code>, <code>deleting</code>, <code>inactive</code>, <code>modifying</code>.
+        /// filters are specified as name-value pairs, in the format <c>Name=<i>endpoint_type</i>,Values=<i>endpoint_type1</i>,<i>endpoint_type2</i>,...</c>.
+        /// <c>Name</c> can be one of: <c>db-cluster-endpoint-type</c>, <c>db-cluster-endpoint-custom-type</c>,
+        /// <c>db-cluster-endpoint-id</c>, <c>db-cluster-endpoint-status</c>. <c>Values</c> for
+        /// the <c> db-cluster-endpoint-type</c> filter can be one or more of: <c>reader</c>,
+        /// <c>writer</c>, <c>custom</c>. <c>Values</c> for the <c>db-cluster-endpoint-custom-type</c>
+        /// filter can be one or more of: <c>reader</c>, <c>any</c>. <c>Values</c> for the <c>db-cluster-endpoint-status</c>
+        /// filter can be one or more of: <c>available</c>, <c>creating</c>, <c>deleting</c>,
+        /// <c>inactive</c>, <c>modifying</c>.
         /// </para>
         /// </summary>
         public List<Filter> Filters
@@ -107,15 +108,15 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeDBClusterEndpoints</code>
+        /// An optional pagination token provided by a previous <c>DescribeDBClusterEndpoints</c>
         /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// the marker, up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -134,8 +135,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>

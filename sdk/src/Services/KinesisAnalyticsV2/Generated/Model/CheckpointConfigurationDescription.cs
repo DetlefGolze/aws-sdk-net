@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
-    /// Describes checkpointing parameters for a Flink-based Kinesis Data Analytics application.
+    /// Describes checkpointing parameters for a Managed Service for Apache Flink application.
     /// </summary>
     public partial class CheckpointConfigurationDescription
     {
@@ -41,14 +42,14 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property CheckpointingEnabled. 
         /// <para>
-        /// Describes whether checkpointing is enabled for a Flink-based Kinesis Data Analytics
+        /// Describes whether checkpointing is enabled for a Managed Service for Apache Flink
         /// application.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>,
-        /// the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>,
-        /// even if this value is set to another value using this API or in application code.
+        /// If <c>CheckpointConfiguration.ConfigurationType</c> is <c>DEFAULT</c>, the application
+        /// will use a <c>CheckpointingEnabled</c> value of <c>true</c>, even if this value is
+        /// set to another value using this API or in application code.
         /// </para>
         ///  </note>
         /// </summary>
@@ -71,9 +72,9 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>,
-        /// the application will use a <code>CheckpointInterval</code> value of 60000, even if
-        /// this value is set to another value using this API or in application code.
+        /// If <c>CheckpointConfiguration.ConfigurationType</c> is <c>DEFAULT</c>, the application
+        /// will use a <c>CheckpointInterval</c> value of 60000, even if this value is set to
+        /// another value using this API or in application code.
         /// </para>
         ///  </note>
         /// </summary>
@@ -93,13 +94,13 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property ConfigurationType. 
         /// <para>
-        /// Describes whether the application uses the default checkpointing behavior in Kinesis
-        /// Data Analytics. 
+        /// Describes whether the application uses the default checkpointing behavior in Managed
+        /// Service for Apache Flink. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// If this value is set to <code>DEFAULT</code>, the application will use the following
-        /// values, even if they are set to other values using APIs or application code:
+        /// If this value is set to <c>DEFAULT</c>, the application will use the following values,
+        /// even if they are set to other values using APIs or application code:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -135,9 +136,9 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>,
-        /// the application will use a <code>MinPauseBetweenCheckpoints</code> value of 5000,
-        /// even if this value is set using this API or in application code.
+        /// If <c>CheckpointConfiguration.ConfigurationType</c> is <c>DEFAULT</c>, the application
+        /// will use a <c>MinPauseBetweenCheckpoints</c> value of 5000, even if this value is
+        /// set using this API or in application code.
         /// </para>
         ///  </note>
         /// </summary>

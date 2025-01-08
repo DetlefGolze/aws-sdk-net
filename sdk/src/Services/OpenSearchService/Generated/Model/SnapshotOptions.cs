@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
     /// The time, in UTC format, when OpenSearch Service takes a daily automated snapshot
-    /// of the specified domain. Default is <code>0</code> hours.
+    /// of the specified domain. Default is <c>0</c> hours.
     /// </summary>
     public partial class SnapshotOptions
     {
@@ -40,7 +41,7 @@ namespace Amazon.OpenSearchService.Model
         /// Gets and sets the property AutomatedSnapshotStartHour. 
         /// <para>
         /// The time, in UTC format, when OpenSearch Service takes a daily automated snapshot
-        /// of the specified domain. Default is <code>0</code> hours.
+        /// of the specified domain. Default is <c>0</c> hours.
         /// </para>
         /// </summary>
         public int AutomatedSnapshotStartHour

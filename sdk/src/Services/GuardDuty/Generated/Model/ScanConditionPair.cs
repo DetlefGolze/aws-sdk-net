@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
-    /// Represents the <code>key:value</code> pair to be matched against given resource property.
+    /// Represents the <c>key:value</c> pair to be matched against given resource property.
     /// </summary>
     public partial class ScanConditionPair
     {

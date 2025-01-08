@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
-    /// A list of <code>MatchingWorkflowSummary</code> objects, each of which contain the
-    /// fields <code>WorkflowName</code>, <code>WorkflowArn</code>, <code>CreatedAt</code>,
-    /// <code>UpdatedAt</code>.
+    /// A list of <c>MatchingWorkflowSummary</c> objects, each of which contain the fields
+    /// <c>WorkflowName</c>, <c>WorkflowArn</c>, <c>CreatedAt</c>, <c>UpdatedAt</c>.
     /// </summary>
     public partial class MatchingWorkflowSummary
     {
         private DateTime? _createdAt;
+        private ResolutionType _resolutionType;
         private DateTime? _updatedAt;
         private string _workflowArn;
         private string _workflowName;
@@ -60,6 +61,26 @@ namespace Amazon.EntityResolution.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ResolutionType. 
+        /// <para>
+        /// The method that has been specified for data matching, either using matching provided
+        /// by Entity Resolution or through a provider service.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Required=true)]
+        public ResolutionType ResolutionType
+        {
+            get { return this._resolutionType; }
+            set { this._resolutionType = value; }
+        }
+
+        // Check to see if ResolutionType property is set
+        internal bool IsSetResolutionType()
+        {
+            return this._resolutionType != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property UpdatedAt. 
         /// <para>
         /// The timestamp of when the workflow was last updated.
@@ -81,7 +102,7 @@ namespace Amazon.EntityResolution.Model
         /// <summary>
         /// Gets and sets the property WorkflowArn. 
         /// <para>
-        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <code>MatchingWorkflow</code>.
+        /// The ARN (Amazon Resource Name) that Entity Resolution generated for the <c>MatchingWorkflow</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -103,7 +124,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the workflow.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string WorkflowName
         {
             get { return this._workflowName; }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property ManifestURI. 
         /// <para>
-        /// The Amazon S3 presigned URL for the manifest file associated with the specified <code>JobId</code>
+        /// The Amazon S3 presigned URL for the manifest file associated with the specified <c>JobId</c>
         /// value.
         /// </para>
         /// </summary>

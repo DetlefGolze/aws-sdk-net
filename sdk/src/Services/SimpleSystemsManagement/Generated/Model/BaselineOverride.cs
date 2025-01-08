@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SimpleSystemsManagement.Model
     public partial class BaselineOverride
     {
         private PatchRuleGroup _approvalRules;
-        private List<string> _approvedPatches = new List<string>();
+        private List<string> _approvedPatches = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private PatchComplianceLevel _approvedPatchesComplianceLevel;
         private bool? _approvedPatchesEnableNonSecurity;
         private PatchFilterGroup _globalFilters;
         private OperatingSystem _operatingSystem;
-        private List<string> _rejectedPatches = new List<string>();
+        private List<string> _rejectedPatches = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private PatchAction _rejectedPatchesAction;
-        private List<PatchSource> _sources = new List<PatchSource>();
+        private List<PatchSource> _sources = AWSConfigs.InitializeCollections ? new List<PatchSource>() : null;
 
         /// <summary>
         /// Gets and sets the property ApprovalRules.
@@ -66,9 +67,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  
         /// <para>
         /// For information about accepted formats for lists of approved patches and rejected
-        /// patches, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html">About
-        /// package name formats for approved and rejected patch lists</a> in the <i>Amazon Web
-        /// Services Systems Manager User Guide</i>.
+        /// patches, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html">Package
+        /// name formats for approved and rejected patch lists</a> in the <i>Amazon Web Services
+        /// Systems Manager User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -81,7 +82,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if ApprovedPatches property is set
         internal bool IsSetApprovedPatches()
         {
-            return this._approvedPatches != null && this._approvedPatches.Count > 0; 
+            return this._approvedPatches != null && (this._approvedPatches.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property ApprovedPatchesEnableNonSecurity. 
         /// <para>
         /// Indicates whether the list of approved patches includes non-security updates that
-        /// should be applied to the managed nodes. The default value is <code>false</code>. Applies
+        /// should be applied to the managed nodes. The default value is <c>false</c>. Applies
         /// to Linux managed nodes only.
         /// </para>
         /// </summary>
@@ -164,9 +165,9 @@ namespace Amazon.SimpleSystemsManagement.Model
         ///  
         /// <para>
         /// For information about accepted formats for lists of approved patches and rejected
-        /// patches, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html">About
-        /// package name formats for approved and rejected patch lists</a> in the <i>Amazon Web
-        /// Services Systems Manager User Guide</i>.
+        /// patches, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html">Package
+        /// name formats for approved and rejected patch lists</a> in the <i>Amazon Web Services
+        /// Systems Manager User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -179,13 +180,13 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if RejectedPatches property is set
         internal bool IsSetRejectedPatches()
         {
-            return this._rejectedPatches != null && this._rejectedPatches.Count > 0; 
+            return this._rejectedPatches != null && (this._rejectedPatches.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property RejectedPatchesAction. 
         /// <para>
-        /// The action for Patch Manager to take on patches included in the <code>RejectedPackages</code>
+        /// The action for Patch Manager to take on patches included in the <c>RejectedPackages</c>
         /// list. A patch can be allowed only if it is a dependency of another package, or blocked
         /// entirely along with packages that include it as a dependency.
         /// </para>
@@ -219,7 +220,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Sources property is set
         internal bool IsSetSources()
         {
-            return this._sources != null && this._sources.Count > 0; 
+            return this._sources != null && (this._sources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

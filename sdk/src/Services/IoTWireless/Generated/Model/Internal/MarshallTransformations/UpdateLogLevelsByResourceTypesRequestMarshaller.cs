@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,12 +64,29 @@ namespace Amazon.IoTWireless.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDefaultLogLevel())
                 {
                     context.Writer.WritePropertyName("DefaultLogLevel");
                     context.Writer.Write(publicRequest.DefaultLogLevel);
+                }
+
+                if(publicRequest.IsSetFuotaTaskLogOptions())
+                {
+                    context.Writer.WritePropertyName("FuotaTaskLogOptions");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestFuotaTaskLogOptionsListValue in publicRequest.FuotaTaskLogOptions)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = FuotaTaskLogOptionMarshaller.Instance;
+                        marshaller.Marshall(publicRequestFuotaTaskLogOptionsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetWirelessDeviceLogOptions())

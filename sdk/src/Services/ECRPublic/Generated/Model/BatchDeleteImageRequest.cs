@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchDeleteImage operation.
     /// Deletes a list of specified images that are within a repository in a public registry.
-    /// Images are specified with either an <code>imageTag</code> or <code>imageDigest</code>.
+    /// Images are specified with either an <c>imageTag</c> or <c>imageDigest</c>.
     /// 
     ///  
     /// <para>
@@ -46,7 +47,7 @@ namespace Amazon.ECRPublic.Model
     /// </summary>
     public partial class BatchDeleteImageRequest : AmazonECRPublicRequest
     {
-        private List<ImageIdentifier> _imageIds = new List<ImageIdentifier>();
+        private List<ImageIdentifier> _imageIds = AWSConfigs.InitializeCollections ? new List<ImageIdentifier>() : null;
         private string _registryId;
         private string _repositoryName;
 
@@ -54,7 +55,7 @@ namespace Amazon.ECRPublic.Model
         /// Gets and sets the property ImageIds. 
         /// <para>
         /// A list of image ID references that correspond to images to delete. The format of the
-        /// <code>imageIds</code> reference is <code>imageTag=tag</code> or <code>imageDigest=digest</code>.
+        /// <c>imageIds</c> reference is <c>imageTag=tag</c> or <c>imageDigest=digest</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -67,7 +68,7 @@ namespace Amazon.ECRPublic.Model
         // Check to see if ImageIds property is set
         internal bool IsSetImageIds()
         {
-            return this._imageIds != null && this._imageIds.Count > 0; 
+            return this._imageIds != null && (this._imageIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

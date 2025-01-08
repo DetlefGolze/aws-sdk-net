@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
-    /// Contains an optional backup plan display name and an array of <code>BackupRule</code>
-    /// objects, each of which specifies a backup rule. Each rule in a backup plan is a separate
-    /// scheduled task.
+    /// Contains an optional backup plan display name and an array of <c>BackupRule</c> objects,
+    /// each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled
+    /// task.
     /// </summary>
     public partial class BackupPlanInput
     {
-        private List<AdvancedBackupSetting> _advancedBackupSettings = new List<AdvancedBackupSetting>();
+        private List<AdvancedBackupSetting> _advancedBackupSettings = AWSConfigs.InitializeCollections ? new List<AdvancedBackupSetting>() : null;
         private string _backupPlanName;
-        private List<BackupRuleInput> _rules = new List<BackupRuleInput>();
+        private List<BackupRuleInput> _rules = AWSConfigs.InitializeCollections ? new List<BackupRuleInput>() : null;
 
         /// <summary>
         /// Gets and sets the property AdvancedBackupSettings. 
         /// <para>
-        /// Specifies a list of <code>BackupOptions</code> for each resource type. These settings
-        /// are only available for Windows Volume Shadow Copy Service (VSS) backup jobs.
+        /// Specifies a list of <c>BackupOptions</c> for each resource type. These settings are
+        /// only available for Windows Volume Shadow Copy Service (VSS) backup jobs.
         /// </para>
         /// </summary>
         public List<AdvancedBackupSetting> AdvancedBackupSettings
@@ -55,7 +56,7 @@ namespace Amazon.Backup.Model
         // Check to see if AdvancedBackupSettings property is set
         internal bool IsSetAdvancedBackupSettings()
         {
-            return this._advancedBackupSettings != null && this._advancedBackupSettings.Count > 0; 
+            return this._advancedBackupSettings != null && (this._advancedBackupSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,8 +81,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property Rules. 
         /// <para>
-        /// An array of <code>BackupRule</code> objects, each of which specifies a scheduled task
-        /// that is used to back up a selection of resources.
+        /// An array of <c>BackupRule</c> objects, each of which specifies a scheduled task that
+        /// is used to back up a selection of resources.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -94,7 +95,7 @@ namespace Amazon.Backup.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComputeOptimizer.Model
 {
     /// <summary>
@@ -33,17 +34,17 @@ namespace Amazon.ComputeOptimizer.Model
     /// 
     ///  <note> 
     /// <para>
-    /// The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization
-    /// metrics returned when you run the <a>GetEC2RecommendationProjectedMetrics</a> action.
-    /// Additionally, the <code>Memory</code> metric is returned only for resources that have
-    /// the unified CloudWatch agent installed on them. For more information, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent">Enabling
+    /// The <c>Cpu</c> and <c>Memory</c> metrics are the only projected utilization metrics
+    /// returned when you run the <a>GetEC2RecommendationProjectedMetrics</a> action. Additionally,
+    /// the <c>Memory</c> metric is returned only for resources that have the unified CloudWatch
+    /// agent installed on them. For more information, see <a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent">Enabling
     /// Memory Utilization with the CloudWatch Agent</a>.
     /// </para>
     ///  </note>
     /// </summary>
     public partial class RecommendedOptionProjectedMetric
     {
-        private List<ProjectedMetric> _projectedMetrics = new List<ProjectedMetric>();
+        private List<ProjectedMetric> _projectedMetrics = AWSConfigs.InitializeCollections ? new List<ProjectedMetric>() : null;
         private int? _rank;
         private string _recommendedInstanceType;
 
@@ -62,7 +63,7 @@ namespace Amazon.ComputeOptimizer.Model
         // Check to see if ProjectedMetrics property is set
         internal bool IsSetProjectedMetrics()
         {
-            return this._projectedMetrics != null && this._projectedMetrics.Count > 0; 
+            return this._projectedMetrics != null && (this._projectedMetrics.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,13 +73,13 @@ namespace Amazon.ComputeOptimizer.Model
         /// </para>
         ///  
         /// <para>
-        /// The top recommendation option is ranked as <code>1</code>.
+        /// The top recommendation option is ranked as <c>1</c>.
         /// </para>
         ///  
         /// <para>
         /// The projected metric rank correlates to the recommendation option rank. For example,
-        /// the projected metric ranked as <code>1</code> is related to the recommendation option
-        /// that is also ranked as <code>1</code> in the same response.
+        /// the projected metric ranked as <c>1</c> is related to the recommendation option that
+        /// is also ranked as <c>1</c> in the same response.
         /// </para>
         /// </summary>
         public int Rank

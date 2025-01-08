@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -33,9 +34,12 @@ namespace Amazon.CloudTrail.Model
     /// </summary>
     public partial class UpdateEventDataStoreResponse : AmazonWebServiceResponse
     {
-        private List<AdvancedEventSelector> _advancedEventSelectors = new List<AdvancedEventSelector>();
+        private List<AdvancedEventSelector> _advancedEventSelectors = AWSConfigs.InitializeCollections ? new List<AdvancedEventSelector>() : null;
+        private BillingMode _billingMode;
         private DateTime? _createdTimestamp;
         private string _eventDataStoreArn;
+        private string _federationRoleArn;
+        private FederationStatus _federationStatus;
         private string _kmsKeyId;
         private bool? _multiRegionEnabled;
         private string _name;
@@ -60,7 +64,25 @@ namespace Amazon.CloudTrail.Model
         // Check to see if AdvancedEventSelectors property is set
         internal bool IsSetAdvancedEventSelectors()
         {
-            return this._advancedEventSelectors != null && this._advancedEventSelectors.Count > 0; 
+            return this._advancedEventSelectors != null && (this._advancedEventSelectors.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property BillingMode. 
+        /// <para>
+        /// The billing mode for the event data store.
+        /// </para>
+        /// </summary>
+        public BillingMode BillingMode
+        {
+            get { return this._billingMode; }
+            set { this._billingMode = value; }
+        }
+
+        // Check to see if BillingMode property is set
+        internal bool IsSetBillingMode()
+        {
+            return this._billingMode != null;
         }
 
         /// <summary>
@@ -101,6 +123,47 @@ namespace Amazon.CloudTrail.Model
         }
 
         /// <summary>
+        /// Gets and sets the property FederationRoleArn. 
+        /// <para>
+        ///  If Lake query federation is enabled, provides the ARN of the federation role used
+        /// to access the resources for the federated event data store. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=3, Max=125)]
+        public string FederationRoleArn
+        {
+            get { return this._federationRoleArn; }
+            set { this._federationRoleArn = value; }
+        }
+
+        // Check to see if FederationRoleArn property is set
+        internal bool IsSetFederationRoleArn()
+        {
+            return this._federationRoleArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FederationStatus. 
+        /// <para>
+        ///  Indicates the <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/query-federation.html">Lake
+        /// query federation</a> status. The status is <c>ENABLED</c> if Lake query federation
+        /// is enabled, or <c>DISABLED</c> if Lake query federation is disabled. You cannot delete
+        /// an event data store if the <c>FederationStatus</c> is <c>ENABLED</c>. 
+        /// </para>
+        /// </summary>
+        public FederationStatus FederationStatus
+        {
+            get { return this._federationStatus; }
+            set { this._federationStatus = value; }
+        }
+
+        // Check to see if FederationStatus property is set
+        internal bool IsSetFederationStatus()
+        {
+            return this._federationStatus != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
         /// Specifies the KMS key ID that encrypts the events delivered by CloudTrail. The value
@@ -108,7 +171,7 @@ namespace Amazon.CloudTrail.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:kms:us-east-2:123456789012:key/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         /// </summary>
@@ -188,7 +251,7 @@ namespace Amazon.CloudTrail.Model
         /// The retention period, in days.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=7, Max=2557)]
+        [AWSProperty(Min=7, Max=3653)]
         public int RetentionPeriod
         {
             get { return this._retentionPeriod.GetValueOrDefault(); }
@@ -240,8 +303,8 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property UpdatedTimestamp. 
         /// <para>
-        /// The timestamp that shows when the event data store was last updated. <code>UpdatedTimestamp</code>
-        /// is always either the same or newer than the time shown in <code>CreatedTimestamp</code>.
+        /// The timestamp that shows when the event data store was last updated. <c>UpdatedTimestamp</c>
+        /// is always either the same or newer than the time shown in <c>CreatedTimestamp</c>.
         /// </para>
         /// </summary>
         public DateTime UpdatedTimestamp

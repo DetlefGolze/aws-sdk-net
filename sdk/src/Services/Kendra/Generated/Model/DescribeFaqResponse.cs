@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -86,8 +87,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property ErrorMessage. 
         /// <para>
-        /// If the <code>Status</code> field is <code>FAILED</code>, the <code>ErrorMessage</code>
-        /// field contains the reason why the FAQ failed.
+        /// If the <c>Status</c> field is <c>FAILED</c>, the <c>ErrorMessage</c> field contains
+        /// the reason why the FAQ failed.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -106,7 +107,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property FileFormat. 
         /// <para>
-        /// The file format used by the input files for the FAQ.
+        /// The file format used for the FAQ file.
         /// </para>
         /// </summary>
         public FaqFileFormat FileFormat
@@ -203,8 +204,8 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the role that provides access to the S3 bucket containing
-        /// the input files for the FAQ.
+        /// The Amazon Resource Name (ARN) of the IAM role that provides access to the S3 bucket
+        /// containing the FAQ file.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1284)]
@@ -238,7 +239,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the FAQ. It is ready to use when the status is <code>ACTIVE</code>.
+        /// The status of the FAQ. It is ready to use when the status is <c>ACTIVE</c>.
         /// </para>
         /// </summary>
         public FaqStatus Status

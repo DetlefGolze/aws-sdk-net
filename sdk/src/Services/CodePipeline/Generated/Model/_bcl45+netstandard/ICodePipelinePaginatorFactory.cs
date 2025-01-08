@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the codepipeline-2015-07-09.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -44,6 +45,11 @@ namespace Amazon.CodePipeline.Model
         /// Paginator for ListPipelines operation
         ///</summary>
         IListPipelinesPaginator ListPipelines(ListPipelinesRequest request);
+
+        /// <summary>
+        /// Paginator for ListRuleExecutions operation
+        ///</summary>
+        IListRuleExecutionsPaginator ListRuleExecutions(ListRuleExecutionsRequest request);
 
         /// <summary>
         /// Paginator for ListTagsForResource operation

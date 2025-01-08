@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -58,15 +59,15 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property OtherCategories. 
         /// <para>
-        /// The <code>Show other</code> of an axis in the chart. Choose one of the following options:
+        /// The <c>Show other</c> of an axis in the chart. Choose one of the following options:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>INCLUDE</code> 
+        ///  <c>INCLUDE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EXCLUDE</code> 
+        ///  <c>EXCLUDE</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

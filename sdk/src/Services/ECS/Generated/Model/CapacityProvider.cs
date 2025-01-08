@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.ECS.Model
         private string _capacityProviderArn;
         private string _name;
         private CapacityProviderStatus _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private CapacityProviderUpdateStatus _updateStatus;
         private string _updateStatusReason;
 
@@ -98,9 +99,9 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current status of the capacity provider. Only capacity providers in an <code>ACTIVE</code>
+        /// The current status of the capacity provider. Only capacity providers in an <c>ACTIVE</c>
         /// state can be used in a cluster. When a capacity provider is successfully deleted,
-        /// it has an <code>INACTIVE</code> status.
+        /// it has an <c>INACTIVE</c> status.
         /// </para>
         /// </summary>
         public CapacityProviderStatus Status
@@ -155,10 +156,10 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for either keys or values as it is reserved for Amazon Web Services
-        /// use. You cannot edit or delete tag keys or values with this prefix. Tags with this
-        /// prefix do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for either keys or values as it is reserved for Amazon Web Services use.
+        /// You cannot edit or delete tag keys or values with this prefix. Tags with this prefix
+        /// do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -172,7 +173,7 @@ namespace Amazon.ECS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -187,7 +188,7 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  </dd> <dt>DELETE_COMPLETE</dt> <dd> 
         /// <para>
-        /// The capacity provider was successfully deleted and has an <code>INACTIVE</code> status.
+        /// The capacity provider was successfully deleted and has an <c>INACTIVE</c> status.
         /// </para>
         ///  </dd> <dt>DELETE_FAILED</dt> <dd> 
         /// <para>

@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
     /// Container for the parameters to the CreatePlaceIndex operation.
     /// Creates a place index resource in your Amazon Web Services account. Use a place index
-    /// resource to geocode addresses and other text queries by using the <code>SearchPlaceIndexForText</code>
-    /// operation, and reverse geocode coordinates by using the <code>SearchPlaceIndexForPosition</code>
-    /// operation, and enable autosuggestions by using the <code>SearchPlaceIndexForSuggestions</code>
+    /// resource to geocode addresses and other text queries by using the <c>SearchPlaceIndexForText</c>
+    /// operation, and reverse geocode coordinates by using the <c>SearchPlaceIndexForPosition</c>
+    /// operation, and enable autosuggestions by using the <c>SearchPlaceIndexForSuggestions</c>
     /// operation.
     /// 
     ///  <note> 
@@ -52,7 +53,7 @@ namespace Amazon.LocationService.Model
         private string _description;
         private string _indexName;
         private PricingPlan _pricingPlan;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DataSource. 
@@ -62,7 +63,7 @@ namespace Amazon.LocationService.Model
         ///  <note> 
         /// <para>
         /// This field is case-sensitive. Enter the valid values as shown. For example, entering
-        /// <code>HERE</code> returns an error.
+        /// <c>HERE</c> returns an error.
         /// </para>
         ///  </note> 
         /// <para>
@@ -70,27 +71,27 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Esri</code> – For additional information about <a href="https://docs.aws.amazon.com/location/latest/developerguide/esri.html">Esri</a>'s
+        ///  <c>Esri</c> – For additional information about <a href="https://docs.aws.amazon.com/location/latest/developerguide/esri.html">Esri</a>'s
         /// coverage in your region of interest, see <a href="https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm">Esri
         /// details on geocoding coverage</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Grab</code> – Grab provides place index functionality for Southeast Asia. For
-        /// additional information about <a href="https://docs.aws.amazon.com/location/latest/developerguide/grab.html">GrabMaps</a>'
+        ///  <c>Grab</c> – Grab provides place index functionality for Southeast Asia. For additional
+        /// information about <a href="https://docs.aws.amazon.com/location/latest/developerguide/grab.html">GrabMaps</a>'
         /// coverage, see <a href="https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area">GrabMaps
         /// countries and areas covered</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Here</code> – For additional information about <a href="https://docs.aws.amazon.com/location/latest/developerguide/HERE.html">HERE
+        ///  <c>Here</c> – For additional information about <a href="https://docs.aws.amazon.com/location/latest/developerguide/HERE.html">HERE
         /// Technologies</a>' coverage in your region of interest, see <a href="https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html">HERE
         /// details on goecoding coverage</a>.
         /// </para>
         ///  <important> 
         /// <para>
-        /// If you specify HERE Technologies (<code>Here</code>) as the data provider, you may
-        /// not <a href="https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html">store
+        /// If you specify HERE Technologies (<c>Here</c>) as the data provider, you may not <a
+        /// href="https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html">store
         /// results</a> for locations in Japan. For more information, see the <a href="http://aws.amazon.com/service-terms/">Amazon
         /// Web Services Service Terms</a> for Amazon Location Service.
         /// </para>
@@ -170,7 +171,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// No spaces allowed. For example, <code>ExamplePlaceIndex</code>.
+        /// No spaces allowed. For example, <c>ExamplePlaceIndex</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -190,7 +191,7 @@ namespace Amazon.LocationService.Model
         /// <summary>
         /// Gets and sets the property PricingPlan. 
         /// <para>
-        /// No longer used. If included, the only allowed value is <code>RequestBasedUsage</code>.
+        /// No longer used. If included, the only allowed value is <c>RequestBasedUsage</c>.
         /// </para>
         /// </summary>
         [Obsolete("Deprecated. If included, the only allowed value is RequestBasedUsage.")]
@@ -214,7 +215,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>"key" : "value"</code> 
+        /// Format: <c>"key" : "value"</c> 
         /// </para>
         ///  
         /// <para>
@@ -257,7 +258,7 @@ namespace Amazon.LocationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

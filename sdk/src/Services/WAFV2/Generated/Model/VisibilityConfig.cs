@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -72,7 +73,7 @@ namespace Amazon.WAFV2.Model
         /// A name of the Amazon CloudWatch metric dimension. The name can contain only the characters:
         /// A-Z, a-z, 0-9, - (hyphen), and _ (underscore). The name can be from one to 128 characters
         /// long. It can't contain whitespace or metric names that are reserved for WAF, for example
-        /// <code>All</code> and <code>Default_Action</code>. 
+        /// <c>All</c> and <c>Default_Action</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -94,6 +95,14 @@ namespace Amazon.WAFV2.Model
         /// Indicates whether WAF should store a sampling of the web requests that match the rules.
         /// You can view the sampled requests through the WAF console. 
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Request sampling doesn't provide a field redaction option, and any field redaction
+        /// that you specify in your logging configuration doesn't affect sampling. The only way
+        /// to exclude fields from request sampling is by disabling sampling in the web ACL visibility
+        /// configuration. 
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Required=true)]
         public bool SampledRequestsEnabled

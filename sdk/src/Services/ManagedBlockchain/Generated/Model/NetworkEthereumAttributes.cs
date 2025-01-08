@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -38,16 +39,12 @@ namespace Amazon.ManagedBlockchain.Model
         /// <summary>
         /// Gets and sets the property ChainId. 
         /// <para>
-        /// The Ethereum <code>CHAIN_ID</code> associated with the Ethereum network. Chain IDs
-        /// are as follows:
+        /// The Ethereum <c>CHAIN_ID</c> associated with the Ethereum network. Chain IDs are as
+        /// follows:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// mainnet = <code>1</code> 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// goerli = <code>5</code> 
+        /// mainnet = <c>1</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class InventoryItemSchema
     {
-        private List<InventoryItemAttribute> _attributes = new List<InventoryItemAttribute>();
+        private List<InventoryItemAttribute> _attributes = AWSConfigs.InitializeCollections ? new List<InventoryItemAttribute>() : null;
         private string _displayName;
         private string _typeName;
         private string _version;
@@ -55,7 +56,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The name of the inventory type. Default inventory item type names start with Amazon
         /// Web Services. Custom inventory type names will start with Custom. Default inventory
-        /// item types include the following: <code>AWS:AWSComponent</code>, <code>AWS:Application</code>,
-        /// <code>AWS:InstanceInformation</code>, <code>AWS:Network</code>, and <code>AWS:WindowsUpdate</code>.
+        /// item types include the following: <c>AWS:AWSComponent</c>, <c>AWS:Application</c>,
+        /// <c>AWS:InstanceInformation</c>, <c>AWS:Network</c>, and <c>AWS:WindowsUpdate</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]

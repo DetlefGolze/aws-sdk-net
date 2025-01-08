@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Shield.Model
         /// <summary>
         /// Gets and sets the property Max. 
         /// <para>
-        /// The maximum number of protections that can be created for the specified <code>Type</code>.
+        /// The maximum number of protections that can be created for the specified <c>Type</c>.
         /// </para>
         /// </summary>
         public long Max

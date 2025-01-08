@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// A serializer to use for converting data to the Parquet format before storing it in
-    /// Amazon S3. For more information, see <a href="https://parquet.apache.org/documentation/latest/">Apache
+    /// Amazon S3. For more information, see <a href="https://parquet.apache.org/docs/">Apache
     /// Parquet</a>.
     /// </summary>
     public partial class ParquetSerDe
@@ -47,7 +48,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <para>
         /// The Hadoop Distributed File System (HDFS) block size. This is useful if you intend
         /// to copy the data from Amazon S3 to HDFS before querying. The default is 256 MiB and
-        /// the minimum is 64 MiB. Kinesis Data Firehose uses this value for padding calculations.
+        /// the minimum is 64 MiB. Firehose uses this value for padding calculations.
         /// </para>
         /// </summary>
         [AWSProperty(Min=67108864)]
@@ -66,10 +67,10 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property Compression. 
         /// <para>
-        /// The compression code to use over data blocks. The possible values are <code>UNCOMPRESSED</code>,
-        /// <code>SNAPPY</code>, and <code>GZIP</code>, with the default being <code>SNAPPY</code>.
-        /// Use <code>SNAPPY</code> for higher decompression speed. Use <code>GZIP</code> if the
-        /// compression ratio is more important than speed.
+        /// The compression code to use over data blocks. The possible values are <c>UNCOMPRESSED</c>,
+        /// <c>SNAPPY</c>, and <c>GZIP</c>, with the default being <c>SNAPPY</c>. Use <c>SNAPPY</c>
+        /// for higher decompression speed. Use <c>GZIP</c> if the compression ratio is more important
+        /// than speed.
         /// </para>
         /// </summary>
         public ParquetCompression Compression
@@ -146,8 +147,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property WriterVersion. 
         /// <para>
-        /// Indicates the version of row format to output. The possible values are <code>V1</code>
-        /// and <code>V2</code>. The default is <code>V1</code>.
+        /// Indicates the version of row format to output. The possible values are <c>V1</c> and
+        /// <c>V2</c>. The default is <c>V1</c>.
         /// </para>
         /// </summary>
         public ParquetWriterVersion WriterVersion

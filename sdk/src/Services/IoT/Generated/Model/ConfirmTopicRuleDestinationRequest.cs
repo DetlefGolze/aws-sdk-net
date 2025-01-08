@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
     /// Container for the parameters to the ConfirmTopicRuleDestination operation.
     /// Confirms a topic rule destination. When you create a rule requiring a destination,
     /// IoT sends a confirmation message to the endpoint or base address you specify. The
-    /// message includes a token which you pass back when calling <code>ConfirmTopicRuleDestination</code>
+    /// message includes a token which you pass back when calling <c>ConfirmTopicRuleDestination</c>
     /// to confirm that you own or have access to the endpoint.
     /// 
     ///  

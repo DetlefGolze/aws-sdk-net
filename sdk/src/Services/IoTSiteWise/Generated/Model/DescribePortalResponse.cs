@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -47,6 +48,8 @@ namespace Amazon.IoTSiteWise.Model
         private string _portalName;
         private string _portalStartUrl;
         private PortalStatus _portalStatus;
+        private PortalType _portalType;
+        private Dictionary<string, PortalTypeEntry> _portalTypeConfiguration = AWSConfigs.InitializeCollections ? new Dictionary<string, PortalTypeEntry>() : null;
         private string _roleArn;
 
         /// <summary>
@@ -74,7 +77,7 @@ namespace Amazon.IoTSiteWise.Model
         /// The email address that sends alarm notifications.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=255)]
+        [AWSProperty(Sensitive=true, Min=1, Max=255)]
         public string NotificationSenderEmail
         {
             get { return this._notificationSenderEmail; }
@@ -95,8 +98,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:portal/${PortalId}</code>
-        /// 
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:portal/${PortalId}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]
@@ -134,8 +136,8 @@ namespace Amazon.IoTSiteWise.Model
         /// Gets and sets the property PortalClientId. 
         /// <para>
         /// The IAM Identity Center application generated client ID (used with IAM Identity Center
-        /// APIs). IoT SiteWise includes <code>portalClientId</code> for only portals that use
-        /// IAM Identity Center to authenticate users.
+        /// API operations). IoT SiteWise includes <c>portalClientId</c> for only portals that
+        /// use IAM Identity Center to authenticate users.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
@@ -157,7 +159,7 @@ namespace Amazon.IoTSiteWise.Model
         /// The Amazon Web Services administrator's contact email address.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=255)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=255)]
         public string PortalContactEmail
         {
             get { return this._portalContactEmail; }
@@ -322,6 +324,45 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetPortalStatus()
         {
             return this._portalStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PortalType. 
+        /// <para>
+        /// Define the type of portal. The value for IoT SiteWise Monitor (Classic) is <c>SITEWISE_PORTAL_V1</c>.
+        /// The value for IoT SiteWise Monitor (AI-aware) is <c>SITEWISE_PORTAL_V2</c>.
+        /// </para>
+        /// </summary>
+        public PortalType PortalType
+        {
+            get { return this._portalType; }
+            set { this._portalType = value; }
+        }
+
+        // Check to see if PortalType property is set
+        internal bool IsSetPortalType()
+        {
+            return this._portalType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PortalTypeConfiguration. 
+        /// <para>
+        /// The configuration entry associated with the specific portal type. The value for IoT
+        /// SiteWise Monitor (Classic) is <c>SITEWISE_PORTAL_V1</c>. The value for IoT SiteWise
+        /// Monitor (AI-aware) is <c>SITEWISE_PORTAL_V2</c>.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, PortalTypeEntry> PortalTypeConfiguration
+        {
+            get { return this._portalTypeConfiguration; }
+            set { this._portalTypeConfiguration = value; }
+        }
+
+        // Check to see if PortalTypeConfiguration property is set
+        internal bool IsSetPortalTypeConfiguration()
+        {
+            return this._portalTypeConfiguration != null && (this._portalTypeConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -65,6 +66,14 @@ namespace Amazon.ECR.Model
         public IDescribeRepositoriesPaginator DescribeRepositories(DescribeRepositoriesRequest request) 
         {
             return new DescribeRepositoriesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for DescribeRepositoryCreationTemplates operation
+        ///</summary>
+        public IDescribeRepositoryCreationTemplatesPaginator DescribeRepositoryCreationTemplates(DescribeRepositoryCreationTemplatesRequest request) 
+        {
+            return new DescribeRepositoryCreationTemplatesPaginator(this.client, request);
         }
 
         /// <summary>

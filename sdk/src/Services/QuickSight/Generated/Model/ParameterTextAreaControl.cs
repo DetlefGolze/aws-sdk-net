@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property ParameterControlId. 
         /// <para>
-        /// The ID of the <code>ParameterTextAreaControl</code>.
+        /// The ID of the <c>ParameterTextAreaControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -98,7 +99,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceParameterName. 
         /// <para>
-        /// The source parameter name of the <code>ParameterTextAreaControl</code>.
+        /// The source parameter name of the <c>ParameterTextAreaControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -117,7 +118,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>ParameterTextAreaControl</code>.
+        /// The title of the <c>ParameterTextAreaControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]

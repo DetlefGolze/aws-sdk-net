@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public GaugeChartConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            GaugeChartConfiguration unmarshalledObject = new GaugeChartConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            GaugeChartConfiguration unmarshalledObject = new GaugeChartConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("ColorConfiguration", targetDepth))
+                {
+                    var unmarshaller = GaugeChartColorConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.ColorConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("DataLabels", targetDepth))
                 {
                     var unmarshaller = DataLabelOptionsUnmarshaller.Instance;
@@ -82,6 +90,12 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     unmarshalledObject.GaugeChartOptions = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Interactions", targetDepth))
+                {
+                    var unmarshaller = VisualInteractionOptionsUnmarshaller.Instance;
+                    unmarshalledObject.Interactions = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("TooltipOptions", targetDepth))
                 {
                     var unmarshaller = TooltipOptionsUnmarshaller.Instance;
@@ -95,7 +109,6 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

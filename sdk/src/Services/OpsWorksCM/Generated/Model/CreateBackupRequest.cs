@@ -26,18 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateBackup operation.
-    /// Creates an application-level backup of a server. While the server is in the <code>BACKING_UP</code>
+    /// Creates an application-level backup of a server. While the server is in the <c>BACKING_UP</c>
     /// state, the server cannot be changed, and no additional backup can be created. 
     /// 
     ///  
     /// <para>
-    ///  Backups can be created for servers in <code>RUNNING</code>, <code>HEALTHY</code>,
-    /// and <code>UNHEALTHY</code> states. By default, you can create a maximum of 50 manual
-    /// backups. 
+    ///  Backups can be created for servers in <c>RUNNING</c>, <c>HEALTHY</c>, and <c>UNHEALTHY</c>
+    /// states. By default, you can create a maximum of 50 manual backups. 
     /// </para>
     ///  
     /// <para>
@@ -45,18 +45,18 @@ namespace Amazon.OpsWorksCM.Model
     /// </para>
     ///  
     /// <para>
-    ///  A <code>LimitExceededException</code> is thrown when the maximum number of manual
-    /// backups is reached. An <code>InvalidStateException</code> is thrown when the server
-    /// is not in any of the following states: RUNNING, HEALTHY, or UNHEALTHY. A <code>ResourceNotFoundException</code>
-    /// is thrown when the server is not found. A <code>ValidationException</code> is thrown
-    /// when parameters of the request are not valid. 
+    ///  A <c>LimitExceededException</c> is thrown when the maximum number of manual backups
+    /// is reached. An <c>InvalidStateException</c> is thrown when the server is not in any
+    /// of the following states: RUNNING, HEALTHY, or UNHEALTHY. A <c>ResourceNotFoundException</c>
+    /// is thrown when the server is not found. A <c>ValidationException</c> is thrown when
+    /// parameters of the request are not valid. 
     /// </para>
     /// </summary>
     public partial class CreateBackupRequest : AmazonOpsWorksCMRequest
     {
         private string _description;
         private string _serverName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -109,13 +109,13 @@ namespace Amazon.OpsWorksCM.Model
         ///  </li> <li> 
         /// <para>
         /// The key can be a maximum of 127 characters, and can contain only Unicode letters,
-        /// numbers, or separators, or the following special characters: <code>+ - = . _ : /</code>
+        /// numbers, or separators, or the following special characters: <c>+ - = . _ : /</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The value can be a maximum 255 characters, and contain only Unicode letters, numbers,
-        /// or separators, or the following special characters: <code>+ - = . _ : /</code> 
+        /// or separators, or the following special characters: <c>+ - = . _ : /</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -137,7 +137,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

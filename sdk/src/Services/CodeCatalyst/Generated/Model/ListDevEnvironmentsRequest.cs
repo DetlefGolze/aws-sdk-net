@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CodeCatalyst.Model
     /// </summary>
     public partial class ListDevEnvironmentsRequest : AmazonCodeCatalystRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _projectName;
@@ -55,14 +56,14 @@ namespace Amazon.CodeCatalyst.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to show in a single call to this API. If the number
-        /// of results is larger than the number you specified, the response will include a <code>NextToken</code>
+        /// of results is larger than the number you specified, the response will include a <c>NextToken</c>
         /// element, which you can use to obtain additional results.
         /// </para>
         /// </summary>
@@ -105,7 +106,7 @@ namespace Amazon.CodeCatalyst.Model
         /// The name of the project in the space.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=63)]
+        [AWSProperty(Min=3, Max=63)]
         public string ProjectName
         {
             get { return this._projectName; }

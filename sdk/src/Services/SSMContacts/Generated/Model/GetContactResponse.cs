@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMContacts.Model
 {
     /// <summary>
@@ -119,7 +120,7 @@ namespace Amazon.SSMContacts.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of contact, either <code>PERSONAL</code> or <code>ESCALATION</code>.
+        /// The type of contact, either <c>PERSONAL</c> or <c>ESCALATION</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

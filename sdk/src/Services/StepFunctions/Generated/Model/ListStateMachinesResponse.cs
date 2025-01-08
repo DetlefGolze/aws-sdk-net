@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.StepFunctions.Model
     public partial class ListStateMachinesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StateMachineListItem> _stateMachines = new List<StateMachineListItem>();
+        private List<StateMachineListItem> _stateMachines = AWSConfigs.InitializeCollections ? new List<StateMachineListItem>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged. Each pagination token expires after 24 hours. Using an expired pagination
-        /// token will return an <i>HTTP 400 InvalidToken</i> error.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged. Each pagination
+        /// token expires after 24 hours. Using an expired pagination token will return an <i>HTTP
+        /// 400 InvalidToken</i> error.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -72,7 +73,7 @@ namespace Amazon.StepFunctions.Model
         // Check to see if StateMachines property is set
         internal bool IsSetStateMachines()
         {
-            return this._stateMachines != null && this._stateMachines.Count > 0; 
+            return this._stateMachines != null && (this._stateMachines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

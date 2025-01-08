@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateEnvironment operation.
     /// Creates an environment. For each application, you define one or more environments.
     /// An environment is a deployment group of AppConfig targets, such as applications in
-    /// a <code>Beta</code> or <code>Production</code> environment. You can also define environments
-    /// for application subcomponents such as the <code>Web</code>, <code>Mobile</code> and
-    /// <code>Back-end</code> components for your application. You can configure Amazon CloudWatch
-    /// alarms for each environment. The system monitors alarms during a configuration deployment.
-    /// If an alarm is triggered, the system rolls back the configuration.
+    /// a <c>Beta</c> or <c>Production</c> environment. You can also define environments for
+    /// application subcomponents such as the <c>Web</c>, <c>Mobile</c> and <c>Back-end</c>
+    /// components for your application. You can configure Amazon CloudWatch alarms for each
+    /// environment. The system monitors alarms during a configuration deployment. If an alarm
+    /// is triggered, the system rolls back the configuration.
     /// </summary>
     public partial class CreateEnvironmentRequest : AmazonAppConfigRequest
     {
         private string _applicationId;
         private string _description;
-        private List<Monitor> _monitors = new List<Monitor>();
+        private List<Monitor> _monitors = AWSConfigs.InitializeCollections ? new List<Monitor>() : null;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 
@@ -100,7 +101,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Monitors property is set
         internal bool IsSetMonitors()
         {
-            return this._monitors != null && this._monitors.Count > 0; 
+            return this._monitors != null && (this._monitors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,7 +140,7 @@ namespace Amazon.AppConfig.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

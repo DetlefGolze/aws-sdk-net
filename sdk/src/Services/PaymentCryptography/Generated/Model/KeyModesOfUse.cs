@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -124,7 +125,7 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property NoRestrictions. 
         /// <para>
         /// Speciﬁes whether an Amazon Web Services Payment Cryptography key has no special restrictions
-        /// other than the restrictions implied by <code>KeyUsage</code>.
+        /// other than the restrictions implied by <c>KeyUsage</c>.
         /// </para>
         /// </summary>
         public bool NoRestrictions

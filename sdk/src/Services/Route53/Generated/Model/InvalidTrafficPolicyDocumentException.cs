@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// The format of the traffic policy document that you specified in the <code>Document</code>
+    /// The format of the traffic policy document that you specified in the <c>Document</c>
     /// element is not valid.
     /// </summary>
     #if !NETSTANDARD

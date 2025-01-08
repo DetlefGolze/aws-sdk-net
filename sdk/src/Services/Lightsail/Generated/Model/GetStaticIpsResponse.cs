@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Lightsail.Model
     public partial class GetStaticIpsResponse : AmazonWebServiceResponse
     {
         private string _nextPageToken;
-        private List<StaticIp> _staticIps = new List<StaticIp>();
+        private List<StaticIp> _staticIps = AWSConfigs.InitializeCollections ? new List<StaticIp>() : null;
 
         /// <summary>
         /// Gets and sets the property NextPageToken. 
@@ -47,8 +48,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetStaticIps</code> request
-        /// and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetStaticIps</c> request and specify
+        /// the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken
@@ -78,7 +79,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if StaticIps property is set
         internal bool IsSetStaticIps()
         {
-            return this._staticIps != null && this._staticIps.Count > 0; 
+            return this._staticIps != null && (this._staticIps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

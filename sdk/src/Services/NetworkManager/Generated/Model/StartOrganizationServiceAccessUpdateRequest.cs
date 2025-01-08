@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -40,8 +41,7 @@ namespace Amazon.NetworkManager.Model
         /// <summary>
         /// Gets and sets the property Action. 
         /// <para>
-        /// The action to take for the update request. This can be either <code>ENABLE</code>
-        /// or <code>DISABLE</code>.
+        /// The action to take for the update request. This can be either <c>ENABLE</c> or <c>DISABLE</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=50)]

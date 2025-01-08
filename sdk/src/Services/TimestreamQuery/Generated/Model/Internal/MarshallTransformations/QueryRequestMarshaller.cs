@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.TimestreamQuery.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.TimestreamQuery.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetClientToken())
@@ -88,6 +90,17 @@ namespace Amazon.TimestreamQuery.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("NextToken");
                     context.Writer.Write(publicRequest.NextToken);
+                }
+
+                if(publicRequest.IsSetQueryInsights())
+                {
+                    context.Writer.WritePropertyName("QueryInsights");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = QueryInsightsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.QueryInsights, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetQueryString())

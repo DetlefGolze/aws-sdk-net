@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
-    /// The state of the cluster security group is not <code>available</code>.
+    /// The state of the cluster security group is not <c>available</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

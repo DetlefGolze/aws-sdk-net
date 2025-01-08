@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.Neptunedata.Model
     public partial class GetPropertygraphStreamResponse : AmazonWebServiceResponse
     {
         private string _format;
-        private Dictionary<string, string> _lastEventId = new Dictionary<string, string>();
+        private Dictionary<string, string> _lastEventId = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private long? _lastTrxTimestampInMillis;
-        private List<PropertygraphRecord> _records = new List<PropertygraphRecord>();
+        private List<PropertygraphRecord> _records = AWSConfigs.InitializeCollections ? new List<PropertygraphRecord>() : null;
         private int? _totalRecords;
 
         /// <summary>
         /// Gets and sets the property Format. 
         /// <para>
         /// Serialization format for the change records being returned. Currently, the only supported
-        /// value is <code>PG_JSON</code>.
+        /// value is <c>PG_JSON</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -66,9 +67,9 @@ namespace Amazon.Neptunedata.Model
         /// </para>
         ///  
         /// <para>
-        /// An event ID is composed of two fields: a <code>commitNum</code>, which identifies
-        /// a transaction that changed the graph, and an <code>opNum</code>, which identifies
-        /// a specific operation within that transaction:
+        /// An event ID is composed of two fields: a <c>commitNum</c>, which identifies a transaction
+        /// that changed the graph, and an <c>opNum</c>, which identifies a specific operation
+        /// within that transaction:
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -81,7 +82,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if LastEventId property is set
         internal bool IsSetLastEventId()
         {
-            return this._lastEventId != null && this._lastEventId.Count > 0; 
+            return this._lastEventId != null && (this._lastEventId.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if Records property is set
         internal bool IsSetRecords()
         {
-            return this._records != null && this._records.Count > 0; 
+            return this._records != null && (this._records.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

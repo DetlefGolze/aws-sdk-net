@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
@@ -198,7 +199,8 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property SourceLambdaLayerArn. 
         /// <para>
-        /// The Amazon Resource Number (ARN) of the AWS Lambda function affected by a finding.
+        /// The Amazon Resource Number (ARN) of the Amazon Web Services Lambda function affected
+        /// by a finding.
         /// </para>
         /// </summary>
         public string SourceLambdaLayerArn

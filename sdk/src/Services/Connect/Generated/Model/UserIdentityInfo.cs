@@ -26,10 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Contains information about the identity of a user.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// For Amazon Connect instances that are created with the <c>EXISTING_DIRECTORY</c> identity
+    /// management type, <c>FirstName</c>, <c>LastName</c>, and <c>Email</c> cannot be updated
+    /// from within Amazon Connect because they are managed by the directory.
+    /// </para>
+    ///  </note> <important> 
+    /// <para>
+    /// The <c>FirstName</c> and <c>LastName</c> length constraints below apply only to instances
+    /// using SAML for identity management. If you are using Amazon Connect for identity management,
+    /// the length constraints are 1-255 for <c>FirstName</c>, and 1-256 for <c>LastName</c>.
+    /// 
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class UserIdentityInfo
     {
@@ -46,6 +62,7 @@ namespace Amazon.Connect.Model
         /// parameter, an error is returned.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string Email
         {
             get { return this._email; }
@@ -62,10 +79,12 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property FirstName. 
         /// <para>
         /// The first name. This is required if you are using Amazon Connect or SAML for identity
-        /// management.
+        /// management. Inputs must be in Unicode Normalization Form C (NFC). Text containing
+        /// characters in a non-NFC form (for example, decomposed characters or combining marks)
+        /// are not accepted.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Sensitive=true, Min=0, Max=255)]
         public string FirstName
         {
             get { return this._firstName; }
@@ -82,10 +101,12 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property LastName. 
         /// <para>
         /// The last name. This is required if you are using Amazon Connect or SAML for identity
-        /// management.
+        /// management. Inputs must be in Unicode Normalization Form C (NFC). Text containing
+        /// characters in a non-NFC form (for example, decomposed characters or combining marks)
+        /// are not accepted.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=100)]
+        [AWSProperty(Sensitive=true, Min=0, Max=300)]
         public string LastName
         {
             get { return this._lastName; }
@@ -125,10 +146,10 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        /// Pattern: <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
-        /// 
+        /// Pattern: <c>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</c> 
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string SecondaryEmail
         {
             get { return this._secondaryEmail; }

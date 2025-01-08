@@ -118,6 +118,23 @@ namespace AWSSDKDocSamples.Amazon.ServiceDiscovery.Generated
             #endregion
         }
 
+        public void ServiceDiscoveryDeleteServiceAttributes()
+        {
+            #region example-delete-service-attributes-1587416462902
+
+            var client = new AmazonServiceDiscoveryClient();
+            var response = client.DeleteServiceAttributes(new DeleteServiceAttributesRequest 
+            {
+                Attributes = new List<string> {
+                    "port"
+                },
+                ServiceId = "srv-e4anhexample0004"
+            });
+
+
+            #endregion
+        }
+
         public void ServiceDiscoveryDeregisterInstance()
         {
             #region example-deregister-a-service-instance-1587416305738
@@ -148,6 +165,22 @@ namespace AWSSDKDocSamples.Amazon.ServiceDiscovery.Generated
             });
 
             List<HttpInstanceSummary> instances = response.Instances;
+
+            #endregion
+        }
+
+        public void ServiceDiscoveryDiscoverInstancesRevision()
+        {
+            #region to-discover-the-revision-for-a-registered-instance-1712867460953
+
+            var client = new AmazonServiceDiscoveryClient();
+            var response = client.DiscoverInstancesRevision(new DiscoverInstancesRevisionRequest 
+            {
+                NamespaceName = "example-namespace",
+                ServiceName = "example-service"
+            });
+
+            long instancesRevision = response.InstancesRevision;
 
             #endregion
         }
@@ -224,6 +257,21 @@ namespace AWSSDKDocSamples.Amazon.ServiceDiscovery.Generated
             });
 
             Service service = response.Service;
+
+            #endregion
+        }
+
+        public void ServiceDiscoveryGetServiceAttributes()
+        {
+            #region get-service-attributes-example-1590117234294
+
+            var client = new AmazonServiceDiscoveryClient();
+            var response = client.GetServiceAttributes(new GetServiceAttributesRequest 
+            {
+                ServiceId = "srv-e4anhexample0004"
+            });
+
+            ServiceAttributes serviceAttributes = response.ServiceAttributes;
 
             #endregion
         }
@@ -373,6 +421,22 @@ namespace AWSSDKDocSamples.Amazon.ServiceDiscovery.Generated
             #endregion
         }
 
+        public void ServiceDiscoveryUpdateHttpNamespace()
+        {
+            #region to-update-a-http-namespace-17128EXAMPLE
+
+            var client = new AmazonServiceDiscoveryClient();
+            var response = client.UpdateHttpNamespace(new UpdateHttpNamespaceRequest 
+            {
+                Id = "ns-vh4nbmEXAMPLE",
+                Namespace = new HttpNamespaceChange { Description = "The updated namespace description." }
+            });
+
+            string operationId = response.OperationId;
+
+            #endregion
+        }
+
         public void ServiceDiscoveryUpdateInstanceCustomHealthStatus()
         {
             #region updateinstancecustomhealthstatus-example-1590118408574
@@ -385,6 +449,40 @@ namespace AWSSDKDocSamples.Amazon.ServiceDiscovery.Generated
                 Status = "HEALTHY"
             });
 
+
+            #endregion
+        }
+
+        public void ServiceDiscoveryUpdatePrivateDnsNamespace()
+        {
+            #region to-update-a-public-dns-namespace-1712868389604
+
+            var client = new AmazonServiceDiscoveryClient();
+            var response = client.UpdatePrivateDnsNamespace(new UpdatePrivateDnsNamespaceRequest 
+            {
+                Id = "ns-bk3aEXAMPLE",
+                Namespace = new PrivateDnsNamespaceChange { Description = "The updated namespace description." },
+                UpdaterRequestId = ""
+            });
+
+            string operationId = response.OperationId;
+
+            #endregion
+        }
+
+        public void ServiceDiscoveryUpdatePrivateDnsNamespace()
+        {
+            #region to-update-a-private-dns-namespace-1712868389604
+
+            var client = new AmazonServiceDiscoveryClient();
+            var response = client.UpdatePrivateDnsNamespace(new UpdatePrivateDnsNamespaceRequest 
+            {
+                Id = "ns-bk3aEXAMPLE",
+                Namespace = new PrivateDnsNamespaceChange { Description = "The updated namespace description." },
+                UpdaterRequestId = ""
+            });
+
+            string operationId = response.OperationId;
 
             #endregion
         }
@@ -413,6 +511,23 @@ namespace AWSSDKDocSamples.Amazon.ServiceDiscovery.Generated
             });
 
             string operationId = response.OperationId;
+
+            #endregion
+        }
+
+        public void ServiceDiscoveryUpdateServiceAttributes()
+        {
+            #region update-service-attributes-example-1590117830880
+
+            var client = new AmazonServiceDiscoveryClient();
+            var response = client.UpdateServiceAttributes(new UpdateServiceAttributesRequest 
+            {
+                Attributes = new Dictionary<string, string> {
+                    { "port", "80" }
+                },
+                ServiceId = "srv-e4anhexample0004"
+            });
+
 
             #endregion
         }

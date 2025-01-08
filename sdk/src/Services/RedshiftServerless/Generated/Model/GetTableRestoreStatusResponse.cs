@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.RedshiftServerless.Model
         /// <summary>
         /// Gets and sets the property TableRestoreStatus. 
         /// <para>
-        /// The returned <code>TableRestoreStatus</code> object that contains information about
-        /// the status of your <code>RestoreTableFromSnapshot</code> request.
+        /// The returned <c>TableRestoreStatus</c> object that contains information about the
+        /// status of your <c>RestoreTableFromSnapshot</c> request.
         /// </para>
         /// </summary>
         public TableRestoreStatus TableRestoreStatus

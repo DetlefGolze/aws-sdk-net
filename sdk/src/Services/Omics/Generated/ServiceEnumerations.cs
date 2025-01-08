@@ -141,6 +141,56 @@ namespace Amazon.Omics
 
 
     /// <summary>
+    /// Constants used for properties of type CacheBehavior.
+    /// </summary>
+    public class CacheBehavior : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CACHE_ALWAYS for CacheBehavior
+        /// </summary>
+        public static readonly CacheBehavior CACHE_ALWAYS = new CacheBehavior("CACHE_ALWAYS");
+        /// <summary>
+        /// Constant CACHE_ON_FAILURE for CacheBehavior
+        /// </summary>
+        public static readonly CacheBehavior CACHE_ON_FAILURE = new CacheBehavior("CACHE_ON_FAILURE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public CacheBehavior(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static CacheBehavior FindValue(string value)
+        {
+            return FindValue<CacheBehavior>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator CacheBehavior(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type CreationType.
     /// </summary>
     public class CreationType : ConstantClass
@@ -247,13 +297,37 @@ namespace Amazon.Omics
         /// </summary>
         public static readonly ETagAlgorithm BAM_MD5up = new ETagAlgorithm("BAM_MD5up");
         /// <summary>
+        /// Constant BAM_SHA256up for ETagAlgorithm
+        /// </summary>
+        public static readonly ETagAlgorithm BAM_SHA256up = new ETagAlgorithm("BAM_SHA256up");
+        /// <summary>
+        /// Constant BAM_SHA512up for ETagAlgorithm
+        /// </summary>
+        public static readonly ETagAlgorithm BAM_SHA512up = new ETagAlgorithm("BAM_SHA512up");
+        /// <summary>
         /// Constant CRAM_MD5up for ETagAlgorithm
         /// </summary>
         public static readonly ETagAlgorithm CRAM_MD5up = new ETagAlgorithm("CRAM_MD5up");
         /// <summary>
+        /// Constant CRAM_SHA256up for ETagAlgorithm
+        /// </summary>
+        public static readonly ETagAlgorithm CRAM_SHA256up = new ETagAlgorithm("CRAM_SHA256up");
+        /// <summary>
+        /// Constant CRAM_SHA512up for ETagAlgorithm
+        /// </summary>
+        public static readonly ETagAlgorithm CRAM_SHA512up = new ETagAlgorithm("CRAM_SHA512up");
+        /// <summary>
         /// Constant FASTQ_MD5up for ETagAlgorithm
         /// </summary>
         public static readonly ETagAlgorithm FASTQ_MD5up = new ETagAlgorithm("FASTQ_MD5up");
+        /// <summary>
+        /// Constant FASTQ_SHA256up for ETagAlgorithm
+        /// </summary>
+        public static readonly ETagAlgorithm FASTQ_SHA256up = new ETagAlgorithm("FASTQ_SHA256up");
+        /// <summary>
+        /// Constant FASTQ_SHA512up for ETagAlgorithm
+        /// </summary>
+        public static readonly ETagAlgorithm FASTQ_SHA512up = new ETagAlgorithm("FASTQ_SHA512up");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -291,6 +365,60 @@ namespace Amazon.Omics
 
 
     /// <summary>
+    /// Constants used for properties of type ETagAlgorithmFamily.
+    /// </summary>
+    public class ETagAlgorithmFamily : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MD5up for ETagAlgorithmFamily
+        /// </summary>
+        public static readonly ETagAlgorithmFamily MD5up = new ETagAlgorithmFamily("MD5up");
+        /// <summary>
+        /// Constant SHA256up for ETagAlgorithmFamily
+        /// </summary>
+        public static readonly ETagAlgorithmFamily SHA256up = new ETagAlgorithmFamily("SHA256up");
+        /// <summary>
+        /// Constant SHA512up for ETagAlgorithmFamily
+        /// </summary>
+        public static readonly ETagAlgorithmFamily SHA512up = new ETagAlgorithmFamily("SHA512up");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ETagAlgorithmFamily(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ETagAlgorithmFamily FindValue(string value)
+        {
+            return FindValue<ETagAlgorithmFamily>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ETagAlgorithmFamily(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type FileType.
     /// </summary>
     public class FileType : ConstantClass
@@ -308,6 +436,10 @@ namespace Amazon.Omics
         /// Constant FASTQ for FileType
         /// </summary>
         public static readonly FileType FASTQ = new FileType("FASTQ");
+        /// <summary>
+        /// Constant UBAM for FileType
+        /// </summary>
+        public static readonly FileType UBAM = new FileType("UBAM");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -1035,6 +1167,52 @@ namespace Amazon.Omics
 
 
     /// <summary>
+    /// Constants used for properties of type ReferenceCreationType.
+    /// </summary>
+    public class ReferenceCreationType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant IMPORT for ReferenceCreationType
+        /// </summary>
+        public static readonly ReferenceCreationType IMPORT = new ReferenceCreationType("IMPORT");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ReferenceCreationType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ReferenceCreationType FindValue(string value)
+        {
+            return FindValue<ReferenceCreationType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ReferenceCreationType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ReferenceFile.
     /// </summary>
     public class ReferenceFile : ConstantClass
@@ -1310,6 +1488,60 @@ namespace Amazon.Omics
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ResourceOwner(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RunCacheStatus.
+    /// </summary>
+    public class RunCacheStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ACTIVE for RunCacheStatus
+        /// </summary>
+        public static readonly RunCacheStatus ACTIVE = new RunCacheStatus("ACTIVE");
+        /// <summary>
+        /// Constant DELETED for RunCacheStatus
+        /// </summary>
+        public static readonly RunCacheStatus DELETED = new RunCacheStatus("DELETED");
+        /// <summary>
+        /// Constant FAILED for RunCacheStatus
+        /// </summary>
+        public static readonly RunCacheStatus FAILED = new RunCacheStatus("FAILED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RunCacheStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RunCacheStatus FindValue(string value)
+        {
+            return FindValue<RunCacheStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RunCacheStatus(string value)
         {
             return FindValue(value);
         }
@@ -1611,6 +1843,122 @@ namespace Amazon.Omics
 
 
     /// <summary>
+    /// Constants used for properties of type SequenceStoreStatus.
+    /// </summary>
+    public class SequenceStoreStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ACTIVE for SequenceStoreStatus
+        /// </summary>
+        public static readonly SequenceStoreStatus ACTIVE = new SequenceStoreStatus("ACTIVE");
+        /// <summary>
+        /// Constant CREATING for SequenceStoreStatus
+        /// </summary>
+        public static readonly SequenceStoreStatus CREATING = new SequenceStoreStatus("CREATING");
+        /// <summary>
+        /// Constant DELETING for SequenceStoreStatus
+        /// </summary>
+        public static readonly SequenceStoreStatus DELETING = new SequenceStoreStatus("DELETING");
+        /// <summary>
+        /// Constant FAILED for SequenceStoreStatus
+        /// </summary>
+        public static readonly SequenceStoreStatus FAILED = new SequenceStoreStatus("FAILED");
+        /// <summary>
+        /// Constant UPDATING for SequenceStoreStatus
+        /// </summary>
+        public static readonly SequenceStoreStatus UPDATING = new SequenceStoreStatus("UPDATING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SequenceStoreStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SequenceStoreStatus FindValue(string value)
+        {
+            return FindValue<SequenceStoreStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SequenceStoreStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ShareResourceType.
+    /// </summary>
+    public class ShareResourceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ANNOTATION_STORE for ShareResourceType
+        /// </summary>
+        public static readonly ShareResourceType ANNOTATION_STORE = new ShareResourceType("ANNOTATION_STORE");
+        /// <summary>
+        /// Constant VARIANT_STORE for ShareResourceType
+        /// </summary>
+        public static readonly ShareResourceType VARIANT_STORE = new ShareResourceType("VARIANT_STORE");
+        /// <summary>
+        /// Constant WORKFLOW for ShareResourceType
+        /// </summary>
+        public static readonly ShareResourceType WORKFLOW = new ShareResourceType("WORKFLOW");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ShareResourceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ShareResourceType FindValue(string value)
+        {
+            return FindValue<ShareResourceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ShareResourceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ShareStatus.
     /// </summary>
     public class ShareStatus : ConstantClass
@@ -1670,6 +2018,56 @@ namespace Amazon.Omics
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ShareStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type StorageType.
+    /// </summary>
+    public class StorageType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DYNAMIC for StorageType
+        /// </summary>
+        public static readonly StorageType DYNAMIC = new StorageType("DYNAMIC");
+        /// <summary>
+        /// Constant STATIC for StorageType
+        /// </summary>
+        public static readonly StorageType STATIC = new StorageType("STATIC");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public StorageType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static StorageType FindValue(string value)
+        {
+            return FindValue<StorageType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator StorageType(string value)
         {
             return FindValue(value);
         }
@@ -1786,6 +2184,56 @@ namespace Amazon.Omics
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator StoreStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type StoreType.
+    /// </summary>
+    public class StoreType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant REFERENCE_STORE for StoreType
+        /// </summary>
+        public static readonly StoreType REFERENCE_STORE = new StoreType("REFERENCE_STORE");
+        /// <summary>
+        /// Constant SEQUENCE_STORE for StoreType
+        /// </summary>
+        public static readonly StoreType SEQUENCE_STORE = new StoreType("SEQUENCE_STORE");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public StoreType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static StoreType FindValue(string value)
+        {
+            return FindValue<StoreType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator StoreType(string value)
         {
             return FindValue(value);
         }

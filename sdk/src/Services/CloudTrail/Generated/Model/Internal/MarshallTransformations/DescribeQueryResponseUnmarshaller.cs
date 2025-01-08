@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -67,6 +68,18 @@ namespace Amazon.CloudTrail.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.ErrorMessage = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("EventDataStoreOwnerAccountId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.EventDataStoreOwnerAccountId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Prompt", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.Prompt = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("QueryId", targetDepth))

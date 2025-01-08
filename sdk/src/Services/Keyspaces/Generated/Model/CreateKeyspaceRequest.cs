@@ -26,29 +26,30 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Keyspaces.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateKeyspace operation.
-    /// The <code>CreateKeyspace</code> operation adds a new keyspace to your account. In
-    /// an Amazon Web Services account, keyspace names must be unique within each Region.
+    /// The <c>CreateKeyspace</c> operation adds a new keyspace to your account. In an Amazon
+    /// Web Services account, keyspace names must be unique within each Region.
     /// 
     ///  
     /// <para>
-    ///  <code>CreateKeyspace</code> is an asynchronous operation. You can monitor the creation
-    /// status of the new keyspace by using the <code>GetKeyspace</code> operation.
+    ///  <c>CreateKeyspace</c> is an asynchronous operation. You can monitor the creation
+    /// status of the new keyspace by using the <c>GetKeyspace</c> operation.
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/working-with-keyspaces.html#keyspaces-create">Creating
-    /// keyspaces</a> in the <i>Amazon Keyspaces Developer Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/keyspaces/latest/devguide/getting-started.keyspaces.html">Create
+    /// a keyspace</a> in the <i>Amazon Keyspaces Developer Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateKeyspaceRequest : AmazonKeyspacesRequest
     {
         private string _keyspaceName;
         private ReplicationSpecification _replicationSpecification;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property KeyspaceName. 
@@ -76,15 +77,14 @@ namespace Amazon.Keyspaces.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>replicationStrategy</code> - the required value is <code>SINGLE_REGION</code>
-        /// or <code>MULTI_REGION</code>.
+        ///  <c>replicationStrategy</c> - the required value is <c>SINGLE_REGION</c> or <c>MULTI_REGION</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>regionList</code> - if the <code>replicationStrategy</code> is <code>MULTI_REGION</code>,
-        /// the <code>regionList</code> requires the current Region and at least one additional
-        /// Amazon Web Services Region where the keyspace is going to be replicated in. The maximum
-        /// number of supported replication Regions including the current Region is six.
+        ///  <c>regionList</c> - if the <c>replicationStrategy</c> is <c>MULTI_REGION</c>, the
+        /// <c>regionList</c> requires the current Region and at least one additional Amazon Web
+        /// Services Region where the keyspace is going to be replicated in. The maximum number
+        /// of supported replication Regions including the current Region is six.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -122,7 +122,7 @@ namespace Amazon.Keyspaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

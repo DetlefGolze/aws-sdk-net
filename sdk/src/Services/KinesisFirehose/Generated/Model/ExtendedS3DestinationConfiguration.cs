@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -37,10 +38,12 @@ namespace Amazon.KinesisFirehose.Model
         private BufferingHints _bufferingHints;
         private CloudWatchLoggingOptions _cloudWatchLoggingOptions;
         private CompressionFormat _compressionFormat;
+        private string _customTimeZone;
         private DataFormatConversionConfiguration _dataFormatConversionConfiguration;
         private DynamicPartitioningConfiguration _dynamicPartitioningConfiguration;
         private EncryptionConfiguration _encryptionConfiguration;
         private string _errorOutputPrefix;
+        private string _fileExtension;
         private string _prefix;
         private ProcessingConfiguration _processingConfiguration;
         private string _roleARN;
@@ -88,7 +91,7 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property CloudWatchLoggingOptions. 
         /// <para>
-        /// The Amazon CloudWatch logging options for your delivery stream.
+        /// The Amazon CloudWatch logging options for your Firehose stream.
         /// </para>
         /// </summary>
         public CloudWatchLoggingOptions CloudWatchLoggingOptions
@@ -119,6 +122,25 @@ namespace Amazon.KinesisFirehose.Model
         internal bool IsSetCompressionFormat()
         {
             return this._compressionFormat != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CustomTimeZone. 
+        /// <para>
+        /// The time zone you prefer. UTC is the default.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=50)]
+        public string CustomTimeZone
+        {
+            get { return this._customTimeZone; }
+            set { this._customTimeZone = value; }
+        }
+
+        // Check to see if CustomTimeZone property is set
+        internal bool IsSetCustomTimeZone()
+        {
+            return this._customTimeZone != null;
         }
 
         /// <summary>
@@ -181,9 +203,9 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property ErrorOutputPrefix. 
         /// <para>
-        /// A prefix that Kinesis Data Firehose evaluates and adds to failed records before writing
-        /// them to S3. This prefix appears immediately following the bucket name. For information
-        /// about how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom
+        /// A prefix that Firehose evaluates and adds to failed records before writing them to
+        /// S3. This prefix appears immediately following the bucket name. For information about
+        /// how to specify this prefix, see <a href="https://docs.aws.amazon.com/firehose/latest/dev/s3-prefixes.html">Custom
         /// Prefixes for Amazon S3 Objects</a>.
         /// </para>
         /// </summary>
@@ -198,6 +220,25 @@ namespace Amazon.KinesisFirehose.Model
         internal bool IsSetErrorOutputPrefix()
         {
             return this._errorOutputPrefix != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FileExtension. 
+        /// <para>
+        /// Specify a file extension. It will override the default file extension
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=128)]
+        public string FileExtension
+        {
+            get { return this._fileExtension; }
+            set { this._fileExtension = value; }
+        }
+
+        // Check to see if FileExtension property is set
+        internal bool IsSetFileExtension()
+        {
+            return this._fileExtension != null;
         }
 
         /// <summary>
@@ -281,9 +322,9 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property S3BackupMode. 
         /// <para>
-        /// The Amazon S3 backup mode. After you create a delivery stream, you can update it to
+        /// The Amazon S3 backup mode. After you create a Firehose stream, you can update it to
         /// enable Amazon S3 backup if it is disabled. If backup is enabled, you can't update
-        /// the delivery stream to disable it. 
+        /// the Firehose stream to disable it. 
         /// </para>
         /// </summary>
         public S3BackupMode S3BackupMode

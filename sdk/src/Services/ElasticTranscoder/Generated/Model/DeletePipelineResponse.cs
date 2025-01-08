@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticTranscoder.Model
 {
     /// <summary>
-    /// The <code>DeletePipelineResponse</code> structure.
+    /// The <c>DeletePipelineResponse</c> structure.
     /// </summary>
     public partial class DeletePipelineResponse : AmazonWebServiceResponse
     {

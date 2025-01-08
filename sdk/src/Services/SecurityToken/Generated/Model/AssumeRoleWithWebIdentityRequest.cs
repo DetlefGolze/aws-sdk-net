@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityToken.Model
 {
     /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.SecurityToken.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// Calling <code>AssumeRoleWithWebIdentity</code> does not require the use of Amazon
-    /// Web Services security credentials. Therefore, you can distribute an application (for
-    /// example, on mobile devices) that requests temporary security credentials without including
-    /// long-term Amazon Web Services credentials in the application. You also don't need
-    /// to deploy server-based proxy services that use long-term Amazon Web Services credentials.
-    /// Instead, the identity of the caller is validated by using a token from the web identity
-    /// provider. For a comparison of <code>AssumeRoleWithWebIdentity</code> with the other
-    /// API operations that produce temporary credentials, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">Requesting
-    /// Temporary Security Credentials</a> and <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison">Comparing
-    /// the Amazon Web Services STS API operations</a> in the <i>IAM User Guide</i>.
+    /// Calling <c>AssumeRoleWithWebIdentity</c> does not require the use of Amazon Web Services
+    /// security credentials. Therefore, you can distribute an application (for example, on
+    /// mobile devices) that requests temporary security credentials without including long-term
+    /// Amazon Web Services credentials in the application. You also don't need to deploy
+    /// server-based proxy services that use long-term Amazon Web Services credentials. Instead,
+    /// the identity of the caller is validated by using a token from the web identity provider.
+    /// For a comparison of <c>AssumeRoleWithWebIdentity</c> with the other API operations
+    /// that produce temporary credentials, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html">Requesting
+    /// Temporary Security Credentials</a> and <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_sts-comparison.html">Compare
+    /// STS credentials</a> in the <i>IAM User Guide</i>.
     /// </para>
     ///  
     /// <para>
@@ -75,17 +76,16 @@ namespace Amazon.SecurityToken.Model
     /// </para>
     ///  
     /// <para>
-    /// By default, the temporary security credentials created by <code>AssumeRoleWithWebIdentity</code>
-    /// last for one hour. However, you can use the optional <code>DurationSeconds</code>
-    /// parameter to specify the duration of your session. You can provide a value from 900
-    /// seconds (15 minutes) up to the maximum session duration setting for the role. This
-    /// setting can have a value from 1 hour to 12 hours. To learn how to view the maximum
-    /// value for your role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html#id_roles_use_view-role-max-session">View
-    /// the Maximum Session Duration Setting for a Role</a> in the <i>IAM User Guide</i>.
-    /// The maximum session duration limit applies when you use the <code>AssumeRole*</code>
-    /// API operations or the <code>assume-role*</code> CLI commands. However the limit does
-    /// not apply when you use those operations to create a console URL. For more information,
-    /// see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using
+    /// By default, the temporary security credentials created by <c>AssumeRoleWithWebIdentity</c>
+    /// last for one hour. However, you can use the optional <c>DurationSeconds</c> parameter
+    /// to specify the duration of your session. You can provide a value from 900 seconds
+    /// (15 minutes) up to the maximum session duration setting for the role. This setting
+    /// can have a value from 1 hour to 12 hours. To learn how to view the maximum value for
+    /// your role, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_update-role-settings.html#id_roles_update-session-duration">Update
+    /// the maximum session duration for a role </a> in the <i>IAM User Guide</i>. The maximum
+    /// session duration limit applies when you use the <c>AssumeRole*</c> API operations
+    /// or the <c>assume-role*</c> CLI commands. However the limit does not apply when you
+    /// use those operations to create a console URL. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html">Using
     /// IAM Roles</a> in the <i>IAM User Guide</i>. 
     /// </para>
     ///  
@@ -94,10 +94,9 @@ namespace Amazon.SecurityToken.Model
     /// </para>
     ///  
     /// <para>
-    /// The temporary security credentials created by <code>AssumeRoleWithWebIdentity</code>
-    /// can be used to make API calls to any Amazon Web Services service with the following
-    /// exception: you cannot call the STS <code>GetFederationToken</code> or <code>GetSessionToken</code>
-    /// API operations.
+    /// The temporary security credentials created by <c>AssumeRoleWithWebIdentity</c> can
+    /// be used to make API calls to any Amazon Web Services service with the following exception:
+    /// you cannot call the STS <c>GetFederationToken</c> or <c>GetSessionToken</c> API operations.
     /// </para>
     ///  
     /// <para>
@@ -137,8 +136,8 @@ namespace Amazon.SecurityToken.Model
     /// An Amazon Web Services conversion compresses the passed inline session policy, managed
     /// policy ARNs, and session tags into a packed binary format that has a separate limit.
     /// Your request can fail for this limit even if your plaintext meets the other requirements.
-    /// The <code>PackedPolicySize</code> response element indicates by percentage how close
-    /// the policies and tags for your request are to the upper size limit.
+    /// The <c>PackedPolicySize</c> response element indicates by percentage how close the
+    /// policies and tags for your request are to the upper size limit.
     /// </para>
     ///  </note> 
     /// <para>
@@ -164,15 +163,15 @@ namespace Amazon.SecurityToken.Model
     /// </para>
     ///  
     /// <para>
-    /// Before your application can call <code>AssumeRoleWithWebIdentity</code>, you must
-    /// have an identity token from a supported identity provider and create a role that the
-    /// application can assume. The role that your application assumes must trust the identity
-    /// provider that is associated with the identity token. In other words, the identity
-    /// provider must be specified in the role's trust policy. 
+    /// Before your application can call <c>AssumeRoleWithWebIdentity</c>, you must have an
+    /// identity token from a supported identity provider and create a role that the application
+    /// can assume. The role that your application assumes must trust the identity provider
+    /// that is associated with the identity token. In other words, the identity provider
+    /// must be specified in the role's trust policy. 
     /// </para>
     ///  <important> 
     /// <para>
-    /// Calling <code>AssumeRoleWithWebIdentity</code> can result in an entry in your CloudTrail
+    /// Calling <c>AssumeRoleWithWebIdentity</c> can result in an entry in your CloudTrail
     /// logs. The entry includes the <a href="http://openid.net/specs/openid-connect-core-1_0.html#Claims">Subject</a>
     /// of the provided web identity token. We recommend that you avoid using any personally
     /// identifiable information (PII) in this field. For example, you could instead use a
@@ -181,7 +180,7 @@ namespace Amazon.SecurityToken.Model
     /// </para>
     ///  </important> 
     /// <para>
-    /// For more information about how to use web identity federation and the <code>AssumeRoleWithWebIdentity</code>
+    /// For more information about how to use OIDC federation and the <c>AssumeRoleWithWebIdentity</c>
     /// API, see the following resources: 
     /// </para>
     ///  <ul> <li> 
@@ -192,25 +191,11 @@ namespace Amazon.SecurityToken.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a href="https://aws.amazon.com/blogs/aws/the-aws-web-identity-federation-playground/">
-    /// Web Identity Federation Playground</a>. Walk through the process of authenticating
-    /// through Login with Amazon, Facebook, or Google, getting temporary security credentials,
-    /// and then using those credentials to make a request to Amazon Web Services. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
     ///  <a href="http://aws.amazon.com/sdkforios/">Amazon Web Services SDK for iOS Developer
     /// Guide</a> and <a href="http://aws.amazon.com/sdkforandroid/">Amazon Web Services SDK
     /// for Android Developer Guide</a>. These toolkits contain sample apps that show how
     /// to invoke the identity providers. The toolkits then show how to use the information
     /// from these providers to get and use temporary security credentials. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a href="http://aws.amazon.com/articles/web-identity-federation-with-mobile-applications">Web
-    /// Identity Federation with Mobile Applications</a>. This article discusses web identity
-    /// federation and shows an example of how to use web identity federation to get access
-    /// to content in Amazon S3. 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -218,7 +203,7 @@ namespace Amazon.SecurityToken.Model
     {
         private int? _durationSeconds;
         private string _policy;
-        private List<PolicyDescriptorType> _policyArns = new List<PolicyDescriptorType>();
+        private List<PolicyDescriptorType> _policyArns = AWSConfigs.InitializeCollections ? new List<PolicyDescriptorType>() : null;
         private string _providerId;
         private string _roleArn;
         private string _roleSessionName;
@@ -237,15 +222,15 @@ namespace Amazon.SecurityToken.Model
         /// </para>
         ///  
         /// <para>
-        /// By default, the value is set to <code>3600</code> seconds. 
+        /// By default, the value is set to <c>3600</c> seconds. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>DurationSeconds</code> parameter is separate from the duration of a console
-        /// session that you might request using the returned credentials. The request to the
-        /// federation endpoint for a console sign-in token takes a <code>SessionDuration</code>
-        /// parameter that specifies the maximum length of the console session. For more information,
-        /// see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html">Creating
+        /// The <c>DurationSeconds</c> parameter is separate from the duration of a console session
+        /// that you might request using the returned credentials. The request to the federation
+        /// endpoint for a console sign-in token takes a <c>SessionDuration</c> parameter that
+        /// specifies the maximum length of the console session. For more information, see <a
+        /// href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-custom-url.html">Creating
         /// a URL that Enables Federated Users to Access the Amazon Web Services Management Console</a>
         /// in the <i>IAM User Guide</i>.
         /// </para>
@@ -287,13 +272,18 @@ namespace Amazon.SecurityToken.Model
         /// character to the end of the valid character list (\u0020 through \u00FF). It can also
         /// include the tab (\u0009), linefeed (\u000A), and carriage return (\u000D) characters.
         /// </para>
+        ///  
+        /// <para>
+        /// For more information about role session permissions, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">Session
+        /// policies</a>.
+        /// </para>
         ///  <note> 
         /// <para>
         /// An Amazon Web Services conversion compresses the passed inline session policy, managed
         /// policy ARNs, and session tags into a packed binary format that has a separate limit.
         /// Your request can fail for this limit even if your plaintext meets the other requirements.
-        /// The <code>PackedPolicySize</code> response element indicates by percentage how close
-        /// the policies and tags for your request are to the upper size limit.
+        /// The <c>PackedPolicySize</c> response element indicates by percentage how close the
+        /// policies and tags for your request are to the upper size limit.
         /// </para>
         ///  </note>
         /// </summary>
@@ -329,8 +319,8 @@ namespace Amazon.SecurityToken.Model
         /// An Amazon Web Services conversion compresses the passed inline session policy, managed
         /// policy ARNs, and session tags into a packed binary format that has a separate limit.
         /// Your request can fail for this limit even if your plaintext meets the other requirements.
-        /// The <code>PackedPolicySize</code> response element indicates by percentage how close
-        /// the policies and tags for your request are to the upper size limit.
+        /// The <c>PackedPolicySize</c> response element indicates by percentage how close the
+        /// policies and tags for your request are to the upper size limit.
         /// </para>
         ///  </note> 
         /// <para>
@@ -352,7 +342,7 @@ namespace Amazon.SecurityToken.Model
         // Check to see if PolicyArns property is set
         internal bool IsSetPolicyArns()
         {
-            return this._policyArns != null && this._policyArns.Count > 0; 
+            return this._policyArns != null && (this._policyArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -363,9 +353,9 @@ namespace Amazon.SecurityToken.Model
         /// </para>
         ///  
         /// <para>
-        /// Currently <code>www.amazon.com</code> and <code>graph.facebook.com</code> are the
-        /// only supported identity providers for OAuth 2.0 access tokens. Do not include URL
-        /// schemes and port numbers.
+        /// Currently <c>www.amazon.com</c> and <c>graph.facebook.com</c> are the only supported
+        /// identity providers for OAuth 2.0 access tokens. Do not include URL schemes and port
+        /// numbers.
         /// </para>
         ///  
         /// <para>
@@ -390,6 +380,19 @@ namespace Amazon.SecurityToken.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the role that the caller is assuming.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Additional considerations apply to Amazon Cognito identity pools that assume <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies-cross-account-resource-access.html">cross-account
+        /// IAM roles</a>. The trust policies of these roles must accept the <c>cognito-identity.amazonaws.com</c>
+        /// service principal and must contain the <c>cognito-identity.amazonaws.com:aud</c> condition
+        /// key to restrict role assumption to users from your intended identity pools. A policy
+        /// that trusts Amazon Cognito identity pools without this condition creates a risk that
+        /// a user from an unintended identity pool can assume the role. For more information,
+        /// see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/iam-roles.html#trust-policies">
+        /// Trust policies for IAM roles in Basic (Classic) authentication </a> in the <i>Amazon
+        /// Cognito Developer Guide</i>.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
         public string RoleArn
@@ -410,8 +413,16 @@ namespace Amazon.SecurityToken.Model
         /// An identifier for the assumed role session. Typically, you pass the name or identifier
         /// that is associated with the user who is using your application. That way, the temporary
         /// security credentials that your application will use are associated with that user.
-        /// This session name is included as part of the ARN and assumed role ID in the <code>AssumedRoleUser</code>
+        /// This session name is included as part of the ARN and assumed role ID in the <c>AssumedRoleUser</c>
         /// response element.
+        /// </para>
+        ///  
+        /// <para>
+        /// For security purposes, administrators can view this field in <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_signin-tempcreds">CloudTrail
+        /// logs</a> to help identify who performed an action in Amazon Web Services. Your administrator
+        /// might require that you specify your user name as the session name when you assume
+        /// the role. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#ck_rolesessionname">
+        /// <c>sts:RoleSessionName</c> </a>.
         /// </para>
         ///  
         /// <para>
@@ -438,8 +449,9 @@ namespace Amazon.SecurityToken.Model
         /// <para>
         /// The OAuth 2.0 access token or OpenID Connect ID token that is provided by the identity
         /// provider. Your application must get this token by authenticating the user who is using
-        /// your application with a web identity provider before the application makes an <code>AssumeRoleWithWebIdentity</code>
-        /// call. Only tokens with RSA algorithms (RS256) are supported.
+        /// your application with a web identity provider before the application makes an <c>AssumeRoleWithWebIdentity</c>
+        /// call. Timestamps in the token must be formatted as either an integer or a long integer.
+        /// Only tokens with RSA algorithms (RS256) are supported.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=4, Max=20000)]

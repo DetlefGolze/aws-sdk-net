@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -41,18 +42,29 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </summary>
     public partial class GetParametersRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<string> _names = new List<string>();
+        private List<string> _names = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _withDecryption;
 
         /// <summary>
         /// Gets and sets the property Names. 
         /// <para>
-        /// Names of the parameters for which you want to query information.
+        /// The names or Amazon Resource Names (ARNs) of the parameters that you want to query.
+        /// For parameters shared with you from another account, you must use the full ARNs.
         /// </para>
         ///  
         /// <para>
-        /// To query by parameter label, use <code>"Name": "name:label"</code>. To query by parameter
-        /// version, use <code>"Name": "name:version"</code>.
+        /// To query by parameter label, use <c>"Name": "name:label"</c>. To query by parameter
+        /// version, use <c>"Name": "name:version"</c>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The results for <c>GetParameters</c> requests are listed in alphabetical order in
+        /// query responses.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// For information about shared parameters, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html">Working
+        /// with shared parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=10)]
@@ -65,15 +77,14 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Names property is set
         internal bool IsSetNames()
         {
-            return this._names != null && this._names.Count > 0; 
+            return this._names != null && (this._names.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property WithDecryption. 
         /// <para>
         /// Return decrypted secure string value. Return decrypted values for secure string parameters.
-        /// This flag is ignored for <code>String</code> and <code>StringList</code> parameter
-        /// types.
+        /// This flag is ignored for <c>String</c> and <c>StringList</c> parameter types.
         /// </para>
         /// </summary>
         public bool WithDecryption

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
-    /// <b>[Snapshot policies only]</b> Specifies information about the archive storage tier
-    /// retention period.
+    /// <b>[Custom snapshot policies only]</b> Specifies information about the archive storage
+    /// tier retention period.
     /// </summary>
     public partial class ArchiveRetainRule
     {

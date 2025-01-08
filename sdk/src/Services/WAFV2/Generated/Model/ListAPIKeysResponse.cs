@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.WAFV2.Model
     /// </summary>
     public partial class ListAPIKeysResponse : AmazonWebServiceResponse
     {
-        private List<APIKeySummary> _apiKeySummaries = new List<APIKeySummary>();
+        private List<APIKeySummary> _apiKeySummaries = AWSConfigs.InitializeCollections ? new List<APIKeySummary>() : null;
         private string _applicationIntegrationURL;
         private string _nextMarker;
 
         /// <summary>
         /// Gets and sets the property APIKeySummaries. 
         /// <para>
-        /// The array of key summaries. If you specified a <code>Limit</code> in your request,
-        /// this might not be the full list. 
+        /// The array of key summaries. If you specified a <c>Limit</c> in your request, this
+        /// might not be the full list. 
         /// </para>
         /// </summary>
         public List<APIKeySummary> APIKeySummaries
@@ -53,7 +54,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if APIKeySummaries property is set
         internal bool IsSetAPIKeySummaries()
         {
-            return this._apiKeySummaries != null && this._apiKeySummaries.Count > 0; 
+            return this._apiKeySummaries != null && (this._apiKeySummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,10 +79,10 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// When you request a list of objects with a <code>Limit</code> setting, if the number
-        /// of objects that are still available for retrieval exceeds the limit, WAF returns a
-        /// <code>NextMarker</code> value in the response. To retrieve the next batch of objects,
-        /// provide the marker from the prior call in your next request.
+        /// When you request a list of objects with a <c>Limit</c> setting, if the number of objects
+        /// that are still available for retrieval exceeds the limit, WAF returns a <c>NextMarker</c>
+        /// value in the response. To retrieve the next batch of objects, provide the marker from
+        /// the prior call in your next request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

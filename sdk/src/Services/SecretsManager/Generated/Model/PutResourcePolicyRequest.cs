@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -48,8 +49,8 @@ namespace Amazon.SecretsManager.Model
     /// </para>
     ///  
     /// <para>
-    ///  <b>Required permissions: </b> <code>secretsmanager:PutResourcePolicy</code>. For
-    /// more information, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
+    ///  <b>Required permissions: </b> <c>secretsmanager:PutResourcePolicy</c>. For more information,
+    /// see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_iam-permissions.html#reference_iam-permissions_actions">
     /// IAM policy actions for Secrets Manager</a> and <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html">Authentication
     /// and access control in Secrets Manager</a>. 
     /// </para>
@@ -67,6 +68,29 @@ namespace Amazon.SecretsManager.Model
         /// secret, for example those that use a wildcard for the principal. By default, public
         /// policies aren't blocked.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// Resource policy validation and the BlockPublicPolicy parameter help protect your resources
+        /// by preventing public access from being granted through the resource policies that
+        /// are directly attached to your secrets. In addition to using these features, carefully
+        /// inspect the following policies to confirm that they do not grant public access:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Identity-based policies attached to associated Amazon Web Services principals (for
+        /// example, IAM roles)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Resource-based policies attached to associated Amazon Web Services resources (for
+        /// example, Key Management Service (KMS) keys)
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// To review permissions to your secrets, see <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/determine-acccess_examine-iam-policies.html">Determine
+        /// who has permissions to your secrets</a>.
+        /// </para>
+        ///  </important>
         /// </summary>
         public bool BlockPublicPolicy
         {

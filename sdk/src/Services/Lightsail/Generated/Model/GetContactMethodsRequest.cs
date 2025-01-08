@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -45,13 +46,13 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class GetContactMethodsRequest : AmazonLightsailRequest
     {
-        private List<string> _protocols = new List<string>();
+        private List<string> _protocols = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Protocols. 
         /// <para>
-        /// The protocols used to send notifications, such as <code>Email</code>, or <code>SMS</code>
-        /// (text messaging).
+        /// The protocols used to send notifications, such as <c>Email</c>, or <c>SMS</c> (text
+        /// messaging).
         /// </para>
         ///  
         /// <para>
@@ -68,7 +69,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Protocols property is set
         internal bool IsSetProtocols()
         {
-            return this._protocols != null && this._protocols.Count > 0; 
+            return this._protocols != null && (this._protocols.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

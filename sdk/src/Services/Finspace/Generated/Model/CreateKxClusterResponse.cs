@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Finspace.Model
 {
     /// <summary>
@@ -36,23 +37,26 @@ namespace Amazon.Finspace.Model
         private AutoScalingConfiguration _autoScalingConfiguration;
         private string _availabilityZoneId;
         private KxAzMode _azMode;
-        private List<KxCacheStorageConfiguration> _cacheStorageConfigurations = new List<KxCacheStorageConfiguration>();
+        private List<KxCacheStorageConfiguration> _cacheStorageConfigurations = AWSConfigs.InitializeCollections ? new List<KxCacheStorageConfiguration>() : null;
         private CapacityConfiguration _capacityConfiguration;
         private string _clusterDescription;
         private string _clusterName;
         private KxClusterType _clusterType;
         private CodeConfiguration _code;
-        private List<KxCommandLineArgument> _commandLineArguments = new List<KxCommandLineArgument>();
+        private List<KxCommandLineArgument> _commandLineArguments = AWSConfigs.InitializeCollections ? new List<KxCommandLineArgument>() : null;
         private DateTime? _createdTimestamp;
-        private List<KxDatabaseConfiguration> _databases = new List<KxDatabaseConfiguration>();
+        private List<KxDatabaseConfiguration> _databases = AWSConfigs.InitializeCollections ? new List<KxDatabaseConfiguration>() : null;
         private string _environmentId;
         private string _executionRole;
         private string _initializationScript;
         private DateTime? _lastModifiedTimestamp;
         private string _releaseLabel;
         private KxSavedownStorageConfiguration _savedownStorageConfiguration;
+        private KxScalingGroupConfiguration _scalingGroupConfiguration;
         private KxClusterStatus _status;
         private string _statusReason;
+        private TickerplantLogConfiguration _tickerplantLogConfiguration;
+        private List<Volume> _volumes = AWSConfigs.InitializeCollections ? new List<Volume>() : null;
         private VpcConfiguration _vpcConfiguration;
 
         /// <summary>
@@ -80,6 +84,7 @@ namespace Amazon.Finspace.Model
         ///  The availability zone identifiers for the requested regions. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=8, Max=12)]
         public string AvailabilityZoneId
         {
             get { return this._availabilityZoneId; }
@@ -100,11 +105,11 @@ namespace Amazon.Finspace.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SINGLE</code> – Assigns one availability zone per cluster.
+        ///  <c>SINGLE</c> – Assigns one availability zone per cluster.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MULTI</code> – Assigns all the availability zones per cluster.
+        ///  <c>MULTI</c> – Assigns all the availability zones per cluster.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -136,7 +141,7 @@ namespace Amazon.Finspace.Model
         // Check to see if CacheStorageConfigurations property is set
         internal bool IsSetCacheStorageConfigurations()
         {
-            return this._cacheStorageConfigurations != null && this._cacheStorageConfigurations.Count > 0; 
+            return this._cacheStorageConfigurations != null && (this._cacheStorageConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -213,13 +218,28 @@ namespace Amazon.Finspace.Model
         /// plant and stores it in memory until the end of day, after which it writes all of its
         /// data to a disk and reloads the HDB. This cluster type requires local storage for temporary
         /// storage of data during the savedown process. If you specify this field in your request,
-        /// you must provide the <code>savedownStorageConfiguration</code> parameter.
+        /// you must provide the <c>savedownStorageConfiguration</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// GATEWAY – A gateway cluster allows you to access data across processes in kdb systems.
         /// It allows you to create your own routing logic using the initialization scripts and
         /// custom code. This type of cluster does not require a writable local storage.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// GP – A general purpose cluster allows you to quickly iterate on code during development
+        /// by granting greater access to system commands and enabling a fast reload of custom
+        /// code. This cluster type can optionally mount databases including cache and savedown
+        /// storage. For this cluster type, the node count is fixed at 1. It does not support
+        /// autoscaling and supports only <c>SINGLE</c> AZ mode.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Tickerplant – A tickerplant cluster allows you to subscribe to feed handlers based
+        /// on IAM permissions. It can publish to RDBs, other Tickerplants, and real-time subscribers
+        /// (RTS). Tickerplants can persist messages to log, which is readable by any RDB environment.
+        /// It supports only single-node that is only one kdb process.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -270,7 +290,7 @@ namespace Amazon.Finspace.Model
         // Check to see if CommandLineArguments property is set
         internal bool IsSetCommandLineArguments()
         {
-            return this._commandLineArguments != null && this._commandLineArguments.Count > 0; 
+            return this._commandLineArguments != null && (this._commandLineArguments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -308,7 +328,7 @@ namespace Amazon.Finspace.Model
         // Check to see if Databases property is set
         internal bool IsSetDatabases()
         {
-            return this._databases != null && this._databases.Count > 0; 
+            return this._databases != null && (this._databases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -355,7 +375,7 @@ namespace Amazon.Finspace.Model
         /// <para>
         /// Specifies a Q program that will be run at launch of a cluster. It is a relative path
         /// within <i>.zip</i> file that contains the custom code, which will be loaded on the
-        /// cluster. It must include the file name itself. For example, <code>somedir/init.q</code>.
+        /// cluster. It must include the file name itself. For example, <c>somedir/init.q</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -414,8 +434,8 @@ namespace Amazon.Finspace.Model
         /// Gets and sets the property SavedownStorageConfiguration. 
         /// <para>
         /// The size and type of the temporary storage that is used to hold data during the savedown
-        /// process. This parameter is required when you choose <code>clusterType</code> as RDB.
-        /// All the data written to this storage space is lost when the cluster node is restarted.
+        /// process. This parameter is required when you choose <c>clusterType</c> as RDB. All
+        /// the data written to this storage space is lost when the cluster node is restarted.
         /// </para>
         /// </summary>
         public KxSavedownStorageConfiguration SavedownStorageConfiguration
@@ -428,6 +448,24 @@ namespace Amazon.Finspace.Model
         internal bool IsSetSavedownStorageConfiguration()
         {
             return this._savedownStorageConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ScalingGroupConfiguration. 
+        /// <para>
+        /// The structure that stores the configuration details of a scaling group.
+        /// </para>
+        /// </summary>
+        public KxScalingGroupConfiguration ScalingGroupConfiguration
+        {
+            get { return this._scalingGroupConfiguration; }
+            set { this._scalingGroupConfiguration = value; }
+        }
+
+        // Check to see if ScalingGroupConfiguration property is set
+        internal bool IsSetScalingGroupConfiguration()
+        {
+            return this._scalingGroupConfiguration != null;
         }
 
         /// <summary>
@@ -498,6 +536,40 @@ namespace Amazon.Finspace.Model
         internal bool IsSetStatusReason()
         {
             return this._statusReason != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TickerplantLogConfiguration.
+        /// </summary>
+        public TickerplantLogConfiguration TickerplantLogConfiguration
+        {
+            get { return this._tickerplantLogConfiguration; }
+            set { this._tickerplantLogConfiguration = value; }
+        }
+
+        // Check to see if TickerplantLogConfiguration property is set
+        internal bool IsSetTickerplantLogConfiguration()
+        {
+            return this._tickerplantLogConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Volumes. 
+        /// <para>
+        ///  A list of volumes mounted on the cluster. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=5)]
+        public List<Volume> Volumes
+        {
+            get { return this._volumes; }
+            set { this._volumes = value; }
+        }
+
+        // Check to see if Volumes property is set
+        internal bool IsSetVolumes()
+        {
+            return this._volumes != null && (this._volumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

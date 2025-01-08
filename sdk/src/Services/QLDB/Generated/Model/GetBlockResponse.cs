@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QLDB.Model
 {
     /// <summary>
@@ -58,9 +59,9 @@ namespace Amazon.QLDB.Model
         /// <summary>
         /// Gets and sets the property Proof. 
         /// <para>
-        /// The proof object in Amazon Ion format returned by a <code>GetBlock</code> request.
-        /// A proof contains the list of hash values required to recalculate the specified digest
-        /// using a Merkle tree, starting with the specified block.
+        /// The proof object in Amazon Ion format returned by a <c>GetBlock</c> request. A proof
+        /// contains the list of hash values required to recalculate the specified digest using
+        /// a Merkle tree, starting with the specified block.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

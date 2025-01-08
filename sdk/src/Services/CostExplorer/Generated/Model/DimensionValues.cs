@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
-    /// The metadata that you can use to filter and group your results. You can use <code>GetDimensionValues</code>
+    /// The metadata that you can use to filter and group your results. You can use <c>GetDimensionValues</c>
     /// to find specific values.
     /// </summary>
     public partial class DimensionValues
     {
         private Dimension _key;
-        private List<string> _matchOptions = new List<string>();
-        private List<string> _values = new List<string>();
+        private List<string> _matchOptions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
         /// The names of the metadata types that you can use to filter and group your results.
-        /// For example, <code>AZ</code> returns a list of Availability Zones.
+        /// For example, <c>AZ</c> returns a list of Availability Zones.
         /// </para>
         ///  
         /// <para>
@@ -51,13 +52,12 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>LINK_ACCOUNT_NAME</code> and <code>SERVICE_CODE</code> can only be used in
-        /// <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html">CostCategoryRule</a>.
+        ///  <c>LINK_ACCOUNT_NAME</c> and <c>SERVICE_CODE</c> can only be used in <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html">CostCategoryRule</a>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>ANOMALY_TOTAL_IMPACT_ABSOLUTE</code> and <code>ANOMALY_TOTAL_IMPACT_PERCENTAGE</code>
-        /// can only be used in <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalySubscription.html">AnomalySubscriptions</a>.
+        ///  <c>ANOMALY_TOTAL_IMPACT_ABSOLUTE</c> and <c>ANOMALY_TOTAL_IMPACT_PERCENTAGE</c> can
+        /// only be used in <a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalySubscription.html">AnomalySubscriptions</a>.
         /// </para>
         /// </summary>
         public Dimension Key
@@ -79,13 +79,12 @@ namespace Amazon.CostExplorer.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>MatchOptions</code> is only applicable for actions related to Cost Category
-        /// and Anomaly Subscriptions. Refer to the documentation for each specific API to see
-        /// what is supported.
+        ///  <c>MatchOptions</c> is only applicable for actions related to Cost Category and Anomaly
+        /// Subscriptions. Refer to the documentation for each specific API to see what is supported.
         /// </para>
         ///  
         /// <para>
-        /// The default values for <code>MatchOptions</code> are <code>EQUALS</code> and <code>CASE_SENSITIVE</code>.
+        /// The default values for <c>MatchOptions</c> are <c>EQUALS</c> and <c>CASE_SENSITIVE</c>.
         /// </para>
         /// </summary>
         public List<string> MatchOptions
@@ -97,14 +96,14 @@ namespace Amazon.CostExplorer.Model
         // Check to see if MatchOptions property is set
         internal bool IsSetMatchOptions()
         {
-            return this._matchOptions != null && this._matchOptions.Count > 0; 
+            return this._matchOptions != null && (this._matchOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
         /// The metadata values that you can use to filter and group your results. You can use
-        /// <code>GetDimensionValues</code> to find specific values.
+        /// <c>GetDimensionValues</c> to find specific values.
         /// </para>
         /// </summary>
         public List<string> Values
@@ -116,7 +115,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -33,17 +34,17 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// Tags that have been applied to the specified resource. Tags are mapped from the tag
-        /// key to the tag value: <code>"TagKey" : "TagValue"</code>.
+        /// key to the tag value: <c>"TagKey" : "TagValue"</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Format example: <code>{"tag1" : "value1", "tag2" : "value2"} </code> 
+        /// Format example: <c>{"tag1" : "value1", "tag2" : "value2"} </c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -57,7 +58,7 @@ namespace Amazon.LocationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

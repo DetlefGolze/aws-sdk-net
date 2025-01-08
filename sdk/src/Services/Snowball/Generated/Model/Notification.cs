@@ -26,26 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
     /// The Amazon Simple Notification Service (Amazon SNS) notification settings associated
-    /// with a specific job. The <code>Notification</code> object is returned as a part of
-    /// the response syntax of the <code>DescribeJob</code> action in the <code>JobMetadata</code>
-    /// data type.
+    /// with a specific job. The <c>Notification</c> object is returned as a part of the response
+    /// syntax of the <c>DescribeJob</c> action in the <c>JobMetadata</c> data type.
     /// 
     ///  
     /// <para>
     /// When the notification settings are defined during job creation, you can choose to
-    /// notify based on a specific set of job states using the <code>JobStatesToNotify</code>
-    /// array of strings, or you can specify that you want to have Amazon SNS notifications
-    /// sent out for all job states with <code>NotifyAll</code> set to true.
+    /// notify based on a specific set of job states using the <c>JobStatesToNotify</c> array
+    /// of strings, or you can specify that you want to have Amazon SNS notifications sent
+    /// out for all job states with <c>NotifyAll</c> set to true.
     /// </para>
     /// </summary>
     public partial class Notification
     {
         private string _devicePickupSnsTopicARN;
-        private List<string> _jobStatesToNotify = new List<string>();
+        private List<string> _jobStatesToNotify = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _notifyAll;
         private string _snsTopicARN;
 
@@ -84,7 +84,7 @@ namespace Amazon.Snowball.Model
         // Check to see if JobStatesToNotify property is set
         internal bool IsSetJobStatesToNotify()
         {
-            return this._jobStatesToNotify != null && this._jobStatesToNotify.Count > 0; 
+            return this._jobStatesToNotify != null && (this._jobStatesToNotify.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -108,8 +108,8 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property SnsTopicARN. 
         /// <para>
-        /// The new SNS <code>TopicArn</code> that you want to associate with this job. You can
-        /// create Amazon Resource Names (ARNs) for topics by using the <a href="https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html">CreateTopic</a>
+        /// The new SNS <c>TopicArn</c> that you want to associate with this job. You can create
+        /// Amazon Resource Names (ARNs) for topics by using the <a href="https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html">CreateTopic</a>
         /// Amazon SNS API action.
         /// </para>
         ///  

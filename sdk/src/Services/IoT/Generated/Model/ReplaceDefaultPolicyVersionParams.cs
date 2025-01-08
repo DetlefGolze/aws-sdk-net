@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property TemplateName. 
         /// <para>
-        /// The name of the template to be applied. The only supported value is <code>BLANK_POLICY</code>.
+        /// The name of the template to be applied. The only supported value is <c>BLANK_POLICY</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

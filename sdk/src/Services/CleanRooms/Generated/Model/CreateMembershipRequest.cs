@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -36,8 +37,9 @@ namespace Amazon.CleanRooms.Model
     {
         private string _collaborationIdentifier;
         private MembershipProtectedQueryResultConfiguration _defaultResultConfiguration;
+        private MembershipPaymentConfiguration _paymentConfiguration;
         private MembershipQueryLogStatus _queryLogStatus;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property CollaborationIdentifier. 
@@ -78,9 +80,36 @@ namespace Amazon.CleanRooms.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PaymentConfiguration. 
+        /// <para>
+        /// The payment responsibilities accepted by the collaboration member.
+        /// </para>
+        ///  
+        /// <para>
+        /// Not required if the collaboration member has the member ability to run queries. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Required if the collaboration member doesn't have the member ability to run queries
+        /// but is configured as a payer by the collaboration creator. 
+        /// </para>
+        /// </summary>
+        public MembershipPaymentConfiguration PaymentConfiguration
+        {
+            get { return this._paymentConfiguration; }
+            set { this._paymentConfiguration = value; }
+        }
+
+        // Check to see if PaymentConfiguration property is set
+        internal bool IsSetPaymentConfiguration()
+        {
+            return this._paymentConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property QueryLogStatus. 
         /// <para>
-        /// An indicator as to whether query logging has been enabled or disabled for the collaboration.
+        /// An indicator as to whether query logging has been enabled or disabled for the membership.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -114,7 +143,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

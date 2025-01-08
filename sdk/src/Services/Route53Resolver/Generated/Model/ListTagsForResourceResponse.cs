@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.Route53Resolver.Model
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If more than <code>MaxResults</code> tags match the specified criteria, you can submit
-        /// another <code>ListTagsForResource</code> request to get the next group of results.
-        /// In the next request, specify the value of <code>NextToken</code> from the previous
-        /// response. 
+        /// If more than <c>MaxResults</c> tags match the specified criteria, you can submit another
+        /// <c>ListTagsForResource</c> request to get the next group of results. In the next request,
+        /// specify the value of <c>NextToken</c> from the previous response. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -60,7 +60,7 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The tags that are associated with the resource that you specified in the <code>ListTagsForResource</code>
+        /// The tags that are associated with the resource that you specified in the <c>ListTagsForResource</c>
         /// request.
         /// </para>
         /// </summary>
@@ -74,7 +74,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

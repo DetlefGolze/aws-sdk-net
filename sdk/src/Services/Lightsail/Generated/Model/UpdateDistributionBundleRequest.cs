@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -46,9 +47,8 @@ namespace Amazon.Lightsail.Model
     /// <para>
     /// You can update your distribution's bundle only one time within your monthly Amazon
     /// Web Services billing cycle. To determine if you can update your distribution's bundle,
-    /// use the <code>GetDistributions</code> action. The <code>ableToUpdateBundle</code>
-    /// parameter in the result will indicate whether you can currently update your distribution's
-    /// bundle.
+    /// use the <c>GetDistributions</c> action. The <c>ableToUpdateBundle</c> parameter in
+    /// the result will indicate whether you can currently update your distribution's bundle.
     /// </para>
     /// </summary>
     public partial class UpdateDistributionBundleRequest : AmazonLightsailRequest
@@ -63,7 +63,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>GetDistributionBundles</code> action to get a list of distribution bundle
+        /// Use the <c>GetDistributionBundles</c> action to get a list of distribution bundle
         /// IDs that you can specify.
         /// </para>
         /// </summary>
@@ -86,8 +86,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>GetDistributions</code> action to get a list of distribution names that
-        /// you can specify.
+        /// Use the <c>GetDistributions</c> action to get a list of distribution names that you
+        /// can specify.
         /// </para>
         /// </summary>
         public string DistributionName

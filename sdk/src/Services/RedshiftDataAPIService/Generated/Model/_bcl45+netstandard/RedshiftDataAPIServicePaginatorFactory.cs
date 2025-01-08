@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftDataAPIService.Model
 {
     /// <summary>
@@ -49,6 +50,14 @@ namespace Amazon.RedshiftDataAPIService.Model
         public IGetStatementResultPaginator GetStatementResult(GetStatementResultRequest request) 
         {
             return new GetStatementResultPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for GetStatementResultV2 operation
+        ///</summary>
+        public IGetStatementResultV2Paginator GetStatementResultV2(GetStatementResultV2Request request) 
+        {
+            return new GetStatementResultV2Paginator(this.client, request);
         }
 
         /// <summary>

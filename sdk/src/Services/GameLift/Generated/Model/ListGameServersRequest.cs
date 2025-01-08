@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -79,7 +80,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages.
         /// </para>
         /// </summary>
@@ -121,7 +122,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property SortOrder. 
         /// <para>
         /// Indicates how to sort the returned data based on game server registration timestamp.
-        /// Use <code>ASCENDING</code> to retrieve oldest game servers first, or use <code>DESCENDING</code>
+        /// Use <c>ASCENDING</c> to retrieve oldest game servers first, or use <c>DESCENDING</c>
         /// to retrieve newest game servers first. If this parameter is left empty, game servers
         /// are returned in no particular order.
         /// </para>

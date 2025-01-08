@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
     /// Container for the parameters to the StartSigningJob operation.
     /// Initiates a signing job to be performed on the code provided. Signing jobs are viewable
-    /// by the <code>ListSigningJobs</code> operation for two years after they are performed.
-    /// Note the following requirements: 
+    /// by the <c>ListSigningJobs</c> operation for two years after they are performed. Note
+    /// the following requirements: 
     /// 
     ///  <ul> <li> 
     /// <para>
@@ -45,22 +46,27 @@ namespace Amazon.Signer.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// You must create an S3 destination bucket. Code signing uses your S3 destination bucket
+    /// You must create an S3 destination bucket. AWS Signer uses your S3 destination bucket
     /// to write your signed code.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// You specify the name of the source and destination buckets when calling the <code>StartSigningJob</code>
+    /// You specify the name of the source and destination buckets when calling the <c>StartSigningJob</c>
     /// operation.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// You must also specify a request token that identifies your request to code signing.
+    /// You must ensure the S3 buckets are from the same Region as the signing profile. Cross-Region
+    /// signing isn't supported.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// You must also specify a request token that identifies your request to Signer.
     /// </para>
     ///  </li> </ul> 
     /// <para>
     /// You can call the <a>DescribeSigningJob</a> and the <a>ListSigningJobs</a> actions
-    /// after you call <code>StartSigningJob</code>.
+    /// after you call <c>StartSigningJob</c>.
     /// </para>
     ///  
     /// <para>

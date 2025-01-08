@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// You get the <code>ValidationData</code> object for the training dataset (<a>TrainingDataResult</a>)
+    /// You get the <c>ValidationData</c> object for the training dataset (<a>TrainingDataResult</a>)
     /// and the test dataset (<a>TestingDataResult</a>) by calling <a>DescribeProjectVersions</a>.
     /// 
     /// </para>
@@ -53,7 +54,7 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class ValidationData
     {
-        private List<Asset> _assets = new List<Asset>();
+        private List<Asset> _assets = AWSConfigs.InitializeCollections ? new List<Asset>() : null;
 
         /// <summary>
         /// Gets and sets the property Assets. 
@@ -70,7 +71,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if Assets property is set
         internal bool IsSetAssets()
         {
-            return this._assets != null && this._assets.Count > 0; 
+            return this._assets != null && (this._assets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

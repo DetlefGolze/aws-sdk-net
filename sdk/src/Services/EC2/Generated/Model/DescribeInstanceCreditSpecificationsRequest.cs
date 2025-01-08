@@ -26,27 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeInstanceCreditSpecifications operation.
     /// Describes the credit option for CPU usage of the specified burstable performance instances.
-    /// The credit options are <code>standard</code> and <code>unlimited</code>.
+    /// The credit options are <c>standard</c> and <c>unlimited</c>.
     /// 
     ///  
     /// <para>
     /// If you do not specify an instance ID, Amazon EC2 returns burstable performance instances
-    /// with the <code>unlimited</code> credit option, as well as instances that were previously
-    /// configured as T2, T3, and T3a with the <code>unlimited</code> credit option. For example,
-    /// if you resize a T2 instance, while it is configured as <code>unlimited</code>, to
-    /// an M4 instance, Amazon EC2 returns the M4 instance.
+    /// with the <c>unlimited</c> credit option, as well as instances that were previously
+    /// configured as T2, T3, and T3a with the <c>unlimited</c> credit option. For example,
+    /// if you resize a T2 instance, while it is configured as <c>unlimited</c>, to an M4
+    /// instance, Amazon EC2 returns the M4 instance.
     /// </para>
     ///  
     /// <para>
-    /// If you specify one or more instance IDs, Amazon EC2 returns the credit option (<code>standard</code>
-    /// or <code>unlimited</code>) of those instances. If you specify an instance ID that
-    /// is not valid, such as an instance that is not a burstable performance instance, an
-    /// error is returned.
+    /// If you specify one or more instance IDs, Amazon EC2 returns the credit option (<c>standard</c>
+    /// or <c>unlimited</c>) of those instances. If you specify an instance ID that is not
+    /// valid, such as an instance that is not a burstable performance instance, an error
+    /// is returned.
     /// </para>
     ///  
     /// <para>
@@ -67,8 +68,8 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeInstanceCreditSpecificationsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _instanceIds = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -79,7 +80,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>instance-id</code> - The ID of the instance.
+        ///  <c>instance-id</c> - The ID of the instance.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -92,7 +93,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

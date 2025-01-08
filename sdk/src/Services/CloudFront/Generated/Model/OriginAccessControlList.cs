@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CloudFront.Model
     public partial class OriginAccessControlList
     {
         private bool? _isTruncated;
-        private List<OriginAccessControlSummary> _items = new List<OriginAccessControlSummary>();
+        private List<OriginAccessControlSummary> _items = AWSConfigs.InitializeCollections ? new List<OriginAccessControlSummary>() : null;
         private string _marker;
         private int? _maxItems;
         private string _nextMarker;
@@ -43,7 +44,7 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property IsTruncated. 
         /// <para>
-        /// If there are more items in the list than are in this response, this value is <code>true</code>.
+        /// If there are more items in the list than are in this response, this value is <c>true</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -74,13 +75,13 @@ namespace Amazon.CloudFront.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// The value of the <code>Marker</code> field that was provided in the request.
+        /// The value of the <c>Marker</c> field that was provided in the request.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -119,8 +120,8 @@ namespace Amazon.CloudFront.Model
         /// Gets and sets the property NextMarker. 
         /// <para>
         /// If there are more items in the list than are in this response, this element is present.
-        /// It contains the value to use in the <code>Marker</code> field of another request to
-        /// continue listing origin access controls.
+        /// It contains the value to use in the <c>Marker</c> field of another request to continue
+        /// listing origin access controls.
         /// </para>
         /// </summary>
         public string NextMarker

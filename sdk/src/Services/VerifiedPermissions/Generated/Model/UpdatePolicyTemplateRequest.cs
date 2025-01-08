@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -36,15 +37,15 @@ namespace Amazon.VerifiedPermissions.Model
     /// 
     ///  <important> 
     /// <para>
-    /// Changes you make to the policy template content are immediately reflected in authorization
-    /// decisions that involve all template-linked policies instantiated from this template.
+    /// Changes you make to the policy template content are immediately (within the constraints
+    /// of eventual consistency) reflected in authorization decisions that involve all template-linked
+    /// policies instantiated from this template.
     /// </para>
     ///  </important> <note> 
     /// <para>
     /// Verified Permissions is <i> <a href="https://wikipedia.org/wiki/Eventual_consistency">eventually
-    /// consistent</a> </i>. It can take a few seconds for a new or changed element to be
-    /// propagate through the service and be visible in the results of other Verified Permissions
-    /// operations.
+    /// consistent</a> </i>. It can take a few seconds for a new or changed element to propagate
+    /// through the service and be visible in the results of other Verified Permissions operations.
     /// </para>
     ///  </note>
     /// </summary>
@@ -125,11 +126,11 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The <code>action</code> referenced by the policy template.
+        /// The <c>action</c> referenced by the policy template.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Any conditional clauses, such as <code>when</code> or <code>unless</code> clauses.
+        /// Any conditional clauses, such as <c>when</c> or <c>unless</c> clauses.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -137,15 +138,15 @@ namespace Amazon.VerifiedPermissions.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The effect (<code>permit</code> or <code>forbid</code>) of the policy template.
+        /// The effect (<c>permit</c> or <c>forbid</c>) of the policy template.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>principal</code> referenced by the policy template.
+        /// The <c>principal</c> referenced by the policy template.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>resource</code> referenced by the policy template.
+        /// The <c>resource</c> referenced by the policy template.
         /// </para>
         ///  </li> </ul>
         /// </summary>

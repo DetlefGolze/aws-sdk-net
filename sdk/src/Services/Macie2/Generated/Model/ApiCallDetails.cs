@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -60,7 +61,8 @@ namespace Amazon.Macie2.Model
         /// <summary>
         /// Gets and sets the property ApiServiceName. 
         /// <para>
-        /// The URL of the Amazon Web Service that provides the operation, for example: s3.amazonaws.com.
+        /// The URL of the Amazon Web Services service that provides the operation, for example:
+        /// s3.amazonaws.com.
         /// </para>
         /// </summary>
         public string ApiServiceName

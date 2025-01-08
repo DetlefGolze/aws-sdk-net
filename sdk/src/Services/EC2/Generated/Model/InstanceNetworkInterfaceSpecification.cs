@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,22 +36,24 @@ namespace Amazon.EC2.Model
     {
         private bool? _associateCarrierIpAddress;
         private bool? _associatePublicIpAddress;
+        private ConnectionTrackingSpecificationRequest _connectionTrackingSpecification;
         private bool? _deleteOnTermination;
         private string _description;
         private int? _deviceIndex;
-        private List<string> _groups = new List<string>();
+        private EnaSrdSpecificationRequest _enaSrdSpecification;
+        private List<string> _groups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _interfaceType;
         private int? _ipv4PrefixCount;
-        private List<Ipv4PrefixSpecificationRequest> _ipv4Prefixes = new List<Ipv4PrefixSpecificationRequest>();
+        private List<Ipv4PrefixSpecificationRequest> _ipv4Prefixes = AWSConfigs.InitializeCollections ? new List<Ipv4PrefixSpecificationRequest>() : null;
         private int? _ipv6AddressCount;
-        private List<InstanceIpv6Address> _ipv6Addresses = new List<InstanceIpv6Address>();
+        private List<InstanceIpv6Address> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<InstanceIpv6Address>() : null;
         private int? _ipv6PrefixCount;
-        private List<Ipv6PrefixSpecificationRequest> _ipv6Prefixes = new List<Ipv6PrefixSpecificationRequest>();
+        private List<Ipv6PrefixSpecificationRequest> _ipv6Prefixes = AWSConfigs.InitializeCollections ? new List<Ipv6PrefixSpecificationRequest>() : null;
         private int? _networkCardIndex;
         private string _networkInterfaceId;
         private bool? _primaryIpv6;
         private string _privateIpAddress;
-        private List<PrivateIpAddressSpecification> _privateIpAddresses = new List<PrivateIpAddressSpecification>();
+        private List<PrivateIpAddressSpecification> _privateIpAddresses = AWSConfigs.InitializeCollections ? new List<PrivateIpAddressSpecification>() : null;
         private int? _secondaryPrivateIpAddressCount;
         private string _subnetId;
 
@@ -85,7 +88,14 @@ namespace Amazon.EC2.Model
         /// The public IP address can only be assigned to a network interface for eth0, and can
         /// only be assigned to a new network interface, not an existing one. You cannot specify
         /// more than one network interface in the request. If launching into a default subnet,
-        /// the default value is <code>true</code>.
+        /// the default value is <c>true</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Amazon Web Services charges for all public IPv4 addresses, including public IPv4 addresses
+        /// associated with running instances and Elastic IP addresses. For more information,
+        /// see the <i>Public IPv4 Address</i> tab on the <a href="http://aws.amazon.com/vpc/pricing/">Amazon
+        /// VPC pricing page</a>.
         /// </para>
         /// </summary>
         public bool AssociatePublicIpAddress
@@ -101,11 +111,32 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConnectionTrackingSpecification. 
+        /// <para>
+        /// A security group connection tracking specification that enables you to set the timeout
+        /// for connection tracking on an Elastic network interface. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts">Connection
+        /// tracking timeouts</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public ConnectionTrackingSpecificationRequest ConnectionTrackingSpecification
+        {
+            get { return this._connectionTrackingSpecification; }
+            set { this._connectionTrackingSpecification = value; }
+        }
+
+        // Check to see if ConnectionTrackingSpecification property is set
+        internal bool IsSetConnectionTrackingSpecification()
+        {
+            return this._connectionTrackingSpecification != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DeleteOnTermination. 
         /// <para>
-        /// If set to <code>true</code>, the interface is deleted when the instance is terminated.
-        /// You can specify <code>true</code> only if creating a new network interface when launching
-        /// an instance.
+        /// If set to <c>true</c>, the interface is deleted when the instance is terminated. You
+        /// can specify <c>true</c> only if creating a new network interface when launching an
+        /// instance.
         /// </para>
         /// </summary>
         public bool DeleteOnTermination
@@ -164,6 +195,25 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnaSrdSpecification. 
+        /// <para>
+        /// Specifies the ENA Express settings for the network interface that's attached to the
+        /// instance.
+        /// </para>
+        /// </summary>
+        public EnaSrdSpecificationRequest EnaSrdSpecification
+        {
+            get { return this._enaSrdSpecification; }
+            set { this._enaSrdSpecification = value; }
+        }
+
+        // Check to see if EnaSrdSpecification property is set
+        internal bool IsSetEnaSrdSpecification()
+        {
+            return this._enaSrdSpecification != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Groups. 
         /// <para>
         /// The IDs of the security groups for the network interface. Applies only if creating
@@ -179,7 +229,7 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -189,7 +239,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>interface</code> | <code>efa</code> 
+        /// If you specify <c>efa-only</c>, do not assign any IP addresses to the network interface.
+        /// EFA-only network interfaces do not support IP addresses.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid values: <c>interface</c> | <c>efa</c> | <c>efa-only</c> 
         /// </para>
         /// </summary>
         public string InterfaceType
@@ -208,7 +263,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Ipv4PrefixCount. 
         /// <para>
         /// The number of IPv4 delegated prefixes to be automatically assigned to the network
-        /// interface. You cannot use this option if you use the <code>Ipv4Prefix</code> option.
+        /// interface. You cannot use this option if you use the <c>Ipv4Prefix</c> option.
         /// </para>
         /// </summary>
         public int Ipv4PrefixCount
@@ -227,7 +282,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Ipv4Prefixes. 
         /// <para>
         /// The IPv4 delegated prefixes to be assigned to the network interface. You cannot use
-        /// this option if you use the <code>Ipv4PrefixCount</code> option.
+        /// this option if you use the <c>Ipv4PrefixCount</c> option.
         /// </para>
         /// </summary>
         public List<Ipv4PrefixSpecificationRequest> Ipv4Prefixes
@@ -239,7 +294,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv4Prefixes property is set
         internal bool IsSetIpv4Prefixes()
         {
-            return this._ipv4Prefixes != null && this._ipv4Prefixes.Count > 0; 
+            return this._ipv4Prefixes != null && (this._ipv4Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -280,14 +335,14 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Ipv6PrefixCount. 
         /// <para>
         /// The number of IPv6 delegated prefixes to be automatically assigned to the network
-        /// interface. You cannot use this option if you use the <code>Ipv6Prefix</code> option.
+        /// interface. You cannot use this option if you use the <c>Ipv6Prefix</c> option.
         /// </para>
         /// </summary>
         public int Ipv6PrefixCount
@@ -306,7 +361,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Ipv6Prefixes. 
         /// <para>
         /// The IPv6 delegated prefixes to be assigned to the network interface. You cannot use
-        /// this option if you use the <code>Ipv6PrefixCount</code> option.
+        /// this option if you use the <c>Ipv6PrefixCount</c> option.
         /// </para>
         /// </summary>
         public List<Ipv6PrefixSpecificationRequest> Ipv6Prefixes
@@ -318,7 +373,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Prefixes property is set
         internal bool IsSetIpv6Prefixes()
         {
-            return this._ipv6Prefixes != null && this._ipv6Prefixes.Count > 0; 
+            return this._ipv6Prefixes != null && (this._ipv6Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -430,7 +485,7 @@ namespace Amazon.EC2.Model
         // Check to see if PrivateIpAddresses property is set
         internal bool IsSetPrivateIpAddresses()
         {
-            return this._privateIpAddresses != null && this._privateIpAddresses.Count > 0; 
+            return this._privateIpAddresses != null && (this._privateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

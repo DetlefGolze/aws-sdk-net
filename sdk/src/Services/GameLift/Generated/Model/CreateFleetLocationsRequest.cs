@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateFleetLocations operation.
-    /// Adds remote locations to a fleet and begins populating the new locations with EC2
-    /// instances. The new instances conform to the fleet's instance type, auto-scaling, and
-    /// other configuration settings. 
+    /// Adds remote locations to an EC2 and begins populating the new locations with instances.
+    /// The new instances conform to the fleet's instance type, auto-scaling, and other configuration
+    /// settings.
     /// 
     ///  <note> 
     /// <para>
-    /// This operation cannot be used with fleets that don't support remote locations. Fleets
-    /// can have multiple locations only if they reside in Amazon Web Services Regions that
-    /// support this feature and were created after the feature was released in March 2021.
+    /// You can't add remote locations to a fleet that resides in an Amazon Web Services Region
+    /// that doesn't support multiple locations. Fleets created prior to March 2021 can't
+    /// support multiple locations.
     /// </para>
     ///  </note> 
     /// <para>
@@ -48,9 +49,9 @@ namespace Amazon.GameLift.Model
     ///  
     /// <para>
     /// If successful, this operation returns the list of added locations with their status
-    /// set to <code>NEW</code>. Amazon GameLift initiates the process of starting an instance
-    /// in each added location. You can track the status of each new location by monitoring
-    /// location creation events using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetEvents.html">DescribeFleetEvents</a>.
+    /// set to <c>NEW</c>. Amazon GameLift initiates the process of starting an instance in
+    /// each added location. You can track the status of each new location by monitoring location
+    /// creation events using <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeFleetEvents.html">DescribeFleetEvents</a>.
     /// </para>
     ///  
     /// <para>
@@ -63,14 +64,19 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Multi-location
-    /// fleets</a> 
+    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-editing.html#fleets-update-locations">Update
+    /// fleet locations</a> 
+    /// </para>
+    ///  
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-regions.html">
+    /// Amazon GameLift service locations</a> for managed hosting.
     /// </para>
     /// </summary>
     public partial class CreateFleetLocationsRequest : AmazonGameLiftRequest
     {
         private string _fleetId;
-        private List<LocationConfiguration> _locations = new List<LocationConfiguration>();
+        private List<LocationConfiguration> _locations = AWSConfigs.InitializeCollections ? new List<LocationConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property FleetId. 
@@ -79,7 +85,7 @@ namespace Amazon.GameLift.Model
         /// ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -97,8 +103,7 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// A list of locations to deploy additional instances to and manage as part of the fleet.
         /// You can add any Amazon GameLift-supported Amazon Web Services Region as a remote location,
-        /// in the form of an Amazon Web Services Region code such as <code>us-west-2</code>.
-        /// 
+        /// in the form of an Amazon Web Services Region code such as <c>us-west-2</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -111,7 +116,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Locations property is set
         internal bool IsSetLocations()
         {
-            return this._locations != null && this._locations.Count > 0; 
+            return this._locations != null && (this._locations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

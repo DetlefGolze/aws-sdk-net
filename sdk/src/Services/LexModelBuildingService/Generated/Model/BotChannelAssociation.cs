@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.LexModelBuildingService.Model
     public partial class BotChannelAssociation
     {
         private string _botAlias;
-        private Dictionary<string, string> _botConfiguration = new Dictionary<string, string>();
+        private Dictionary<string, string> _botConfiguration = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _botName;
         private DateTime? _createdDate;
         private string _description;
@@ -79,7 +80,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if BotConfiguration property is set
         internal bool IsSetBotConfiguration()
         {
-            return this._botConfiguration != null && this._botConfiguration.Count > 0; 
+            return this._botConfiguration != null && (this._botConfiguration.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -147,8 +148,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property FailureReason. 
         /// <para>
-        /// If <code>status</code> is <code>FAILED</code>, Amazon Lex provides the reason that
-        /// it failed to create the association.
+        /// If <c>status</c> is <c>FAILED</c>, Amazon Lex provides the reason that it failed to
+        /// create the association.
         /// </para>
         /// </summary>
         public string FailureReason
@@ -189,16 +190,16 @@ namespace Amazon.LexModelBuildingService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATED</code> - The channel has been created and is ready for use.
+        ///  <c>CREATED</c> - The channel has been created and is ready for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IN_PROGRESS</code> - Channel creation is in progress.
+        ///  <c>IN_PROGRESS</c> - Channel creation is in progress.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> - There was an error creating the channel. For information about
-        /// the reason for the failure, see the <code>failureReason</code> field.
+        ///  <c>FAILED</c> - There was an error creating the channel. For information about the
+        /// reason for the failure, see the <c>failureReason</c> field.
         /// </para>
         ///  </li> </ul>
         /// </summary>

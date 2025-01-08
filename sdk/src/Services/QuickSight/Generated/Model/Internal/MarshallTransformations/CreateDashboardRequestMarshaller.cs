@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -69,6 +70,7 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetDashboardPublishOptions())
@@ -89,6 +91,39 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                     var marshaller = DashboardVersionDefinitionMarshaller.Instance;
                     marshaller.Marshall(publicRequest.Definition, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetFolderArns())
+                {
+                    context.Writer.WritePropertyName("FolderArns");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestFolderArnsListValue in publicRequest.FolderArns)
+                    {
+                            context.Writer.Write(publicRequestFolderArnsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetLinkEntities())
+                {
+                    context.Writer.WritePropertyName("LinkEntities");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestLinkEntitiesListValue in publicRequest.LinkEntities)
+                    {
+                            context.Writer.Write(publicRequestLinkEntitiesListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetLinkSharingConfiguration())
+                {
+                    context.Writer.WritePropertyName("LinkSharingConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = LinkSharingConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.LinkSharingConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.DirectoryService.Model
         /// <para>
         /// Required name of the tag. The string value can be Unicode characters and cannot be
         /// prefixed with "aws:". The string can contain only the set of Unicode letters, digits,
-        /// white-space, '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+        /// white-space, '_', '.', '/', '=', '+', '-', ':', '@'(Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]
@@ -62,7 +63,7 @@ namespace Amazon.DirectoryService.Model
         /// <para>
         /// The optional value of the tag. The string value can be Unicode characters. The string
         /// can contain only the set of Unicode letters, digits, white-space, '_', '.', '/', '=',
-        /// '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+        /// '+', '-', ':', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=256)]

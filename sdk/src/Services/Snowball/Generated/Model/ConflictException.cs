@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Snowball.Model
 {
     /// <summary>
-    /// You get this exception when you call <code>CreateReturnShippingLabel</code> more than
-    /// once when other requests are not completed.
+    /// You get this exception when you call <c>CreateReturnShippingLabel</c> more than once
+    /// when other requests are not completed.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]
@@ -127,8 +128,8 @@ namespace Amazon.Snowball.Model
         /// <summary>
         /// Gets and sets the property ConflictResource. 
         /// <para>
-        /// You get this resource when you call <code>CreateReturnShippingLabel</code> more than
-        /// once when other requests are not completed. .
+        /// You get this resource when you call <c>CreateReturnShippingLabel</c> more than once
+        /// when other requests are not completed. .
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

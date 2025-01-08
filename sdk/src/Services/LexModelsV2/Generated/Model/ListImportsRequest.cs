@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.LexModelsV2.Model
     {
         private string _botId;
         private string _botVersion;
-        private List<ImportFilter> _filters = new List<ImportFilter>();
+        private List<ImportFilter> _filters = AWSConfigs.InitializeCollections ? new List<ImportFilter>() : null;
         private string _localeId;
         private int? _maxResults;
         private string _nextToken;
@@ -99,15 +100,15 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LocaleId. 
         /// <para>
         /// Specifies the locale that should be present in the list. If you don't specify a resource
-        /// type in the <code>filters</code> parameter, the list contains both bot locales and
-        /// custom vocabularies.
+        /// type in the <c>filters</c> parameter, the list contains both bot locales and custom
+        /// vocabularies.
         /// </para>
         /// </summary>
         public string LocaleId
@@ -145,16 +146,14 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response from the <code>ListImports</code> operation contains more results
-        /// than specified in the <code>maxResults</code> parameter, a token is returned in the
-        /// response.
+        /// If the response from the <c>ListImports</c> operation contains more results than specified
+        /// in the <c>maxResults</c> parameter, a token is returned in the response.
         /// </para>
         ///  
         /// <para>
-        /// Use the returned token in the <code>nextToken</code> parameter of a <code>ListImports</code>
-        /// request to return the next page of results. For a complete set of results, call the
-        /// <code>ListImports</code> operation until the <code>nextToken</code> returned in the
-        /// response is null.
+        /// Use the returned token in the <c>nextToken</c> parameter of a <c>ListImports</c> request
+        /// to return the next page of results. For a complete set of results, call the <c>ListImports</c>
+        /// operation until the <c>nextToken</c> returned in the response is null.
         /// </para>
         /// </summary>
         public string NextToken
@@ -172,7 +171,7 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// Determines the field that the list of imports is sorted by. You can sort by the <code>LastUpdatedDateTime</code>
+        /// Determines the field that the list of imports is sorted by. You can sort by the <c>LastUpdatedDateTime</c>
         /// field in ascending or descending order.
         /// </para>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -43,11 +44,11 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>S3</code>: The report results are exported to an S3 bucket. 
+        ///  <c>S3</c>: The report results are exported to an S3 bucket. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NO_EXPORT</code>: The report results are not exported. 
+        ///  <c>NO_EXPORT</c>: The report results are not exported. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -66,8 +67,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property S3Destination. 
         /// <para>
-        ///  A <code>S3ReportExportConfig</code> object that contains information about the S3
-        /// bucket where the run of a report is exported. 
+        ///  A <c>S3ReportExportConfig</c> object that contains information about the S3 bucket
+        /// where the run of a report is exported. 
         /// </para>
         /// </summary>
         public S3ReportExportConfig S3Destination

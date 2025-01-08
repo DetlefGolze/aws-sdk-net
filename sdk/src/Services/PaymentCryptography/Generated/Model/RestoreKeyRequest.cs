@@ -26,19 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
     /// Container for the parameters to the RestoreKey operation.
     /// Cancels a scheduled key deletion during the waiting period. Use this operation to
-    /// restore a <code>Key</code> that is scheduled for deletion.
+    /// restore a <c>Key</c> that is scheduled for deletion.
     /// 
     ///  
     /// <para>
-    /// During the waiting period, the <code>KeyState</code> is <code>DELETE_PENDING</code>
-    /// and <code>deletePendingTimestamp</code> contains the date and time after which the
-    /// <code>Key</code> will be deleted. After <code>Key</code> is restored, the <code>KeyState</code>
-    /// is <code>CREATE_COMPLETE</code>, and the value for <code>deletePendingTimestamp</code>
+    /// During the waiting period, the <c>KeyState</c> is <c>DELETE_PENDING</c> and <c>deletePendingTimestamp</c>
+    /// contains the date and time after which the <c>Key</c> will be deleted. After <c>Key</c>
+    /// is restored, the <c>KeyState</c> is <c>CREATE_COMPLETE</c>, and the value for <c>deletePendingTimestamp</c>
     /// is removed.
     /// </para>
     ///  
@@ -52,15 +52,18 @@ namespace Amazon.PaymentCryptography.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <a>DeleteKey</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_DeleteKey.html">DeleteKey</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>StartKeyUsage</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StartKeyUsage.html">StartKeyUsage</a>
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <a>StopKeyUsage</a> 
+    ///  <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_StopKeyUsage.html">StopKeyUsage</a>
+    /// 
     /// </para>
     ///  </li> </ul>
     /// </summary>
@@ -71,8 +74,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property KeyIdentifier. 
         /// <para>
-        /// The <code>KeyARN</code> of the key to be restored within Amazon Web Services Payment
-        /// Cryptography.
+        /// The <c>KeyARN</c> of the key to be restored within Amazon Web Services Payment Cryptography.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]

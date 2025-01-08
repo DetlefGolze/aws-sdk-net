@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -253,7 +254,7 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property TaskConfig. 
         /// <para>
-        /// Configuration about the custom classifier associated with the flywheel.
+        /// Configuration about the model associated with a flywheel.
         /// </para>
         /// </summary>
         public TaskConfig TaskConfig

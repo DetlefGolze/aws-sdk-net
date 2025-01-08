@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.SimpleNotificationService.Model
         /// The phone number to opt in. Use E.164 format.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Sensitive=true)]
         public string PhoneNumber
         {
             get { return this._phoneNumber; }

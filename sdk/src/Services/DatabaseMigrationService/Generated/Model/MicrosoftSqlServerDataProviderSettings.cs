@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -115,7 +116,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// Gets and sets the property SslMode. 
         /// <para>
         /// The SSL mode used to connect to the Microsoft SQL Server data provider. The default
-        /// value is <code>none</code>.
+        /// value is <c>none</c>.
         /// </para>
         /// </summary>
         public DmsSslModeValue SslMode

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ARCZonalShift.Model
     /// </summary>
     public partial class ListZonalShiftsResponse : AmazonWebServiceResponse
     {
-        private List<ZonalShiftSummary> _items = new List<ZonalShiftSummary>();
+        private List<ZonalShiftSummary> _items = AWSConfigs.InitializeCollections ? new List<ZonalShiftSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.ARCZonalShift.Model
         // Check to see if Items property is set
         internal bool IsSetItems()
         {
-            return this._items != null && this._items.Count > 0; 
+            return this._items != null && (this._items.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Specifies that you want to receive the next page of results. Valid only if you received
-        /// a <code>NextToken</code> response in the previous request. If you did, it indicates
-        /// that more output is available. Set this parameter to the value provided by the previous
-        /// call's <code>NextToken</code> response to request the next page of results.
+        /// a <c>NextToken</c> response in the previous request. If you did, it indicates that
+        /// more output is available. Set this parameter to the value provided by the previous
+        /// call's <c>NextToken</c> response to request the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

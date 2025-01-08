@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -49,11 +50,11 @@ namespace Amazon.EC2.Model
         private string _clientToken;
         private string _context;
         private FleetExcessCapacityTerminationPolicy _excessCapacityTerminationPolicy;
-        private List<FleetLaunchTemplateConfigRequest> _launchTemplateConfigs = new List<FleetLaunchTemplateConfigRequest>();
+        private List<FleetLaunchTemplateConfigRequest> _launchTemplateConfigs = AWSConfigs.InitializeCollections ? new List<FleetLaunchTemplateConfigRequest>() : null;
         private OnDemandOptionsRequest _onDemandOptions;
         private bool? _replaceUnhealthyInstances;
         private SpotOptionsRequest _spotOptions;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
         private TargetCapacitySpecificationRequest _targetCapacitySpecification;
         private bool? _terminateInstancesWithExpiration;
         private FleetType _type;
@@ -106,7 +107,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>maintain</code>.
+        /// Supported only for fleets of type <c>maintain</c>.
         /// </para>
         /// </summary>
         public FleetExcessCapacityTerminationPolicy ExcessCapacityTerminationPolicy
@@ -137,7 +138,7 @@ namespace Amazon.EC2.Model
         // Check to see if LaunchTemplateConfigs property is set
         internal bool IsSetLaunchTemplateConfigs()
         {
-            return this._launchTemplateConfigs != null && this._launchTemplateConfigs.Count > 0; 
+            return this._launchTemplateConfigs != null && (this._launchTemplateConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property ReplaceUnhealthyInstances. 
         /// <para>
         /// Indicates whether EC2 Fleet should replace unhealthy Spot Instances. Supported only
-        /// for fleets of type <code>maintain</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-ec2-fleet.html#ec2-fleet-health-checks">EC2
+        /// for fleets of type <c>maintain</c>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-ec2-fleet.html#ec2-fleet-health-checks">EC2
         /// Fleet health checks</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
@@ -205,14 +206,14 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// If the fleet type is <code>instant</code>, specify a resource type of <code>fleet</code>
-        /// to tag the fleet or <code>instance</code> to tag the instances at launch.
+        /// If the fleet type is <c>instant</c>, specify a resource type of <c>fleet</c> to tag
+        /// the fleet or <c>instance</c> to tag the instances at launch.
         /// </para>
         ///  
         /// <para>
-        /// If the fleet type is <code>maintain</code> or <code>request</code>, specify a resource
-        /// type of <code>fleet</code> to tag the fleet. You cannot specify a resource type of
-        /// <code>instance</code>. To tag instances at launch, specify the tags in a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template">launch
+        /// If the fleet type is <c>maintain</c> or <c>request</c>, specify a resource type of
+        /// <c>fleet</c> to tag the fleet. You cannot specify a resource type of <c>instance</c>.
+        /// To tag instances at launch, specify the tags in a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template">launch
         /// template</a>.
         /// </para>
         /// </summary>
@@ -225,7 +226,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -268,25 +269,24 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The fleet type. The default value is <code>maintain</code>.
+        /// The fleet type. The default value is <c>maintain</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>maintain</code> - The EC2 Fleet places an asynchronous request for your desired
-        /// capacity, and continues to maintain your desired Spot capacity by replenishing interrupted
-        /// Spot Instances.
+        ///  <c>maintain</c> - The EC2 Fleet places an asynchronous request for your desired capacity,
+        /// and continues to maintain your desired Spot capacity by replenishing interrupted Spot
+        /// Instances.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>request</code> - The EC2 Fleet places an asynchronous one-time request for
-        /// your desired capacity, but does submit Spot requests in alternative capacity pools
-        /// if Spot capacity is unavailable, and does not maintain Spot capacity if Spot Instances
-        /// are interrupted.
+        ///  <c>request</c> - The EC2 Fleet places an asynchronous one-time request for your desired
+        /// capacity, but does submit Spot requests in alternative capacity pools if Spot capacity
+        /// is unavailable, and does not maintain Spot capacity if Spot Instances are interrupted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instant</code> - The EC2 Fleet places a synchronous one-time request for your
-        /// desired capacity, and returns errors for any instances that could not be launched.
+        ///  <c>instant</c> - The EC2 Fleet places a synchronous one-time request for your desired
+        /// capacity, and returns errors for any instances that could not be launched.
         /// </para>
         ///  </li> </ul> 
         /// <para>

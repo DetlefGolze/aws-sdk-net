@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
     /// An attachment to a case communication. The attachment consists of the file name and
-    /// the content of the file.
+    /// the content of the file. Each attachment file size should not exceed 5 MB. File types
+    /// that are supported include the following: pdf, jpeg,.doc, .log, .text
     /// </summary>
     public partial class Attachment
     {

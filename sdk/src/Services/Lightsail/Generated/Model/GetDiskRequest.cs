@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property DiskName. 
         /// <para>
-        /// The name of the disk (e.g., <code>my-disk</code>).
+        /// The name of the disk (<c>my-disk</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

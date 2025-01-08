@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Panorama
 {
     /// <summary>
-    /// Implementation for accessing Panorama
+    /// <para>Implementation for accessing Panorama</para>
     ///
     /// AWS Panorama 
     /// <para>
@@ -684,7 +685,7 @@ namespace Amazon.Panorama
         /// 
         ///  <note> 
         /// <para>
-        /// To delete a package, you need permission to call <code>s3:DeleteObject</code> in addition
+        /// To delete a package, you need permission to call <c>s3:DeleteObject</c> in addition
         /// to permissions for the AWS Panorama API.
         /// </para>
         ///  </note>
@@ -723,7 +724,7 @@ namespace Amazon.Panorama
         /// 
         ///  <note> 
         /// <para>
-        /// To delete a package, you need permission to call <code>s3:DeleteObject</code> in addition
+        /// To delete a package, you need permission to call <c>s3:DeleteObject</c> in addition
         /// to permissions for the AWS Panorama API.
         /// </para>
         ///  </note>
@@ -2073,9 +2074,9 @@ namespace Amazon.Panorama
         /// <summary>
         /// Creates a device and returns a configuration archive. The configuration archive is
         /// a ZIP file that contains a provisioning certificate that is valid for 5 minutes. Name
-        /// the configuration archive <code>certificates-omni_<i>device-name</i>.zip</code> and
-        /// transfer it to the device within 5 minutes. Use the included USB storage device and
-        /// connect it to the USB 3.0 port next to the HDMI output.
+        /// the configuration archive <c>certificates-omni_<i>device-name</i>.zip</c> and transfer
+        /// it to the device within 5 minutes. Use the included USB storage device and connect
+        /// it to the USB 3.0 port next to the HDMI output.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ProvisionDevice service method.</param>
         /// 
@@ -2109,9 +2110,9 @@ namespace Amazon.Panorama
         /// <summary>
         /// Creates a device and returns a configuration archive. The configuration archive is
         /// a ZIP file that contains a provisioning certificate that is valid for 5 minutes. Name
-        /// the configuration archive <code>certificates-omni_<i>device-name</i>.zip</code> and
-        /// transfer it to the device within 5 minutes. Use the included USB storage device and
-        /// connect it to the USB 3.0 port next to the HDMI output.
+        /// the configuration archive <c>certificates-omni_<i>device-name</i>.zip</c> and transfer
+        /// it to the device within 5 minutes. Use the included USB storage device and connect
+        /// it to the USB 3.0 port next to the HDMI output.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ProvisionDevice service method.</param>
         /// <param name="cancellationToken">
@@ -2545,11 +2546,11 @@ namespace Amazon.Panorama
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

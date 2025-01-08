@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.MedicalImaging.Model
     public partial class SearchFilter
     {
         private Operator _operator;
-        private List<SearchByAttributeValue> _values = new List<SearchByAttributeValue>();
+        private List<SearchByAttributeValue> _values = AWSConfigs.InitializeCollections ? new List<SearchByAttributeValue>() : null;
 
         /// <summary>
         /// Gets and sets the property Operator. 
         /// <para>
-        /// The search filter operator for <code>imageSetDateTime</code>.
+        /// The search filter operator for <c>imageSetDateTime</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -71,7 +72,7 @@ namespace Amazon.MedicalImaging.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

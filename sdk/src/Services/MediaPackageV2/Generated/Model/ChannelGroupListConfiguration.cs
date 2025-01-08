@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaPackageV2.Model
 {
     /// <summary>
@@ -104,6 +105,7 @@ namespace Amazon.MediaPackageV2.Model
         /// purposes.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=0, Max=1024)]
         public string Description
         {
             get { return this._description; }

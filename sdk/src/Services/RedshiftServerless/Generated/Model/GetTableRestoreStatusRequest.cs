@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
     /// Container for the parameters to the GetTableRestoreStatus operation.
-    /// Returns information about a <code>TableRestoreStatus</code> object.
+    /// Returns information about a <c>TableRestoreStatus</c> object.
     /// </summary>
     public partial class GetTableRestoreStatusRequest : AmazonRedshiftServerlessRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.RedshiftServerless.Model
         /// <summary>
         /// Gets and sets the property TableRestoreRequestId. 
         /// <para>
-        /// The ID of the <code>RestoreTableFromSnapshot</code> request to return status for.
+        /// The ID of the <c>RestoreTableFromSnapshot</c> request to return status for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

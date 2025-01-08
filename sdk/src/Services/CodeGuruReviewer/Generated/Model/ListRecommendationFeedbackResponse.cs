@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruReviewer.Model
 {
     /// <summary>
@@ -34,15 +35,14 @@ namespace Amazon.CodeGuruReviewer.Model
     public partial class ListRecommendationFeedbackResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RecommendationFeedbackSummary> _recommendationFeedbackSummaries = new List<RecommendationFeedbackSummary>();
+        private List<RecommendationFeedbackSummary> _recommendationFeedbackSummaries = AWSConfigs.InitializeCollections ? new List<RecommendationFeedbackSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page. Keep all other arguments
-        /// unchanged.
+        /// If <c>nextToken</c> is returned, there are more results available. The value of <c>nextToken</c>
+        /// is a unique pagination token for each page. Make the call again using the returned
+        /// token to retrieve the next page. Keep all other arguments unchanged.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -73,7 +73,7 @@ namespace Amazon.CodeGuruReviewer.Model
         // Check to see if RecommendationFeedbackSummaries property is set
         internal bool IsSetRecommendationFeedbackSummaries()
         {
-            return this._recommendationFeedbackSummaries != null && this._recommendationFeedbackSummaries.Count > 0; 
+            return this._recommendationFeedbackSummaries != null && (this._recommendationFeedbackSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

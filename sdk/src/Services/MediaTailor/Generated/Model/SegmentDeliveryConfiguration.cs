@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.MediaTailor.Model
         /// <para>
         /// The base URL of the host or path of the segment delivery server that you're using
         /// to serve segments. This is typically a content delivery network (CDN). The URL can
-        /// be absolute or relative. To use an absolute URL include the protocol, such as <code>https://example.com/some/path</code>.
-        /// To use a relative URL specify the relative path, such as <code>/some/path*</code>.
+        /// be absolute or relative. To use an absolute URL include the protocol, such as <c>https://example.com/some/path</c>.
+        /// To use a relative URL specify the relative path, such as <c>/some/path*</c>.
         /// </para>
         /// </summary>
         public string BaseUrl

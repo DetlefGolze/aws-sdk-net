@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class CreateDBProxyRequest : AmazonRDSRequest
     {
-        private List<UserAuthConfig> _auth = new List<UserAuthConfig>();
+        private List<UserAuthConfig> _auth = AWSConfigs.InitializeCollections ? new List<UserAuthConfig>() : null;
         private string _dbProxyName;
         private bool? _debugLogging;
         private EngineFamily _engineFamily;
         private int? _idleClientTimeout;
         private bool? _requireTLS;
         private string _roleArn;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _vpcSecurityGroupIds = new List<string>();
-        private List<string> _vpcSubnetIds = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _vpcSubnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Auth. 
@@ -61,7 +62,7 @@ namespace Amazon.RDS.Model
         // Check to see if Auth property is set
         internal bool IsSetAuth()
         {
-            return this._auth != null && this._auth.Count > 0; 
+            return this._auth != null && (this._auth.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,8 +116,8 @@ namespace Amazon.RDS.Model
         /// The kinds of databases that the proxy can connect to. This value determines which
         /// database network protocol the proxy recognizes when it interprets network traffic
         /// to and from the database. For Aurora MySQL, RDS for MariaDB, and RDS for MySQL databases,
-        /// specify <code>MYSQL</code>. For Aurora PostgreSQL and RDS for PostgreSQL databases,
-        /// specify <code>POSTGRESQL</code>. For RDS for Microsoft SQL Server, specify <code>SQLSERVER</code>.
+        /// specify <c>MYSQL</c>. For Aurora PostgreSQL and RDS for PostgreSQL databases, specify
+        /// <c>POSTGRESQL</c>. For RDS for Microsoft SQL Server, specify <c>SQLSERVER</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -208,7 +209,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -226,7 +227,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -245,7 +246,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSubnetIds property is set
         internal bool IsSetVpcSubnetIds()
         {
-            return this._vpcSubnetIds != null && this._vpcSubnetIds.Count > 0; 
+            return this._vpcSubnetIds != null && (this._vpcSubnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

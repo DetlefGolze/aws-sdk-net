@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.WorkSpaces.Model
         private ComputeType _computeType;
         private string _imageId;
         private RootStorage _rootStorage;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private UserStorage _userStorage;
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.WorkSpaces.Model
         ///  <note> 
         /// <para>
         /// To add tags at the same time when you're creating the bundle, you must create an IAM
-        /// policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>.
+        /// policy that grants your IAM user permissions to use <c>workspaces:CreateTags</c>.
         /// 
         /// </para>
         ///  </note>
@@ -154,7 +155,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDBSnapshot operation.
-    /// Creates a snapshot of a DB instance. The source DB instance must be in the <code>available</code>
-    /// or <code>storage-optimization</code> state.
+    /// Creates a snapshot of a DB instance. The source DB instance must be in the <c>available</c>
+    /// or <c>storage-optimization</c> state.
     /// </summary>
     public partial class CreateDBSnapshotRequest : AmazonRDSRequest
     {
         private string _dbInstanceIdentifier;
         private string _dbSnapshotIdentifier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -47,7 +48,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Instantiates CreateDBSnapshotRequest with the parameterized properties
         /// </summary>
-        /// <param name="dbSnapshotIdentifier">The identifier for the DB snapshot. Constraints: <ul> <li> Can't be null, empty, or blank </li> <li> Must contain from 1 to 255 letters, numbers, or hyphens </li> <li> First character must be a letter </li> <li> Can't end with a hyphen or contain two consecutive hyphens </li> </ul> Example: <code>my-snapshot-id</code> </param>
+        /// <param name="dbSnapshotIdentifier">The identifier for the DB snapshot. Constraints: <ul> <li> Can't be null, empty, or blank </li> <li> Must contain from 1 to 255 letters, numbers, or hyphens </li> <li> First character must be a letter </li> <li> Can't end with a hyphen or contain two consecutive hyphens </li> </ul> Example: <c>my-snapshot-id</c> </param>
         /// <param name="dbInstanceIdentifier">The identifier of the DB instance that you want to create the snapshot of. Constraints: <ul> <li> Must match the identifier of an existing DBInstance. </li> </ul></param>
         public CreateDBSnapshotRequest(string dbSnapshotIdentifier, string dbInstanceIdentifier)
         {
@@ -110,7 +111,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-snapshot-id</code> 
+        /// Example: <c>my-snapshot-id</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -138,7 +139,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

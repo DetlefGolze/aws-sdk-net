@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
@@ -35,10 +36,10 @@ namespace Amazon.Pipes.Model
     {
         private BatchArrayProperties _arrayProperties;
         private BatchContainerOverrides _containerOverrides;
-        private List<BatchJobDependency> _dependsOn = new List<BatchJobDependency>();
+        private List<BatchJobDependency> _dependsOn = AWSConfigs.InitializeCollections ? new List<BatchJobDependency>() : null;
         private string _jobDefinition;
         private string _jobName;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private BatchRetryStrategy _retryStrategy;
 
         /// <summary>
@@ -83,11 +84,11 @@ namespace Amazon.Pipes.Model
         /// Gets and sets the property DependsOn. 
         /// <para>
         /// A list of dependencies for the job. A job can depend upon a maximum of 20 jobs. You
-        /// can specify a <code>SEQUENTIAL</code> type dependency without specifying a job ID
-        /// for array jobs so that each child array job completes sequentially, starting at index
-        /// 0. You can also specify an <code>N_TO_N</code> type dependency with a job ID for array
-        /// jobs. In that case, each index child of this job must wait for the corresponding index
-        /// child of each dependency to complete before it can begin.
+        /// can specify a <c>SEQUENTIAL</c> type dependency without specifying a job ID for array
+        /// jobs so that each child array job completes sequentially, starting at index 0. You
+        /// can also specify an <c>N_TO_N</c> type dependency with a job ID for array jobs. In
+        /// that case, each index child of this job must wait for the corresponding index child
+        /// of each dependency to complete before it can begin.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=20)]
@@ -100,13 +101,13 @@ namespace Amazon.Pipes.Model
         // Check to see if DependsOn property is set
         internal bool IsSetDependsOn()
         {
-            return this._dependsOn != null && this._dependsOn.Count > 0; 
+            return this._dependsOn != null && (this._dependsOn.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property JobDefinition. 
         /// <para>
-        /// The job definition used by this job. This value can be one of <code>name</code>, <code>name:revision</code>,
+        /// The job definition used by this job. This value can be one of <c>name</c>, <c>name:revision</c>,
         /// or the Amazon Resource Name (ARN) for the job definition. If name is specified without
         /// a revision then the latest active revision is used.
         /// </para>
@@ -163,7 +164,7 @@ namespace Amazon.Pipes.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

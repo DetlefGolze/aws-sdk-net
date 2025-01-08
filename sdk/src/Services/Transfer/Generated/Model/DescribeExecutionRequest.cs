@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeExecution operation.
-    /// You can use <code>DescribeExecution</code> to check the details of the execution of
-    /// the specified workflow.
+    /// You can use <c>DescribeExecution</c> to check the details of the execution of the
+    /// specified workflow.
     /// 
     ///  <note> 
     /// <para>
@@ -40,8 +41,7 @@ namespace Amazon.Transfer.Model
     ///  
     /// <para>
     ///  If you provide an ID for an execution that is not in progress, or if the execution
-    /// doesn't match the specified workflow ID, you receive a <code>ResourceNotFound</code>
-    /// exception.
+    /// doesn't match the specified workflow ID, you receive a <c>ResourceNotFound</c> exception.
     /// </para>
     ///  </note>
     /// </summary>

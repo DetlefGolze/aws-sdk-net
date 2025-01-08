@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Comprehend.Model
     public partial class DatasetAugmentedManifestsListItem
     {
         private string _annotationDataS3Uri;
-        private List<string> _attributeNames = new List<string>();
+        private List<string> _attributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AugmentedManifestsDocumentTypeFormat _documentType;
         private string _s3Uri;
         private string _sourceDocumentsS3Uri;
@@ -89,7 +90,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if AttributeNames property is set
         internal bool IsSetAttributeNames()
         {
-            return this._attributeNames != null && this._attributeNames.Count > 0; 
+            return this._attributeNames != null && (this._attributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -100,8 +101,8 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>PLAIN_TEXT_DOCUMENT</code> A document type that represents any unicode text
-        /// that is encoded in UTF-8.
+        ///  <c>PLAIN_TEXT_DOCUMENT</c> A document type that represents any unicode text that
+        /// is encoded in UTF-8.
         /// </para>
         /// </summary>
         public AugmentedManifestsDocumentTypeFormat DocumentType

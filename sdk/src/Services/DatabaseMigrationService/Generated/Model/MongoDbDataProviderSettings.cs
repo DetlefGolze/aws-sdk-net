@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -64,12 +65,12 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property AuthSource. 
         /// <para>
-        ///  The MongoDB database name. This setting isn't used when <code>AuthType</code> is
-        /// set to <code>"no"</code>. 
+        ///  The MongoDB database name. This setting isn't used when <c>AuthType</c> is set to
+        /// <c>"no"</c>. 
         /// </para>
         ///  
         /// <para>
-        /// The default is <code>"admin"</code>.
+        /// The default is <c>"admin"</c>.
         /// </para>
         /// </summary>
         public string AuthSource
@@ -178,7 +179,7 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property SslMode. 
         /// <para>
-        /// The SSL mode used to connect to the MongoDB data provider. The default value is <code>none</code>.
+        /// The SSL mode used to connect to the MongoDB data provider. The default value is <c>none</c>.
         /// </para>
         /// </summary>
         public DmsSslModeValue SslMode

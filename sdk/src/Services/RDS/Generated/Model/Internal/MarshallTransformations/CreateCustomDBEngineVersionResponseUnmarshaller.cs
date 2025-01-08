@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RDS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -156,6 +157,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("ExportableLogTypes/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (response.ExportableLogTypes == null)
+                        {
+                            response.ExportableLogTypes = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.ExportableLogTypes.Add(item);
                         continue;
@@ -178,6 +183,12 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                         response.MajorEngineVersion = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("ServerlessV2FeaturesSupport", targetDepth))
+                    {
+                        var unmarshaller = ServerlessV2FeaturesSupportUnmarshaller.Instance;
+                        response.ServerlessV2FeaturesSupport = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("Status", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -187,6 +198,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("SupportedCACertificateIdentifiers/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (response.SupportedCACertificateIdentifiers == null)
+                        {
+                            response.SupportedCACertificateIdentifiers = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.SupportedCACertificateIdentifiers.Add(item);
                         continue;
@@ -194,6 +209,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("SupportedCharacterSets/CharacterSet", targetDepth))
                     {
                         var unmarshaller = CharacterSetUnmarshaller.Instance;
+                        if (response.SupportedCharacterSets == null)
+                        {
+                            response.SupportedCharacterSets = new List<CharacterSet>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.SupportedCharacterSets.Add(item);
                         continue;
@@ -201,6 +220,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("SupportedEngineModes/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (response.SupportedEngineModes == null)
+                        {
+                            response.SupportedEngineModes = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.SupportedEngineModes.Add(item);
                         continue;
@@ -208,6 +231,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("SupportedFeatureNames/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (response.SupportedFeatureNames == null)
+                        {
+                            response.SupportedFeatureNames = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.SupportedFeatureNames.Add(item);
                         continue;
@@ -215,6 +242,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("SupportedNcharCharacterSets/CharacterSet", targetDepth))
                     {
                         var unmarshaller = CharacterSetUnmarshaller.Instance;
+                        if (response.SupportedNcharCharacterSets == null)
+                        {
+                            response.SupportedNcharCharacterSets = new List<CharacterSet>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.SupportedNcharCharacterSets.Add(item);
                         continue;
@@ -222,6 +253,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("SupportedTimezones/Timezone", targetDepth))
                     {
                         var unmarshaller = TimezoneUnmarshaller.Instance;
+                        if (response.SupportedTimezones == null)
+                        {
+                            response.SupportedTimezones = new List<Timezone>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.SupportedTimezones.Add(item);
                         continue;
@@ -242,6 +277,18 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = BoolUnmarshaller.Instance;
                         response.SupportsGlobalDatabases = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("SupportsIntegrations", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        response.SupportsIntegrations = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("SupportsLimitlessDatabase", targetDepth))
+                    {
+                        var unmarshaller = BoolUnmarshaller.Instance;
+                        response.SupportsLimitlessDatabase = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("SupportsLocalWriteForwarding", targetDepth))
@@ -271,6 +318,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("TagList/Tag", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (response.TagList == null)
+                        {
+                            response.TagList = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.TagList.Add(item);
                         continue;
@@ -278,6 +329,10 @@ namespace Amazon.RDS.Model.Internal.MarshallTransformations
                     if (context.TestExpression("ValidUpgradeTarget/UpgradeTarget", targetDepth))
                     {
                         var unmarshaller = UpgradeTargetUnmarshaller.Instance;
+                        if (response.ValidUpgradeTarget == null)
+                        {
+                            response.ValidUpgradeTarget = new List<UpgradeTarget>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         response.ValidUpgradeTarget.Add(item);
                         continue;

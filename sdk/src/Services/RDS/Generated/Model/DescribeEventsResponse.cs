@@ -26,21 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeEvents</code>
-    /// action.
+    /// Contains the result of a successful invocation of the <c>DescribeEvents</c> action.
     /// </summary>
     public partial class DescribeEventsResponse : AmazonWebServiceResponse
     {
-        private List<Event> _events = new List<Event>();
+        private List<Event> _events = AWSConfigs.InitializeCollections ? new List<Event>() : null;
         private string _marker;
 
         /// <summary>
         /// Gets and sets the property Events. 
         /// <para>
-        /// A list of <code>Event</code> instances.
+        /// A list of <c>Event</c> instances.
         /// </para>
         /// </summary>
         public List<Event> Events
@@ -52,7 +52,7 @@ namespace Amazon.RDS.Model
         // Check to see if Events property is set
         internal bool IsSetEvents()
         {
-            return this._events != null && this._events.Count > 0; 
+            return this._events != null && (this._events.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Amazon.RDS.Model
         /// <para>
         /// An optional pagination token provided by a previous Events request. If this parameter
         /// is specified, the response includes only records beyond the marker, up to the value
-        /// specified by <code>MaxRecords</code>.
+        /// specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
-    /// Configuration about the custom classifier associated with the flywheel.
+    /// Configuration about the model associated with a flywheel.
     /// </summary>
     public partial class TaskConfig
     {
@@ -40,7 +41,7 @@ namespace Amazon.Comprehend.Model
         /// <summary>
         /// Gets and sets the property DocumentClassificationConfig. 
         /// <para>
-        /// Configuration required for a classification model.
+        /// Configuration required for a document classification model.
         /// </para>
         /// </summary>
         public DocumentClassificationConfig DocumentClassificationConfig

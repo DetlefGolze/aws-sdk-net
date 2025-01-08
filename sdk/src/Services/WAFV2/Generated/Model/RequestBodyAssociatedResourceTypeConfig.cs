@@ -26,11 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
-    /// Customizes the maximum size of the request body that your protected CloudFront distributions
-    /// forward to WAF for inspection. The default size is 16 KB (16,384 bytes). 
+    /// Customizes the maximum size of the request body that your protected CloudFront, API
+    /// Gateway, Amazon Cognito, App Runner, and Verified Access resources forward to WAF
+    /// for inspection. The default size is 16 KB (16,384 bytes). You can change the setting
+    /// for any of the available resource types. 
     /// 
     ///  <note> 
     /// <para>
@@ -40,7 +43,15 @@ namespace Amazon.WAFV2.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// This is used in the <code>AssociationConfig</code> of the web ACL. 
+    /// Example JSON: <c> { "API_GATEWAY": "KB_48", "APP_RUNNER_SERVICE": "KB_32" }</c> 
+    /// </para>
+    ///  
+    /// <para>
+    /// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+    /// </para>
+    ///  
+    /// <para>
+    /// This is used in the <c>AssociationConfig</c> of the web ACL. 
     /// </para>
     /// </summary>
     public partial class RequestBodyAssociatedResourceTypeConfig
@@ -50,13 +61,14 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property DefaultSizeInspectionLimit. 
         /// <para>
-        /// Specifies the maximum size of the web request body component that an associated CloudFront
-        /// distribution should send to WAF for inspection. This applies to statements in the
-        /// web ACL that inspect the body or JSON body. 
+        /// Specifies the maximum size of the web request body component that an associated CloudFront,
+        /// API Gateway, Amazon Cognito, App Runner, or Verified Access resource should send to
+        /// WAF for inspection. This applies to statements in the web ACL that inspect the body
+        /// or JSON body. 
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>16 KB (16,384 bytes)</code> 
+        /// Default: <c>16 KB (16,384 bytes)</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

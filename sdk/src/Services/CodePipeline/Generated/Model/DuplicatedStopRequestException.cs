@@ -26,14 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// The pipeline execution is already in a <code>Stopping</code> state. If you already
-    /// chose to stop and wait, you cannot make that request again. You can choose to stop
-    /// and abandon now, but be aware that this option can lead to failed tasks or out of
-    /// sequence tasks. If you already chose to stop and abandon, you cannot make that request
-    /// again.
+    /// The pipeline execution is already in a <c>Stopping</c> state. If you already chose
+    /// to stop and wait, you cannot make that request again. You can choose to stop and abandon
+    /// now, but be aware that this option can lead to failed tasks or out of sequence tasks.
+    /// If you already chose to stop and abandon, you cannot make that request again.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

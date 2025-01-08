@@ -4,7 +4,6 @@
     <property>Amazon.SecurityLake.Model.CreateCustomLogSourceRequest.SourceName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>^[\\\w\-_:/.]*$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CreateCustomLogSourceRequest.SourceVersion</property>
@@ -13,7 +12,7 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CreateDataLakeRequest.MetaStoreManagerRoleArn</property>
-    <pattern>^arn:.*$</pattern>
+    <pattern>^arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CreateDataLakeExceptionSubscriptionRequest.ExceptionTimeToLive</property>
@@ -48,7 +47,6 @@
     <property>Amazon.SecurityLake.Model.DeleteCustomLogSourceRequest.SourceName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>^[\\\w\-_:/.]*$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DeleteCustomLogSourceRequest.SourceVersion</property>
@@ -85,7 +83,7 @@
     <property>Amazon.SecurityLake.Model.GetDataLakeSourcesResponse.DataLakeArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.GetDataLakeSourcesResponse.NextToken</property>
@@ -145,7 +143,7 @@
     <property>Amazon.SecurityLake.Model.ListTagsForResourceRequest.ResourceArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.RegisterDataLakeDelegatedAdministratorRequest.AccountId</property>
@@ -155,13 +153,17 @@
     <property>Amazon.SecurityLake.Model.TagResourceRequest.ResourceArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.UntagResourceRequest.ResourceArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
+  </property-value-rule>
+  <property-value-rule>
+    <property>Amazon.SecurityLake.Model.UpdateDataLakeRequest.MetaStoreManagerRoleArn</property>
+    <pattern>^arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.UpdateDataLakeExceptionSubscriptionRequest.ExceptionTimeToLive</property>
@@ -219,23 +221,23 @@
     <property>Amazon.SecurityLake.Model.CustomLogSourceAttributes.CrawlerArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CustomLogSourceAttributes.DatabaseArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CustomLogSourceAttributes.TableArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CustomLogSourceCrawlerConfiguration.RoleArn</property>
-    <pattern>^arn:.*$</pattern>
+    <pattern>^arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CustomLogSourceProvider.Location</property>
@@ -245,13 +247,12 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CustomLogSourceProvider.RoleArn</property>
-    <pattern>^arn:.*$</pattern>
+    <pattern>^arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CustomLogSourceResource.SourceName</property>
     <min>1</min>
     <max>64</max>
-    <pattern>^[\\\w\-_:/.]*$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.CustomLogSourceResource.SourceVersion</property>
@@ -260,11 +261,11 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeAutoEnableNewAccountConfiguration.Region</property>
-    <pattern>^(af|ap|ca|eu|me|sa|us)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
+    <pattern>^(us(-gov)?|af|ap|ca|eu|me|sa)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeConfiguration.Region</property>
-    <pattern>^(af|ap|ca|eu|me|sa|us)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
+    <pattern>^(us(-gov)?|af|ap|ca|eu|me|sa)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeException.Exception</property>
@@ -272,7 +273,7 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeException.Region</property>
-    <pattern>^(af|ap|ca|eu|me|sa|us)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
+    <pattern>^(us(-gov)?|af|ap|ca|eu|me|sa)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeException.Remediation</property>
@@ -288,17 +289,17 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeReplicationConfiguration.RoleArn</property>
-    <pattern>^arn:.*$</pattern>
+    <pattern>^arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeResource.DataLakeArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.DataLakeResource.Region</property>
-    <pattern>^(af|ap|ca|eu|me|sa|us)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
+    <pattern>^(us(-gov)?|af|ap|ca|eu|me|sa)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.HttpsNotificationConfiguration.Endpoint</property>
@@ -306,7 +307,7 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.HttpsNotificationConfiguration.TargetRoleArn</property>
-    <pattern>^arn:.*$</pattern>
+    <pattern>^arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.LogSource.Account</property>
@@ -316,7 +317,7 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.LogSource.Region</property>
-    <pattern>^(af|ap|ca|eu|me|sa|us)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
+    <pattern>^(us(-gov)?|af|ap|ca|eu|me|sa)-(central|north|(north(?:east|west))|south|south(?:east|west)|east|west)-\d+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.SubscriberResource.ResourceShareName</property>
@@ -324,13 +325,13 @@
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.SubscriberResource.RoleArn</property>
-    <pattern>^arn:.*$</pattern>
+    <pattern>^arn:(aws[a-zA-Z-]*)?:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.SubscriberResource.SubscriberArn</property>
     <min>1</min>
     <max>1011</max>
-    <pattern>^arn:aws:securitylake:[A-za-z0-9_/.\-]{0,63}:[A-za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.\-]{0,127}$</pattern>
+    <pattern>^arn:(aws|aws-us-gov|aws-cn):securitylake:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9_/.\-]{0,63}:[A-Za-z0-9][A-Za-z0-9_/.\-]{0,127}$</pattern>
   </property-value-rule>
   <property-value-rule>
     <property>Amazon.SecurityLake.Model.SubscriberResource.SubscriberDescription</property>

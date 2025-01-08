@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -33,16 +34,15 @@ namespace Amazon.MediaTailor.Model
     /// </summary>
     public partial class HlsPlaylistSettings
     {
-        private List<string> _adMarkupType = new List<string>();
+        private List<string> _adMarkupType = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _manifestWindowSeconds;
 
         /// <summary>
         /// Gets and sets the property AdMarkupType. 
         /// <para>
-        /// Determines the type of SCTE 35 tags to use in ad markup. Specify <code>DATERANGE</code>
-        /// to use <code>DATERANGE</code> tags (for live or VOD content). Specify <code>SCTE35_ENHANCED</code>
-        /// to use <code>EXT-X-CUE-OUT</code> and <code>EXT-X-CUE-IN</code> tags (for VOD content
-        /// only).
+        /// Determines the type of SCTE 35 tags to use in ad markup. Specify <c>DATERANGE</c>
+        /// to use <c>DATERANGE</c> tags (for live or VOD content). Specify <c>SCTE35_ENHANCED</c>
+        /// to use <c>EXT-X-CUE-OUT</c> and <c>EXT-X-CUE-IN</c> tags (for VOD content only).
         /// </para>
         /// </summary>
         public List<string> AdMarkupType
@@ -54,14 +54,14 @@ namespace Amazon.MediaTailor.Model
         // Check to see if AdMarkupType property is set
         internal bool IsSetAdMarkupType()
         {
-            return this._adMarkupType != null && this._adMarkupType.Count > 0; 
+            return this._adMarkupType != null && (this._adMarkupType.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ManifestWindowSeconds. 
         /// <para>
-        /// The total duration (in seconds) of each manifest. Minimum value: <code>30</code> seconds.
-        /// Maximum value: <code>3600</code> seconds.
+        /// The total duration (in seconds) of each manifest. Minimum value: <c>30</c> seconds.
+        /// Maximum value: <c>3600</c> seconds.
         /// </para>
         /// </summary>
         public int ManifestWindowSeconds

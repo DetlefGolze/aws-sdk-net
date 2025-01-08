@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
     /// Container for the parameters to the AddTags operation.
     /// Adds the specified tags to the specified Elastic Load Balancing resource. You can
     /// tag your Application Load Balancers, Network Load Balancers, Gateway Load Balancers,
-    /// target groups, listeners, and rules.
+    /// target groups, trust stores, listeners, and rules.
     /// 
     ///  
     /// <para>
     /// Each tag consists of a key and an optional value. If a resource already has a tag
-    /// with the same key, <code>AddTags</code> updates its value.
+    /// with the same key, <c>AddTags</c> updates its value.
     /// </para>
     /// </summary>
     public partial class AddTagsRequest : AmazonElasticLoadBalancingV2Request
     {
-        private List<string> _resourceArns = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _resourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArns. 
@@ -61,7 +62,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if ResourceArns property is set
         internal bool IsSetResourceArns()
         {
-            return this._resourceArns != null && this._resourceArns.Count > 0; 
+            return this._resourceArns != null && (this._resourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

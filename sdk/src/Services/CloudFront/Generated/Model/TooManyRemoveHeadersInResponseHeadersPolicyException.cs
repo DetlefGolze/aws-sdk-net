@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// The number of headers in <code>RemoveHeadersConfig</code> in the response headers
-    /// policy exceeds the maximum.
+    /// The number of headers in <c>RemoveHeadersConfig</c> in the response headers policy
+    /// exceeds the maximum.
     /// 
     ///  
     /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53RecoveryControlConfig.Model
 {
     /// <summary>
@@ -38,9 +39,10 @@ namespace Amazon.Route53RecoveryControlConfig.Model
     /// </summary>
     public partial class AssertionRule
     {
-        private List<string> _assertedControls = new List<string>();
+        private List<string> _assertedControls = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _controlPanelArn;
         private string _name;
+        private string _owner;
         private RuleConfig _ruleConfig;
         private string _safetyRuleArn;
         private Status _status;
@@ -64,7 +66,7 @@ namespace Amazon.Route53RecoveryControlConfig.Model
         // Check to see if AssertedControls property is set
         internal bool IsSetAssertedControls()
         {
-            return this._assertedControls != null && this._assertedControls.Count > 0; 
+            return this._assertedControls != null && (this._assertedControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -103,6 +105,25 @@ namespace Amazon.Route53RecoveryControlConfig.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Owner. 
+        /// <para>
+        /// The Amazon Web Services account ID of the assertion rule owner.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=12, Max=12)]
+        public string Owner
+        {
+            get { return this._owner; }
+            set { this._owner = value; }
+        }
+
+        // Check to see if Owner property is set
+        internal bool IsSetOwner()
+        {
+            return this._owner != null;
         }
 
         /// <summary>

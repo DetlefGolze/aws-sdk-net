@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCommit.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.CodeCommit.Model
         /// Gets and sets the property PullRequestStatus. 
         /// <para>
         /// The status of the pull request. The only valid operations are to update the status
-        /// from <code>OPEN</code> to <code>OPEN</code>, <code>OPEN</code> to <code>CLOSED</code>
-        /// or from <code>CLOSED</code> to <code>CLOSED</code>.
+        /// from <c>OPEN</c> to <c>OPEN</c>, <c>OPEN</c> to <c>CLOSED</c> or from <c>CLOSED</c>
+        /// to <c>CLOSED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

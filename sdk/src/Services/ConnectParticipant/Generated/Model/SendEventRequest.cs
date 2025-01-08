@@ -26,15 +26,32 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectParticipant.Model
 {
     /// <summary>
     /// Container for the parameters to the SendEvent operation.
-    /// Sends an event. 
-    /// 
+    /// <note> 
+    /// <para>
+    /// The <c>application/vnd.amazonaws.connect.event.connection.acknowledged</c> ContentType
+    /// will no longer be supported starting December 31, 2024. This event has been migrated
+    /// to the <a href="https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html">CreateParticipantConnection</a>
+    /// API using the <c>ConnectParticipant</c> field.
+    /// </para>
+    ///  </note> 
+    /// <para>
+    /// Sends an event. Message receipts are not supported when there are more than two active
+    /// participants in the chat. Using the SendEvent API for message receipts when a supervisor
+    /// is barged-in will result in a conflict exception.
+    /// </para>
+    ///  
+    /// <para>
+    /// For security recommendations, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat">Amazon
+    /// Connect Chat security best practices</a>.
+    /// </para>
     ///  <note> 
     /// <para>
-    ///  <code>ConnectionToken</code> is used for invoking this API instead of <code>ParticipantToken</code>.
+    ///  <c>ConnectionToken</c> is used for invoking this API instead of <c>ParticipantToken</c>.
     /// </para>
     ///  </note> 
     /// <para>
@@ -87,7 +104,7 @@ namespace Amazon.ConnectParticipant.Model
         // Check to see if ConnectionToken property is set
         internal bool IsSetConnectionToken()
         {
-            return this._connectionToken != null;
+            return !string.IsNullOrEmpty(this._connectionToken);
         }
 
         /// <summary>
@@ -125,7 +142,8 @@ namespace Amazon.ConnectParticipant.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// application/vnd.amazonaws.connect.event.connection.acknowledged
+        /// application/vnd.amazonaws.connect.event.connection.acknowledged (will be deprecated
+        /// on December 31, 2024) 
         /// </para>
         ///  </li> <li> 
         /// <para>

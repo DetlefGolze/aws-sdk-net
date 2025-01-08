@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Synthetics.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.Synthetics.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetArtifactConfig())
@@ -109,6 +111,23 @@ namespace Amazon.Synthetics.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetProvisionedResourceCleanup())
+                {
+                    context.Writer.WritePropertyName("ProvisionedResourceCleanup");
+                    context.Writer.Write(publicRequest.ProvisionedResourceCleanup);
+                }
+
+                if(publicRequest.IsSetResourcesToReplicateTags())
+                {
+                    context.Writer.WritePropertyName("ResourcesToReplicateTags");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestResourcesToReplicateTagsListValue in publicRequest.ResourcesToReplicateTags)
+                    {
+                            context.Writer.Write(publicRequestResourcesToReplicateTagsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 if(publicRequest.IsSetRunConfig())

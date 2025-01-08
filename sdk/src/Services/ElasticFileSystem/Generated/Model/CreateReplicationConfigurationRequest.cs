@@ -26,96 +26,48 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateReplicationConfiguration operation.
-    /// Creates a replication configuration that replicates an existing EFS file system to
-    /// a new, read-only file system. For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html">Amazon
+    /// Creates a replication conﬁguration to either a new or existing EFS file system. For
+    /// more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html">Amazon
     /// EFS replication</a> in the <i>Amazon EFS User Guide</i>. The replication configuration
     /// specifies the following:
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <b>Source file system</b> - An existing EFS file system that you want replicated.
-    /// The source file system cannot be a destination file system in an existing replication
-    /// configuration.
+    ///  <b>Source file system</b> – The EFS file system that you want to replicate. 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <b>Destination file system configuration</b> - The configuration of the destination
-    /// file system to which the source file system will be replicated. There can only be
-    /// one destination file system in a replication configuration. The destination file system
-    /// configuration consists of the following properties:
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <b>Amazon Web Services Region</b> - The Amazon Web Services Region in which the destination
-    /// file system is created. Amazon EFS replication is available in all Amazon Web Services
-    /// Regions in which EFS is available. To use EFS replication in a Region that is disabled
-    /// by default, you must first opt in to the Region. For more information, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable">Managing
-    /// Amazon Web Services Regions</a> in the <i>Amazon Web Services General Reference Reference
-    /// Guide</i> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <b>Availability Zone</b> - If you want the destination file system to use EFS One
-    /// Zone availability and durability, you must specify the Availability Zone to create
-    /// the file system in. For more information about EFS storage classes, see <a href="https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html">
-    /// Amazon EFS storage classes</a> in the <i>Amazon EFS User Guide</i>.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <b>Encryption</b> - All destination file systems are created with encryption at rest
-    /// enabled. You can specify the Key Management Service (KMS) key that is used to encrypt
-    /// the destination file system. If you don't specify a KMS key, your service-managed
-    /// KMS key for Amazon EFS is used. 
+    ///  <b>Destination file system</b> – The destination file system to which the source
+    /// file system is replicated. There can only be one destination file system in a replication
+    /// configuration. 
     /// </para>
     ///  <note> 
     /// <para>
-    /// After the file system is created, you cannot change the KMS key.
+    /// A file system can be part of only one replication configuration. 
     /// </para>
-    ///  </note> </li> </ul> </li> </ul> 
+    ///  </note> 
     /// <para>
-    /// The following properties are set by default:
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <b>Performance mode</b> - The destination file system's performance mode matches
-    /// that of the source file system, unless the destination file system uses EFS One Zone
-    /// storage. In that case, the General Purpose performance mode is used. The performance
-    /// mode cannot be changed.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <b>Throughput mode</b> - The destination file system's throughput mode matches that
-    /// of the source file system. After the file system is created, you can modify the throughput
-    /// mode.
+    /// The destination parameters for the replication configuration depend on whether you
+    /// are replicating to a new file system or to an existing file system, and if you are
+    /// replicating across Amazon Web Services accounts. See <a>DestinationToCreate</a> for
+    /// more information.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// The following properties are turned off by default:
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <b>Lifecycle management</b> - EFS lifecycle management and EFS Intelligent-Tiering
-    /// are not enabled on the destination file system. After the destination file system
-    /// is created, you can enable EFS lifecycle management and EFS Intelligent-Tiering.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <b>Automatic backups</b> - Automatic daily backups are enabled on the destination
-    /// file system. After the file system is created, you can change this setting.
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html">Amazon
-    /// EFS replication</a> in the <i>Amazon EFS User Guide</i>.
+    /// This operation requires permissions for the <c>elasticfilesystem:CreateReplicationConfiguration</c>
+    /// action. Additionally, other permissions are required depending on how you are replicating
+    /// file systems. For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html#efs-replication-permissions">Required
+    /// permissions for replication</a> in the <i>Amazon EFS User Guide</i>.
     /// </para>
     /// </summary>
     public partial class CreateReplicationConfigurationRequest : AmazonElasticFileSystemRequest
     {
-        private List<DestinationToCreate> _destinations = new List<DestinationToCreate>();
+        private List<DestinationToCreate> _destinations = AWSConfigs.InitializeCollections ? new List<DestinationToCreate>() : null;
         private string _sourceFileSystemId;
 
         /// <summary>
@@ -135,7 +87,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Destinations property is set
         internal bool IsSetDestinations()
         {
-            return this._destinations != null && this._destinations.Count > 0; 
+            return this._destinations != null && (this._destinations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

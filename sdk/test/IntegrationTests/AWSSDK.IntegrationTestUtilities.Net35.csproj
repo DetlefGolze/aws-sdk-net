@@ -6,7 +6,6 @@
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <AssemblyName>AWSSDK.IntegrationTestUtilities.Net35</AssemblyName>
     <PackageId>AWSSDK.IntegrationTestUtilities.Net35</PackageId>
-    <BaseIntermediateOutputPath>./obj/net35</BaseIntermediateOutputPath>
 
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -18,6 +17,7 @@
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
 
     <NoWarn>CS1591</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>	
   </PropertyGroup>
 
   <ItemGroup>

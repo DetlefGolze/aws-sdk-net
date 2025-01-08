@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
     /// Container for the parameters to the StartTargetedSentimentDetectionJob operation.
     /// Starts an asynchronous targeted sentiment detection job for a collection of documents.
-    /// Use the <code>DescribeTargetedSentimentDetectionJob</code> operation to track the
-    /// status of a job.
+    /// Use the <c>DescribeTargetedSentimentDetectionJob</c> operation to track the status
+    /// of a job.
     /// </summary>
     public partial class StartTargetedSentimentDetectionJobRequest : AmazonComprehendRequest
     {
@@ -42,7 +43,7 @@ namespace Amazon.Comprehend.Model
         private string _jobName;
         private LanguageCode _languageCode;
         private OutputDataConfig _outputDataConfig;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeKmsKeyId;
         private VpcConfig _vpcConfig;
 
@@ -70,7 +71,7 @@ namespace Amazon.Comprehend.Model
         /// Gets and sets the property DataAccessRoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM role that grants Amazon Comprehend read
-        /// access to your input data. For more information, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions">Role-based
+        /// access to your input data. For more information, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions">Role-based
         /// permissions</a>.
         /// </para>
         /// </summary>
@@ -178,7 +179,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -190,11 +191,11 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code> 
+        /// KMS Key ID: <c>"1234abcd-12ab-34cd-56ef-1234567890ab"</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Amazon Resource Name (ARN) of a KMS Key: <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+        /// Amazon Resource Name (ARN) of a KMS Key: <c>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</c>
         /// 
         /// </para>
         ///  </li> </ul>

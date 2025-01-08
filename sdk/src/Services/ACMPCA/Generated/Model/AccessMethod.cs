@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
-    /// Describes the type and format of extension access. Only one of <code>CustomObjectIdentifier</code>
-    /// or <code>AccessMethodType</code> may be provided. Providing both results in <code>InvalidArgsException</code>.
+    /// Describes the type and format of extension access. Only one of <c>CustomObjectIdentifier</c>
+    /// or <c>AccessMethodType</c> may be provided. Providing both results in <c>InvalidArgsException</c>.
     /// </summary>
     public partial class AccessMethod
     {
@@ -40,7 +41,7 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property AccessMethodType. 
         /// <para>
-        /// Specifies the <code>AccessMethod</code>.
+        /// Specifies the <c>AccessMethod</c>.
         /// </para>
         /// </summary>
         public AccessMethodType AccessMethodType
@@ -58,9 +59,9 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property CustomObjectIdentifier. 
         /// <para>
-        /// An object identifier (OID) specifying the <code>AccessMethod</code>. The OID must
-        /// satisfy the regular expression shown below. For more information, see NIST's definition
-        /// of <a href="https://csrc.nist.gov/glossary/term/Object_Identifier">Object Identifier
+        /// An object identifier (OID) specifying the <c>AccessMethod</c>. The OID must satisfy
+        /// the regular expression shown below. For more information, see NIST's definition of
+        /// <a href="https://csrc.nist.gov/glossary/term/Object_Identifier">Object Identifier
         /// (OID)</a>.
         /// </para>
         /// </summary>

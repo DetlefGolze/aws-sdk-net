@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ActionDeclaration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetActionTypeId())
             {
                 context.Writer.WritePropertyName("actionTypeId");
@@ -54,6 +57,17 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.ActionTypeId, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetCommands())
+            {
+                context.Writer.WritePropertyName("commands");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectCommandsListValue in requestObject.Commands)
+                {
+                        context.Writer.Write(requestObjectCommandsListValue);
+                }
+                context.Writer.WriteArrayEnd();
             }
 
             if(requestObject.IsSetConfiguration())
@@ -114,6 +128,17 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
                 context.Writer.WriteArrayEnd();
             }
 
+            if(requestObject.IsSetOutputVariables())
+            {
+                context.Writer.WritePropertyName("outputVariables");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectOutputVariablesListValue in requestObject.OutputVariables)
+                {
+                        context.Writer.Write(requestObjectOutputVariablesListValue);
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
             if(requestObject.IsSetRegion())
             {
                 context.Writer.WritePropertyName("region");
@@ -130,6 +155,12 @@ namespace Amazon.CodePipeline.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("runOrder");
                 context.Writer.Write(requestObject.RunOrder);
+            }
+
+            if(requestObject.IsSetTimeoutInMinutes())
+            {
+                context.Writer.WritePropertyName("timeoutInMinutes");
+                context.Writer.Write(requestObject.TimeoutInMinutes);
             }
 
         }

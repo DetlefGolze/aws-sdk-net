@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.EC2.Model
         private ApplianceModeSupportValue _applianceModeSupport;
         private DnsSupportValue _dnsSupport;
         private Ipv6SupportValue _ipv6Support;
+        private SecurityGroupReferencingSupportValue _securityGroupReferencingSupport;
 
         /// <summary>
         /// Gets and sets the property ApplianceModeSupport. 
@@ -89,6 +91,34 @@ namespace Amazon.EC2.Model
         internal bool IsSetIpv6Support()
         {
             return this._ipv6Support != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SecurityGroupReferencingSupport. 
+        /// <para>
+        /// Enables you to reference a security group across VPCs attached to a transit gateway
+        /// to simplify security group management.
+        /// </para>
+        ///  
+        /// <para>
+        /// This option is enabled by default.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about security group referencing, see <a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-vpc-attachments.html#vpc-attachment-security">Security
+        /// group referencing</a> in the <i>Amazon Web Services Transit Gateways Guide</i>.
+        /// </para>
+        /// </summary>
+        public SecurityGroupReferencingSupportValue SecurityGroupReferencingSupport
+        {
+            get { return this._securityGroupReferencingSupport; }
+            set { this._securityGroupReferencingSupport = value; }
+        }
+
+        // Check to see if SecurityGroupReferencingSupport property is set
+        internal bool IsSetSecurityGroupReferencingSupport()
+        {
+            return this._securityGroupReferencingSupport != null;
         }
 
     }

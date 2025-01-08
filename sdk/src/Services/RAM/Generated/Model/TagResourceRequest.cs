@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RAM.Model
 {
     /// <summary>
@@ -43,15 +44,15 @@ namespace Amazon.RAM.Model
     {
         private string _resourceArn;
         private string _resourceShareArn;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
         /// Specifies the <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
         /// Resource Name (ARN)</a> of the managed permission that you want to add tags to. You
-        /// must specify <i>either</i> <code>resourceArn</code>, or <code>resourceShareArn</code>,
-        /// but not both.
+        /// must specify <i>either</i> <c>resourceArn</c>, or <c>resourceShareArn</c>, but not
+        /// both.
         /// </para>
         /// </summary>
         public string ResourceArn
@@ -71,8 +72,7 @@ namespace Amazon.RAM.Model
         /// <para>
         /// Specifies the <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon
         /// Resource Name (ARN)</a> of the resource share that you want to add tags to. You must
-        /// specify <i>either</i> <code>resourceShareArn</code>, or <code>resourceArn</code>,
-        /// but not both.
+        /// specify <i>either</i> <c>resourceShareArn</c>, or <c>resourceArn</c>, but not both.
         /// </para>
         /// </summary>
         public string ResourceShareArn
@@ -104,7 +104,7 @@ namespace Amazon.RAM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

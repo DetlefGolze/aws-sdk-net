@@ -26,26 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
     /// Container for the parameters to the SearchOrganizationInsights operation.
     /// Returns a list of insights in your organization. You can specify which insights are
-    /// returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>,
-    /// and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>,
-    /// and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>).
-    /// 
+    /// returned by their start time, one or more statuses (<c>ONGOING</c>, <c>CLOSED</c>,
+    /// and <c>CLOSED</c>), one or more severities (<c>LOW</c>, <c>MEDIUM</c>, and <c>HIGH</c>),
+    /// and type (<c>REACTIVE</c> or <c>PROACTIVE</c>). 
     /// 
     ///  
     /// <para>
-    ///  Use the <code>Filters</code> parameter to specify status and severity search parameters.
-    /// Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code>
-    /// in your search. 
+    ///  Use the <c>Filters</c> parameter to specify status and severity search parameters.
+    /// Use the <c>Type</c> parameter to specify <c>REACTIVE</c> or <c>PROACTIVE</c> in your
+    /// search. 
     /// </para>
     /// </summary>
     public partial class SearchOrganizationInsightsRequest : AmazonDevOpsGuruRequest
     {
-        private List<string> _accountIds = new List<string>();
+        private List<string> _accountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SearchOrganizationInsightsFilters _filters;
         private int? _maxResults;
         private string _nextToken;
@@ -68,13 +68,13 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if AccountIds property is set
         internal bool IsSetAccountIds()
         {
-            return this._accountIds != null && this._accountIds.Count > 0; 
+            return this._accountIds != null && (this._accountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        ///  A <code>SearchOrganizationInsightsFilters</code> object that is used to set the severity
+        ///  A <c>SearchOrganizationInsightsFilters</c> object that is used to set the severity
         /// and status filters on your insight search. 
         /// </para>
         /// </summary>
@@ -94,7 +94,7 @@ namespace Amazon.DevOpsGuru.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -149,7 +149,7 @@ namespace Amazon.DevOpsGuru.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        ///  The type of insights you are searching for (<code>REACTIVE</code> or <code>PROACTIVE</code>).
+        ///  The type of insights you are searching for (<c>REACTIVE</c> or <c>PROACTIVE</c>).
         /// 
         /// </para>
         /// </summary>

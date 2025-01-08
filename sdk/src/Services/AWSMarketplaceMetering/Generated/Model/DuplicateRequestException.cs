@@ -26,12 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSMarketplaceMetering.Model
 {
     /// <summary>
     /// A metering record has already been emitted by the same EC2 instance, ECS task, or
-    /// EKS pod for the given {<code>usageDimension</code>, <code>timestamp</code>} with a
-    /// different <code>usageQuantity</code>.
+    /// EKS pod for the given {<c>usageDimension</c>, <c>timestamp</c>} with a different <c>usageQuantity</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

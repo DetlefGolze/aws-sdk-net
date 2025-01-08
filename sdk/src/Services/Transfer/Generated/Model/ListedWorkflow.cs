@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -63,7 +64,7 @@ namespace Amazon.Transfer.Model
         /// Specifies the text description for the workflow.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string Description
         {
             get { return this._description; }

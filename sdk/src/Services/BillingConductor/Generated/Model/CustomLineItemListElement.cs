@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BillingConductor.Model
 {
     /// <summary>
@@ -33,6 +34,7 @@ namespace Amazon.BillingConductor.Model
     /// </summary>
     public partial class CustomLineItemListElement
     {
+        private string _accountId;
         private string _arn;
         private long? _associationSize;
         private string _billingGroupArn;
@@ -43,6 +45,24 @@ namespace Amazon.BillingConductor.Model
         private long? _lastModifiedTime;
         private string _name;
         private string _productCode;
+
+        /// <summary>
+        /// Gets and sets the property AccountId. 
+        /// <para>
+        /// The Amazon Web Services account in which this custom line item will be applied to.
+        /// </para>
+        /// </summary>
+        public string AccountId
+        {
+            get { return this._accountId; }
+            set { this._accountId = value; }
+        }
+
+        // Check to see if AccountId property is set
+        internal bool IsSetAccountId()
+        {
+            return this._accountId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -103,8 +123,8 @@ namespace Amazon.BillingConductor.Model
         /// <summary>
         /// Gets and sets the property ChargeDetails. 
         /// <para>
-        /// A <code>ListCustomLineItemChargeDetails</code> that describes the charge details of
-        /// a custom line item.
+        /// A <c>ListCustomLineItemChargeDetails</c> that describes the charge details of a custom
+        /// line item.
         /// </para>
         /// </summary>
         public ListCustomLineItemChargeDetails ChargeDetails

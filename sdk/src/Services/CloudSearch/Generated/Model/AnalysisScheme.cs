@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Configuration information for an analysis scheme. Each analysis scheme has a unique
     /// name and specifies the language of the text to be processed. The following options
-    /// can be configured for an analysis scheme: <code>Synonyms</code>, <code>Stopwords</code>,
-    /// <code>StemmingDictionary</code>, <code>JapaneseTokenizationDictionary</code> and <code>AlgorithmicStemming</code>.
+    /// can be configured for an analysis scheme: <c>Synonyms</c>, <c>Stopwords</c>, <c>StemmingDictionary</c>,
+    /// <c>JapaneseTokenizationDictionary</c> and <c>AlgorithmicStemming</c>.
     /// </summary>
     public partial class AnalysisScheme
     {

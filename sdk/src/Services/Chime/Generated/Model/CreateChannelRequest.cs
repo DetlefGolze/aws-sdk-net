@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Chime.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code>
+    /// The <c>x-amz-chime-bearer</c> request header is mandatory. Use the <c>AppInstanceUserArn</c>
     /// of the user that makes the API call as the value in the header.
     /// </para>
     ///  </note> <important> 
@@ -64,7 +65,7 @@ namespace Amazon.Chime.Model
         private ChannelMode _mode;
         private string _name;
         private ChannelPrivacy _privacy;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AppInstanceArn. 
@@ -88,7 +89,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property ChimeBearer. 
         /// <para>
-        /// The <code>AppInstanceUserArn</code> of the user that makes the API call.
+        /// The <c>AppInstanceUserArn</c> of the user that makes the API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]
@@ -101,13 +102,13 @@ namespace Amazon.Chime.Model
         // Check to see if ChimeBearer property is set
         internal bool IsSetChimeBearer()
         {
-            return this._chimeBearer != null;
+            return !string.IsNullOrEmpty(this._chimeBearer);
         }
 
         /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
-        /// The client token for the request. An <code>Idempotency</code> token.
+        /// The client token for the request. An <c>Idempotency</c> token.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=2, Max=64)]
@@ -145,9 +146,9 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property Mode. 
         /// <para>
-        /// The channel mode: <code>UNRESTRICTED</code> or <code>RESTRICTED</code>. Administrators,
-        /// moderators, and channel members can add themselves and other members to unrestricted
-        /// channels. Only administrators and moderators can add members to restricted channels.
+        /// The channel mode: <c>UNRESTRICTED</c> or <c>RESTRICTED</c>. Administrators, moderators,
+        /// and channel members can add themselves and other members to unrestricted channels.
+        /// Only administrators and moderators can add members to restricted channels.
         /// </para>
         /// </summary>
         public ChannelMode Mode
@@ -184,9 +185,9 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property Privacy. 
         /// <para>
-        /// The channel's privacy level: <code>PUBLIC</code> or <code>PRIVATE</code>. Private
-        /// channels aren't discoverable by users outside the channel. Public channels are discoverable
-        /// by anyone in the <code>AppInstance</code>.
+        /// The channel's privacy level: <c>PUBLIC</c> or <c>PRIVATE</c>. Private channels aren't
+        /// discoverable by users outside the channel. Public channels are discoverable by anyone
+        /// in the <c>AppInstance</c>.
         /// </para>
         /// </summary>
         public ChannelPrivacy Privacy
@@ -217,7 +218,7 @@ namespace Amazon.Chime.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property BlockPublicAcls. 
         /// <para>
-        /// Indicates if S3 Block Public Access is set to <code>BlockPublicAcls</code>.
+        /// Indicates if S3 Block Public Access is set to <c>BlockPublicAcls</c>.
         /// </para>
         /// </summary>
         public bool BlockPublicAcls
@@ -61,7 +62,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property BlockPublicPolicy. 
         /// <para>
-        /// Indicates if S3 Block Public Access is set to <code>BlockPublicPolicy</code>.
+        /// Indicates if S3 Block Public Access is set to <c>BlockPublicPolicy</c>.
         /// </para>
         /// </summary>
         public bool BlockPublicPolicy
@@ -79,7 +80,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property IgnorePublicAcls. 
         /// <para>
-        /// Indicates if S3 Block Public Access is set to <code>IgnorePublicAcls</code>.
+        /// Indicates if S3 Block Public Access is set to <c>IgnorePublicAcls</c>.
         /// </para>
         /// </summary>
         public bool IgnorePublicAcls
@@ -97,7 +98,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property RestrictPublicBuckets. 
         /// <para>
-        /// Indicates if S3 Block Public Access is set to <code>RestrictPublicBuckets</code>.
+        /// Indicates if S3 Block Public Access is set to <c>RestrictPublicBuckets</c>.
         /// </para>
         /// </summary>
         public bool RestrictPublicBuckets

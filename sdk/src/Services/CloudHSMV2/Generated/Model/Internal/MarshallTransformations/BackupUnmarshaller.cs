@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudHSMV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,25 @@ namespace Amazon.CloudHSMV2.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Backup Unmarshall(JsonUnmarshallerContext context)
         {
+            Backup unmarshalledObject = new Backup();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Backup unmarshalledObject = new Backup();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("BackupArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.BackupArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("BackupId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -100,6 +108,18 @@ namespace Amazon.CloudHSMV2.Model.Internal.MarshallTransformations
                     unmarshalledObject.DeleteTimestamp = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("HsmType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.HsmType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Mode", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Mode = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("NeverExpires", targetDepth))
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
@@ -131,7 +151,6 @@ namespace Amazon.CloudHSMV2.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

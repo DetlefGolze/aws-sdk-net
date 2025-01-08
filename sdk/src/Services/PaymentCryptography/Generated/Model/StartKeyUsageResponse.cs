@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// The <code>KeyARN</code> of the Amazon Web Services Payment Cryptography key activated
-        /// for use.
+        /// The <c>KeyARN</c> of the Amazon Web Services Payment Cryptography key activated for
+        /// use.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

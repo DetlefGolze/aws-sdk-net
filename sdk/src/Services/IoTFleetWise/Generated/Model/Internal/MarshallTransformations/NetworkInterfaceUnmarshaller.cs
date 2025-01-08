@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public NetworkInterface Unmarshall(JsonUnmarshallerContext context)
         {
+            NetworkInterface unmarshalledObject = new NetworkInterface();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            NetworkInterface unmarshalledObject = new NetworkInterface();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = CanInterfaceUnmarshaller.Instance;
                     unmarshalledObject.CanInterface = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("customDecodingInterface", targetDepth))
+                {
+                    var unmarshaller = CustomDecodingInterfaceUnmarshaller.Instance;
+                    unmarshalledObject.CustomDecodingInterface = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("interfaceId", targetDepth))
@@ -88,8 +96,13 @@ namespace Amazon.IoTFleetWise.Model.Internal.MarshallTransformations
                     unmarshalledObject.Type = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("vehicleMiddleware", targetDepth))
+                {
+                    var unmarshaller = VehicleMiddlewareUnmarshaller.Instance;
+                    unmarshalledObject.VehicleMiddleware = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.EC2.Model
         private DateTime? _outputReservedInstancesWillExpireAt;
         private string _paymentDue;
         private ReservationValue _reservedInstanceValueRollup;
-        private List<ReservedInstanceReservationValue> _reservedInstanceValueSet = new List<ReservedInstanceReservationValue>();
+        private List<ReservedInstanceReservationValue> _reservedInstanceValueSet = AWSConfigs.InitializeCollections ? new List<ReservedInstanceReservationValue>() : null;
         private ReservationValue _targetConfigurationValueRollup;
-        private List<TargetReservationValue> _targetConfigurationValueSet = new List<TargetReservationValue>();
+        private List<TargetReservationValue> _targetConfigurationValueSet = AWSConfigs.InitializeCollections ? new List<TargetReservationValue>() : null;
         private string _validationFailureReason;
 
         /// <summary>
@@ -64,8 +65,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property IsValidExchange. 
         /// <para>
-        /// If <code>true</code>, the exchange is valid. If <code>false</code>, the exchange cannot
-        /// be completed.
+        /// If <c>true</c>, the exchange is valid. If <c>false</c>, the exchange cannot be completed.
         /// </para>
         /// </summary>
         public bool IsValidExchange
@@ -149,7 +149,7 @@ namespace Amazon.EC2.Model
         // Check to see if ReservedInstanceValueSet property is set
         internal bool IsSetReservedInstanceValueSet()
         {
-            return this._reservedInstanceValueSet != null && this._reservedInstanceValueSet.Count > 0; 
+            return this._reservedInstanceValueSet != null && (this._reservedInstanceValueSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Amazon.EC2.Model
         // Check to see if TargetConfigurationValueSet property is set
         internal bool IsSetTargetConfigurationValueSet()
         {
-            return this._targetConfigurationValueSet != null && this._targetConfigurationValueSet.Count > 0; 
+            return this._targetConfigurationValueSet != null && (this._targetConfigurationValueSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

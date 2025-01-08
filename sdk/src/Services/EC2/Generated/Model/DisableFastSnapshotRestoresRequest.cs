@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DisableFastSnapshotRestoresRequest : AmazonEC2Request
     {
-        private List<string> _availabilityZones = new List<string>();
-        private List<string> _sourceSnapshotIds = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _sourceSnapshotIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZones. 
         /// <para>
-        /// One or more Availability Zones. For example, <code>us-east-2a</code>.
+        /// One or more Availability Zones. For example, <c>us-east-2a</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -54,13 +55,13 @@ namespace Amazon.EC2.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceSnapshotIds. 
         /// <para>
-        /// The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>.
+        /// The IDs of one or more snapshots. For example, <c>snap-1234567890abcdef0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -73,7 +74,7 @@ namespace Amazon.EC2.Model
         // Check to see if SourceSnapshotIds property is set
         internal bool IsSetSourceSnapshotIds()
         {
-            return this._sourceSnapshotIds != null && this._sourceSnapshotIds.Count > 0; 
+            return this._sourceSnapshotIds != null && (this._sourceSnapshotIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

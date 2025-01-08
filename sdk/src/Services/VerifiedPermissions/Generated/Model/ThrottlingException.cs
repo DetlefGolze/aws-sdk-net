@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -149,7 +150,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// <summary>
         /// Gets and sets the property ServiceCode. 
         /// <para>
-        /// The code for the Amazon Web Service that owns the quota.
+        /// The code for the Amazon Web Services service that owns the quota.
         /// </para>
         /// </summary>
         public string ServiceCode

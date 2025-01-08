@@ -26,27 +26,27 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
-    /// The user-specified message attribute value. For string data types, the <code>Value</code>
+    /// The user-specified message attribute value. For string data types, the <c>Value</c>
     /// attribute has the same restrictions on the content as the message body. For more information,
-    /// see <code> <a>SendMessage</a>.</code> 
+    /// see <c> <a>SendMessage</a>.</c> 
     /// 
     ///  
     /// <para>
-    ///  <code>Name</code>, <code>type</code>, <code>value</code> and the message body must
-    /// not be empty or null. All parts of the message attribute, including <code>Name</code>,
-    /// <code>Type</code>, and <code>Value</code>, are part of the message size restriction
-    /// (256 KiB or 262,144 bytes).
+    ///  <c>Name</c>, <c>type</c>, <c>value</c> and the message body must not be empty or
+    /// null. All parts of the message attribute, including <c>Name</c>, <c>Type</c>, and
+    /// <c>Value</c>, are part of the message size restriction (256 KiB or 262,144 bytes).
     /// </para>
     /// </summary>
     public partial class MessageAttributeValue
     {
-        private List<MemoryStream> _binaryListValues = new List<MemoryStream>();
+        private List<MemoryStream> _binaryListValues = AWSConfigs.InitializeCollections ? new List<MemoryStream>() : null;
         private MemoryStream _binaryValue;
         private string _dataType;
-        private List<string> _stringListValues = new List<string>();
+        private List<string> _stringListValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stringValue;
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Amazon.SQS.Model
         // Check to see if BinaryListValues property is set
         internal bool IsSetBinaryListValues()
         {
-            return this._binaryListValues != null && this._binaryListValues.Count > 0; 
+            return this._binaryListValues != null && (this._binaryListValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Amazon.SQS.Model
         /// <summary>
         /// Gets and sets the property DataType. 
         /// <para>
-        /// Amazon SQS supports the following logical data types: <code>String</code>, <code>Number</code>,
-        /// and <code>Binary</code>. For the <code>Number</code> data type, you must use <code>StringValue</code>.
+        /// Amazon SQS supports the following logical data types: <c>String</c>, <c>Number</c>,
+        /// and <c>Binary</c>. For the <c>Number</c> data type, you must use <c>StringValue</c>.
         /// </para>
         ///  
         /// <para>
@@ -126,7 +126,7 @@ namespace Amazon.SQS.Model
         // Check to see if StringListValues property is set
         internal bool IsSetStringListValues()
         {
-            return this._stringListValues != null && this._stringListValues.Count > 0; 
+            return this._stringListValues != null && (this._stringListValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

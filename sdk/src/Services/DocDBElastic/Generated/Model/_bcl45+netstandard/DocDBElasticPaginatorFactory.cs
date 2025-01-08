@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DocDBElastic.Model
 {
     /// <summary>
@@ -49,6 +50,14 @@ namespace Amazon.DocDBElastic.Model
         public IListClusterSnapshotsPaginator ListClusterSnapshots(ListClusterSnapshotsRequest request) 
         {
             return new ListClusterSnapshotsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPendingMaintenanceActions operation
+        ///</summary>
+        public IListPendingMaintenanceActionsPaginator ListPendingMaintenanceActions(ListPendingMaintenanceActionsRequest request) 
+        {
+            return new ListPendingMaintenanceActionsPaginator(this.client, request);
         }
     }
 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -36,7 +37,10 @@ namespace Amazon.IVS.Model
         private Channel _channel;
 
         /// <summary>
-        /// Gets and sets the property Channel.
+        /// Gets and sets the property Channel. 
+        /// <para>
+        /// Object specifying the updated channel.
+        /// </para>
         /// </summary>
         public Channel Channel
         {

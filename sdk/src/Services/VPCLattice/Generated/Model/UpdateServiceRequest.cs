@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -45,12 +46,12 @@ namespace Amazon.VPCLattice.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>NONE</code>: The resource does not use an IAM policy. This is the default.
+        ///  <c>NONE</c>: The resource does not use an IAM policy. This is the default.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AWS_IAM</code>: The resource uses an IAM policy. When this type is used, auth
-        /// is enabled and an auth policy is required.
+        ///  <c>AWS_IAM</c>: The resource uses an IAM policy. When this type is used, auth is
+        /// enabled and an auth policy is required.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -69,7 +70,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property CertificateArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the certificate. 
+        /// The Amazon Resource Name (ARN) of the certificate.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]
@@ -88,7 +89,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ServiceIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the service.
+        /// The ID or ARN of the service.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=17, Max=2048)]

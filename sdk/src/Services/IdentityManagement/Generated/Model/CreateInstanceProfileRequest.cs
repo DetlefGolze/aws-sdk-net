@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.IdentityManagement.Model
     {
         private string _instanceProfileName;
         private string _path;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property InstanceProfileName. 
@@ -86,7 +87,7 @@ namespace Amazon.IdentityManagement.Model
         /// This parameter allows (through its <a href="http://wikipedia.org/wiki/regex">regex
         /// pattern</a>) a string of characters consisting of either a forward slash (/) by itself
         /// or a string that must begin and end with forward slashes. In addition, it can contain
-        /// any ASCII character from the ! (<code>\u0021</code>) through the DEL character (<code>\u007F</code>),
+        /// any ASCII character from the ! (<c>\u0021</c>) through the DEL character (<c>\u007F</c>),
         /// including most punctuation characters, digits, and upper and lowercased letters.
         /// </para>
         /// </summary>
@@ -128,7 +129,7 @@ namespace Amazon.IdentityManagement.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

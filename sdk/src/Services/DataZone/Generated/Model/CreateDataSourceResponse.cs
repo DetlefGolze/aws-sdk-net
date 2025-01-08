@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class CreateDataSourceResponse : AmazonWebServiceResponse
     {
-        private List<FormOutput> _assetFormsOutput = new List<FormOutput>();
+        private List<FormOutput> _assetFormsOutput = AWSConfigs.InitializeCollections ? new List<FormOutput>() : null;
         private DataSourceConfigurationOutput _configuration;
+        private string _connectionId;
         private DateTime? _createdAt;
         private string _description;
         private string _domainId;
@@ -70,14 +72,14 @@ namespace Amazon.DataZone.Model
         // Check to see if AssetFormsOutput property is set
         internal bool IsSetAssetFormsOutput()
         {
-            return this._assetFormsOutput != null && this._assetFormsOutput.Count > 0; 
+            return this._assetFormsOutput != null && (this._assetFormsOutput.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Configuration. 
         /// <para>
-        /// Specifies the configuration of the data source. It can be set to either <code>glueRunConfiguration</code>
-        /// or <code>redshiftRunConfiguration</code>.
+        /// Specifies the configuration of the data source. It can be set to either <c>glueRunConfiguration</c>
+        /// or <c>redshiftRunConfiguration</c>.
         /// </para>
         /// </summary>
         public DataSourceConfigurationOutput Configuration
@@ -90,6 +92,24 @@ namespace Amazon.DataZone.Model
         internal bool IsSetConfiguration()
         {
             return this._configuration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ConnectionId. 
+        /// <para>
+        /// The ID of the connection.
+        /// </para>
+        /// </summary>
+        public string ConnectionId
+        {
+            get { return this._connectionId; }
+            set { this._connectionId = value; }
+        }
+
+        // Check to see if ConnectionId property is set
+        internal bool IsSetConnectionId()
+        {
+            return this._connectionId != null;
         }
 
         /// <summary>
@@ -173,7 +193,6 @@ namespace Amazon.DataZone.Model
         /// publishes assets. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public string EnvironmentId
         {
             get { return this._environmentId; }

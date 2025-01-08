@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PersonalizeEvents.Model
 {
     /// <summary>
     /// Container for the parameters to the PutEvents operation.
-    /// Records user interaction event data. For more information see <a href="https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html">Recording
-    /// Events</a>.
+    /// Records item interaction event data. For more information see <a href="https://docs.aws.amazon.com/personalize/latest/dg/recording-item-interaction-events.html">Recording
+    /// item interaction events</a>.
     /// </summary>
     public partial class PutEventsRequest : AmazonPersonalizeEventsRequest
     {
-        private List<Event> _eventList = new List<Event>();
+        private List<Event> _eventList = AWSConfigs.InitializeCollections ? new List<Event>() : null;
         private string _sessionId;
         private string _trackingId;
         private string _userId;
@@ -56,7 +57,7 @@ namespace Amazon.PersonalizeEvents.Model
         // Check to see if EventList property is set
         internal bool IsSetEventList()
         {
-            return this._eventList != null && this._eventList.Count > 0; 
+            return this._eventList != null && (this._eventList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -65,8 +66,8 @@ namespace Amazon.PersonalizeEvents.Model
         /// The session ID associated with the user's visit. Your application generates the sessionId
         /// when a user first visits your website or uses your application. Amazon Personalize
         /// uses the sessionId to associate events with the user before they log in. For more
-        /// information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html">Recording
-        /// Events</a>.
+        /// information, see <a href="https://docs.aws.amazon.com/personalize/latest/dg/recording-item-interaction-events.html">Recording
+        /// item interaction events</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

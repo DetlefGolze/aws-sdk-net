@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// This is a signed JSON document that cannot be modified before being passed to <code>GetBackupPlanFromJSON.</code>
+        /// This is a signed JSON document that cannot be modified before being passed to <c>GetBackupPlanFromJSON.</c>
         /// 
         /// </para>
         ///  </note>

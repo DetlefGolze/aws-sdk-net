@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,14 +34,52 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class Resource
     {
+        private string _applicationArn;
+        private string _applicationName;
         private DataClassificationDetails _dataClassification;
         private ResourceDetails _details;
         private string _id;
         private Partition _partition;
         private string _region;
         private string _resourceRole;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _type;
+
+        /// <summary>
+        /// Gets and sets the property ApplicationArn. 
+        /// <para>
+        ///  The Amazon Resource Name (ARN) of the application that is related to a finding. 
+        /// </para>
+        /// </summary>
+        public string ApplicationArn
+        {
+            get { return this._applicationArn; }
+            set { this._applicationArn = value; }
+        }
+
+        // Check to see if ApplicationArn property is set
+        internal bool IsSetApplicationArn()
+        {
+            return this._applicationArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ApplicationName. 
+        /// <para>
+        ///  The name of the application that is related to a finding. 
+        /// </para>
+        /// </summary>
+        public string ApplicationName
+        {
+            get { return this._applicationName; }
+            set { this._applicationName = value; }
+        }
+
+        // Check to see if ApplicationName property is set
+        internal bool IsSetApplicationName()
+        {
+            return this._applicationName != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DataClassification. 
@@ -120,6 +159,10 @@ namespace Amazon.SecurityHub.Model
         /// <para>
         /// The canonical Amazon Web Services external Region name where this resource is located.
         /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 16.
+        /// </para>
         /// </summary>
         public string Region
         {
@@ -156,7 +199,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// A list of Amazon Web Services tags associated with a resource at the time the finding
-        /// was processed.
+        /// was processed. Tags must follow <a href="https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html#tag-conventions">Amazon
+        /// Web Services tag naming limits and requirements</a>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Tags
@@ -168,20 +212,24 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the resource that details are provided for. If possible, set <code>Type</code>
+        /// The type of the resource that details are provided for. If possible, set <c>Type</c>
         /// to one of the supported resource types. For example, if the resource is an EC2 instance,
-        /// then set <code>Type</code> to <code>AwsEc2Instance</code>.
+        /// then set <c>Type</c> to <c>AwsEc2Instance</c>.
         /// </para>
         ///  
         /// <para>
-        /// If the resource does not match any of the provided types, then set <code>Type</code>
-        /// to <code>Other</code>. 
+        /// If the resource does not match any of the provided types, then set <c>Type</c> to
+        /// <c>Other</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Length Constraints: Minimum length of 1. Maximum length of 256.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

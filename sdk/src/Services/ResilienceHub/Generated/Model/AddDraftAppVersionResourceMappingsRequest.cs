@@ -26,25 +26,31 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
     /// Container for the parameters to the AddDraftAppVersionResourceMappings operation.
-    /// Adds the resource mapping for the draft application version. You can also update an
-    /// existing resource mapping to a new physical resource.
+    /// Adds the source of resource-maps to the draft version of an application. During assessment,
+    /// Resilience Hub will use these resource-maps to resolve the latest physical ID for
+    /// each resource in the application template. For more information about different types
+    /// of resources supported by Resilience Hub and how to add them in your application,
+    /// see <a href="https://docs.aws.amazon.com/resilience-hub/latest/userguide/how-app-manage.html">Step
+    /// 2: How is your application managed?</a> in the Resilience Hub User Guide.
     /// </summary>
     public partial class AddDraftAppVersionResourceMappingsRequest : AmazonResilienceHubRequest
     {
         private string _appArn;
-        private List<ResourceMapping> _resourceMappings = new List<ResourceMapping>();
+        private List<ResourceMapping> _resourceMappings = AWSConfigs.InitializeCollections ? new List<ResourceMapping>() : null;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -64,10 +70,10 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property ResourceMappings. 
         /// <para>
         /// Mappings used to map logical resources from the template to physical resources. You
-        /// can use the mapping type <code>CFN_STACK</code> if the application template uses a
-        /// logical stack name. Or you can map individual resources by using the mapping type
-        /// <code>RESOURCE</code>. We recommend using the mapping type <code>CFN_STACK</code>
-        /// if the application is backed by a CloudFormation stack.
+        /// can use the mapping type <c>CFN_STACK</c> if the application template uses a logical
+        /// stack name. Or you can map individual resources by using the mapping type <c>RESOURCE</c>.
+        /// We recommend using the mapping type <c>CFN_STACK</c> if the application is backed
+        /// by a CloudFormation stack.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,7 +86,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if ResourceMappings property is set
         internal bool IsSetResourceMappings()
         {
-            return this._resourceMappings != null && this._resourceMappings.Count > 0; 
+            return this._resourceMappings != null && (this._resourceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

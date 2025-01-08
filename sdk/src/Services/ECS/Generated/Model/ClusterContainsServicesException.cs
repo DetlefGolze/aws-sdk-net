@@ -26,12 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// You can't delete a cluster that contains services. First, update the service to reduce
     /// its desired task count to 0, and then delete the service. For more information, see
-    /// <a>UpdateService</a> and <a>DeleteService</a>.
+    /// <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_UpdateService.html">UpdateService</a>
+    /// and <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_DeleteService.html">DeleteService</a>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

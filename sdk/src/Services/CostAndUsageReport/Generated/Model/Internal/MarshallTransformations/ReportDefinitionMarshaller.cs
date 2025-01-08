@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CostAndUsageReport.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.CostAndUsageReport.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ReportDefinition requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAdditionalArtifacts())
             {
                 context.Writer.WritePropertyName("AdditionalArtifacts");
@@ -95,6 +98,17 @@ namespace Amazon.CostAndUsageReport.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("ReportName");
                 context.Writer.Write(requestObject.ReportName);
+            }
+
+            if(requestObject.IsSetReportStatus())
+            {
+                context.Writer.WritePropertyName("ReportStatus");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ReportStatusMarshaller.Instance;
+                marshaller.Marshall(requestObject.ReportStatus, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetReportVersioning())

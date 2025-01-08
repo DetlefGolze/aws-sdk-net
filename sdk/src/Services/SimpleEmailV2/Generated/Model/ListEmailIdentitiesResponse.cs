@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SimpleEmailV2.Model
     /// </summary>
     public partial class ListEmailIdentitiesResponse : AmazonWebServiceResponse
     {
-        private List<IdentityInfo> _emailIdentities = new List<IdentityInfo>();
+        private List<IdentityInfo> _emailIdentities = AWSConfigs.InitializeCollections ? new List<IdentityInfo>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -53,15 +54,15 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if EmailIdentities property is set
         internal bool IsSetEmailIdentities()
         {
-            return this._emailIdentities != null && this._emailIdentities.Count > 0; 
+            return this._emailIdentities != null && (this._emailIdentities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates that there are additional configuration sets to list. To view
-        /// additional configuration sets, issue another request to <code>ListEmailIdentities</code>,
-        /// and pass this token in the <code>NextToken</code> parameter.
+        /// additional configuration sets, issue another request to <c>ListEmailIdentities</c>,
+        /// and pass this token in the <c>NextToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextToken

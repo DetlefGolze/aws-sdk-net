@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -130,8 +131,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>BENCHMARK</code>: Evaluate the performance of your model on different instance
-        /// types.
+        ///  <c>BENCHMARK</c>: Evaluate the performance of your model on different instance types.
         /// </para>
         /// </summary>
         public RecommendationStepType StepType

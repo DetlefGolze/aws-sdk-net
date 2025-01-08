@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateDimension operation.
     /// Create a dimension that you can use to limit the scope of a metric used in a security
-    /// profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension,
+    /// profile for IoT Device Defender. For example, using a <c>TOPIC_FILTER</c> dimension,
     /// you can narrow down the scope of the metric only to MQTT topics whose name match the
     /// pattern specified in the dimension.
     /// 
@@ -45,8 +46,8 @@ namespace Amazon.IoT.Model
     {
         private string _clientRequestToken;
         private string _name;
-        private List<string> _stringValues = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _stringValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private DimensionType _type;
 
         /// <summary>
@@ -94,8 +95,8 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property StringValues. 
         /// <para>
-        /// Specifies the value or list of values for the dimension. For <code>TOPIC_FILTER</code>
-        /// dimensions, this is a pattern used to match the MQTT topic (for example, "admin/#").
+        /// Specifies the value or list of values for the dimension. For <c>TOPIC_FILTER</c> dimensions,
+        /// this is a pattern used to match the MQTT topic (for example, "admin/#").
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -108,7 +109,7 @@ namespace Amazon.IoT.Model
         // Check to see if StringValues property is set
         internal bool IsSetStringValues()
         {
-            return this._stringValues != null && this._stringValues.Count > 0; 
+            return this._stringValues != null && (this._stringValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,13 +127,13 @@ namespace Amazon.IoT.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// Specifies the type of dimension. Supported types: <code>TOPIC_FILTER.</code> 
+        /// Specifies the type of dimension. Supported types: <c>TOPIC_FILTER.</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

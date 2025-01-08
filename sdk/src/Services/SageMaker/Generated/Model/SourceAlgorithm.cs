@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,6 +37,8 @@ namespace Amazon.SageMaker.Model
     public partial class SourceAlgorithm
     {
         private string _algorithmName;
+        private string _modelDataETag;
+        private ModelDataSource _modelDataSource;
         private string _modelDataUrl;
 
         /// <summary>
@@ -60,11 +63,47 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ModelDataETag. 
+        /// <para>
+        /// The ETag associated with Model Data URL.
+        /// </para>
+        /// </summary>
+        public string ModelDataETag
+        {
+            get { return this._modelDataETag; }
+            set { this._modelDataETag = value; }
+        }
+
+        // Check to see if ModelDataETag property is set
+        internal bool IsSetModelDataETag()
+        {
+            return this._modelDataETag != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelDataSource. 
+        /// <para>
+        /// Specifies the location of ML model data to deploy during endpoint creation.
+        /// </para>
+        /// </summary>
+        public ModelDataSource ModelDataSource
+        {
+            get { return this._modelDataSource; }
+            set { this._modelDataSource = value; }
+        }
+
+        // Check to see if ModelDataSource property is set
+        internal bool IsSetModelDataSource()
+        {
+            return this._modelDataSource != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ModelDataUrl. 
         /// <para>
         /// The Amazon S3 path where the model artifacts, which result from model training, are
-        /// stored. This path must point to a single <code>gzip</code> compressed tar archive
-        /// (<code>.tar.gz</code> suffix).
+        /// stored. This path must point to a single <c>gzip</c> compressed tar archive (<c>.tar.gz</c>
+        /// suffix).
         /// </para>
         ///  <note> 
         /// <para>

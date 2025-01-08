@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Lambda
 {
     /// <summary>
-    /// Implementation for accessing Lambda
+    /// <para>Implementation for accessing Lambda</para>
     ///
     /// Lambda 
     /// <para>
@@ -65,7 +66,7 @@ namespace Amazon.Lambda
     /// </para>
     ///  
     /// <para>
-    /// For a list of Region-specific endpoints that Lambda supports, see <a href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html/">Lambda
+    /// For a list of Region-specific endpoints that Lambda supports, see <a href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html">Lambda
     /// endpoints and quotas </a> in the <i>Amazon Web Services General Reference.</i>. 
     /// </para>
     ///  
@@ -388,8 +389,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -443,8 +455,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -475,21 +498,20 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Grants an Amazon Web Service, Amazon Web Services account, or Amazon Web Services
-        /// organization permission to use a function. You can apply the policy at the function
-        /// level, or specify a qualifier to restrict access to a single version or alias. If
-        /// you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that
-        /// version or alias to invoke the function. Note: Lambda does not support adding policies
-        /// to version $LATEST.
+        /// Grants a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying">principal</a>
+        /// permission to use a function. You can apply the policy at the function level, or specify
+        /// a qualifier to restrict access to a single version or alias. If you use a qualifier,
+        /// the invoker must use the full Amazon Resource Name (ARN) of that version or alias
+        /// to invoke the function. Note: Lambda does not support adding policies to version $LATEST.
         /// 
         ///  
         /// <para>
-        /// To grant permission to another account, specify the account ID as the <code>Principal</code>.
+        /// To grant permission to another account, specify the account ID as the <c>Principal</c>.
         /// To grant permission to an organization defined in Organizations, specify the organization
-        /// ID as the <code>PrincipalOrgID</code>. For Amazon Web Services, the principal is a
-        /// domain-style identifier that the service defines, such as <code>s3.amazonaws.com</code>
-        /// or <code>sns.amazonaws.com</code>. For Amazon Web Services, you can also specify the
-        /// ARN of the associated resource as the <code>SourceArn</code>. If you grant permission
+        /// ID as the <c>PrincipalOrgID</c>. For Amazon Web Services services, the principal is
+        /// a domain-style identifier that the service defines, such as <c>s3.amazonaws.com</c>
+        /// or <c>sns.amazonaws.com</c>. For Amazon Web Services services, you can also specify
+        /// the ARN of the associated resource as the <c>SourceArn</c>. If you grant permission
         /// to a service principal without specifying the source, other accounts could potentially
         /// configure resources in their account to invoke your Lambda function.
         /// </para>
@@ -513,8 +535,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -541,21 +574,20 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Grants an Amazon Web Service, Amazon Web Services account, or Amazon Web Services
-        /// organization permission to use a function. You can apply the policy at the function
-        /// level, or specify a qualifier to restrict access to a single version or alias. If
-        /// you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that
-        /// version or alias to invoke the function. Note: Lambda does not support adding policies
-        /// to version $LATEST.
+        /// Grants a <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying">principal</a>
+        /// permission to use a function. You can apply the policy at the function level, or specify
+        /// a qualifier to restrict access to a single version or alias. If you use a qualifier,
+        /// the invoker must use the full Amazon Resource Name (ARN) of that version or alias
+        /// to invoke the function. Note: Lambda does not support adding policies to version $LATEST.
         /// 
         ///  
         /// <para>
-        /// To grant permission to another account, specify the account ID as the <code>Principal</code>.
+        /// To grant permission to another account, specify the account ID as the <c>Principal</c>.
         /// To grant permission to an organization defined in Organizations, specify the organization
-        /// ID as the <code>PrincipalOrgID</code>. For Amazon Web Services, the principal is a
-        /// domain-style identifier that the service defines, such as <code>s3.amazonaws.com</code>
-        /// or <code>sns.amazonaws.com</code>. For Amazon Web Services, you can also specify the
-        /// ARN of the associated resource as the <code>SourceArn</code>. If you grant permission
+        /// ID as the <c>PrincipalOrgID</c>. For Amazon Web Services services, the principal is
+        /// a domain-style identifier that the service defines, such as <c>s3.amazonaws.com</c>
+        /// or <c>sns.amazonaws.com</c>. For Amazon Web Services services, you can also specify
+        /// the ARN of the associated resource as the <c>SourceArn</c>. If you grant permission
         /// to a service principal without specifying the source, other accounts could potentially
         /// configure resources in their account to invoke your Lambda function.
         /// </para>
@@ -582,8 +614,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -621,8 +664,8 @@ namespace Amazon.Lambda
         ///  
         /// <para>
         /// You can also map an alias to split invocation requests between two versions. Use the
-        /// <code>RoutingConfig</code> parameter to specify a second version and the percentage
-        /// of invocation requests that it receives.
+        /// <c>RoutingConfig</c> parameter to specify a second version and the percentage of invocation
+        /// requests that it receives.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAlias service method.</param>
@@ -663,8 +706,8 @@ namespace Amazon.Lambda
         ///  
         /// <para>
         /// You can also map an alias to split invocation requests between two versions. Use the
-        /// <code>RoutingConfig</code> parameter to specify a second version and the percentage
-        /// of invocation requests that it receives.
+        /// <c>RoutingConfig</c> parameter to specify a second version and the percentage of invocation
+        /// requests that it receives.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAlias service method.</param>
@@ -809,34 +852,39 @@ namespace Amazon.Lambda
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The following error handling options are available only for stream sources (DynamoDB
-        /// and Kinesis):
+        /// The following error handling options are available only for DynamoDB and Kinesis event
+        /// sources:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BisectBatchOnFunctionError</code> – If the function returns an error, split
-        /// the batch in two and retry.
+        ///  <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch
+        /// in two and retry.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DestinationConfig</code> – Send discarded records to an Amazon SQS queue or
-        /// Amazon SNS topic.
+        ///  <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRecordAgeInSeconds</code> – Discard records older than the specified
-        /// age. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires
+        ///  <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRetryAttempts</code> – Discard records after the specified number of
-        /// retries. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires.
+        ///  <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
         /// </para>
-        ///  </li> <li> 
+        ///  </li> </ul> 
         /// <para>
-        ///  <code>ParallelizationFactor</code> – Process multiple batches from each shard concurrently.
+        /// For stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka),
+        /// the following option is also available:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>DestinationConfig</c> – Send discarded records to an Amazon SQS queue, Amazon
+        /// SNS topic, or Amazon S3 bucket.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -956,34 +1004,39 @@ namespace Amazon.Lambda
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The following error handling options are available only for stream sources (DynamoDB
-        /// and Kinesis):
+        /// The following error handling options are available only for DynamoDB and Kinesis event
+        /// sources:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BisectBatchOnFunctionError</code> – If the function returns an error, split
-        /// the batch in two and retry.
+        ///  <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch
+        /// in two and retry.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DestinationConfig</code> – Send discarded records to an Amazon SQS queue or
-        /// Amazon SNS topic.
+        ///  <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRecordAgeInSeconds</code> – Discard records older than the specified
-        /// age. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires
+        ///  <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRetryAttempts</code> – Discard records after the specified number of
-        /// retries. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires.
+        ///  <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
         /// </para>
-        ///  </li> <li> 
+        ///  </li> </ul> 
         /// <para>
-        ///  <code>ParallelizationFactor</code> – Process multiple batches from each shard concurrently.
+        /// For stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka),
+        /// the following option is also available:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>DestinationConfig</c> – Send discarded records to an Amazon SQS queue, Amazon
+        /// SNS topic, or Amazon S3 bucket.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -1069,34 +1122,32 @@ namespace Amazon.Lambda
         /// package</a> and an <a href="https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role">execution
         /// role</a>. The deployment package is a .zip file archive or container image that contains
         /// your function code. The execution role grants the function permission to use Amazon
-        /// Web Services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request
-        /// tracing.
+        /// Web Services services, such as Amazon CloudWatch Logs for log streaming and X-Ray
+        /// for request tracing.
         /// 
         ///  
         /// <para>
         /// If the deployment package is a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
-        /// image</a>, then you set the package type to <code>Image</code>. For a container image,
-        /// the code property must include the URI of a container image in the Amazon ECR registry.
+        /// image</a>, then you set the package type to <c>Image</c>. For a container image, the
+        /// code property must include the URI of a container image in the Amazon ECR registry.
         /// You do not need to specify the handler and runtime properties.
         /// </para>
         ///  
         /// <para>
         /// If the deployment package is a <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
-        /// file archive</a>, then you set the package type to <code>Zip</code>. For a .zip file
-        /// archive, the code property specifies the location of the .zip file. You must also
-        /// specify the handler and runtime properties. The code in the deployment package must
-        /// be compatible with the target instruction set architecture of the function (<code>x86-64</code>
-        /// or <code>arm64</code>). If you do not specify the architecture, then the default value
-        /// is <code>x86-64</code>.
+        /// file archive</a>, then you set the package type to <c>Zip</c>. For a .zip file archive,
+        /// the code property specifies the location of the .zip file. You must also specify the
+        /// handler and runtime properties. The code in the deployment package must be compatible
+        /// with the target instruction set architecture of the function (<c>x86-64</c> or <c>arm64</c>).
+        /// If you do not specify the architecture, then the default value is <c>x86-64</c>.
         /// </para>
         ///  
         /// <para>
         /// When you create a function, Lambda provisions an instance of the function and its
         /// supporting resources. If your function connects to a VPC, this process can take a
-        /// minute or so. During this time, you can't invoke or modify the function. The <code>State</code>,
-        /// <code>StateReason</code>, and <code>StateReasonCode</code> fields in the response
-        /// from <a>GetFunctionConfiguration</a> indicate when the function is ready to invoke.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda
+        /// minute or so. During this time, you can't invoke or modify the function. The <c>State</c>,
+        /// <c>StateReason</c>, and <c>StateReasonCode</c> fields in the response from <a>GetFunctionConfiguration</a>
+        /// indicate when the function is ready to invoke. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda
         /// function states</a>.
         /// </para>
         ///  
@@ -1105,8 +1156,8 @@ namespace Amazon.Lambda
         /// The unpublished version changes when you update your function's code and configuration.
         /// A published version is a snapshot of your function code and configuration that can't
         /// be changed. An alias is a named resource that maps to a version, and can be changed
-        /// to map to a different version. Use the <code>Publish</code> parameter to create version
-        /// <code>1</code> of your function from its initial configuration.
+        /// to map to a different version. Use the <c>Publish</c> parameter to create version
+        /// <c>1</c> of your function from its initial configuration.
         /// </para>
         ///  
         /// <para>
@@ -1127,15 +1178,15 @@ namespace Amazon.Lambda
         /// </para>
         ///  
         /// <para>
-        /// If another Amazon Web Services account or an Amazon Web Service invokes your function,
-        /// use <a>AddPermission</a> to grant permission by creating a resource-based Identity
-        /// and Access Management (IAM) policy. You can grant permissions at the function level,
-        /// on a version, or on an alias.
+        /// If another Amazon Web Services account or an Amazon Web Services service invokes your
+        /// function, use <a>AddPermission</a> to grant permission by creating a resource-based
+        /// Identity and Access Management (IAM) policy. You can grant permissions at the function
+        /// level, on a version, or on an alias.
         /// </para>
         ///  
         /// <para>
         /// To invoke your function directly, use <a>Invoke</a>. To invoke your function in response
-        /// to events in other Amazon Web Services, create an event source mapping (<a>CreateEventSourceMapping</a>),
+        /// to events in other Amazon Web Services services, create an event source mapping (<a>CreateEventSourceMapping</a>),
         /// or configure a function trigger in the other service. For more information, see <a
         /// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html">Invoking
         /// Lambda functions</a>.
@@ -1192,34 +1243,32 @@ namespace Amazon.Lambda
         /// package</a> and an <a href="https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role">execution
         /// role</a>. The deployment package is a .zip file archive or container image that contains
         /// your function code. The execution role grants the function permission to use Amazon
-        /// Web Services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request
-        /// tracing.
+        /// Web Services services, such as Amazon CloudWatch Logs for log streaming and X-Ray
+        /// for request tracing.
         /// 
         ///  
         /// <para>
         /// If the deployment package is a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
-        /// image</a>, then you set the package type to <code>Image</code>. For a container image,
-        /// the code property must include the URI of a container image in the Amazon ECR registry.
+        /// image</a>, then you set the package type to <c>Image</c>. For a container image, the
+        /// code property must include the URI of a container image in the Amazon ECR registry.
         /// You do not need to specify the handler and runtime properties.
         /// </para>
         ///  
         /// <para>
         /// If the deployment package is a <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
-        /// file archive</a>, then you set the package type to <code>Zip</code>. For a .zip file
-        /// archive, the code property specifies the location of the .zip file. You must also
-        /// specify the handler and runtime properties. The code in the deployment package must
-        /// be compatible with the target instruction set architecture of the function (<code>x86-64</code>
-        /// or <code>arm64</code>). If you do not specify the architecture, then the default value
-        /// is <code>x86-64</code>.
+        /// file archive</a>, then you set the package type to <c>Zip</c>. For a .zip file archive,
+        /// the code property specifies the location of the .zip file. You must also specify the
+        /// handler and runtime properties. The code in the deployment package must be compatible
+        /// with the target instruction set architecture of the function (<c>x86-64</c> or <c>arm64</c>).
+        /// If you do not specify the architecture, then the default value is <c>x86-64</c>.
         /// </para>
         ///  
         /// <para>
         /// When you create a function, Lambda provisions an instance of the function and its
         /// supporting resources. If your function connects to a VPC, this process can take a
-        /// minute or so. During this time, you can't invoke or modify the function. The <code>State</code>,
-        /// <code>StateReason</code>, and <code>StateReasonCode</code> fields in the response
-        /// from <a>GetFunctionConfiguration</a> indicate when the function is ready to invoke.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda
+        /// minute or so. During this time, you can't invoke or modify the function. The <c>State</c>,
+        /// <c>StateReason</c>, and <c>StateReasonCode</c> fields in the response from <a>GetFunctionConfiguration</a>
+        /// indicate when the function is ready to invoke. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda
         /// function states</a>.
         /// </para>
         ///  
@@ -1228,8 +1277,8 @@ namespace Amazon.Lambda
         /// The unpublished version changes when you update your function's code and configuration.
         /// A published version is a snapshot of your function code and configuration that can't
         /// be changed. An alias is a named resource that maps to a version, and can be changed
-        /// to map to a different version. Use the <code>Publish</code> parameter to create version
-        /// <code>1</code> of your function from its initial configuration.
+        /// to map to a different version. Use the <c>Publish</c> parameter to create version
+        /// <c>1</c> of your function from its initial configuration.
         /// </para>
         ///  
         /// <para>
@@ -1250,15 +1299,15 @@ namespace Amazon.Lambda
         /// </para>
         ///  
         /// <para>
-        /// If another Amazon Web Services account or an Amazon Web Service invokes your function,
-        /// use <a>AddPermission</a> to grant permission by creating a resource-based Identity
-        /// and Access Management (IAM) policy. You can grant permissions at the function level,
-        /// on a version, or on an alias.
+        /// If another Amazon Web Services account or an Amazon Web Services service invokes your
+        /// function, use <a>AddPermission</a> to grant permission by creating a resource-based
+        /// Identity and Access Management (IAM) policy. You can grant permissions at the function
+        /// level, on a version, or on an alias.
         /// </para>
         ///  
         /// <para>
         /// To invoke your function directly, use <a>Invoke</a>. To invoke your function in response
-        /// to events in other Amazon Web Services, create an event source mapping (<a>CreateEventSourceMapping</a>),
+        /// to events in other Amazon Web Services services, create an event source mapping (<a>CreateEventSourceMapping</a>),
         /// or configure a function trigger in the other service. For more information, see <a
         /// href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html">Invoking
         /// Lambda functions</a>.
@@ -1532,8 +1581,8 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// When you delete an event source mapping, it enters a <code>Deleting</code> state and
-        /// might not be completely deleted for several seconds.
+        /// When you delete an event source mapping, it enters a <c>Deleting</c> state and might
+        /// not be completely deleted for several seconds.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEventSourceMapping service method.</param>
@@ -1577,8 +1626,8 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// When you delete an event source mapping, it enters a <code>Deleting</code> state and
-        /// might not be completely deleted for several seconds.
+        /// When you delete an event source mapping, it enters a <c>Deleting</c> state and might
+        /// not be completely deleted for several seconds.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteEventSourceMapping service method.</param>
@@ -1624,18 +1673,18 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Deletes a Lambda function. To delete a specific function version, use the <code>Qualifier</code>
+        /// Deletes a Lambda function. To delete a specific function version, use the <c>Qualifier</c>
         /// parameter. Otherwise, all versions and aliases are deleted. This doesn't require the
         /// user to have explicit permissions for <a>DeleteAlias</a>.
         /// 
         ///  
         /// <para>
         /// To delete Lambda event source mappings that invoke a function, use <a>DeleteEventSourceMapping</a>.
-        /// For Amazon Web Services and resources that invoke your function directly, delete the
-        /// trigger in the service where you originally configured it.
+        /// For Amazon Web Services services and resources that invoke your function directly,
+        /// delete the trigger in the service where you originally configured it.
         /// </para>
         /// </summary>
-        /// <param name="functionName">The name of the Lambda function or version. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:1</code> (with version). </li> <li>  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>. </li> <li>  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
+        /// <param name="functionName">The name or ARN of the Lambda function or version. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:1</c> (with version). </li> <li>  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>. </li> <li>  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
         /// 
         /// <returns>The response from the DeleteFunction service method, as returned by Lambda.</returns>
         /// <exception cref="Amazon.Lambda.Model.InvalidParameterValueException">
@@ -1664,15 +1713,15 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Deletes a Lambda function. To delete a specific function version, use the <code>Qualifier</code>
+        /// Deletes a Lambda function. To delete a specific function version, use the <c>Qualifier</c>
         /// parameter. Otherwise, all versions and aliases are deleted. This doesn't require the
         /// user to have explicit permissions for <a>DeleteAlias</a>.
         /// 
         ///  
         /// <para>
         /// To delete Lambda event source mappings that invoke a function, use <a>DeleteEventSourceMapping</a>.
-        /// For Amazon Web Services and resources that invoke your function directly, delete the
-        /// trigger in the service where you originally configured it.
+        /// For Amazon Web Services services and resources that invoke your function directly,
+        /// delete the trigger in the service where you originally configured it.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFunction service method.</param>
@@ -1706,18 +1755,18 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Deletes a Lambda function. To delete a specific function version, use the <code>Qualifier</code>
+        /// Deletes a Lambda function. To delete a specific function version, use the <c>Qualifier</c>
         /// parameter. Otherwise, all versions and aliases are deleted. This doesn't require the
         /// user to have explicit permissions for <a>DeleteAlias</a>.
         /// 
         ///  
         /// <para>
         /// To delete Lambda event source mappings that invoke a function, use <a>DeleteEventSourceMapping</a>.
-        /// For Amazon Web Services and resources that invoke your function directly, delete the
-        /// trigger in the service where you originally configured it.
+        /// For Amazon Web Services services and resources that invoke your function directly,
+        /// delete the trigger in the service where you originally configured it.
         /// </para>
         /// </summary>
-        /// <param name="functionName">The name of the Lambda function or version. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:1</code> (with version). </li> <li>  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>. </li> <li>  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
+        /// <param name="functionName">The name or ARN of the Lambda function or version. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:1</c> (with version). </li> <li>  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>. </li> <li>  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -1749,15 +1798,15 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Deletes a Lambda function. To delete a specific function version, use the <code>Qualifier</code>
+        /// Deletes a Lambda function. To delete a specific function version, use the <c>Qualifier</c>
         /// parameter. Otherwise, all versions and aliases are deleted. This doesn't require the
         /// user to have explicit permissions for <a>DeleteAlias</a>.
         /// 
         ///  
         /// <para>
         /// To delete Lambda event source mappings that invoke a function, use <a>DeleteEventSourceMapping</a>.
-        /// For Amazon Web Services and resources that invoke your function directly, delete the
-        /// trigger in the service where you originally configured it.
+        /// For Amazon Web Services services and resources that invoke your function directly,
+        /// delete the trigger in the service where you originally configured it.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFunction service method.</param>
@@ -2494,7 +2543,7 @@ namespace Amazon.Lambda
         /// the deployment package that's valid for 10 minutes. If you specify a function version,
         /// only details that are specific to that version are returned.
         /// </summary>
-        /// <param name="functionName">The name of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias). </li> <li>  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>. </li> <li>  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
+        /// <param name="functionName">The name or ARN of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:v1</c> (with alias). </li> <li>  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>. </li> <li>  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
         /// 
         /// <returns>The response from the GetFunction service method, as returned by Lambda.</returns>
         /// <exception cref="Amazon.Lambda.Model.InvalidParameterValueException">
@@ -2556,7 +2605,7 @@ namespace Amazon.Lambda
         /// the deployment package that's valid for 10 minutes. If you specify a function version,
         /// only details that are specific to that version are returned.
         /// </summary>
-        /// <param name="functionName">The name of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias). </li> <li>  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>. </li> <li>  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
+        /// <param name="functionName">The name or ARN of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:v1</c> (with alias). </li> <li>  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>. </li> <li>  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -2769,7 +2818,7 @@ namespace Amazon.Lambda
         /// To get all of a function's details, including function-level settings, use <a>GetFunction</a>.
         /// </para>
         /// </summary>
-        /// <param name="functionName">The name of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias). </li> <li>  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>. </li> <li>  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
+        /// <param name="functionName">The name or ARN of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:v1</c> (with alias). </li> <li>  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>. </li> <li>  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
         /// 
         /// <returns>The response from the GetFunctionConfiguration service method, as returned by Lambda.</returns>
         /// <exception cref="Amazon.Lambda.Model.InvalidParameterValueException">
@@ -2841,7 +2890,7 @@ namespace Amazon.Lambda
         /// To get all of a function's details, including function-level settings, use <a>GetFunction</a>.
         /// </para>
         /// </summary>
-        /// <param name="functionName">The name of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias). </li> <li>  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>. </li> <li>  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
+        /// <param name="functionName">The name or ARN of the Lambda function, version, or alias. <p class="title"> <b>Name formats</b>  <ul> <li>  <b>Function name</b> – <c>my-function</c> (name-only), <c>my-function:v1</c> (with alias). </li> <li>  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>. </li> <li>  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>. </li> </ul> You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -2985,6 +3034,75 @@ namespace Amazon.Lambda
             options.ResponseUnmarshaller = GetFunctionEventInvokeConfigResponseUnmarshaller.Instance;
             
             return InvokeAsync<GetFunctionEventInvokeConfigResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  GetFunctionRecursionConfig
+
+
+        /// <summary>
+        /// Returns your function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive
+        /// loop detection</a> configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetFunctionRecursionConfig service method.</param>
+        /// 
+        /// <returns>The response from the GetFunctionRecursionConfig service method, as returned by Lambda.</returns>
+        /// <exception cref="Amazon.Lambda.Model.InvalidParameterValueException">
+        /// One of the parameters in the request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
+        /// The resource specified in the request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ServiceException">
+        /// The Lambda service encountered an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.TooManyRequestsException">
+        /// The request throughput limit was exceeded. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda
+        /// quotas</a>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionRecursionConfig">REST API Reference for GetFunctionRecursionConfig Operation</seealso>
+        public virtual GetFunctionRecursionConfigResponse GetFunctionRecursionConfig(GetFunctionRecursionConfigRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetFunctionRecursionConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetFunctionRecursionConfigResponseUnmarshaller.Instance;
+
+            return Invoke<GetFunctionRecursionConfigResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Returns your function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive
+        /// loop detection</a> configuration.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetFunctionRecursionConfig service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the GetFunctionRecursionConfig service method, as returned by Lambda.</returns>
+        /// <exception cref="Amazon.Lambda.Model.InvalidParameterValueException">
+        /// One of the parameters in the request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
+        /// The resource specified in the request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ServiceException">
+        /// The Lambda service encountered an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.TooManyRequestsException">
+        /// The request throughput limit was exceeded. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda
+        /// quotas</a>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionRecursionConfig">REST API Reference for GetFunctionRecursionConfig Operation</seealso>
+        public virtual Task<GetFunctionRecursionConfigResponse> GetFunctionRecursionConfigAsync(GetFunctionRecursionConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetFunctionRecursionConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetFunctionRecursionConfigResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<GetFunctionRecursionConfigResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -3412,8 +3530,8 @@ namespace Amazon.Lambda
         /// Retrieves the runtime management configuration for a function's version. If the runtime
         /// update mode is <b>Manual</b>, this includes the ARN of the runtime version and the
         /// runtime update mode. If the runtime update mode is <b>Auto</b> or <b>Function update</b>,
-        /// this includes the runtime update mode and <code>null</code> is returned for the ARN.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime
+        /// this includes the runtime update mode and <c>null</c> is returned for the ARN. For
+        /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime
         /// updates</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRuntimeManagementConfig service method.</param>
@@ -3447,8 +3565,8 @@ namespace Amazon.Lambda
         /// Retrieves the runtime management configuration for a function's version. If the runtime
         /// update mode is <b>Manual</b>, this includes the ARN of the runtime version and the
         /// runtime update mode. If the runtime update mode is <b>Auto</b> or <b>Function update</b>,
-        /// this includes the runtime update mode and <code>null</code> is returned for the ARN.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime
+        /// this includes the runtime update mode and <c>null</c> is returned for the ARN. For
+        /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html">Runtime
         /// updates</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRuntimeManagementConfig service method.</param>
@@ -3487,8 +3605,10 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Invokes a Lambda function. You can invoke a function synchronously (and wait for the
-        /// response), or asynchronously. To invoke a function asynchronously, set <code>InvocationType</code>
-        /// to <code>Event</code>.
+        /// response), or asynchronously. By default, Lambda invokes your function synchronously
+        /// (i.e. the<c>InvocationType</c> is <c>RequestResponse</c>). To invoke a function asynchronously,
+        /// set <c>InvocationType</c> to <c>Event</c>. Lambda passes the <c>ClientContext</c>
+        /// object to your function for synchronous invocations only.
         /// 
         ///  
         /// <para>
@@ -3522,9 +3642,9 @@ namespace Amazon.Lambda
         /// reserved for errors that prevent your function from executing, such as permissions
         /// errors, <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">quota</a>
         /// errors, or issues with your function's code and configuration. For example, Lambda
-        /// returns <code>TooManyRequestsException</code> if running the function would cause
-        /// you to exceed a concurrency limit at either the account level (<code>ConcurrentInvocationLimitExceeded</code>)
-        /// or function level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
+        /// returns <c>TooManyRequestsException</c> if running the function would cause you to
+        /// exceed a concurrency limit at either the account level (<c>ConcurrentInvocationLimitExceeded</c>)
+        /// or function level (<c>ReservedFunctionConcurrentInvocationLimitExceeded</c>).
         /// </para>
         ///  
         /// <para>
@@ -3614,8 +3734,8 @@ namespace Amazon.Lambda
         /// Web Services resources and stopped your function's invocation.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.RequestTooLargeException">
-        /// The request payload exceeded the <code>Invoke</code> request body JSON input quota.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+        /// The request payload exceeded the <c>Invoke</c> request body JSON input quota. For
+        /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
@@ -3632,12 +3752,12 @@ namespace Amazon.Lambda
         /// The Lambda service encountered an internal error.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartException">
-        /// The <code>afterRestore()</code> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
+        /// The <c>afterRestore()</c> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
         /// hook</a> encountered an error. For more information, check the Amazon CloudWatch logs.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartNotReadyException">
         /// Lambda is initializing your function. You can invoke the function when the <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">function
-        /// state</a> becomes <code>Active</code>.
+        /// state</a> becomes <c>Active</c>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartTimeoutException">
         /// Lambda couldn't restore the snapshot within the timeout limit.
@@ -3651,7 +3771,7 @@ namespace Amazon.Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.UnsupportedMediaTypeException">
-        /// The content type of the <code>Invoke</code> request body is not JSON.
+        /// The content type of the <c>Invoke</c> request body is not JSON.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/Invoke">REST API Reference for Invoke Operation</seealso>
         public virtual InvokeResponse Invoke(InvokeRequest request)
@@ -3666,8 +3786,10 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Invokes a Lambda function. You can invoke a function synchronously (and wait for the
-        /// response), or asynchronously. To invoke a function asynchronously, set <code>InvocationType</code>
-        /// to <code>Event</code>.
+        /// response), or asynchronously. By default, Lambda invokes your function synchronously
+        /// (i.e. the<c>InvocationType</c> is <c>RequestResponse</c>). To invoke a function asynchronously,
+        /// set <c>InvocationType</c> to <c>Event</c>. Lambda passes the <c>ClientContext</c>
+        /// object to your function for synchronous invocations only.
         /// 
         ///  
         /// <para>
@@ -3701,9 +3823,9 @@ namespace Amazon.Lambda
         /// reserved for errors that prevent your function from executing, such as permissions
         /// errors, <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">quota</a>
         /// errors, or issues with your function's code and configuration. For example, Lambda
-        /// returns <code>TooManyRequestsException</code> if running the function would cause
-        /// you to exceed a concurrency limit at either the account level (<code>ConcurrentInvocationLimitExceeded</code>)
-        /// or function level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
+        /// returns <c>TooManyRequestsException</c> if running the function would cause you to
+        /// exceed a concurrency limit at either the account level (<c>ConcurrentInvocationLimitExceeded</c>)
+        /// or function level (<c>ReservedFunctionConcurrentInvocationLimitExceeded</c>).
         /// </para>
         ///  
         /// <para>
@@ -3796,8 +3918,8 @@ namespace Amazon.Lambda
         /// Web Services resources and stopped your function's invocation.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.RequestTooLargeException">
-        /// The request payload exceeded the <code>Invoke</code> request body JSON input quota.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+        /// The request payload exceeded the <c>Invoke</c> request body JSON input quota. For
+        /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
@@ -3814,12 +3936,12 @@ namespace Amazon.Lambda
         /// The Lambda service encountered an internal error.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartException">
-        /// The <code>afterRestore()</code> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
+        /// The <c>afterRestore()</c> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
         /// hook</a> encountered an error. For more information, check the Amazon CloudWatch logs.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartNotReadyException">
         /// Lambda is initializing your function. You can invoke the function when the <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">function
-        /// state</a> becomes <code>Active</code>.
+        /// state</a> becomes <c>Active</c>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartTimeoutException">
         /// Lambda couldn't restore the snapshot within the timeout limit.
@@ -3833,7 +3955,7 @@ namespace Amazon.Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.UnsupportedMediaTypeException">
-        /// The content type of the <code>Invoke</code> request body is not JSON.
+        /// The content type of the <c>Invoke</c> request body is not JSON.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/Invoke">REST API Reference for Invoke Operation</seealso>
         public virtual Task<InvokeResponse> InvokeAsync(InvokeRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -3859,6 +3981,13 @@ namespace Amazon.Lambda
         /// <para>
         /// Invokes a function asynchronously.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray
+        /// active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing
+        /// is turned on.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the InvokeAsync service method.</param>
         /// 
@@ -3899,6 +4028,13 @@ namespace Amazon.Lambda
         /// <para>
         /// Invokes a function asynchronously.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// If you do use the InvokeAsync action, note that it doesn't support the use of X-Ray
+        /// active tracing. Trace ID is not propagated to the function, even if X-Ray active tracing
+        /// is turned on.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the InvokeAsync service method.</param>
         /// <param name="cancellationToken">
@@ -4023,8 +4159,8 @@ namespace Amazon.Lambda
         /// Web Services resources and stopped your function's invocation.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.RequestTooLargeException">
-        /// The request payload exceeded the <code>Invoke</code> request body JSON input quota.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+        /// The request payload exceeded the <c>Invoke</c> request body JSON input quota. For
+        /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
@@ -4041,12 +4177,12 @@ namespace Amazon.Lambda
         /// The Lambda service encountered an internal error.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartException">
-        /// The <code>afterRestore()</code> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
+        /// The <c>afterRestore()</c> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
         /// hook</a> encountered an error. For more information, check the Amazon CloudWatch logs.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartNotReadyException">
         /// Lambda is initializing your function. You can invoke the function when the <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">function
-        /// state</a> becomes <code>Active</code>.
+        /// state</a> becomes <c>Active</c>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartTimeoutException">
         /// Lambda couldn't restore the snapshot within the timeout limit.
@@ -4060,7 +4196,7 @@ namespace Amazon.Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.UnsupportedMediaTypeException">
-        /// The content type of the <code>Invoke</code> request body is not JSON.
+        /// The content type of the <c>Invoke</c> request body is not JSON.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvokeWithResponseStream">REST API Reference for InvokeWithResponseStream Operation</seealso>
         public virtual InvokeWithResponseStreamResponse InvokeWithResponseStream(InvokeWithResponseStreamRequest request)
@@ -4162,8 +4298,8 @@ namespace Amazon.Lambda
         /// Web Services resources and stopped your function's invocation.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.RequestTooLargeException">
-        /// The request payload exceeded the <code>Invoke</code> request body JSON input quota.
-        /// For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
+        /// The request payload exceeded the <c>Invoke</c> request body JSON input quota. For
+        /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html">Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
@@ -4180,12 +4316,12 @@ namespace Amazon.Lambda
         /// The Lambda service encountered an internal error.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartException">
-        /// The <code>afterRestore()</code> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
+        /// The <c>afterRestore()</c> <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html">runtime
         /// hook</a> encountered an error. For more information, check the Amazon CloudWatch logs.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartNotReadyException">
         /// Lambda is initializing your function. You can invoke the function when the <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">function
-        /// state</a> becomes <code>Active</code>.
+        /// state</a> becomes <c>Active</c>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.SnapStartTimeoutException">
         /// Lambda couldn't restore the snapshot within the timeout limit.
@@ -4199,7 +4335,7 @@ namespace Amazon.Lambda
         /// quotas</a>.
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.UnsupportedMediaTypeException">
-        /// The content type of the <code>Invoke</code> request body is not JSON.
+        /// The content type of the <c>Invoke</c> request body is not JSON.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/InvokeWithResponseStream">REST API Reference for InvokeWithResponseStream Operation</seealso>
         public virtual Task<InvokeWithResponseStreamResponse> InvokeWithResponseStreamAsync(InvokeWithResponseStreamRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -4288,8 +4424,7 @@ namespace Amazon.Lambda
         /// <summary>
         /// Returns a list of <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code
         /// signing configurations</a>. A request returns up to 10,000 configurations per call.
-        /// You can use the <code>MaxItems</code> parameter to return fewer configurations per
-        /// call.
+        /// You can use the <c>MaxItems</c> parameter to return fewer configurations per call.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListCodeSigningConfigs service method.</param>
         /// 
@@ -4314,8 +4449,7 @@ namespace Amazon.Lambda
         /// <summary>
         /// Returns a list of <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html">code
         /// signing configurations</a>. A request returns up to 10,000 configurations per call.
-        /// You can use the <code>MaxItems</code> parameter to return fewer configurations per
-        /// call.
+        /// You can use the <c>MaxItems</c> parameter to return fewer configurations per call.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListCodeSigningConfigs service method.</param>
         /// <param name="cancellationToken">
@@ -4345,8 +4479,8 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Lists event source mappings. Specify an <code>EventSourceArn</code> to show only event
-        /// source mappings for a single event source.
+        /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source
+        /// mappings for a single event source.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEventSourceMappings service method.</param>
         /// 
@@ -4376,8 +4510,8 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Lists event source mappings. Specify an <code>EventSourceArn</code> to show only event
-        /// source mappings for a single event source.
+        /// Lists event source mappings. Specify an <c>EventSourceArn</c> to show only event source
+        /// mappings for a single event source.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListEventSourceMappings service method.</param>
         /// <param name="cancellationToken">
@@ -4496,12 +4630,12 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// Set <code>FunctionVersion</code> to <code>ALL</code> to include all published versions
-        /// of each function in addition to the unpublished version.
+        /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each
+        /// function in addition to the unpublished version.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>ListFunctions</code> operation returns a subset of the <a>FunctionConfiguration</a>
+        /// The <c>ListFunctions</c> operation returns a subset of the <a>FunctionConfiguration</a>
         /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
         /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function
         /// or version, use <a>GetFunction</a>.
@@ -4534,12 +4668,12 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// Set <code>FunctionVersion</code> to <code>ALL</code> to include all published versions
-        /// of each function in addition to the unpublished version.
+        /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each
+        /// function in addition to the unpublished version.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>ListFunctions</code> operation returns a subset of the <a>FunctionConfiguration</a>
+        /// The <c>ListFunctions</c> operation returns a subset of the <a>FunctionConfiguration</a>
         /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
         /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function
         /// or version, use <a>GetFunction</a>.
@@ -4576,12 +4710,12 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// Set <code>FunctionVersion</code> to <code>ALL</code> to include all published versions
-        /// of each function in addition to the unpublished version.
+        /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each
+        /// function in addition to the unpublished version.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>ListFunctions</code> operation returns a subset of the <a>FunctionConfiguration</a>
+        /// The <c>ListFunctions</c> operation returns a subset of the <a>FunctionConfiguration</a>
         /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
         /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function
         /// or version, use <a>GetFunction</a>.
@@ -4617,12 +4751,12 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// Set <code>FunctionVersion</code> to <code>ALL</code> to include all published versions
-        /// of each function in addition to the unpublished version.
+        /// Set <c>FunctionVersion</c> to <c>ALL</c> to include all published versions of each
+        /// function in addition to the unpublished version.
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>ListFunctions</code> operation returns a subset of the <a>FunctionConfiguration</a>
+        /// The <c>ListFunctions</c> operation returns a subset of the <a>FunctionConfiguration</a>
         /// fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
         /// LastUpdateStatusReason, LastUpdateStatusReasonCode, RuntimeVersionConfig) for a function
         /// or version, use <a>GetFunction</a>.
@@ -5004,8 +5138,8 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Returns a function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>.
-        /// You can also view tags with <a>GetFunction</a>.
+        /// Returns a function, event source mapping, or code signing configuration's <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>.
+        /// You can also view function tags with <a>GetFunction</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTags service method.</param>
         /// 
@@ -5035,8 +5169,8 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Returns a function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>.
-        /// You can also view tags with <a>GetFunction</a>.
+        /// Returns a function, event source mapping, or code signing configuration's <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>.
+        /// You can also view function tags with <a>GetFunction</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTags service method.</param>
         /// <param name="cancellationToken">
@@ -5145,8 +5279,8 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Creates an <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
-        /// layer</a> from a ZIP archive. Each time you call <code>PublishLayerVersion</code>
-        /// with the same layer name, a new version is created.
+        /// layer</a> from a ZIP archive. Each time you call <c>PublishLayerVersion</c> with the
+        /// same layer name, a new version is created.
         /// 
         ///  
         /// <para>
@@ -5187,8 +5321,8 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Creates an <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda
-        /// layer</a> from a ZIP archive. Each time you call <code>PublishLayerVersion</code>
-        /// with the same layer name, a new version is created.
+        /// layer</a> from a ZIP archive. Each time you call <c>PublishLayerVersion</c> with the
+        /// same layer name, a new version is created.
         /// 
         ///  
         /// <para>
@@ -5263,8 +5397,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -5322,8 +5467,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -5561,12 +5717,18 @@ namespace Amazon.Lambda
         /// </para>
         ///  
         /// <para>
-        /// To send an invocation record to a queue, topic, function, or event bus, specify a
-        /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</a>.
+        /// To send an invocation record to a queue, topic, S3 bucket, function, or event bus,
+        /// specify a <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</a>.
         /// You can configure separate destinations for successful invocations (on-success) and
         /// events that fail all processing attempts (on-failure). You can configure destinations
         /// in addition to or instead of a dead-letter queue.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// S3 buckets are supported only for on-failure destinations. To retain records of successful
+        /// invocations, use another destination type.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutFunctionEventInvokeConfig service method.</param>
         /// 
@@ -5614,12 +5776,18 @@ namespace Amazon.Lambda
         /// </para>
         ///  
         /// <para>
-        /// To send an invocation record to a queue, topic, function, or event bus, specify a
-        /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</a>.
+        /// To send an invocation record to a queue, topic, S3 bucket, function, or event bus,
+        /// specify a <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">destination</a>.
         /// You can configure separate destinations for successful invocations (on-success) and
         /// events that fail all processing attempts (on-failure). You can configure destinations
         /// in addition to or instead of a dead-letter queue.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// S3 buckets are supported only for on-failure destinations. To retain records of successful
+        /// invocations, use another destination type.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutFunctionEventInvokeConfig service method.</param>
         /// <param name="cancellationToken">
@@ -5651,6 +5819,111 @@ namespace Amazon.Lambda
             options.ResponseUnmarshaller = PutFunctionEventInvokeConfigResponseUnmarshaller.Instance;
             
             return InvokeAsync<PutFunctionEventInvokeConfigResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  PutFunctionRecursionConfig
+
+
+        /// <summary>
+        /// Sets your function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive
+        /// loop detection</a> configuration.
+        /// 
+        ///  
+        /// <para>
+        /// When you configure a Lambda function to output to the same service or resource that
+        /// invokes the function, it's possible to create an infinite recursive loop. For example,
+        /// a Lambda function might write a message to an Amazon Simple Queue Service (Amazon
+        /// SQS) queue, which then invokes the same function. This invocation causes the function
+        /// to write another message to the queue, which in turn invokes the function again.
+        /// </para>
+        ///  
+        /// <para>
+        /// Lambda can detect certain types of recursive loops shortly after they occur. When
+        /// Lambda detects a recursive loop and your function's recursive loop detection configuration
+        /// is set to <c>Terminate</c>, it stops your function being invoked and notifies you.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutFunctionRecursionConfig service method.</param>
+        /// 
+        /// <returns>The response from the PutFunctionRecursionConfig service method, as returned by Lambda.</returns>
+        /// <exception cref="Amazon.Lambda.Model.InvalidParameterValueException">
+        /// One of the parameters in the request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
+        /// The resource already exists, or another operation is in progress.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
+        /// The resource specified in the request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ServiceException">
+        /// The Lambda service encountered an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.TooManyRequestsException">
+        /// The request throughput limit was exceeded. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda
+        /// quotas</a>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutFunctionRecursionConfig">REST API Reference for PutFunctionRecursionConfig Operation</seealso>
+        public virtual PutFunctionRecursionConfigResponse PutFunctionRecursionConfig(PutFunctionRecursionConfigRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PutFunctionRecursionConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PutFunctionRecursionConfigResponseUnmarshaller.Instance;
+
+            return Invoke<PutFunctionRecursionConfigResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Sets your function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-recursion.html">recursive
+        /// loop detection</a> configuration.
+        /// 
+        ///  
+        /// <para>
+        /// When you configure a Lambda function to output to the same service or resource that
+        /// invokes the function, it's possible to create an infinite recursive loop. For example,
+        /// a Lambda function might write a message to an Amazon Simple Queue Service (Amazon
+        /// SQS) queue, which then invokes the same function. This invocation causes the function
+        /// to write another message to the queue, which in turn invokes the function again.
+        /// </para>
+        ///  
+        /// <para>
+        /// Lambda can detect certain types of recursive loops shortly after they occur. When
+        /// Lambda detects a recursive loop and your function's recursive loop detection configuration
+        /// is set to <c>Terminate</c>, it stops your function being invoked and notifies you.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutFunctionRecursionConfig service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the PutFunctionRecursionConfig service method, as returned by Lambda.</returns>
+        /// <exception cref="Amazon.Lambda.Model.InvalidParameterValueException">
+        /// One of the parameters in the request is not valid.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
+        /// The resource already exists, or another operation is in progress.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
+        /// The resource specified in the request does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.ServiceException">
+        /// The Lambda service encountered an internal error.
+        /// </exception>
+        /// <exception cref="Amazon.Lambda.Model.TooManyRequestsException">
+        /// The request throughput limit was exceeded. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda
+        /// quotas</a>.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutFunctionRecursionConfig">REST API Reference for PutFunctionRecursionConfig Operation</seealso>
+        public virtual Task<PutFunctionRecursionConfigResponse> PutFunctionRecursionConfigAsync(PutFunctionRecursionConfigRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = PutFunctionRecursionConfigRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = PutFunctionRecursionConfigResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<PutFunctionRecursionConfigResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -5820,8 +6093,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
         /// The resource specified in the request does not exist.
@@ -5859,8 +6143,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
         /// The resource specified in the request does not exist.
@@ -5888,8 +6183,8 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Revokes function-use permission from an Amazon Web Service or another Amazon Web Services
-        /// account. You can get the ID of the statement from the output of <a>GetPolicy</a>.
+        /// Revokes function-use permission from an Amazon Web Services service or another Amazon
+        /// Web Services account. You can get the ID of the statement from the output of <a>GetPolicy</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemovePermission service method.</param>
         /// 
@@ -5899,8 +6194,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
         /// The resource specified in the request does not exist.
@@ -5924,8 +6230,8 @@ namespace Amazon.Lambda
 
 
         /// <summary>
-        /// Revokes function-use permission from an Amazon Web Service or another Amazon Web Services
-        /// account. You can get the ID of the statement from the output of <a>GetPolicy</a>.
+        /// Revokes function-use permission from an Amazon Web Services service or another Amazon
+        /// Web Services account. You can get the ID of the statement from the output of <a>GetPolicy</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the RemovePermission service method.</param>
         /// <param name="cancellationToken">
@@ -5938,8 +6244,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceNotFoundException">
         /// The resource specified in the request does not exist.
@@ -5968,7 +6285,7 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Adds <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>
-        /// to a function.
+        /// to a function, event source mapping, or code signing configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// 
@@ -6002,7 +6319,7 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Adds <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>
-        /// to a function.
+        /// to a function, event source mapping, or code signing configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// <param name="cancellationToken">
@@ -6043,7 +6360,7 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Removes <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>
-        /// from a function.
+        /// from a function, event source mapping, or code signing configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -6077,7 +6394,7 @@ namespace Amazon.Lambda
 
         /// <summary>
         /// Removes <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>
-        /// from a function.
+        /// from a function, event source mapping, or code signing configuration.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// <param name="cancellationToken">
@@ -6127,8 +6444,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -6168,8 +6496,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -6306,34 +6645,39 @@ namespace Amazon.Lambda
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The following error handling options are available only for stream sources (DynamoDB
-        /// and Kinesis):
+        /// The following error handling options are available only for DynamoDB and Kinesis event
+        /// sources:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BisectBatchOnFunctionError</code> – If the function returns an error, split
-        /// the batch in two and retry.
+        ///  <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch
+        /// in two and retry.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DestinationConfig</code> – Send discarded records to an Amazon SQS queue or
-        /// Amazon SNS topic.
+        ///  <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRecordAgeInSeconds</code> – Discard records older than the specified
-        /// age. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires
+        ///  <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRetryAttempts</code> – Discard records after the specified number of
-        /// retries. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires.
+        ///  <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
         /// </para>
-        ///  </li> <li> 
+        ///  </li> </ul> 
         /// <para>
-        ///  <code>ParallelizationFactor</code> – Process multiple batches from each shard concurrently.
+        /// For stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka),
+        /// the following option is also available:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>DestinationConfig</c> – Send discarded records to an Amazon SQS queue, Amazon
+        /// SNS topic, or Amazon S3 bucket.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -6458,34 +6802,39 @@ namespace Amazon.Lambda
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The following error handling options are available only for stream sources (DynamoDB
-        /// and Kinesis):
+        /// The following error handling options are available only for DynamoDB and Kinesis event
+        /// sources:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>BisectBatchOnFunctionError</code> – If the function returns an error, split
-        /// the batch in two and retry.
+        ///  <c>BisectBatchOnFunctionError</c> – If the function returns an error, split the batch
+        /// in two and retry.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DestinationConfig</code> – Send discarded records to an Amazon SQS queue or
-        /// Amazon SNS topic.
+        ///  <c>MaximumRecordAgeInSeconds</c> – Discard records older than the specified age.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRecordAgeInSeconds</code> – Discard records older than the specified
-        /// age. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires
+        ///  <c>MaximumRetryAttempts</c> – Discard records after the specified number of retries.
+        /// The default value is infinite (-1). When set to infinite (-1), failed records are
+        /// retried until the record expires.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaximumRetryAttempts</code> – Discard records after the specified number of
-        /// retries. The default value is infinite (-1). When set to infinite (-1), failed records
-        /// are retried until the record expires.
+        ///  <c>ParallelizationFactor</c> – Process multiple batches from each shard concurrently.
         /// </para>
-        ///  </li> <li> 
+        ///  </li> </ul> 
         /// <para>
-        ///  <code>ParallelizationFactor</code> – Process multiple batches from each shard concurrently.
+        /// For stream sources (DynamoDB, Kinesis, Amazon MSK, and self-managed Apache Kafka),
+        /// the following option is also available:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>DestinationConfig</c> – Send discarded records to an Amazon SQS queue, Amazon
+        /// SNS topic, or Amazon S3 bucket.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -6578,21 +6927,21 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// If the function's package type is <code>Image</code>, then you must specify the code
-        /// package in <code>ImageUri</code> as the URI of a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
+        /// If the function's package type is <c>Image</c>, then you must specify the code package
+        /// in <c>ImageUri</c> as the URI of a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
         /// image</a> in the Amazon ECR registry.
         /// </para>
         ///  
         /// <para>
-        /// If the function's package type is <code>Zip</code>, then you must specify the deployment
+        /// If the function's package type is <c>Zip</c>, then you must specify the deployment
         /// package as a <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
         /// file archive</a>. Enter the Amazon S3 bucket and key of the code .zip file location.
-        /// You can also provide the function code inline using the <code>ZipFile</code> field.
+        /// You can also provide the function code inline using the <c>ZipFile</c> field.
         /// </para>
         ///  
         /// <para>
         /// The code in the deployment package must be compatible with the target instruction
-        /// set architecture of the function (<code>x86-64</code> or <code>arm64</code>).
+        /// set architecture of the function (<c>x86-64</c> or <c>arm64</c>).
         /// </para>
         ///  
         /// <para>
@@ -6631,8 +6980,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -6665,21 +7025,21 @@ namespace Amazon.Lambda
         /// 
         ///  
         /// <para>
-        /// If the function's package type is <code>Image</code>, then you must specify the code
-        /// package in <code>ImageUri</code> as the URI of a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
+        /// If the function's package type is <c>Image</c>, then you must specify the code package
+        /// in <c>ImageUri</c> as the URI of a <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html">container
         /// image</a> in the Amazon ECR registry.
         /// </para>
         ///  
         /// <para>
-        /// If the function's package type is <code>Zip</code>, then you must specify the deployment
+        /// If the function's package type is <c>Zip</c>, then you must specify the deployment
         /// package as a <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip">.zip
         /// file archive</a>. Enter the Amazon S3 bucket and key of the code .zip file location.
-        /// You can also provide the function code inline using the <code>ZipFile</code> field.
+        /// You can also provide the function code inline using the <c>ZipFile</c> field.
         /// </para>
         ///  
         /// <para>
         /// The code in the deployment package must be compatible with the target instruction
-        /// set architecture of the function (<code>x86-64</code> or <code>arm64</code>).
+        /// set architecture of the function (<c>x86-64</c> or <c>arm64</c>).
         /// </para>
         ///  
         /// <para>
@@ -6721,8 +7081,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -6760,7 +7131,7 @@ namespace Amazon.Lambda
         /// When you update a function, Lambda provisions an instance of the function and its
         /// supporting resources. If your function connects to a VPC, this process can take a
         /// minute. During this time, you can't modify the function, but you can still invoke
-        /// it. The <code>LastUpdateStatus</code>, <code>LastUpdateStatusReason</code>, and <code>LastUpdateStatusReasonCode</code>
+        /// it. The <c>LastUpdateStatus</c>, <c>LastUpdateStatusReason</c>, and <c>LastUpdateStatusReasonCode</c>
         /// fields in the response from <a>GetFunctionConfiguration</a> indicate when the update
         /// is complete and the function is processing events with the new configuration. For
         /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda
@@ -6775,7 +7146,8 @@ namespace Amazon.Lambda
         ///  
         /// <para>
         /// To configure function concurrency, use <a>PutFunctionConcurrency</a>. To grant invoke
-        /// permissions to an Amazon Web Services account or Amazon Web Service, use <a>AddPermission</a>.
+        /// permissions to an Amazon Web Services account or Amazon Web Services service, use
+        /// <a>AddPermission</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFunctionConfiguration service method.</param>
@@ -6797,8 +7169,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -6832,7 +7215,7 @@ namespace Amazon.Lambda
         /// When you update a function, Lambda provisions an instance of the function and its
         /// supporting resources. If your function connects to a VPC, this process can take a
         /// minute. During this time, you can't modify the function, but you can still invoke
-        /// it. The <code>LastUpdateStatus</code>, <code>LastUpdateStatusReason</code>, and <code>LastUpdateStatusReasonCode</code>
+        /// it. The <c>LastUpdateStatus</c>, <c>LastUpdateStatusReason</c>, and <c>LastUpdateStatusReasonCode</c>
         /// fields in the response from <a>GetFunctionConfiguration</a> indicate when the update
         /// is complete and the function is processing events with the new configuration. For
         /// more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">Lambda
@@ -6847,7 +7230,8 @@ namespace Amazon.Lambda
         ///  
         /// <para>
         /// To configure function concurrency, use <a>PutFunctionConcurrency</a>. To grant invoke
-        /// permissions to an Amazon Web Services account or Amazon Web Service, use <a>AddPermission</a>.
+        /// permissions to an Amazon Web Services account or Amazon Web Services service, use
+        /// <a>AddPermission</a>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateFunctionConfiguration service method.</param>
@@ -6872,8 +7256,19 @@ namespace Amazon.Lambda
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.PreconditionFailedException">
         /// The RevisionId provided does not match the latest RevisionId for the Lambda function
-        /// or alias. Call the <code>GetFunction</code> or the <code>GetAlias</code> API operation
+        /// or alias.
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        ///  <b>For AddPermission and RemovePermission API operations:</b> Call <c>GetPolicy</c>
         /// to retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <b>For all other API operations:</b> Call <c>GetFunction</c> or <c>GetAlias</c> to
+        /// retrieve the latest RevisionId for your resource.
+        /// </para>
+        ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.Lambda.Model.ResourceConflictException">
         /// The resource already exists, or another operation is in progress.
@@ -7067,11 +7462,11 @@ namespace Amazon.Lambda
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

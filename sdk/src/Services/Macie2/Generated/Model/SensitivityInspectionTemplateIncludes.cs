@@ -26,21 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Specifies the allow lists, custom data identifiers, and managed data identifiers to
-    /// include (use) when performing automated sensitive data discovery for an Amazon Macie
-    /// account. The configuration must specify at least one custom data identifier or managed
-    /// data identifier. For information about the managed data identifiers that Amazon Macie
-    /// currently provides, see <a href="https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html">Using
+    /// include (use) when performing automated sensitive data discovery. The configuration
+    /// must specify at least one custom data identifier or managed data identifier. For information
+    /// about the managed data identifiers that Amazon Macie currently provides, see <a href="https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html">Using
     /// managed data identifiers</a> in the <i>Amazon Macie User Guide</i>.
     /// </summary>
     public partial class SensitivityInspectionTemplateIncludes
     {
-        private List<string> _allowListIds = new List<string>();
-        private List<string> _customDataIdentifierIds = new List<string>();
-        private List<string> _managedDataIdentifierIds = new List<string>();
+        private List<string> _allowListIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _customDataIdentifierIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _managedDataIdentifierIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllowListIds. 
@@ -57,7 +57,7 @@ namespace Amazon.Macie2.Model
         // Check to see if AllowListIds property is set
         internal bool IsSetAllowListIds()
         {
-            return this._allowListIds != null && this._allowListIds.Count > 0; 
+            return this._allowListIds != null && (this._allowListIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Amazon.Macie2.Model
         // Check to see if CustomDataIdentifierIds property is set
         internal bool IsSetCustomDataIdentifierIds()
         {
-            return this._customDataIdentifierIds != null && this._customDataIdentifierIds.Count > 0; 
+            return this._customDataIdentifierIds != null && (this._customDataIdentifierIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Amazon.Macie2.Model
         // Check to see if ManagedDataIdentifierIds property is set
         internal bool IsSetManagedDataIdentifierIds()
         {
-            return this._managedDataIdentifierIds != null && this._managedDataIdentifierIds.Count > 0; 
+            return this._managedDataIdentifierIds != null && (this._managedDataIdentifierIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

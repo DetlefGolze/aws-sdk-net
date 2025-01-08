@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -64,8 +65,8 @@ namespace Amazon.Kendra.Model
         /// </para>
         ///  
         /// <para>
-        /// If the document was submitted for deletion, the status is <code>NOT_FOUND</code> after
-        /// the document is deleted.
+        /// If the document was submitted for deletion, the status is <c>NOT_FOUND</c> after the
+        /// document is deleted.
         /// </para>
         /// </summary>
         public DocumentStatus DocumentStatus

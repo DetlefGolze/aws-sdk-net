@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -38,16 +39,16 @@ namespace Amazon.VerifiedPermissions.Model
     /// </para>
     ///  
     /// <para>
-    ///  <code>{ "identifier": { "entityType": "Photo", "entityId": "VacationPhoto94.jpg"
-    /// }, "attributes": {}, "parents": [ { "entityType": "Album", "entityId": "alice_folder"
-    /// } ] }</code> 
+    ///  <c>{ "identifier": { "entityType": "Photo", "entityId": "VacationPhoto94.jpg" },
+    /// "attributes": {}, "parents": [ { "entityType": "Album", "entityId": "alice_folder"
+    /// } ] }</c> 
     /// </para>
     /// </summary>
     public partial class EntityItem
     {
-        private Dictionary<string, AttributeValue> _attributes = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, AttributeValue> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private EntityIdentifier _identifier;
-        private List<EntityIdentifier> _parents = new List<EntityIdentifier>();
+        private List<EntityIdentifier> _parents = AWSConfigs.InitializeCollections ? new List<EntityIdentifier>() : null;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
@@ -64,7 +65,7 @@ namespace Amazon.VerifiedPermissions.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,10 +90,18 @@ namespace Amazon.VerifiedPermissions.Model
         /// <summary>
         /// Gets and sets the property Parents. 
         /// <para>
-        /// The parents in the hierarchy that contains the entity.
+        /// The parent entities in the hierarchy that contains the entity. A principal or resource
+        /// entity can be defined with at most 99 <i>transitive parents</i> per authorization
+        /// request. 
+        /// </para>
+        ///  
+        /// <para>
+        /// A transitive parent is an entity in the hierarchy of entities including all direct
+        /// parents, and parents of parents. For example, a user can be a member of 91 groups
+        /// if one of those groups is a member of eight groups, for a total of 100: one entity,
+        /// 91 entity parents, and eight parents of parents. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=0, Max=100)]
         public List<EntityIdentifier> Parents
         {
             get { return this._parents; }
@@ -102,7 +111,7 @@ namespace Amazon.VerifiedPermissions.Model
         // Check to see if Parents property is set
         internal bool IsSetParents()
         {
-            return this._parents != null && this._parents.Count > 0; 
+            return this._parents != null && (this._parents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

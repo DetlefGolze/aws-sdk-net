@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ConfigService.Model
         /// Gets and sets the property GroupName. 
         /// <para>
         /// The name of the group that can be region, account ID, or resource type. For example,
-        /// region1, region2 if the region was chosen as <code>GroupByKey</code>.
+        /// region1, region2 if the region was chosen as <c>GroupByKey</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]

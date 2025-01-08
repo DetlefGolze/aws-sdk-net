@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.Shield.Model
     /// </summary>
     public partial class SubResourceSummary
     {
-        private List<SummarizedAttackVector> _attackVectors = new List<SummarizedAttackVector>();
-        private List<SummarizedCounter> _counters = new List<SummarizedCounter>();
+        private List<SummarizedAttackVector> _attackVectors = AWSConfigs.InitializeCollections ? new List<SummarizedAttackVector>() : null;
+        private List<SummarizedCounter> _counters = AWSConfigs.InitializeCollections ? new List<SummarizedCounter>() : null;
         private string _id;
         private SubResourceType _type;
 
@@ -53,7 +54,7 @@ namespace Amazon.Shield.Model
         // Check to see if AttackVectors property is set
         internal bool IsSetAttackVectors()
         {
-            return this._attackVectors != null && this._attackVectors.Count > 0; 
+            return this._attackVectors != null && (this._attackVectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -71,13 +72,13 @@ namespace Amazon.Shield.Model
         // Check to see if Counters property is set
         internal bool IsSetCounters()
         {
-            return this._counters != null && this._counters.Count > 0; 
+            return this._counters != null && (this._counters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The unique identifier (ID) of the <code>SubResource</code>.
+        /// The unique identifier (ID) of the <c>SubResource</c>.
         /// </para>
         /// </summary>
         public string Id
@@ -95,7 +96,7 @@ namespace Amazon.Shield.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The <code>SubResource</code> type.
+        /// The <c>SubResource</c> type.
         /// </para>
         /// </summary>
         public SubResourceType Type

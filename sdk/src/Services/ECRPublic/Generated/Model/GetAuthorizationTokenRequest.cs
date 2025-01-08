@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECRPublic.Model
 {
     /// <summary>
@@ -33,8 +34,7 @@ namespace Amazon.ECRPublic.Model
     /// Retrieves an authorization token. An authorization token represents your IAM authentication
     /// credentials. You can use it to access any Amazon ECR registry that your IAM principal
     /// has access to. The authorization token is valid for 12 hours. This API requires the
-    /// <code>ecr-public:GetAuthorizationToken</code> and <code>sts:GetServiceBearerToken</code>
-    /// permissions.
+    /// <c>ecr-public:GetAuthorizationToken</c> and <c>sts:GetServiceBearerToken</c> permissions.
     /// </summary>
     public partial class GetAuthorizationTokenRequest : AmazonECRPublicRequest
     {

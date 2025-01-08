@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMeetings.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <summary>
         /// Gets and sets the property ContentIdentificationType. 
         /// <para>
-        /// Set this field to <code>PHI</code> to identify personal health information in the
-        /// transcription output.
+        /// Set this field to <c>PHI</c> to identify personal health information in the transcription
+        /// output.
         /// </para>
         /// </summary>
         public TranscribeMedicalContentIdentificationType ContentIdentificationType
@@ -81,8 +82,8 @@ namespace Amazon.ChimeSDKMeetings.Model
         /// <summary>
         /// Gets and sets the property Region. 
         /// <para>
-        /// The AWS Region passed to Amazon Transcribe Medical. If you don't specify a Region,
-        /// Amazon Chime uses the meeting's Region. 
+        /// The Amazon Web Services Region passed to Amazon Transcribe Medical. If you don't specify
+        /// a Region, Amazon Chime uses the meeting's Region. 
         /// </para>
         /// </summary>
         public TranscribeMedicalRegion Region

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -72,8 +73,8 @@ namespace Amazon.KinesisAnalytics.Model
         /// <summary>
         /// Gets and sets the property CloudWatchLoggingOptionId. 
         /// <para>
-        /// The <code>CloudWatchLoggingOptionId</code> of the CloudWatch logging option to delete.
-        /// You can get the <code>CloudWatchLoggingOptionId</code> by using the <a href="https://docs.aws.amazon.com/kinesisanalytics/latest/dev/API_DescribeApplication.html">DescribeApplication</a>
+        /// The <c>CloudWatchLoggingOptionId</c> of the CloudWatch logging option to delete. You
+        /// can get the <c>CloudWatchLoggingOptionId</c> by using the <a href="https://docs.aws.amazon.com/kinesisanalytics/latest/dev/API_DescribeApplication.html">DescribeApplication</a>
         /// operation. 
         /// </para>
         /// </summary>

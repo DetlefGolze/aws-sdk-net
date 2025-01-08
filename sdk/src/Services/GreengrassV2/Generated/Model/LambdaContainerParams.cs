@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.GreengrassV2.Model
     /// </summary>
     public partial class LambdaContainerParams
     {
-        private List<LambdaDeviceMount> _devices = new List<LambdaDeviceMount>();
+        private List<LambdaDeviceMount> _devices = AWSConfigs.InitializeCollections ? new List<LambdaDeviceMount>() : null;
         private int? _memorySizeInKB;
         private bool? _mountroSysfs;
-        private List<LambdaVolumeMount> _volumes = new List<LambdaVolumeMount>();
+        private List<LambdaVolumeMount> _volumes = AWSConfigs.InitializeCollections ? new List<LambdaVolumeMount>() : null;
 
         /// <summary>
         /// Gets and sets the property Devices. 
@@ -54,7 +55,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if Devices property is set
         internal bool IsSetDevices()
         {
-            return this._devices != null && this._devices.Count > 0; 
+            return this._devices != null && (this._devices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.GreengrassV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>16384</code> (16 MB)
+        /// Default: <c>16384</c> (16 MB)
         /// </para>
         /// </summary>
         public int MemorySizeInKB
@@ -82,12 +83,11 @@ namespace Amazon.GreengrassV2.Model
         /// <summary>
         /// Gets and sets the property MountROSysfs. 
         /// <para>
-        /// Whether or not the container can read information from the device's <code>/sys</code>
-        /// folder.
+        /// Whether or not the container can read information from the device's <c>/sys</c> folder.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool MountROSysfs
@@ -117,7 +117,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if Volumes property is set
         internal bool IsSetVolumes()
         {
-            return this._volumes != null && this._volumes.Count > 0; 
+            return this._volumes != null && (this._volumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

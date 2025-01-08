@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -108,6 +109,30 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Paginator for ListClusterNodes operation
+        ///</summary>
+        public IListClusterNodesPaginator ListClusterNodes(ListClusterNodesRequest request) 
+        {
+            return new ListClusterNodesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListClusters operation
+        ///</summary>
+        public IListClustersPaginator ListClusters(ListClustersRequest request) 
+        {
+            return new ListClustersPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListClusterSchedulerConfigs operation
+        ///</summary>
+        public IListClusterSchedulerConfigsPaginator ListClusterSchedulerConfigs(ListClusterSchedulerConfigsRequest request) 
+        {
+            return new ListClusterSchedulerConfigsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListCodeRepositories operation
         ///</summary>
         public IListCodeRepositoriesPaginator ListCodeRepositories(ListCodeRepositoriesRequest request) 
@@ -121,6 +146,14 @@ namespace Amazon.SageMaker.Model
         public IListCompilationJobsPaginator ListCompilationJobs(ListCompilationJobsRequest request) 
         {
             return new ListCompilationJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListComputeQuotas operation
+        ///</summary>
+        public IListComputeQuotasPaginator ListComputeQuotas(ListComputeQuotasRequest request) 
+        {
+            return new ListComputeQuotasPaginator(this.client, request);
         }
 
         /// <summary>
@@ -252,6 +285,14 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Paginator for ListInferenceComponents operation
+        ///</summary>
+        public IListInferenceComponentsPaginator ListInferenceComponents(ListInferenceComponentsRequest request) 
+        {
+            return new ListInferenceComponentsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListInferenceExperiments operation
         ///</summary>
         public IListInferenceExperimentsPaginator ListInferenceExperiments(ListInferenceExperimentsRequest request) 
@@ -297,6 +338,14 @@ namespace Amazon.SageMaker.Model
         public IListLineageGroupsPaginator ListLineageGroups(ListLineageGroupsRequest request) 
         {
             return new ListLineageGroupsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListMlflowTrackingServers operation
+        ///</summary>
+        public IListMlflowTrackingServersPaginator ListMlflowTrackingServers(ListMlflowTrackingServersRequest request) 
+        {
+            return new ListMlflowTrackingServersPaginator(this.client, request);
         }
 
         /// <summary>
@@ -428,6 +477,22 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Paginator for ListOptimizationJobs operation
+        ///</summary>
+        public IListOptimizationJobsPaginator ListOptimizationJobs(ListOptimizationJobsRequest request) 
+        {
+            return new ListOptimizationJobsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListPartnerApps operation
+        ///</summary>
+        public IListPartnerAppsPaginator ListPartnerApps(ListPartnerAppsRequest request) 
+        {
+            return new ListPartnerAppsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListPipelineExecutions operation
         ///</summary>
         public IListPipelineExecutionsPaginator ListPipelineExecutions(ListPipelineExecutionsRequest request) 
@@ -537,6 +602,14 @@ namespace Amazon.SageMaker.Model
         public IListTrainingJobsForHyperParameterTuningJobPaginator ListTrainingJobsForHyperParameterTuningJob(ListTrainingJobsForHyperParameterTuningJobRequest request) 
         {
             return new ListTrainingJobsForHyperParameterTuningJobPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListTrainingPlans operation
+        ///</summary>
+        public IListTrainingPlansPaginator ListTrainingPlans(ListTrainingPlansRequest request) 
+        {
+            return new ListTrainingPlansPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -36,10 +37,29 @@ namespace Amazon.Redshift.Model
     /// </summary>
     public partial class AssociateDataShareConsumerRequest : AmazonRedshiftRequest
     {
+        private bool? _allowWrites;
         private bool? _associateEntireAccount;
         private string _consumerArn;
         private string _consumerRegion;
         private string _dataShareArn;
+
+        /// <summary>
+        /// Gets and sets the property AllowWrites. 
+        /// <para>
+        /// If set to true, allows write operations for a datashare.
+        /// </para>
+        /// </summary>
+        public bool AllowWrites
+        {
+            get { return this._allowWrites.GetValueOrDefault(); }
+            set { this._allowWrites = value; }
+        }
+
+        // Check to see if AllowWrites property is set
+        internal bool IsSetAllowWrites()
+        {
+            return this._allowWrites.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property AssociateEntireAccount. 
@@ -62,7 +82,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property ConsumerArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the consumer that is associated with the datashare.
+        /// The Amazon Resource Name (ARN) of the consumer namespace associated with the datashare.
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -101,8 +121,7 @@ namespace Amazon.Redshift.Model
         /// <summary>
         /// Gets and sets the property DataShareArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the datashare that the consumer is to use with the
-        /// account or the namespace.
+        /// The Amazon Resource Name (ARN) of the datashare that the consumer is to use.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=2147483647)]

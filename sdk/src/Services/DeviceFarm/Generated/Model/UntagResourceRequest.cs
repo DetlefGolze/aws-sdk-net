@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -35,15 +36,15 @@ namespace Amazon.DeviceFarm.Model
     public partial class UntagResourceRequest : AmazonDeviceFarmRequest
     {
         private string _resourceARN;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the resource or resources from which to delete tags.
-        /// You can associate tags with the following Device Farm resources: <code>PROJECT</code>,
-        /// <code>RUN</code>, <code>NETWORK_PROFILE</code>, <code>INSTANCE_PROFILE</code>, <code>DEVICE_INSTANCE</code>,
-        /// <code>SESSION</code>, <code>DEVICE_POOL</code>, <code>DEVICE</code>, and <code>VPCE_CONFIGURATION</code>.
+        /// You can associate tags with the following Device Farm resources: <c>PROJECT</c>, <c>RUN</c>,
+        /// <c>NETWORK_PROFILE</c>, <c>INSTANCE_PROFILE</c>, <c>DEVICE_INSTANCE</c>, <c>SESSION</c>,
+        /// <c>DEVICE_POOL</c>, <c>DEVICE</c>, and <c>VPCE_CONFIGURATION</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=32, Max=1011)]
@@ -75,7 +76,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

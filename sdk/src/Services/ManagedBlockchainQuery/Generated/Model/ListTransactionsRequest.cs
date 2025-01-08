@@ -26,15 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTransactions operation.
-    /// Lists all of the transactions on a given wallet address or to a specific contract.
+    /// Lists all the transaction events for a transaction.
     /// </summary>
     public partial class ListTransactionsRequest : AmazonManagedBlockchainQueryRequest
     {
         private string _address;
+        private ConfirmationStatusFilter _confirmationStatusFilter;
         private BlockchainInstant _fromBlockchainInstant;
         private int? _maxResults;
         private QueryNetwork _network;
@@ -62,6 +64,27 @@ namespace Amazon.ManagedBlockchainQuery.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConfirmationStatusFilter. 
+        /// <para>
+        /// This filter is used to include transactions in the response that haven't reached <a
+        /// href="https://docs.aws.amazon.com/managed-blockchain/latest/ambq-dg/key-concepts.html#finality">
+        /// <i>finality</i> </a>. Transactions that have reached finality are always part of the
+        /// response.
+        /// </para>
+        /// </summary>
+        public ConfirmationStatusFilter ConfirmationStatusFilter
+        {
+            get { return this._confirmationStatusFilter; }
+            set { this._confirmationStatusFilter = value; }
+        }
+
+        // Check to see if ConfirmationStatusFilter property is set
+        internal bool IsSetConfirmationStatusFilter()
+        {
+            return this._confirmationStatusFilter != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property FromBlockchainInstant.
         /// </summary>
         public BlockchainInstant FromBlockchainInstant
@@ -81,16 +104,20 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <para>
         /// The maximum number of transactions to list.
         /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>100</c> 
+        /// </para>
         ///  <note> 
         /// <para>
         /// Even if additional results can be retrieved, the request can return less results than
-        /// <code>maxResults</code> or an empty array of results.
+        /// <c>maxResults</c> or an empty array of results.
         /// </para>
         ///  
         /// <para>
-        /// To retrieve the next set of results, make another request with the returned <code>nextToken</code>
-        /// value. The value of <code>nextToken</code> is <code>null</code> when there are no
-        /// more results to return
+        /// To retrieve the next set of results, make another request with the returned <c>nextToken</c>
+        /// value. The value of <c>nextToken</c> is <c>null</c> when there are no more results
+        /// to return
         /// </para>
         ///  </note>
         /// </summary>
@@ -148,8 +175,7 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property Sort. 
         /// <para>
-        /// Sorts items in an ascending order if the first page starts at <code>fromTime</code>.
-        /// Sorts items in a descending order if the first page starts at <code>toTime</code>.
+        /// The order by which the results will be sorted. 
         /// </para>
         /// </summary>
         public ListTransactionsSort Sort

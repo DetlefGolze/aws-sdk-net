@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAccessKey operation.
     /// Creates a new Amazon Web Services secret access key and corresponding Amazon Web
     /// Services access key ID for the specified user. The default status for new keys is
-    /// <code>Active</code>.
+    /// <c>Active</c>.
     /// 
     ///  
     /// <para>

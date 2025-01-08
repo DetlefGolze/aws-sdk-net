@@ -26,20 +26,44 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Container for the parameters to the AdminUserGlobalSignOut operation.
-    /// Signs out a user from all devices. <code>AdminUserGlobalSignOut</code> invalidates
-    /// all identity, access and refresh tokens that Amazon Cognito has issued to a user.
-    /// A user can still use a hosted UI cookie to retrieve new tokens for the duration of
-    /// the 1-hour cookie validity period.
+    /// Invalidates the identity, access, and refresh tokens that Amazon Cognito issued to
+    /// a user. Call this operation with your administrative credentials when your user signs
+    /// out of your app. This results in the following behavior.
     /// 
+    ///  <ul> <li> 
+    /// <para>
+    /// Amazon Cognito no longer accepts <i>token-authorized</i> user operations that you
+    /// authorize with a signed-out user's access tokens. For more information, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
+    /// </para>
     ///  
     /// <para>
-    /// Your app isn't aware that a user's access token is revoked unless it attempts to authorize
-    /// a user pools API request with an access token that contains the scope <code>aws.cognito.signin.user.admin</code>.
-    /// Your app might otherwise accept access tokens until they expire.
+    /// Amazon Cognito returns an <c>Access Token has been revoked</c> error when your app
+    /// attempts to authorize a user pools API request with a revoked access token that contains
+    /// the scope <c>aws.cognito.signin.user.admin</c>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Amazon Cognito no longer accepts a signed-out user's ID token in a <a href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html">GetId
+    /// </a> request to an identity pool with <c>ServerSideTokenCheck</c> enabled for its
+    /// user pool IdP configuration in <a href="https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html">CognitoIdentityProvider</a>.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Amazon Cognito no longer accepts a signed-out user's refresh tokens in refresh requests.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// Other requests might be valid until your user's token expires. This operation doesn't
+    /// clear the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managed-login.html">managed
+    /// login</a> session cookie. To clear the session for a user who signed in with managed
+    /// login or the classic hosted UI, direct their browser session to the <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/logout-endpoint.html">logout
+    /// endpoint</a>.
     /// </para>
     ///  <note> 
     /// <para>
@@ -71,7 +95,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user name.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]
@@ -90,7 +117,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID.
+        /// The ID of the user pool where you want to sign out a user.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

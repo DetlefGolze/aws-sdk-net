@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ProductionVariant requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAcceleratorType())
             {
                 context.Writer.WritePropertyName("AcceleratorType");
@@ -74,6 +77,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 context.Writer.Write(requestObject.EnableSSMAccess);
             }
 
+            if(requestObject.IsSetInferenceAmiVersion())
+            {
+                context.Writer.WritePropertyName("InferenceAmiVersion");
+                context.Writer.Write(requestObject.InferenceAmiVersion);
+            }
+
             if(requestObject.IsSetInitialInstanceCount())
             {
                 context.Writer.WritePropertyName("InitialInstanceCount");
@@ -83,13 +92,31 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             if(requestObject.IsSetInitialVariantWeight())
             {
                 context.Writer.WritePropertyName("InitialVariantWeight");
-                context.Writer.Write(requestObject.InitialVariantWeight);
+                if(StringUtils.IsSpecialFloatValue(requestObject.InitialVariantWeight))
+                {
+                    context.Writer.Write(StringUtils.FromSpecialFloatValue(requestObject.InitialVariantWeight));
+                }
+                else
+                {
+                    context.Writer.Write(requestObject.InitialVariantWeight);
+                }
             }
 
             if(requestObject.IsSetInstanceType())
             {
                 context.Writer.WritePropertyName("InstanceType");
                 context.Writer.Write(requestObject.InstanceType);
+            }
+
+            if(requestObject.IsSetManagedInstanceScaling())
+            {
+                context.Writer.WritePropertyName("ManagedInstanceScaling");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ProductionVariantManagedInstanceScalingMarshaller.Instance;
+                marshaller.Marshall(requestObject.ManagedInstanceScaling, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetModelDataDownloadTimeoutInSeconds())
@@ -102,6 +129,17 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("ModelName");
                 context.Writer.Write(requestObject.ModelName);
+            }
+
+            if(requestObject.IsSetRoutingConfig())
+            {
+                context.Writer.WritePropertyName("RoutingConfig");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ProductionVariantRoutingConfigMarshaller.Instance;
+                marshaller.Marshall(requestObject.RoutingConfig, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetServerlessConfig())

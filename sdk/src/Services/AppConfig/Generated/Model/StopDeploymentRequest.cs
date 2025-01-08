@@ -26,18 +26,42 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppConfig.Model
 {
     /// <summary>
     /// Container for the parameters to the StopDeployment operation.
     /// Stops a deployment. This API action works only on deployments that have a status of
-    /// <code>DEPLOYING</code>. This action moves the deployment to a status of <code>ROLLED_BACK</code>.
+    /// <c>DEPLOYING</c>, unless an <c>AllowRevert</c> parameter is supplied. If the <c>AllowRevert</c>
+    /// parameter is supplied, the status of an in-progress deployment will be <c>ROLLED_BACK</c>.
+    /// The status of a completed deployment will be <c>REVERTED</c>. AppConfig only allows
+    /// a revert within 72 hours of deployment completion.
     /// </summary>
     public partial class StopDeploymentRequest : AmazonAppConfigRequest
     {
+        private bool? _allowRevert;
         private string _applicationId;
         private int? _deploymentNumber;
         private string _environmentId;
+
+        /// <summary>
+        /// Gets and sets the property AllowRevert. 
+        /// <para>
+        /// A Boolean that enables AppConfig to rollback a <c>COMPLETED</c> deployment to the
+        /// previous configuration version. This action moves the deployment to a status of <c>REVERTED</c>.
+        /// </para>
+        /// </summary>
+        public bool AllowRevert
+        {
+            get { return this._allowRevert.GetValueOrDefault(); }
+            set { this._allowRevert = value; }
+        }
+
+        // Check to see if AllowRevert property is set
+        internal bool IsSetAllowRevert()
+        {
+            return this._allowRevert.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property ApplicationId. 

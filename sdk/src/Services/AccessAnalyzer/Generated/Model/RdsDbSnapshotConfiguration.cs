@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
     /// The proposed access control configuration for an Amazon RDS DB snapshot. You can propose
     /// a configuration for a new Amazon RDS DB snapshot or an Amazon RDS DB snapshot that
-    /// you own by specifying the <code>RdsDbSnapshotAttributeValue</code> and optional KMS
-    /// encryption key. For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ModifyDBSnapshotAttribute.html">ModifyDBSnapshotAttribute</a>.
+    /// you own by specifying the <c>RdsDbSnapshotAttributeValue</c> and optional KMS encryption
+    /// key. For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ModifyDBSnapshotAttribute.html">ModifyDBSnapshotAttribute</a>.
     /// </summary>
     public partial class RdsDbSnapshotConfiguration
     {
-        private Dictionary<string, RdsDbSnapshotAttributeValue> _attributes = new Dictionary<string, RdsDbSnapshotAttributeValue>();
+        private Dictionary<string, RdsDbSnapshotAttributeValue> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, RdsDbSnapshotAttributeValue>() : null;
         private string _kmsKeyId;
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.AccessAnalyzer.Model
         /// <para>
         /// The names and values of manual DB snapshot attributes. Manual DB snapshot attributes
         /// are used to authorize other Amazon Web Services accounts to restore a manual DB snapshot.
-        /// The only valid value for <code>attributeName</code> for the attribute map is restore.
+        /// The only valid value for <c>attributeName</c> for the attribute map is restore.
         /// </para>
         /// </summary>
         public Dictionary<string, RdsDbSnapshotAttributeValue> Attributes
@@ -56,7 +57,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -68,13 +69,13 @@ namespace Amazon.AccessAnalyzer.Model
         ///  <ul> <li> 
         /// <para>
         /// If the configuration is for an existing Amazon RDS DB snapshot and you do not specify
-        /// the <code>kmsKeyId</code>, or you specify an empty string, then the access preview
-        /// uses the existing <code>kmsKeyId</code> of the snapshot.
+        /// the <c>kmsKeyId</c>, or you specify an empty string, then the access preview uses
+        /// the existing <c>kmsKeyId</c> of the snapshot.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// If the access preview is for a new resource and you do not specify the specify the
-        /// <code>kmsKeyId</code>, then the access preview considers the snapshot as unencrypted.
+        /// <c>kmsKeyId</c>, then the access preview considers the snapshot as unencrypted.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(VariableValue requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetHierarchyId())
             {
                 context.Writer.WritePropertyName("hierarchyId");
@@ -55,6 +58,22 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("propertyId");
                 context.Writer.Write(requestObject.PropertyId);
+            }
+
+            if(requestObject.IsSetPropertyPath())
+            {
+                context.Writer.WritePropertyName("propertyPath");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectPropertyPathListValue in requestObject.PropertyPath)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AssetModelPropertyPathSegmentMarshaller.Instance;
+                    marshaller.Marshall(requestObjectPropertyPathListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
             }
 
         }

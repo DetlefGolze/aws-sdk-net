@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// Once a game server is successfully registered, it is put in status <code>AVAILABLE</code>.
+    /// Once a game server is successfully registered, it is put in status <c>AVAILABLE</c>.
     /// A request to register a game server may fail if the instance it is running on is in
     /// the process of shutting down as part of instance balancing or scale-down activity.
     /// 
@@ -158,7 +159,7 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The unique identifier for the instance where the game server is running. This ID is
         /// available in the instance metadata. EC2 instance IDs use a 17-character format, for
-        /// example: <code>i-1234567890abcdef0</code>.
+        /// example: <c>i-1234567890abcdef0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=19, Max=19)]

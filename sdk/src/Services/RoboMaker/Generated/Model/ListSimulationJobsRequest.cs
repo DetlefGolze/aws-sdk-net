@@ -26,16 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the ListSimulationJobs operation.
+    /// <important> 
+    /// <para>
+    /// End of support notice: On September 10, 2025, Amazon Web Services will discontinue
+    /// support for Amazon Web Services RoboMaker. After September 10, 2025, you will no longer
+    /// be able to access the Amazon Web Services RoboMaker console or Amazon Web Services
+    /// RoboMaker resources. For more information on transitioning to Batch to help run containerized
+    /// simulations, visit <a href="https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/">https://aws.amazon.com/blogs/hpc/run-simulations-using-multiple-containers-in-a-single-aws-batch-job/</a>.
+    /// 
+    /// </para>
+    ///  </important> 
+    /// <para>
     /// Returns a list of simulation jobs. You can optionally provide filters to retrieve
-    /// specific simulation jobs.
+    /// specific simulation jobs. 
+    /// </para>
     /// </summary>
     public partial class ListSimulationJobsRequest : AmazonRoboMakerRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -46,11 +59,10 @@ namespace Amazon.RoboMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// The filter names <code>status</code> and <code>simulationApplicationName</code> and
-        /// <code>robotApplicationName</code> are supported. When filtering, you must use the
-        /// complete value of the filtered item. You can use up to three filters, but they must
-        /// be for the same named item. For example, if you are looking for items with the status
-        /// <code>Preparing</code> or the status <code>Running</code>.
+        /// The filter names <c>status</c> and <c>simulationApplicationName</c> and <c>robotApplicationName</c>
+        /// are supported. When filtering, you must use the complete value of the filtered item.
+        /// You can use up to three filters, but they must be for the same named item. For example,
+        /// if you are looking for items with the status <c>Preparing</c> or the status <c>Running</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -63,18 +75,18 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// When this parameter is used, <code>ListSimulationJobs</code> only returns <code>maxResults</code>
-        /// results in a single page along with a <code>nextToken</code> response element. The
-        /// remaining results of the initial request can be seen by sending another <code>ListSimulationJobs</code>
-        /// request with the returned <code>nextToken</code> value. This value can be between
-        /// 1 and 1000. If this parameter is not used, then <code>ListSimulationJobs</code> returns
-        /// up to 1000 results and a <code>nextToken</code> value if applicable. 
+        /// When this parameter is used, <c>ListSimulationJobs</c> only returns <c>maxResults</c>
+        /// results in a single page along with a <c>nextToken</c> response element. The remaining
+        /// results of the initial request can be seen by sending another <c>ListSimulationJobs</c>
+        /// request with the returned <c>nextToken</c> value. This value can be between 1 and
+        /// 1000. If this parameter is not used, then <c>ListSimulationJobs</c> returns up to
+        /// 1000 results and a <c>nextToken</c> value if applicable. 
         /// </para>
         /// </summary>
         public int MaxResults
@@ -93,10 +105,10 @@ namespace Amazon.RoboMaker.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous paginated request did not return all of the remaining results, the
-        /// response object's <code>nextToken</code> parameter value is set to a token. To retrieve
-        /// the next set of results, call <code>ListSimulationJobs</code> again and assign that
-        /// token to the request object's <code>nextToken</code> parameter. If there are no remaining
-        /// results, the previous response object's NextToken parameter is set to null. 
+        /// response object's <c>nextToken</c> parameter value is set to a token. To retrieve
+        /// the next set of results, call <c>ListSimulationJobs</c> again and assign that token
+        /// to the request object's <c>nextToken</c> parameter. If there are no remaining results,
+        /// the previous response object's NextToken parameter is set to null. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

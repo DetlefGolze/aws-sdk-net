@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -39,8 +40,10 @@ namespace Amazon.StepFunctions.Model
         private ActivityStartedEventDetails _activityStartedEventDetails;
         private ActivitySucceededEventDetails _activitySucceededEventDetails;
         private ActivityTimedOutEventDetails _activityTimedOutEventDetails;
+        private EvaluationFailedEventDetails _evaluationFailedEventDetails;
         private ExecutionAbortedEventDetails _executionAbortedEventDetails;
         private ExecutionFailedEventDetails _executionFailedEventDetails;
+        private ExecutionRedrivenEventDetails _executionRedrivenEventDetails;
         private ExecutionStartedEventDetails _executionStartedEventDetails;
         private ExecutionSucceededEventDetails _executionSucceededEventDetails;
         private ExecutionTimedOutEventDetails _executionTimedOutEventDetails;
@@ -56,6 +59,7 @@ namespace Amazon.StepFunctions.Model
         private MapIterationEventDetails _mapIterationStartedEventDetails;
         private MapIterationEventDetails _mapIterationSucceededEventDetails;
         private MapRunFailedEventDetails _mapRunFailedEventDetails;
+        private MapRunRedrivenEventDetails _mapRunRedrivenEventDetails;
         private MapRunStartedEventDetails _mapRunStartedEventDetails;
         private MapStateStartedEventDetails _mapStateStartedEventDetails;
         private long? _previousEventId;
@@ -166,6 +170,24 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EvaluationFailedEventDetails. 
+        /// <para>
+        /// Contains details about an evaluation failure that occurred while processing a state.
+        /// </para>
+        /// </summary>
+        public EvaluationFailedEventDetails EvaluationFailedEventDetails
+        {
+            get { return this._evaluationFailedEventDetails; }
+            set { this._evaluationFailedEventDetails = value; }
+        }
+
+        // Check to see if EvaluationFailedEventDetails property is set
+        internal bool IsSetEvaluationFailedEventDetails()
+        {
+            return this._evaluationFailedEventDetails != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ExecutionAbortedEventDetails.
         /// </summary>
         public ExecutionAbortedEventDetails ExecutionAbortedEventDetails
@@ -193,6 +215,24 @@ namespace Amazon.StepFunctions.Model
         internal bool IsSetExecutionFailedEventDetails()
         {
             return this._executionFailedEventDetails != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExecutionRedrivenEventDetails. 
+        /// <para>
+        /// Contains details about the redrive attempt of an execution.
+        /// </para>
+        /// </summary>
+        public ExecutionRedrivenEventDetails ExecutionRedrivenEventDetails
+        {
+            get { return this._executionRedrivenEventDetails; }
+            set { this._executionRedrivenEventDetails = value; }
+        }
+
+        // Check to see if ExecutionRedrivenEventDetails property is set
+        internal bool IsSetExecutionRedrivenEventDetails()
+        {
+            return this._executionRedrivenEventDetails != null;
         }
 
         /// <summary>
@@ -446,11 +486,28 @@ namespace Amazon.StepFunctions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MapRunRedrivenEventDetails. 
+        /// <para>
+        /// Contains details about the redrive attempt of a Map Run.
+        /// </para>
+        /// </summary>
+        public MapRunRedrivenEventDetails MapRunRedrivenEventDetails
+        {
+            get { return this._mapRunRedrivenEventDetails; }
+            set { this._mapRunRedrivenEventDetails = value; }
+        }
+
+        // Check to see if MapRunRedrivenEventDetails property is set
+        internal bool IsSetMapRunRedrivenEventDetails()
+        {
+            return this._mapRunRedrivenEventDetails != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property MapRunStartedEventDetails. 
         /// <para>
-        /// Contains details, such as <code>mapRunArn</code>, and the start date and time of a
-        /// Map Run. <code>mapRunArn</code> is the Amazon Resource Name (ARN) of the Map Run that
-        /// was started.
+        /// Contains details, such as <c>mapRunArn</c>, and the start date and time of a Map Run.
+        /// <c>mapRunArn</c> is the Amazon Resource Name (ARN) of the Map Run that was started.
         /// </para>
         /// </summary>
         public MapRunStartedEventDetails MapRunStartedEventDetails

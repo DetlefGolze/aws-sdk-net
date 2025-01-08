@@ -24,6 +24,11 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
      /// </summary>
     public class BucketUnmarshaller : IUnmarshaller<S3Bucket, XmlUnmarshallerContext>, IUnmarshaller<S3Bucket, JsonUnmarshallerContext> 
     {
+        /// <summary>
+        /// Unmarshaller the response from the service to the response class.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public S3Bucket Unmarshall(XmlUnmarshallerContext context) 
         {
             S3Bucket bucket = new S3Bucket();
@@ -49,6 +54,12 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
                             
                         continue;
                     }
+                    if (context.TestExpression("BucketRegion", targetDepth))
+                    {
+                        bucket.BucketRegion = StringUnmarshaller.GetInstance().Unmarshall(context);
+
+                        continue;
+                    }
                 }
                 else if (context.IsEndElement && context.CurrentDepth < originalDepth)
                 {
@@ -61,6 +72,11 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
             return bucket;
         }
 
+        /// <summary>
+        /// Not implemented and always returns null.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public S3Bucket Unmarshall(JsonUnmarshallerContext context) 
         {
             return null;
@@ -68,6 +84,9 @@ namespace Amazon.S3.Model.Internal.MarshallTransformations
 
         private static BucketUnmarshaller _instance;
 
+        /// <summary>
+        /// Singleton for the unmarshaller
+        /// </summary>
         public static BucketUnmarshaller Instance
         {
             get

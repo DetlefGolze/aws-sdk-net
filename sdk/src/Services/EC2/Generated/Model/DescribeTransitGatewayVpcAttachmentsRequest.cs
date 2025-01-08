@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,10 +36,10 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeTransitGatewayVpcAttachmentsRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _transitGatewayAttachmentIds = new List<string>();
+        private List<string> _transitGatewayAttachmentIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -47,22 +48,22 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>state</code> - The state of the attachment. Valid values are <code>available</code>
-        /// | <code>deleted</code> | <code>deleting</code> | <code>failed</code> | <code>failing</code>
-        /// | <code>initiatingRequest</code> | <code>modifying</code> | <code>pendingAcceptance</code>
-        /// | <code>pending</code> | <code>rollingBack</code> | <code>rejected</code> | <code>rejecting</code>.
+        ///  <c>state</c> - The state of the attachment. Valid values are <c>available</c> | <c>deleted</c>
+        /// | <c>deleting</c> | <c>failed</c> | <c>failing</c> | <c>initiatingRequest</c> | <c>modifying</c>
+        /// | <c>pendingAcceptance</c> | <c>pending</c> | <c>rollingBack</c> | <c>rejected</c>
+        /// | <c>rejecting</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-attachment-id</code> - The ID of the attachment.
+        ///  <c>transit-gateway-attachment-id</c> - The ID of the attachment.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-id</code> - The ID of the transit gateway.
+        ///  <c>transit-gateway-id</c> - The ID of the transit gateway.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vpc-id</code> - The ID of the VPC.
+        ///  <c>vpc-id</c> - The ID of the VPC.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -75,14 +76,14 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return with a single call. To retrieve the remaining
-        /// results, make another call with the returned <code>nextToken</code> value.
+        /// results, make another call with the returned <c>nextToken</c> value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1000)]
@@ -131,7 +132,7 @@ namespace Amazon.EC2.Model
         // Check to see if TransitGatewayAttachmentIds property is set
         internal bool IsSetTransitGatewayAttachmentIds()
         {
-            return this._transitGatewayAttachmentIds != null && this._transitGatewayAttachmentIds.Count > 0; 
+            return this._transitGatewayAttachmentIds != null && (this._transitGatewayAttachmentIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

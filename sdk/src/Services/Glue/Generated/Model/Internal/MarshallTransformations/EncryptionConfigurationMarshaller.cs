@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(EncryptionConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCloudWatchEncryption())
             {
                 context.Writer.WritePropertyName("CloudWatchEncryption");
@@ -52,6 +55,17 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
 
                 var marshaller = CloudWatchEncryptionMarshaller.Instance;
                 marshaller.Marshall(requestObject.CloudWatchEncryption, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetDataQualityEncryption())
+            {
+                context.Writer.WritePropertyName("DataQualityEncryption");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = DataQualityEncryptionMarshaller.Instance;
+                marshaller.Marshall(requestObject.DataQualityEncryption, context);
 
                 context.Writer.WriteObjectEnd();
             }

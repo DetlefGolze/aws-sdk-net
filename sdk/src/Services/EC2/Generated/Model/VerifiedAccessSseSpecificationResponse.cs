@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
-    /// Describes the options in use for server side encryption.
+    /// The options in use for server side encryption.
     /// </summary>
     public partial class VerifiedAccessSseSpecificationResponse
     {
@@ -39,11 +40,11 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property CustomerManagedKeyEnabled. 
         /// <para>
-        ///  Describes the use of customer managed KMS keys for server side encryption. 
+        /// Indicates whether customer managed KMS keys are in use for server side encryption.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>True</code> | <code>False</code> 
+        /// Valid values: <c>True</c> | <c>False</c> 
         /// </para>
         /// </summary>
         public bool CustomerManagedKeyEnabled
@@ -61,7 +62,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property KmsKeyArn. 
         /// <para>
-        ///  Describes the ARN of the KMS key. 
+        /// The ARN of the KMS key.
         /// </para>
         /// </summary>
         public string KmsKeyArn

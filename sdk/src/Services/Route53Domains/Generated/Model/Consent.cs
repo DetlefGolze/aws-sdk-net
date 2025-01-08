@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Route53Domains.Model
         /// <summary>
         /// Gets and sets the property Currency. 
         /// <para>
-        ///  Currency for the <code>MaxPrice</code>. 
+        ///  Currency for the <c>MaxPrice</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=3)]
@@ -61,7 +62,7 @@ namespace Amazon.Route53Domains.Model
         ///  Maximum amount the customer agreed to accept. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=0)]
         public double MaxPrice
         {
             get { return this._maxPrice.GetValueOrDefault(); }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -35,11 +36,7 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// You can't export snapshot data from RDS Custom DB instances.
-    /// </para>
-    ///  
-    /// <para>
-    /// You can't export cluster data from Multi-AZ DB clusters.
+    /// You can't export snapshot data from Db2 or RDS Custom DB instances.
     /// </para>
     ///  
     /// <para>
@@ -55,7 +52,7 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class StartExportTaskRequest : AmazonRDSRequest
     {
-        private List<string> _exportOnly = new List<string>();
+        private List<string> _exportOnly = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _exportTaskIdentifier;
         private string _iamRoleArn;
         private string _kmsKeyId;
@@ -75,23 +72,22 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>database</code> - Export all the data from a specified database.
+        ///  <c>database</c> - Export all the data from a specified database.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>database.table</code> <i>table-name</i> - Export a table of the snapshot or
-        /// cluster. This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora
-        /// MySQL.
+        ///  <c>database.table</c> <i>table-name</i> - Export a table of the snapshot or cluster.
+        /// This format is valid only for RDS for MySQL, RDS for MariaDB, and Aurora MySQL.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>database.schema</code> <i>schema-name</i> - Export a database schema of the
-        /// snapshot or cluster. This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
+        ///  <c>database.schema</c> <i>schema-name</i> - Export a database schema of the snapshot
+        /// or cluster. This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>database.schema.table</code> <i>table-name</i> - Export a table of the database
-        /// schema. This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
+        ///  <c>database.schema.table</c> <i>table-name</i> - Export a table of the database schema.
+        /// This format is valid only for RDS for PostgreSQL and Aurora PostgreSQL.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -104,7 +100,7 @@ namespace Amazon.RDS.Model
         // Check to see if ExportOnly property is set
         internal bool IsSetExportOnly()
         {
-            return this._exportOnly != null && this._exportOnly.Count > 0; 
+            return this._exportOnly != null && (this._exportOnly.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -166,11 +162,11 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>arn:aws:s3:::<i>your-s3-bucket</i> </code> 
+        ///  <c>arn:aws:s3:::<i>your-s3-bucket</i> </c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>arn:aws:s3:::<i>your-s3-bucket</i>/*</code> 
+        ///  <c>arn:aws:s3:::<i>your-s3-bucket</i>/*</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

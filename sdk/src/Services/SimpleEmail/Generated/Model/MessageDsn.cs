@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SimpleEmail.Model
     public partial class MessageDsn
     {
         private DateTime? _arrivalDateUtc;
-        private List<ExtensionField> _extensionFields = new List<ExtensionField>();
+        private List<ExtensionField> _extensionFields = AWSConfigs.InitializeCollections ? new List<ExtensionField>() : null;
         private string _reportingMta;
 
         /// <summary>
@@ -78,15 +79,15 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if ExtensionFields property is set
         internal bool IsSetExtensionFields()
         {
-            return this._extensionFields != null && this._extensionFields.Count > 0; 
+            return this._extensionFields != null && (this._extensionFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReportingMta. 
         /// <para>
         /// The reporting MTA that attempted to deliver the message, formatted as specified in
-        /// <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (<code>mta-name-type; mta-name</code>).
-        /// The default value is <code>dns; inbound-smtp.[region].amazonaws.com</code>.
+        /// <a href="https://tools.ietf.org/html/rfc3464">RFC 3464</a> (<c>mta-name-type; mta-name</c>).
+        /// The default value is <c>dns; inbound-smtp.[region].amazonaws.com</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

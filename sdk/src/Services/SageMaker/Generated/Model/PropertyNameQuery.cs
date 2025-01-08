@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
-    /// Part of the <code>SuggestionQuery</code> type. Specifies a hint for retrieving property
+    /// Part of the <c>SuggestionQuery</c> type. Specifies a hint for retrieving property
     /// names that begin with the specified text.
     /// </summary>
     public partial class PropertyNameQuery

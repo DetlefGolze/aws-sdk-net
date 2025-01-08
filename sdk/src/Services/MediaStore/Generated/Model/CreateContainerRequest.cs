@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaStore.Model
 {
     /// <summary>
@@ -36,15 +37,15 @@ namespace Amazon.MediaStore.Model
     public partial class CreateContainerRequest : AmazonMediaStoreRequest
     {
         private string _containerName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ContainerName. 
         /// <para>
         /// The name for the container. The name must be from 1 to 255 characters. Container names
         /// must be unique to your AWS account within a specific region. As an example, you could
-        /// create a container named <code>movies</code> in every region, as long as you don’t
-        /// have an existing container with that name.
+        /// create a container named <c>movies</c> in every region, as long as you don’t have
+        /// an existing container with that name.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=255)]
@@ -81,7 +82,7 @@ namespace Amazon.MediaStore.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

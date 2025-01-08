@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.QuickSight.Model
     public partial class SnapshotFile
     {
         private SnapshotFileFormatType _formatType;
-        private List<SnapshotFileSheetSelection> _sheetSelections = new List<SnapshotFileSheetSelection>();
+        private List<SnapshotFileSheetSelection> _sheetSelections = AWSConfigs.InitializeCollections ? new List<SnapshotFileSheetSelection>() : null;
 
         /// <summary>
         /// Gets and sets the property FormatType. 
         /// <para>
-        /// The format of the snapshot file to be generated. You can choose between <code>CSV</code>,
-        /// <code>Excel</code>, or <code>PDF</code>.
+        /// The format of the snapshot file to be generated. You can choose between <c>CSV</c>,
+        /// <c>Excel</c>, or <c>PDF</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,10 +61,10 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SheetSelections. 
         /// <para>
-        /// A list of <code>SnapshotFileSheetSelection</code> objects that contain information
-        /// on the dashboard sheet that is exported. These objects provide information about the
-        /// snapshot artifacts that are generated during the job. This structure can hold a maximum
-        /// of 5 CSV configurations, 5 Excel configurations, or 1 configuration for PDF.
+        /// A list of <c>SnapshotFileSheetSelection</c> objects that contain information on the
+        /// dashboard sheet that is exported. These objects provide information about the snapshot
+        /// artifacts that are generated during the job. This structure can hold a maximum of
+        /// 5 CSV configurations, 5 Excel configurations, or 1 configuration for PDF.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=5)]
@@ -76,7 +77,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if SheetSelections property is set
         internal bool IsSetSheetSelections()
         {
-            return this._sheetSelections != null && this._sheetSelections.Count > 0; 
+            return this._sheetSelections != null && (this._sheetSelections.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

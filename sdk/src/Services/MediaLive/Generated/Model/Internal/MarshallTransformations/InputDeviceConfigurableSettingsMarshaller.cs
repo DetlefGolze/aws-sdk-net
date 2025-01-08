@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,24 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(InputDeviceConfigurableSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetAudioChannelPairs())
+            {
+                context.Writer.WritePropertyName("audioChannelPairs");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectAudioChannelPairsListValue in requestObject.AudioChannelPairs)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = InputDeviceConfigurableAudioChannelPairConfigMarshaller.Instance;
+                    marshaller.Marshall(requestObjectAudioChannelPairsListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
             if(requestObject.IsSetCodec())
             {
                 context.Writer.WritePropertyName("codec");

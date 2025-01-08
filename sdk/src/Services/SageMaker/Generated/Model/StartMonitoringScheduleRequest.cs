@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.SageMaker.Model
     ///  <note> 
     /// <para>
     /// By default, when you successfully create a new schedule, the status of a monitoring
-    /// schedule is <code>scheduled</code>.
+    /// schedule is <c>scheduled</c>.
     /// </para>
     ///  </note>
     /// </summary>

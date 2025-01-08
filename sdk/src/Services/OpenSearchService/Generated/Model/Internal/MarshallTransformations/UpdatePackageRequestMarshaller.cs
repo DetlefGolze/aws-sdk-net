@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCommitMessage())
@@ -71,10 +73,32 @@ namespace Amazon.OpenSearchService.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.CommitMessage);
                 }
 
+                if(publicRequest.IsSetPackageConfiguration())
+                {
+                    context.Writer.WritePropertyName("PackageConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PackageConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.PackageConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetPackageDescription())
                 {
                     context.Writer.WritePropertyName("PackageDescription");
                     context.Writer.Write(publicRequest.PackageDescription);
+                }
+
+                if(publicRequest.IsSetPackageEncryptionOptions())
+                {
+                    context.Writer.WritePropertyName("PackageEncryptionOptions");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = PackageEncryptionOptionsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.PackageEncryptionOptions, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetPackageID())

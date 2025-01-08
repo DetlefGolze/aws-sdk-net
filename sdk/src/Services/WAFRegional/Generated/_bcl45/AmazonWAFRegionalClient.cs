@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.WAFRegional
 {
     /// <summary>
-    /// Implementation for accessing WAFRegional
+    /// <para>Implementation for accessing WAFRegional</para>
     ///
     /// <note> 
     /// <para>
@@ -319,33 +320,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -419,33 +420,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -490,30 +491,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>ByteMatchSet</code>. You then use <a>UpdateByteMatchSet</a> to identify
+        /// Creates a <c>ByteMatchSet</c>. You then use <a>UpdateByteMatchSet</a> to identify
         /// the part of a web request that you want AWS WAF to inspect, such as the values of
-        /// the <code>User-Agent</code> header or the query string. For example, you can create
-        /// a <code>ByteMatchSet</code> that matches any requests with <code>User-Agent</code>
-        /// headers that contain the string <code>BadBot</code>. You can then configure AWS WAF
-        /// to reject those requests.
+        /// the <c>User-Agent</c> header or the query string. For example, you can create a <c>ByteMatchSet</c>
+        /// that matches any requests with <c>User-Agent</c> headers that contain the string <c>BadBot</c>.
+        /// You can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateByteMatchSet</code> request.
+        /// Submit a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -528,7 +528,7 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description of the <a>ByteMatchSet</a>. You can't change <code>Name</code> after you create a <code>ByteMatchSet</code>.</param>
+        /// <param name="name">A friendly name or description of the <a>ByteMatchSet</a>. You can't change <c>Name</c> after you create a <c>ByteMatchSet</c>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the CreateByteMatchSet service method, as returned by WAFRegional.</returns>
@@ -557,33 +557,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -593,7 +593,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -625,30 +625,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>ByteMatchSet</code>. You then use <a>UpdateByteMatchSet</a> to identify
+        /// Creates a <c>ByteMatchSet</c>. You then use <a>UpdateByteMatchSet</a> to identify
         /// the part of a web request that you want AWS WAF to inspect, such as the values of
-        /// the <code>User-Agent</code> header or the query string. For example, you can create
-        /// a <code>ByteMatchSet</code> that matches any requests with <code>User-Agent</code>
-        /// headers that contain the string <code>BadBot</code>. You can then configure AWS WAF
-        /// to reject those requests.
+        /// the <c>User-Agent</c> header or the query string. For example, you can create a <c>ByteMatchSet</c>
+        /// that matches any requests with <c>User-Agent</c> headers that contain the string <c>BadBot</c>.
+        /// You can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateByteMatchSet</code> request.
+        /// Submit a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -691,33 +690,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -727,7 +726,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -760,30 +759,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>ByteMatchSet</code>. You then use <a>UpdateByteMatchSet</a> to identify
+        /// Creates a <c>ByteMatchSet</c>. You then use <a>UpdateByteMatchSet</a> to identify
         /// the part of a web request that you want AWS WAF to inspect, such as the values of
-        /// the <code>User-Agent</code> header or the query string. For example, you can create
-        /// a <code>ByteMatchSet</code> that matches any requests with <code>User-Agent</code>
-        /// headers that contain the string <code>BadBot</code>. You can then configure AWS WAF
-        /// to reject those requests.
+        /// the <c>User-Agent</c> header or the query string. For example, you can create a <c>ByteMatchSet</c>
+        /// that matches any requests with <c>User-Agent</c> headers that contain the string <c>BadBot</c>.
+        /// You can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateByteMatchSet</code> request.
+        /// Submit a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -798,7 +796,7 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description of the <a>ByteMatchSet</a>. You can't change <code>Name</code> after you create a <code>ByteMatchSet</code>.</param>
+        /// <param name="name">A friendly name or description of the <a>ByteMatchSet</a>. You can't change <c>Name</c> after you create a <c>ByteMatchSet</c>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -830,33 +828,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -866,7 +864,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -898,30 +896,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>ByteMatchSet</code>. You then use <a>UpdateByteMatchSet</a> to identify
+        /// Creates a <c>ByteMatchSet</c>. You then use <a>UpdateByteMatchSet</a> to identify
         /// the part of a web request that you want AWS WAF to inspect, such as the values of
-        /// the <code>User-Agent</code> header or the query string. For example, you can create
-        /// a <code>ByteMatchSet</code> that matches any requests with <code>User-Agent</code>
-        /// headers that contain the string <code>BadBot</code>. You can then configure AWS WAF
-        /// to reject those requests.
+        /// the <c>User-Agent</c> header or the query string. For example, you can create a <c>ByteMatchSet</c>
+        /// that matches any requests with <c>User-Agent</c> headers that contain the string <c>BadBot</c>.
+        /// You can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateByteMatchSet</code> request.
+        /// Submit a <c>CreateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -967,33 +964,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1003,7 +1000,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -1043,31 +1040,31 @@ namespace Amazon.WAFRegional
         /// Creates an <a>GeoMatchSet</a>, which you use to specify which web requests you want
         /// to allow or block based on the country that the requests originate from. For example,
         /// if you're receiving a lot of requests from one or more countries and you want to block
-        /// the requests, you can create an <code>GeoMatchSet</code> that contains those countries
-        /// and then configure AWS WAF to block the requests. 
+        /// the requests, you can create an <c>GeoMatchSet</c> that contains those countries and
+        /// then configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>GeoMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>GeoMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateGeoMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateGeoMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateGeoMatchSet</code> request.
+        /// Submit a <c>CreateGeoMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateGeoMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateGeoMatchSetSet</code> request to specify the countries that
-        /// you want AWS WAF to watch for.
+        /// Submit an <c>UpdateGeoMatchSetSet</c> request to specify the countries that you want
+        /// AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -1104,33 +1101,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1140,7 +1137,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -1176,31 +1173,31 @@ namespace Amazon.WAFRegional
         /// Creates an <a>GeoMatchSet</a>, which you use to specify which web requests you want
         /// to allow or block based on the country that the requests originate from. For example,
         /// if you're receiving a lot of requests from one or more countries and you want to block
-        /// the requests, you can create an <code>GeoMatchSet</code> that contains those countries
-        /// and then configure AWS WAF to block the requests. 
+        /// the requests, you can create an <c>GeoMatchSet</c> that contains those countries and
+        /// then configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>GeoMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>GeoMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateGeoMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateGeoMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateGeoMatchSet</code> request.
+        /// Submit a <c>CreateGeoMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateGeoMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateGeoMatchSetSet</code> request to specify the countries that
-        /// you want AWS WAF to watch for.
+        /// Submit an <c>UpdateGeoMatchSetSet</c> request to specify the countries that you want
+        /// AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -1240,33 +1237,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1276,7 +1273,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -1317,31 +1314,31 @@ namespace Amazon.WAFRegional
         /// to allow or block based on the IP addresses that the requests originate from. For
         /// example, if you're receiving a lot of requests from one or more individual IP addresses
         /// or one or more ranges of IP addresses and you want to block the requests, you can
-        /// create an <code>IPSet</code> that contains those IP addresses and then configure AWS
-        /// WAF to block the requests. 
+        /// create an <c>IPSet</c> that contains those IP addresses and then configure AWS WAF
+        /// to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateIPSet</code> request.
+        /// Submit a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -1350,7 +1347,7 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description of the <a>IPSet</a>. You can't change <code>Name</code> after you create the <code>IPSet</code>.</param>
+        /// <param name="name">A friendly name or description of the <a>IPSet</a>. You can't change <c>Name</c> after you create the <c>IPSet</c>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the CreateIPSet service method, as returned by WAFRegional.</returns>
@@ -1379,33 +1376,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1415,7 +1412,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -1451,31 +1448,31 @@ namespace Amazon.WAFRegional
         /// to allow or block based on the IP addresses that the requests originate from. For
         /// example, if you're receiving a lot of requests from one or more individual IP addresses
         /// or one or more ranges of IP addresses and you want to block the requests, you can
-        /// create an <code>IPSet</code> that contains those IP addresses and then configure AWS
-        /// WAF to block the requests. 
+        /// create an <c>IPSet</c> that contains those IP addresses and then configure AWS WAF
+        /// to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateIPSet</code> request.
+        /// Submit a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -1512,33 +1509,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1548,7 +1545,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -1585,31 +1582,31 @@ namespace Amazon.WAFRegional
         /// to allow or block based on the IP addresses that the requests originate from. For
         /// example, if you're receiving a lot of requests from one or more individual IP addresses
         /// or one or more ranges of IP addresses and you want to block the requests, you can
-        /// create an <code>IPSet</code> that contains those IP addresses and then configure AWS
-        /// WAF to block the requests. 
+        /// create an <c>IPSet</c> that contains those IP addresses and then configure AWS WAF
+        /// to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateIPSet</code> request.
+        /// Submit a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -1618,7 +1615,7 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description of the <a>IPSet</a>. You can't change <code>Name</code> after you create the <code>IPSet</code>.</param>
+        /// <param name="name">A friendly name or description of the <a>IPSet</a>. You can't change <c>Name</c> after you create the <c>IPSet</c>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -1650,33 +1647,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1686,7 +1683,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -1722,31 +1719,31 @@ namespace Amazon.WAFRegional
         /// to allow or block based on the IP addresses that the requests originate from. For
         /// example, if you're receiving a lot of requests from one or more individual IP addresses
         /// or one or more ranges of IP addresses and you want to block the requests, you can
-        /// create an <code>IPSet</code> that contains those IP addresses and then configure AWS
-        /// WAF to block the requests. 
+        /// create an <c>IPSet</c> that contains those IP addresses and then configure AWS WAF
+        /// to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateIPSet</code> request.
+        /// Submit a <c>CreateIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -1786,33 +1783,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1822,7 +1819,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -1859,72 +1856,70 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <a>RateBasedRule</a>. The <code>RateBasedRule</code> contains a <code>RateLimit</code>,
+        /// Creates a <a>RateBasedRule</a>. The <c>RateBasedRule</c> contains a <c>RateLimit</c>,
         /// which specifies the maximum number of requests that AWS WAF allows from a specified
-        /// IP address in a five-minute period. The <code>RateBasedRule</code> also contains the
-        /// <code>IPSet</code> objects, <code>ByteMatchSet</code> objects, and other predicates
-        /// that identify the requests that you want to count or block if these requests exceed
-        /// the <code>RateLimit</code>.
+        /// IP address in a five-minute period. The <c>RateBasedRule</c> also contains the <c>IPSet</c>
+        /// objects, <c>ByteMatchSet</c> objects, and other predicates that identify the requests
+        /// that you want to count or block if these requests exceed the <c>RateLimit</c>.
         /// </para>
         ///  
         /// <para>
-        /// If you add more than one predicate to a <code>RateBasedRule</code>, a request not
-        /// only must exceed the <code>RateLimit</code>, but it also must match all the conditions
-        /// to be counted or blocked. For example, suppose you add the following to a <code>RateBasedRule</code>:
+        /// If you add more than one predicate to a <c>RateBasedRule</c>, a request not only must
+        /// exceed the <c>RateLimit</c>, but it also must match all the conditions to be counted
+        /// or blocked. For example, suppose you add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// You then add the <code>RateBasedRule</code> to a <code>WebACL</code> and specify that
-        /// you want to block requests that meet the conditions in the rule. For a request to
-        /// be blocked, it must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code>
-        /// header in the request must contain the value <code>BadBot</code>. Further, requests
-        /// that match these two conditions must be received at a rate of more than 1,000 requests
-        /// every five minutes. If both conditions are met and the rate is exceeded, AWS WAF blocks
+        /// You then add the <c>RateBasedRule</c> to a <c>WebACL</c> and specify that you want
+        /// to block requests that meet the conditions in the rule. For a request to be blocked,
+        /// it must come from the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header
+        /// in the request must contain the value <c>BadBot</c>. Further, requests that match
+        /// these two conditions must be received at a rate of more than 1,000 requests every
+        /// five minutes. If both conditions are met and the rate is exceeded, AWS WAF blocks
         /// the requests. If the rate drops below 1,000 for a five-minute period, AWS WAF no longer
         /// blocks the requests.
         /// </para>
         ///  
         /// <para>
         /// As a second example, suppose you want to limit requests to a particular page on your
-        /// site. To do this, you could add the following to a <code>RateBasedRule</code>:
+        /// site. To do this, you could add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> with <code>FieldToMatch</code> of <code>URI</code> 
+        /// A <c>ByteMatchSet</c> with <c>FieldToMatch</c> of <c>URI</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>PositionalConstraint</code> of <code>STARTS_WITH</code> 
+        /// A <c>PositionalConstraint</c> of <c>STARTS_WITH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>TargetString</code> of <code>login</code> 
+        /// A <c>TargetString</c> of <c>login</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// By adding this <code>RateBasedRule</code> to a <code>WebACL</code>, you could limit
-        /// requests to your login page without affecting the rest of your site.
+        /// By adding this <c>RateBasedRule</c> to a <c>WebACL</c>, you could limit requests to
+        /// your login page without affecting the rest of your site.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RateBasedRule</code>, perform the following steps:
+        /// To create and configure a <c>RateBasedRule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -1933,27 +1928,27 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRateBasedRule</code> request.
+        /// Submit a <c>CreateRateBasedRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRateBasedRule</code> request to specify the predicates that
-        /// you want to include in the rule.
+        /// Submit an <c>UpdateRateBasedRule</c> request to specify the predicates that you want
+        /// to include in the rule.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>RateBasedRule</code>.
-        /// For more information, see <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>RateBasedRule</c>. For more
+        /// information, see <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -1989,33 +1984,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2025,7 +2020,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2064,72 +2059,70 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <a>RateBasedRule</a>. The <code>RateBasedRule</code> contains a <code>RateLimit</code>,
+        /// Creates a <a>RateBasedRule</a>. The <c>RateBasedRule</c> contains a <c>RateLimit</c>,
         /// which specifies the maximum number of requests that AWS WAF allows from a specified
-        /// IP address in a five-minute period. The <code>RateBasedRule</code> also contains the
-        /// <code>IPSet</code> objects, <code>ByteMatchSet</code> objects, and other predicates
-        /// that identify the requests that you want to count or block if these requests exceed
-        /// the <code>RateLimit</code>.
+        /// IP address in a five-minute period. The <c>RateBasedRule</c> also contains the <c>IPSet</c>
+        /// objects, <c>ByteMatchSet</c> objects, and other predicates that identify the requests
+        /// that you want to count or block if these requests exceed the <c>RateLimit</c>.
         /// </para>
         ///  
         /// <para>
-        /// If you add more than one predicate to a <code>RateBasedRule</code>, a request not
-        /// only must exceed the <code>RateLimit</code>, but it also must match all the conditions
-        /// to be counted or blocked. For example, suppose you add the following to a <code>RateBasedRule</code>:
+        /// If you add more than one predicate to a <c>RateBasedRule</c>, a request not only must
+        /// exceed the <c>RateLimit</c>, but it also must match all the conditions to be counted
+        /// or blocked. For example, suppose you add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// You then add the <code>RateBasedRule</code> to a <code>WebACL</code> and specify that
-        /// you want to block requests that meet the conditions in the rule. For a request to
-        /// be blocked, it must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code>
-        /// header in the request must contain the value <code>BadBot</code>. Further, requests
-        /// that match these two conditions must be received at a rate of more than 1,000 requests
-        /// every five minutes. If both conditions are met and the rate is exceeded, AWS WAF blocks
+        /// You then add the <c>RateBasedRule</c> to a <c>WebACL</c> and specify that you want
+        /// to block requests that meet the conditions in the rule. For a request to be blocked,
+        /// it must come from the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header
+        /// in the request must contain the value <c>BadBot</c>. Further, requests that match
+        /// these two conditions must be received at a rate of more than 1,000 requests every
+        /// five minutes. If both conditions are met and the rate is exceeded, AWS WAF blocks
         /// the requests. If the rate drops below 1,000 for a five-minute period, AWS WAF no longer
         /// blocks the requests.
         /// </para>
         ///  
         /// <para>
         /// As a second example, suppose you want to limit requests to a particular page on your
-        /// site. To do this, you could add the following to a <code>RateBasedRule</code>:
+        /// site. To do this, you could add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> with <code>FieldToMatch</code> of <code>URI</code> 
+        /// A <c>ByteMatchSet</c> with <c>FieldToMatch</c> of <c>URI</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>PositionalConstraint</code> of <code>STARTS_WITH</code> 
+        /// A <c>PositionalConstraint</c> of <c>STARTS_WITH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>TargetString</code> of <code>login</code> 
+        /// A <c>TargetString</c> of <c>login</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// By adding this <code>RateBasedRule</code> to a <code>WebACL</code>, you could limit
-        /// requests to your login page without affecting the rest of your site.
+        /// By adding this <c>RateBasedRule</c> to a <c>WebACL</c>, you could limit requests to
+        /// your login page without affecting the rest of your site.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RateBasedRule</code>, perform the following steps:
+        /// To create and configure a <c>RateBasedRule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -2138,27 +2131,27 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRateBasedRule</code> request.
+        /// Submit a <c>CreateRateBasedRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRateBasedRule</code> request to specify the predicates that
-        /// you want to include in the rule.
+        /// Submit an <c>UpdateRateBasedRule</c> request to specify the predicates that you want
+        /// to include in the rule.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>RateBasedRule</code>.
-        /// For more information, see <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>RateBasedRule</c>. For more
+        /// information, see <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -2197,33 +2190,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2233,7 +2226,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2278,35 +2271,34 @@ namespace Amazon.WAFRegional
         /// <para>
         /// Creates a <a>RegexMatchSet</a>. You then use <a>UpdateRegexMatchSet</a> to identify
         /// the part of a web request that you want AWS WAF to inspect, such as the values of
-        /// the <code>User-Agent</code> header or the query string. For example, you can create
-        /// a <code>RegexMatchSet</code> that contains a <code>RegexMatchTuple</code> that looks
-        /// for any requests with <code>User-Agent</code> headers that match a <code>RegexPatternSet</code>
-        /// with pattern <code>B[a@]dB[o0]t</code>. You can then configure AWS WAF to reject those
-        /// requests.
+        /// the <c>User-Agent</c> header or the query string. For example, you can create a <c>RegexMatchSet</c>
+        /// that contains a <c>RegexMatchTuple</c> that looks for any requests with <c>User-Agent</c>
+        /// headers that match a <c>RegexPatternSet</c> with pattern <c>B[a@]dB[o0]t</c>. You
+        /// can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RegexMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRegexMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRegexMatchSet</code> request.
+        /// Submit a <c>CreateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexMatchSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Submit an <a>UpdateRegexMatchSet</a> request to specify the part of the request that
         /// you want AWS WAF to inspect (for example, the header or the URI) and the value, using
-        /// a <code>RegexPatternSet</code>, that you want AWS WAF to watch for.
+        /// a <c>RegexPatternSet</c>, that you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -2326,7 +2318,7 @@ namespace Amazon.WAFRegional
         /// Retry your request.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2361,35 +2353,34 @@ namespace Amazon.WAFRegional
         /// <para>
         /// Creates a <a>RegexMatchSet</a>. You then use <a>UpdateRegexMatchSet</a> to identify
         /// the part of a web request that you want AWS WAF to inspect, such as the values of
-        /// the <code>User-Agent</code> header or the query string. For example, you can create
-        /// a <code>RegexMatchSet</code> that contains a <code>RegexMatchTuple</code> that looks
-        /// for any requests with <code>User-Agent</code> headers that match a <code>RegexPatternSet</code>
-        /// with pattern <code>B[a@]dB[o0]t</code>. You can then configure AWS WAF to reject those
-        /// requests.
+        /// the <c>User-Agent</c> header or the query string. For example, you can create a <c>RegexMatchSet</c>
+        /// that contains a <c>RegexMatchTuple</c> that looks for any requests with <c>User-Agent</c>
+        /// headers that match a <c>RegexPatternSet</c> with pattern <c>B[a@]dB[o0]t</c>. You
+        /// can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RegexMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRegexMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRegexMatchSet</code> request.
+        /// Submit a <c>CreateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexMatchSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Submit an <a>UpdateRegexMatchSet</a> request to specify the part of the request that
         /// you want AWS WAF to inspect (for example, the header or the URI) and the value, using
-        /// a <code>RegexPatternSet</code>, that you want AWS WAF to watch for.
+        /// a <c>RegexPatternSet</c>, that you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -2412,7 +2403,7 @@ namespace Amazon.WAFRegional
         /// Retry your request.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2449,28 +2440,27 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>RegexPatternSet</code>. You then use <a>UpdateRegexPatternSet</a>
-        /// to specify the regular expression (regex) pattern that you want AWS WAF to search
-        /// for, such as <code>B[a@]dB[o0]t</code>. You can then configure AWS WAF to reject those
-        /// requests.
+        /// Creates a <c>RegexPatternSet</c>. You then use <a>UpdateRegexPatternSet</a> to specify
+        /// the regular expression (regex) pattern that you want AWS WAF to search for, such as
+        /// <c>B[a@]dB[o0]t</c>. You can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RegexPatternSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexPatternSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRegexPatternSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRegexPatternSet</code> request.
+        /// Submit a <c>CreateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexPatternSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2495,7 +2485,7 @@ namespace Amazon.WAFRegional
         /// Retry your request.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2528,28 +2518,27 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>RegexPatternSet</code>. You then use <a>UpdateRegexPatternSet</a>
-        /// to specify the regular expression (regex) pattern that you want AWS WAF to search
-        /// for, such as <code>B[a@]dB[o0]t</code>. You can then configure AWS WAF to reject those
-        /// requests.
+        /// Creates a <c>RegexPatternSet</c>. You then use <a>UpdateRegexPatternSet</a> to specify
+        /// the regular expression (regex) pattern that you want AWS WAF to search for, such as
+        /// <c>B[a@]dB[o0]t</c>. You can then configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RegexPatternSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexPatternSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRegexPatternSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRegexPatternSet</code> request.
+        /// Submit a <c>CreateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexPatternSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2577,7 +2566,7 @@ namespace Amazon.WAFRegional
         /// Retry your request.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2614,60 +2603,59 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>Rule</code>, which contains the <code>IPSet</code> objects, <code>ByteMatchSet</code>
+        /// Creates a <c>Rule</c>, which contains the <c>IPSet</c> objects, <c>ByteMatchSet</c>
         /// objects, and other predicates that identify the requests that you want to block. If
-        /// you add more than one predicate to a <code>Rule</code>, a request must match all of
-        /// the specifications to be allowed or blocked. For example, suppose that you add the
-        /// following to a <code>Rule</code>:
+        /// you add more than one predicate to a <c>Rule</c>, a request must match all of the
+        /// specifications to be allowed or blocked. For example, suppose that you add the following
+        /// to a <c>Rule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to blocks requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// it must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code>
-        /// header in the request must contain the value <code>BadBot</code>.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to blocks
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, it must come from
+        /// the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header in the request must
+        /// contain the value <c>BadBot</c>.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
-        /// For more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>. For
+        /// more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRule</code> request.
+        /// Submit a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to specify the predicates that you want
-        /// to include in the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to specify the predicates that you want to include
+        /// in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. For more
-        /// information, see <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. For more information,
+        /// see <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -2676,9 +2664,9 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description of the <a>Rule</a>. You can't change the name of a <code>Rule</code> after you create it.</param>
+        /// <param name="name">A friendly name or description of the <a>Rule</a>. You can't change the name of a <c>Rule</c> after you create it.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
-        /// <param name="metricName">A friendly name or description for the metrics for this <code>Rule</code>. The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including "All" and "Default_Action." You can't change the name of the metric after you create the <code>Rule</code>.</param>
+        /// <param name="metricName">A friendly name or description for the metrics for this <c>Rule</c>. The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including "All" and "Default_Action." You can't change the name of the metric after you create the <c>Rule</c>.</param>
         /// 
         /// <returns>The response from the CreateRule service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFBadRequestException">
@@ -2705,33 +2693,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2741,7 +2729,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2780,60 +2768,59 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>Rule</code>, which contains the <code>IPSet</code> objects, <code>ByteMatchSet</code>
+        /// Creates a <c>Rule</c>, which contains the <c>IPSet</c> objects, <c>ByteMatchSet</c>
         /// objects, and other predicates that identify the requests that you want to block. If
-        /// you add more than one predicate to a <code>Rule</code>, a request must match all of
-        /// the specifications to be allowed or blocked. For example, suppose that you add the
-        /// following to a <code>Rule</code>:
+        /// you add more than one predicate to a <c>Rule</c>, a request must match all of the
+        /// specifications to be allowed or blocked. For example, suppose that you add the following
+        /// to a <c>Rule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to blocks requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// it must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code>
-        /// header in the request must contain the value <code>BadBot</code>.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to blocks
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, it must come from
+        /// the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header in the request must
+        /// contain the value <c>BadBot</c>.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
-        /// For more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>. For
+        /// more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRule</code> request.
+        /// Submit a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to specify the predicates that you want
-        /// to include in the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to specify the predicates that you want to include
+        /// in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. For more
-        /// information, see <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. For more information,
+        /// see <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -2869,33 +2856,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2905,7 +2892,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -2944,60 +2931,59 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>Rule</code>, which contains the <code>IPSet</code> objects, <code>ByteMatchSet</code>
+        /// Creates a <c>Rule</c>, which contains the <c>IPSet</c> objects, <c>ByteMatchSet</c>
         /// objects, and other predicates that identify the requests that you want to block. If
-        /// you add more than one predicate to a <code>Rule</code>, a request must match all of
-        /// the specifications to be allowed or blocked. For example, suppose that you add the
-        /// following to a <code>Rule</code>:
+        /// you add more than one predicate to a <c>Rule</c>, a request must match all of the
+        /// specifications to be allowed or blocked. For example, suppose that you add the following
+        /// to a <c>Rule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to blocks requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// it must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code>
-        /// header in the request must contain the value <code>BadBot</code>.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to blocks
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, it must come from
+        /// the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header in the request must
+        /// contain the value <c>BadBot</c>.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
-        /// For more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>. For
+        /// more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRule</code> request.
+        /// Submit a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to specify the predicates that you want
-        /// to include in the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to specify the predicates that you want to include
+        /// in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. For more
-        /// information, see <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. For more information,
+        /// see <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -3006,9 +2992,9 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description of the <a>Rule</a>. You can't change the name of a <code>Rule</code> after you create it.</param>
+        /// <param name="name">A friendly name or description of the <a>Rule</a>. You can't change the name of a <c>Rule</c> after you create it.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
-        /// <param name="metricName">A friendly name or description for the metrics for this <code>Rule</code>. The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including "All" and "Default_Action." You can't change the name of the metric after you create the <code>Rule</code>.</param>
+        /// <param name="metricName">A friendly name or description for the metrics for this <c>Rule</c>. The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including "All" and "Default_Action." You can't change the name of the metric after you create the <c>Rule</c>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -3038,33 +3024,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3074,7 +3060,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -3113,60 +3099,59 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>Rule</code>, which contains the <code>IPSet</code> objects, <code>ByteMatchSet</code>
+        /// Creates a <c>Rule</c>, which contains the <c>IPSet</c> objects, <c>ByteMatchSet</c>
         /// objects, and other predicates that identify the requests that you want to block. If
-        /// you add more than one predicate to a <code>Rule</code>, a request must match all of
-        /// the specifications to be allowed or blocked. For example, suppose that you add the
-        /// following to a <code>Rule</code>:
+        /// you add more than one predicate to a <c>Rule</c>, a request must match all of the
+        /// specifications to be allowed or blocked. For example, suppose that you add the following
+        /// to a <c>Rule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to blocks requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// it must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code>
-        /// header in the request must contain the value <code>BadBot</code>.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to blocks
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, it must come from
+        /// the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header in the request must
+        /// contain the value <c>BadBot</c>.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
-        /// For more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>. For
+        /// more information, see <a>CreateByteMatchSet</a>, <a>CreateIPSet</a>, and <a>CreateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateRule</code> request.
+        /// Submit a <c>CreateRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to specify the predicates that you want
-        /// to include in the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to specify the predicates that you want to include
+        /// in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. For more
-        /// information, see <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. For more information,
+        /// see <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -3205,33 +3190,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3241,7 +3226,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -3284,9 +3269,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>RuleGroup</code>. A rule group is a collection of predefined rules
-        /// that you add to a web ACL. You use <a>UpdateRuleGroup</a> to add rules to the rule
-        /// group.
+        /// Creates a <c>RuleGroup</c>. A rule group is a collection of predefined rules that
+        /// you add to a web ACL. You use <a>UpdateRuleGroup</a> to add rules to the rule group.
         /// </para>
         ///  
         /// <para>
@@ -3326,7 +3310,7 @@ namespace Amazon.WAFRegional
         /// Retry your request.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -3365,9 +3349,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>RuleGroup</code>. A rule group is a collection of predefined rules
-        /// that you add to a web ACL. You use <a>UpdateRuleGroup</a> to add rules to the rule
-        /// group.
+        /// Creates a <c>RuleGroup</c>. A rule group is a collection of predefined rules that
+        /// you add to a web ACL. You use <a>UpdateRuleGroup</a> to add rules to the rule group.
         /// </para>
         ///  
         /// <para>
@@ -3410,7 +3393,7 @@ namespace Amazon.WAFRegional
         /// Retry your request.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -3453,30 +3436,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>SizeConstraintSet</code>. You then use <a>UpdateSizeConstraintSet</a>
-        /// to identify the part of a web request that you want AWS WAF to check for length, such
-        /// as the length of the <code>User-Agent</code> header or the length of the query string.
-        /// For example, you can create a <code>SizeConstraintSet</code> that matches any requests
-        /// that have a query string that is longer than 100 bytes. You can then configure AWS
-        /// WAF to reject those requests.
+        /// Creates a <c>SizeConstraintSet</c>. You then use <a>UpdateSizeConstraintSet</a> to
+        /// identify the part of a web request that you want AWS WAF to check for length, such
+        /// as the length of the <c>User-Agent</c> header or the length of the query string. For
+        /// example, you can create a <c>SizeConstraintSet</c> that matches any requests that
+        /// have a query string that is longer than 100 bytes. You can then configure AWS WAF
+        /// to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SizeConstraintSet</code>, perform the following steps:
+        /// To create and configure a <c>SizeConstraintSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateSizeConstraintSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateSizeConstraintSet</code> request.
+        /// Submit a <c>CreateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateSizeConstraintSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3519,33 +3502,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3555,7 +3538,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -3588,30 +3571,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>SizeConstraintSet</code>. You then use <a>UpdateSizeConstraintSet</a>
-        /// to identify the part of a web request that you want AWS WAF to check for length, such
-        /// as the length of the <code>User-Agent</code> header or the length of the query string.
-        /// For example, you can create a <code>SizeConstraintSet</code> that matches any requests
-        /// that have a query string that is longer than 100 bytes. You can then configure AWS
-        /// WAF to reject those requests.
+        /// Creates a <c>SizeConstraintSet</c>. You then use <a>UpdateSizeConstraintSet</a> to
+        /// identify the part of a web request that you want AWS WAF to check for length, such
+        /// as the length of the <c>User-Agent</c> header or the length of the query string. For
+        /// example, you can create a <c>SizeConstraintSet</c> that matches any requests that
+        /// have a query string that is longer than 100 bytes. You can then configure AWS WAF
+        /// to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SizeConstraintSet</code>, perform the following steps:
+        /// To create and configure a <c>SizeConstraintSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateSizeConstraintSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateSizeConstraintSet</code> request.
+        /// Submit a <c>CreateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateSizeConstraintSet</code> request.
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3657,33 +3640,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3693,7 +3676,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -3736,21 +3719,20 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Submit a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateSqlInjectionMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
@@ -3765,7 +3747,7 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description for the <a>SqlInjectionMatchSet</a> that you're creating. You can't change <code>Name</code> after you create the <code>SqlInjectionMatchSet</code>.</param>
+        /// <param name="name">A friendly name or description for the <a>SqlInjectionMatchSet</a> that you're creating. You can't change <c>Name</c> after you create the <c>SqlInjectionMatchSet</c>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the CreateSqlInjectionMatchSet service method, as returned by WAFRegional.</returns>
@@ -3794,33 +3776,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3830,7 +3812,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -3868,21 +3850,20 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Submit a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateSqlInjectionMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
@@ -3925,33 +3906,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3961,7 +3942,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -4000,21 +3981,20 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Submit a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateSqlInjectionMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
@@ -4029,7 +4009,7 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="name">A friendly name or description for the <a>SqlInjectionMatchSet</a> that you're creating. You can't change <code>Name</code> after you create the <code>SqlInjectionMatchSet</code>.</param>
+        /// <param name="name">A friendly name or description for the <a>SqlInjectionMatchSet</a> that you're creating. You can't change <c>Name</c> after you create the <c>SqlInjectionMatchSet</c>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -4061,33 +4041,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4097,7 +4077,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -4135,21 +4115,20 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateSqlInjectionMatchSet</code> request.
+        /// Submit a <c>CreateSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateSqlInjectionMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
@@ -4195,33 +4174,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4231,7 +4210,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -4268,51 +4247,50 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>WebACL</code>, which contains the <code>Rules</code> that identify
-        /// the CloudFront web requests that you want to allow, block, or count. AWS WAF evaluates
-        /// <code>Rules</code> in order based on the value of <code>Priority</code> for each <code>Rule</code>.
+        /// Creates a <c>WebACL</c>, which contains the <c>Rules</c> that identify the CloudFront
+        /// web requests that you want to allow, block, or count. AWS WAF evaluates <c>Rules</c>
+        /// in order based on the value of <c>Priority</c> for each <c>Rule</c>.
         /// </para>
         ///  
         /// <para>
-        /// You also specify a default action, either <code>ALLOW</code> or <code>BLOCK</code>.
-        /// If a web request doesn't match any of the <code>Rules</code> in a <code>WebACL</code>,
-        /// AWS WAF responds to the request with the default action. 
+        /// You also specify a default action, either <c>ALLOW</c> or <c>BLOCK</c>. If a web request
+        /// doesn't match any of the <c>Rules</c> in a <c>WebACL</c>, AWS WAF responds to the
+        /// request with the default action. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>WebACL</code>, perform the following steps:
+        /// To create and configure a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the <code>ByteMatchSet</code> objects and other predicates that
-        /// you want to include in <code>Rules</code>. For more information, see <a>CreateByteMatchSet</a>,
-        /// <a>UpdateByteMatchSet</a>, <a>CreateIPSet</a>, <a>UpdateIPSet</a>, <a>CreateSqlInjectionMatchSet</a>,
-        /// and <a>UpdateSqlInjectionMatchSet</a>.
+        /// Create and update the <c>ByteMatchSet</c> objects and other predicates that you want
+        /// to include in <c>Rules</c>. For more information, see <a>CreateByteMatchSet</a>, <a>UpdateByteMatchSet</a>,
+        /// <a>CreateIPSet</a>, <a>UpdateIPSet</a>, <a>CreateSqlInjectionMatchSet</a>, and <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update the <code>Rules</code> that you want to include in the <code>WebACL</code>.
+        /// Create and update the <c>Rules</c> that you want to include in the <c>WebACL</c>.
         /// For more information, see <a>CreateRule</a> and <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateWebACL</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateWebACL</code> request.
+        /// Submit a <c>CreateWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateWebACL</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <a>UpdateWebACL</a> request to specify the <code>Rules</code> that you want
-        /// to include in the <code>WebACL</code>, to specify the default action, and to associate
-        /// the <code>WebACL</code> with a CloudFront distribution.
+        /// Submit an <a>UpdateWebACL</a> request to specify the <c>Rules</c> that you want to
+        /// include in the <c>WebACL</c>, to specify the default action, and to associate the
+        /// <c>WebACL</c> with a CloudFront distribution.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -4351,33 +4329,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4387,7 +4365,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -4426,51 +4404,50 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Creates a <code>WebACL</code>, which contains the <code>Rules</code> that identify
-        /// the CloudFront web requests that you want to allow, block, or count. AWS WAF evaluates
-        /// <code>Rules</code> in order based on the value of <code>Priority</code> for each <code>Rule</code>.
+        /// Creates a <c>WebACL</c>, which contains the <c>Rules</c> that identify the CloudFront
+        /// web requests that you want to allow, block, or count. AWS WAF evaluates <c>Rules</c>
+        /// in order based on the value of <c>Priority</c> for each <c>Rule</c>.
         /// </para>
         ///  
         /// <para>
-        /// You also specify a default action, either <code>ALLOW</code> or <code>BLOCK</code>.
-        /// If a web request doesn't match any of the <code>Rules</code> in a <code>WebACL</code>,
-        /// AWS WAF responds to the request with the default action. 
+        /// You also specify a default action, either <c>ALLOW</c> or <c>BLOCK</c>. If a web request
+        /// doesn't match any of the <c>Rules</c> in a <c>WebACL</c>, AWS WAF responds to the
+        /// request with the default action. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>WebACL</code>, perform the following steps:
+        /// To create and configure a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the <code>ByteMatchSet</code> objects and other predicates that
-        /// you want to include in <code>Rules</code>. For more information, see <a>CreateByteMatchSet</a>,
-        /// <a>UpdateByteMatchSet</a>, <a>CreateIPSet</a>, <a>UpdateIPSet</a>, <a>CreateSqlInjectionMatchSet</a>,
-        /// and <a>UpdateSqlInjectionMatchSet</a>.
+        /// Create and update the <c>ByteMatchSet</c> objects and other predicates that you want
+        /// to include in <c>Rules</c>. For more information, see <a>CreateByteMatchSet</a>, <a>UpdateByteMatchSet</a>,
+        /// <a>CreateIPSet</a>, <a>UpdateIPSet</a>, <a>CreateSqlInjectionMatchSet</a>, and <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update the <code>Rules</code> that you want to include in the <code>WebACL</code>.
+        /// Create and update the <c>Rules</c> that you want to include in the <c>WebACL</c>.
         /// For more information, see <a>CreateRule</a> and <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateWebACL</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateWebACL</code> request.
+        /// Submit a <c>CreateWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateWebACL</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <a>UpdateWebACL</a> request to specify the <code>Rules</code> that you want
-        /// to include in the <code>WebACL</code>, to specify the default action, and to associate
-        /// the <code>WebACL</code> with a CloudFront distribution.
+        /// Submit an <a>UpdateWebACL</a> request to specify the <c>Rules</c> that you want to
+        /// include in the <c>WebACL</c>, to specify the default action, and to associate the
+        /// <c>WebACL</c> with a CloudFront distribution.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -4512,33 +4489,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4548,7 +4525,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -4597,40 +4574,40 @@ namespace Amazon.WAFRegional
         /// <returns>The response from the CreateWebACLMigrationStack service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFEntityMigrationException">
         /// The operation failed due to a problem with the migration. The failure cause is provided
-        /// in the exception, in the <code>MigrationErrorType</code>: 
+        /// in the exception, in the <c>MigrationErrorType</c>: 
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENTITY_NOT_SUPPORTED</code> - The web ACL has an unsupported entity but the
-        /// <code>IgnoreUnsupportedType</code> is not set to true.
+        ///  <c>ENTITY_NOT_SUPPORTED</c> - The web ACL has an unsupported entity but the <c>IgnoreUnsupportedType</c>
+        /// is not set to true.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ENTITY_NOT_FOUND</code> - The web ACL doesn't exist. 
+        ///  <c>ENTITY_NOT_FOUND</c> - The web ACL doesn't exist. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_NO_PERMISSION</code> - You don't have permission to perform the <code>PutObject</code>
+        ///  <c>S3_BUCKET_NO_PERMISSION</c> - You don't have permission to perform the <c>PutObject</c>
         /// action to the specified Amazon S3 bucket.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_NOT_ACCESSIBLE</code> - The bucket policy doesn't allow AWS WAF to
-        /// perform the <code>PutObject</code> action in the bucket.
+        ///  <c>S3_BUCKET_NOT_ACCESSIBLE</c> - The bucket policy doesn't allow AWS WAF to perform
+        /// the <c>PutObject</c> action in the bucket.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_NOT_FOUND</code> - The S3 bucket doesn't exist. 
+        ///  <c>S3_BUCKET_NOT_FOUND</c> - The S3 bucket doesn't exist. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_INVALID_REGION</code> - The S3 bucket is not in the same Region as
-        /// the web ACL.
+        ///  <c>S3_BUCKET_INVALID_REGION</c> - The S3 bucket is not in the same Region as the
+        /// web ACL.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_INTERNAL_ERROR</code> - AWS WAF failed to create the template in the S3
-        /// bucket for another reason.
+        ///  <c>S3_INTERNAL_ERROR</c> - AWS WAF failed to create the template in the S3 bucket
+        /// for another reason.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -4643,28 +4620,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -4682,33 +4659,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4754,40 +4731,40 @@ namespace Amazon.WAFRegional
         /// <returns>The response from the CreateWebACLMigrationStack service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFEntityMigrationException">
         /// The operation failed due to a problem with the migration. The failure cause is provided
-        /// in the exception, in the <code>MigrationErrorType</code>: 
+        /// in the exception, in the <c>MigrationErrorType</c>: 
         /// 
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENTITY_NOT_SUPPORTED</code> - The web ACL has an unsupported entity but the
-        /// <code>IgnoreUnsupportedType</code> is not set to true.
+        ///  <c>ENTITY_NOT_SUPPORTED</c> - The web ACL has an unsupported entity but the <c>IgnoreUnsupportedType</c>
+        /// is not set to true.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ENTITY_NOT_FOUND</code> - The web ACL doesn't exist. 
+        ///  <c>ENTITY_NOT_FOUND</c> - The web ACL doesn't exist. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_NO_PERMISSION</code> - You don't have permission to perform the <code>PutObject</code>
+        ///  <c>S3_BUCKET_NO_PERMISSION</c> - You don't have permission to perform the <c>PutObject</c>
         /// action to the specified Amazon S3 bucket.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_NOT_ACCESSIBLE</code> - The bucket policy doesn't allow AWS WAF to
-        /// perform the <code>PutObject</code> action in the bucket.
+        ///  <c>S3_BUCKET_NOT_ACCESSIBLE</c> - The bucket policy doesn't allow AWS WAF to perform
+        /// the <c>PutObject</c> action in the bucket.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_NOT_FOUND</code> - The S3 bucket doesn't exist. 
+        ///  <c>S3_BUCKET_NOT_FOUND</c> - The S3 bucket doesn't exist. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_BUCKET_INVALID_REGION</code> - The S3 bucket is not in the same Region as
-        /// the web ACL.
+        ///  <c>S3_BUCKET_INVALID_REGION</c> - The S3 bucket is not in the same Region as the
+        /// web ACL.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>S3_INTERNAL_ERROR</code> - AWS WAF failed to create the template in the S3
-        /// bucket for another reason.
+        ///  <c>S3_INTERNAL_ERROR</c> - AWS WAF failed to create the template in the S3 bucket
+        /// for another reason.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -4800,28 +4777,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -4839,33 +4816,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4912,20 +4889,20 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>XssMatchSet</code>, perform the following steps:
+        /// To create and configure an <c>XssMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateXssMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateXssMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateXssMatchSet</code> request.
+        /// Submit a <c>CreateXssMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateXssMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
@@ -4968,33 +4945,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5004,7 +4981,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -5043,20 +5020,20 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>XssMatchSet</code>, perform the following steps:
+        /// To create and configure an <c>XssMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>CreateXssMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>CreateXssMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>CreateXssMatchSet</code> request.
+        /// Submit a <c>CreateXssMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateXssMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
@@ -5102,33 +5079,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5138,7 +5115,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -5175,36 +5152,35 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <code>ByteMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <a>ByteMatchTuple</a>
+        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <c>ByteMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <a>ByteMatchTuple</a>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>ByteMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove a <c>ByteMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>ByteMatchSet</code>, perform the following steps:
+        /// To permanently delete a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>ByteMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateByteMatchSet</a>.
+        /// Update the <c>ByteMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteByteMatchSet</code> request.
+        /// Submit a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="byteMatchSetId">The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to delete. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
+        /// <param name="byteMatchSetId">The <c>ByteMatchSetId</c> of the <a>ByteMatchSet</a> that you want to delete. <c>ByteMatchSetId</c> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the DeleteByteMatchSet service method, as returned by WAFRegional.</returns>
@@ -5221,22 +5197,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5249,11 +5224,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5285,32 +5260,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <code>ByteMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <a>ByteMatchTuple</a>
+        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <c>ByteMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <a>ByteMatchTuple</a>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>ByteMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove a <c>ByteMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>ByteMatchSet</code>, perform the following steps:
+        /// To permanently delete a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>ByteMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateByteMatchSet</a>.
+        /// Update the <c>ByteMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteByteMatchSet</code> request.
+        /// Submit a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -5330,22 +5304,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5358,11 +5331,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5395,36 +5368,35 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <code>ByteMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <a>ByteMatchTuple</a>
+        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <c>ByteMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <a>ByteMatchTuple</a>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>ByteMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove a <c>ByteMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>ByteMatchSet</code>, perform the following steps:
+        /// To permanently delete a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>ByteMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateByteMatchSet</a>.
+        /// Update the <c>ByteMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteByteMatchSet</code> request.
+        /// Submit a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="byteMatchSetId">The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to delete. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
+        /// <param name="byteMatchSetId">The <c>ByteMatchSetId</c> of the <a>ByteMatchSet</a> that you want to delete. <c>ByteMatchSetId</c> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -5444,22 +5416,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5472,11 +5443,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5508,32 +5479,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <code>ByteMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <a>ByteMatchTuple</a>
+        /// Permanently deletes a <a>ByteMatchSet</a>. You can't delete a <c>ByteMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <a>ByteMatchTuple</a>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>ByteMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove a <c>ByteMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>ByteMatchSet</code>, perform the following steps:
+        /// To permanently delete a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>ByteMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateByteMatchSet</a>.
+        /// Update the <c>ByteMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteByteMatchSet</code> request.
+        /// Submit a <c>DeleteByteMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -5556,22 +5526,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5584,11 +5553,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5625,32 +5594,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>GeoMatchSet</a>. You can't delete a <code>GeoMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any countries.
+        /// Permanently deletes a <a>GeoMatchSet</a>. You can't delete a <c>GeoMatchSet</c> if
+        /// it's still used in any <c>Rules</c> or if it still includes any countries.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>GeoMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove a <c>GeoMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>GeoMatchSet</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete a <c>GeoMatchSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>GeoMatchSet</code> to remove any countries. For more information,
-        /// see <a>UpdateGeoMatchSet</a>.
+        /// Update the <c>GeoMatchSet</c> to remove any countries. For more information, see <a>UpdateGeoMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteGeoMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteGeoMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteGeoMatchSet</code> request.
+        /// Submit a <c>DeleteGeoMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -5670,22 +5636,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5698,11 +5663,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5735,32 +5700,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>GeoMatchSet</a>. You can't delete a <code>GeoMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any countries.
+        /// Permanently deletes a <a>GeoMatchSet</a>. You can't delete a <c>GeoMatchSet</c> if
+        /// it's still used in any <c>Rules</c> or if it still includes any countries.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>GeoMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove a <c>GeoMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>GeoMatchSet</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete a <c>GeoMatchSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>GeoMatchSet</code> to remove any countries. For more information,
-        /// see <a>UpdateGeoMatchSet</a>.
+        /// Update the <c>GeoMatchSet</c> to remove any countries. For more information, see <a>UpdateGeoMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteGeoMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteGeoMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteGeoMatchSet</code> request.
+        /// Submit a <c>DeleteGeoMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -5783,22 +5745,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5811,11 +5772,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5852,34 +5813,34 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes an <a>IPSet</a>. You can't delete an <code>IPSet</code> if it's
-        /// still used in any <code>Rules</code> or if it still includes any IP addresses.
+        /// Permanently deletes an <a>IPSet</a>. You can't delete an <c>IPSet</c> if it's still
+        /// used in any <c>Rules</c> or if it still includes any IP addresses.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove an <code>IPSet</code> from a <code>Rule</code>, use <a>UpdateRule</a>.
+        /// If you just want to remove an <c>IPSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete an <code>IPSet</code> from AWS WAF, perform the following steps:
+        /// To permanently delete an <c>IPSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>IPSet</code> to remove IP address ranges, if any. For more information,
+        /// Update the <c>IPSet</c> to remove IP address ranges, if any. For more information,
         /// see <a>UpdateIPSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteIPSet</code> request.
+        /// Submit a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="ipSetId">The <code>IPSetId</code> of the <a>IPSet</a> that you want to delete. <code>IPSetId</code> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
+        /// <param name="ipSetId">The <c>IPSetId</c> of the <a>IPSet</a> that you want to delete. <c>IPSetId</c> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the DeleteIPSet service method, as returned by WAFRegional.</returns>
@@ -5896,22 +5857,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5924,11 +5884,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -5960,30 +5920,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes an <a>IPSet</a>. You can't delete an <code>IPSet</code> if it's
-        /// still used in any <code>Rules</code> or if it still includes any IP addresses.
+        /// Permanently deletes an <a>IPSet</a>. You can't delete an <c>IPSet</c> if it's still
+        /// used in any <c>Rules</c> or if it still includes any IP addresses.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove an <code>IPSet</code> from a <code>Rule</code>, use <a>UpdateRule</a>.
+        /// If you just want to remove an <c>IPSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete an <code>IPSet</code> from AWS WAF, perform the following steps:
+        /// To permanently delete an <c>IPSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>IPSet</code> to remove IP address ranges, if any. For more information,
+        /// Update the <c>IPSet</c> to remove IP address ranges, if any. For more information,
         /// see <a>UpdateIPSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteIPSet</code> request.
+        /// Submit a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -6003,22 +5963,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6031,11 +5990,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6068,34 +6027,34 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes an <a>IPSet</a>. You can't delete an <code>IPSet</code> if it's
-        /// still used in any <code>Rules</code> or if it still includes any IP addresses.
+        /// Permanently deletes an <a>IPSet</a>. You can't delete an <c>IPSet</c> if it's still
+        /// used in any <c>Rules</c> or if it still includes any IP addresses.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove an <code>IPSet</code> from a <code>Rule</code>, use <a>UpdateRule</a>.
+        /// If you just want to remove an <c>IPSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete an <code>IPSet</code> from AWS WAF, perform the following steps:
+        /// To permanently delete an <c>IPSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>IPSet</code> to remove IP address ranges, if any. For more information,
+        /// Update the <c>IPSet</c> to remove IP address ranges, if any. For more information,
         /// see <a>UpdateIPSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteIPSet</code> request.
+        /// Submit a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="ipSetId">The <code>IPSetId</code> of the <a>IPSet</a> that you want to delete. <code>IPSetId</code> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
+        /// <param name="ipSetId">The <c>IPSetId</c> of the <a>IPSet</a> that you want to delete. <c>IPSetId</c> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -6115,22 +6074,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6143,11 +6101,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6179,30 +6137,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes an <a>IPSet</a>. You can't delete an <code>IPSet</code> if it's
-        /// still used in any <code>Rules</code> or if it still includes any IP addresses.
+        /// Permanently deletes an <a>IPSet</a>. You can't delete an <c>IPSet</c> if it's still
+        /// used in any <c>Rules</c> or if it still includes any IP addresses.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove an <code>IPSet</code> from a <code>Rule</code>, use <a>UpdateRule</a>.
+        /// If you just want to remove an <c>IPSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete an <code>IPSet</code> from AWS WAF, perform the following steps:
+        /// To permanently delete an <c>IPSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>IPSet</code> to remove IP address ranges, if any. For more information,
+        /// Update the <c>IPSet</c> to remove IP address ranges, if any. For more information,
         /// see <a>UpdateIPSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteIPSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteIPSet</code> request.
+        /// Submit a <c>DeleteIPSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -6225,22 +6183,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6253,11 +6210,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6485,31 +6442,30 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Permanently deletes a <a>RateBasedRule</a>. You can't delete a rule if it's still
-        /// used in any <code>WebACL</code> objects or if it still includes any predicates, such
-        /// as <code>ByteMatchSet</code> objects.
+        /// used in any <c>WebACL</c> objects or if it still includes any predicates, such as
+        /// <c>ByteMatchSet</c> objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a rule from a <code>WebACL</code>, use <a>UpdateWebACL</a>.
+        /// If you just want to remove a rule from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>RateBasedRule</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete a <c>RateBasedRule</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>RateBasedRule</code> to remove predicates, if any. For more information,
+        /// Update the <c>RateBasedRule</c> to remove predicates, if any. For more information,
         /// see <a>UpdateRateBasedRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRateBasedRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRateBasedRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRateBasedRule</code> request.
+        /// Submit a <c>DeleteRateBasedRule</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -6529,22 +6485,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6557,11 +6512,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6601,31 +6556,30 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Permanently deletes a <a>RateBasedRule</a>. You can't delete a rule if it's still
-        /// used in any <code>WebACL</code> objects or if it still includes any predicates, such
-        /// as <code>ByteMatchSet</code> objects.
+        /// used in any <c>WebACL</c> objects or if it still includes any predicates, such as
+        /// <c>ByteMatchSet</c> objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a rule from a <code>WebACL</code>, use <a>UpdateWebACL</a>.
+        /// If you just want to remove a rule from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>RateBasedRule</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete a <c>RateBasedRule</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>RateBasedRule</code> to remove predicates, if any. For more information,
+        /// Update the <c>RateBasedRule</c> to remove predicates, if any. For more information,
         /// see <a>UpdateRateBasedRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRateBasedRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRateBasedRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRateBasedRule</code> request.
+        /// Submit a <c>DeleteRateBasedRule</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -6648,22 +6602,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6676,11 +6629,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6723,32 +6676,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>RegexMatchSet</a>. You can't delete a <code>RegexMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <code>RegexMatchTuples</code>
+        /// Permanently deletes a <a>RegexMatchSet</a>. You can't delete a <c>RegexMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <c>RegexMatchTuples</c>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>RegexMatchSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>RegexMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>RegexMatchSet</code>, perform the following steps:
+        /// To permanently delete a <c>RegexMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>RegexMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateRegexMatchSet</a>.
+        /// Update the <c>RegexMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateRegexMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRegexMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRegexMatchSet</code> request.
+        /// Submit a <c>DeleteRegexMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -6768,22 +6720,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6796,11 +6747,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6833,32 +6784,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>RegexMatchSet</a>. You can't delete a <code>RegexMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <code>RegexMatchTuples</code>
+        /// Permanently deletes a <a>RegexMatchSet</a>. You can't delete a <c>RegexMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <c>RegexMatchTuples</c>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>RegexMatchSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>RegexMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>RegexMatchSet</code>, perform the following steps:
+        /// To permanently delete a <c>RegexMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>RegexMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateRegexMatchSet</a>.
+        /// Update the <c>RegexMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateRegexMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRegexMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRegexMatchSet</code> request.
+        /// Submit a <c>DeleteRegexMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -6881,22 +6831,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6909,11 +6858,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6950,9 +6899,9 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>RegexPatternSet</a>. You can't delete a <code>RegexPatternSet</code>
-        /// if it's still used in any <code>RegexMatchSet</code> or if the <code>RegexPatternSet</code>
-        /// is not empty. 
+        /// Permanently deletes a <a>RegexPatternSet</a>. You can't delete a <c>RegexPatternSet</c>
+        /// if it's still used in any <c>RegexMatchSet</c> or if the <c>RegexPatternSet</c> is
+        /// not empty. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteRegexPatternSet service method.</param>
@@ -6971,22 +6920,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -6999,11 +6947,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7036,9 +6984,9 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>RegexPatternSet</a>. You can't delete a <code>RegexPatternSet</code>
-        /// if it's still used in any <code>RegexMatchSet</code> or if the <code>RegexPatternSet</code>
-        /// is not empty. 
+        /// Permanently deletes a <a>RegexPatternSet</a>. You can't delete a <c>RegexPatternSet</c>
+        /// if it's still used in any <c>RegexMatchSet</c> or if the <c>RegexPatternSet</c> is
+        /// not empty. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteRegexPatternSet service method.</param>
@@ -7060,22 +7008,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7088,11 +7035,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7129,35 +7076,34 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>Rule</a>. You can't delete a <code>Rule</code> if it's still
-        /// used in any <code>WebACL</code> objects or if it still includes any predicates, such
-        /// as <code>ByteMatchSet</code> objects.
+        /// Permanently deletes a <a>Rule</a>. You can't delete a <c>Rule</c> if it's still used
+        /// in any <c>WebACL</c> objects or if it still includes any predicates, such as <c>ByteMatchSet</c>
+        /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>Rule</code> from a <code>WebACL</code>, use <a>UpdateWebACL</a>.
+        /// If you just want to remove a <c>Rule</c> from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>Rule</code> from AWS WAF, perform the following steps:
+        /// To permanently delete a <c>Rule</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>Rule</code> to remove predicates, if any. For more information, see
-        /// <a>UpdateRule</a>.
+        /// Update the <c>Rule</c> to remove predicates, if any. For more information, see <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRule</code> request.
+        /// Submit a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="ruleId">The <code>RuleId</code> of the <a>Rule</a> that you want to delete. <code>RuleId</code> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
+        /// <param name="ruleId">The <c>RuleId</c> of the <a>Rule</a> that you want to delete. <c>RuleId</c> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the DeleteRule service method, as returned by WAFRegional.</returns>
@@ -7174,22 +7120,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7202,11 +7147,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7244,31 +7189,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>Rule</a>. You can't delete a <code>Rule</code> if it's still
-        /// used in any <code>WebACL</code> objects or if it still includes any predicates, such
-        /// as <code>ByteMatchSet</code> objects.
+        /// Permanently deletes a <a>Rule</a>. You can't delete a <c>Rule</c> if it's still used
+        /// in any <c>WebACL</c> objects or if it still includes any predicates, such as <c>ByteMatchSet</c>
+        /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>Rule</code> from a <code>WebACL</code>, use <a>UpdateWebACL</a>.
+        /// If you just want to remove a <c>Rule</c> from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>Rule</code> from AWS WAF, perform the following steps:
+        /// To permanently delete a <c>Rule</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>Rule</code> to remove predicates, if any. For more information, see
-        /// <a>UpdateRule</a>.
+        /// Update the <c>Rule</c> to remove predicates, if any. For more information, see <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRule</code> request.
+        /// Submit a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -7288,22 +7232,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7316,11 +7259,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7359,35 +7302,34 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>Rule</a>. You can't delete a <code>Rule</code> if it's still
-        /// used in any <code>WebACL</code> objects or if it still includes any predicates, such
-        /// as <code>ByteMatchSet</code> objects.
+        /// Permanently deletes a <a>Rule</a>. You can't delete a <c>Rule</c> if it's still used
+        /// in any <c>WebACL</c> objects or if it still includes any predicates, such as <c>ByteMatchSet</c>
+        /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>Rule</code> from a <code>WebACL</code>, use <a>UpdateWebACL</a>.
+        /// If you just want to remove a <c>Rule</c> from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>Rule</code> from AWS WAF, perform the following steps:
+        /// To permanently delete a <c>Rule</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>Rule</code> to remove predicates, if any. For more information, see
-        /// <a>UpdateRule</a>.
+        /// Update the <c>Rule</c> to remove predicates, if any. For more information, see <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRule</code> request.
+        /// Submit a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="ruleId">The <code>RuleId</code> of the <a>Rule</a> that you want to delete. <code>RuleId</code> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
+        /// <param name="ruleId">The <c>RuleId</c> of the <a>Rule</a> that you want to delete. <c>RuleId</c> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -7407,22 +7349,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7435,11 +7376,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7477,31 +7418,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>Rule</a>. You can't delete a <code>Rule</code> if it's still
-        /// used in any <code>WebACL</code> objects or if it still includes any predicates, such
-        /// as <code>ByteMatchSet</code> objects.
+        /// Permanently deletes a <a>Rule</a>. You can't delete a <c>Rule</c> if it's still used
+        /// in any <c>WebACL</c> objects or if it still includes any predicates, such as <c>ByteMatchSet</c>
+        /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>Rule</code> from a <code>WebACL</code>, use <a>UpdateWebACL</a>.
+        /// If you just want to remove a <c>Rule</c> from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>Rule</code> from AWS WAF, perform the following steps:
+        /// To permanently delete a <c>Rule</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>Rule</code> to remove predicates, if any. For more information, see
-        /// <a>UpdateRule</a>.
+        /// Update the <c>Rule</c> to remove predicates, if any. For more information, see <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRule</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRule</code> request.
+        /// Submit a <c>DeleteRule</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -7524,22 +7464,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7552,11 +7491,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7599,33 +7538,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>RuleGroup</a>. You can't delete a <code>RuleGroup</code>
-        /// if it's still used in any <code>WebACL</code> objects or if it still includes any
-        /// rules.
+        /// Permanently deletes a <a>RuleGroup</a>. You can't delete a <c>RuleGroup</c> if it's
+        /// still used in any <c>WebACL</c> objects or if it still includes any rules.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>RuleGroup</code> from a <code>WebACL</code>, use
-        /// <a>UpdateWebACL</a>.
+        /// If you just want to remove a <c>RuleGroup</c> from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>RuleGroup</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete a <c>RuleGroup</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>RuleGroup</code> to remove rules, if any. For more information, see
-        /// <a>UpdateRuleGroup</a>.
+        /// Update the <c>RuleGroup</c> to remove rules, if any. For more information, see <a>UpdateRuleGroup</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRuleGroup</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRuleGroup</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRuleGroup</code> request.
+        /// Submit a <c>DeleteRuleGroup</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -7641,28 +7576,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7671,22 +7606,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7699,11 +7633,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7742,33 +7676,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>RuleGroup</a>. You can't delete a <code>RuleGroup</code>
-        /// if it's still used in any <code>WebACL</code> objects or if it still includes any
-        /// rules.
+        /// Permanently deletes a <a>RuleGroup</a>. You can't delete a <c>RuleGroup</c> if it's
+        /// still used in any <c>WebACL</c> objects or if it still includes any rules.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>RuleGroup</code> from a <code>WebACL</code>, use
-        /// <a>UpdateWebACL</a>.
+        /// If you just want to remove a <c>RuleGroup</c> from a <c>WebACL</c>, use <a>UpdateWebACL</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>RuleGroup</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete a <c>RuleGroup</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>RuleGroup</code> to remove rules, if any. For more information, see
-        /// <a>UpdateRuleGroup</a>.
+        /// Update the <c>RuleGroup</c> to remove rules, if any. For more information, see <a>UpdateRuleGroup</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteRuleGroup</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteRuleGroup</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteRuleGroup</code> request.
+        /// Submit a <c>DeleteRuleGroup</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -7787,28 +7717,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7817,22 +7747,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7845,11 +7774,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7892,32 +7821,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>SizeConstraintSet</a>. You can't delete a <code>SizeConstraintSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <a>SizeConstraint</a>
+        /// Permanently deletes a <a>SizeConstraintSet</a>. You can't delete a <c>SizeConstraintSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <a>SizeConstraint</a>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>SizeConstraintSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>SizeConstraintSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>SizeConstraintSet</code>, perform the following steps:
+        /// To permanently delete a <c>SizeConstraintSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>SizeConstraintSet</code> to remove filters, if any. For more information,
+        /// Update the <c>SizeConstraintSet</c> to remove filters, if any. For more information,
         /// see <a>UpdateSizeConstraintSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteSizeConstraintSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteSizeConstraintSet</code> request.
+        /// Submit a <c>DeleteSizeConstraintSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -7937,22 +7865,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -7965,11 +7892,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8002,32 +7929,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>SizeConstraintSet</a>. You can't delete a <code>SizeConstraintSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still includes any <a>SizeConstraint</a>
+        /// Permanently deletes a <a>SizeConstraintSet</a>. You can't delete a <c>SizeConstraintSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still includes any <a>SizeConstraint</a>
         /// objects (any filters).
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>SizeConstraintSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>SizeConstraintSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>SizeConstraintSet</code>, perform the following steps:
+        /// To permanently delete a <c>SizeConstraintSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>SizeConstraintSet</code> to remove filters, if any. For more information,
+        /// Update the <c>SizeConstraintSet</c> to remove filters, if any. For more information,
         /// see <a>UpdateSizeConstraintSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteSizeConstraintSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteSizeConstraintSet</code> request.
+        /// Submit a <c>DeleteSizeConstraintSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -8050,22 +7976,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8078,11 +8003,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8119,37 +8044,36 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <code>SqlInjectionMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still contains any <a>SqlInjectionMatchTuple</a>
+        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <c>SqlInjectionMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still contains any <a>SqlInjectionMatchTuple</a>
         /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>SqlInjectionMatchSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>SqlInjectionMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>SqlInjectionMatchSet</code> from AWS WAF, perform the
-        /// following steps:
+        /// To permanently delete a <c>SqlInjectionMatchSet</c> from AWS WAF, perform the following
+        /// steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>SqlInjectionMatchSet</code> to remove filters, if any. For more information,
+        /// Update the <c>SqlInjectionMatchSet</c> to remove filters, if any. For more information,
         /// see <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Submit a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="sqlInjectionMatchSetId">The <code>SqlInjectionMatchSetId</code> of the <a>SqlInjectionMatchSet</a> that you want to delete. <code>SqlInjectionMatchSetId</code> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
+        /// <param name="sqlInjectionMatchSetId">The <c>SqlInjectionMatchSetId</c> of the <a>SqlInjectionMatchSet</a> that you want to delete. <c>SqlInjectionMatchSetId</c> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the DeleteSqlInjectionMatchSet service method, as returned by WAFRegional.</returns>
@@ -8166,22 +8090,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8194,11 +8117,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8230,33 +8153,32 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <code>SqlInjectionMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still contains any <a>SqlInjectionMatchTuple</a>
+        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <c>SqlInjectionMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still contains any <a>SqlInjectionMatchTuple</a>
         /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>SqlInjectionMatchSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>SqlInjectionMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>SqlInjectionMatchSet</code> from AWS WAF, perform the
-        /// following steps:
+        /// To permanently delete a <c>SqlInjectionMatchSet</c> from AWS WAF, perform the following
+        /// steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>SqlInjectionMatchSet</code> to remove filters, if any. For more information,
+        /// Update the <c>SqlInjectionMatchSet</c> to remove filters, if any. For more information,
         /// see <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Submit a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -8276,22 +8198,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8304,11 +8225,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8341,37 +8262,36 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <code>SqlInjectionMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still contains any <a>SqlInjectionMatchTuple</a>
+        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <c>SqlInjectionMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still contains any <a>SqlInjectionMatchTuple</a>
         /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>SqlInjectionMatchSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>SqlInjectionMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>SqlInjectionMatchSet</code> from AWS WAF, perform the
-        /// following steps:
+        /// To permanently delete a <c>SqlInjectionMatchSet</c> from AWS WAF, perform the following
+        /// steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>SqlInjectionMatchSet</code> to remove filters, if any. For more information,
+        /// Update the <c>SqlInjectionMatchSet</c> to remove filters, if any. For more information,
         /// see <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Submit a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="sqlInjectionMatchSetId">The <code>SqlInjectionMatchSetId</code> of the <a>SqlInjectionMatchSet</a> that you want to delete. <code>SqlInjectionMatchSetId</code> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
+        /// <param name="sqlInjectionMatchSetId">The <c>SqlInjectionMatchSetId</c> of the <a>SqlInjectionMatchSet</a> that you want to delete. <c>SqlInjectionMatchSetId</c> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -8391,22 +8311,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8419,11 +8338,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8455,33 +8374,32 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <code>SqlInjectionMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still contains any <a>SqlInjectionMatchTuple</a>
+        /// Permanently deletes a <a>SqlInjectionMatchSet</a>. You can't delete a <c>SqlInjectionMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still contains any <a>SqlInjectionMatchTuple</a>
         /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove a <code>SqlInjectionMatchSet</code> from a <code>Rule</code>,
-        /// use <a>UpdateRule</a>.
+        /// If you just want to remove a <c>SqlInjectionMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete a <code>SqlInjectionMatchSet</code> from AWS WAF, perform the
-        /// following steps:
+        /// To permanently delete a <c>SqlInjectionMatchSet</c> from AWS WAF, perform the following
+        /// steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>SqlInjectionMatchSet</code> to remove filters, if any. For more information,
+        /// Update the <c>SqlInjectionMatchSet</c> to remove filters, if any. For more information,
         /// see <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteSqlInjectionMatchSet</code> request.
+        /// Submit a <c>DeleteSqlInjectionMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -8504,22 +8422,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8532,11 +8449,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8573,30 +8490,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>WebACL</a>. You can't delete a <code>WebACL</code> if it
-        /// still contains any <code>Rules</code>.
+        /// Permanently deletes a <a>WebACL</a>. You can't delete a <c>WebACL</c> if it still
+        /// contains any <c>Rules</c>.
         /// </para>
         ///  
         /// <para>
-        /// To delete a <code>WebACL</code>, perform the following steps:
+        /// To delete a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>WebACL</code> to remove <code>Rules</code>, if any. For more information,
-        /// see <a>UpdateWebACL</a>.
+        /// Update the <c>WebACL</c> to remove <c>Rules</c>, if any. For more information, see
+        /// <a>UpdateWebACL</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteWebACL</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteWebACL</code> request.
+        /// Submit a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="webACLId">The <code>WebACLId</code> of the <a>WebACL</a> that you want to delete. <code>WebACLId</code> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
+        /// <param name="webACLId">The <c>WebACLId</c> of the <a>WebACL</a> that you want to delete. <c>WebACLId</c> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the DeleteWebACL service method, as returned by WAFRegional.</returns>
@@ -8613,22 +8530,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8641,11 +8557,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8683,26 +8599,26 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>WebACL</a>. You can't delete a <code>WebACL</code> if it
-        /// still contains any <code>Rules</code>.
+        /// Permanently deletes a <a>WebACL</a>. You can't delete a <c>WebACL</c> if it still
+        /// contains any <c>Rules</c>.
         /// </para>
         ///  
         /// <para>
-        /// To delete a <code>WebACL</code>, perform the following steps:
+        /// To delete a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>WebACL</code> to remove <code>Rules</code>, if any. For more information,
-        /// see <a>UpdateWebACL</a>.
+        /// Update the <c>WebACL</c> to remove <c>Rules</c>, if any. For more information, see
+        /// <a>UpdateWebACL</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteWebACL</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteWebACL</code> request.
+        /// Submit a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -8722,22 +8638,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8750,11 +8665,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8793,30 +8708,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>WebACL</a>. You can't delete a <code>WebACL</code> if it
-        /// still contains any <code>Rules</code>.
+        /// Permanently deletes a <a>WebACL</a>. You can't delete a <c>WebACL</c> if it still
+        /// contains any <c>Rules</c>.
         /// </para>
         ///  
         /// <para>
-        /// To delete a <code>WebACL</code>, perform the following steps:
+        /// To delete a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>WebACL</code> to remove <code>Rules</code>, if any. For more information,
-        /// see <a>UpdateWebACL</a>.
+        /// Update the <c>WebACL</c> to remove <c>Rules</c>, if any. For more information, see
+        /// <a>UpdateWebACL</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteWebACL</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteWebACL</code> request.
+        /// Submit a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
-        /// <param name="webACLId">The <code>WebACLId</code> of the <a>WebACL</a> that you want to delete. <code>WebACLId</code> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
+        /// <param name="webACLId">The <c>WebACLId</c> of the <a>WebACL</a> that you want to delete. <c>WebACLId</c> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -8836,22 +8751,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8864,11 +8778,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8906,26 +8820,26 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes a <a>WebACL</a>. You can't delete a <code>WebACL</code> if it
-        /// still contains any <code>Rules</code>.
+        /// Permanently deletes a <a>WebACL</a>. You can't delete a <c>WebACL</c> if it still
+        /// contains any <c>Rules</c>.
         /// </para>
         ///  
         /// <para>
-        /// To delete a <code>WebACL</code>, perform the following steps:
+        /// To delete a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>WebACL</code> to remove <code>Rules</code>, if any. For more information,
-        /// see <a>UpdateWebACL</a>.
+        /// Update the <c>WebACL</c> to remove <c>Rules</c>, if any. For more information, see
+        /// <a>UpdateWebACL</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteWebACL</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteWebACL</code> request.
+        /// Submit a <c>DeleteWebACL</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -8948,22 +8862,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -8976,11 +8889,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -9023,33 +8936,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes an <a>XssMatchSet</a>. You can't delete an <code>XssMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still contains any <a>XssMatchTuple</a>
+        /// Permanently deletes an <a>XssMatchSet</a>. You can't delete an <c>XssMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still contains any <a>XssMatchTuple</a>
         /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove an <code>XssMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove an <c>XssMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete an <code>XssMatchSet</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete an <c>XssMatchSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>XssMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateXssMatchSet</a>.
+        /// Update the <c>XssMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateXssMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteXssMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteXssMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteXssMatchSet</code> request.
+        /// Submit a <c>DeleteXssMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -9069,22 +8980,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -9097,11 +9007,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -9134,33 +9044,31 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Permanently deletes an <a>XssMatchSet</a>. You can't delete an <code>XssMatchSet</code>
-        /// if it's still used in any <code>Rules</code> or if it still contains any <a>XssMatchTuple</a>
+        /// Permanently deletes an <a>XssMatchSet</a>. You can't delete an <c>XssMatchSet</c>
+        /// if it's still used in any <c>Rules</c> or if it still contains any <a>XssMatchTuple</a>
         /// objects.
         /// </para>
         ///  
         /// <para>
-        /// If you just want to remove an <code>XssMatchSet</code> from a <code>Rule</code>, use
-        /// <a>UpdateRule</a>.
+        /// If you just want to remove an <c>XssMatchSet</c> from a <c>Rule</c>, use <a>UpdateRule</a>.
         /// </para>
         ///  
         /// <para>
-        /// To permanently delete an <code>XssMatchSet</code> from AWS WAF, perform the following
-        /// steps:
+        /// To permanently delete an <c>XssMatchSet</c> from AWS WAF, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Update the <code>XssMatchSet</code> to remove filters, if any. For more information,
-        /// see <a>UpdateXssMatchSet</a>.
+        /// Update the <c>XssMatchSet</c> to remove filters, if any. For more information, see
+        /// <a>UpdateXssMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of a <code>DeleteXssMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of a <c>DeleteXssMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit a <code>DeleteXssMatchSet</code> request.
+        /// Submit a <c>DeleteXssMatchSet</c> request.
         /// </para>
         ///  </li> </ol>
         /// </summary>
@@ -9183,22 +9091,21 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>WebACL</code> that still contains one or more <code>Rule</code>
-        /// objects.
+        /// You tried to delete a <c>WebACL</c> that still contains one or more <c>Rule</c> objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that still contains one or more <code>ByteMatchSet</code>
+        /// You tried to delete a <c>Rule</c> that still contains one or more <c>ByteMatchSet</c>
         /// objects or other predicates.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that contains one or more <code>ByteMatchTuple</code>
+        /// You tried to delete a <c>ByteMatchSet</c> that contains one or more <c>ByteMatchTuple</c>
         /// objects.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete an <code>IPSet</code> that references one or more IP addresses.
+        /// You tried to delete an <c>IPSet</c> that references one or more IP addresses.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -9211,11 +9118,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -9282,33 +9189,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -9378,33 +9285,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -9445,10 +9352,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>ByteMatchSet</a> specified by <code>ByteMatchSetId</code>.
+        /// Returns the <a>ByteMatchSet</a> specified by <c>ByteMatchSetId</c>.
         /// </para>
         /// </summary>
-        /// <param name="byteMatchSetId">The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to get. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
+        /// <param name="byteMatchSetId">The <c>ByteMatchSetId</c> of the <a>ByteMatchSet</a> that you want to get. <c>ByteMatchSetId</c> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
         /// 
         /// <returns>The response from the GetByteMatchSet service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInternalErrorException">
@@ -9485,7 +9392,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>ByteMatchSet</a> specified by <code>ByteMatchSetId</code>.
+        /// Returns the <a>ByteMatchSet</a> specified by <c>ByteMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetByteMatchSet service method.</param>
@@ -9527,10 +9434,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>ByteMatchSet</a> specified by <code>ByteMatchSetId</code>.
+        /// Returns the <a>ByteMatchSet</a> specified by <c>ByteMatchSetId</c>.
         /// </para>
         /// </summary>
-        /// <param name="byteMatchSetId">The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to get. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
+        /// <param name="byteMatchSetId">The <c>ByteMatchSetId</c> of the <a>ByteMatchSet</a> that you want to get. <c>ByteMatchSetId</c> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -9570,7 +9477,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>ByteMatchSet</a> specified by <code>ByteMatchSetId</code>.
+        /// Returns the <a>ByteMatchSet</a> specified by <c>ByteMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetByteMatchSet service method.</param>
@@ -9626,16 +9533,16 @@ namespace Amazon.WAFRegional
         ///  
         /// <para>
         /// Each create, update, or delete request must use a unique change token. If your application
-        /// submits a <code>GetChangeToken</code> request and then submits a second <code>GetChangeToken</code>
-        /// request before submitting a create, update, or delete request, the second <code>GetChangeToken</code>
-        /// request returns the same value as the first <code>GetChangeToken</code> request.
+        /// submits a <c>GetChangeToken</c> request and then submits a second <c>GetChangeToken</c>
+        /// request before submitting a create, update, or delete request, the second <c>GetChangeToken</c>
+        /// request returns the same value as the first <c>GetChangeToken</c> request.
         /// </para>
         ///  
         /// <para>
         /// When you use a change token in a create, update, or delete request, the status of
-        /// the change token changes to <code>PENDING</code>, which indicates that AWS WAF is
-        /// propagating the change to all AWS WAF servers. Use <code>GetChangeTokenStatus</code>
-        /// to determine the status of your change token.
+        /// the change token changes to <c>PENDING</c>, which indicates that AWS WAF is propagating
+        /// the change to all AWS WAF servers. Use <c>GetChangeTokenStatus</c> to determine the
+        /// status of your change token.
         /// </para>
         /// </summary>
         /// 
@@ -9672,16 +9579,16 @@ namespace Amazon.WAFRegional
         ///  
         /// <para>
         /// Each create, update, or delete request must use a unique change token. If your application
-        /// submits a <code>GetChangeToken</code> request and then submits a second <code>GetChangeToken</code>
-        /// request before submitting a create, update, or delete request, the second <code>GetChangeToken</code>
-        /// request returns the same value as the first <code>GetChangeToken</code> request.
+        /// submits a <c>GetChangeToken</c> request and then submits a second <c>GetChangeToken</c>
+        /// request before submitting a create, update, or delete request, the second <c>GetChangeToken</c>
+        /// request returns the same value as the first <c>GetChangeToken</c> request.
         /// </para>
         ///  
         /// <para>
         /// When you use a change token in a create, update, or delete request, the status of
-        /// the change token changes to <code>PENDING</code>, which indicates that AWS WAF is
-        /// propagating the change to all AWS WAF servers. Use <code>GetChangeTokenStatus</code>
-        /// to determine the status of your change token.
+        /// the change token changes to <c>PENDING</c>, which indicates that AWS WAF is propagating
+        /// the change to all AWS WAF servers. Use <c>GetChangeTokenStatus</c> to determine the
+        /// status of your change token.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetChangeToken service method.</param>
@@ -9723,16 +9630,16 @@ namespace Amazon.WAFRegional
         ///  
         /// <para>
         /// Each create, update, or delete request must use a unique change token. If your application
-        /// submits a <code>GetChangeToken</code> request and then submits a second <code>GetChangeToken</code>
-        /// request before submitting a create, update, or delete request, the second <code>GetChangeToken</code>
-        /// request returns the same value as the first <code>GetChangeToken</code> request.
+        /// submits a <c>GetChangeToken</c> request and then submits a second <c>GetChangeToken</c>
+        /// request before submitting a create, update, or delete request, the second <c>GetChangeToken</c>
+        /// request returns the same value as the first <c>GetChangeToken</c> request.
         /// </para>
         ///  
         /// <para>
         /// When you use a change token in a create, update, or delete request, the status of
-        /// the change token changes to <code>PENDING</code>, which indicates that AWS WAF is
-        /// propagating the change to all AWS WAF servers. Use <code>GetChangeTokenStatus</code>
-        /// to determine the status of your change token.
+        /// the change token changes to <c>PENDING</c>, which indicates that AWS WAF is propagating
+        /// the change to all AWS WAF servers. Use <c>GetChangeTokenStatus</c> to determine the
+        /// status of your change token.
         /// </para>
         /// </summary>
         /// <param name="cancellationToken">
@@ -9771,16 +9678,16 @@ namespace Amazon.WAFRegional
         ///  
         /// <para>
         /// Each create, update, or delete request must use a unique change token. If your application
-        /// submits a <code>GetChangeToken</code> request and then submits a second <code>GetChangeToken</code>
-        /// request before submitting a create, update, or delete request, the second <code>GetChangeToken</code>
-        /// request returns the same value as the first <code>GetChangeToken</code> request.
+        /// submits a <c>GetChangeToken</c> request and then submits a second <c>GetChangeToken</c>
+        /// request before submitting a create, update, or delete request, the second <c>GetChangeToken</c>
+        /// request returns the same value as the first <c>GetChangeToken</c> request.
         /// </para>
         ///  
         /// <para>
         /// When you use a change token in a create, update, or delete request, the status of
-        /// the change token changes to <code>PENDING</code>, which indicates that AWS WAF is
-        /// propagating the change to all AWS WAF servers. Use <code>GetChangeTokenStatus</code>
-        /// to determine the status of your change token.
+        /// the change token changes to <c>PENDING</c>, which indicates that AWS WAF is propagating
+        /// the change to all AWS WAF servers. Use <c>GetChangeTokenStatus</c> to determine the
+        /// status of your change token.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetChangeToken service method.</param>
@@ -9822,26 +9729,26 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the status of a <code>ChangeToken</code> that you got by calling <a>GetChangeToken</a>.
-        /// <code>ChangeTokenStatus</code> is one of the following values:
+        /// Returns the status of a <c>ChangeToken</c> that you got by calling <a>GetChangeToken</a>.
+        /// <c>ChangeTokenStatus</c> is one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONED</code>: You requested the change token by calling <code>GetChangeToken</code>,
+        ///  <c>PROVISIONED</c>: You requested the change token by calling <c>GetChangeToken</c>,
         /// but you haven't used it yet in a call to create, update, or delete an AWS WAF object.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code>: AWS WAF is propagating the create, update, or delete request
-        /// to all AWS WAF servers.
+        ///  <c>PENDING</c>: AWS WAF is propagating the create, update, or delete request to all
+        /// AWS WAF servers.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INSYNC</code>: Propagation is complete.
+        ///  <c>INSYNC</c>: Propagation is complete.
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        /// <param name="changeToken">The change token for which you want to get the status. This change token was previously returned in the <code>GetChangeToken</code> response.</param>
+        /// <param name="changeToken">The change token for which you want to get the status. This change token was previously returned in the <c>GetChangeToken</c> response.</param>
         /// 
         /// <returns>The response from the GetChangeTokenStatus service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInternalErrorException">
@@ -9874,22 +9781,22 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the status of a <code>ChangeToken</code> that you got by calling <a>GetChangeToken</a>.
-        /// <code>ChangeTokenStatus</code> is one of the following values:
+        /// Returns the status of a <c>ChangeToken</c> that you got by calling <a>GetChangeToken</a>.
+        /// <c>ChangeTokenStatus</c> is one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONED</code>: You requested the change token by calling <code>GetChangeToken</code>,
+        ///  <c>PROVISIONED</c>: You requested the change token by calling <c>GetChangeToken</c>,
         /// but you haven't used it yet in a call to create, update, or delete an AWS WAF object.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code>: AWS WAF is propagating the create, update, or delete request
-        /// to all AWS WAF servers.
+        ///  <c>PENDING</c>: AWS WAF is propagating the create, update, or delete request to all
+        /// AWS WAF servers.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INSYNC</code>: Propagation is complete.
+        ///  <c>INSYNC</c>: Propagation is complete.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -9928,26 +9835,26 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the status of a <code>ChangeToken</code> that you got by calling <a>GetChangeToken</a>.
-        /// <code>ChangeTokenStatus</code> is one of the following values:
+        /// Returns the status of a <c>ChangeToken</c> that you got by calling <a>GetChangeToken</a>.
+        /// <c>ChangeTokenStatus</c> is one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONED</code>: You requested the change token by calling <code>GetChangeToken</code>,
+        ///  <c>PROVISIONED</c>: You requested the change token by calling <c>GetChangeToken</c>,
         /// but you haven't used it yet in a call to create, update, or delete an AWS WAF object.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code>: AWS WAF is propagating the create, update, or delete request
-        /// to all AWS WAF servers.
+        ///  <c>PENDING</c>: AWS WAF is propagating the create, update, or delete request to all
+        /// AWS WAF servers.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INSYNC</code>: Propagation is complete.
+        ///  <c>INSYNC</c>: Propagation is complete.
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        /// <param name="changeToken">The change token for which you want to get the status. This change token was previously returned in the <code>GetChangeToken</code> response.</param>
+        /// <param name="changeToken">The change token for which you want to get the status. This change token was previously returned in the <c>GetChangeToken</c> response.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -9983,22 +9890,22 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the status of a <code>ChangeToken</code> that you got by calling <a>GetChangeToken</a>.
-        /// <code>ChangeTokenStatus</code> is one of the following values:
+        /// Returns the status of a <c>ChangeToken</c> that you got by calling <a>GetChangeToken</a>.
+        /// <c>ChangeTokenStatus</c> is one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PROVISIONED</code>: You requested the change token by calling <code>GetChangeToken</code>,
+        ///  <c>PROVISIONED</c>: You requested the change token by calling <c>GetChangeToken</c>,
         /// but you haven't used it yet in a call to create, update, or delete an AWS WAF object.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PENDING</code>: AWS WAF is propagating the create, update, or delete request
-        /// to all AWS WAF servers.
+        ///  <c>PENDING</c>: AWS WAF is propagating the create, update, or delete request to all
+        /// AWS WAF servers.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INSYNC</code>: Propagation is complete.
+        ///  <c>INSYNC</c>: Propagation is complete.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -10044,7 +9951,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>GeoMatchSet</a> that is specified by <code>GeoMatchSetId</code>.
+        /// Returns the <a>GeoMatchSet</a> that is specified by <c>GeoMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetGeoMatchSet service method.</param>
@@ -10086,7 +9993,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>GeoMatchSet</a> that is specified by <code>GeoMatchSetId</code>.
+        /// Returns the <a>GeoMatchSet</a> that is specified by <c>GeoMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetGeoMatchSet service method.</param>
@@ -10135,10 +10042,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>IPSet</a> that is specified by <code>IPSetId</code>.
+        /// Returns the <a>IPSet</a> that is specified by <c>IPSetId</c>.
         /// </para>
         /// </summary>
-        /// <param name="ipSetId">The <code>IPSetId</code> of the <a>IPSet</a> that you want to get. <code>IPSetId</code> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
+        /// <param name="ipSetId">The <c>IPSetId</c> of the <a>IPSet</a> that you want to get. <c>IPSetId</c> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
         /// 
         /// <returns>The response from the GetIPSet service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInternalErrorException">
@@ -10175,7 +10082,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>IPSet</a> that is specified by <code>IPSetId</code>.
+        /// Returns the <a>IPSet</a> that is specified by <c>IPSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetIPSet service method.</param>
@@ -10217,10 +10124,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>IPSet</a> that is specified by <code>IPSetId</code>.
+        /// Returns the <a>IPSet</a> that is specified by <c>IPSetId</c>.
         /// </para>
         /// </summary>
-        /// <param name="ipSetId">The <code>IPSetId</code> of the <a>IPSet</a> that you want to get. <code>IPSetId</code> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
+        /// <param name="ipSetId">The <c>IPSetId</c> of the <a>IPSet</a> that you want to get. <c>IPSetId</c> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -10260,7 +10167,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>IPSet</a> that is specified by <code>IPSetId</code>.
+        /// Returns the <a>IPSet</a> that is specified by <c>IPSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetIPSet service method.</param>
@@ -10475,8 +10382,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RateBasedRule</a> that is specified by the <code>RuleId</code> that
-        /// you included in the <code>GetRateBasedRule</code> request.
+        /// Returns the <a>RateBasedRule</a> that is specified by the <c>RuleId</c> that you included
+        /// in the <c>GetRateBasedRule</c> request.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRateBasedRule service method.</param>
@@ -10518,8 +10425,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RateBasedRule</a> that is specified by the <code>RuleId</code> that
-        /// you included in the <code>GetRateBasedRule</code> request.
+        /// Returns the <a>RateBasedRule</a> that is specified by the <c>RuleId</c> that you included
+        /// in the <c>GetRateBasedRule</c> request.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRateBasedRule service method.</param>
@@ -10569,9 +10476,9 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Returns an array of IP addresses currently being blocked by the <a>RateBasedRule</a>
-        /// that is specified by the <code>RuleId</code>. The maximum number of managed keys that
-        /// will be blocked is 10,000. If more than 10,000 addresses exceed the rate limit, the
-        /// 10,000 addresses with the highest rates will be blocked.
+        /// that is specified by the <c>RuleId</c>. The maximum number of managed keys that will
+        /// be blocked is 10,000. If more than 10,000 addresses exceed the rate limit, the 10,000
+        /// addresses with the highest rates will be blocked.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRateBasedRuleManagedKeys service method.</param>
@@ -10599,33 +10506,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -10663,9 +10570,9 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Returns an array of IP addresses currently being blocked by the <a>RateBasedRule</a>
-        /// that is specified by the <code>RuleId</code>. The maximum number of managed keys that
-        /// will be blocked is 10,000. If more than 10,000 addresses exceed the rate limit, the
-        /// 10,000 addresses with the highest rates will be blocked.
+        /// that is specified by the <c>RuleId</c>. The maximum number of managed keys that will
+        /// be blocked is 10,000. If more than 10,000 addresses exceed the rate limit, the 10,000
+        /// addresses with the highest rates will be blocked.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRateBasedRuleManagedKeys service method.</param>
@@ -10696,33 +10603,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -10763,7 +10670,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RegexMatchSet</a> specified by <code>RegexMatchSetId</code>.
+        /// Returns the <a>RegexMatchSet</a> specified by <c>RegexMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRegexMatchSet service method.</param>
@@ -10805,7 +10712,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RegexMatchSet</a> specified by <code>RegexMatchSetId</code>.
+        /// Returns the <a>RegexMatchSet</a> specified by <c>RegexMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRegexMatchSet service method.</param>
@@ -10854,7 +10761,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RegexPatternSet</a> specified by <code>RegexPatternSetId</code>.
+        /// Returns the <a>RegexPatternSet</a> specified by <c>RegexPatternSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRegexPatternSet service method.</param>
@@ -10896,7 +10803,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RegexPatternSet</a> specified by <code>RegexPatternSetId</code>.
+        /// Returns the <a>RegexPatternSet</a> specified by <c>RegexPatternSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRegexPatternSet service method.</param>
@@ -10945,11 +10852,11 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>Rule</a> that is specified by the <code>RuleId</code> that you included
-        /// in the <code>GetRule</code> request.
+        /// Returns the <a>Rule</a> that is specified by the <c>RuleId</c> that you included in
+        /// the <c>GetRule</c> request.
         /// </para>
         /// </summary>
-        /// <param name="ruleId">The <code>RuleId</code> of the <a>Rule</a> that you want to get. <code>RuleId</code> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
+        /// <param name="ruleId">The <c>RuleId</c> of the <a>Rule</a> that you want to get. <c>RuleId</c> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
         /// 
         /// <returns>The response from the GetRule service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInternalErrorException">
@@ -10986,8 +10893,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>Rule</a> that is specified by the <code>RuleId</code> that you included
-        /// in the <code>GetRule</code> request.
+        /// Returns the <a>Rule</a> that is specified by the <c>RuleId</c> that you included in
+        /// the <c>GetRule</c> request.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRule service method.</param>
@@ -11029,11 +10936,11 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>Rule</a> that is specified by the <code>RuleId</code> that you included
-        /// in the <code>GetRule</code> request.
+        /// Returns the <a>Rule</a> that is specified by the <c>RuleId</c> that you included in
+        /// the <c>GetRule</c> request.
         /// </para>
         /// </summary>
-        /// <param name="ruleId">The <code>RuleId</code> of the <a>Rule</a> that you want to get. <code>RuleId</code> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
+        /// <param name="ruleId">The <c>RuleId</c> of the <a>Rule</a> that you want to get. <c>RuleId</c> is returned by <a>CreateRule</a> and by <a>ListRules</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -11073,8 +10980,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>Rule</a> that is specified by the <code>RuleId</code> that you included
-        /// in the <code>GetRule</code> request.
+        /// Returns the <a>Rule</a> that is specified by the <c>RuleId</c> that you included in
+        /// the <c>GetRule</c> request.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRule service method.</param>
@@ -11123,8 +11030,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RuleGroup</a> that is specified by the <code>RuleGroupId</code> that
-        /// you included in the <code>GetRuleGroup</code> request.
+        /// Returns the <a>RuleGroup</a> that is specified by the <c>RuleGroupId</c> that you
+        /// included in the <c>GetRuleGroup</c> request.
         /// </para>
         ///  
         /// <para>
@@ -11166,8 +11073,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>RuleGroup</a> that is specified by the <code>RuleGroupId</code> that
-        /// you included in the <code>GetRuleGroup</code> request.
+        /// Returns the <a>RuleGroup</a> that is specified by the <c>RuleGroupId</c> that you
+        /// included in the <c>GetRuleGroup</c> request.
         /// </para>
         ///  
         /// <para>
@@ -11223,9 +11130,9 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetSampledRequests</code> returns a time range, which is usually the time range
-        /// that you specified. However, if your resource (such as a CloudFront distribution)
-        /// received 5,000 requests before the specified time range elapsed, <code>GetSampledRequests</code>
+        ///  <c>GetSampledRequests</c> returns a time range, which is usually the time range that
+        /// you specified. However, if your resource (such as a CloudFront distribution) received
+        /// 5,000 requests before the specified time range elapsed, <c>GetSampledRequests</c>
         /// returns an updated time range. This new time range indicates the actual period during
         /// which AWS WAF selected the requests in the sample.
         /// </para>
@@ -11272,9 +11179,9 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        ///  <code>GetSampledRequests</code> returns a time range, which is usually the time range
-        /// that you specified. However, if your resource (such as a CloudFront distribution)
-        /// received 5,000 requests before the specified time range elapsed, <code>GetSampledRequests</code>
+        ///  <c>GetSampledRequests</c> returns a time range, which is usually the time range that
+        /// you specified. However, if your resource (such as a CloudFront distribution) received
+        /// 5,000 requests before the specified time range elapsed, <c>GetSampledRequests</c>
         /// returns an updated time range. This new time range indicates the actual period during
         /// which AWS WAF selected the requests in the sample.
         /// </para>
@@ -11321,7 +11228,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>SizeConstraintSet</a> specified by <code>SizeConstraintSetId</code>.
+        /// Returns the <a>SizeConstraintSet</a> specified by <c>SizeConstraintSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSizeConstraintSet service method.</param>
@@ -11363,7 +11270,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>SizeConstraintSet</a> specified by <code>SizeConstraintSetId</code>.
+        /// Returns the <a>SizeConstraintSet</a> specified by <c>SizeConstraintSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSizeConstraintSet service method.</param>
@@ -11412,10 +11319,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <code>SqlInjectionMatchSetId</code>.
+        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <c>SqlInjectionMatchSetId</c>.
         /// </para>
         /// </summary>
-        /// <param name="sqlInjectionMatchSetId">The <code>SqlInjectionMatchSetId</code> of the <a>SqlInjectionMatchSet</a> that you want to get. <code>SqlInjectionMatchSetId</code> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
+        /// <param name="sqlInjectionMatchSetId">The <c>SqlInjectionMatchSetId</c> of the <a>SqlInjectionMatchSet</a> that you want to get. <c>SqlInjectionMatchSetId</c> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
         /// 
         /// <returns>The response from the GetSqlInjectionMatchSet service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInternalErrorException">
@@ -11452,7 +11359,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <code>SqlInjectionMatchSetId</code>.
+        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <c>SqlInjectionMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSqlInjectionMatchSet service method.</param>
@@ -11494,10 +11401,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <code>SqlInjectionMatchSetId</code>.
+        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <c>SqlInjectionMatchSetId</c>.
         /// </para>
         /// </summary>
-        /// <param name="sqlInjectionMatchSetId">The <code>SqlInjectionMatchSetId</code> of the <a>SqlInjectionMatchSet</a> that you want to get. <code>SqlInjectionMatchSetId</code> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
+        /// <param name="sqlInjectionMatchSetId">The <c>SqlInjectionMatchSetId</c> of the <a>SqlInjectionMatchSet</a> that you want to get. <c>SqlInjectionMatchSetId</c> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -11537,7 +11444,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <code>SqlInjectionMatchSetId</code>.
+        /// Returns the <a>SqlInjectionMatchSet</a> that is specified by <c>SqlInjectionMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetSqlInjectionMatchSet service method.</param>
@@ -11586,10 +11493,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>WebACL</a> that is specified by <code>WebACLId</code>.
+        /// Returns the <a>WebACL</a> that is specified by <c>WebACLId</c>.
         /// </para>
         /// </summary>
-        /// <param name="webACLId">The <code>WebACLId</code> of the <a>WebACL</a> that you want to get. <code>WebACLId</code> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
+        /// <param name="webACLId">The <c>WebACLId</c> of the <a>WebACL</a> that you want to get. <c>WebACLId</c> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
         /// 
         /// <returns>The response from the GetWebACL service method, as returned by WAFRegional.</returns>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInternalErrorException">
@@ -11626,7 +11533,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>WebACL</a> that is specified by <code>WebACLId</code>.
+        /// Returns the <a>WebACL</a> that is specified by <c>WebACLId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetWebACL service method.</param>
@@ -11668,10 +11575,10 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>WebACL</a> that is specified by <code>WebACLId</code>.
+        /// Returns the <a>WebACL</a> that is specified by <c>WebACLId</c>.
         /// </para>
         /// </summary>
-        /// <param name="webACLId">The <code>WebACLId</code> of the <a>WebACL</a> that you want to get. <code>WebACLId</code> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
+        /// <param name="webACLId">The <c>WebACLId</c> of the <a>WebACL</a> that you want to get. <c>WebACLId</c> is returned by <a>CreateWebACL</a> and by <a>ListWebACLs</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
         /// </param>
@@ -11711,7 +11618,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>WebACL</a> that is specified by <code>WebACLId</code>.
+        /// Returns the <a>WebACL</a> that is specified by <c>WebACLId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetWebACL service method.</param>
@@ -11790,33 +11697,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -11890,33 +11797,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -11961,7 +11868,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>XssMatchSet</a> that is specified by <code>XssMatchSetId</code>.
+        /// Returns the <a>XssMatchSet</a> that is specified by <c>XssMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetXssMatchSet service method.</param>
@@ -12003,7 +11910,7 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Returns the <a>XssMatchSet</a> that is specified by <code>XssMatchSetId</code>.
+        /// Returns the <a>XssMatchSet</a> that is specified by <c>XssMatchSetId</c>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetXssMatchSet service method.</param>
@@ -12076,33 +11983,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -12166,33 +12073,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -12512,33 +12419,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -12602,33 +12509,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -12953,33 +12860,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -13048,33 +12955,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -13567,33 +13474,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -13676,33 +13583,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -13938,18 +13845,17 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  <note> 
         /// <para>
-        /// Do not create the data firehose using a <code>Kinesis stream</code> as your source.
+        /// Do not create the data firehose using a <c>Kinesis stream</c> as your source.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// Associate that firehose to your web ACL using a <code>PutLoggingConfiguration</code>
-        /// request.
+        /// Associate that firehose to your web ACL using a <c>PutLoggingConfiguration</c> request.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you successfully enable logging using a <code>PutLoggingConfiguration</code>
-        /// request, AWS WAF will create a service linked role with the necessary permissions
-        /// to write logs to the Amazon Kinesis Data Firehose. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/logging.html">Logging
+        /// When you successfully enable logging using a <c>PutLoggingConfiguration</c> request,
+        /// AWS WAF will create a service linked role with the necessary permissions to write
+        /// logs to the Amazon Kinesis Data Firehose. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/logging.html">Logging
         /// Web ACL Traffic Information</a> in the <i>AWS WAF Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -13965,10 +13871,10 @@ namespace Amazon.WAFRegional
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFServiceLinkedRoleErrorException">
         /// AWS WAF is not able to access the service linked role. This can be caused by a previous
-        /// <code>PutLoggingConfiguration</code> request, which can lock the service linked role
-        /// for about 20 seconds. Please try your request again. The service linked role can also
-        /// be locked by a previous <code>DeleteServiceLinkedRole</code> request, which can lock
-        /// the role for 15 minutes or more. If you recently made a <code>DeleteServiceLinkedRole</code>,
+        /// <c>PutLoggingConfiguration</c> request, which can lock the service linked role for
+        /// about 20 seconds. Please try your request again. The service linked role can also
+        /// be locked by a previous <c>DeleteServiceLinkedRole</c> request, which can lock the
+        /// role for 15 minutes or more. If you recently made a <c>DeleteServiceLinkedRole</c>,
         /// wait at least 15 minutes and try the request again. If you receive this same exception
         /// again, you will have to wait additional time until the role is unlocked.
         /// </exception>
@@ -14020,18 +13926,17 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  <note> 
         /// <para>
-        /// Do not create the data firehose using a <code>Kinesis stream</code> as your source.
+        /// Do not create the data firehose using a <c>Kinesis stream</c> as your source.
         /// </para>
         ///  </note> </li> <li> 
         /// <para>
-        /// Associate that firehose to your web ACL using a <code>PutLoggingConfiguration</code>
-        /// request.
+        /// Associate that firehose to your web ACL using a <c>PutLoggingConfiguration</c> request.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you successfully enable logging using a <code>PutLoggingConfiguration</code>
-        /// request, AWS WAF will create a service linked role with the necessary permissions
-        /// to write logs to the Amazon Kinesis Data Firehose. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/logging.html">Logging
+        /// When you successfully enable logging using a <c>PutLoggingConfiguration</c> request,
+        /// AWS WAF will create a service linked role with the necessary permissions to write
+        /// logs to the Amazon Kinesis Data Firehose. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/logging.html">Logging
         /// Web ACL Traffic Information</a> in the <i>AWS WAF Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -14050,10 +13955,10 @@ namespace Amazon.WAFRegional
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFServiceLinkedRoleErrorException">
         /// AWS WAF is not able to access the service linked role. This can be caused by a previous
-        /// <code>PutLoggingConfiguration</code> request, which can lock the service linked role
-        /// for about 20 seconds. Please try your request again. The service linked role can also
-        /// be locked by a previous <code>DeleteServiceLinkedRole</code> request, which can lock
-        /// the role for 15 minutes or more. If you recently made a <code>DeleteServiceLinkedRole</code>,
+        /// <c>PutLoggingConfiguration</c> request, which can lock the service linked role for
+        /// about 20 seconds. Please try your request again. The service linked role can also
+        /// be locked by a previous <c>DeleteServiceLinkedRole</c> request, which can lock the
+        /// role for 15 minutes or more. If you recently made a <c>DeleteServiceLinkedRole</c>,
         /// wait at least 15 minutes and try the request again. If you receive this same exception
         /// again, you will have to wait additional time until the role is unlocked.
         /// </exception>
@@ -14095,30 +14000,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// The <code>PutPermissionPolicy</code> is subject to the following restrictions:
+        /// The <c>PutPermissionPolicy</c> is subject to the following restrictions:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You can attach only one policy with each <code>PutPermissionPolicy</code> request.
+        /// You can attach only one policy with each <c>PutPermissionPolicy</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must include an <code>Effect</code>, <code>Action</code> and <code>Principal</code>.
-        /// 
+        /// The policy must include an <c>Effect</c>, <c>Action</c> and <c>Principal</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Effect</code> must specify <code>Allow</code>.
+        ///  <c>Effect</c> must specify <c>Allow</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Action</code> in the policy must be <code>waf:UpdateWebACL</code>, <code>waf-regional:UpdateWebACL</code>,
-        /// <code>waf:GetRuleGroup</code> and <code>waf-regional:GetRuleGroup</code> . Any extra
-        /// or wildcard actions in the policy will be rejected.
+        /// The <c>Action</c> in the policy must be <c>waf:UpdateWebACL</c>, <c>waf-regional:UpdateWebACL</c>,
+        /// <c>waf:GetRuleGroup</c> and <c>waf-regional:GetRuleGroup</c> . Any extra or wildcard
+        /// actions in the policy will be rejected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy cannot include a <code>Resource</code> parameter.
+        /// The policy cannot include a <c>Resource</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14159,26 +14063,25 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You can attach only one policy with each <code>PutPermissionPolicy</code> request.
+        /// You can attach only one policy with each <c>PutPermissionPolicy</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must include an <code>Effect</code>, <code>Action</code> and <code>Principal</code>.
-        /// 
+        /// The policy must include an <c>Effect</c>, <c>Action</c> and <c>Principal</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Effect</code> must specify <code>Allow</code>.
+        ///  <c>Effect</c> must specify <c>Allow</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Action</code> in the policy must be <code>waf:UpdateWebACL</code>, <code>waf-regional:UpdateWebACL</code>,
-        /// <code>waf:GetRuleGroup</code> and <code>waf-regional:GetRuleGroup</code> . Any extra
-        /// or wildcard actions in the policy will be rejected.
+        /// The <c>Action</c> in the policy must be <c>waf:UpdateWebACL</c>, <c>waf-regional:UpdateWebACL</c>,
+        /// <c>waf:GetRuleGroup</c> and <c>waf-regional:GetRuleGroup</c> . Any extra or wildcard
+        /// actions in the policy will be rejected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy cannot include a <code>Resource</code> parameter.
+        /// The policy cannot include a <c>Resource</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14232,30 +14135,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// The <code>PutPermissionPolicy</code> is subject to the following restrictions:
+        /// The <c>PutPermissionPolicy</c> is subject to the following restrictions:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You can attach only one policy with each <code>PutPermissionPolicy</code> request.
+        /// You can attach only one policy with each <c>PutPermissionPolicy</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must include an <code>Effect</code>, <code>Action</code> and <code>Principal</code>.
-        /// 
+        /// The policy must include an <c>Effect</c>, <c>Action</c> and <c>Principal</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Effect</code> must specify <code>Allow</code>.
+        ///  <c>Effect</c> must specify <c>Allow</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Action</code> in the policy must be <code>waf:UpdateWebACL</code>, <code>waf-regional:UpdateWebACL</code>,
-        /// <code>waf:GetRuleGroup</code> and <code>waf-regional:GetRuleGroup</code> . Any extra
-        /// or wildcard actions in the policy will be rejected.
+        /// The <c>Action</c> in the policy must be <c>waf:UpdateWebACL</c>, <c>waf-regional:UpdateWebACL</c>,
+        /// <c>waf:GetRuleGroup</c> and <c>waf-regional:GetRuleGroup</c> . Any extra or wildcard
+        /// actions in the policy will be rejected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy cannot include a <code>Resource</code> parameter.
+        /// The policy cannot include a <c>Resource</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14299,26 +14201,25 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You can attach only one policy with each <code>PutPermissionPolicy</code> request.
+        /// You can attach only one policy with each <c>PutPermissionPolicy</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must include an <code>Effect</code>, <code>Action</code> and <code>Principal</code>.
-        /// 
+        /// The policy must include an <c>Effect</c>, <c>Action</c> and <c>Principal</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Effect</code> must specify <code>Allow</code>.
+        ///  <c>Effect</c> must specify <c>Allow</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Action</code> in the policy must be <code>waf:UpdateWebACL</code>, <code>waf-regional:UpdateWebACL</code>,
-        /// <code>waf:GetRuleGroup</code> and <code>waf-regional:GetRuleGroup</code> . Any extra
-        /// or wildcard actions in the policy will be rejected.
+        /// The <c>Action</c> in the policy must be <c>waf:UpdateWebACL</c>, <c>waf-regional:UpdateWebACL</c>,
+        /// <c>waf:GetRuleGroup</c> and <c>waf-regional:GetRuleGroup</c> . Any extra or wildcard
+        /// actions in the policy will be rejected.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy cannot include a <code>Resource</code> parameter.
+        /// The policy cannot include a <c>Resource</c> parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14408,33 +14309,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14444,7 +14345,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -14522,33 +14423,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14558,7 +14459,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -14624,33 +14525,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14720,33 +14621,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14794,23 +14695,23 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>ByteMatchTuple</a> objects (filters) in a <a>ByteMatchSet</a>.
-        /// For each <code>ByteMatchTuple</code> object, you specify the following values: 
+        /// For each <c>ByteMatchTuple</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>ByteMatchSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>ByteMatchSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to inspect, such as a query string
-        /// or the value of the <code>User-Agent</code> header. 
+        /// or the value of the <c>User-Agent</c> header. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The bytes (typically a string that corresponds with ASCII characters) that you want
         /// AWS WAF to look for. For more information, including how you specify the values for
-        /// the AWS WAF API and the AWS CLI or SDKs, see <code>TargetString</code> in the <a>ByteMatchTuple</a>
+        /// the AWS WAF API and the AWS CLI or SDKs, see <c>TargetString</c> in the <a>ByteMatchTuple</a>
         /// data type. 
         /// </para>
         ///  </li> <li> 
@@ -14824,28 +14725,28 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example, you can add a <code>ByteMatchSetUpdate</code> object that matches web
-        /// requests in which <code>User-Agent</code> headers contain the string <code>BadBot</code>.
-        /// You can then configure AWS WAF to block those requests.
+        /// For example, you can add a <c>ByteMatchSetUpdate</c> object that matches web requests
+        /// in which <c>User-Agent</c> headers contain the string <c>BadBot</c>. You can then
+        /// configure AWS WAF to block those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>ByteMatchSet.</code> For more information, see <a>CreateByteMatchSet</a>.
+        /// Create a <c>ByteMatchSet.</c> For more information, see <a>CreateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateByteMatchSet</code> request to specify the part of the request
-        /// that you want AWS WAF to inspect (for example, the header or the URI) and the value
-        /// that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateByteMatchSet</c> request to specify the part of the request that
+        /// you want AWS WAF to inspect (for example, the header or the URI) and the value that
+        /// you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -14854,8 +14755,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="byteMatchSetId">The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to update. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
-        /// <param name="updates">An array of <code>ByteMatchSetUpdate</code> objects that you want to insert into or delete from a <a>ByteMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>ByteMatchSetUpdate</a>: Contains <code>Action</code> and <code>ByteMatchTuple</code>  </li> <li>  <a>ByteMatchTuple</a>: Contains <code>FieldToMatch</code>, <code>PositionalConstraint</code>, <code>TargetString</code>, and <code>TextTransformation</code>  </li> <li>  <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code>  </li> </ul></param>
+        /// <param name="byteMatchSetId">The <c>ByteMatchSetId</c> of the <a>ByteMatchSet</a> that you want to update. <c>ByteMatchSetId</c> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
+        /// <param name="updates">An array of <c>ByteMatchSetUpdate</c> objects that you want to insert into or delete from a <a>ByteMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>ByteMatchSetUpdate</a>: Contains <c>Action</c> and <c>ByteMatchTuple</c>  </li> <li>  <a>ByteMatchTuple</a>: Contains <c>FieldToMatch</c>, <c>PositionalConstraint</c>, <c>TargetString</c>, and <c>TextTransformation</c>  </li> <li>  <a>FieldToMatch</a>: Contains <c>Data</c> and <c>Type</c>  </li> </ul></param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the UpdateByteMatchSet service method, as returned by WAFRegional.</returns>
@@ -14872,28 +14773,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -14911,33 +14812,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -14947,7 +14848,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -14957,23 +14858,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15010,23 +14911,23 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>ByteMatchTuple</a> objects (filters) in a <a>ByteMatchSet</a>.
-        /// For each <code>ByteMatchTuple</code> object, you specify the following values: 
+        /// For each <c>ByteMatchTuple</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>ByteMatchSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>ByteMatchSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to inspect, such as a query string
-        /// or the value of the <code>User-Agent</code> header. 
+        /// or the value of the <c>User-Agent</c> header. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The bytes (typically a string that corresponds with ASCII characters) that you want
         /// AWS WAF to look for. For more information, including how you specify the values for
-        /// the AWS WAF API and the AWS CLI or SDKs, see <code>TargetString</code> in the <a>ByteMatchTuple</a>
+        /// the AWS WAF API and the AWS CLI or SDKs, see <c>TargetString</c> in the <a>ByteMatchTuple</a>
         /// data type. 
         /// </para>
         ///  </li> <li> 
@@ -15040,28 +14941,28 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example, you can add a <code>ByteMatchSetUpdate</code> object that matches web
-        /// requests in which <code>User-Agent</code> headers contain the string <code>BadBot</code>.
-        /// You can then configure AWS WAF to block those requests.
+        /// For example, you can add a <c>ByteMatchSetUpdate</c> object that matches web requests
+        /// in which <c>User-Agent</c> headers contain the string <c>BadBot</c>. You can then
+        /// configure AWS WAF to block those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>ByteMatchSet.</code> For more information, see <a>CreateByteMatchSet</a>.
+        /// Create a <c>ByteMatchSet.</c> For more information, see <a>CreateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateByteMatchSet</code> request to specify the part of the request
-        /// that you want AWS WAF to inspect (for example, the header or the URI) and the value
-        /// that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateByteMatchSet</c> request to specify the part of the request that
+        /// you want AWS WAF to inspect (for example, the header or the URI) and the value that
+        /// you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -15086,28 +14987,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15125,33 +15026,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -15161,7 +15062,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -15171,23 +15072,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15224,23 +15125,23 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>ByteMatchTuple</a> objects (filters) in a <a>ByteMatchSet</a>.
-        /// For each <code>ByteMatchTuple</code> object, you specify the following values: 
+        /// For each <c>ByteMatchTuple</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>ByteMatchSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>ByteMatchSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to inspect, such as a query string
-        /// or the value of the <code>User-Agent</code> header. 
+        /// or the value of the <c>User-Agent</c> header. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The bytes (typically a string that corresponds with ASCII characters) that you want
         /// AWS WAF to look for. For more information, including how you specify the values for
-        /// the AWS WAF API and the AWS CLI or SDKs, see <code>TargetString</code> in the <a>ByteMatchTuple</a>
+        /// the AWS WAF API and the AWS CLI or SDKs, see <c>TargetString</c> in the <a>ByteMatchTuple</a>
         /// data type. 
         /// </para>
         ///  </li> <li> 
@@ -15254,28 +15155,28 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example, you can add a <code>ByteMatchSetUpdate</code> object that matches web
-        /// requests in which <code>User-Agent</code> headers contain the string <code>BadBot</code>.
-        /// You can then configure AWS WAF to block those requests.
+        /// For example, you can add a <c>ByteMatchSetUpdate</c> object that matches web requests
+        /// in which <c>User-Agent</c> headers contain the string <c>BadBot</c>. You can then
+        /// configure AWS WAF to block those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>ByteMatchSet.</code> For more information, see <a>CreateByteMatchSet</a>.
+        /// Create a <c>ByteMatchSet.</c> For more information, see <a>CreateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateByteMatchSet</code> request to specify the part of the request
-        /// that you want AWS WAF to inspect (for example, the header or the URI) and the value
-        /// that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateByteMatchSet</c> request to specify the part of the request that
+        /// you want AWS WAF to inspect (for example, the header or the URI) and the value that
+        /// you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -15284,8 +15185,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="byteMatchSetId">The <code>ByteMatchSetId</code> of the <a>ByteMatchSet</a> that you want to update. <code>ByteMatchSetId</code> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
-        /// <param name="updates">An array of <code>ByteMatchSetUpdate</code> objects that you want to insert into or delete from a <a>ByteMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>ByteMatchSetUpdate</a>: Contains <code>Action</code> and <code>ByteMatchTuple</code>  </li> <li>  <a>ByteMatchTuple</a>: Contains <code>FieldToMatch</code>, <code>PositionalConstraint</code>, <code>TargetString</code>, and <code>TextTransformation</code>  </li> <li>  <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code>  </li> </ul></param>
+        /// <param name="byteMatchSetId">The <c>ByteMatchSetId</c> of the <a>ByteMatchSet</a> that you want to update. <c>ByteMatchSetId</c> is returned by <a>CreateByteMatchSet</a> and by <a>ListByteMatchSets</a>.</param>
+        /// <param name="updates">An array of <c>ByteMatchSetUpdate</c> objects that you want to insert into or delete from a <a>ByteMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>ByteMatchSetUpdate</a>: Contains <c>Action</c> and <c>ByteMatchTuple</c>  </li> <li>  <a>ByteMatchTuple</a>: Contains <c>FieldToMatch</c>, <c>PositionalConstraint</c>, <c>TargetString</c>, and <c>TextTransformation</c>  </li> <li>  <a>FieldToMatch</a>: Contains <c>Data</c> and <c>Type</c>  </li> </ul></param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -15305,28 +15206,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15344,33 +15245,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -15380,7 +15281,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -15390,23 +15291,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15443,23 +15344,23 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>ByteMatchTuple</a> objects (filters) in a <a>ByteMatchSet</a>.
-        /// For each <code>ByteMatchTuple</code> object, you specify the following values: 
+        /// For each <c>ByteMatchTuple</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>ByteMatchSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>ByteMatchSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to inspect, such as a query string
-        /// or the value of the <code>User-Agent</code> header. 
+        /// or the value of the <c>User-Agent</c> header. 
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The bytes (typically a string that corresponds with ASCII characters) that you want
         /// AWS WAF to look for. For more information, including how you specify the values for
-        /// the AWS WAF API and the AWS CLI or SDKs, see <code>TargetString</code> in the <a>ByteMatchTuple</a>
+        /// the AWS WAF API and the AWS CLI or SDKs, see <c>TargetString</c> in the <a>ByteMatchTuple</a>
         /// data type. 
         /// </para>
         ///  </li> <li> 
@@ -15473,28 +15374,28 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example, you can add a <code>ByteMatchSetUpdate</code> object that matches web
-        /// requests in which <code>User-Agent</code> headers contain the string <code>BadBot</code>.
-        /// You can then configure AWS WAF to block those requests.
+        /// For example, you can add a <c>ByteMatchSetUpdate</c> object that matches web requests
+        /// in which <c>User-Agent</c> headers contain the string <c>BadBot</c>. You can then
+        /// configure AWS WAF to block those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>ByteMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>ByteMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>ByteMatchSet.</code> For more information, see <a>CreateByteMatchSet</a>.
+        /// Create a <c>ByteMatchSet.</c> For more information, see <a>CreateByteMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateByteMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateByteMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateByteMatchSet</code> request to specify the part of the request
-        /// that you want AWS WAF to inspect (for example, the header or the URI) and the value
-        /// that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateByteMatchSet</c> request to specify the part of the request that
+        /// you want AWS WAF to inspect (for example, the header or the URI) and the value that
+        /// you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -15522,28 +15423,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15561,33 +15462,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -15597,7 +15498,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -15607,23 +15508,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15663,27 +15564,26 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>GeoMatchConstraint</a> objects in an <code>GeoMatchSet</code>.
-        /// For each <code>GeoMatchConstraint</code> object, you specify the following values:
-        /// 
+        /// Inserts or deletes <a>GeoMatchConstraint</a> objects in an <c>GeoMatchSet</c>. For
+        /// each <c>GeoMatchConstraint</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change an <code>GeoMatchConstraint</code>
+        /// Whether to insert or delete the object from the array. If you want to change an <c>GeoMatchConstraint</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Type</code>. The only valid value for <code>Type</code> is <code>Country</code>.
+        /// The <c>Type</c>. The only valid value for <c>Type</c> is <c>Country</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Value</code>, which is a two character code for the country to add to the
-        /// <code>GeoMatchConstraint</code> object. Valid codes are listed in <a>GeoMatchConstraint$Value</a>.
+        /// The <c>Value</c>, which is a two character code for the country to add to the <c>GeoMatchConstraint</c>
+        /// object. Valid codes are listed in <a>GeoMatchConstraint$Value</a>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To create and configure an <code>GeoMatchSet</code>, perform the following steps:
+        /// To create and configure an <c>GeoMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -15691,19 +15591,19 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateGeoMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateGeoMatchSet</code> request to specify the country that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateGeoMatchSet</c> request to specify the country that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you update an <code>GeoMatchSet</code>, you specify the country that you want
-        /// to add and/or the country that you want to delete. If you want to change a country,
-        /// you delete the existing country and add the new one.
+        /// When you update an <c>GeoMatchSet</c>, you specify the country that you want to add
+        /// and/or the country that you want to delete. If you want to change a country, you delete
+        /// the existing country and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -15728,28 +15628,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15767,33 +15667,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -15803,7 +15703,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -15813,23 +15713,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15842,11 +15742,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15879,27 +15779,26 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>GeoMatchConstraint</a> objects in an <code>GeoMatchSet</code>.
-        /// For each <code>GeoMatchConstraint</code> object, you specify the following values:
-        /// 
+        /// Inserts or deletes <a>GeoMatchConstraint</a> objects in an <c>GeoMatchSet</c>. For
+        /// each <c>GeoMatchConstraint</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change an <code>GeoMatchConstraint</code>
+        /// Whether to insert or delete the object from the array. If you want to change an <c>GeoMatchConstraint</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Type</code>. The only valid value for <code>Type</code> is <code>Country</code>.
+        /// The <c>Type</c>. The only valid value for <c>Type</c> is <c>Country</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Value</code>, which is a two character code for the country to add to the
-        /// <code>GeoMatchConstraint</code> object. Valid codes are listed in <a>GeoMatchConstraint$Value</a>.
+        /// The <c>Value</c>, which is a two character code for the country to add to the <c>GeoMatchConstraint</c>
+        /// object. Valid codes are listed in <a>GeoMatchConstraint$Value</a>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To create and configure an <code>GeoMatchSet</code>, perform the following steps:
+        /// To create and configure an <c>GeoMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -15907,19 +15806,19 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateGeoMatchSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateGeoMatchSet</code> request to specify the country that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateGeoMatchSet</c> request to specify the country that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you update an <code>GeoMatchSet</code>, you specify the country that you want
-        /// to add and/or the country that you want to delete. If you want to change a country,
-        /// you delete the existing country and add the new one.
+        /// When you update an <c>GeoMatchSet</c>, you specify the country that you want to add
+        /// and/or the country that you want to delete. If you want to change a country, you delete
+        /// the existing country and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -15947,28 +15846,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -15986,33 +15885,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -16022,7 +15921,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -16032,23 +15931,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16061,11 +15960,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16102,23 +16001,23 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <code>IPSet</code>. For each
-        /// <code>IPSetDescriptor</code> object, you specify the following values: 
+        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <c>IPSet</c>. For each <c>IPSetDescriptor</c>
+        /// object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change an <code>IPSetDescriptor</code>
+        /// Whether to insert or delete the object from the array. If you want to change an <c>IPSetDescriptor</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address version, <code>IPv4</code> or <code>IPv6</code>. 
+        /// The IP address version, <c>IPv4</c> or <c>IPv6</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address in CIDR notation, for example, <code>192.0.2.0/24</code> (for the range
-        /// of IP addresses from <code>192.0.2.0</code> to <code>192.0.2.255</code>) or <code>192.0.2.44/32</code>
-        /// (for the individual IP address <code>192.0.2.44</code>). 
+        /// The IP address in CIDR notation, for example, <c>192.0.2.0/24</c> (for the range of
+        /// IP addresses from <c>192.0.2.0</c> to <c>192.0.2.255</c>) or <c>192.0.2.44/32</c>
+        /// (for the individual IP address <c>192.0.2.44</c>). 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -16149,15 +16048,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use an <code>IPSet</code> to specify which web requests you want to allow or block
-        /// based on the IP addresses that the requests originated from. For example, if you're
-        /// receiving a lot of requests from one or a small number of IP addresses and you want
-        /// to block the requests, you can create an <code>IPSet</code> that specifies those IP
-        /// addresses, and then configure AWS WAF to block the requests. 
+        /// You use an <c>IPSet</c> to specify which web requests you want to allow or block based
+        /// on the IP addresses that the requests originated from. For example, if you're receiving
+        /// a lot of requests from one or a small number of IP addresses and you want to block
+        /// the requests, you can create an <c>IPSet</c> that specifies those IP addresses, and
+        /// then configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -16165,19 +16064,19 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you update an <code>IPSet</code>, you specify the IP addresses that you want
-        /// to add and/or the IP addresses that you want to delete. If you want to change an IP
-        /// address, you delete the existing IP address and add the new one.
+        /// When you update an <c>IPSet</c>, you specify the IP addresses that you want to add
+        /// and/or the IP addresses that you want to delete. If you want to change an IP address,
+        /// you delete the existing IP address and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -16190,8 +16089,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="ipSetId">The <code>IPSetId</code> of the <a>IPSet</a> that you want to update. <code>IPSetId</code> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
-        /// <param name="updates">An array of <code>IPSetUpdate</code> objects that you want to insert into or delete from an <a>IPSet</a>. For more information, see the applicable data types: <ul> <li>  <a>IPSetUpdate</a>: Contains <code>Action</code> and <code>IPSetDescriptor</code>  </li> <li>  <a>IPSetDescriptor</a>: Contains <code>Type</code> and <code>Value</code>  </li> </ul> You can insert a maximum of 1000 addresses in a single request.</param>
+        /// <param name="ipSetId">The <c>IPSetId</c> of the <a>IPSet</a> that you want to update. <c>IPSetId</c> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
+        /// <param name="updates">An array of <c>IPSetUpdate</c> objects that you want to insert into or delete from an <a>IPSet</a>. For more information, see the applicable data types: <ul> <li>  <a>IPSetUpdate</a>: Contains <c>Action</c> and <c>IPSetDescriptor</c>  </li> <li>  <a>IPSetDescriptor</a>: Contains <c>Type</c> and <c>Value</c>  </li> </ul> You can insert a maximum of 1000 addresses in a single request.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the UpdateIPSet service method, as returned by WAFRegional.</returns>
@@ -16208,28 +16107,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16247,33 +16146,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -16283,7 +16182,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -16293,23 +16192,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16322,11 +16221,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16359,23 +16258,23 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <code>IPSet</code>. For each
-        /// <code>IPSetDescriptor</code> object, you specify the following values: 
+        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <c>IPSet</c>. For each <c>IPSetDescriptor</c>
+        /// object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change an <code>IPSetDescriptor</code>
+        /// Whether to insert or delete the object from the array. If you want to change an <c>IPSetDescriptor</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address version, <code>IPv4</code> or <code>IPv6</code>. 
+        /// The IP address version, <c>IPv4</c> or <c>IPv6</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address in CIDR notation, for example, <code>192.0.2.0/24</code> (for the range
-        /// of IP addresses from <code>192.0.2.0</code> to <code>192.0.2.255</code>) or <code>192.0.2.44/32</code>
-        /// (for the individual IP address <code>192.0.2.44</code>). 
+        /// The IP address in CIDR notation, for example, <c>192.0.2.0/24</c> (for the range of
+        /// IP addresses from <c>192.0.2.0</c> to <c>192.0.2.255</c>) or <c>192.0.2.44/32</c>
+        /// (for the individual IP address <c>192.0.2.44</c>). 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -16406,15 +16305,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use an <code>IPSet</code> to specify which web requests you want to allow or block
-        /// based on the IP addresses that the requests originated from. For example, if you're
-        /// receiving a lot of requests from one or a small number of IP addresses and you want
-        /// to block the requests, you can create an <code>IPSet</code> that specifies those IP
-        /// addresses, and then configure AWS WAF to block the requests. 
+        /// You use an <c>IPSet</c> to specify which web requests you want to allow or block based
+        /// on the IP addresses that the requests originated from. For example, if you're receiving
+        /// a lot of requests from one or a small number of IP addresses and you want to block
+        /// the requests, you can create an <c>IPSet</c> that specifies those IP addresses, and
+        /// then configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -16422,19 +16321,19 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you update an <code>IPSet</code>, you specify the IP addresses that you want
-        /// to add and/or the IP addresses that you want to delete. If you want to change an IP
-        /// address, you delete the existing IP address and add the new one.
+        /// When you update an <c>IPSet</c>, you specify the IP addresses that you want to add
+        /// and/or the IP addresses that you want to delete. If you want to change an IP address,
+        /// you delete the existing IP address and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -16463,28 +16362,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16502,33 +16401,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -16538,7 +16437,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -16548,23 +16447,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16577,11 +16476,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16614,23 +16513,23 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <code>IPSet</code>. For each
-        /// <code>IPSetDescriptor</code> object, you specify the following values: 
+        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <c>IPSet</c>. For each <c>IPSetDescriptor</c>
+        /// object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change an <code>IPSetDescriptor</code>
+        /// Whether to insert or delete the object from the array. If you want to change an <c>IPSetDescriptor</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address version, <code>IPv4</code> or <code>IPv6</code>. 
+        /// The IP address version, <c>IPv4</c> or <c>IPv6</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address in CIDR notation, for example, <code>192.0.2.0/24</code> (for the range
-        /// of IP addresses from <code>192.0.2.0</code> to <code>192.0.2.255</code>) or <code>192.0.2.44/32</code>
-        /// (for the individual IP address <code>192.0.2.44</code>). 
+        /// The IP address in CIDR notation, for example, <c>192.0.2.0/24</c> (for the range of
+        /// IP addresses from <c>192.0.2.0</c> to <c>192.0.2.255</c>) or <c>192.0.2.44/32</c>
+        /// (for the individual IP address <c>192.0.2.44</c>). 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -16661,15 +16560,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use an <code>IPSet</code> to specify which web requests you want to allow or block
-        /// based on the IP addresses that the requests originated from. For example, if you're
-        /// receiving a lot of requests from one or a small number of IP addresses and you want
-        /// to block the requests, you can create an <code>IPSet</code> that specifies those IP
-        /// addresses, and then configure AWS WAF to block the requests. 
+        /// You use an <c>IPSet</c> to specify which web requests you want to allow or block based
+        /// on the IP addresses that the requests originated from. For example, if you're receiving
+        /// a lot of requests from one or a small number of IP addresses and you want to block
+        /// the requests, you can create an <c>IPSet</c> that specifies those IP addresses, and
+        /// then configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -16677,19 +16576,19 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you update an <code>IPSet</code>, you specify the IP addresses that you want
-        /// to add and/or the IP addresses that you want to delete. If you want to change an IP
-        /// address, you delete the existing IP address and add the new one.
+        /// When you update an <c>IPSet</c>, you specify the IP addresses that you want to add
+        /// and/or the IP addresses that you want to delete. If you want to change an IP address,
+        /// you delete the existing IP address and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -16702,8 +16601,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="ipSetId">The <code>IPSetId</code> of the <a>IPSet</a> that you want to update. <code>IPSetId</code> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
-        /// <param name="updates">An array of <code>IPSetUpdate</code> objects that you want to insert into or delete from an <a>IPSet</a>. For more information, see the applicable data types: <ul> <li>  <a>IPSetUpdate</a>: Contains <code>Action</code> and <code>IPSetDescriptor</code>  </li> <li>  <a>IPSetDescriptor</a>: Contains <code>Type</code> and <code>Value</code>  </li> </ul> You can insert a maximum of 1000 addresses in a single request.</param>
+        /// <param name="ipSetId">The <c>IPSetId</c> of the <a>IPSet</a> that you want to update. <c>IPSetId</c> is returned by <a>CreateIPSet</a> and by <a>ListIPSets</a>.</param>
+        /// <param name="updates">An array of <c>IPSetUpdate</c> objects that you want to insert into or delete from an <a>IPSet</a>. For more information, see the applicable data types: <ul> <li>  <a>IPSetUpdate</a>: Contains <c>Action</c> and <c>IPSetDescriptor</c>  </li> <li>  <a>IPSetDescriptor</a>: Contains <c>Type</c> and <c>Value</c>  </li> </ul> You can insert a maximum of 1000 addresses in a single request.</param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -16723,28 +16622,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16762,33 +16661,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -16798,7 +16697,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -16808,23 +16707,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16837,11 +16736,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -16874,23 +16773,23 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <code>IPSet</code>. For each
-        /// <code>IPSetDescriptor</code> object, you specify the following values: 
+        /// Inserts or deletes <a>IPSetDescriptor</a> objects in an <c>IPSet</c>. For each <c>IPSetDescriptor</c>
+        /// object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change an <code>IPSetDescriptor</code>
+        /// Whether to insert or delete the object from the array. If you want to change an <c>IPSetDescriptor</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address version, <code>IPv4</code> or <code>IPv6</code>. 
+        /// The IP address version, <c>IPv4</c> or <c>IPv6</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The IP address in CIDR notation, for example, <code>192.0.2.0/24</code> (for the range
-        /// of IP addresses from <code>192.0.2.0</code> to <code>192.0.2.255</code>) or <code>192.0.2.44/32</code>
-        /// (for the individual IP address <code>192.0.2.44</code>). 
+        /// The IP address in CIDR notation, for example, <c>192.0.2.0/24</c> (for the range of
+        /// IP addresses from <c>192.0.2.0</c> to <c>192.0.2.255</c>) or <c>192.0.2.44/32</c>
+        /// (for the individual IP address <c>192.0.2.44</c>). 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -16921,15 +16820,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use an <code>IPSet</code> to specify which web requests you want to allow or block
-        /// based on the IP addresses that the requests originated from. For example, if you're
-        /// receiving a lot of requests from one or a small number of IP addresses and you want
-        /// to block the requests, you can create an <code>IPSet</code> that specifies those IP
-        /// addresses, and then configure AWS WAF to block the requests. 
+        /// You use an <c>IPSet</c> to specify which web requests you want to allow or block based
+        /// on the IP addresses that the requests originated from. For example, if you're receiving
+        /// a lot of requests from one or a small number of IP addresses and you want to block
+        /// the requests, you can create an <c>IPSet</c> that specifies those IP addresses, and
+        /// then configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>IPSet</code>, perform the following steps:
+        /// To create and configure an <c>IPSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -16937,19 +16836,19 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateIPSet</code> request to specify the IP addresses that you want
-        /// AWS WAF to watch for.
+        /// Submit an <c>UpdateIPSet</c> request to specify the IP addresses that you want AWS
+        /// WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you update an <code>IPSet</code>, you specify the IP addresses that you want
-        /// to add and/or the IP addresses that you want to delete. If you want to change an IP
-        /// address, you delete the existing IP address and add the new one.
+        /// When you update an <c>IPSet</c>, you specify the IP addresses that you want to add
+        /// and/or the IP addresses that you want to delete. If you want to change an IP address,
+        /// you delete the existing IP address and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -16981,28 +16880,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17020,33 +16919,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -17056,7 +16955,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -17066,23 +16965,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17095,11 +16994,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17136,69 +17035,68 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>Predicate</a> objects in a rule and updates the <code>RateLimit</code>
+        /// Inserts or deletes <a>Predicate</a> objects in a rule and updates the <c>RateLimit</c>
         /// in the rule. 
         /// </para>
         ///  
         /// <para>
-        /// Each <code>Predicate</code> object identifies a predicate, such as a <a>ByteMatchSet</a>
+        /// Each <c>Predicate</c> object identifies a predicate, such as a <a>ByteMatchSet</a>
         /// or an <a>IPSet</a>, that specifies the web requests that you want to block or count.
-        /// The <code>RateLimit</code> specifies the number of requests every five minutes that
-        /// triggers the rule.
+        /// The <c>RateLimit</c> specifies the number of requests every five minutes that triggers
+        /// the rule.
         /// </para>
         ///  
         /// <para>
-        /// If you add more than one predicate to a <code>RateBasedRule</code>, a request must
-        /// match all the predicates and exceed the <code>RateLimit</code> to be counted or blocked.
-        /// For example, suppose you add the following to a <code>RateBasedRule</code>:
+        /// If you add more than one predicate to a <c>RateBasedRule</c>, a request must match
+        /// all the predicates and exceed the <c>RateLimit</c> to be counted or blocked. For example,
+        /// suppose you add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// You then add the <code>RateBasedRule</code> to a <code>WebACL</code> and specify that
-        /// you want to block requests that satisfy the rule. For a request to be blocked, it
-        /// must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code> header
-        /// in the request must contain the value <code>BadBot</code>. Further, requests that
-        /// match these two conditions much be received at a rate of more than 1,000 every five
-        /// minutes. If the rate drops below this limit, AWS WAF no longer blocks the requests.
+        /// You then add the <c>RateBasedRule</c> to a <c>WebACL</c> and specify that you want
+        /// to block requests that satisfy the rule. For a request to be blocked, it must come
+        /// from the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header in the request
+        /// must contain the value <c>BadBot</c>. Further, requests that match these two conditions
+        /// much be received at a rate of more than 1,000 every five minutes. If the rate drops
+        /// below this limit, AWS WAF no longer blocks the requests.
         /// </para>
         ///  
         /// <para>
         /// As a second example, suppose you want to limit requests to a particular page on your
-        /// site. To do this, you could add the following to a <code>RateBasedRule</code>:
+        /// site. To do this, you could add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> with <code>FieldToMatch</code> of <code>URI</code> 
+        /// A <c>ByteMatchSet</c> with <c>FieldToMatch</c> of <c>URI</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>PositionalConstraint</code> of <code>STARTS_WITH</code> 
+        /// A <c>PositionalConstraint</c> of <c>STARTS_WITH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>TargetString</code> of <code>login</code> 
+        /// A <c>TargetString</c> of <c>login</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// By adding this <code>RateBasedRule</code> to a <code>WebACL</code>, you could limit
-        /// requests to your login page without affecting the rest of your site.
+        /// By adding this <c>RateBasedRule</c> to a <c>WebACL</c>, you could limit requests to
+        /// your login page without affecting the rest of your site.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRateBasedRule service method.</param>
@@ -17217,28 +17115,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17256,33 +17154,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -17292,7 +17190,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -17302,23 +17200,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17331,11 +17229,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17368,69 +17266,68 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>Predicate</a> objects in a rule and updates the <code>RateLimit</code>
+        /// Inserts or deletes <a>Predicate</a> objects in a rule and updates the <c>RateLimit</c>
         /// in the rule. 
         /// </para>
         ///  
         /// <para>
-        /// Each <code>Predicate</code> object identifies a predicate, such as a <a>ByteMatchSet</a>
+        /// Each <c>Predicate</c> object identifies a predicate, such as a <a>ByteMatchSet</a>
         /// or an <a>IPSet</a>, that specifies the web requests that you want to block or count.
-        /// The <code>RateLimit</code> specifies the number of requests every five minutes that
-        /// triggers the rule.
+        /// The <c>RateLimit</c> specifies the number of requests every five minutes that triggers
+        /// the rule.
         /// </para>
         ///  
         /// <para>
-        /// If you add more than one predicate to a <code>RateBasedRule</code>, a request must
-        /// match all the predicates and exceed the <code>RateLimit</code> to be counted or blocked.
-        /// For example, suppose you add the following to a <code>RateBasedRule</code>:
+        /// If you add more than one predicate to a <c>RateBasedRule</c>, a request must match
+        /// all the predicates and exceed the <c>RateLimit</c> to be counted or blocked. For example,
+        /// suppose you add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44/32</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44/32</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches <code>BadBot</code> in the <code>User-Agent</code>
-        /// header
+        /// A <c>ByteMatchSet</c> that matches <c>BadBot</c> in the <c>User-Agent</c> header
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// You then add the <code>RateBasedRule</code> to a <code>WebACL</code> and specify that
-        /// you want to block requests that satisfy the rule. For a request to be blocked, it
-        /// must come from the IP address 192.0.2.44 <i>and</i> the <code>User-Agent</code> header
-        /// in the request must contain the value <code>BadBot</code>. Further, requests that
-        /// match these two conditions much be received at a rate of more than 1,000 every five
-        /// minutes. If the rate drops below this limit, AWS WAF no longer blocks the requests.
+        /// You then add the <c>RateBasedRule</c> to a <c>WebACL</c> and specify that you want
+        /// to block requests that satisfy the rule. For a request to be blocked, it must come
+        /// from the IP address 192.0.2.44 <i>and</i> the <c>User-Agent</c> header in the request
+        /// must contain the value <c>BadBot</c>. Further, requests that match these two conditions
+        /// much be received at a rate of more than 1,000 every five minutes. If the rate drops
+        /// below this limit, AWS WAF no longer blocks the requests.
         /// </para>
         ///  
         /// <para>
         /// As a second example, suppose you want to limit requests to a particular page on your
-        /// site. To do this, you could add the following to a <code>RateBasedRule</code>:
+        /// site. To do this, you could add the following to a <c>RateBasedRule</c>:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> with <code>FieldToMatch</code> of <code>URI</code> 
+        /// A <c>ByteMatchSet</c> with <c>FieldToMatch</c> of <c>URI</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>PositionalConstraint</code> of <code>STARTS_WITH</code> 
+        /// A <c>PositionalConstraint</c> of <c>STARTS_WITH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>TargetString</code> of <code>login</code> 
+        /// A <c>TargetString</c> of <c>login</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Further, you specify a <code>RateLimit</code> of 1,000.
+        /// Further, you specify a <c>RateLimit</c> of 1,000.
         /// </para>
         ///  
         /// <para>
-        /// By adding this <code>RateBasedRule</code> to a <code>WebACL</code>, you could limit
-        /// requests to your login page without affecting the rest of your site.
+        /// By adding this <c>RateBasedRule</c> to a <c>WebACL</c>, you could limit requests to
+        /// your login page without affecting the rest of your site.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRateBasedRule service method.</param>
@@ -17452,28 +17349,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17491,33 +17388,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -17527,7 +17424,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -17537,23 +17434,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17566,11 +17463,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17608,18 +17505,17 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>RegexMatchTuple</a> objects (filters) in a <a>RegexMatchSet</a>.
-        /// For each <code>RegexMatchSetUpdate</code> object, you specify the following values:
-        /// 
+        /// For each <c>RegexMatchSetUpdate</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>RegexMatchSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>RegexMatchSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to inspectupdate, such as a query
-        /// string or the value of the <code>User-Agent</code> header. 
+        /// string or the value of the <c>User-Agent</c> header. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -17633,29 +17529,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  For example, you can create a <code>RegexPatternSet</code> that matches any requests
-        /// with <code>User-Agent</code> headers that contain the string <code>B[a@]dB[o0]t</code>.
-        /// You can then configure AWS WAF to reject those requests.
+        ///  For example, you can create a <c>RegexPatternSet</c> that matches any requests with
+        /// <c>User-Agent</c> headers that contain the string <c>B[a@]dB[o0]t</c>. You can then
+        /// configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RegexMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>RegexMatchSet.</code> For more information, see <a>CreateRegexMatchSet</a>.
+        /// Create a <c>RegexMatchSet.</c> For more information, see <a>CreateRegexMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRegexMatchSet</code> request to specify the part of the request
-        /// that you want AWS WAF to inspect (for example, the header or the URI) and the identifier
-        /// of the <code>RegexPatternSet</code> that contain the regular expression patters you
-        /// want AWS WAF to watch for.
+        /// Submit an <c>UpdateRegexMatchSet</c> request to specify the part of the request that
+        /// you want AWS WAF to inspect (for example, the header or the URI) and the identifier
+        /// of the <c>RegexPatternSet</c> that contain the regular expression patters you want
+        /// AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -17683,33 +17579,33 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -17719,23 +17615,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17772,18 +17668,17 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>RegexMatchTuple</a> objects (filters) in a <a>RegexMatchSet</a>.
-        /// For each <code>RegexMatchSetUpdate</code> object, you specify the following values:
-        /// 
+        /// For each <c>RegexMatchSetUpdate</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>RegexMatchSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>RegexMatchSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to inspectupdate, such as a query
-        /// string or the value of the <code>User-Agent</code> header. 
+        /// string or the value of the <c>User-Agent</c> header. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -17797,29 +17692,29 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  For example, you can create a <code>RegexPatternSet</code> that matches any requests
-        /// with <code>User-Agent</code> headers that contain the string <code>B[a@]dB[o0]t</code>.
-        /// You can then configure AWS WAF to reject those requests.
+        ///  For example, you can create a <c>RegexPatternSet</c> that matches any requests with
+        /// <c>User-Agent</c> headers that contain the string <c>B[a@]dB[o0]t</c>. You can then
+        /// configure AWS WAF to reject those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RegexMatchSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>RegexMatchSet.</code> For more information, see <a>CreateRegexMatchSet</a>.
+        /// Create a <c>RegexMatchSet.</c> For more information, see <a>CreateRegexMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexMatchSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexMatchSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRegexMatchSet</code> request to specify the part of the request
-        /// that you want AWS WAF to inspect (for example, the header or the URI) and the identifier
-        /// of the <code>RegexPatternSet</code> that contain the regular expression patters you
-        /// want AWS WAF to watch for.
+        /// Submit an <c>UpdateRegexMatchSet</c> request to specify the part of the request that
+        /// you want AWS WAF to inspect (for example, the header or the URI) and the identifier
+        /// of the <c>RegexPatternSet</c> that contain the regular expression patters you want
+        /// AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -17850,33 +17745,33 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -17886,23 +17781,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -17942,13 +17837,12 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <code>RegexPatternString</code> objects in a <a>RegexPatternSet</a>.
-        /// For each <code>RegexPatternString</code> object, you specify the following values:
-        /// 
+        /// Inserts or deletes <c>RegexPatternString</c> objects in a <a>RegexPatternSet</a>.
+        /// For each <c>RegexPatternString</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the <code>RegexPatternString</code>.
+        /// Whether to insert or delete the <c>RegexPatternString</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -17957,8 +17851,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  For example, you can create a <code>RegexPatternString</code> such as <code>B[a@]dB[o0]t</code>.
-        /// AWS WAF will match this <code>RegexPatternString</code> to:
+        ///  For example, you can create a <c>RegexPatternString</c> such as <c>B[a@]dB[o0]t</c>.
+        /// AWS WAF will match this <c>RegexPatternString</c> to:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -17978,21 +17872,21 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To create and configure a <code>RegexPatternSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexPatternSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>RegexPatternSet.</code> For more information, see <a>CreateRegexPatternSet</a>.
+        /// Create a <c>RegexPatternSet.</c> For more information, see <a>CreateRegexPatternSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexPatternSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRegexPatternSet</code> request to specify the regular expression
-        /// pattern that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateRegexPatternSet</c> request to specify the regular expression pattern
+        /// that you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -18017,37 +17911,36 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInvalidRegexPatternException">
-        /// The regular expression (regex) you specified in <code>RegexPatternString</code> is
-        /// invalid.
+        /// The regular expression (regex) you specified in <c>RegexPatternString</c> is invalid.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -18057,23 +17950,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18109,13 +18002,12 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <code>RegexPatternString</code> objects in a <a>RegexPatternSet</a>.
-        /// For each <code>RegexPatternString</code> object, you specify the following values:
-        /// 
+        /// Inserts or deletes <c>RegexPatternString</c> objects in a <a>RegexPatternSet</a>.
+        /// For each <c>RegexPatternString</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the <code>RegexPatternString</code>.
+        /// Whether to insert or delete the <c>RegexPatternString</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -18124,8 +18016,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  For example, you can create a <code>RegexPatternString</code> such as <code>B[a@]dB[o0]t</code>.
-        /// AWS WAF will match this <code>RegexPatternString</code> to:
+        ///  For example, you can create a <c>RegexPatternString</c> such as <c>B[a@]dB[o0]t</c>.
+        /// AWS WAF will match this <c>RegexPatternString</c> to:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -18145,21 +18037,21 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To create and configure a <code>RegexPatternSet</code>, perform the following steps:
+        /// To create and configure a <c>RegexPatternSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>RegexPatternSet.</code> For more information, see <a>CreateRegexPatternSet</a>.
+        /// Create a <c>RegexPatternSet.</c> For more information, see <a>CreateRegexPatternSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateRegexPatternSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateRegexPatternSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRegexPatternSet</code> request to specify the regular expression
-        /// pattern that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateRegexPatternSet</c> request to specify the regular expression pattern
+        /// that you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -18187,37 +18079,36 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFInvalidRegexPatternException">
-        /// The regular expression (regex) you specified in <code>RegexPatternString</code> is
-        /// invalid.
+        /// The regular expression (regex) you specified in <c>RegexPatternString</c> is invalid.
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -18227,23 +18118,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18283,58 +18174,58 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>Predicate</a> objects in a <code>Rule</code>. Each <code>Predicate</code>
+        /// Inserts or deletes <a>Predicate</a> objects in a <c>Rule</c>. Each <c>Predicate</c>
         /// object identifies a predicate, such as a <a>ByteMatchSet</a> or an <a>IPSet</a>, that
         /// specifies the web requests that you want to allow, block, or count. If you add more
-        /// than one predicate to a <code>Rule</code>, a request must match all of the specifications
+        /// than one predicate to a <c>Rule</c>, a request must match all of the specifications
         /// to be allowed, blocked, or counted. For example, suppose that you add the following
-        /// to a <code>Rule</code>: 
+        /// to a <c>Rule</c>: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches the value <code>BadBot</code> in the <code>User-Agent</code>
+        /// A <c>ByteMatchSet</c> that matches the value <c>BadBot</c> in the <c>User-Agent</c>
         /// header
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to block requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// the <code>User-Agent</code> header in the request must contain the value <code>BadBot</code>
-        /// <i>and</i> the request must originate from the IP address 192.0.2.44.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to block
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, the <c>User-Agent</c>
+        /// header in the request must contain the value <c>BadBot</c> <i>and</i> the request
+        /// must originate from the IP address 192.0.2.44.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create the <code>Rule</code>. See <a>CreateRule</a>.
+        /// Create the <c>Rule</c>. See <a>CreateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to add predicates to the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to add predicates to the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. See <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// If you want to replace one <code>ByteMatchSet</code> or <code>IPSet</code> with another,
-        /// you delete the existing one and add the new one.
+        /// If you want to replace one <c>ByteMatchSet</c> or <c>IPSet</c> with another, you delete
+        /// the existing one and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -18343,8 +18234,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="ruleId">The <code>RuleId</code> of the <code>Rule</code> that you want to update. <code>RuleId</code> is returned by <code>CreateRule</code> and by <a>ListRules</a>.</param>
-        /// <param name="updates">An array of <code>RuleUpdate</code> objects that you want to insert into or delete from a <a>Rule</a>. For more information, see the applicable data types: <ul> <li>  <a>RuleUpdate</a>: Contains <code>Action</code> and <code>Predicate</code>  </li> <li>  <a>Predicate</a>: Contains <code>DataId</code>, <code>Negated</code>, and <code>Type</code>  </li> <li>  <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code>  </li> </ul></param>
+        /// <param name="ruleId">The <c>RuleId</c> of the <c>Rule</c> that you want to update. <c>RuleId</c> is returned by <c>CreateRule</c> and by <a>ListRules</a>.</param>
+        /// <param name="updates">An array of <c>RuleUpdate</c> objects that you want to insert into or delete from a <a>Rule</a>. For more information, see the applicable data types: <ul> <li>  <a>RuleUpdate</a>: Contains <c>Action</c> and <c>Predicate</c>  </li> <li>  <a>Predicate</a>: Contains <c>DataId</c>, <c>Negated</c>, and <c>Type</c>  </li> <li>  <a>FieldToMatch</a>: Contains <c>Data</c> and <c>Type</c>  </li> </ul></param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the UpdateRule service method, as returned by WAFRegional.</returns>
@@ -18361,28 +18252,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18400,33 +18291,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -18436,7 +18327,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -18446,23 +18337,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18475,11 +18366,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18512,58 +18403,58 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>Predicate</a> objects in a <code>Rule</code>. Each <code>Predicate</code>
+        /// Inserts or deletes <a>Predicate</a> objects in a <c>Rule</c>. Each <c>Predicate</c>
         /// object identifies a predicate, such as a <a>ByteMatchSet</a> or an <a>IPSet</a>, that
         /// specifies the web requests that you want to allow, block, or count. If you add more
-        /// than one predicate to a <code>Rule</code>, a request must match all of the specifications
+        /// than one predicate to a <c>Rule</c>, a request must match all of the specifications
         /// to be allowed, blocked, or counted. For example, suppose that you add the following
-        /// to a <code>Rule</code>: 
+        /// to a <c>Rule</c>: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches the value <code>BadBot</code> in the <code>User-Agent</code>
+        /// A <c>ByteMatchSet</c> that matches the value <c>BadBot</c> in the <c>User-Agent</c>
         /// header
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to block requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// the <code>User-Agent</code> header in the request must contain the value <code>BadBot</code>
-        /// <i>and</i> the request must originate from the IP address 192.0.2.44.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to block
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, the <c>User-Agent</c>
+        /// header in the request must contain the value <c>BadBot</c> <i>and</i> the request
+        /// must originate from the IP address 192.0.2.44.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create the <code>Rule</code>. See <a>CreateRule</a>.
+        /// Create the <c>Rule</c>. See <a>CreateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to add predicates to the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to add predicates to the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. See <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// If you want to replace one <code>ByteMatchSet</code> or <code>IPSet</code> with another,
-        /// you delete the existing one and add the new one.
+        /// If you want to replace one <c>ByteMatchSet</c> or <c>IPSet</c> with another, you delete
+        /// the existing one and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -18588,28 +18479,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18627,33 +18518,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -18663,7 +18554,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -18673,23 +18564,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18702,11 +18593,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18739,58 +18630,58 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>Predicate</a> objects in a <code>Rule</code>. Each <code>Predicate</code>
+        /// Inserts or deletes <a>Predicate</a> objects in a <c>Rule</c>. Each <c>Predicate</c>
         /// object identifies a predicate, such as a <a>ByteMatchSet</a> or an <a>IPSet</a>, that
         /// specifies the web requests that you want to allow, block, or count. If you add more
-        /// than one predicate to a <code>Rule</code>, a request must match all of the specifications
+        /// than one predicate to a <c>Rule</c>, a request must match all of the specifications
         /// to be allowed, blocked, or counted. For example, suppose that you add the following
-        /// to a <code>Rule</code>: 
+        /// to a <c>Rule</c>: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches the value <code>BadBot</code> in the <code>User-Agent</code>
+        /// A <c>ByteMatchSet</c> that matches the value <c>BadBot</c> in the <c>User-Agent</c>
         /// header
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to block requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// the <code>User-Agent</code> header in the request must contain the value <code>BadBot</code>
-        /// <i>and</i> the request must originate from the IP address 192.0.2.44.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to block
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, the <c>User-Agent</c>
+        /// header in the request must contain the value <c>BadBot</c> <i>and</i> the request
+        /// must originate from the IP address 192.0.2.44.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create the <code>Rule</code>. See <a>CreateRule</a>.
+        /// Create the <c>Rule</c>. See <a>CreateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to add predicates to the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to add predicates to the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. See <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// If you want to replace one <code>ByteMatchSet</code> or <code>IPSet</code> with another,
-        /// you delete the existing one and add the new one.
+        /// If you want to replace one <c>ByteMatchSet</c> or <c>IPSet</c> with another, you delete
+        /// the existing one and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -18799,8 +18690,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="ruleId">The <code>RuleId</code> of the <code>Rule</code> that you want to update. <code>RuleId</code> is returned by <code>CreateRule</code> and by <a>ListRules</a>.</param>
-        /// <param name="updates">An array of <code>RuleUpdate</code> objects that you want to insert into or delete from a <a>Rule</a>. For more information, see the applicable data types: <ul> <li>  <a>RuleUpdate</a>: Contains <code>Action</code> and <code>Predicate</code>  </li> <li>  <a>Predicate</a>: Contains <code>DataId</code>, <code>Negated</code>, and <code>Type</code>  </li> <li>  <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code>  </li> </ul></param>
+        /// <param name="ruleId">The <c>RuleId</c> of the <c>Rule</c> that you want to update. <c>RuleId</c> is returned by <c>CreateRule</c> and by <a>ListRules</a>.</param>
+        /// <param name="updates">An array of <c>RuleUpdate</c> objects that you want to insert into or delete from a <a>Rule</a>. For more information, see the applicable data types: <ul> <li>  <a>RuleUpdate</a>: Contains <c>Action</c> and <c>Predicate</c>  </li> <li>  <a>Predicate</a>: Contains <c>DataId</c>, <c>Negated</c>, and <c>Type</c>  </li> <li>  <a>FieldToMatch</a>: Contains <c>Data</c> and <c>Type</c>  </li> </ul></param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -18820,28 +18711,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18859,33 +18750,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -18895,7 +18786,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -18905,23 +18796,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18934,11 +18825,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -18971,58 +18862,58 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>Predicate</a> objects in a <code>Rule</code>. Each <code>Predicate</code>
+        /// Inserts or deletes <a>Predicate</a> objects in a <c>Rule</c>. Each <c>Predicate</c>
         /// object identifies a predicate, such as a <a>ByteMatchSet</a> or an <a>IPSet</a>, that
         /// specifies the web requests that you want to allow, block, or count. If you add more
-        /// than one predicate to a <code>Rule</code>, a request must match all of the specifications
+        /// than one predicate to a <c>Rule</c>, a request must match all of the specifications
         /// to be allowed, blocked, or counted. For example, suppose that you add the following
-        /// to a <code>Rule</code>: 
+        /// to a <c>Rule</c>: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A <code>ByteMatchSet</code> that matches the value <code>BadBot</code> in the <code>User-Agent</code>
+        /// A <c>ByteMatchSet</c> that matches the value <c>BadBot</c> in the <c>User-Agent</c>
         /// header
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// An <code>IPSet</code> that matches the IP address <code>192.0.2.44</code> 
+        /// An <c>IPSet</c> that matches the IP address <c>192.0.2.44</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You then add the <code>Rule</code> to a <code>WebACL</code> and specify that you want
-        /// to block requests that satisfy the <code>Rule</code>. For a request to be blocked,
-        /// the <code>User-Agent</code> header in the request must contain the value <code>BadBot</code>
-        /// <i>and</i> the request must originate from the IP address 192.0.2.44.
+        /// You then add the <c>Rule</c> to a <c>WebACL</c> and specify that you want to block
+        /// requests that satisfy the <c>Rule</c>. For a request to be blocked, the <c>User-Agent</c>
+        /// header in the request must contain the value <c>BadBot</c> <i>and</i> the request
+        /// must originate from the IP address 192.0.2.44.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>Rule</code>, perform the following steps:
+        /// To create and configure a <c>Rule</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in the <code>Rule</code>.
+        /// Create and update the predicates that you want to include in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create the <code>Rule</code>. See <a>CreateRule</a>.
+        /// Create the <c>Rule</c>. See <a>CreateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRule</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRule</code> request to add predicates to the <code>Rule</code>.
+        /// Submit an <c>UpdateRule</c> request to add predicates to the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>Rule</code>. See <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>Rule</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// If you want to replace one <code>ByteMatchSet</code> or <code>IPSet</code> with another,
-        /// you delete the existing one and add the new one.
+        /// If you want to replace one <c>ByteMatchSet</c> or <c>IPSet</c> with another, you delete
+        /// the existing one and add the new one.
         /// </para>
         ///  
         /// <para>
@@ -19050,28 +18941,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19089,33 +18980,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -19125,7 +19016,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -19135,23 +19026,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19164,11 +19055,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19205,11 +19096,11 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>ActivatedRule</a> objects in a <code>RuleGroup</code>.
+        /// Inserts or deletes <a>ActivatedRule</a> objects in a <c>RuleGroup</c>.
         /// </para>
         ///  
         /// <para>
-        /// You can only insert <code>REGULAR</code> rules into a rule group.
+        /// You can only insert <c>REGULAR</c> rules into a rule group.
         /// </para>
         ///  
         /// <para>
@@ -19217,31 +19108,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RuleGroup</code>, perform the following steps:
+        /// To create and configure a <c>RuleGroup</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the <code>Rules</code> that you want to include in the <code>RuleGroup</code>.
+        /// Create and update the <c>Rules</c> that you want to include in the <c>RuleGroup</c>.
         /// See <a>CreateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRuleGroup</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRuleGroup</code> request to add <code>Rules</code> to the <code>RuleGroup</code>.
+        /// Submit an <c>UpdateRuleGroup</c> request to add <c>Rules</c> to the <c>RuleGroup</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>RuleGroup</code>.
-        /// See <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>RuleGroup</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// If you want to replace one <code>Rule</code> with another, you delete the existing
-        /// one and add the new one.
+        /// If you want to replace one <c>Rule</c> with another, you delete the existing one and
+        /// add the new one.
         /// </para>
         ///  
         /// <para>
@@ -19262,28 +19152,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19301,33 +19191,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -19337,7 +19227,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -19347,23 +19237,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19399,11 +19289,11 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>ActivatedRule</a> objects in a <code>RuleGroup</code>.
+        /// Inserts or deletes <a>ActivatedRule</a> objects in a <c>RuleGroup</c>.
         /// </para>
         ///  
         /// <para>
-        /// You can only insert <code>REGULAR</code> rules into a rule group.
+        /// You can only insert <c>REGULAR</c> rules into a rule group.
         /// </para>
         ///  
         /// <para>
@@ -19411,31 +19301,30 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>RuleGroup</code>, perform the following steps:
+        /// To create and configure a <c>RuleGroup</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the <code>Rules</code> that you want to include in the <code>RuleGroup</code>.
+        /// Create and update the <c>Rules</c> that you want to include in the <c>RuleGroup</c>.
         /// See <a>CreateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateRuleGroup</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateRuleGroup</code> request to add <code>Rules</code> to the <code>RuleGroup</code>.
+        /// Submit an <c>UpdateRuleGroup</c> request to add <c>Rules</c> to the <c>RuleGroup</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update a <code>WebACL</code> that contains the <code>RuleGroup</code>.
-        /// See <a>CreateWebACL</a>.
+        /// Create and update a <c>WebACL</c> that contains the <c>RuleGroup</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// If you want to replace one <code>Rule</code> with another, you delete the existing
-        /// one and add the new one.
+        /// If you want to replace one <c>Rule</c> with another, you delete the existing one and
+        /// add the new one.
         /// </para>
         ///  
         /// <para>
@@ -19459,28 +19348,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19498,33 +19387,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -19534,7 +19423,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -19544,23 +19433,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19601,24 +19490,24 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>SizeConstraint</a> objects (filters) in a <a>SizeConstraintSet</a>.
-        /// For each <code>SizeConstraint</code> object, you specify the following values: 
+        /// For each <c>SizeConstraint</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>SizeConstraintSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>SizeConstraintSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to evaluate, such as the length of
-        /// a query string or the length of the <code>User-Agent</code> header.
+        /// a query string or the length of the <c>User-Agent</c> header.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Whether to perform any transformations on the request, such as converting it to lowercase,
         /// before checking its length. Note that transformations of the request body are not
-        /// supported because the AWS resource forwards only the first <code>8192</code> bytes
-        /// of your request to AWS WAF.
+        /// supported because the AWS resource forwards only the first <c>8192</c> bytes of your
+        /// request to AWS WAF.
         /// </para>
         ///  
         /// <para>
@@ -19626,9 +19515,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ComparisonOperator</code> used for evaluating the selected part of the request
-        /// against the specified <code>Size</code>, such as equals, greater than, less than,
-        /// and so on.
+        /// A <c>ComparisonOperator</c> used for evaluating the selected part of the request against
+        /// the specified <c>Size</c>, such as equals, greater than, less than, and so on.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -19637,28 +19525,28 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example, you can add a <code>SizeConstraintSetUpdate</code> object that matches
-        /// web requests in which the length of the <code>User-Agent</code> header is greater
-        /// than 100 bytes. You can then configure AWS WAF to block those requests.
+        /// For example, you can add a <c>SizeConstraintSetUpdate</c> object that matches web
+        /// requests in which the length of the <c>User-Agent</c> header is greater than 100 bytes.
+        /// You can then configure AWS WAF to block those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SizeConstraintSet</code>, perform the following steps:
+        /// To create and configure a <c>SizeConstraintSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>SizeConstraintSet.</code> For more information, see <a>CreateSizeConstraintSet</a>.
+        /// Create a <c>SizeConstraintSet.</c> For more information, see <a>CreateSizeConstraintSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateSizeConstraintSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateSizeConstraintSet</code> request to specify the part of the
-        /// request that you want AWS WAF to inspect (for example, the header or the URI) and
-        /// the value that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateSizeConstraintSet</c> request to specify the part of the request
+        /// that you want AWS WAF to inspect (for example, the header or the URI) and the value
+        /// that you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -19683,28 +19571,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19722,33 +19610,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -19758,7 +19646,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -19768,23 +19656,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19797,11 +19685,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19835,24 +19723,24 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>SizeConstraint</a> objects (filters) in a <a>SizeConstraintSet</a>.
-        /// For each <code>SizeConstraint</code> object, you specify the following values: 
+        /// For each <c>SizeConstraint</c> object, you specify the following values: 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Whether to insert or delete the object from the array. If you want to change a <code>SizeConstraintSetUpdate</code>
+        /// Whether to insert or delete the object from the array. If you want to change a <c>SizeConstraintSetUpdate</c>
         /// object, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The part of a web request that you want AWS WAF to evaluate, such as the length of
-        /// a query string or the length of the <code>User-Agent</code> header.
+        /// a query string or the length of the <c>User-Agent</c> header.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// Whether to perform any transformations on the request, such as converting it to lowercase,
         /// before checking its length. Note that transformations of the request body are not
-        /// supported because the AWS resource forwards only the first <code>8192</code> bytes
-        /// of your request to AWS WAF.
+        /// supported because the AWS resource forwards only the first <c>8192</c> bytes of your
+        /// request to AWS WAF.
         /// </para>
         ///  
         /// <para>
@@ -19860,9 +19748,8 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A <code>ComparisonOperator</code> used for evaluating the selected part of the request
-        /// against the specified <code>Size</code>, such as equals, greater than, less than,
-        /// and so on.
+        /// A <c>ComparisonOperator</c> used for evaluating the selected part of the request against
+        /// the specified <c>Size</c>, such as equals, greater than, less than, and so on.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -19871,28 +19758,28 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For example, you can add a <code>SizeConstraintSetUpdate</code> object that matches
-        /// web requests in which the length of the <code>User-Agent</code> header is greater
-        /// than 100 bytes. You can then configure AWS WAF to block those requests.
+        /// For example, you can add a <c>SizeConstraintSetUpdate</c> object that matches web
+        /// requests in which the length of the <c>User-Agent</c> header is greater than 100 bytes.
+        /// You can then configure AWS WAF to block those requests.
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SizeConstraintSet</code>, perform the following steps:
+        /// To create and configure a <c>SizeConstraintSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create a <code>SizeConstraintSet.</code> For more information, see <a>CreateSizeConstraintSet</a>.
+        /// Create a <c>SizeConstraintSet.</c> For more information, see <a>CreateSizeConstraintSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
-        /// parameter of an <code>UpdateSizeConstraintSet</code> request.
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
+        /// parameter of an <c>UpdateSizeConstraintSet</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateSizeConstraintSet</code> request to specify the part of the
-        /// request that you want AWS WAF to inspect (for example, the header or the URI) and
-        /// the value that you want AWS WAF to watch for.
+        /// Submit an <c>UpdateSizeConstraintSet</c> request to specify the part of the request
+        /// that you want AWS WAF to inspect (for example, the header or the URI) and the value
+        /// that you want AWS WAF to watch for.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -19920,28 +19807,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -19959,33 +19846,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -19995,7 +19882,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -20005,23 +19892,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20034,11 +19921,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20076,24 +19963,24 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>SqlInjectionMatchTuple</a> objects (filters) in a <a>SqlInjectionMatchSet</a>.
-        /// For each <code>SqlInjectionMatchTuple</code> object, you specify the following values:
+        /// For each <c>SqlInjectionMatchTuple</c> object, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Action</code>: Whether to insert the object into or delete the object from
-        /// the array. To change a <code>SqlInjectionMatchTuple</code>, you delete the existing
-        /// object and add a new one.
+        ///  <c>Action</c>: Whether to insert the object into or delete the object from the array.
+        /// To change a <c>SqlInjectionMatchTuple</c>, you delete the existing object and add
+        /// a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldToMatch</code>: The part of web requests that you want AWS WAF to inspect
-        /// and, if you want AWS WAF to inspect a header or custom query parameter, the name of
-        /// the header or parameter.
+        ///  <c>FieldToMatch</c>: The part of web requests that you want AWS WAF to inspect and,
+        /// if you want AWS WAF to inspect a header or custom query parameter, the name of the
+        /// header or parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TextTransformation</code>: Which text transformation, if any, to perform on
-        /// the web request before inspecting the request for snippets of malicious SQL code.
+        ///  <c>TextTransformation</c>: Which text transformation, if any, to perform on the web
+        /// request before inspecting the request for snippets of malicious SQL code.
         /// </para>
         ///  
         /// <para>
@@ -20101,16 +19988,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use <code>SqlInjectionMatchSet</code> objects to specify which CloudFront requests
-        /// that you want to allow, block, or count. For example, if you're receiving requests
-        /// that contain snippets of SQL code in the query string and you want to block the requests,
-        /// you can create a <code>SqlInjectionMatchSet</code> with the applicable settings, and
-        /// then configure AWS WAF to block the requests. 
+        /// You use <c>SqlInjectionMatchSet</c> objects to specify which CloudFront requests that
+        /// you want to allow, block, or count. For example, if you're receiving requests that
+        /// contain snippets of SQL code in the query string and you want to block the requests,
+        /// you can create a <c>SqlInjectionMatchSet</c> with the applicable settings, and then
+        /// configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -20118,13 +20004,13 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateSqlInjectionMatchSet</code> request to specify the parts of
-        /// web requests that you want AWS WAF to inspect for snippets of SQL code.
+        /// Submit an <c>UpdateSqlInjectionMatchSet</c> request to specify the parts of web requests
+        /// that you want AWS WAF to inspect for snippets of SQL code.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -20133,8 +20019,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="sqlInjectionMatchSetId">The <code>SqlInjectionMatchSetId</code> of the <code>SqlInjectionMatchSet</code> that you want to update. <code>SqlInjectionMatchSetId</code> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
-        /// <param name="updates">An array of <code>SqlInjectionMatchSetUpdate</code> objects that you want to insert into or delete from a <a>SqlInjectionMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>SqlInjectionMatchSetUpdate</a>: Contains <code>Action</code> and <code>SqlInjectionMatchTuple</code>  </li> <li>  <a>SqlInjectionMatchTuple</a>: Contains <code>FieldToMatch</code> and <code>TextTransformation</code>  </li> <li>  <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code>  </li> </ul></param>
+        /// <param name="sqlInjectionMatchSetId">The <c>SqlInjectionMatchSetId</c> of the <c>SqlInjectionMatchSet</c> that you want to update. <c>SqlInjectionMatchSetId</c> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
+        /// <param name="updates">An array of <c>SqlInjectionMatchSetUpdate</c> objects that you want to insert into or delete from a <a>SqlInjectionMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>SqlInjectionMatchSetUpdate</a>: Contains <c>Action</c> and <c>SqlInjectionMatchTuple</c>  </li> <li>  <a>SqlInjectionMatchTuple</a>: Contains <c>FieldToMatch</c> and <c>TextTransformation</c>  </li> <li>  <a>FieldToMatch</a>: Contains <c>Data</c> and <c>Type</c>  </li> </ul></param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// 
         /// <returns>The response from the UpdateSqlInjectionMatchSet service method, as returned by WAFRegional.</returns>
@@ -20151,28 +20037,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20190,33 +20076,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -20226,7 +20112,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -20236,23 +20122,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20289,24 +20175,24 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>SqlInjectionMatchTuple</a> objects (filters) in a <a>SqlInjectionMatchSet</a>.
-        /// For each <code>SqlInjectionMatchTuple</code> object, you specify the following values:
+        /// For each <c>SqlInjectionMatchTuple</c> object, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Action</code>: Whether to insert the object into or delete the object from
-        /// the array. To change a <code>SqlInjectionMatchTuple</code>, you delete the existing
-        /// object and add a new one.
+        ///  <c>Action</c>: Whether to insert the object into or delete the object from the array.
+        /// To change a <c>SqlInjectionMatchTuple</c>, you delete the existing object and add
+        /// a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldToMatch</code>: The part of web requests that you want AWS WAF to inspect
-        /// and, if you want AWS WAF to inspect a header or custom query parameter, the name of
-        /// the header or parameter.
+        ///  <c>FieldToMatch</c>: The part of web requests that you want AWS WAF to inspect and,
+        /// if you want AWS WAF to inspect a header or custom query parameter, the name of the
+        /// header or parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TextTransformation</code>: Which text transformation, if any, to perform on
-        /// the web request before inspecting the request for snippets of malicious SQL code.
+        ///  <c>TextTransformation</c>: Which text transformation, if any, to perform on the web
+        /// request before inspecting the request for snippets of malicious SQL code.
         /// </para>
         ///  
         /// <para>
@@ -20314,16 +20200,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use <code>SqlInjectionMatchSet</code> objects to specify which CloudFront requests
-        /// that you want to allow, block, or count. For example, if you're receiving requests
-        /// that contain snippets of SQL code in the query string and you want to block the requests,
-        /// you can create a <code>SqlInjectionMatchSet</code> with the applicable settings, and
-        /// then configure AWS WAF to block the requests. 
+        /// You use <c>SqlInjectionMatchSet</c> objects to specify which CloudFront requests that
+        /// you want to allow, block, or count. For example, if you're receiving requests that
+        /// contain snippets of SQL code in the query string and you want to block the requests,
+        /// you can create a <c>SqlInjectionMatchSet</c> with the applicable settings, and then
+        /// configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -20331,13 +20216,13 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateSqlInjectionMatchSet</code> request to specify the parts of
-        /// web requests that you want AWS WAF to inspect for snippets of SQL code.
+        /// Submit an <c>UpdateSqlInjectionMatchSet</c> request to specify the parts of web requests
+        /// that you want AWS WAF to inspect for snippets of SQL code.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -20362,28 +20247,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20401,33 +20286,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -20437,7 +20322,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -20447,23 +20332,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20500,24 +20385,24 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>SqlInjectionMatchTuple</a> objects (filters) in a <a>SqlInjectionMatchSet</a>.
-        /// For each <code>SqlInjectionMatchTuple</code> object, you specify the following values:
+        /// For each <c>SqlInjectionMatchTuple</c> object, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Action</code>: Whether to insert the object into or delete the object from
-        /// the array. To change a <code>SqlInjectionMatchTuple</code>, you delete the existing
-        /// object and add a new one.
+        ///  <c>Action</c>: Whether to insert the object into or delete the object from the array.
+        /// To change a <c>SqlInjectionMatchTuple</c>, you delete the existing object and add
+        /// a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldToMatch</code>: The part of web requests that you want AWS WAF to inspect
-        /// and, if you want AWS WAF to inspect a header or custom query parameter, the name of
-        /// the header or parameter.
+        ///  <c>FieldToMatch</c>: The part of web requests that you want AWS WAF to inspect and,
+        /// if you want AWS WAF to inspect a header or custom query parameter, the name of the
+        /// header or parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TextTransformation</code>: Which text transformation, if any, to perform on
-        /// the web request before inspecting the request for snippets of malicious SQL code.
+        ///  <c>TextTransformation</c>: Which text transformation, if any, to perform on the web
+        /// request before inspecting the request for snippets of malicious SQL code.
         /// </para>
         ///  
         /// <para>
@@ -20525,16 +20410,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use <code>SqlInjectionMatchSet</code> objects to specify which CloudFront requests
-        /// that you want to allow, block, or count. For example, if you're receiving requests
-        /// that contain snippets of SQL code in the query string and you want to block the requests,
-        /// you can create a <code>SqlInjectionMatchSet</code> with the applicable settings, and
-        /// then configure AWS WAF to block the requests. 
+        /// You use <c>SqlInjectionMatchSet</c> objects to specify which CloudFront requests that
+        /// you want to allow, block, or count. For example, if you're receiving requests that
+        /// contain snippets of SQL code in the query string and you want to block the requests,
+        /// you can create a <c>SqlInjectionMatchSet</c> with the applicable settings, and then
+        /// configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -20542,13 +20426,13 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateSqlInjectionMatchSet</code> request to specify the parts of
-        /// web requests that you want AWS WAF to inspect for snippets of SQL code.
+        /// Submit an <c>UpdateSqlInjectionMatchSet</c> request to specify the parts of web requests
+        /// that you want AWS WAF to inspect for snippets of SQL code.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -20557,8 +20441,8 @@ namespace Amazon.WAFRegional
         /// Guide</a>.
         /// </para>
         /// </summary>
-        /// <param name="sqlInjectionMatchSetId">The <code>SqlInjectionMatchSetId</code> of the <code>SqlInjectionMatchSet</code> that you want to update. <code>SqlInjectionMatchSetId</code> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
-        /// <param name="updates">An array of <code>SqlInjectionMatchSetUpdate</code> objects that you want to insert into or delete from a <a>SqlInjectionMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>SqlInjectionMatchSetUpdate</a>: Contains <code>Action</code> and <code>SqlInjectionMatchTuple</code>  </li> <li>  <a>SqlInjectionMatchTuple</a>: Contains <code>FieldToMatch</code> and <code>TextTransformation</code>  </li> <li>  <a>FieldToMatch</a>: Contains <code>Data</code> and <code>Type</code>  </li> </ul></param>
+        /// <param name="sqlInjectionMatchSetId">The <c>SqlInjectionMatchSetId</c> of the <c>SqlInjectionMatchSet</c> that you want to update. <c>SqlInjectionMatchSetId</c> is returned by <a>CreateSqlInjectionMatchSet</a> and by <a>ListSqlInjectionMatchSets</a>.</param>
+        /// <param name="updates">An array of <c>SqlInjectionMatchSetUpdate</c> objects that you want to insert into or delete from a <a>SqlInjectionMatchSet</a>. For more information, see the applicable data types: <ul> <li>  <a>SqlInjectionMatchSetUpdate</a>: Contains <c>Action</c> and <c>SqlInjectionMatchTuple</c>  </li> <li>  <a>SqlInjectionMatchTuple</a>: Contains <c>FieldToMatch</c> and <c>TextTransformation</c>  </li> <li>  <a>FieldToMatch</a>: Contains <c>Data</c> and <c>Type</c>  </li> </ul></param>
         /// <param name="changeToken">The value returned by the most recent call to <a>GetChangeToken</a>.</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
@@ -20578,28 +20462,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20617,33 +20501,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -20653,7 +20537,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -20663,23 +20547,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20716,24 +20600,24 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>SqlInjectionMatchTuple</a> objects (filters) in a <a>SqlInjectionMatchSet</a>.
-        /// For each <code>SqlInjectionMatchTuple</code> object, you specify the following values:
+        /// For each <c>SqlInjectionMatchTuple</c> object, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Action</code>: Whether to insert the object into or delete the object from
-        /// the array. To change a <code>SqlInjectionMatchTuple</code>, you delete the existing
-        /// object and add a new one.
+        ///  <c>Action</c>: Whether to insert the object into or delete the object from the array.
+        /// To change a <c>SqlInjectionMatchTuple</c>, you delete the existing object and add
+        /// a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldToMatch</code>: The part of web requests that you want AWS WAF to inspect
-        /// and, if you want AWS WAF to inspect a header or custom query parameter, the name of
-        /// the header or parameter.
+        ///  <c>FieldToMatch</c>: The part of web requests that you want AWS WAF to inspect and,
+        /// if you want AWS WAF to inspect a header or custom query parameter, the name of the
+        /// header or parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TextTransformation</code>: Which text transformation, if any, to perform on
-        /// the web request before inspecting the request for snippets of malicious SQL code.
+        ///  <c>TextTransformation</c>: Which text transformation, if any, to perform on the web
+        /// request before inspecting the request for snippets of malicious SQL code.
         /// </para>
         ///  
         /// <para>
@@ -20741,16 +20625,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use <code>SqlInjectionMatchSet</code> objects to specify which CloudFront requests
-        /// that you want to allow, block, or count. For example, if you're receiving requests
-        /// that contain snippets of SQL code in the query string and you want to block the requests,
-        /// you can create a <code>SqlInjectionMatchSet</code> with the applicable settings, and
-        /// then configure AWS WAF to block the requests. 
+        /// You use <c>SqlInjectionMatchSet</c> objects to specify which CloudFront requests that
+        /// you want to allow, block, or count. For example, if you're receiving requests that
+        /// contain snippets of SQL code in the query string and you want to block the requests,
+        /// you can create a <c>SqlInjectionMatchSet</c> with the applicable settings, and then
+        /// configure AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure a <code>SqlInjectionMatchSet</code>, perform the following
-        /// steps:
+        /// To create and configure a <c>SqlInjectionMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -20758,13 +20641,13 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateSqlInjectionMatchSet</code> request to specify the parts of
-        /// web requests that you want AWS WAF to inspect for snippets of SQL code.
+        /// Submit an <c>UpdateSqlInjectionMatchSet</c> request to specify the parts of web requests
+        /// that you want AWS WAF to inspect for snippets of SQL code.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -20792,28 +20675,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20831,33 +20714,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -20867,7 +20750,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -20877,23 +20760,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -20933,76 +20816,74 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>ActivatedRule</a> objects in a <code>WebACL</code>. Each <code>Rule</code>
+        /// Inserts or deletes <a>ActivatedRule</a> objects in a <c>WebACL</c>. Each <c>Rule</c>
         /// identifies web requests that you want to allow, block, or count. When you update a
-        /// <code>WebACL</code>, you specify the following values:
+        /// <c>WebACL</c>, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A default action for the <code>WebACL</code>, either <code>ALLOW</code> or <code>BLOCK</code>.
-        /// AWS WAF performs the default action if a request doesn't match the criteria in any
-        /// of the <code>Rules</code> in a <code>WebACL</code>.
+        /// A default action for the <c>WebACL</c>, either <c>ALLOW</c> or <c>BLOCK</c>. AWS WAF
+        /// performs the default action if a request doesn't match the criteria in any of the
+        /// <c>Rules</c> in a <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Rules</code> that you want to add or delete. If you want to replace one
-        /// <code>Rule</code> with another, you delete the existing <code>Rule</code> and add
-        /// the new one.
+        /// The <c>Rules</c> that you want to add or delete. If you want to replace one <c>Rule</c>
+        /// with another, you delete the existing <c>Rule</c> and add the new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For each <code>Rule</code>, whether you want AWS WAF to allow requests, block requests,
-        /// or count requests that match the conditions in the <code>Rule</code>.
+        /// For each <c>Rule</c>, whether you want AWS WAF to allow requests, block requests,
+        /// or count requests that match the conditions in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The order in which you want AWS WAF to evaluate the <code>Rules</code> in a <code>WebACL</code>.
-        /// If you add more than one <code>Rule</code> to a <code>WebACL</code>, AWS WAF evaluates
-        /// each request against the <code>Rules</code> in order based on the value of <code>Priority</code>.
-        /// (The <code>Rule</code> that has the lowest value for <code>Priority</code> is evaluated
-        /// first.) When a web request matches all the predicates (such as <code>ByteMatchSets</code>
-        /// and <code>IPSets</code>) in a <code>Rule</code>, AWS WAF immediately takes the corresponding
-        /// action, allow or block, and doesn't evaluate the request against the remaining <code>Rules</code>
-        /// in the <code>WebACL</code>, if any. 
+        /// The order in which you want AWS WAF to evaluate the <c>Rules</c> in a <c>WebACL</c>.
+        /// If you add more than one <c>Rule</c> to a <c>WebACL</c>, AWS WAF evaluates each request
+        /// against the <c>Rules</c> in order based on the value of <c>Priority</c>. (The <c>Rule</c>
+        /// that has the lowest value for <c>Priority</c> is evaluated first.) When a web request
+        /// matches all the predicates (such as <c>ByteMatchSets</c> and <c>IPSets</c>) in a <c>Rule</c>,
+        /// AWS WAF immediately takes the corresponding action, allow or block, and doesn't evaluate
+        /// the request against the remaining <c>Rules</c> in the <c>WebACL</c>, if any. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To create and configure a <code>WebACL</code>, perform the following steps:
+        /// To create and configure a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in <code>Rules</code>. For
-        /// more information, see <a>CreateByteMatchSet</a>, <a>UpdateByteMatchSet</a>, <a>CreateIPSet</a>,
+        /// Create and update the predicates that you want to include in <c>Rules</c>. For more
+        /// information, see <a>CreateByteMatchSet</a>, <a>UpdateByteMatchSet</a>, <a>CreateIPSet</a>,
         /// <a>UpdateIPSet</a>, <a>CreateSqlInjectionMatchSet</a>, and <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update the <code>Rules</code> that you want to include in the <code>WebACL</code>.
+        /// Create and update the <c>Rules</c> that you want to include in the <c>WebACL</c>.
         /// For more information, see <a>CreateRule</a> and <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create a <code>WebACL</code>. See <a>CreateWebACL</a>.
+        /// Create a <c>WebACL</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateWebACL</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateWebACL</code> request to specify the <code>Rules</code> that
-        /// you want to include in the <code>WebACL</code>, to specify the default action, and
-        /// to associate the <code>WebACL</code> with a CloudFront distribution. 
+        /// Submit an <c>UpdateWebACL</c> request to specify the <c>Rules</c> that you want to
+        /// include in the <c>WebACL</c>, to specify the default action, and to associate the
+        /// <c>WebACL</c> with a CloudFront distribution. 
         /// </para>
         ///  
         /// <para>
-        /// The <code>ActivatedRule</code> can be a rule group. If you specify a rule group as
-        /// your <code>ActivatedRule</code> , you can exclude specific rules from that rule group.
+        /// The <c>ActivatedRule</c> can be a rule group. If you specify a rule group as your
+        /// <c>ActivatedRule</c> , you can exclude specific rules from that rule group.
         /// </para>
         ///  
         /// <para>
-        /// If you already have a rule group associated with a web ACL and want to submit an <code>UpdateWebACL</code>
+        /// If you already have a rule group associated with a web ACL and want to submit an <c>UpdateWebACL</c>
         /// request to exclude certain rules from that rule group, you must first remove the rule
         /// group from the web ACL, the re-insert it again, specifying the excluded rules. For
         /// details, see <a>ActivatedRule$ExcludedRules</a> . 
@@ -21037,28 +20918,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21076,33 +20957,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -21112,7 +20993,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -21122,23 +21003,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21151,11 +21032,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21191,76 +21072,74 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </note> 
         /// <para>
-        /// Inserts or deletes <a>ActivatedRule</a> objects in a <code>WebACL</code>. Each <code>Rule</code>
+        /// Inserts or deletes <a>ActivatedRule</a> objects in a <c>WebACL</c>. Each <c>Rule</c>
         /// identifies web requests that you want to allow, block, or count. When you update a
-        /// <code>WebACL</code>, you specify the following values:
+        /// <c>WebACL</c>, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// A default action for the <code>WebACL</code>, either <code>ALLOW</code> or <code>BLOCK</code>.
-        /// AWS WAF performs the default action if a request doesn't match the criteria in any
-        /// of the <code>Rules</code> in a <code>WebACL</code>.
+        /// A default action for the <c>WebACL</c>, either <c>ALLOW</c> or <c>BLOCK</c>. AWS WAF
+        /// performs the default action if a request doesn't match the criteria in any of the
+        /// <c>Rules</c> in a <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Rules</code> that you want to add or delete. If you want to replace one
-        /// <code>Rule</code> with another, you delete the existing <code>Rule</code> and add
-        /// the new one.
+        /// The <c>Rules</c> that you want to add or delete. If you want to replace one <c>Rule</c>
+        /// with another, you delete the existing <c>Rule</c> and add the new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For each <code>Rule</code>, whether you want AWS WAF to allow requests, block requests,
-        /// or count requests that match the conditions in the <code>Rule</code>.
+        /// For each <c>Rule</c>, whether you want AWS WAF to allow requests, block requests,
+        /// or count requests that match the conditions in the <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The order in which you want AWS WAF to evaluate the <code>Rules</code> in a <code>WebACL</code>.
-        /// If you add more than one <code>Rule</code> to a <code>WebACL</code>, AWS WAF evaluates
-        /// each request against the <code>Rules</code> in order based on the value of <code>Priority</code>.
-        /// (The <code>Rule</code> that has the lowest value for <code>Priority</code> is evaluated
-        /// first.) When a web request matches all the predicates (such as <code>ByteMatchSets</code>
-        /// and <code>IPSets</code>) in a <code>Rule</code>, AWS WAF immediately takes the corresponding
-        /// action, allow or block, and doesn't evaluate the request against the remaining <code>Rules</code>
-        /// in the <code>WebACL</code>, if any. 
+        /// The order in which you want AWS WAF to evaluate the <c>Rules</c> in a <c>WebACL</c>.
+        /// If you add more than one <c>Rule</c> to a <c>WebACL</c>, AWS WAF evaluates each request
+        /// against the <c>Rules</c> in order based on the value of <c>Priority</c>. (The <c>Rule</c>
+        /// that has the lowest value for <c>Priority</c> is evaluated first.) When a web request
+        /// matches all the predicates (such as <c>ByteMatchSets</c> and <c>IPSets</c>) in a <c>Rule</c>,
+        /// AWS WAF immediately takes the corresponding action, allow or block, and doesn't evaluate
+        /// the request against the remaining <c>Rules</c> in the <c>WebACL</c>, if any. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// To create and configure a <code>WebACL</code>, perform the following steps:
+        /// To create and configure a <c>WebACL</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
-        /// Create and update the predicates that you want to include in <code>Rules</code>. For
-        /// more information, see <a>CreateByteMatchSet</a>, <a>UpdateByteMatchSet</a>, <a>CreateIPSet</a>,
+        /// Create and update the predicates that you want to include in <c>Rules</c>. For more
+        /// information, see <a>CreateByteMatchSet</a>, <a>UpdateByteMatchSet</a>, <a>CreateIPSet</a>,
         /// <a>UpdateIPSet</a>, <a>CreateSqlInjectionMatchSet</a>, and <a>UpdateSqlInjectionMatchSet</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create and update the <code>Rules</code> that you want to include in the <code>WebACL</code>.
+        /// Create and update the <c>Rules</c> that you want to include in the <c>WebACL</c>.
         /// For more information, see <a>CreateRule</a> and <a>UpdateRule</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Create a <code>WebACL</code>. See <a>CreateWebACL</a>.
+        /// Create a <c>WebACL</c>. See <a>CreateWebACL</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <code>GetChangeToken</code> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <c>GetChangeToken</c> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateWebACL</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateWebACL</code> request to specify the <code>Rules</code> that
-        /// you want to include in the <code>WebACL</code>, to specify the default action, and
-        /// to associate the <code>WebACL</code> with a CloudFront distribution. 
+        /// Submit an <c>UpdateWebACL</c> request to specify the <c>Rules</c> that you want to
+        /// include in the <c>WebACL</c>, to specify the default action, and to associate the
+        /// <c>WebACL</c> with a CloudFront distribution. 
         /// </para>
         ///  
         /// <para>
-        /// The <code>ActivatedRule</code> can be a rule group. If you specify a rule group as
-        /// your <code>ActivatedRule</code> , you can exclude specific rules from that rule group.
+        /// The <c>ActivatedRule</c> can be a rule group. If you specify a rule group as your
+        /// <c>ActivatedRule</c> , you can exclude specific rules from that rule group.
         /// </para>
         ///  
         /// <para>
-        /// If you already have a rule group associated with a web ACL and want to submit an <code>UpdateWebACL</code>
+        /// If you already have a rule group associated with a web ACL and want to submit an <c>UpdateWebACL</c>
         /// request to exclude certain rules from that rule group, you must first remove the rule
         /// group from the web ACL, the re-insert it again, specifying the excluded rules. For
         /// details, see <a>ActivatedRule$ExcludedRules</a> . 
@@ -21298,28 +21177,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21337,33 +21216,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -21373,7 +21252,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -21383,23 +21262,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21412,11 +21291,11 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to delete a <code>ByteMatchSet</code> that is still referenced by a <code>Rule</code>.
+        /// You tried to delete a <c>ByteMatchSet</c> that is still referenced by a <c>Rule</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to delete a <code>Rule</code> that is still referenced by a <code>WebACL</code>.
+        /// You tried to delete a <c>Rule</c> that is still referenced by a <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21457,24 +21336,23 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>XssMatchTuple</a> objects (filters) in an <a>XssMatchSet</a>.
-        /// For each <code>XssMatchTuple</code> object, you specify the following values:
+        /// For each <c>XssMatchTuple</c> object, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Action</code>: Whether to insert the object into or delete the object from
-        /// the array. To change an <code>XssMatchTuple</code>, you delete the existing object
-        /// and add a new one.
+        ///  <c>Action</c>: Whether to insert the object into or delete the object from the array.
+        /// To change an <c>XssMatchTuple</c>, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldToMatch</code>: The part of web requests that you want AWS WAF to inspect
-        /// and, if you want AWS WAF to inspect a header or custom query parameter, the name of
-        /// the header or parameter.
+        ///  <c>FieldToMatch</c>: The part of web requests that you want AWS WAF to inspect and,
+        /// if you want AWS WAF to inspect a header or custom query parameter, the name of the
+        /// header or parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TextTransformation</code>: Which text transformation, if any, to perform on
-        /// the web request before inspecting the request for cross-site scripting attacks.
+        ///  <c>TextTransformation</c>: Which text transformation, if any, to perform on the web
+        /// request before inspecting the request for cross-site scripting attacks.
         /// </para>
         ///  
         /// <para>
@@ -21482,15 +21360,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use <code>XssMatchSet</code> objects to specify which CloudFront requests that
-        /// you want to allow, block, or count. For example, if you're receiving requests that
-        /// contain cross-site scripting attacks in the request body and you want to block the
-        /// requests, you can create an <code>XssMatchSet</code> with the applicable settings,
-        /// and then configure AWS WAF to block the requests. 
+        /// You use <c>XssMatchSet</c> objects to specify which CloudFront requests that you want
+        /// to allow, block, or count. For example, if you're receiving requests that contain
+        /// cross-site scripting attacks in the request body and you want to block the requests,
+        /// you can create an <c>XssMatchSet</c> with the applicable settings, and then configure
+        /// AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>XssMatchSet</code>, perform the following steps:
+        /// To create and configure an <c>XssMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -21498,13 +21376,13 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateXssMatchSet</code> request to specify the parts of web requests
-        /// that you want AWS WAF to inspect for cross-site scripting attacks.
+        /// Submit an <c>UpdateXssMatchSet</c> request to specify the parts of web requests that
+        /// you want AWS WAF to inspect for cross-site scripting attacks.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -21529,28 +21407,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21568,33 +21446,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -21604,7 +21482,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -21614,23 +21492,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21667,24 +21545,23 @@ namespace Amazon.WAFRegional
         ///  </note> 
         /// <para>
         /// Inserts or deletes <a>XssMatchTuple</a> objects (filters) in an <a>XssMatchSet</a>.
-        /// For each <code>XssMatchTuple</code> object, you specify the following values:
+        /// For each <c>XssMatchTuple</c> object, you specify the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Action</code>: Whether to insert the object into or delete the object from
-        /// the array. To change an <code>XssMatchTuple</code>, you delete the existing object
-        /// and add a new one.
+        ///  <c>Action</c>: Whether to insert the object into or delete the object from the array.
+        /// To change an <c>XssMatchTuple</c>, you delete the existing object and add a new one.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FieldToMatch</code>: The part of web requests that you want AWS WAF to inspect
-        /// and, if you want AWS WAF to inspect a header or custom query parameter, the name of
-        /// the header or parameter.
+        ///  <c>FieldToMatch</c>: The part of web requests that you want AWS WAF to inspect and,
+        /// if you want AWS WAF to inspect a header or custom query parameter, the name of the
+        /// header or parameter.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TextTransformation</code>: Which text transformation, if any, to perform on
-        /// the web request before inspecting the request for cross-site scripting attacks.
+        ///  <c>TextTransformation</c>: Which text transformation, if any, to perform on the web
+        /// request before inspecting the request for cross-site scripting attacks.
         /// </para>
         ///  
         /// <para>
@@ -21692,15 +21569,15 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You use <code>XssMatchSet</code> objects to specify which CloudFront requests that
-        /// you want to allow, block, or count. For example, if you're receiving requests that
-        /// contain cross-site scripting attacks in the request body and you want to block the
-        /// requests, you can create an <code>XssMatchSet</code> with the applicable settings,
-        /// and then configure AWS WAF to block the requests. 
+        /// You use <c>XssMatchSet</c> objects to specify which CloudFront requests that you want
+        /// to allow, block, or count. For example, if you're receiving requests that contain
+        /// cross-site scripting attacks in the request body and you want to block the requests,
+        /// you can create an <c>XssMatchSet</c> with the applicable settings, and then configure
+        /// AWS WAF to block the requests. 
         /// </para>
         ///  
         /// <para>
-        /// To create and configure an <code>XssMatchSet</code>, perform the following steps:
+        /// To create and configure an <c>XssMatchSet</c>, perform the following steps:
         /// </para>
         ///  <ol> <li> 
         /// <para>
@@ -21708,13 +21585,13 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <code>ChangeToken</code>
+        /// Use <a>GetChangeToken</a> to get the change token that you provide in the <c>ChangeToken</c>
         /// parameter of an <a>UpdateIPSet</a> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Submit an <code>UpdateXssMatchSet</code> request to specify the parts of web requests
-        /// that you want AWS WAF to inspect for cross-site scripting attacks.
+        /// Submit an <c>UpdateXssMatchSet</c> request to specify the parts of web requests that
+        /// you want AWS WAF to inspect for cross-site scripting attacks.
         /// </para>
         ///  </li> </ol> 
         /// <para>
@@ -21742,28 +21619,28 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to remove a <code>Rule</code> from a <code>WebACL</code>, but the <code>Rule</code>
-        /// isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>Rule</c> from a <c>WebACL</c>, but the <c>Rule</c> isn't
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove an IP address from an <code>IPSet</code>, but the IP address isn't
-        /// in the specified <code>IPSet</code>.
+        /// You tried to remove an IP address from an <c>IPSet</c>, but the IP address isn't in
+        /// the specified <c>IPSet</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to remove a <code>ByteMatchTuple</code> from a <code>ByteMatchSet</code>,
-        /// but the <code>ByteMatchTuple</code> isn't in the specified <code>WebACL</code>.
+        /// You tried to remove a <c>ByteMatchTuple</c> from a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// isn't in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to a <code>WebACL</code>, but the <code>Rule</code>
-        /// already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>Rule</c> to a <c>WebACL</c>, but the <c>Rule</c> already exists
+        /// in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to a <code>ByteMatchSet</code>, but
-        /// the <code>ByteMatchTuple</code> already exists in the specified <code>WebACL</code>.
+        /// You tried to add a <c>ByteMatchTuple</c> to a <c>ByteMatchSet</c>, but the <c>ByteMatchTuple</c>
+        /// already exists in the specified <c>WebACL</c>.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21781,33 +21658,33 @@ namespace Amazon.WAFRegional
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update an object (<code>ByteMatchSet</code>, <code>IPSet</code>, <code>Rule</code>,
-        /// or <code>WebACL</code>) using an action other than <code>INSERT</code> or <code>DELETE</code>.
+        /// You tried to update an object (<c>ByteMatchSet</c>, <c>IPSet</c>, <c>Rule</c>, or
+        /// <c>WebACL</c>) using an action other than <c>INSERT</c> or <c>DELETE</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>WebACL</code> with a <code>DefaultAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to create a <c>WebACL</c> with a <c>DefaultAction</c> <c>Type</c> other
+        /// than <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to create a <code>RateBasedRule</code> with a <code>RateKey</code> value
-        /// other than <code>IP</code>.
+        /// You tried to create a <c>RateBasedRule</c> with a <c>RateKey</c> value other than
+        /// <c>IP</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>WafAction</code> <code>Type</code>
-        /// other than <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.
+        /// You tried to update a <c>WebACL</c> with a <c>WafAction</c> <c>Type</c> other than
+        /// <c>ALLOW</c>, <c>BLOCK</c>, or <c>COUNT</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>FieldToMatch</code> <code>Type</code>
-        /// other than HEADER, METHOD, QUERY_STRING, URI, or BODY.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>FieldToMatch</c> <c>Type</c> other
+        /// than HEADER, METHOD, QUERY_STRING, URI, or BODY.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>ByteMatchSet</code> with a <code>Field</code> of <code>HEADER</code>
-        /// but no value for <code>Data</code>.
+        /// You tried to update a <c>ByteMatchSet</c> with a <c>Field</c> of <c>HEADER</c> but
+        /// no value for <c>Data</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -21817,7 +21694,7 @@ namespace Amazon.WAFRegional
         ///  </li> </ul>
         /// </exception>
         /// <exception cref="Amazon.WAFRegional.Model.WAFLimitsExceededException">
-        /// The operation exceeds a resource limit, for example, the maximum number of <code>WebACL</code>
+        /// The operation exceeds a resource limit, for example, the maximum number of <c>WebACL</c>
         /// objects that you can create for an AWS account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">Limits</a>
         /// in the <i>AWS WAF Developer Guide</i>.
         /// </exception>
@@ -21827,23 +21704,23 @@ namespace Amazon.WAFRegional
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// You tried to add a <code>Rule</code> to or delete a <code>Rule</code> from a <code>WebACL</code>
+        /// You tried to add a <c>Rule</c> to or delete a <c>Rule</c> from a <c>WebACL</c> that
+        /// doesn't exist.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to add a <c>ByteMatchSet</c> to or delete a <c>ByteMatchSet</c> from a <c>Rule</c>
         /// that doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add a <code>ByteMatchSet</code> to or delete a <code>ByteMatchSet</code>
-        /// from a <code>Rule</code> that doesn't exist.
+        /// You tried to add an IP address to or delete an IP address from an <c>IPSet</c> that
+        /// doesn't exist.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to add an IP address to or delete an IP address from an <code>IPSet</code>
-        /// that doesn't exist.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// You tried to add a <code>ByteMatchTuple</code> to or delete a <code>ByteMatchTuple</code>
-        /// from a <code>ByteMatchSet</code> that doesn't exist.
+        /// You tried to add a <c>ByteMatchTuple</c> to or delete a <c>ByteMatchTuple</c> from
+        /// a <c>ByteMatchSet</c> that doesn't exist.
         /// </para>
         ///  </li> </ul>
         /// </exception>
@@ -21875,11 +21752,11 @@ namespace Amazon.WAFRegional
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

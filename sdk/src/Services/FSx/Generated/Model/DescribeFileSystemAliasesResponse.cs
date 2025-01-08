@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
-    /// The response object for <code>DescribeFileSystemAliases</code> operation.
+    /// The response object for <c>DescribeFileSystemAliases</c> operation.
     /// </summary>
     public partial class DescribeFileSystemAliasesResponse : AmazonWebServiceResponse
     {
-        private List<Alias> _aliases = new List<Alias>();
+        private List<Alias> _aliases = AWSConfigs.InitializeCollections ? new List<Alias>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.FSx.Model
         // Check to see if Aliases property is set
         internal bool IsSetAliases()
         {
-            return this._aliases != null && this._aliases.Count > 0; 
+            return this._aliases != null && (this._aliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Present if there are more DNS aliases than returned in the response (String). You
-        /// can use the <code>NextToken</code> value in a later request to fetch additional descriptions.
+        /// can use the <c>NextToken</c> value in a later request to fetch additional descriptions.
         /// 
         /// </para>
         /// </summary>

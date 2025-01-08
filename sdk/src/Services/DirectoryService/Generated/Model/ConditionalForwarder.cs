@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.DirectoryService.Model
     /// </summary>
     public partial class ConditionalForwarder
     {
-        private List<string> _dnsIpAddrs = new List<string>();
+        private List<string> _dnsIpAddrs = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _remoteDomainName;
         private ReplicationScope _replicationScope;
 
@@ -54,7 +55,7 @@ namespace Amazon.DirectoryService.Model
         // Check to see if DnsIpAddrs property is set
         internal bool IsSetDnsIpAddrs()
         {
-            return this._dnsIpAddrs != null && this._dnsIpAddrs.Count > 0; 
+            return this._dnsIpAddrs != null && (this._dnsIpAddrs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property ReplicationScope. 
         /// <para>
-        /// The replication scope of the conditional forwarder. The only allowed value is <code>Domain</code>,
+        /// The replication scope of the conditional forwarder. The only allowed value is <c>Domain</c>,
         /// which will replicate the conditional forwarder to all of the domain controllers for
         /// your Amazon Web Services directory.
         /// </para>

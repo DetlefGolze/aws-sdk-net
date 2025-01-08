@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// <para>
     /// Each tag consists of a key and value, both of which you define. A key is a general
     /// category for more specific values. For example, if you have two versions of a user
-    /// pool, one for testing and another for production, you might assign an <code>Environment</code>
-    /// tag key to both user pools. The value of this key might be <code>Test</code> for one
-    /// user pool, and <code>Production</code> for the other.
+    /// pool, one for testing and another for production, you might assign an <c>Environment</c>
+    /// tag key to both user pools. The value of this key might be <c>Test</c> for one user
+    /// pool, and <c>Production</c> for the other.
     /// </para>
     ///  
     /// <para>
@@ -58,7 +59,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     public partial class TagResourceRequest : AmazonCognitoIdentityProviderRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -95,7 +96,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

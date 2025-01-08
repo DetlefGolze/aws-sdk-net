@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Lightsail.Model
     /// </para>
     ///  </note> 
     /// <para>
-    /// The <code>create key pair</code> operation supports tag-based access control via request
+    /// The <c>create key pair</c> operation supports tag-based access control via request
     /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
@@ -48,7 +49,7 @@ namespace Amazon.Lightsail.Model
     public partial class CreateKeyPairRequest : AmazonLightsailRequest
     {
         private string _keyPairName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property KeyPairName. 
@@ -76,7 +77,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>TagResource</code> action to tag a resource after it's created.
+        /// Use the <c>TagResource</c> action to tag a resource after it's created.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -88,7 +89,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

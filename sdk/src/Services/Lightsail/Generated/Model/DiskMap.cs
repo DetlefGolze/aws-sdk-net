@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property NewDiskName. 
         /// <para>
-        /// The new disk name (e.g., <code>my-new-disk</code>).
+        /// The new disk name (<c>my-new-disk</c>).
         /// </para>
         /// </summary>
         public string NewDiskName
@@ -57,7 +58,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property OriginalDiskPath. 
         /// <para>
-        /// The original disk path exposed to the instance (for example, <code>/dev/sdh</code>).
+        /// The original disk path exposed to the instance (for example, <c>/dev/sdh</c>).
         /// </para>
         /// </summary>
         public string OriginalDiskPath

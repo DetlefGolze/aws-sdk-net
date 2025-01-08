@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// The insight results returned by the <code>GetInsightResults</code> operation.
+    /// The insight results returned by the <c>GetInsightResults</c> operation.
     /// </summary>
     public partial class InsightResults
     {
         private string _groupByAttribute;
         private string _insightArn;
-        private List<InsightResultValue> _resultValues = new List<InsightResultValue>();
+        private List<InsightResultValue> _resultValues = AWSConfigs.InitializeCollections ? new List<InsightResultValue>() : null;
 
         /// <summary>
         /// Gets and sets the property GroupByAttribute. 
         /// <para>
         /// The attribute that the findings are grouped by for the insight whose results are returned
-        /// by the <code>GetInsightResults</code> operation.
+        /// by the <c>GetInsightResults</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property InsightArn. 
         /// <para>
-        /// The ARN of the insight whose results are returned by the <code>GetInsightResults</code>
+        /// The ARN of the insight whose results are returned by the <c>GetInsightResults</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -80,7 +81,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ResultValues. 
         /// <para>
-        /// The list of insight result values returned by the <code>GetInsightResults</code> operation.
+        /// The list of insight result values returned by the <c>GetInsightResults</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -93,7 +94,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ResultValues property is set
         internal bool IsSetResultValues()
         {
-            return this._resultValues != null && this._resultValues.Count > 0; 
+            return this._resultValues != null && (this._resultValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

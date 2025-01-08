@@ -26,21 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateWorkflow operation.
     /// Allows you to create a workflow with specified steps and step details the workflow
     /// invokes after file transfer completes. After creating a workflow, you can associate
-    /// the workflow created with any transfer servers by specifying the <code>workflow-details</code>
-    /// field in <code>CreateServer</code> and <code>UpdateServer</code> operations.
+    /// the workflow created with any transfer servers by specifying the <c>workflow-details</c>
+    /// field in <c>CreateServer</c> and <c>UpdateServer</c> operations.
     /// </summary>
     public partial class CreateWorkflowRequest : AmazonTransferRequest
     {
         private string _description;
-        private List<WorkflowStep> _onExceptionSteps = new List<WorkflowStep>();
-        private List<WorkflowStep> _steps = new List<WorkflowStep>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<WorkflowStep> _onExceptionSteps = AWSConfigs.InitializeCollections ? new List<WorkflowStep>() : null;
+        private List<WorkflowStep> _steps = AWSConfigs.InitializeCollections ? new List<WorkflowStep>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -48,7 +49,7 @@ namespace Amazon.Transfer.Model
         /// A textual description for the workflow.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string Description
         {
             get { return this._description; }
@@ -69,13 +70,13 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// For custom steps, the Lambda function needs to send <code>FAILURE</code> to the call
-        /// back API to kick off the exception steps. Additionally, if the Lambda does not send
-        /// <code>SUCCESS</code> before it times out, the exception steps are executed.
+        /// For custom steps, the Lambda function needs to send <c>FAILURE</c> to the call back
+        /// API to kick off the exception steps. Additionally, if the Lambda does not send <c>SUCCESS</c>
+        /// before it times out, the exception steps are executed.
         /// </para>
         ///  </note>
         /// </summary>
-        [AWSProperty(Max=8)]
+        [AWSProperty(Min=0, Max=8)]
         public List<WorkflowStep> OnExceptionSteps
         {
             get { return this._onExceptionSteps; }
@@ -85,7 +86,7 @@ namespace Amazon.Transfer.Model
         // Check to see if OnExceptionSteps property is set
         internal bool IsSetOnExceptionSteps()
         {
-            return this._onExceptionSteps != null && this._onExceptionSteps.Count > 0; 
+            return this._onExceptionSteps != null && (this._onExceptionSteps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -95,28 +96,28 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  
         /// <para>
-        ///  The <code>TYPE</code> specifies which of the following actions is being taken for
-        /// this step. 
+        ///  The <c>TYPE</c> specifies which of the following actions is being taken for this
+        /// step. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b> <code>COPY</code> </b> - Copy the file to another location.
+        ///  <b> <c>COPY</c> </b> - Copy the file to another location.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>CUSTOM</code> </b> - Perform a custom step with an Lambda function target.
+        ///  <b> <c>CUSTOM</c> </b> - Perform a custom step with an Lambda function target.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>DECRYPT</code> </b> - Decrypt a file that was encrypted before it was uploaded.
+        ///  <b> <c>DECRYPT</c> </b> - Decrypt a file that was encrypted before it was uploaded.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>DELETE</code> </b> - Delete the file.
+        ///  <b> <c>DELETE</c> </b> - Delete the file.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b> <code>TAG</code> </b> - Add a tag to the file.
+        ///  <b> <c>TAG</c> </b> - Add a tag to the file.
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -128,7 +129,7 @@ namespace Amazon.Transfer.Model
         /// EFS file system ID and path. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Max=8)]
+        [AWSProperty(Required=true, Min=0, Max=8)]
         public List<WorkflowStep> Steps
         {
             get { return this._steps; }
@@ -138,7 +139,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Steps property is set
         internal bool IsSetSteps()
         {
-            return this._steps != null && this._steps.Count > 0; 
+            return this._steps != null && (this._steps.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -158,7 +159,7 @@ namespace Amazon.Transfer.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

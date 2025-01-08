@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
     /// </summary>
     public partial class ListConfigurationsResponse : AmazonWebServiceResponse
     {
-        private List<Dictionary<string, string>> _configurations = new List<Dictionary<string, string>>();
+        private List<Dictionary<string, string>> _configurations = AWSConfigs.InitializeCollections ? new List<Dictionary<string, string>>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Configurations property is set
         internal bool IsSetConfigurations()
         {
-            return this._configurations != null && this._configurations.Count > 0; 
+            return this._configurations != null && (this._configurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// Token to retrieve the next set of results. For example, if your call to ListConfigurations
-        /// returned 100 items, but you set <code>ListConfigurationsRequest$maxResults</code>
-        /// to 10, you received a set of 10 results along with this token. Use this token in the
-        /// next query to retrieve the next set of 10.
+        /// returned 100 items, but you set <c>ListConfigurationsRequest$maxResults</c> to 10,
+        /// you received a set of 10 results along with this token. Use this token in the next
+        /// query to retrieve the next set of 10.
         /// </para>
         /// </summary>
         public string NextToken

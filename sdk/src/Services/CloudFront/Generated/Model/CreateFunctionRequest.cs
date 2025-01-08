@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -40,15 +41,15 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  
     /// <para>
-    /// When you create a function, it's in the <code>DEVELOPMENT</code> stage. In this stage,
-    /// you can test the function with <code>TestFunction</code>, and update it with <code>UpdateFunction</code>.
+    /// When you create a function, it's in the <c>DEVELOPMENT</c> stage. In this stage, you
+    /// can test the function with <c>TestFunction</c>, and update it with <c>UpdateFunction</c>.
     /// </para>
     ///  
     /// <para>
-    /// When you're ready to use your function with a CloudFront distribution, use <code>PublishFunction</code>
-    /// to copy the function from the <code>DEVELOPMENT</code> stage to <code>LIVE</code>.
-    /// When it's live, you can attach the function to a distribution's cache behavior, using
-    /// the function's ARN.
+    /// When you're ready to use your function with a CloudFront distribution, use <c>PublishFunction</c>
+    /// to copy the function from the <c>DEVELOPMENT</c> stage to <c>LIVE</c>. When it's live,
+    /// you can attach the function to a distribution's cache behavior, using the function's
+    /// ARN.
     /// </para>
     /// </summary>
     public partial class CreateFunctionRequest : AmazonCloudFrontRequest

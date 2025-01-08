@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ConfigDetails. 
         /// <para>
-        /// Additional details for a <code>Config</code>, if type is dataflow endpoint or antenna
-        /// demod decode.
+        /// Additional details for a <c>Config</c>, if type is dataflow endpoint or antenna demod
+        /// decode.
         /// </para>
         /// </summary>
         public ConfigDetails ConfigDetails
@@ -60,7 +61,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ConfigId. 
         /// <para>
-        /// UUID of a <code>Config</code>.
+        /// UUID of a <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -79,7 +80,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ConfigType. 
         /// <para>
-        /// Type of a <code>Config</code>.
+        /// Type of a <c>Config</c>.
         /// </para>
         /// </summary>
         public ConfigCapabilityType ConfigType

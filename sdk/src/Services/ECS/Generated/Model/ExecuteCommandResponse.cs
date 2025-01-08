@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.ECS.Model
         /// Gets and sets the property Interactive. 
         /// <para>
         /// Determines whether the execute command session is running in interactive mode. Amazon
-        /// ECS only supports initiating interactive sessions, so you must specify <code>true</code>
+        /// ECS only supports initiating interactive sessions, so you must specify <c>true</c>
         /// for this value.
         /// </para>
         /// </summary>

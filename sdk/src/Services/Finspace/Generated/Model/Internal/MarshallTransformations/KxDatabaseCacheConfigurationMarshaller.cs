@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Finspace.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.Finspace.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(KxDatabaseCacheConfiguration requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCacheType())
             {
                 context.Writer.WritePropertyName("cacheType");
                 context.Writer.Write(requestObject.CacheType);
+            }
+
+            if(requestObject.IsSetDataviewName())
+            {
+                context.Writer.WritePropertyName("dataviewName");
+                context.Writer.Write(requestObject.DataviewName);
             }
 
             if(requestObject.IsSetDbPaths())

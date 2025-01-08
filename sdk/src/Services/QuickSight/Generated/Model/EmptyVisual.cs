@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.QuickSight.Model
     ///  
     /// <para>
     /// Empty visuals are used in layouts but have not been configured to show any data. A
-    /// new visual created in the Amazon QuickSight console is considered an <code>EmptyVisual</code>
+    /// new visual created in the Amazon QuickSight console is considered an <c>EmptyVisual</c>
     /// until a visual type is selected.
     /// </para>
     /// </summary>
     public partial class EmptyVisual
     {
-        private List<VisualCustomAction> _actions = new List<VisualCustomAction>();
+        private List<VisualCustomAction> _actions = AWSConfigs.InitializeCollections ? new List<VisualCustomAction>() : null;
         private string _dataSetIdentifier;
         private string _visualId;
 
@@ -60,7 +61,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

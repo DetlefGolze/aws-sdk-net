@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public RelatedItemContent Unmarshall(JsonUnmarshallerContext context)
         {
+            RelatedItemContent unmarshalledObject = new RelatedItemContent();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            RelatedItemContent unmarshalledObject = new RelatedItemContent();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -76,8 +78,13 @@ namespace Amazon.ConnectCases.Model.Internal.MarshallTransformations
                     unmarshalledObject.Contact = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("file", targetDepth))
+                {
+                    var unmarshaller = FileContentUnmarshaller.Instance;
+                    unmarshalledObject.File = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

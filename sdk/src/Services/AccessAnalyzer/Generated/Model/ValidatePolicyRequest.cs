@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -121,8 +122,6 @@ namespace Amazon.AccessAnalyzer.Model
         /// <para>
         /// The type of policy to validate. Identity policies grant permissions to IAM principals.
         /// Identity policies include managed and inline policies for IAM roles, users, and groups.
-        /// They also include service-control policies (SCPs) that are attached to an Amazon Web
-        /// Services organization, organizational unit (OU), or an account.
         /// </para>
         ///  
         /// <para>
@@ -130,6 +129,11 @@ namespace Amazon.AccessAnalyzer.Model
         /// include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You
         /// can provide a generic input such as identity policy or resource policy or a specific
         /// input such as managed policy or Amazon S3 bucket policy. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Service control policies (SCPs) are a type of organization policy attached to an Amazon
+        /// Web Services organization, organizational unit (OU), or an account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -149,9 +153,9 @@ namespace Amazon.AccessAnalyzer.Model
         /// Gets and sets the property ValidatePolicyResourceType. 
         /// <para>
         /// The type of resource to attach to your resource policy. Specify a value for the policy
-        /// validation resource type only if the policy type is <code>RESOURCE_POLICY</code>.
-        /// For example, to validate a resource policy to attach to an Amazon S3 bucket, you can
-        /// choose <code>AWS::S3::Bucket</code> for the policy validation resource type.
+        /// validation resource type only if the policy type is <c>RESOURCE_POLICY</c>. For example,
+        /// to validate a resource policy to attach to an Amazon S3 bucket, you can choose <c>AWS::S3::Bucket</c>
+        /// for the policy validation resource type.
         /// </para>
         ///  
         /// <para>

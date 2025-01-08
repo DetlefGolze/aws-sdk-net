@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchGetDeploymentInstances operation.
     /// <note> 
     /// <para>
-    ///  This method works, but is deprecated. Use <code>BatchGetDeploymentTargets</code>
-    /// instead. 
+    ///  This method works, but is deprecated. Use <c>BatchGetDeploymentTargets</c> instead.
+    /// 
     /// </para>
     ///  </note> 
     /// <para>
     ///  Returns an array of one or more instances associated with a deployment. This method
-    /// works with EC2/On-premises and Lambda compute platforms. The newer <code>BatchGetDeploymentTargets</code>
+    /// works with EC2/On-premises and Lambda compute platforms. The newer <c>BatchGetDeploymentTargets</c>
     /// works with all compute platforms. The maximum number of instances that can be returned
     /// is 25.
     /// </para>
@@ -46,7 +47,7 @@ namespace Amazon.CodeDeploy.Model
     public partial class BatchGetDeploymentInstancesRequest : AmazonCodeDeployRequest
     {
         private string _deploymentId;
-        private List<string> _instanceIds = new List<string>();
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DeploymentId. 
@@ -84,7 +85,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the arc-zonal-shift-2022-10-30.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
@@ -24,6 +25,11 @@ namespace Amazon.ARCZonalShift.Model
     ///</summary>
     public interface IARCZonalShiftPaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for ListAutoshifts operation
+        ///</summary>
+        IListAutoshiftsPaginator ListAutoshifts(ListAutoshiftsRequest request);
 
         /// <summary>
         /// Paginator for ListManagedResources operation

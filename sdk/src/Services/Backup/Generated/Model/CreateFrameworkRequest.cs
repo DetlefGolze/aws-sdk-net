@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -37,17 +38,17 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class CreateFrameworkRequest : AmazonBackupRequest
     {
-        private List<FrameworkControl> _frameworkControls = new List<FrameworkControl>();
+        private List<FrameworkControl> _frameworkControls = AWSConfigs.InitializeCollections ? new List<FrameworkControl>() : null;
         private string _frameworkDescription;
         private string _frameworkName;
-        private Dictionary<string, string> _frameworkTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _frameworkTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _idempotencyToken;
 
         /// <summary>
         /// Gets and sets the property FrameworkControls. 
         /// <para>
-        /// A list of the controls that make up the framework. Each control in the list has a
-        /// name, input parameters, and scope.
+        /// The controls that make up the framework. Each control in the list has a name, input
+        /// parameters, and scope.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,7 +61,7 @@ namespace Amazon.Backup.Model
         // Check to see if FrameworkControls property is set
         internal bool IsSetFrameworkControls()
         {
-            return this._frameworkControls != null && this._frameworkControls.Count > 0; 
+            return this._frameworkControls != null && (this._frameworkControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,8 +107,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property FrameworkTags. 
         /// <para>
-        /// Metadata that you can assign to help organize the frameworks that you create. Each
-        /// tag is a key-value pair.
+        /// The tags to assign to the framework.
         /// </para>
         /// </summary>
         public Dictionary<string, string> FrameworkTags
@@ -119,15 +119,15 @@ namespace Amazon.Backup.Model
         // Check to see if FrameworkTags property is set
         internal bool IsSetFrameworkTags()
         {
-            return this._frameworkTags != null && this._frameworkTags.Count > 0; 
+            return this._frameworkTags != null && (this._frameworkTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>CreateFrameworkInput</code>. Retrying a successful request with the
-        /// same idempotency token results in a success message with no action taken.
+        /// calls to <c>CreateFrameworkInput</c>. Retrying a successful request with the same
+        /// idempotency token results in a success message with no action taken.
         /// </para>
         /// </summary>
         public string IdempotencyToken

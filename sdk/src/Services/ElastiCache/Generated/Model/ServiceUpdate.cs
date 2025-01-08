@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElastiCache.Model
 {
     /// <summary>
-    /// An update that you can apply to your Redis clusters.
+    /// An update that you can apply to your Valkey or Redis OSS clusters.
     /// </summary>
     public partial class ServiceUpdate
     {
@@ -68,7 +69,7 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The Elasticache engine to which the update applies. Either Redis or Memcached
+        /// The Elasticache engine to which the update applies. Either Valkey, Redis OSS or Memcached.
         /// </para>
         /// </summary>
         public string Engine
@@ -86,8 +87,8 @@ namespace Amazon.ElastiCache.Model
         /// <summary>
         /// Gets and sets the property EngineVersion. 
         /// <para>
-        /// The Elasticache engine version to which the update applies. Either Redis or Memcached
-        /// engine version
+        /// The Elasticache engine version to which the update applies. Either Valkey, Redis OSS
+        /// or Memcached engine version.
         /// </para>
         /// </summary>
         public string EngineVersion
@@ -178,7 +179,7 @@ namespace Amazon.ElastiCache.Model
         /// Gets and sets the property ServiceUpdateRecommendedApplyByDate. 
         /// <para>
         /// The recommendend date to apply the service update in order to ensure compliance. For
-        /// information on compliance, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-compliance.html#elasticache-compliance-self-service">Self-Service
+        /// information on compliance, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/elasticache-compliance.html#elasticache-compliance-self-service">Self-Service
         /// Security Updates for Compliance</a>.
         /// </para>
         /// </summary>

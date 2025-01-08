@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -47,38 +48,50 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// API rate limit is exceeded. API TPS throttling returns a <code>TooManyRequests</code>
-    /// exception.
+    /// API rate limit is exceeded. API TPS throttling returns a <c>TooManyRequests</c> exception.
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// The <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html">quota
-    /// for concurrent active chats</a> is exceeded. Active chat throttling returns a <code>LimitExceededException</code>.
+    /// for concurrent active chats</a> is exceeded. Active chat throttling returns a <c>LimitExceededException</c>.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// If you use the <code>ChatDurationInMinutes</code> parameter and receive a 400 error,
-    /// your account may not support the ability to configure custom chat durations. For more
-    /// information, contact Amazon Web Services Support. 
+    /// If you use the <c>ChatDurationInMinutes</c> parameter and receive a 400 error, your
+    /// account may not support the ability to configure custom chat durations. For more information,
+    /// contact Amazon Web Services Support. 
     /// </para>
     ///  
     /// <para>
-    /// For more information about chat, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html">Chat</a>
-    /// in the <i>Amazon Connect Administrator Guide</i>.
+    /// For more information about chat, see the following topics in the <i>Amazon Connect
+    /// Administrator Guide</i>: 
     /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/adminguide/web-and-mobile-chat.html">Concepts:
+    /// Web and mobile messaging capabilities in Amazon Connect</a> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/connect/latest/adminguide/security-best-practices.html#bp-security-chat">Amazon
+    /// Connect Chat security best practices</a> 
+    /// </para>
+    ///  </li> </ul>
     /// </summary>
     public partial class StartChatContactRequest : AmazonConnectRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private int? _chatDurationInMinutes;
         private string _clientToken;
         private string _contactFlowId;
+        private string _customerId;
         private ChatMessage _initialMessage;
         private string _instanceId;
         private ParticipantDetails _participantDetails;
         private PersistentChat _persistentChat;
         private string _relatedContactId;
-        private List<string> _supportedMessagingContentTypes = new List<string>();
+        private Dictionary<string, SegmentAttributeValue> _segmentAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, SegmentAttributeValue>() : null;
+        private List<string> _supportedMessagingContentTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
@@ -102,7 +115,7 @@ namespace Amazon.Connect.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -152,10 +165,10 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property ContactFlowId. 
         /// <para>
         /// The identifier of the flow for initiating the chat. To see the ContactFlowId in the
-        /// Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>,
-        /// <b>Contact Flows</b>. Choose the flow. On the flow page, under the name of the flow,
-        /// choose <b>Show additional flow information</b>. The ContactFlowId is the last part
-        /// of the ARN, shown here in bold: 
+        /// Amazon Connect admin website, on the navigation menu go to <b>Routing</b>, <b>Flows</b>.
+        /// Choose the flow. On the flow page, under the name of the flow, choose <b>Show additional
+        /// flow information</b>. The ContactFlowId is the last part of the ARN, shown here in
+        /// bold: 
         /// </para>
         ///  
         /// <para>
@@ -177,9 +190,30 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CustomerId. 
+        /// <para>
+        /// The customer's identification number. For example, the <c>CustomerId</c> may be a
+        /// customer number from your CRM.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
+        public string CustomerId
+        {
+            get { return this._customerId; }
+            set { this._customerId = value; }
+        }
+
+        // Check to see if CustomerId property is set
+        internal bool IsSetCustomerId()
+        {
+            return this._customerId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property InitialMessage. 
         /// <para>
-        /// The initial message to be sent to the newly created chat.
+        /// The initial message to be sent to the newly created chat. If you have a Lex bot in
+        /// your flow, the initial message is not delivered to the Lex bot.
         /// </para>
         /// </summary>
         public ChatMessage InitialMessage
@@ -279,23 +313,59 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SupportedMessagingContentTypes. 
+        /// Gets and sets the property SegmentAttributes. 
         /// <para>
-        /// The supported chat message content types. Supported types are <code>text/plain</code>,
-        /// <code>text/markdown</code>, <code>application/json</code>, <code>application/vnd.amazonaws.connect.message.interactive</code>,
-        /// and <code>application/vnd.amazonaws.connect.message.interactive.response</code>. 
+        /// A set of system defined key-value pairs stored on individual contact segments using
+        /// an attribute map. The attributes are standard Amazon Connect attributes. They can
+        /// be accessed in flows.
         /// </para>
         ///  
         /// <para>
-        /// Content types must always contain <code>text/plain</code>. You can then put any other
-        /// supported type in the list. For example, all the following lists are valid because
-        /// they contain <code>text/plain</code>: <code>[text/plain, text/markdown, application/json]</code>,
-        /// <code>[text/markdown, text/plain]</code>, <code>[text/plain, application/json, application/vnd.amazonaws.connect.message.interactive.response]</code>.
+        /// Attribute keys can include only alphanumeric, -, and _.
+        /// </para>
+        ///  
+        /// <para>
+        /// This field can be used to show channel subtype, such as <c>connect:Guide</c>.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// The types <c>application/vnd.amazonaws.connect.message.interactive</c> and <c>application/vnd.amazonaws.connect.message.interactive.response</c>
+        /// must be present in the SupportedMessagingContentTypes field of this API in order to
+        /// set <c>SegmentAttributes</c> as {<c> "connect:Subtype": {"valueString" : "connect:Guide"
+        /// }}</c>.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public Dictionary<string, SegmentAttributeValue> SegmentAttributes
+        {
+            get { return this._segmentAttributes; }
+            set { this._segmentAttributes = value; }
+        }
+
+        // Check to see if SegmentAttributes property is set
+        internal bool IsSetSegmentAttributes()
+        {
+            return this._segmentAttributes != null && (this._segmentAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportedMessagingContentTypes. 
+        /// <para>
+        /// The supported chat message content types. Supported types are <c>text/plain</c>, <c>text/markdown</c>,
+        /// <c>application/json</c>, <c>application/vnd.amazonaws.connect.message.interactive</c>,
+        /// and <c>application/vnd.amazonaws.connect.message.interactive.response</c>. 
+        /// </para>
+        ///  
+        /// <para>
+        /// Content types must always contain <c>text/plain</c>. You can then put any other supported
+        /// type in the list. For example, all the following lists are valid because they contain
+        /// <c>text/plain</c>: <c>[text/plain, text/markdown, application/json]</c>, <c>[text/markdown,
+        /// text/plain]</c>, <c>[text/plain, application/json, application/vnd.amazonaws.connect.message.interactive.response]</c>.
         /// 
         /// </para>
         ///  <note> 
         /// <para>
-        /// The type <code>application/vnd.amazonaws.connect.message.interactive</code> is required
+        /// The type <c>application/vnd.amazonaws.connect.message.interactive</c> is required
         /// to use the <a href="https://docs.aws.amazon.com/connect/latest/adminguide/show-view-block.html">Show
         /// view</a> flow block.
         /// </para>
@@ -310,7 +380,7 @@ namespace Amazon.Connect.Model
         // Check to see if SupportedMessagingContentTypes property is set
         internal bool IsSetSupportedMessagingContentTypes()
         {
-            return this._supportedMessagingContentTypes != null && this._supportedMessagingContentTypes.Count > 0; 
+            return this._supportedMessagingContentTypes != null && (this._supportedMessagingContentTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

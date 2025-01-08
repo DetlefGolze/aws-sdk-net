@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeWorkteam operation.
-    /// Gets information about a specific work team. You can see information such as the create
+    /// Gets information about a specific work team. You can see information such as the creation
     /// date, the last updated date, membership information, and the work team's Amazon Resource
     /// Name (ARN).
     /// </summary>

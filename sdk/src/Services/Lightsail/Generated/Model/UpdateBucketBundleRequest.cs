@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Lightsail.Model
     /// for a bucket. You can update a bucket's bundle only one time within a monthly Amazon
     /// Web Services billing cycle. To determine if you can update a bucket's bundle, use
     /// the <a href="https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_GetBuckets.html">GetBuckets</a>
-    /// action. The <code>ableToUpdateBundle</code> parameter in the response will indicate
-    /// whether you can currently update a bucket's bundle.
+    /// action. The <c>ableToUpdateBundle</c> parameter in the response will indicate whether
+    /// you can currently update a bucket's bundle.
     /// </para>
     ///  
     /// <para>

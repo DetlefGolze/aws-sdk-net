@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.DirectoryService.Model
     /// Cancels an in-progress schema extension to a Microsoft AD directory. Once a schema
     /// extension has started replicating to all domain controllers, the task can no longer
     /// be canceled. A schema extension can be canceled during any of the following states;
-    /// <code>Initializing</code>, <code>CreatingSnapshot</code>, and <code>UpdatingSchema</code>.
+    /// <c>Initializing</c>, <c>CreatingSnapshot</c>, and <c>UpdatingSchema</c>.
     /// </summary>
     public partial class CancelSchemaExtensionRequest : AmazonDirectoryServiceRequest
     {

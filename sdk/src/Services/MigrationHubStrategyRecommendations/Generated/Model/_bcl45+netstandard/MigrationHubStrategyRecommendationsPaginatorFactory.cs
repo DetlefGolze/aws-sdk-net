@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MigrationHubStrategyRecommendations.Model
 {
     /// <summary>
@@ -41,6 +42,14 @@ namespace Amazon.MigrationHubStrategyRecommendations.Model
         public IGetServerDetailsPaginator GetServerDetails(GetServerDetailsRequest request) 
         {
             return new GetServerDetailsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAnalyzableServers operation
+        ///</summary>
+        public IListAnalyzableServersPaginator ListAnalyzableServers(ListAnalyzableServersRequest request) 
+        {
+            return new ListAnalyzableServersPaginator(this.client, request);
         }
 
         /// <summary>

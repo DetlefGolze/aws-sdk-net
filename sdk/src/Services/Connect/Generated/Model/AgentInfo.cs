@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -33,8 +34,46 @@ namespace Amazon.Connect.Model
     /// </summary>
     public partial class AgentInfo
     {
+        private int? _agentPauseDurationInSeconds;
+        private ParticipantCapabilities _capabilities;
         private DateTime? _connectedToAgentTimestamp;
+        private DeviceInfo _deviceInfo;
+        private HierarchyGroups _hierarchyGroups;
         private string _id;
+
+        /// <summary>
+        /// Gets and sets the property AgentPauseDurationInSeconds. 
+        /// <para>
+        /// Agent pause duration for a contact in seconds.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public int AgentPauseDurationInSeconds
+        {
+            get { return this._agentPauseDurationInSeconds.GetValueOrDefault(); }
+            set { this._agentPauseDurationInSeconds = value; }
+        }
+
+        // Check to see if AgentPauseDurationInSeconds property is set
+        internal bool IsSetAgentPauseDurationInSeconds()
+        {
+            return this._agentPauseDurationInSeconds.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Capabilities.
+        /// </summary>
+        public ParticipantCapabilities Capabilities
+        {
+            get { return this._capabilities; }
+            set { this._capabilities = value; }
+        }
+
+        // Check to see if Capabilities property is set
+        internal bool IsSetCapabilities()
+        {
+            return this._capabilities != null;
+        }
 
         /// <summary>
         /// Gets and sets the property ConnectedToAgentTimestamp. 
@@ -52,6 +91,42 @@ namespace Amazon.Connect.Model
         internal bool IsSetConnectedToAgentTimestamp()
         {
             return this._connectedToAgentTimestamp.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DeviceInfo. 
+        /// <para>
+        /// Information regarding Agent’s device.
+        /// </para>
+        /// </summary>
+        public DeviceInfo DeviceInfo
+        {
+            get { return this._deviceInfo; }
+            set { this._deviceInfo = value; }
+        }
+
+        // Check to see if DeviceInfo property is set
+        internal bool IsSetDeviceInfo()
+        {
+            return this._deviceInfo != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property HierarchyGroups. 
+        /// <para>
+        /// The agent hierarchy groups for the agent.
+        /// </para>
+        /// </summary>
+        public HierarchyGroups HierarchyGroups
+        {
+            get { return this._hierarchyGroups; }
+            set { this._hierarchyGroups = value; }
+        }
+
+        // Check to see if HierarchyGroups property is set
+        internal bool IsSetHierarchyGroups()
+        {
+            return this._hierarchyGroups != null;
         }
 
         /// <summary>

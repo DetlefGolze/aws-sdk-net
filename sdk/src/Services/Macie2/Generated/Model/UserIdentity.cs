@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -85,7 +86,7 @@ namespace Amazon.Macie2.Model
         /// Gets and sets the property AwsService. 
         /// <para>
         /// If the action was performed by an Amazon Web Services account that belongs to an Amazon
-        /// Web Service, the name of the service.
+        /// Web Services service, the name of the service.
         /// </para>
         /// </summary>
         public AwsService AwsService

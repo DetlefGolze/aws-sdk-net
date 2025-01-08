@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -34,6 +35,11 @@ namespace Amazon.SageMaker.Model
     public partial class S3ModelDataSource
     {
         private ModelCompressionType _compressionType;
+        private string _eTag;
+        private InferenceHubAccessConfig _hubAccessConfig;
+        private string _manifestEtag;
+        private string _manifestS3Uri;
+        private ModelAccessConfig _modelAccessConfig;
         private S3ModelDataType _s3DataType;
         private string _s3Uri;
 
@@ -44,21 +50,20 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>Gzip</code> and choose <code>S3Object</code> as the value of <code>S3DataType</code>,
-        /// <code>S3Uri</code> identifies an object that is a gzip-compressed TAR archive. SageMaker
+        /// If you choose <c>Gzip</c> and choose <c>S3Object</c> as the value of <c>S3DataType</c>,
+        /// <c>S3Uri</c> identifies an object that is a gzip-compressed TAR archive. SageMaker
         /// will attempt to decompress and untar the object during model deployment.
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>None</code> and chooose <code>S3Object</code> as the value of
-        /// <code>S3DataType</code>, <code>S3Uri</code> identifies an object that represents an
-        /// uncompressed ML model to deploy.
+        /// If you choose <c>None</c> and chooose <c>S3Object</c> as the value of <c>S3DataType</c>,
+        /// <c>S3Uri</c> identifies an object that represents an uncompressed ML model to deploy.
         /// </para>
         ///  
         /// <para>
-        /// If you choose None and choose <code>S3Prefix</code> as the value of <code>S3DataType</code>,
-        /// <code>S3Uri</code> identifies a key name prefix, under which all objects represents
-        /// the uncompressed ML model to deploy.
+        /// If you choose None and choose <c>S3Prefix</c> as the value of <c>S3DataType</c>, <c>S3Uri</c>
+        /// identifies a key name prefix, under which all objects represents the uncompressed
+        /// ML model to deploy.
         /// </para>
         ///  
         /// <para>
@@ -67,16 +72,15 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If you choose <code>S3Object</code> as the value of <code>S3DataType</code>, then
-        /// SageMaker will split the key of the S3 object referenced by <code>S3Uri</code> by
-        /// slash (/), and use the last part as the filename of the file holding the content of
-        /// the S3 object.
+        /// If you choose <c>S3Object</c> as the value of <c>S3DataType</c>, then SageMaker will
+        /// split the key of the S3 object referenced by <c>S3Uri</c> by slash (/), and use the
+        /// last part as the filename of the file holding the content of the S3 object.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If you choose <code>S3Prefix</code> as the value of <code>S3DataType</code>, then
-        /// for each S3 object under the key name pefix referenced by <code>S3Uri</code>, SageMaker
-        /// will trim its key by the prefix, and use the remainder as the path (relative to <code>/opt/ml/model</code>)
+        /// If you choose <c>S3Prefix</c> as the value of <c>S3DataType</c>, then for each S3
+        /// object under the key name pefix referenced by <c>S3Uri</c>, SageMaker will trim its
+        /// key by the prefix, and use the remainder as the path (relative to <c>/opt/ml/model</c>)
         /// of the file holding the content of the S3 object. SageMaker will split the remainder
         /// by slash (/), using intermediate parts as directory names and the last part as filename
         /// of the file holding the content of the S3 object.
@@ -99,20 +103,20 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A single dot (<code>.</code>)
+        /// A single dot (<c>.</c>)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// A double dot (<code>..</code>)
+        /// A double dot (<c>..</c>)
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
         /// Ambiguous file names will result in model deployment failure. For example, if your
-        /// uncompressed ML model consists of two S3 objects <code>s3://mybucket/model/weights</code>
-        /// and <code>s3://mybucket/model/weights/part1</code> and you specify <code>s3://mybucket/model/</code>
-        /// as the value of <code>S3Uri</code> and <code>S3Prefix</code> as the value of <code>S3DataType</code>,
-        /// then it will result in name clash between <code>/opt/ml/model/weights</code> (a regular
-        /// file) and <code>/opt/ml/model/weights/</code> (a directory).
+        /// uncompressed ML model consists of two S3 objects <c>s3://mybucket/model/weights</c>
+        /// and <c>s3://mybucket/model/weights/part1</c> and you specify <c>s3://mybucket/model/</c>
+        /// as the value of <c>S3Uri</c> and <c>S3Prefix</c> as the value of <c>S3DataType</c>,
+        /// then it will result in name clash between <c>/opt/ml/model/weights</c> (a regular
+        /// file) and <c>/opt/ml/model/weights/</c> (a directory).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -138,21 +142,116 @@ namespace Amazon.SageMaker.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ETag. 
+        /// <para>
+        /// The ETag associated with S3 URI.
+        /// </para>
+        /// </summary>
+        public string ETag
+        {
+            get { return this._eTag; }
+            set { this._eTag = value; }
+        }
+
+        // Check to see if ETag property is set
+        internal bool IsSetETag()
+        {
+            return this._eTag != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property HubAccessConfig. 
+        /// <para>
+        /// Configuration information for hub access.
+        /// </para>
+        /// </summary>
+        public InferenceHubAccessConfig HubAccessConfig
+        {
+            get { return this._hubAccessConfig; }
+            set { this._hubAccessConfig = value; }
+        }
+
+        // Check to see if HubAccessConfig property is set
+        internal bool IsSetHubAccessConfig()
+        {
+            return this._hubAccessConfig != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManifestEtag. 
+        /// <para>
+        /// The ETag associated with Manifest S3URI.
+        /// </para>
+        /// </summary>
+        public string ManifestEtag
+        {
+            get { return this._manifestEtag; }
+            set { this._manifestEtag = value; }
+        }
+
+        // Check to see if ManifestEtag property is set
+        internal bool IsSetManifestEtag()
+        {
+            return this._manifestEtag != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManifestS3Uri. 
+        /// <para>
+        /// The Amazon S3 URI of the manifest file. The manifest file is a CSV file that stores
+        /// the artifact locations.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=1024)]
+        public string ManifestS3Uri
+        {
+            get { return this._manifestS3Uri; }
+            set { this._manifestS3Uri = value; }
+        }
+
+        // Check to see if ManifestS3Uri property is set
+        internal bool IsSetManifestS3Uri()
+        {
+            return this._manifestS3Uri != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ModelAccessConfig. 
+        /// <para>
+        /// Specifies the access configuration file for the ML model. You can explicitly accept
+        /// the model end-user license agreement (EULA) within the <c>ModelAccessConfig</c>. You
+        /// are responsible for reviewing and complying with any applicable license terms and
+        /// making sure they are acceptable for your use case before downloading or using a model.
+        /// </para>
+        /// </summary>
+        public ModelAccessConfig ModelAccessConfig
+        {
+            get { return this._modelAccessConfig; }
+            set { this._modelAccessConfig = value; }
+        }
+
+        // Check to see if ModelAccessConfig property is set
+        internal bool IsSetModelAccessConfig()
+        {
+            return this._modelAccessConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property S3DataType. 
         /// <para>
         /// Specifies the type of ML model data to deploy.
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>S3Prefix</code>, <code>S3Uri</code> identifies a key name prefix.
-        /// SageMaker uses all objects that match the specified key name prefix as part of the
-        /// ML model data to deploy. A valid key name prefix identified by <code>S3Uri</code>
-        /// always ends with a forward slash (/).
+        /// If you choose <c>S3Prefix</c>, <c>S3Uri</c> identifies a key name prefix. SageMaker
+        /// uses all objects that match the specified key name prefix as part of the ML model
+        /// data to deploy. A valid key name prefix identified by <c>S3Uri</c> always ends with
+        /// a forward slash (/).
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>S3Object</code>, <code>S3Uri</code> identifies an object that
-        /// is the ML model data to deploy.
+        /// If you choose <c>S3Object</c>, <c>S3Uri</c> identifies an object that is the ML model
+        /// data to deploy.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

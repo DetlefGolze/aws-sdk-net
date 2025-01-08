@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
-    /// Contains information about a tag associated with the EC2 instance.
+    /// Contains information about a tag key-value pair.
     /// </summary>
     public partial class Tag
     {
@@ -39,7 +40,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property Key. 
         /// <para>
-        /// The EC2 instance tag key.
+        /// Describes the key associated with the tag.
         /// </para>
         /// </summary>
         public string Key
@@ -57,7 +58,7 @@ namespace Amazon.GuardDuty.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The EC2 instance tag value.
+        /// Describes the value associated with the tag key.
         /// </para>
         /// </summary>
         public string Value

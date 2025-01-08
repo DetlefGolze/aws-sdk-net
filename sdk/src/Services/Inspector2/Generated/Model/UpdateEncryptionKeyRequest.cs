@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateEncryptionKey operation.
-    /// Updates an encryption key. A <code>ResourceNotFoundException</code> means that an
-    /// AWS owned key is being used for encryption.
+    /// Updates an encryption key. A <c>ResourceNotFoundException</c> means that an Amazon
+    /// Web Services owned key is being used for encryption.
     /// </summary>
     public partial class UpdateEncryptionKeyRequest : AmazonInspector2Request
     {

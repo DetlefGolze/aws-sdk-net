@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -37,15 +38,19 @@ namespace Amazon.ElasticMapReduce.Model
         private DateTime? _creationTime;
         private string _defaultS3Location;
         private string _description;
+        private string _encryptionKeyArn;
         private string _engineSecurityGroupId;
+        private string _idcInstanceArn;
+        private IdcUserAssignment _idcUserAssignment;
         private string _idpAuthUrl;
         private string _idpRelayStateParameterName;
         private string _name;
         private string _serviceRole;
         private string _studioArn;
         private string _studioId;
-        private List<string> _subnetIds = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private bool? _trustedIdentityPropagationEnabled;
         private string _url;
         private string _userRole;
         private string _vpcId;
@@ -127,6 +132,26 @@ namespace Amazon.ElasticMapReduce.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EncryptionKeyArn. 
+        /// <para>
+        /// The KMS key identifier (ARN) used to encrypt Amazon EMR Studio workspace and notebook
+        /// files when backed up to Amazon S3.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=10280)]
+        public string EncryptionKeyArn
+        {
+            get { return this._encryptionKeyArn; }
+            set { this._encryptionKeyArn = value; }
+        }
+
+        // Check to see if EncryptionKeyArn property is set
+        internal bool IsSetEncryptionKeyArn()
+        {
+            return this._encryptionKeyArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EngineSecurityGroupId. 
         /// <para>
         /// The ID of the Engine security group associated with the Amazon EMR Studio. The Engine
@@ -145,6 +170,45 @@ namespace Amazon.ElasticMapReduce.Model
         internal bool IsSetEngineSecurityGroupId()
         {
             return this._engineSecurityGroupId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdcInstanceArn. 
+        /// <para>
+        ///  The ARN of the IAM Identity Center instance the Studio application belongs to. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string IdcInstanceArn
+        {
+            get { return this._idcInstanceArn; }
+            set { this._idcInstanceArn = value; }
+        }
+
+        // Check to see if IdcInstanceArn property is set
+        internal bool IsSetIdcInstanceArn()
+        {
+            return this._idcInstanceArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdcUserAssignment. 
+        /// <para>
+        ///  Indicates whether the Studio has <c>REQUIRED</c> or <c>OPTIONAL</c> IAM Identity
+        /// Center user assignment. If the value is set to <c>REQUIRED</c>, users must be explicitly
+        /// assigned to the Studio application to access the Studio. 
+        /// </para>
+        /// </summary>
+        public IdcUserAssignment IdcUserAssignment
+        {
+            get { return this._idcUserAssignment; }
+            set { this._idcUserAssignment = value; }
+        }
+
+        // Check to see if IdcUserAssignment property is set
+        internal bool IsSetIdcUserAssignment()
+        {
+            return this._idcUserAssignment != null;
         }
 
         /// <summary>
@@ -171,7 +235,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property IdpRelayStateParameterName. 
         /// <para>
-        /// The name of your identity provider's <code>RelayState</code> parameter.
+        /// The name of your identity provider's <c>RelayState</c> parameter.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]
@@ -278,7 +342,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -296,7 +360,26 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TrustedIdentityPropagationEnabled. 
+        /// <para>
+        ///  Indicates whether the Studio has Trusted identity propagation enabled. The default
+        /// value is <c>false</c>. 
+        /// </para>
+        /// </summary>
+        public bool TrustedIdentityPropagationEnabled
+        {
+            get { return this._trustedIdentityPropagationEnabled.GetValueOrDefault(); }
+            set { this._trustedIdentityPropagationEnabled = value; }
+        }
+
+        // Check to see if TrustedIdentityPropagationEnabled property is set
+        internal bool IsSetTrustedIdentityPropagationEnabled()
+        {
+            return this._trustedIdentityPropagationEnabled.HasValue; 
         }
 
         /// <summary>
@@ -322,7 +405,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// Gets and sets the property UserRole. 
         /// <para>
         /// The name of the IAM role assumed by users logged in to the Amazon EMR Studio. A Studio
-        /// only requires a <code>UserRole</code> when you use IAM authentication.
+        /// only requires a <c>UserRole</c> when you use IAM authentication.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10280)]

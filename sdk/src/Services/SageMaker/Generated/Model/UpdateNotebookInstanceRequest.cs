@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class UpdateNotebookInstanceRequest : AmazonSageMakerRequest
     {
-        private List<string> _acceleratorTypes = new List<string>();
-        private List<string> _additionalCodeRepositories = new List<string>();
+        private List<string> _acceleratorTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _additionalCodeRepositories = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _defaultCodeRepository;
         private bool? _disassociateAcceleratorTypes;
         private bool? _disassociateAdditionalCodeRepositories;
@@ -54,10 +55,12 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property AcceleratorTypes. 
         /// <para>
-        /// A list of the Elastic Inference (EI) instance types to associate with this notebook
-        /// instance. Currently only one EI instance type can be associated with a notebook instance.
-        /// For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html">Using
-        /// Elastic Inference in Amazon SageMaker</a>.
+        /// This parameter is no longer supported. Elastic Inference (EI) is no longer available.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter was used to specify a list of the EI instance types to associate with
+        /// this notebook instance.
         /// </para>
         /// </summary>
         public List<string> AcceleratorTypes
@@ -69,7 +72,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AcceleratorTypes property is set
         internal bool IsSetAcceleratorTypes()
         {
-            return this._acceleratorTypes != null && this._acceleratorTypes.Count > 0; 
+            return this._acceleratorTypes != null && (this._acceleratorTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace Amazon.SageMaker.Model
         /// Web Services CodeCommit</a> or in any other Git repository. These repositories are
         /// cloned at the same level as the default repository of your notebook instance. For
         /// more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
-        /// Git Repositories with SageMaker Notebook Instances</a>.
+        /// Git Repositories with SageMaker AI Notebook Instances</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=3)]
@@ -94,7 +97,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if AdditionalCodeRepositories property is set
         internal bool IsSetAdditionalCodeRepositories()
         {
-            return this._additionalCodeRepositories != null && this._additionalCodeRepositories.Count > 0; 
+            return this._additionalCodeRepositories != null && (this._additionalCodeRepositories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +109,7 @@ namespace Amazon.SageMaker.Model
         /// Web Services CodeCommit</a> or in any other Git repository. When you open a notebook
         /// instance, it opens in the directory that contains this repository. For more information,
         /// see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html">Associating
-        /// Git Repositories with SageMaker Notebook Instances</a>.
+        /// Git Repositories with SageMaker AI Notebook Instances</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -125,9 +128,12 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DisassociateAcceleratorTypes. 
         /// <para>
-        /// A list of the Elastic Inference (EI) instance types to remove from this notebook instance.
-        /// This operation is idempotent. If you specify an accelerator type that is not associated
-        /// with the notebook instance when you call this method, it does not throw an error.
+        /// This parameter is no longer supported. Elastic Inference (EI) is no longer available.
+        /// </para>
+        ///  
+        /// <para>
+        /// This parameter was used to specify a list of the EI instance types to remove from
+        /// this notebook instance.
         /// </para>
         /// </summary>
         public bool DisassociateAcceleratorTypes
@@ -186,7 +192,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property DisassociateLifecycleConfig. 
         /// <para>
-        /// Set to <code>true</code> to remove the notebook instance lifecycle configuration currently
+        /// Set to <c>true</c> to remove the notebook instance lifecycle configuration currently
         /// associated with the notebook instance. This operation is idempotent. If you specify
         /// a lifecycle configuration that is not associated with the notebook instance when you
         /// call this method, it does not throw an error.
@@ -283,14 +289,14 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the IAM role that SageMaker can assume to access
+        /// The Amazon Resource Name (ARN) of the IAM role that SageMaker AI can assume to access
         /// the notebook instance. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html">SageMaker
-        /// Roles</a>. 
+        /// AI Roles</a>. 
         /// </para>
         ///  <note> 
         /// <para>
-        /// To be able to pass this role to SageMaker, the caller of this API must have the <code>iam:PassRole</code>
-        /// permission.
+        /// To be able to pass this role to SageMaker AI, the caller of this API must have the
+        /// <c>iam:PassRole</c> permission.
         /// </para>
         ///  </note>
         /// </summary>
@@ -311,12 +317,12 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property RootAccess. 
         /// <para>
         /// Whether root access is enabled or disabled for users of the notebook instance. The
-        /// default value is <code>Enabled</code>.
+        /// default value is <c>Enabled</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If you set this to <code>Disabled</code>, users don't have root access on the notebook
-        /// instance, but lifecycle configuration scripts still run with root permissions.
+        /// If you set this to <c>Disabled</c>, users don't have root access on the notebook instance,
+        /// but lifecycle configuration scripts still run with root permissions.
         /// </para>
         ///  </note>
         /// </summary>
@@ -336,7 +342,7 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property VolumeSizeInGB. 
         /// <para>
         /// The size, in GB, of the ML storage volume to attach to the notebook instance. The
-        /// default value is 5 GB. ML storage volumes are encrypted, so SageMaker can't determine
+        /// default value is 5 GB. ML storage volumes are encrypted, so SageMaker AI can't determine
         /// the amount of available free space on the volume. Because of this, you can increase
         /// the volume size when you update a notebook instance, but you can't decrease the volume
         /// size. If you want to decrease the size of the ML storage volume in use, create a new

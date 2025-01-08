@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GuardDuty.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.GuardDuty.Model
     /// </summary>
     public partial class ListMembersResponse : AmazonWebServiceResponse
     {
-        private List<Member> _members = new List<Member>();
+        private List<Member> _members = AWSConfigs.InitializeCollections ? new List<Member>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -41,6 +42,12 @@ namespace Amazon.GuardDuty.Model
         /// <para>
         /// A list of members.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// The values for <c>email</c> and <c>invitedAt</c> are available only if the member
+        /// accounts are added by invitation.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
         public List<Member> Members
@@ -52,7 +59,7 @@ namespace Amazon.GuardDuty.Model
         // Check to see if Members property is set
         internal bool IsSetMembers()
         {
-            return this._members != null && this._members.Count > 0; 
+            return this._members != null && (this._members.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

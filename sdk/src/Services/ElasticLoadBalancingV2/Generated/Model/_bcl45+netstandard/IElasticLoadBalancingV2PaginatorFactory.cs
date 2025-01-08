@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the elasticloadbalancingv2-2015-12-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -24,6 +25,11 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     ///</summary>
     public interface IElasticLoadBalancingV2PaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for DescribeListenerCertificates operation
+        ///</summary>
+        IDescribeListenerCertificatesPaginator DescribeListenerCertificates(DescribeListenerCertificatesRequest request);
 
         /// <summary>
         /// Paginator for DescribeListeners operation
@@ -36,8 +42,28 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         IDescribeLoadBalancersPaginator DescribeLoadBalancers(DescribeLoadBalancersRequest request);
 
         /// <summary>
+        /// Paginator for DescribeRules operation
+        ///</summary>
+        IDescribeRulesPaginator DescribeRules(DescribeRulesRequest request);
+
+        /// <summary>
         /// Paginator for DescribeTargetGroups operation
         ///</summary>
         IDescribeTargetGroupsPaginator DescribeTargetGroups(DescribeTargetGroupsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeTrustStoreAssociations operation
+        ///</summary>
+        IDescribeTrustStoreAssociationsPaginator DescribeTrustStoreAssociations(DescribeTrustStoreAssociationsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeTrustStoreRevocations operation
+        ///</summary>
+        IDescribeTrustStoreRevocationsPaginator DescribeTrustStoreRevocations(DescribeTrustStoreRevocationsRequest request);
+
+        /// <summary>
+        /// Paginator for DescribeTrustStores operation
+        ///</summary>
+        IDescribeTrustStoresPaginator DescribeTrustStores(DescribeTrustStoresRequest request);
     }
 }

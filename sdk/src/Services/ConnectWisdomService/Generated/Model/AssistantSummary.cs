@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectWisdomService.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ConnectWisdomService.Model
         private string _name;
         private ServerSideEncryptionConfiguration _serverSideEncryptionConfiguration;
         private AssistantStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private AssistantType _type;
 
         /// <summary>
@@ -140,7 +141,20 @@ namespace Amazon.ConnectWisdomService.Model
         /// <summary>
         /// Gets and sets the property ServerSideEncryptionConfiguration. 
         /// <para>
-        /// The KMS key used for encryption.
+        /// The configuration information for the customer managed key used for encryption. 
+        /// </para>
+        ///  
+        /// <para>
+        /// This KMS key must have a policy that allows <c>kms:CreateGrant</c>, <c>kms:DescribeKey</c>,
+        /// and <c>kms:Decrypt/kms:GenerateDataKey</c> permissions to the IAM identity using the
+        /// key to invoke Wisdom. To use Wisdom with chat, the key policy must also allow <c>kms:Decrypt</c>,
+        /// <c>kms:GenerateDataKey*</c>, and <c>kms:DescribeKey</c> permissions to the <c>connect.amazonaws.com</c>
+        /// service principal. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about setting up a customer managed key for Wisdom, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/enable-wisdom.html">Enable
+        /// Amazon Connect Wisdom for your instance</a>.
         /// </para>
         /// </summary>
         public ServerSideEncryptionConfiguration ServerSideEncryptionConfiguration
@@ -189,7 +203,7 @@ namespace Amazon.ConnectWisdomService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

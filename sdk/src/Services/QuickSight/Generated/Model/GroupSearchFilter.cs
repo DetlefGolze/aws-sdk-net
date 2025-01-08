@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A <code>GroupSearchFilter</code> object that you want to apply to your search.
+    /// A <c>GroupSearchFilter</c> object that you want to apply to your search.
     /// </summary>
     public partial class GroupSearchFilter
     {
@@ -40,8 +41,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the value that you want to use as a filter, for example <code>"Name":
-        /// "GROUP_NAME"</code>. Currently, the only supported name is <code>GROUP_NAME</code>.
+        /// The name of the value that you want to use as a filter, for example <c>"Name": "GROUP_NAME"</c>.
+        /// Currently, the only supported name is <c>GROUP_NAME</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,8 +61,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Operator. 
         /// <para>
-        /// The comparison operator that you want to use as a filter, for example <code>"Operator":
-        /// "StartsWith"</code>. Currently, the only supported operator is <code>StartsWith</code>.
+        /// The comparison operator that you want to use as a filter, for example <c>"Operator":
+        /// "StartsWith"</c>. Currently, the only supported operator is <c>StartsWith</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -80,8 +81,8 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Value. 
         /// <para>
-        /// The value of the named item, in this case <code>GROUP_NAME</code>, that you want to
-        /// use as a filter.
+        /// The value of the named item, in this case <c>GROUP_NAME</c>, that you want to use
+        /// as a filter.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

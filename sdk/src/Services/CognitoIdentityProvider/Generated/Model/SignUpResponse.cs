@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     public partial class SignUpResponse : AmazonWebServiceResponse
     {
         private CodeDeliveryDetailsType _codeDeliveryDetails;
+        private string _session;
         private bool? _userConfirmed;
         private string _userSub;
 
@@ -54,6 +56,26 @@ namespace Amazon.CognitoIdentityProvider.Model
         internal bool IsSetCodeDeliveryDetails()
         {
             return this._codeDeliveryDetails != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Session. 
+        /// <para>
+        /// A session Id that you can pass to <c>ConfirmSignUp</c> when you want to immediately
+        /// sign in your user with the <c>USER_AUTH</c> flow after they complete sign-up.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=20, Max=2048)]
+        public string Session
+        {
+            get { return this._session; }
+            set { this._session = value; }
+        }
+
+        // Check to see if Session property is set
+        internal bool IsSetSession()
+        {
+            return this._session != null;
         }
 
         /// <summary>
@@ -78,7 +100,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserSub. 
         /// <para>
-        /// The UUID of the authenticated user. This isn't the same as <code>username</code>.
+        /// The 128-bit ID of the authenticated user. This isn't the same as <c>username</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=131072)]

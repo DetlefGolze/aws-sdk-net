@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RedshiftServerless.Model
 {
     /// <summary>
@@ -34,11 +35,53 @@ namespace Amazon.RedshiftServerless.Model
     /// </summary>
     public partial class RestoreFromSnapshotRequest : AmazonRedshiftServerlessRequest
     {
+        private string _adminPasswordSecretKmsKeyId;
+        private bool? _manageAdminPassword;
         private string _namespaceName;
         private string _ownerAccount;
         private string _snapshotArn;
         private string _snapshotName;
         private string _workgroupName;
+
+        /// <summary>
+        /// Gets and sets the property AdminPasswordSecretKmsKeyId. 
+        /// <para>
+        /// The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's
+        /// admin credentials secret.
+        /// </para>
+        /// </summary>
+        public string AdminPasswordSecretKmsKeyId
+        {
+            get { return this._adminPasswordSecretKmsKeyId; }
+            set { this._adminPasswordSecretKmsKeyId = value; }
+        }
+
+        // Check to see if AdminPasswordSecretKmsKeyId property is set
+        internal bool IsSetAdminPasswordSecretKmsKeyId()
+        {
+            return this._adminPasswordSecretKmsKeyId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ManageAdminPassword. 
+        /// <para>
+        /// If <c>true</c>, Amazon Redshift uses Secrets Manager to manage the restored snapshot's
+        /// admin credentials. If <c>MmanageAdminPassword</c> is false or not set, Amazon Redshift
+        /// uses the admin credentials that the namespace or cluster had at the time the snapshot
+        /// was taken.
+        /// </para>
+        /// </summary>
+        public bool ManageAdminPassword
+        {
+            get { return this._manageAdminPassword.GetValueOrDefault(); }
+            set { this._manageAdminPassword = value; }
+        }
+
+        // Check to see if ManageAdminPassword property is set
+        internal bool IsSetManageAdminPassword()
+        {
+            return this._manageAdminPassword.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property NamespaceName. 
@@ -82,7 +125,7 @@ namespace Amazon.RedshiftServerless.Model
         /// <para>
         /// The Amazon Resource Name (ARN) of the snapshot to restore from. Required if restoring
         /// from Amazon Redshift Serverless to a provisioned cluster. Must not be specified at
-        /// the same time as <code>snapshotName</code>.
+        /// the same time as <c>snapshotName</c>.
         /// </para>
         ///  
         /// <para>
@@ -105,7 +148,7 @@ namespace Amazon.RedshiftServerless.Model
         /// Gets and sets the property SnapshotName. 
         /// <para>
         /// The name of the snapshot to restore from. Must not be specified at the same time as
-        /// <code>snapshotArn</code>.
+        /// <c>snapshotArn</c>.
         /// </para>
         /// </summary>
         public string SnapshotName

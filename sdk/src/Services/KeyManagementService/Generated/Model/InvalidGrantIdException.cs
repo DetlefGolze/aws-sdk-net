@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
-    /// The request was rejected because the specified <code>GrantId</code> is not valid.
+    /// The request was rejected because the specified <c>GrantId</c> is not valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

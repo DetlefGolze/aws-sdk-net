@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.EC2.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// The Capacity Reservation Fleet's status changes to <code>cancelled</code>.
+    /// The Capacity Reservation Fleet's status changes to <c>cancelled</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -51,7 +52,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class CancelCapacityReservationFleetsRequest : AmazonEC2Request
     {
-        private List<string> _capacityReservationFleetIds = new List<string>();
+        private List<string> _capacityReservationFleetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CapacityReservationFleetIds. 
@@ -69,7 +70,7 @@ namespace Amazon.EC2.Model
         // Check to see if CapacityReservationFleetIds property is set
         internal bool IsSetCapacityReservationFleetIds()
         {
-            return this._capacityReservationFleetIds != null && this._capacityReservationFleetIds.Count > 0; 
+            return this._capacityReservationFleetIds != null && (this._capacityReservationFleetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

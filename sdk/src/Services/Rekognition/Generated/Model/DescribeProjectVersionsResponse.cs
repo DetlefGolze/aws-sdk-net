@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.Rekognition.Model
     public partial class DescribeProjectVersionsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ProjectVersionDescription> _projectVersionDescriptions = new List<ProjectVersionDescription>();
+        private List<ProjectVersionDescription> _projectVersionDescriptions = AWSConfigs.InitializeCollections ? new List<ProjectVersionDescription>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous response was incomplete (because there is more results to retrieve),
-        /// Amazon Rekognition Custom Labels returns a pagination token in the response. You can
-        /// use this pagination token to retrieve the next set of results. 
+        /// Amazon Rekognition returns a pagination token in the response. You can use this pagination
+        /// token to retrieve the next set of results. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -60,8 +61,8 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property ProjectVersionDescriptions. 
         /// <para>
-        /// A list of model descriptions. The list is sorted by the creation date and time of
-        /// the model versions, latest to earliest.
+        /// A list of project version descriptions. The list is sorted by the creation date and
+        /// time of the project versions, latest to earliest.
         /// </para>
         /// </summary>
         public List<ProjectVersionDescription> ProjectVersionDescriptions
@@ -73,7 +74,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if ProjectVersionDescriptions property is set
         internal bool IsSetProjectVersionDescriptions()
         {
-            return this._projectVersionDescriptions != null && this._projectVersionDescriptions.Count > 0; 
+            return this._projectVersionDescriptions != null && (this._projectVersionDescriptions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

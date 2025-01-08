@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,6 +64,7 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCollaborationIdentifier())
@@ -78,6 +80,17 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 
                     var marshaller = MembershipProtectedQueryResultConfigurationMarshaller.Instance;
                     marshaller.Marshall(publicRequest.DefaultResultConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetPaymentConfiguration())
+                {
+                    context.Writer.WritePropertyName("paymentConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = MembershipPaymentConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.PaymentConfiguration, context);
 
                     context.Writer.WriteObjectEnd();
                 }

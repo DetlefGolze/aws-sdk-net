@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchLogs.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// Gets and sets the property CompletionTime. 
         /// <para>
         /// The completion time of the export task, expressed as the number of milliseconds after
-        /// <code>Jan 1, 1970 00:00:00 UTC</code>.
+        /// <c>Jan 1, 1970 00:00:00 UTC</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -60,7 +61,7 @@ namespace Amazon.CloudWatchLogs.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// The creation time of the export task, expressed as the number of milliseconds after
-        /// <code>Jan 1, 1970 00:00:00 UTC</code>.
+        /// <c>Jan 1, 1970 00:00:00 UTC</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

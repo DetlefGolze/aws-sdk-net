@@ -26,16 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the CopyDBClusterParameterGroup operation.
     /// Copies the specified DB cluster parameter group.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// You can't copy a default DB cluster parameter group. Instead, create a new custom
+    /// DB cluster parameter group, which copies the default parameters and values for the
+    /// specified DB cluster parameter group family.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class CopyDBClusterParameterGroupRequest : AmazonRDSRequest
     {
         private string _sourceDBClusterParameterGroupIdentifier;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _targetDBClusterParameterGroupDescription;
         private string _targetDBClusterParameterGroupIdentifier;
 
@@ -81,7 +90,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,7 +139,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>my-cluster-param-group1</code> 
+        /// Example: <c>my-cluster-param-group1</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

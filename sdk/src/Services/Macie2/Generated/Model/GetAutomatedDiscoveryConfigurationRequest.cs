@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Container for the parameters to the GetAutomatedDiscoveryConfiguration operation.
     /// Retrieves the configuration settings and status of automated sensitive data discovery
-    /// for an account.
+    /// for an organization or standalone account.
     /// </summary>
     public partial class GetAutomatedDiscoveryConfigurationRequest : AmazonMacie2Request
     {

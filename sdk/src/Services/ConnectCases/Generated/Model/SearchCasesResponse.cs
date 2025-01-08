@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.ConnectCases.Model
     /// </summary>
     public partial class SearchCasesResponse : AmazonWebServiceResponse
     {
-        private List<SearchCasesResponseItem> _cases = new List<SearchCasesResponseItem>();
+        private List<SearchCasesResponseItem> _cases = AWSConfigs.InitializeCollections ? new List<SearchCasesResponseItem>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Cases. 
         /// <para>
-        /// A list of case documents where each case contains the properties <code>CaseId</code>
-        /// and <code>Fields</code> where each field is a complex union structure. 
+        /// A list of case documents where each case contains the properties <c>CaseId</c> and
+        /// <c>Fields</c> where each field is a complex union structure. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=25)]
@@ -53,7 +54,7 @@ namespace Amazon.ConnectCases.Model
         // Check to see if Cases property is set
         internal bool IsSetCases()
         {
-            return this._cases != null && this._cases.Count > 0; 
+            return this._cases != null && (this._cases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

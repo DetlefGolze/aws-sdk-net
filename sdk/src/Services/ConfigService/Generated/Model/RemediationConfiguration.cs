@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ConfigService.Model
         private string _createdByService;
         private ExecutionControls _executionControls;
         private int? _maximumAutomaticAttempts;
-        private Dictionary<string, RemediationParameterValue> _parameters = new Dictionary<string, RemediationParameterValue>();
+        private Dictionary<string, RemediationParameterValue> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, RemediationParameterValue>() : null;
         private string _resourceType;
         private long? _retryAttemptSeconds;
         private string _targetId;
@@ -182,7 +183,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -206,14 +207,16 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property RetryAttemptSeconds. 
         /// <para>
-        /// Maximum time in seconds that Config runs auto-remediation. If you do not select a
-        /// number, the default is 60 seconds. 
+        /// Time window to determine whether or not to add a remediation exception to prevent
+        /// infinite remediation attempts. If <c>MaximumAutomaticAttempts</c> remediation attempts
+        /// have been made under <c>RetryAttemptSeconds</c>, a remediation exception will be added
+        /// to the resource. If you do not select a number, the default is 60 seconds. 
         /// </para>
         ///  
         /// <para>
-        /// For example, if you specify RetryAttemptSeconds as 50 seconds and MaximumAutomaticAttempts
-        /// as 5, Config will run auto-remediations 5 times within 50 seconds before throwing
-        /// an exception.
+        /// For example, if you specify <c>RetryAttemptSeconds</c> as 50 seconds and <c>MaximumAutomaticAttempts</c>
+        /// as 5, Config will run auto-remediations 5 times within 50 seconds before adding a
+        /// remediation exception to the resource.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2678000)]

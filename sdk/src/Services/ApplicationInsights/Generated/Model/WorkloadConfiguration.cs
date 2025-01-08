@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.ApplicationInsights.Model
         /// The name of the workload.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=8)]
+        [AWSProperty(Min=1, Max=12)]
         public string WorkloadName
         {
             get { return this._workloadName; }

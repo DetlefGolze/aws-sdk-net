@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,8 +40,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property CreateTime. 
         /// <para>
-        /// The timestamp of the last cache reset (e.g., <code>1479734909.17</code>) in Unix time
-        /// format.
+        /// The timestamp of the last cache reset (<c>1479734909.17</c>) in Unix time format.
         /// </para>
         /// </summary>
         public DateTime CreateTime

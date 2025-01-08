@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -37,10 +38,16 @@ namespace Amazon.DataZone.Model
         private string _createdBy;
         private string _description;
         private string _domainId;
-        private List<string> _glossaryTerms = new List<string>();
+        private string _domainUnitId;
+        private EnvironmentDeploymentDetails _environmentDeploymentDetails;
+        private List<ProjectDeletionError> _failureReasons = AWSConfigs.InitializeCollections ? new List<ProjectDeletionError>() : null;
+        private List<string> _glossaryTerms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _id;
         private DateTime? _lastUpdatedAt;
         private string _name;
+        private string _projectProfileId;
+        private ProjectStatus _projectStatus;
+        private List<EnvironmentConfigurationUserParameter> _userParameters = AWSConfigs.InitializeCollections ? new List<EnvironmentConfigurationUserParameter>() : null;
 
         /// <summary>
         /// Gets and sets the property CreatedAt. 
@@ -118,6 +125,62 @@ namespace Amazon.DataZone.Model
         }
 
         /// <summary>
+        /// Gets and sets the property DomainUnitId. 
+        /// <para>
+        /// The ID of the domain unit.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string DomainUnitId
+        {
+            get { return this._domainUnitId; }
+            set { this._domainUnitId = value; }
+        }
+
+        // Check to see if DomainUnitId property is set
+        internal bool IsSetDomainUnitId()
+        {
+            return this._domainUnitId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnvironmentDeploymentDetails. 
+        /// <para>
+        /// The environment deployment details.
+        /// </para>
+        /// </summary>
+        public EnvironmentDeploymentDetails EnvironmentDeploymentDetails
+        {
+            get { return this._environmentDeploymentDetails; }
+            set { this._environmentDeploymentDetails = value; }
+        }
+
+        // Check to see if EnvironmentDeploymentDetails property is set
+        internal bool IsSetEnvironmentDeploymentDetails()
+        {
+            return this._environmentDeploymentDetails != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FailureReasons. 
+        /// <para>
+        /// Specifies the error message that is returned if the operation cannot be successfully
+        /// completed.
+        /// </para>
+        /// </summary>
+        public List<ProjectDeletionError> FailureReasons
+        {
+            get { return this._failureReasons; }
+            set { this._failureReasons = value; }
+        }
+
+        // Check to see if FailureReasons property is set
+        internal bool IsSetFailureReasons()
+        {
+            return this._failureReasons != null && (this._failureReasons.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property GlossaryTerms. 
         /// <para>
         /// The glossary terms that can be used in the project.
@@ -133,7 +196,7 @@ namespace Amazon.DataZone.Model
         // Check to see if GlossaryTerms property is set
         internal bool IsSetGlossaryTerms()
         {
-            return this._glossaryTerms != null && this._glossaryTerms.Count > 0; 
+            return this._glossaryTerms != null && (this._glossaryTerms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -190,6 +253,60 @@ namespace Amazon.DataZone.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProjectProfileId. 
+        /// <para>
+        /// The project profile ID.
+        /// </para>
+        /// </summary>
+        public string ProjectProfileId
+        {
+            get { return this._projectProfileId; }
+            set { this._projectProfileId = value; }
+        }
+
+        // Check to see if ProjectProfileId property is set
+        internal bool IsSetProjectProfileId()
+        {
+            return this._projectProfileId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProjectStatus. 
+        /// <para>
+        /// The status of the Amazon DataZone project that was created.
+        /// </para>
+        /// </summary>
+        public ProjectStatus ProjectStatus
+        {
+            get { return this._projectStatus; }
+            set { this._projectStatus = value; }
+        }
+
+        // Check to see if ProjectStatus property is set
+        internal bool IsSetProjectStatus()
+        {
+            return this._projectStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UserParameters. 
+        /// <para>
+        /// The user parameters of the project.
+        /// </para>
+        /// </summary>
+        public List<EnvironmentConfigurationUserParameter> UserParameters
+        {
+            get { return this._userParameters; }
+            set { this._userParameters = value; }
+        }
+
+        // Check to see if UserParameters property is set
+        internal bool IsSetUserParameters()
+        {
+            return this._userParameters != null && (this._userParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CertificateManager.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CertificateManager.Model
     /// 
     ///  
     /// <para>
-    /// If you have just created a certificate using the <code>RequestCertificate</code> action,
+    /// If you have just created a certificate using the <c>RequestCertificate</c> action,
     /// there is a delay of several seconds before you can retrieve information about it.
     /// </para>
     /// </summary>
@@ -50,7 +51,7 @@ namespace Amazon.CertificateManager.Model
         /// <summary>
         /// Instantiates DescribeCertificateRequest with the parameterized properties
         /// </summary>
-        /// <param name="certificateArn">The Amazon Resource Name (ARN) of the ACM certificate. The ARN must have the following form:  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
+        /// <param name="certificateArn">The Amazon Resource Name (ARN) of the ACM certificate. The ARN must have the following form:  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>  For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs)</a>.</param>
         public DescribeCertificateRequest(string certificateArn)
         {
             _certificateArn = certificateArn;
@@ -64,7 +65,7 @@ namespace Amazon.CertificateManager.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</code>
+        ///  <c>arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012</c>
         /// 
         /// </para>
         ///  

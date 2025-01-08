@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -35,14 +36,15 @@ namespace Amazon.IoTTwinMaker.Model
     /// 
     ///  
     /// <para>
-    /// You must specify a value for <code>workspaceId</code>. For entity-specific queries,
-    /// specify values for <code>componentName</code> and <code>entityId</code>. For cross-entity
-    /// quries, specify a value for <code>componentTypeId</code>.
+    /// You must specify a value for <c>workspaceId</c>. For entity-specific queries, specify
+    /// values for <c>componentName</c> and <c>entityId</c>. For cross-entity quries, specify
+    /// a value for <c>componentTypeId</c>.
     /// </para>
     /// </summary>
     public partial class GetPropertyValueHistoryRequest : AmazonIoTTwinMakerRequest
     {
         private string _componentName;
+        private string _componentPath;
         private string _componentTypeId;
         private DateTime? _endDateTime;
         private string _endTime;
@@ -51,8 +53,8 @@ namespace Amazon.IoTTwinMaker.Model
         private int? _maxResults;
         private string _nextToken;
         private OrderByTime _orderByTime;
-        private List<PropertyFilter> _propertyFilters = new List<PropertyFilter>();
-        private List<string> _selectedProperties = new List<string>();
+        private List<PropertyFilter> _propertyFilters = AWSConfigs.InitializeCollections ? new List<PropertyFilter>() : null;
+        private List<string> _selectedProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private DateTime? _startDateTime;
         private string _startTime;
         private string _workspaceId;
@@ -74,6 +76,26 @@ namespace Amazon.IoTTwinMaker.Model
         internal bool IsSetComponentName()
         {
             return this._componentName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ComponentPath. 
+        /// <para>
+        /// This string specifies the path to the composite component, starting from the top-level
+        /// component.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2048)]
+        public string ComponentPath
+        {
+            get { return this._componentPath; }
+            set { this._componentPath = value; }
+        }
+
+        // Check to see if ComponentPath property is set
+        internal bool IsSetComponentPath()
+        {
+            return this._componentPath != null;
         }
 
         /// <summary>
@@ -251,7 +273,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if PropertyFilters property is set
         internal bool IsSetPropertyFilters()
         {
-            return this._propertyFilters != null && this._propertyFilters.Count > 0; 
+            return this._propertyFilters != null && (this._propertyFilters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -270,7 +292,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if SelectedProperties property is set
         internal bool IsSetSelectedProperties()
         {
-            return this._selectedProperties != null && this._selectedProperties.Count > 0; 
+            return this._selectedProperties != null && (this._selectedProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

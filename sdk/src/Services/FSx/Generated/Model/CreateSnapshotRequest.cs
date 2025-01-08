@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -39,13 +40,13 @@ namespace Amazon.FSx.Model
     /// If a snapshot with the specified client request token exists, and the parameters match,
     /// this operation returns the description of the existing snapshot. If a snapshot with
     /// the specified client request token exists, and the parameters don't match, this operation
-    /// returns <code>IncompatibleParameterError</code>. If a snapshot with the specified
-    /// client request token doesn't exist, <code>CreateSnapshot</code> does the following:
+    /// returns <c>IncompatibleParameterError</c>. If a snapshot with the specified client
+    /// request token doesn't exist, <c>CreateSnapshot</c> does the following:
     /// </para>
     ///  <ul> <li> 
     /// <para>
     /// Creates a new OpenZFS snapshot with an assigned ID, and an initial lifecycle state
-    /// of <code>CREATING</code>.
+    /// of <c>CREATING</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -53,7 +54,7 @@ namespace Amazon.FSx.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// By using the idempotent operation, you can retry a <code>CreateSnapshot</code> operation
+    /// By using the idempotent operation, you can retry a <c>CreateSnapshot</c> operation
     /// without the risk of creating an extra snapshot. This approach can be useful when an
     /// initial call fails in a way that makes it unclear whether a snapshot was created.
     /// If you use the same client request token and the initial call created a snapshot,
@@ -61,9 +62,9 @@ namespace Amazon.FSx.Model
     /// </para>
     ///  
     /// <para>
-    /// The <code>CreateSnapshot</code> operation returns while the snapshot's lifecycle state
-    /// is still <code>CREATING</code>. You can check the snapshot creation status by calling
-    /// the <a href="https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeSnapshots.html">DescribeSnapshots</a>
+    /// The <c>CreateSnapshot</c> operation returns while the snapshot's lifecycle state is
+    /// still <c>CREATING</c>. You can check the snapshot creation status by calling the <a
+    /// href="https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeSnapshots.html">DescribeSnapshots</a>
     /// operation, which returns the snapshot state along with other information.
     /// </para>
     /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.FSx.Model
     {
         private string _clientRequestToken;
         private string _name;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _volumeId;
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.FSx.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

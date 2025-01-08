@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -62,10 +63,13 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetId. 
         /// <para>
-        /// The ID of the asset in which the asset property was created.
+        /// The ID of the asset in which the asset property was created. This can be either the
+        /// actual ID in UUID format, or else <c>externalId:</c> followed by the external ID,
+        /// if it has one. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-id-references">Referencing
+        /// objects with external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=36, Max=36)]
+        [AWSProperty(Min=13, Max=139)]
         public string AssetId
         {
             get { return this._assetId; }
@@ -123,11 +127,11 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ASSOCIATED</code> – The time series is associated with an asset property.
+        ///  <c>ASSOCIATED</c> – The time series is associated with an asset property.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DISASSOCIATED</code> – The time series isn't associated with any asset property.
+        ///  <c>DISASSOCIATED</c> – The time series isn't associated with any asset property.
         /// </para>
         ///  </li> </ul>
         /// </summary>

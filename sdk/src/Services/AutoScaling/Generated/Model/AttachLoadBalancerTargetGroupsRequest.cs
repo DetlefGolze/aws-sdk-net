@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
     /// Container for the parameters to the AttachLoadBalancerTargetGroups operation.
     /// <note> 
     /// <para>
-    /// This API operation is superseded by <a>AttachTrafficSources</a>, which can attach
-    /// multiple traffic sources types. We recommend using <code>AttachTrafficSources</code>
-    /// to simplify how you manage traffic sources. However, we continue to support <code>AttachLoadBalancerTargetGroups</code>.
-    /// You can use both the original <code>AttachLoadBalancerTargetGroups</code> API operation
-    /// and <code>AttachTrafficSources</code> on the same Auto Scaling group.
+    /// This API operation is superseded by <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_AttachTrafficSources.html">AttachTrafficSources</a>,
+    /// which can attach multiple traffic sources types. We recommend using <c>AttachTrafficSources</c>
+    /// to simplify how you manage traffic sources. However, we continue to support <c>AttachLoadBalancerTargetGroups</c>.
+    /// You can use both the original <c>AttachLoadBalancerTargetGroups</c> API operation
+    /// and <c>AttachTrafficSources</c> on the same Auto Scaling group.
     /// </para>
     ///  </note> 
     /// <para>
@@ -62,8 +63,8 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// To describe the target groups for an Auto Scaling group, call the <a>DescribeLoadBalancerTargetGroups</a>
-    /// API. To detach the target group from the Auto Scaling group, call the <a>DetachLoadBalancerTargetGroups</a>
+    /// To describe the target groups for an Auto Scaling group, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLoadBalancerTargetGroups.html">DescribeLoadBalancerTargetGroups</a>
+    /// API. To detach the target group from the Auto Scaling group, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DetachLoadBalancerTargetGroups.html">DetachLoadBalancerTargetGroups</a>
     /// API.
     /// </para>
     ///  
@@ -81,7 +82,7 @@ namespace Amazon.AutoScaling.Model
     public partial class AttachLoadBalancerTargetGroupsRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _targetGroupARNs = new List<string>();
+        private List<string> _targetGroupARNs = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AutoScalingGroupName. 
@@ -120,7 +121,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if TargetGroupARNs property is set
         internal bool IsSetTargetGroupARNs()
         {
-            return this._targetGroupARNs != null && this._targetGroupARNs.Count > 0; 
+            return this._targetGroupARNs != null && (this._targetGroupARNs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

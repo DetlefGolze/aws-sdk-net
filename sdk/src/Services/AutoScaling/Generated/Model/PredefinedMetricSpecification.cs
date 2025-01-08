@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -44,23 +45,22 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ASGAverageCPUUtilization</code> - Average CPU utilization of the Auto Scaling
-        /// group.
+        ///  <c>ASGAverageCPUUtilization</c> - Average CPU utilization of the Auto Scaling group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ASGAverageNetworkIn</code> - Average number of bytes received on all network
-        /// interfaces by the Auto Scaling group.
+        ///  <c>ASGAverageNetworkIn</c> - Average number of bytes received on all network interfaces
+        /// by the Auto Scaling group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ASGAverageNetworkOut</code> - Average number of bytes sent out on all network
-        /// interfaces by the Auto Scaling group.
+        ///  <c>ASGAverageNetworkOut</c> - Average number of bytes sent out on all network interfaces
+        /// by the Auto Scaling group.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALBRequestCountPerTarget</code> - Average Application Load Balancer request
-        /// count per target for your Auto Scaling group.
+        ///  <c>ALBRequestCountPerTarget</c> - Average Application Load Balancer request count
+        /// per target for your Auto Scaling group.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -93,7 +93,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</code>.
+        ///  <c>app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff</c>.
         /// </para>
         ///  
         /// <para>

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Workgroup Unmarshall(JsonUnmarshallerContext context)
         {
+            Workgroup unmarshalledObject = new Workgroup();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Workgroup unmarshalledObject = new Workgroup();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,6 +84,30 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.CreationDate = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("crossAccountVpcs", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.CrossAccountVpcs = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("customDomainCertificateArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CustomDomainCertificateArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("customDomainCertificateExpiryTime", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.CustomDomainCertificateExpiryTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("customDomainName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.CustomDomainName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("endpoint", targetDepth))
                 {
                     var unmarshaller = EndpointUnmarshaller.Instance;
@@ -94,16 +120,40 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.EnhancedVpcRouting = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ipAddressType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.IpAddressType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("maxCapacity", targetDepth))
+                {
+                    var unmarshaller = IntUnmarshaller.Instance;
+                    unmarshalledObject.MaxCapacity = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("namespaceName", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.NamespaceName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("patchVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.PatchVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("port", targetDepth))
                 {
                     var unmarshaller = IntUnmarshaller.Instance;
                     unmarshalledObject.Port = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("pricePerformanceTarget", targetDepth))
+                {
+                    var unmarshaller = PerformanceTargetUnmarshaller.Instance;
+                    unmarshalledObject.PricePerformanceTarget = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("publiclyAccessible", targetDepth))
@@ -148,8 +198,13 @@ namespace Amazon.RedshiftServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.WorkgroupName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("workgroupVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.WorkgroupVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

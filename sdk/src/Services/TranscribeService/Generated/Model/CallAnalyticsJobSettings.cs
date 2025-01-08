@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -36,9 +37,10 @@ namespace Amazon.TranscribeService.Model
     public partial class CallAnalyticsJobSettings
     {
         private ContentRedaction _contentRedaction;
-        private Dictionary<string, LanguageIdSettings> _languageIdSettings = new Dictionary<string, LanguageIdSettings>();
+        private Dictionary<string, LanguageIdSettings> _languageIdSettings = AWSConfigs.InitializeCollections ? new Dictionary<string, LanguageIdSettings>() : null;
         private string _languageModelName;
-        private List<string> _languageOptions = new List<string>();
+        private List<string> _languageOptions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Summarization _summarization;
         private VocabularyFilterMethod _vocabularyFilterMethod;
         private string _vocabularyFilterName;
         private string _vocabularyName;
@@ -63,33 +65,33 @@ namespace Amazon.TranscribeService.Model
         /// <para>
         /// If using automatic language identification in your request and you want to apply a
         /// custom language model, a custom vocabulary, or a custom vocabulary filter, include
-        /// <code>LanguageIdSettings</code> with the relevant sub-parameters (<code>VocabularyName</code>,
-        /// <code>LanguageModelName</code>, and <code>VocabularyFilterName</code>).
+        /// <c>LanguageIdSettings</c> with the relevant sub-parameters (<c>VocabularyName</c>,
+        /// <c>LanguageModelName</c>, and <c>VocabularyFilterName</c>).
         /// </para>
         ///  
         /// <para>
-        ///  <code>LanguageIdSettings</code> supports two to five language codes. Each language
-        /// code you include can have an associated custom language model, custom vocabulary,
-        /// and custom vocabulary filter. The language codes that you specify must match the languages
-        /// of the associated custom language models, custom vocabularies, and custom vocabulary
+        ///  <c>LanguageIdSettings</c> supports two to five language codes. Each language code
+        /// you include can have an associated custom language model, custom vocabulary, and custom
+        /// vocabulary filter. The language codes that you specify must match the languages of
+        /// the associated custom language models, custom vocabularies, and custom vocabulary
         /// filters.
         /// </para>
         ///  
         /// <para>
-        /// It's recommended that you include <code>LanguageOptions</code> when using <code>LanguageIdSettings</code>
+        /// It's recommended that you include <c>LanguageOptions</c> when using <c>LanguageIdSettings</c>
         /// to ensure that the correct language dialect is identified. For example, if you specify
-        /// a custom vocabulary that is in <code>en-US</code> but Amazon Transcribe determines
-        /// that the language spoken in your media is <code>en-AU</code>, your custom vocabulary
-        /// <i>is not</i> applied to your transcription. If you include <code>LanguageOptions</code>
-        /// and include <code>en-US</code> as the only English language dialect, your custom vocabulary
-        /// <i>is</i> applied to your transcription.
+        /// a custom vocabulary that is in <c>en-US</c> but Amazon Transcribe determines that
+        /// the language spoken in your media is <c>en-AU</c>, your custom vocabulary <i>is not</i>
+        /// applied to your transcription. If you include <c>LanguageOptions</c> and include <c>en-US</c>
+        /// as the only English language dialect, your custom vocabulary <i>is</i> applied to
+        /// your transcription.
         /// </para>
         ///  
         /// <para>
         /// If you want to include a custom language model, custom vocabulary, or custom vocabulary
         /// filter with your request but <b>do not</b> want to use automatic language identification,
-        /// use instead the <code/> parameter with the <code>LanguageModelName</code>, <code>VocabularyName</code>,
-        /// or <code>VocabularyFilterName</code> sub-parameters.
+        /// use instead the <code/> parameter with the <c>LanguageModelName</c>, <c>VocabularyName</c>,
+        /// or <c>VocabularyFilterName</c> sub-parameters.
         /// </para>
         ///  
         /// <para>
@@ -107,7 +109,7 @@ namespace Amazon.TranscribeService.Model
         // Check to see if LanguageIdSettings property is set
         internal bool IsSetLanguageIdSettings()
         {
-            return this._languageIdSettings != null && this._languageIdSettings.Count > 0; 
+            return this._languageIdSettings != null && (this._languageIdSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,7 +121,7 @@ namespace Amazon.TranscribeService.Model
         ///  
         /// <para>
         /// The language of the specified custom language model must match the language code that
-        /// you specify in your transcription request. If the languages don't match, the custom
+        /// you specify in your transcription request. If the languages do not match, the custom
         /// language model isn't applied. There are no errors or warnings associated with a language
         /// mismatch.
         /// </para>
@@ -155,8 +157,8 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// To transcribe speech in Modern Standard Arabic (<code>ar-SA</code>), your media file
-        /// must be encoded at a sample rate of 16,000 Hz or higher.
+        /// To transcribe speech in Modern Standard Arabic (<c>ar-SA</c>), your media file must
+        /// be encoded at a sample rate of 16,000 Hz or higher.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -169,7 +171,26 @@ namespace Amazon.TranscribeService.Model
         // Check to see if LanguageOptions property is set
         internal bool IsSetLanguageOptions()
         {
-            return this._languageOptions != null && this._languageOptions.Count > 0; 
+            return this._languageOptions != null && (this._languageOptions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Summarization. 
+        /// <para>
+        /// Contains <c>GenerateAbstractiveSummary</c>, which is a required parameter if you want
+        /// to enable Generative call summarization in your Call Analytics request.
+        /// </para>
+        /// </summary>
+        public Summarization Summarization
+        {
+            get { return this._summarization; }
+            set { this._summarization = value; }
+        }
+
+        // Check to see if Summarization property is set
+        internal bool IsSetSummarization()
+        {
+            return this._summarization != null;
         }
 
         /// <summary>
@@ -179,15 +200,15 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// To replace words with <code>***</code>, choose <code>mask</code>.
+        /// To replace words with <c>***</c>, choose <c>mask</c>.
         /// </para>
         ///  
         /// <para>
-        /// To delete words, choose <code>remove</code>.
+        /// To delete words, choose <c>remove</c>.
         /// </para>
         ///  
         /// <para>
-        /// To flag words without changing them, choose <code>tag</code>.
+        /// To flag words without changing them, choose <c>tag</c>.
         /// </para>
         /// </summary>
         public VocabularyFilterMethod VocabularyFilterMethod
@@ -210,8 +231,8 @@ namespace Amazon.TranscribeService.Model
         /// </para>
         ///  
         /// <para>
-        /// Note that if you include <code>VocabularyFilterName</code> in your request, you must
-        /// also include <code>VocabularyFilterMethod</code>.
+        /// Note that if you include <c>VocabularyFilterName</c> in your request, you must also
+        /// include <c>VocabularyFilterMethod</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=200)]

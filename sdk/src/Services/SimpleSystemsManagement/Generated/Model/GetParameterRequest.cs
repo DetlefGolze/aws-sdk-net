@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -47,12 +48,18 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the parameter you want to query.
+        /// The name or Amazon Resource Name (ARN) of the parameter that you want to query. For
+        /// parameters shared with you from another account, you must use the full ARN.
         /// </para>
         ///  
         /// <para>
-        /// To query by parameter label, use <code>"Name": "name:label"</code>. To query by parameter
-        /// version, use <code>"Name": "name:version"</code>.
+        /// To query by parameter label, use <c>"Name": "name:label"</c>. To query by parameter
+        /// version, use <c>"Name": "name:version"</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For more information about shared parameters, see <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-shared-parameters.html">Working
+        /// with shared parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -71,8 +78,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property WithDecryption. 
         /// <para>
-        /// Return decrypted values for secure string parameters. This flag is ignored for <code>String</code>
-        /// and <code>StringList</code> parameter types.
+        /// Return decrypted values for secure string parameters. This flag is ignored for <c>String</c>
+        /// and <c>StringList</c> parameter types.
         /// </para>
         /// </summary>
         public bool WithDecryption

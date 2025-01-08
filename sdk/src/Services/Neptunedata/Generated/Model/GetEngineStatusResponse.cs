@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.Neptunedata.Model
     {
         private string _dbEngineVersion;
         private string _dfeQueryEngine;
-        private Dictionary<string, Amazon.Runtime.Documents.Document> _features = new Dictionary<string, Amazon.Runtime.Documents.Document>();
+        private Dictionary<string, Amazon.Runtime.Documents.Document> _features = AWSConfigs.InitializeCollections ? new Dictionary<string, Amazon.Runtime.Documents.Document>() : null;
         private QueryLanguageVersion _gremlin;
-        private Dictionary<string, string> _labMode = new Dictionary<string, string>();
+        private Dictionary<string, string> _labMode = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private QueryLanguageVersion _opencypher;
         private string _role;
         private int? _rollingBackTrxCount;
         private string _rollingBackTrxEarliestStartTime;
-        private Dictionary<string, string> _settings = new Dictionary<string, string>();
+        private Dictionary<string, string> _settings = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private QueryLanguageVersion _sparql;
         private string _startTime;
         private string _status;
@@ -52,7 +53,7 @@ namespace Amazon.Neptunedata.Model
         /// <para>
         /// Set to the Neptune engine version running on your DB cluster. If this engine version
         /// has been manually patched since it was released, the version number is prefixed by
-        /// <code>Patch-</code>.
+        /// <c>Patch-</c>.
         /// </para>
         /// </summary>
         public string DbEngineVersion
@@ -70,9 +71,9 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property DfeQueryEngine. 
         /// <para>
-        /// Set to <code>enabled</code> if the DFE engine is fully enabled, or to <code>viaQueryHint</code>
-        /// (the default) if the DFE engine is only used with queries that have the <code>useDFE</code>
-        /// query hint set to <code>true</code>.
+        /// Set to <c>enabled</c> if the DFE engine is fully enabled, or to <c>viaQueryHint</c>
+        /// (the default) if the DFE engine is only used with queries that have the <c>useDFE</c>
+        /// query hint set to <c>true</c>.
         /// </para>
         /// </summary>
         public string DfeQueryEngine
@@ -102,7 +103,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if Features property is set
         internal bool IsSetFeatures()
         {
-            return this._features != null && this._features.Count > 0; 
+            return this._features != null && (this._features.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if LabMode property is set
         internal bool IsSetLabMode()
         {
-            return this._labMode != null && this._labMode.Count > 0; 
+            return this._labMode != null && (this._labMode.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -166,8 +167,8 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Role. 
         /// <para>
-        /// Set to <code>reader</code> if the instance is a read-replica, or to <code>writer</code>
-        /// if the instance is the primary instance.
+        /// Set to <c>reader</c> if the instance is a read-replica, or to <c>writer</c> if the
+        /// instance is the primary instance.
         /// </para>
         /// </summary>
         public string Role
@@ -224,7 +225,7 @@ namespace Amazon.Neptunedata.Model
         /// Gets and sets the property Settings. 
         /// <para>
         /// Contains information about the current settings on your DB cluster. For example, contains
-        /// the current cluster query timeout setting (<code>clusterQueryTimeoutInMs</code>).
+        /// the current cluster query timeout setting (<c>clusterQueryTimeoutInMs</c>).
         /// </para>
         /// </summary>
         public Dictionary<string, string> Settings
@@ -236,7 +237,7 @@ namespace Amazon.Neptunedata.Model
         // Check to see if Settings property is set
         internal bool IsSetSettings()
         {
-            return this._settings != null && this._settings.Count > 0; 
+            return this._settings != null && (this._settings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -280,9 +281,9 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Set to <code>healthy</code> if the instance is not experiencing problems. If the instance
+        /// Set to <c>healthy</c> if the instance is not experiencing problems. If the instance
         /// is recovering from a crash or from being rebooted and there are active transactions
-        /// running from the latest server shutdown, status is set to <code>recovery</code>.
+        /// running from the latest server shutdown, status is set to <c>recovery</c>.
         /// </para>
         /// </summary>
         public string Status

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -75,7 +76,7 @@ namespace Amazon.ForecastService.Model
         private string _format;
         private string _geolocationFormat;
         private ImportMode _importMode;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _timestampFormat;
         private string _timeZone;
         private bool? _useGeolocationForTimeZone;
@@ -104,8 +105,8 @@ namespace Amazon.ForecastService.Model
         /// Gets and sets the property DatasetImportJobName. 
         /// <para>
         /// The name for the dataset import job. We recommend including the current timestamp
-        /// in the name, for example, <code>20190721DatasetImport</code>. This can help you avoid
-        /// getting a <code>ResourceAlreadyExistsException</code> exception.
+        /// in the name, for example, <c>20190721DatasetImport</c>. This can help you avoid getting
+        /// a <c>ResourceAlreadyExistsException</c> exception.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=63)]
@@ -130,10 +131,10 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  
         /// <para>
-        /// If encryption is used, <code>DataSource</code> must include an Key Management Service
-        /// (KMS) key and the IAM role must allow Amazon Forecast permission to access the key.
-        /// The KMS key and IAM role must match those specified in the <code>EncryptionConfig</code>
-        /// parameter of the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html">CreateDataset</a>
+        /// If encryption is used, <c>DataSource</c> must include an Key Management Service (KMS)
+        /// key and the IAM role must allow Amazon Forecast permission to access the key. The
+        /// KMS key and IAM role must match those specified in the <c>EncryptionConfig</c> parameter
+        /// of the <a href="https://docs.aws.amazon.com/forecast/latest/dg/API_CreateDataset.html">CreateDataset</a>
         /// operation.
         /// </para>
         /// </summary>
@@ -177,12 +178,12 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>LAT_LONG</code> - the latitude and longitude in decimal format (Example: 47.61_-122.33).
+        ///  <c>LAT_LONG</c> - the latitude and longitude in decimal format (Example: 47.61_-122.33).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CC_POSTALCODE</code> (US Only) - the country code (US), followed by the 5-digit
-        /// ZIP code (Example: US_98121).
+        ///  <c>CC_POSTALCODE</c> (US Only) - the country code (US), followed by the 5-digit ZIP
+        /// code (Example: US_98121).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -202,10 +203,9 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property ImportMode. 
         /// <para>
-        /// Specifies whether the dataset import job is a <code>FULL</code> or <code>INCREMENTAL</code>
-        /// import. A <code>FULL</code> dataset import replaces all of the existing data with
-        /// the newly imported data. An <code>INCREMENTAL</code> import appends the imported data
-        /// to the existing data.
+        /// Specifies whether the dataset import job is a <c>FULL</c> or <c>INCREMENTAL</c> import.
+        /// A <c>FULL</c> dataset import replaces all of the existing data with the newly imported
+        /// data. An <c>INCREMENTAL</c> import appends the imported data to the existing data.
         /// </para>
         /// </summary>
         public ImportMode ImportMode
@@ -261,12 +261,12 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination
-        /// of such as a prefix for keys as it is reserved for Amazon Web Services use. You cannot
-        /// edit or delete tag keys with this prefix. Values can have this prefix. If a tag value
-        /// has <code>aws</code> as its prefix but the key does not, then Forecast considers it
-        /// to be a user tag and will count against the limit of 50 tags. Tags with only the key
-        /// prefix of <code>aws</code> do not count against your tags per resource limit.
+        /// Do not use <c>aws:</c>, <c>AWS:</c>, or any upper or lowercase combination of such
+        /// as a prefix for keys as it is reserved for Amazon Web Services use. You cannot edit
+        /// or delete tag keys with this prefix. Values can have this prefix. If a tag value has
+        /// <c>aws</c> as its prefix but the key does not, then Forecast considers it to be a
+        /// user tag and will count against the limit of 50 tags. Tags with only the key prefix
+        /// of <c>aws</c> do not count against your tags per resource limit.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -280,14 +280,14 @@ namespace Amazon.ForecastService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TimestampFormat. 
         /// <para>
         /// The format of timestamps in the dataset. The format that you specify depends on the
-        /// <code>DataFrequency</code> specified when the dataset was created. The following formats
+        /// <c>DataFrequency</c> specified when the dataset was created. The following formats
         /// are supported
         /// </para>
         ///  <ul> <li> 

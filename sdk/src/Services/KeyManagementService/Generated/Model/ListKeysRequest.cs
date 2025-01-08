@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -62,7 +63,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>ListResourceTags</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class ListKeysRequest : AmazonKeyManagementServiceRequest
     {
@@ -99,8 +105,8 @@ namespace Amazon.KeyManagementService.Model
         /// Gets and sets the property Marker. 
         /// <para>
         /// Use this parameter in a subsequent request after you receive a response with truncated
-        /// results. Set it to the value of <code>NextMarker</code> from the truncated response
-        /// you just received.
+        /// results. Set it to the value of <c>NextMarker</c> from the truncated response you
+        /// just received.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

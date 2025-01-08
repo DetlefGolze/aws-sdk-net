@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EBS.Model
 {
     /// <summary>
@@ -60,9 +61,9 @@ namespace Amazon.EBS.Model
         /// <summary>
         /// Gets and sets the property FirstBlockToken. 
         /// <para>
-        /// The block token for the block index of the <code>FirstSnapshotId</code> specified
-        /// in the <code>ListChangedBlocks</code> operation. This value is absent if the first
-        /// snapshot does not have the changed block that is on the second snapshot.
+        /// The block token for the block index of the <c>FirstSnapshotId</c> specified in the
+        /// <c>ListChangedBlocks</c> operation. This value is absent if the first snapshot does
+        /// not have the changed block that is on the second snapshot.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]
@@ -81,8 +82,8 @@ namespace Amazon.EBS.Model
         /// <summary>
         /// Gets and sets the property SecondBlockToken. 
         /// <para>
-        /// The block token for the block index of the <code>SecondSnapshotId</code> specified
-        /// in the <code>ListChangedBlocks</code> operation.
+        /// The block token for the block index of the <c>SecondSnapshotId</c> specified in the
+        /// <c>ListChangedBlocks</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]

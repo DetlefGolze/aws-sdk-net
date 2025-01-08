@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.EKS.Model
     public partial class Update
     {
         private DateTime? _createdAt;
-        private List<ErrorDetail> _errors = new List<ErrorDetail>();
+        private List<ErrorDetail> _errors = AWSConfigs.InitializeCollections ? new List<ErrorDetail>() : null;
         private string _id;
-        private List<UpdateParam> _params = new List<UpdateParam>();
+        private List<UpdateParam> _params = AWSConfigs.InitializeCollections ? new List<UpdateParam>() : null;
         private UpdateStatus _status;
         private UpdateType _type;
 
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The Unix epoch timestamp in seconds for when the update was created.
+        /// The Unix epoch timestamp at object creation.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -61,7 +62,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Errors. 
         /// <para>
-        /// Any errors associated with a <code>Failed</code> update.
+        /// Any errors associated with a <c>Failed</c> update.
         /// </para>
         /// </summary>
         public List<ErrorDetail> Errors
@@ -73,7 +74,7 @@ namespace Amazon.EKS.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -109,7 +110,7 @@ namespace Amazon.EKS.Model
         // Check to see if Params property is set
         internal bool IsSetParams()
         {
-            return this._params != null && this._params.Count > 0; 
+            return this._params != null && (this._params.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

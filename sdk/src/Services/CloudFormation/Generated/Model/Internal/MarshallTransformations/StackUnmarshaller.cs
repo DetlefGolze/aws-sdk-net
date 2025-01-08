@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -57,6 +58,10 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                     if (context.TestExpression("Capabilities/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.Capabilities == null)
+                        {
+                            unmarshalledObject.Capabilities = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Capabilities.Add(item);
                         continue;
@@ -73,6 +78,12 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                         unmarshalledObject.CreationTime = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("DeletionMode", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.DeletionMode = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("DeletionTime", targetDepth))
                     {
                         var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -83,6 +94,12 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.Description = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("DetailedStatus", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.DetailedStatus = unmarshaller.Unmarshall(context);
                         continue;
                     }
                     if (context.TestExpression("DisableRollback", targetDepth))
@@ -112,6 +129,10 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                     if (context.TestExpression("NotificationARNs/member", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
+                        if (unmarshalledObject.NotificationARNs == null)
+                        {
+                            unmarshalledObject.NotificationARNs = new List<string>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.NotificationARNs.Add(item);
                         continue;
@@ -119,6 +140,10 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                     if (context.TestExpression("Outputs/member", targetDepth))
                     {
                         var unmarshaller = OutputUnmarshaller.Instance;
+                        if (unmarshalledObject.Outputs == null)
+                        {
+                            unmarshalledObject.Outputs = new List<Output>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Outputs.Add(item);
                         continue;
@@ -126,6 +151,10 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                     if (context.TestExpression("Parameters/member", targetDepth))
                     {
                         var unmarshaller = ParameterUnmarshaller.Instance;
+                        if (unmarshalledObject.Parameters == null)
+                        {
+                            unmarshalledObject.Parameters = new List<Parameter>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Parameters.Add(item);
                         continue;
@@ -187,6 +216,10 @@ namespace Amazon.CloudFormation.Model.Internal.MarshallTransformations
                     if (context.TestExpression("Tags/member", targetDepth))
                     {
                         var unmarshaller = TagUnmarshaller.Instance;
+                        if (unmarshalledObject.Tags == null)
+                        {
+                            unmarshalledObject.Tags = new List<Tag>();
+                        }
                         var item = unmarshaller.Unmarshall(context);
                         unmarshalledObject.Tags.Add(item);
                         continue;

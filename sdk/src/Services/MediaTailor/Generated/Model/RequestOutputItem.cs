@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaTailor.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.MediaTailor.Model
         /// <summary>
         /// Gets and sets the property ManifestName. 
         /// <para>
-        /// The name of the manifest for the channel. The name appears in the <code>PlaybackUrl</code>.
+        /// The name of the manifest for the channel. The name appears in the <c>PlaybackUrl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -96,8 +97,7 @@ namespace Amazon.MediaTailor.Model
         /// <summary>
         /// Gets and sets the property SourceGroup. 
         /// <para>
-        /// A string used to match which <code>HttpPackageConfiguration</code> is used for each
-        /// <code>VodSource</code>.
+        /// A string used to match which <c>HttpPackageConfiguration</c> is used for each <c>VodSource</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

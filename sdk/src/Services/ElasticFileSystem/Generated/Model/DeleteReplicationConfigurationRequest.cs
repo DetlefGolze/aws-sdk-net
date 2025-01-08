@@ -26,18 +26,64 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteReplicationConfiguration operation.
-    /// Deletes an existing replication configuration. Deleting a replication configuration
-    /// ends the replication process. After a replication configuration is deleted, the destination
-    /// file system is no longer read-only. You can write to the destination file system after
-    /// its status becomes <code>Writeable</code>.
+    /// Deletes a replication configuration. Deleting a replication configuration ends the
+    /// replication process. After a replication configuration is deleted, the destination
+    /// file system becomes <c>Writeable</c> and its replication overwrite protection is re-enabled.
+    /// For more information, see <a href="https://docs.aws.amazon.com/efs/latest/ug/delete-replications.html">Delete
+    /// a replication configuration</a>.
+    /// 
+    ///  
+    /// <para>
+    /// This operation requires permissions for the <c>elasticfilesystem:DeleteReplicationConfiguration</c>
+    /// action. 
+    /// </para>
     /// </summary>
     public partial class DeleteReplicationConfigurationRequest : AmazonElasticFileSystemRequest
     {
+        private DeletionMode _deletionMode;
         private string _sourceFileSystemId;
+
+        /// <summary>
+        /// Gets and sets the property DeletionMode. 
+        /// <para>
+        /// When replicating across Amazon Web Services accounts or across Amazon Web Services
+        /// Regions, Amazon EFS deletes the replication configuration from both the source and
+        /// destination account or Region (<c>ALL_CONFIGURATIONS</c>) by default. If there's a
+        /// configuration or permissions issue that prevents Amazon EFS from deleting the replication
+        /// configuration from both sides, you can use the <c>LOCAL_CONFIGURATION_ONLY</c> mode
+        /// to delete the replication configuration from only the local side (the account or Region
+        /// from which the delete is performed). 
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Only use the <c>LOCAL_CONFIGURATION_ONLY</c> mode in the case that Amazon EFS is unable
+        /// to delete the replication configuration in both the source and destination account
+        /// or Region. Deleting the local configuration leaves the configuration in the other
+        /// account or Region unrecoverable.
+        /// </para>
+        ///  
+        /// <para>
+        /// Additionally, do not use this mode for same-account, same-region replication as doing
+        /// so results in a BadRequest exception error.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public DeletionMode DeletionMode
+        {
+            get { return this._deletionMode; }
+            set { this._deletionMode = value; }
+        }
+
+        // Check to see if DeletionMode property is set
+        internal bool IsSetDeletionMode()
+        {
+            return this._deletionMode != null;
+        }
 
         /// <summary>
         /// Gets and sets the property SourceFileSystemId. 

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Shield.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Shield.Model
     {
         private AutoRenew _autoRenew;
         private DateTime? _endTime;
-        private List<Limit> _limits = new List<Limit>();
+        private List<Limit> _limits = AWSConfigs.InitializeCollections ? new List<Limit>() : null;
         private ProactiveEngagementStatus _proactiveEngagementStatus;
         private DateTime? _startTime;
         private string _subscriptionArn;
@@ -45,15 +46,15 @@ namespace Amazon.Shield.Model
         /// <summary>
         /// Gets and sets the property AutoRenew. 
         /// <para>
-        /// If <code>ENABLED</code>, the subscription will be automatically renewed at the end
-        /// of the existing subscription period.
+        /// If <c>ENABLED</c>, the subscription will be automatically renewed at the end of the
+        /// existing subscription period.
         /// </para>
         ///  
         /// <para>
-        /// When you initally create a subscription, <code>AutoRenew</code> is set to <code>ENABLED</code>.
-        /// You can change this by submitting an <code>UpdateSubscription</code> request. If the
-        /// <code>UpdateSubscription</code> request does not included a value for <code>AutoRenew</code>,
-        /// the existing value for <code>AutoRenew</code> remains unchanged.
+        /// When you initally create a subscription, <c>AutoRenew</c> is set to <c>ENABLED</c>.
+        /// You can change this by submitting an <c>UpdateSubscription</c> request. If the <c>UpdateSubscription</c>
+        /// request does not included a value for <c>AutoRenew</c>, the existing value for <c>AutoRenew</c>
+        /// remains unchanged.
         /// </para>
         /// </summary>
         public AutoRenew AutoRenew
@@ -101,23 +102,23 @@ namespace Amazon.Shield.Model
         // Check to see if Limits property is set
         internal bool IsSetLimits()
         {
-            return this._limits != null && this._limits.Count > 0; 
+            return this._limits != null && (this._limits.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ProactiveEngagementStatus. 
         /// <para>
-        /// If <code>ENABLED</code>, the Shield Response Team (SRT) will use email and phone to
-        /// notify contacts about escalations to the SRT and to initiate proactive customer support.
+        /// If <c>ENABLED</c>, the Shield Response Team (SRT) will use email and phone to notify
+        /// contacts about escalations to the SRT and to initiate proactive customer support.
         /// </para>
         ///  
         /// <para>
-        /// If <code>PENDING</code>, you have requested proactive engagement and the request is
-        /// pending. The status changes to <code>ENABLED</code> when your request is fully processed.
+        /// If <c>PENDING</c>, you have requested proactive engagement and the request is pending.
+        /// The status changes to <c>ENABLED</c> when your request is fully processed.
         /// </para>
         ///  
         /// <para>
-        /// If <code>DISABLED</code>, the SRT will not proactively notify contacts about escalations
+        /// If <c>DISABLED</c>, the SRT will not proactively notify contacts about escalations
         /// or to initiate proactive customer support. 
         /// </para>
         /// </summary>

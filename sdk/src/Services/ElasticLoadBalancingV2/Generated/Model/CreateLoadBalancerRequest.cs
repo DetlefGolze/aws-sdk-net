@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -60,13 +61,14 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     public partial class CreateLoadBalancerRequest : AmazonElasticLoadBalancingV2Request
     {
         private string _customerOwnedIpv4Pool;
+        private EnablePrefixForIpv6SourceNatEnum _enablePrefixForIpv6SourceNat;
         private IpAddressType _ipAddressType;
         private string _name;
         private LoadBalancerSchemeEnum _scheme;
-        private List<string> _securityGroups = new List<string>();
-        private List<SubnetMapping> _subnetMappings = new List<SubnetMapping>();
-        private List<string> _subnets = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<SubnetMapping> _subnetMappings = AWSConfigs.InitializeCollections ? new List<SubnetMapping>() : null;
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private LoadBalancerTypeEnum _type;
 
         /// <summary>
@@ -90,11 +92,40 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnablePrefixForIpv6SourceNat. 
+        /// <para>
+        /// [Network Load Balancers with UDP listeners] Indicates whether to use an IPv6 prefix
+        /// from each subnet for source NAT. The IP address type must be <c>dualstack</c>. The
+        /// default value is <c>off</c>.
+        /// </para>
+        /// </summary>
+        public EnablePrefixForIpv6SourceNatEnum EnablePrefixForIpv6SourceNat
+        {
+            get { return this._enablePrefixForIpv6SourceNat; }
+            set { this._enablePrefixForIpv6SourceNat = value; }
+        }
+
+        // Check to see if EnablePrefixForIpv6SourceNat property is set
+        internal bool IsSetEnablePrefixForIpv6SourceNat()
+        {
+            return this._enablePrefixForIpv6SourceNat != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property IpAddressType. 
         /// <para>
-        /// The type of IP addresses used by the subnets for your load balancer. The possible
-        /// values are <code>ipv4</code> (for IPv4 addresses) and <code>dualstack</code> (for
-        /// IPv4 and IPv6 addresses). 
+        /// The IP address type. Internal load balancers must use <c>ipv4</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// [Application Load Balancers] The possible values are <c>ipv4</c> (IPv4 addresses),
+        /// <c>dualstack</c> (IPv4 and IPv6 addresses), and <c>dualstack-without-public-ipv4</c>
+        /// (public IPv6 addresses and private IPv4 and IPv6 addresses).
+        /// </para>
+        ///  
+        /// <para>
+        /// [Network Load Balancers and Gateway Load Balancers] The possible values are <c>ipv4</c>
+        /// (IPv4 addresses) and <c>dualstack</c> (IPv4 and IPv6 addresses).
         /// </para>
         /// </summary>
         public IpAddressType IpAddressType
@@ -155,7 +186,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// </para>
         ///  
         /// <para>
-        /// You cannot specify a scheme for a Gateway Load Balancer.
+        /// You can't specify a scheme for a Gateway Load Balancer.
         /// </para>
         /// </summary>
         public LoadBalancerSchemeEnum Scheme
@@ -186,19 +217,19 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SubnetMappings. 
         /// <para>
-        /// The IDs of the public subnets. You can specify only one subnet per Availability Zone.
-        /// You must specify either subnets or subnet mappings, but not both.
+        /// The IDs of the subnets. You can specify only one subnet per Availability Zone. You
+        /// must specify either subnets or subnet mappings, but not both.
         /// </para>
         ///  
         /// <para>
         /// [Application Load Balancers] You must specify subnets from at least two Availability
-        /// Zones. You cannot specify Elastic IP addresses for your subnets.
+        /// Zones. You can't specify Elastic IP addresses for your subnets.
         /// </para>
         ///  
         /// <para>
@@ -220,7 +251,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         ///  
         /// <para>
         /// [Gateway Load Balancers] You can specify subnets from one or more Availability Zones.
-        /// You cannot specify Elastic IP addresses for your subnets.
+        /// You can't specify Elastic IP addresses for your subnets.
         /// </para>
         /// </summary>
         public List<SubnetMapping> SubnetMappings
@@ -232,14 +263,14 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if SubnetMappings property is set
         internal bool IsSetSubnetMappings()
         {
-            return this._subnetMappings != null && this._subnetMappings.Count > 0; 
+            return this._subnetMappings != null && (this._subnetMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Subnets. 
         /// <para>
-        /// The IDs of the public subnets. You can specify only one subnet per Availability Zone.
-        /// You must specify either subnets or subnet mappings, but not both. To specify an Elastic
+        /// The IDs of the subnets. You can specify only one subnet per Availability Zone. You
+        /// must specify either subnets or subnet mappings, but not both. To specify an Elastic
         /// IP address, specify subnet mappings instead of subnets.
         /// </para>
         ///  
@@ -258,11 +289,8 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// </para>
         ///  
         /// <para>
-        /// [Network Load Balancers] You can specify subnets from one or more Availability Zones.
-        /// </para>
-        ///  
-        /// <para>
-        /// [Gateway Load Balancers] You can specify subnets from one or more Availability Zones.
+        /// [Network Load Balancers and Gateway Load Balancers] You can specify subnets from one
+        /// or more Availability Zones.
         /// </para>
         /// </summary>
         public List<string> Subnets
@@ -274,7 +302,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -293,13 +321,13 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of load balancer. The default is <code>application</code>.
+        /// The type of load balancer. The default is <c>application</c>.
         /// </para>
         /// </summary>
         public LoadBalancerTypeEnum Type

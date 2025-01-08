@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutEquipment.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LookoutEquipment.Model
     /// </summary>
     public partial class ListModelVersionsResponse : AmazonWebServiceResponse
     {
-        private List<ModelVersionSummary> _modelVersionSummaries = new List<ModelVersionSummary>();
+        private List<ModelVersionSummary> _modelVersionSummaries = AWSConfigs.InitializeCollections ? new List<ModelVersionSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -42,6 +43,13 @@ namespace Amazon.LookoutEquipment.Model
         /// Provides information on the specified model version, including the created time, model
         /// and dataset ARNs, and status.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// If you don't supply the <c>ModelName</c> request parameter, or if you supply the name
+        /// of a model that doesn't exist, <c>ListModelVersions</c> returns an empty array in
+        /// <c>ModelVersionSummaries</c>. 
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<ModelVersionSummary> ModelVersionSummaries
         {
@@ -52,7 +60,7 @@ namespace Amazon.LookoutEquipment.Model
         // Check to see if ModelVersionSummaries property is set
         internal bool IsSetModelVersionSummaries()
         {
-            return this._modelVersionSummaries != null && this._modelVersionSummaries.Count > 0; 
+            return this._modelVersionSummaries != null && (this._modelVersionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,8 +68,8 @@ namespace Amazon.LookoutEquipment.Model
         /// <para>
         /// If the total number of results exceeds the limit that the response can display, the
         /// response returns an opaque pagination token indicating where to continue the listing
-        /// of machine learning model versions. Use this token in the <code>NextToken</code> field
-        /// in the request to list the next page of results.
+        /// of machine learning model versions. Use this token in the <c>NextToken</c> field in
+        /// the request to list the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]

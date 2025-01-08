@@ -26,25 +26,46 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
-    /// Details about the state of any changes to the ECR automated re-scan duration setting.
+    /// Details about the state of your ECR re-scan duration settings. The ECR re-scan duration
+    /// defines how long an ECR image will be actively scanned by Amazon Inspector. When the
+    /// number of days since an image was last pushed exceeds the duration configured for
+    /// image pull date, and the duration configured for image pull date, the monitoring state
+    /// of that image becomes <c>inactive</c> and all associated findings are scheduled for
+    /// closure.
     /// </summary>
     public partial class EcrRescanDurationState
     {
+        private EcrPullDateRescanDuration _pullDateRescanDuration;
         private EcrRescanDuration _rescanDuration;
         private EcrRescanDurationStatus _status;
         private DateTime? _updatedAt;
 
         /// <summary>
+        /// Gets and sets the property PullDateRescanDuration. 
+        /// <para>
+        /// The rescan duration configured for image pull date.
+        /// </para>
+        /// </summary>
+        public EcrPullDateRescanDuration PullDateRescanDuration
+        {
+            get { return this._pullDateRescanDuration; }
+            set { this._pullDateRescanDuration = value; }
+        }
+
+        // Check to see if PullDateRescanDuration property is set
+        internal bool IsSetPullDateRescanDuration()
+        {
+            return this._pullDateRescanDuration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property RescanDuration. 
         /// <para>
-        /// The ECR automated re-scan duration defines how long an ECR image will be actively
-        /// scanned by Amazon Inspector. When the number of days since an image was last pushed
-        /// exceeds the automated re-scan duration the monitoring state of that image becomes
-        /// <code>inactive</code> and all associated findings are scheduled for closure.
-        /// </para>
+        /// The rescan duration configured for image push date. <pre><c> &lt;/p&gt; </c></pre>
         /// </summary>
         public EcrRescanDuration RescanDuration
         {

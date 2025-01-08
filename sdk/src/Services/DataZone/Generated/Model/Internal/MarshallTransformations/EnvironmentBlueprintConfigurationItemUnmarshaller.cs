@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public EnvironmentBlueprintConfigurationItem Unmarshall(JsonUnmarshallerContext context)
         {
+            EnvironmentBlueprintConfigurationItem unmarshalledObject = new EnvironmentBlueprintConfigurationItem();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            EnvironmentBlueprintConfigurationItem unmarshalledObject = new EnvironmentBlueprintConfigurationItem();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,10 +90,22 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     unmarshalledObject.EnvironmentBlueprintId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("environmentRolePermissionBoundary", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.EnvironmentRolePermissionBoundary = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("manageAccessRoleArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ManageAccessRoleArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("provisioningConfigurations", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<ProvisioningConfiguration, ProvisioningConfigurationUnmarshaller>(ProvisioningConfigurationUnmarshaller.Instance);
+                    unmarshalledObject.ProvisioningConfigurations = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("provisioningRoleArn", targetDepth))
@@ -113,7 +127,6 @@ namespace Amazon.DataZone.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ApplicationInfo Unmarshall(JsonUnmarshallerContext context)
         {
+            ApplicationInfo unmarshalledObject = new ApplicationInfo();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ApplicationInfo unmarshalledObject = new ApplicationInfo();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -68,6 +70,12 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.AccountId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("AttachMissingPermission", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.AttachMissingPermission = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("AutoConfigEnabled", targetDepth))
@@ -118,8 +126,13 @@ namespace Amazon.ApplicationInsights.Model.Internal.MarshallTransformations
                     unmarshalledObject.ResourceGroupName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SNSNotificationArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.SNSNotificationArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

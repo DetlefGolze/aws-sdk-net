@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -44,10 +45,9 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  
         /// <para>
-        /// Dimensions cannot be named: <code>measure_name</code>, <code>measure_value</code>,
-        /// or <code>time</code>. These names are reserved. Dimension names cannot start with
-        /// <code>ts_</code> or <code>measure_value</code> and they cannot contain the colon (<code>:</code>)
-        /// character.
+        /// Dimensions cannot be named: <c>measure_name</c>, <c>measure_value</c>, or <c>time</c>.
+        /// These names are reserved. Dimension names cannot start with <c>ts_</c> or <c>measure_value</c>
+        /// and they cannot contain the colon (<c>:</c>) character.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

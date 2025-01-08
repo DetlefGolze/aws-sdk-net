@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Rekognition.Model
     /// 
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:ListTagsForResource</code>
+    /// This operation requires permissions to perform the <c>rekognition:ListTagsForResource</c>
     /// action. 
     /// </para>
     /// </summary>

@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -33,6 +34,22 @@ namespace Amazon.AccessAnalyzer.Model
         internal AccessAnalyzerPaginatorFactory(IAmazonAccessAnalyzer client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for GetFindingRecommendation operation
+        ///</summary>
+        public IGetFindingRecommendationPaginator GetFindingRecommendation(GetFindingRecommendationRequest request) 
+        {
+            return new GetFindingRecommendationPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for GetFindingV2 operation
+        ///</summary>
+        public IGetFindingV2Paginator GetFindingV2(GetFindingV2Request request) 
+        {
+            return new GetFindingV2Paginator(this.client, request);
         }
 
         /// <summary>
@@ -81,6 +98,14 @@ namespace Amazon.AccessAnalyzer.Model
         public IListFindingsPaginator ListFindings(ListFindingsRequest request) 
         {
             return new ListFindingsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListFindingsV2 operation
+        ///</summary>
+        public IListFindingsV2Paginator ListFindingsV2(ListFindingsV2Request request) 
+        {
+            return new ListFindingsV2Paginator(this.client, request);
         }
 
         /// <summary>

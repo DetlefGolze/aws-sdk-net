@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DocDB.Model
 {
     /// <summary>
@@ -40,9 +41,9 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property Key. 
         /// <para>
         /// The required name of the tag. The string value can be from 1 to 128 Unicode characters
-        /// in length and can't be prefixed with "<code>aws:</code>" or "<code>rds:</code>". The
-        /// string can contain only the set of Unicode letters, digits, white space, '_', '.',
-        /// '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+        /// in length and can't be prefixed with "<c>aws:</c>" or "<c>rds:</c>". The string can
+        /// contain only the set of Unicode letters, digits, white space, '_', '.', '/', '=',
+        /// '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
         /// </para>
         /// </summary>
         public string Key
@@ -61,9 +62,9 @@ namespace Amazon.DocDB.Model
         /// Gets and sets the property Value. 
         /// <para>
         /// The optional value of the tag. The string value can be from 1 to 256 Unicode characters
-        /// in length and can't be prefixed with "<code>aws:</code>" or "<code>rds:</code>". The
-        /// string can contain only the set of Unicode letters, digits, white space, '_', '.',
-        /// '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+        /// in length and can't be prefixed with "<c>aws:</c>" or "<c>rds:</c>". The string can
+        /// contain only the set of Unicode letters, digits, white space, '_', '.', '/', '=',
+        /// '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
         /// </para>
         /// </summary>
         public string Value

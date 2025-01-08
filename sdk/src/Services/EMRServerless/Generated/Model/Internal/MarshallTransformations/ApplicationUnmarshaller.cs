@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Application Unmarshall(JsonUnmarshallerContext context)
         {
+            Application unmarshalledObject = new Application();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Application unmarshalledObject = new Application();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -112,6 +114,12 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     unmarshalledObject.InitialCapacity = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("interactiveConfiguration", targetDepth))
+                {
+                    var unmarshaller = InteractiveConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.InteractiveConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("maximumCapacity", targetDepth))
                 {
                     var unmarshaller = MaximumAllowedResourcesUnmarshaller.Instance;
@@ -146,6 +154,12 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = new ListUnmarshaller<Configuration, ConfigurationUnmarshaller>(ConfigurationUnmarshaller.Instance);
                     unmarshalledObject.RuntimeConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("schedulerConfiguration", targetDepth))
+                {
+                    var unmarshaller = SchedulerConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.SchedulerConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("state", targetDepth))
@@ -185,7 +199,6 @@ namespace Amazon.EMRServerless.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

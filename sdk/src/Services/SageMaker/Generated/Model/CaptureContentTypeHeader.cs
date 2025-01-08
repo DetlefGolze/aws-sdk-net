@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Configuration specifying how to treat different headers. If no headers are specified
-    /// Amazon SageMaker will by default base64 encode when capturing the data.
+    /// Amazon SageMaker AI will by default base64 encode when capturing the data.
     /// </summary>
     public partial class CaptureContentTypeHeader
     {
-        private List<string> _csvContentTypes = new List<string>();
-        private List<string> _jsonContentTypes = new List<string>();
+        private List<string> _csvContentTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _jsonContentTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CsvContentTypes. 
         /// <para>
-        /// The list of all content type headers that Amazon SageMaker will treat as CSV and capture
-        /// accordingly.
+        /// The list of all content type headers that Amazon SageMaker AI will treat as CSV and
+        /// capture accordingly.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -54,13 +55,13 @@ namespace Amazon.SageMaker.Model
         // Check to see if CsvContentTypes property is set
         internal bool IsSetCsvContentTypes()
         {
-            return this._csvContentTypes != null && this._csvContentTypes.Count > 0; 
+            return this._csvContentTypes != null && (this._csvContentTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property JsonContentTypes. 
         /// <para>
-        /// The list of all content type headers that SageMaker will treat as JSON and capture
+        /// The list of all content type headers that SageMaker AI will treat as JSON and capture
         /// accordingly.
         /// </para>
         /// </summary>
@@ -74,7 +75,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if JsonContentTypes property is set
         internal bool IsSetJsonContentTypes()
         {
-            return this._jsonContentTypes != null && this._jsonContentTypes.Count > 0; 
+            return this._jsonContentTypes != null && (this._jsonContentTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

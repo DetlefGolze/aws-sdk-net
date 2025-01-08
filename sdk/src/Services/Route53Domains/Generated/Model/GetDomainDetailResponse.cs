@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Domains.Model
 {
     /// <summary>
@@ -38,19 +39,21 @@ namespace Amazon.Route53Domains.Model
         private ContactDetail _adminContact;
         private bool? _adminPrivacy;
         private bool? _autoRenew;
+        private ContactDetail _billingContact;
+        private bool? _billingPrivacy;
         private DateTime? _creationDate;
         private string _dnsSec;
-        private List<DnssecKey> _dnssecKeys = new List<DnssecKey>();
+        private List<DnssecKey> _dnssecKeys = AWSConfigs.InitializeCollections ? new List<DnssecKey>() : null;
         private string _domainName;
         private DateTime? _expirationDate;
-        private List<Nameserver> _nameservers = new List<Nameserver>();
+        private List<Nameserver> _nameservers = AWSConfigs.InitializeCollections ? new List<Nameserver>() : null;
         private ContactDetail _registrantContact;
         private bool? _registrantPrivacy;
         private string _registrarName;
         private string _registrarUrl;
         private string _registryDomainId;
         private string _reseller;
-        private List<string> _statusList = new List<string>();
+        private List<string> _statusList = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ContactDetail _techContact;
         private bool? _techPrivacy;
         private DateTime? _updatedDate;
@@ -119,10 +122,9 @@ namespace Amazon.Route53Domains.Model
         /// Gets and sets the property AdminPrivacy. 
         /// <para>
         /// Specifies whether contact information is concealed from WHOIS queries. If the value
-        /// is <code>true</code>, WHOIS ("who is") queries return contact information either for
-        /// Amazon Registrar (for .com, .net, and .org domains) or for our registrar associate,
-        /// Gandi (for all other TLDs). If the value is <code>false</code>, WHOIS queries return
-        /// the information that you entered for the admin contact.
+        /// is <c>true</c>, WHOIS ("who is") queries return contact information either for Amazon
+        /// Registrar or for our registrar associate, Gandi. If the value is <c>false</c>, WHOIS
+        /// queries return the information that you entered for the admin contact.
         /// </para>
         /// </summary>
         public bool AdminPrivacy
@@ -153,6 +155,46 @@ namespace Amazon.Route53Domains.Model
         internal bool IsSetAutoRenew()
         {
             return this._autoRenew.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property BillingContact. 
+        /// <para>
+        /// Provides details about the domain billing contact.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true)]
+        public ContactDetail BillingContact
+        {
+            get { return this._billingContact; }
+            set { this._billingContact = value; }
+        }
+
+        // Check to see if BillingContact property is set
+        internal bool IsSetBillingContact()
+        {
+            return this._billingContact != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property BillingPrivacy. 
+        /// <para>
+        /// Specifies whether contact information is concealed from WHOIS queries. If the value
+        /// is <c>true</c>, WHOIS ("who is") queries return contact information either for Amazon
+        /// Registrar or for our registrar associate, Gandi. If the value is <c>false</c>, WHOIS
+        /// queries return the information that you entered for the billing contact.
+        /// </para>
+        /// </summary>
+        public bool BillingPrivacy
+        {
+            get { return this._billingPrivacy.GetValueOrDefault(); }
+            set { this._billingPrivacy = value; }
+        }
+
+        // Check to see if BillingPrivacy property is set
+        internal bool IsSetBillingPrivacy()
+        {
+            return this._billingPrivacy.HasValue; 
         }
 
         /// <summary>
@@ -207,7 +249,7 @@ namespace Amazon.Route53Domains.Model
         // Check to see if DnssecKeys property is set
         internal bool IsSetDnssecKeys()
         {
-            return this._dnssecKeys != null && this._dnssecKeys.Count > 0; 
+            return this._dnssecKeys != null && (this._dnssecKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -263,7 +305,7 @@ namespace Amazon.Route53Domains.Model
         // Check to see if Nameservers property is set
         internal bool IsSetNameservers()
         {
-            return this._nameservers != null && this._nameservers.Count > 0; 
+            return this._nameservers != null && (this._nameservers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -289,10 +331,10 @@ namespace Amazon.Route53Domains.Model
         /// Gets and sets the property RegistrantPrivacy. 
         /// <para>
         /// Specifies whether contact information is concealed from WHOIS queries. If the value
-        /// is <code>true</code>, WHOIS ("who is") queries return contact information either for
-        /// Amazon Registrar (for .com, .net, and .org domains) or for our registrar associate,
-        /// Gandi (for all other TLDs). If the value is <code>false</code>, WHOIS queries return
-        /// the information that you entered for the registrant contact (domain owner).
+        /// is <c>true</c>, WHOIS ("who is") queries return contact information either for Amazon
+        /// Registrar or for our registrar associate, Gandi. If the value is <c>false</c>, WHOIS
+        /// queries return the information that you entered for the registrant contact (domain
+        /// owner).
         /// </para>
         /// </summary>
         public bool RegistrantPrivacy
@@ -310,10 +352,7 @@ namespace Amazon.Route53Domains.Model
         /// <summary>
         /// Gets and sets the property RegistrarName. 
         /// <para>
-        /// Name of the registrar of the domain as identified in the registry. Domains with a
-        /// .com, .net, or .org TLD are registered by Amazon Registrar. All other domains are
-        /// registered by our registrar associate, Gandi. The value for domains that are registered
-        /// by Gandi is <code>"GANDI SAS"</code>. 
+        /// Name of the registrar of the domain as identified in the registry. 
         /// </para>
         /// </summary>
         public string RegistrarName
@@ -368,7 +407,7 @@ namespace Amazon.Route53Domains.Model
         /// Gets and sets the property Reseller. 
         /// <para>
         /// Reseller of the domain. Domains registered or transferred using Route 53 domains will
-        /// have <code>"Amazon"</code> as the reseller. 
+        /// have <c>"Amazon"</c> as the reseller. 
         /// </para>
         /// </summary>
         public string Reseller
@@ -401,8 +440,8 @@ namespace Amazon.Route53Domains.Model
         /// <para>
         /// For a current list of domain name status codes and an explanation of what each code
         /// means, go to the <a href="https://www.icann.org/">ICANN website</a> and search for
-        /// <code>epp status codes</code>. (Search on the ICANN website; web searches sometimes
-        /// return an old version of the document.)
+        /// <c>epp status codes</c>. (Search on the ICANN website; web searches sometimes return
+        /// an old version of the document.)
         /// </para>
         /// </summary>
         public List<string> StatusList
@@ -414,7 +453,7 @@ namespace Amazon.Route53Domains.Model
         // Check to see if StatusList property is set
         internal bool IsSetStatusList()
         {
-            return this._statusList != null && this._statusList.Count > 0; 
+            return this._statusList != null && (this._statusList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -440,10 +479,9 @@ namespace Amazon.Route53Domains.Model
         /// Gets and sets the property TechPrivacy. 
         /// <para>
         /// Specifies whether contact information is concealed from WHOIS queries. If the value
-        /// is <code>true</code>, WHOIS ("who is") queries return contact information either for
-        /// Amazon Registrar (for .com, .net, and .org domains) or for our registrar associate,
-        /// Gandi (for all other TLDs). If the value is <code>false</code>, WHOIS queries return
-        /// the information that you entered for the technical contact.
+        /// is <c>true</c>, WHOIS ("who is") queries return contact information either for Amazon
+        /// Registrar or for our registrar associate, Gandi. If the value is <c>false</c>, WHOIS
+        /// queries return the information that you entered for the technical contact.
         /// </para>
         /// </summary>
         public bool TechPrivacy

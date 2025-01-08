@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -35,22 +36,22 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class ConfluenceAttachmentConfiguration
     {
-        private List<ConfluenceAttachmentToIndexFieldMapping> _attachmentFieldMappings = new List<ConfluenceAttachmentToIndexFieldMapping>();
+        private List<ConfluenceAttachmentToIndexFieldMapping> _attachmentFieldMappings = AWSConfigs.InitializeCollections ? new List<ConfluenceAttachmentToIndexFieldMapping>() : null;
         private bool? _crawlAttachments;
 
         /// <summary>
         /// Gets and sets the property AttachmentFieldMappings. 
         /// <para>
         /// Maps attributes or field names of Confluence attachments to Amazon Kendra index field
-        /// names. To create custom fields, use the <code>UpdateIndex</code> API before you map
-        /// to Confluence fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// names. To create custom fields, use the <c>UpdateIndex</c> API before you map to Confluence
+        /// fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The Confluence data source field names must exist in your
         /// Confluence custom metadata.
         /// </para>
         ///  
         /// <para>
-        /// If you specify the <code>AttachentFieldMappings</code> parameter, you must specify
-        /// at least one field mapping.
+        /// If you specify the <c>AttachentFieldMappings</c> parameter, you must specify at least
+        /// one field mapping.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=11)]
@@ -63,13 +64,13 @@ namespace Amazon.Kendra.Model
         // Check to see if AttachmentFieldMappings property is set
         internal bool IsSetAttachmentFieldMappings()
         {
-            return this._attachmentFieldMappings != null && this._attachmentFieldMappings.Count > 0; 
+            return this._attachmentFieldMappings != null && (this._attachmentFieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CrawlAttachments. 
         /// <para>
-        ///  <code>TRUE</code> to index attachments of pages and blogs in Confluence.
+        ///  <c>TRUE</c> to index attachments of pages and blogs in Confluence.
         /// </para>
         /// </summary>
         public bool CrawlAttachments

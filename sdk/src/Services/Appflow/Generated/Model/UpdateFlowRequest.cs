@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -36,32 +37,32 @@ namespace Amazon.Appflow.Model
     {
         private string _clientToken;
         private string _description;
-        private List<DestinationFlowConfig> _destinationFlowConfigList = new List<DestinationFlowConfig>();
+        private List<DestinationFlowConfig> _destinationFlowConfigList = AWSConfigs.InitializeCollections ? new List<DestinationFlowConfig>() : null;
         private string _flowName;
         private MetadataCatalogConfig _metadataCatalogConfig;
         private SourceFlowConfig _sourceFlowConfig;
-        private List<Task> _tasks = new List<Task>();
+        private List<Task> _tasks = AWSConfigs.InitializeCollections ? new List<Task>() : null;
         private TriggerConfig _triggerConfig;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
         /// <para>
-        /// The <code>clientToken</code> parameter is an idempotency token. It ensures that your
-        /// <code>UpdateFlow</code> request completes only once. You choose the value to pass.
-        /// For example, if you don't receive a response from your request, you can safely retry
-        /// the request with the same <code>clientToken</code> parameter value.
+        /// The <c>clientToken</c> parameter is an idempotency token. It ensures that your <c>UpdateFlow</c>
+        /// request completes only once. You choose the value to pass. For example, if you don't
+        /// receive a response from your request, you can safely retry the request with the same
+        /// <c>clientToken</c> parameter value.
         /// </para>
         ///  
         /// <para>
-        /// If you omit a <code>clientToken</code> value, the Amazon Web Services SDK that you
-        /// are using inserts a value for you. This way, the SDK can safely retry requests multiple
-        /// times after a network error. You must provide your own value for other use cases.
+        /// If you omit a <c>clientToken</c> value, the Amazon Web Services SDK that you are using
+        /// inserts a value for you. This way, the SDK can safely retry requests multiple times
+        /// after a network error. You must provide your own value for other use cases.
         /// </para>
         ///  
         /// <para>
         /// If you specify input parameters that differ from your first request, an error occurs.
-        /// If you use a different value for <code>clientToken</code>, Amazon AppFlow considers
-        /// it a new call to <code>UpdateFlow</code>. The token is active for 8 hours.
+        /// If you use a different value for <c>clientToken</c>, Amazon AppFlow considers it a
+        /// new call to <c>UpdateFlow</c>. The token is active for 8 hours.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -113,7 +114,7 @@ namespace Amazon.Appflow.Model
         // Check to see if DestinationFlowConfigList property is set
         internal bool IsSetDestinationFlowConfigList()
         {
-            return this._destinationFlowConfigList != null && this._destinationFlowConfigList.Count > 0; 
+            return this._destinationFlowConfigList != null && (this._destinationFlowConfigList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -189,7 +190,7 @@ namespace Amazon.Appflow.Model
         // Check to see if Tasks property is set
         internal bool IsSetTasks()
         {
-            return this._tasks != null && this._tasks.Count > 0; 
+            return this._tasks != null && (this._tasks.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

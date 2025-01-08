@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class ContentSourceConfiguration
     {
-        private List<string> _dataSourceIds = new List<string>();
+        private List<string> _dataSourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _directPutContent;
-        private List<string> _faqIds = new List<string>();
+        private List<string> _faqIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DataSourceIds. 
@@ -54,13 +55,13 @@ namespace Amazon.Kendra.Model
         // Check to see if DataSourceIds property is set
         internal bool IsSetDataSourceIds()
         {
-            return this._dataSourceIds != null && this._dataSourceIds.Count > 0; 
+            return this._dataSourceIds != null && (this._dataSourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DirectPutContent. 
         /// <para>
-        ///  <code>TRUE</code> to use documents you indexed directly using the <code>BatchPutDocument</code>
+        ///  <c>TRUE</c> to use documents you indexed directly using the <c>BatchPutDocument</c>
         /// API.
         /// </para>
         /// </summary>
@@ -92,7 +93,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FaqIds property is set
         internal bool IsSetFaqIds()
         {
-            return this._faqIds != null && this._faqIds.Count > 0; 
+            return this._faqIds != null && (this._faqIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

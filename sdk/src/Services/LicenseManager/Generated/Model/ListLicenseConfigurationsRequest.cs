@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LicenseManager.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.LicenseManager.Model
     /// </summary>
     public partial class ListLicenseConfigurationsRequest : AmazonLicenseManagerRequest
     {
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _licenseConfigurationArns = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _licenseConfigurationArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -46,19 +47,19 @@ namespace Amazon.LicenseManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>licenseCountingType</code> - The dimension for which licenses are counted.
-        /// Possible values are <code>vCPU</code> | <code>Instance</code> | <code>Core</code>
-        /// | <code>Socket</code>. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.
+        ///  <c>licenseCountingType</c> - The dimension for which licenses are counted. Possible
+        /// values are <c>vCPU</c> | <c>Instance</c> | <c>Core</c> | <c>Socket</c>. Logical operators
+        /// are <c>EQUALS</c> | <c>NOT_EQUALS</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>enforceLicenseCount</code> - A Boolean value that indicates whether hard license
-        /// enforcement is used. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.
+        ///  <c>enforceLicenseCount</c> - A Boolean value that indicates whether hard license
+        /// enforcement is used. Logical operators are <c>EQUALS</c> | <c>NOT_EQUALS</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>usagelimitExceeded</code> - A Boolean value that indicates whether the available
-        /// licenses have been exceeded. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.
+        ///  <c>usagelimitExceeded</c> - A Boolean value that indicates whether the available
+        /// licenses have been exceeded. Logical operators are <c>EQUALS</c> | <c>NOT_EQUALS</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -71,7 +72,7 @@ namespace Amazon.LicenseManager.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace Amazon.LicenseManager.Model
         // Check to see if LicenseConfigurationArns property is set
         internal bool IsSetLicenseConfigurationArns()
         {
-            return this._licenseConfigurationArns != null && this._licenseConfigurationArns.Count > 0; 
+            return this._licenseConfigurationArns != null && (this._licenseConfigurationArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

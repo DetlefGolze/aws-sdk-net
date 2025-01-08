@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.CloudFormation.Model
     /// Publishes the specified extension to the CloudFormation registry as a public extension
     /// in this Region. Public extensions are available for use by all CloudFormation users.
     /// For more information about publishing extensions, see <a href="https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/publish-extension.html">Publishing
-    /// extensions to make them available for public use</a> in the <i>CloudFormation CLI
-    /// User Guide</i>.
+    /// extensions to make them available for public use</a> in the <i>CloudFormation Command
+    /// Line Interface (CLI) User Guide</i>.
     /// 
     ///  
     /// <para>
@@ -56,7 +57,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code> and <code>Type</code>.
+        /// Conditional: You must specify <c>Arn</c>, or <c>TypeName</c> and <c>Type</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]
@@ -84,7 +85,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>MAJOR.MINOR.PATCH</code> 
+        ///  <c>MAJOR.MINOR.PATCH</c> 
         /// </para>
         ///  
         /// <para>
@@ -98,7 +99,7 @@ namespace Amazon.CloudFormation.Model
         ///  
         /// <para>
         /// You cannot specify a version number the first time you publish a type. CloudFormation
-        /// automatically sets the first version number to be <code>1.0.0</code>.
+        /// automatically sets the first version number to be <c>1.0.0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5)]
@@ -121,7 +122,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code> and <code>Type</code>.
+        /// Conditional: You must specify <c>Arn</c>, or <c>TypeName</c> and <c>Type</c>.
         /// </para>
         /// </summary>
         public ThirdPartyType Type
@@ -143,7 +144,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>Arn</code>, or <code>TypeName</code> and <code>Type</code>.
+        /// Conditional: You must specify <c>Arn</c>, or <c>TypeName</c> and <c>Type</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=10, Max=204)]

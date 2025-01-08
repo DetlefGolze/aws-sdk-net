@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
-    /// Represents the output of a <code>ListGitHubAccountTokenNames</code> operation.
+    /// Represents the output of a <c>ListGitHubAccountTokenNames</c> operation.
     /// </summary>
     public partial class ListGitHubAccountTokenNamesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<string> _tokenNameList = new List<string>();
+        private List<string> _tokenNameList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If a large amount of information is returned, an identifier is also returned. It can
-        /// be used in a subsequent <code>ListGitHubAccountTokenNames</code> call to return the
-        /// next set of names in the list. 
+        /// be used in a subsequent <c>ListGitHubAccountTokenNames</c> call to return the next
+        /// set of names in the list. 
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if TokenNameList property is set
         internal bool IsSetTokenNameList()
         {
-            return this._tokenNameList != null && this._tokenNameList.Count > 0; 
+            return this._tokenNameList != null && (this._tokenNameList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

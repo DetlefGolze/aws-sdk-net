@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.VPCLattice.Model
         private int? _port;
         private ListenerProtocol _protocol;
         private string _serviceIdentifier;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -70,11 +71,8 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property DefaultAction. 
         /// <para>
-        /// The action for the default rule. Each listener has a default rule. Each rule consists
-        /// of a priority, one or more actions, and one or more conditions. The default rule is
-        /// the rule that's used if no other rules match. Each rule must include exactly one of
-        /// the following types of actions: <code>forward </code>or <code>fixed-response</code>,
-        /// and it must be the last action to be performed. 
+        /// The action for the default rule. Each listener has a default rule. The default rule
+        /// is used if no other rules match.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -114,8 +112,8 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property Port. 
         /// <para>
-        /// The listener port. You can specify a value from <code>1</code> to <code>65535</code>.
-        /// For HTTP, the default is <code>80</code>. For HTTPS, the default is <code>443</code>.
+        /// The listener port. You can specify a value from 1 to 65535. For HTTP, the default
+        /// is 80. For HTTPS, the default is 443.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=65535)]
@@ -134,7 +132,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property Protocol. 
         /// <para>
-        /// The listener protocol HTTP or HTTPS.
+        /// The listener protocol.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -153,7 +151,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ServiceIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the service.
+        /// The ID or ARN of the service.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=17, Max=2048)]
@@ -185,7 +183,7 @@ namespace Amazon.VPCLattice.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

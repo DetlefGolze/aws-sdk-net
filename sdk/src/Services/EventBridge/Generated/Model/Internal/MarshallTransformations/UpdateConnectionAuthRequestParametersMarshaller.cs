@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(UpdateConnectionAuthRequestParameters requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetApiKeyAuthParameters())
             {
                 context.Writer.WritePropertyName("ApiKeyAuthParameters");
@@ -63,6 +66,17 @@ namespace Amazon.EventBridge.Model.Internal.MarshallTransformations
 
                 var marshaller = UpdateConnectionBasicAuthRequestParametersMarshaller.Instance;
                 marshaller.Marshall(requestObject.BasicAuthParameters, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetConnectivityParameters())
+            {
+                context.Writer.WritePropertyName("ConnectivityParameters");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ConnectivityResourceParametersMarshaller.Instance;
+                marshaller.Marshall(requestObject.ConnectivityParameters, context);
 
                 context.Writer.WriteObjectEnd();
             }

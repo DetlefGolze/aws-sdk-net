@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.Rekognition.Model
     public partial class IndexFacesResponse : AmazonWebServiceResponse
     {
         private string _faceModelVersion;
-        private List<FaceRecord> _faceRecords = new List<FaceRecord>();
+        private List<FaceRecord> _faceRecords = AWSConfigs.InitializeCollections ? new List<FaceRecord>() : null;
         private OrientationCorrection _orientationCorrection;
-        private List<UnindexedFace> _unindexedFaces = new List<UnindexedFace>();
+        private List<UnindexedFace> _unindexedFaces = AWSConfigs.InitializeCollections ? new List<UnindexedFace>() : null;
 
         /// <summary>
         /// Gets and sets the property FaceModelVersion. 
         /// <para>
         /// The version number of the face detection model that's associated with the input collection
-        /// (<code>CollectionId</code>).
+        /// (<c>CollectionId</c>).
         /// </para>
         /// </summary>
         public string FaceModelVersion
@@ -73,15 +74,15 @@ namespace Amazon.Rekognition.Model
         // Check to see if FaceRecords property is set
         internal bool IsSetFaceRecords()
         {
-            return this._faceRecords != null && this._faceRecords.Count > 0; 
+            return this._faceRecords != null && (this._faceRecords.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property OrientationCorrection. 
         /// <para>
         /// If your collection is associated with a face detection model that's later than version
-        /// 3.0, the value of <code>OrientationCorrection</code> is always null and no orientation
-        /// information is returned.
+        /// 3.0, the value of <c>OrientationCorrection</c> is always null and no orientation information
+        /// is returned.
         /// </para>
         ///  
         /// <para>
@@ -95,7 +96,7 @@ namespace Amazon.Rekognition.Model
         /// orientation information to perform image correction - the bounding box coordinates
         /// are translated to represent object locations after the orientation information in
         /// the Exif metadata is used to correct the image orientation. Images in .png format
-        /// don't contain Exif metadata. The value of <code>OrientationCorrection</code> is null.
+        /// don't contain Exif metadata. The value of <c>OrientationCorrection</c> is null.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -106,9 +107,8 @@ namespace Amazon.Rekognition.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Bounding box information is returned in the <code>FaceRecords</code> array. You can
-        /// get the version of the face detection model by calling <a>DescribeCollection</a>.
-        /// 
+        /// Bounding box information is returned in the <c>FaceRecords</c> array. You can get
+        /// the version of the face detection model by calling <a>DescribeCollection</a>. 
         /// </para>
         /// </summary>
         public OrientationCorrection OrientationCorrection
@@ -127,8 +127,8 @@ namespace Amazon.Rekognition.Model
         /// Gets and sets the property UnindexedFaces. 
         /// <para>
         /// An array of faces that were detected in the image but weren't indexed. They weren't
-        /// indexed because the quality filter identified them as low quality, or the <code>MaxFaces</code>
-        /// request parameter filtered them out. To use the quality filter, you specify the <code>QualityFilter</code>
+        /// indexed because the quality filter identified them as low quality, or the <c>MaxFaces</c>
+        /// request parameter filtered them out. To use the quality filter, you specify the <c>QualityFilter</c>
         /// request parameter.
         /// </para>
         /// </summary>
@@ -141,7 +141,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if UnindexedFaces property is set
         internal bool IsSetUnindexedFaces()
         {
-            return this._unindexedFaces != null && this._unindexedFaces.Count > 0; 
+            return this._unindexedFaces != null && (this._unindexedFaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

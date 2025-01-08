@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.FMS.Model
     public partial class ListProtocolsListsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ProtocolsListDataSummary> _protocolsLists = new List<ProtocolsListDataSummary>();
+        private List<ProtocolsListDataSummary> _protocolsLists = AWSConfigs.InitializeCollections ? new List<ProtocolsListDataSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If you specify a value for <code>MaxResults</code> in your list request, and you have
-        /// more objects than the maximum, Firewall Manager returns this token in the response.
-        /// You can use this token in subsequent requests to retrieve the next batch of objects.
+        /// If you specify a value for <c>MaxResults</c> in your list request, and you have more
+        /// objects than the maximum, Firewall Manager returns this token in the response. You
+        /// can use this token in subsequent requests to retrieve the next batch of objects.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -60,7 +61,7 @@ namespace Amazon.FMS.Model
         /// <summary>
         /// Gets and sets the property ProtocolsLists. 
         /// <para>
-        /// An array of <code>ProtocolsListDataSummary</code> objects.
+        /// An array of <c>ProtocolsListDataSummary</c> objects.
         /// </para>
         /// </summary>
         public List<ProtocolsListDataSummary> ProtocolsLists
@@ -72,7 +73,7 @@ namespace Amazon.FMS.Model
         // Check to see if ProtocolsLists property is set
         internal bool IsSetProtocolsLists()
         {
-            return this._protocolsLists != null && this._protocolsLists.Count > 0; 
+            return this._protocolsLists != null && (this._protocolsLists.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

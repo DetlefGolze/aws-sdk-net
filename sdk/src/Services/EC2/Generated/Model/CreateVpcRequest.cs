@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.EC2.Model
     ///  
     /// <para>
     /// You can optionally request an IPv6 CIDR block for the VPC. You can request an Amazon-provided
-    /// IPv6 CIDR block from Amazon's pool of IPv6 addresses, or an IPv6 CIDR block from an
+    /// IPv6 CIDR block from Amazon's pool of IPv6 addresses or an IPv6 CIDR block from an
     /// IPv6 address pool that you provisioned through bring your own IP addresses (<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html">BYOIP</a>).
     /// </para>
     ///  
@@ -65,7 +66,7 @@ namespace Amazon.EC2.Model
         private string _ipv6IpamPoolId;
         private int? _ipv6NetmaskLength;
         private string _ipv6Pool;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -75,7 +76,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates CreateVpcRequest with the parameterized properties
         /// </summary>
-        /// <param name="cidrBlock">The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</param>
+        /// <param name="cidrBlock">The IPv4 network range for the VPC, in CIDR notation. For example, <c>10.0.0.0/16</c>. We modify the specified CIDR block to its canonical form; for example, if you specify <c>100.68.0.18/18</c>, we modify it to <c>100.68.0.0/18</c>.</param>
         public CreateVpcRequest(string cidrBlock)
         {
             _cidrBlock = cidrBlock;
@@ -103,9 +104,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property CidrBlock. 
         /// <para>
-        /// The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>.
+        /// The IPv4 network range for the VPC, in CIDR notation. For example, <c>10.0.0.0/16</c>.
         /// We modify the specified CIDR block to its canonical form; for example, if you specify
-        /// <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.
+        /// <c>100.68.0.18/18</c>, we modify it to <c>100.68.0.0/18</c>.
         /// </para>
         /// </summary>
         public string CidrBlock
@@ -123,20 +124,20 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property InstanceTenancy. 
         /// <para>
-        /// The tenancy options for instances launched into the VPC. For <code>default</code>,
-        /// instances are launched with shared tenancy by default. You can launch instances with
-        /// any tenancy into a shared tenancy VPC. For <code>dedicated</code>, instances are launched
-        /// as dedicated tenancy instances by default. You can only launch instances with a tenancy
-        /// of <code>dedicated</code> or <code>host</code> into a dedicated tenancy VPC. 
+        /// The tenancy options for instances launched into the VPC. For <c>default</c>, instances
+        /// are launched with shared tenancy by default. You can launch instances with any tenancy
+        /// into a shared tenancy VPC. For <c>dedicated</c>, instances are launched as dedicated
+        /// tenancy instances by default. You can only launch instances with a tenancy of <c>dedicated</c>
+        /// or <c>host</c> into a dedicated tenancy VPC. 
         /// </para>
         ///  
         /// <para>
-        ///  <b>Important:</b> The <code>host</code> value cannot be used with this parameter.
-        /// Use the <code>default</code> or <code>dedicated</code> values only.
+        ///  <b>Important:</b> The <c>host</c> value cannot be used with this parameter. Use the
+        /// <c>default</c> or <c>dedicated</c> values only.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>default</code> 
+        /// Default: <c>default</c> 
         /// </para>
         /// </summary>
         public Tenancy InstanceTenancy
@@ -194,7 +195,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Ipv6CidrBlock. 
         /// <para>
-        /// The IPv6 CIDR block from the IPv6 address pool. You must also specify <code>Ipv6Pool</code>
+        /// The IPv6 CIDR block from the IPv6 address pool. You must also specify <c>Ipv6Pool</c>
         /// in the request.
         /// </para>
         ///  
@@ -222,8 +223,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        ///  You must set <code>AmazonProvidedIpv6CidrBlock</code> to <code>true</code> to use
-        /// this parameter.
+        ///  You must set <c>AmazonProvidedIpv6CidrBlock</c> to <c>true</c> to use this parameter.
         /// </para>
         /// </summary>
         public string Ipv6CidrBlockNetworkBorderGroup
@@ -314,7 +314,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

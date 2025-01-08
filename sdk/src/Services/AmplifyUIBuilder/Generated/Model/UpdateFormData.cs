@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
@@ -35,19 +36,18 @@ namespace Amazon.AmplifyUIBuilder.Model
     {
         private FormCTA _cta;
         private FormDataTypeConfig _dataType;
-        private Dictionary<string, FieldConfig> _fields = new Dictionary<string, FieldConfig>();
+        private Dictionary<string, FieldConfig> _fields = AWSConfigs.InitializeCollections ? new Dictionary<string, FieldConfig>() : null;
         private FormActionType _formActionType;
         private LabelDecorator _labelDecorator;
         private string _name;
         private string _schemaVersion;
-        private Dictionary<string, SectionalElement> _sectionalElements = new Dictionary<string, SectionalElement>();
+        private Dictionary<string, SectionalElement> _sectionalElements = AWSConfigs.InitializeCollections ? new Dictionary<string, SectionalElement>() : null;
         private FormStyle _style;
 
         /// <summary>
         /// Gets and sets the property Cta. 
         /// <para>
-        /// The <code>FormCTA</code> object that stores the call to action configuration for the
-        /// form.
+        /// The <c>FormCTA</c> object that stores the call to action configuration for the form.
         /// </para>
         /// </summary>
         public FormCTA Cta
@@ -95,7 +95,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if SectionalElements property is set
         internal bool IsSetSectionalElements()
         {
-            return this._sectionalElements != null && this._sectionalElements.Count > 0; 
+            return this._sectionalElements != null && (this._sectionalElements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

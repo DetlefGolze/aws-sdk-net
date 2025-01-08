@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.TranscribeService.Model
     /// 
     ///  
     /// <para>
-    /// Rules using <code>TranscriptFilter</code> are designed to match:
+    /// Rules using <c>TranscriptFilter</c> are designed to match:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -61,7 +62,7 @@ namespace Amazon.TranscribeService.Model
         private bool? _negate;
         private ParticipantRole _participantRole;
         private RelativeTimeRange _relativeTimeRange;
-        private List<string> _targets = new List<string>();
+        private List<string> _targets = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private TranscriptFilterType _transcriptFilterType;
 
         /// <summary>
@@ -86,9 +87,9 @@ namespace Amazon.TranscribeService.Model
         /// <summary>
         /// Gets and sets the property Negate. 
         /// <para>
-        /// Set to <code>TRUE</code> to flag the absence of the phrase that you specified in your
-        /// request. Set to <code>FALSE</code> to flag the presence of the phrase that you specified
-        /// in your request.
+        /// Set to <c>TRUE</c> to flag the absence of the phrase that you specified in your request.
+        /// Set to <c>FALSE</c> to flag the presence of the phrase that you specified in your
+        /// request.
         /// </para>
         /// </summary>
         public bool Negate
@@ -157,15 +158,15 @@ namespace Amazon.TranscribeService.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TranscriptFilterType. 
         /// <para>
         /// Flag the presence or absence of an exact match to the phrases that you specify. For
-        /// example, if you specify the phrase "speak to a manager" as your <code>Targets</code>
-        /// value, only that exact phrase is flagged.
+        /// example, if you specify the phrase "speak to a manager" as your <c>Targets</c> value,
+        /// only that exact phrase is flagged.
         /// </para>
         ///  
         /// <para>

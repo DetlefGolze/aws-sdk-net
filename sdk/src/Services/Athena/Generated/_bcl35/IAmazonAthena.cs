@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Athena.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Athena
 {
     /// <summary>
-    /// Interface for accessing Athena
+    /// <para>Interface for accessing Athena</para>
     ///
     /// Amazon Athena is an interactive query service that lets you use standard SQL to analyze
     /// data directly in Amazon S3. You can point Athena at your data in Amazon S3 and run
@@ -43,11 +44,6 @@ namespace Amazon.Athena
     /// later with the Amazon Athena API. Earlier version drivers do not support the API.
     /// For more information and to download the driver, see <a href="https://docs.aws.amazon.com/athena/latest/ug/connect-with-jdbc.html">Accessing
     /// Amazon Athena with JDBC</a>.
-    /// </para>
-    ///  
-    /// <para>
-    /// For code samples using the Amazon Web Services SDK for Java, see <a href="https://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
-    /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
     /// </para>
     /// </summary>
     public partial interface IAmazonAthena : IAmazonService, IDisposable
@@ -124,7 +120,7 @@ namespace Amazon.Athena
         /// Returns the details of a single prepared statement or a list of up to 256 prepared
         /// statements for the array of prepared statement names that you provide. Requires you
         /// to have access to the workgroup to which the prepared statements belong. If a prepared
-        /// statement cannot be retrieved for the name specified, the statement is listed in <code>UnprocessedPreparedStatementNames</code>.
+        /// statement cannot be retrieved for the name specified, the statement is listed in <c>UnprocessedPreparedStatementNames</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchGetPreparedStatement service method.</param>
         /// 
@@ -322,6 +318,27 @@ namespace Amazon.Athena
         /// <summary>
         /// Creates (registers) a data catalog with the specified name and properties. Catalogs
         /// created are visible to all users of the same Amazon Web Services account.
+        /// 
+        ///  
+        /// <para>
+        /// This API operation creates the following resources.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// CFN Stack Name with a maximum length of 128 characters and prefix <c>athenafederatedcatalog-CATALOG_NAME_SANITIZED</c>
+        /// with length 23 characters.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Lambda Function Name with a maximum length of 64 characters and prefix <c>athenafederatedcatalog_CATALOG_NAME_SANITIZED</c>
+        /// with length 23 characters.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Glue Connection Name with a maximum length of 255 characters and a prefix <c>athenafederatedcatalog_CATALOG_NAME_SANITIZED</c>
+        /// with length 23 characters. 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateDataCatalog service method.</param>
         /// 
@@ -370,12 +387,6 @@ namespace Amazon.Athena
         /// <summary>
         /// Creates a named query in the specified workgroup. Requires that you have access to
         /// the workgroup.
-        /// 
-        ///  
-        /// <para>
-        /// For code samples using the Amazon Web Services SDK for Java, see <a href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
-        /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateNamedQuery service method.</param>
         /// 
@@ -422,7 +433,7 @@ namespace Amazon.Athena
 
 
         /// <summary>
-        /// Creates an empty <code>ipynb</code> file in the specified Apache Spark enabled workgroup.
+        /// Creates an empty <c>ipynb</c> file in the specified Apache Spark enabled workgroup.
         /// Throws an error if a file in the workgroup with the same name already exists.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateNotebook service method.</param>
@@ -521,9 +532,9 @@ namespace Amazon.Athena
 
         /// <summary>
         /// Gets an authentication token and the URL at which the notebook can be accessed. During
-        /// programmatic access, <code>CreatePresignedNotebookUrl</code> must be called every
-        /// 10 minutes to refresh the authentication token. For information about granting programmatic
-        /// access, see <a href="https://docs.aws.amazon.com/athena/latest/ug/setting-up.html#setting-up-grant-programmatic-access">Grant
+        /// programmatic access, <c>CreatePresignedNotebookUrl</c> must be called every 10 minutes
+        /// to refresh the authentication token. For information about granting programmatic access,
+        /// see <a href="https://docs.aws.amazon.com/athena/latest/ug/setting-up.html#setting-up-grant-programmatic-access">Grant
         /// programmatic access</a>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePresignedNotebookUrl service method.</param>
@@ -625,8 +636,8 @@ namespace Amazon.Athena
         /// Deletes a cancelled capacity reservation. A reservation must be cancelled before it
         /// can be deleted. A deleted reservation is immediately removed from your account and
         /// can no longer be referenced, including by its ARN. A deleted reservation cannot be
-        /// called by <code>GetCapacityReservation</code>, and deleted reservations do not appear
-        /// in the output of <code>ListCapacityReservations</code>.
+        /// called by <c>GetCapacityReservation</c>, and deleted reservations do not appear in
+        /// the output of <c>ListCapacityReservations</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteCapacityReservation service method.</param>
         /// 
@@ -722,12 +733,6 @@ namespace Amazon.Athena
         /// <summary>
         /// Deletes the named query if you have access to the workgroup in which the query was
         /// saved.
-        /// 
-        ///  
-        /// <para>
-        /// For code samples using the Amazon Web Services SDK for Java, see <a href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
-        /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteNamedQuery service method.</param>
         /// 
@@ -1229,10 +1234,9 @@ namespace Amazon.Athena
         /// </exception>
         /// <exception cref="Amazon.Athena.Model.MetadataException">
         /// An exception that Athena received when it called a custom metastore. Occurs if the
-        /// error is not caused by user input (<code>InvalidRequestException</code>) or from the
-        /// Athena platform (<code>InternalServerException</code>). For example, if a user-created
-        /// Lambda function is missing permissions, the Lambda <code>4XX</code> exception is returned
-        /// in a <code>MetadataException</code>.
+        /// error is not caused by user input (<c>InvalidRequestException</c>) or from the Athena
+        /// platform (<c>InternalServerException</c>). For example, if a user-created Lambda function
+        /// is missing permissions, the Lambda <c>4XX</c> exception is returned in a <c>MetadataException</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetDatabase">REST API Reference for GetDatabase Operation</seealso>
         GetDatabaseResponse GetDatabase(GetDatabaseRequest request);
@@ -1513,7 +1517,7 @@ namespace Amazon.Athena
 
 
         /// <summary>
-        /// Streams the results of a single query execution specified by <code>QueryExecutionId</code>
+        /// Streams the results of a single query execution specified by <c>QueryExecutionId</c>
         /// from the Athena query results location in Amazon S3. For more information, see <a
         /// href="https://docs.aws.amazon.com/athena/latest/ug/querying.html">Working with query
         /// results, recent queries, and output files</a> in the <i>Amazon Athena User Guide</i>.
@@ -1522,17 +1526,16 @@ namespace Amazon.Athena
         /// 
         ///  
         /// <para>
-        /// To stream query results successfully, the IAM principal with permission to call <code>GetQueryResults</code>
-        /// also must have permissions to the Amazon S3 <code>GetObject</code> action for the
-        /// Athena query results location.
+        /// To stream query results successfully, the IAM principal with permission to call <c>GetQueryResults</c>
+        /// also must have permissions to the Amazon S3 <c>GetObject</c> action for the Athena
+        /// query results location.
         /// </para>
         ///  <important> 
         /// <para>
-        /// IAM principals with permission to the Amazon S3 <code>GetObject</code> action for
-        /// the query results location are able to retrieve query results from Amazon S3 even
-        /// if permission to the <code>GetQueryResults</code> action is denied. To restrict user
-        /// or role access, ensure that Amazon S3 permissions to the Athena query location are
-        /// denied.
+        /// IAM principals with permission to the Amazon S3 <c>GetObject</c> action for the query
+        /// results location are able to retrieve query results from Amazon S3 even if permission
+        /// to the <c>GetQueryResults</c> action is denied. To restrict user or role access, ensure
+        /// that Amazon S3 permissions to the Athena query location are denied.
         /// </para>
         ///  </important>
         /// </summary>
@@ -1585,10 +1588,12 @@ namespace Amazon.Athena
 
         /// <summary>
         /// Returns query execution runtime statistics related to a single execution of a query
-        /// if you have access to the workgroup in which the query ran. Query execution runtime
-        /// statistics are returned only when <a>QueryExecutionStatus$State</a> is in a SUCCEEDED
-        /// or FAILED state. Stage-level input and output row count and data size statistics are
-        /// not shown when a query has row-level filters defined in Lake Formation.
+        /// if you have access to the workgroup in which the query ran. Statistics from the <c>Timeline</c>
+        /// section of the response object are available as soon as <a>QueryExecutionStatus$State</a>
+        /// is in a SUCCEEDED or FAILED state. The remaining non-timeline statistics in the response
+        /// (like stage-level input and output row count and data size) are updated asynchronously
+        /// and may not be available immediately after a query completes. The non-timeline statistics
+        /// are also not included when a query has row-level filters defined in Lake Formation.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetQueryRuntimeStatistics service method.</param>
         /// 
@@ -1750,10 +1755,9 @@ namespace Amazon.Athena
         /// </exception>
         /// <exception cref="Amazon.Athena.Model.MetadataException">
         /// An exception that Athena received when it called a custom metastore. Occurs if the
-        /// error is not caused by user input (<code>InvalidRequestException</code>) or from the
-        /// Athena platform (<code>InternalServerException</code>). For example, if a user-created
-        /// Lambda function is missing permissions, the Lambda <code>4XX</code> exception is returned
-        /// in a <code>MetadataException</code>.
+        /// error is not caused by user input (<c>InvalidRequestException</c>) or from the Athena
+        /// platform (<c>InternalServerException</c>). For example, if a user-created Lambda function
+        /// is missing permissions, the Lambda <c>4XX</c> exception is returned in a <c>MetadataException</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetTableMetadata">REST API Reference for GetTableMetadata Operation</seealso>
         GetTableMetadataResponse GetTableMetadata(GetTableMetadataRequest request);
@@ -1837,9 +1841,11 @@ namespace Amazon.Athena
 
 
         /// <summary>
-        /// Imports a single <code>ipynb</code> file to a Spark enabled workgroup. The maximum
-        /// file size that can be imported is 10 megabytes. If an <code>ipynb</code> file with
-        /// the same name already exists in the workgroup, throws an error.
+        /// Imports a single <c>ipynb</c> file to a Spark enabled workgroup. To import the notebook,
+        /// the request must specify a value for either <c>Payload</c> or <c>NoteBookS3LocationUri</c>.
+        /// If neither is specified or both are specified, an <c>InvalidRequestException</c> occurs.
+        /// The maximum file size that can be imported is 10 megabytes. If an <c>ipynb</c> file
+        /// with the same name already exists in the workgroup, throws an error.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportNotebook service method.</param>
         /// 
@@ -1890,7 +1896,7 @@ namespace Amazon.Athena
 
         /// <summary>
         /// Returns the supported DPU sizes for the supported application runtimes (for example,
-        /// <code>Athena notebook version 1</code>).
+        /// <c>Athena notebook version 1</c>).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListApplicationDPUSizes service method.</param>
         /// 
@@ -2052,10 +2058,9 @@ namespace Amazon.Athena
         /// </exception>
         /// <exception cref="Amazon.Athena.Model.MetadataException">
         /// An exception that Athena received when it called a custom metastore. Occurs if the
-        /// error is not caused by user input (<code>InvalidRequestException</code>) or from the
-        /// Athena platform (<code>InternalServerException</code>). For example, if a user-created
-        /// Lambda function is missing permissions, the Lambda <code>4XX</code> exception is returned
-        /// in a <code>MetadataException</code>.
+        /// error is not caused by user input (<c>InvalidRequestException</c>) or from the Athena
+        /// platform (<c>InternalServerException</c>). For example, if a user-created Lambda function
+        /// is missing permissions, the Lambda <c>4XX</c> exception is returned in a <c>MetadataException</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListDatabases">REST API Reference for ListDatabases Operation</seealso>
         ListDatabasesResponse ListDatabases(ListDatabasesRequest request);
@@ -2249,12 +2254,6 @@ namespace Amazon.Athena
         /// Provides a list of available query IDs only for queries saved in the specified workgroup.
         /// Requires that you have access to the specified workgroup. If a workgroup is not specified,
         /// lists the saved queries for the primary workgroup.
-        /// 
-        ///  
-        /// <para>
-        /// For code samples using the Amazon Web Services SDK for Java, see <a href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
-        /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListNamedQueries service method.</param>
         /// 
@@ -2352,8 +2351,8 @@ namespace Amazon.Athena
 
         /// <summary>
         /// Lists, in descending order, the sessions that have been created in a notebook that
-        /// are in an active state like <code>CREATING</code>, <code>CREATED</code>, <code>IDLE</code>
-        /// or <code>BUSY</code>. Newer sessions are listed first; older sessions are listed later.
+        /// are in an active state like <c>CREATING</c>, <c>CREATED</c>, <c>IDLE</c> or <c>BUSY</c>.
+        /// Newer sessions are listed first; older sessions are listed later.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListNotebookSessions service method.</param>
         /// 
@@ -2451,15 +2450,9 @@ namespace Amazon.Athena
 
         /// <summary>
         /// Provides a list of available query execution IDs for the queries in the specified
-        /// workgroup. If a workgroup is not specified, returns a list of query execution IDs
-        /// for the primary workgroup. Requires you to have access to the workgroup in which the
-        /// queries ran.
-        /// 
-        ///  
-        /// <para>
-        /// For code samples using the Amazon Web Services SDK for Java, see <a href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
-        /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
-        /// </para>
+        /// workgroup. Athena keeps a query history for 45 days. If a workgroup is not specified,
+        /// returns a list of query execution IDs for the primary workgroup. Requires you to have
+        /// access to the workgroup in which the queries ran.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListQueryExecutions service method.</param>
         /// 
@@ -2506,9 +2499,9 @@ namespace Amazon.Athena
 
 
         /// <summary>
-        /// Lists the sessions in a workgroup that are in an active state like <code>CREATING</code>,
-        /// <code>CREATED</code>, <code>IDLE</code>, or <code>BUSY</code>. Newer sessions are
-        /// listed first; older sessions are listed later.
+        /// Lists the sessions in a workgroup that are in an active state like <c>CREATING</c>,
+        /// <c>CREATED</c>, <c>IDLE</c>, or <c>BUSY</c>. Newer sessions are listed first; older
+        /// sessions are listed later.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListSessions service method.</param>
         /// 
@@ -2572,10 +2565,9 @@ namespace Amazon.Athena
         /// </exception>
         /// <exception cref="Amazon.Athena.Model.MetadataException">
         /// An exception that Athena received when it called a custom metastore. Occurs if the
-        /// error is not caused by user input (<code>InvalidRequestException</code>) or from the
-        /// Athena platform (<code>InternalServerException</code>). For example, if a user-created
-        /// Lambda function is missing permissions, the Lambda <code>4XX</code> exception is returned
-        /// in a <code>MetadataException</code>.
+        /// error is not caused by user input (<c>InvalidRequestException</c>) or from the Athena
+        /// platform (<c>InternalServerException</c>). For example, if a user-created Lambda function
+        /// is missing permissions, the Lambda <c>4XX</c> exception is returned in a <c>MetadataException</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListTableMetadata">REST API Reference for ListTableMetadata Operation</seealso>
         ListTableMetadataResponse ListTableMetadata(ListTableMetadataRequest request);
@@ -2760,6 +2752,15 @@ namespace Amazon.Athena
         /// <summary>
         /// Submits calculations for execution within a session. You can supply the code to run
         /// as an inline code block within the request.
+        /// 
+        ///  <note> 
+        /// <para>
+        /// The request syntax requires the <a>StartCalculationExecutionRequest$CodeBlock</a>
+        /// parameter or the <a>CalculationConfiguration$CodeBlock</a> parameter, but not both.
+        /// Because <a>CalculationConfiguration$CodeBlock</a> is deprecated, use the <a>StartCalculationExecutionRequest$CodeBlock</a>
+        /// parameter instead.
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartCalculationExecution service method.</param>
         /// 
@@ -2809,8 +2810,8 @@ namespace Amazon.Athena
 
 
         /// <summary>
-        /// Runs the SQL query statements contained in the <code>Query</code>. Requires you to
-        /// have access to the workgroup in which the query ran. Running queries against an external
+        /// Runs the SQL query statements contained in the <c>Query</c>. Requires you to have
+        /// access to the workgroup in which the query ran. Running queries against an external
         /// catalog requires <a>GetDataCatalog</a> permission to the catalog. For code samples
         /// using the Amazon Web Services SDK for Java, see <a href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
         /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
@@ -2864,7 +2865,7 @@ namespace Amazon.Athena
 
         /// <summary>
         /// Creates a session for running calculations within a workgroup. The session is ready
-        /// when it reaches an <code>IDLE</code> state.
+        /// when it reaches an <c>IDLE</c> state.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartSession service method.</param>
         /// 
@@ -2920,9 +2921,9 @@ namespace Amazon.Athena
 
 
         /// <summary>
-        /// Requests the cancellation of a calculation. A <code>StopCalculationExecution</code>
-        /// call on a calculation that is already in a terminal state (for example, <code>STOPPED</code>,
-        /// <code>FAILED</code>, or <code>COMPLETED</code>) succeeds but has no effect.
+        /// Requests the cancellation of a calculation. A <c>StopCalculationExecution</c> call
+        /// on a calculation that is already in a terminal state (for example, <c>STOPPED</c>,
+        /// <c>FAILED</c>, or <c>COMPLETED</c>) succeeds but has no effect.
         /// 
         ///  <note> 
         /// <para>
@@ -2983,12 +2984,6 @@ namespace Amazon.Athena
         /// <summary>
         /// Stops a query execution. Requires you to have access to the workgroup in which the
         /// query ran.
-        /// 
-        ///  
-        /// <para>
-        /// For code samples using the Amazon Web Services SDK for Java, see <a href="http://docs.aws.amazon.com/athena/latest/ug/code-samples.html">Examples
-        /// and Code Samples</a> in the <i>Amazon Athena User Guide</i>.
-        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopQueryExecution service method.</param>
         /// 
@@ -3095,11 +3090,10 @@ namespace Amazon.Athena
 
 
         /// <summary>
-        /// Terminates an active session. A <code>TerminateSession</code> call on a session that
-        /// is already inactive (for example, in a <code>FAILED</code>, <code>TERMINATED</code>
-        /// or <code>TERMINATING</code> state) succeeds but has no effect. Calculations running
-        /// in the session when <code>TerminateSession</code> is called are forcefully stopped,
-        /// but may display as <code>FAILED</code> instead of <code>STOPPED</code>.
+        /// Terminates an active session. A <c>TerminateSession</c> call on a session that is
+        /// already inactive (for example, in a <c>FAILED</c>, <c>TERMINATED</c> or <c>TERMINATING</c>
+        /// state) succeeds but has no effect. Calculations running in the session when <c>TerminateSession</c>
+        /// is called are forcefully stopped, but may display as <c>FAILED</c> instead of <c>STOPPED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TerminateSession service method.</param>
         /// 
@@ -3492,7 +3486,7 @@ namespace Amazon.Athena
 
         /// <summary>
         /// Updates the workgroup with the specified name. The workgroup's name cannot be changed.
-        /// Only <code>ConfigurationUpdates</code> can be specified.
+        /// Only <c>ConfigurationUpdates</c> can be specified.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateWorkGroup service method.</param>
         /// 

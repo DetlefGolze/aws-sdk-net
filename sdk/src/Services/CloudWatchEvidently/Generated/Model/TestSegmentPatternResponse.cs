@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvidently.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CloudWatchEvidently.Model
         /// <summary>
         /// Gets and sets the property Match. 
         /// <para>
-        /// Returns <code>true</code> if the pattern matches the payload.
+        /// Returns <c>true</c> if the pattern matches the payload.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

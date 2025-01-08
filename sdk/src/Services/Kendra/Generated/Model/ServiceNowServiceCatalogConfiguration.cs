@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -37,14 +38,14 @@ namespace Amazon.Kendra.Model
         private bool? _crawlAttachments;
         private string _documentDataFieldName;
         private string _documentTitleFieldName;
-        private List<string> _excludeAttachmentFilePatterns = new List<string>();
-        private List<DataSourceToIndexFieldMapping> _fieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<string> _includeAttachmentFilePatterns = new List<string>();
+        private List<string> _excludeAttachmentFilePatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DataSourceToIndexFieldMapping> _fieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<string> _includeAttachmentFilePatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CrawlAttachments. 
         /// <para>
-        ///  <code>TRUE</code> to index attachments to service catalog items.
+        ///  <c>TRUE</c> to index attachments to service catalog items.
         /// </para>
         /// </summary>
         public bool CrawlAttachments
@@ -122,14 +123,14 @@ namespace Amazon.Kendra.Model
         // Check to see if ExcludeAttachmentFilePatterns property is set
         internal bool IsSetExcludeAttachmentFilePatterns()
         {
-            return this._excludeAttachmentFilePatterns != null && this._excludeAttachmentFilePatterns.Count > 0; 
+            return this._excludeAttachmentFilePatterns != null && (this._excludeAttachmentFilePatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FieldMappings. 
         /// <para>
         /// Maps attributes or field names of catalogs to Amazon Kendra index field names. To
-        /// create custom fields, use the <code>UpdateIndex</code> API before you map to ServiceNow
+        /// create custom fields, use the <c>UpdateIndex</c> API before you map to ServiceNow
         /// fields. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The ServiceNow data source field names must exist in your
         /// ServiceNow custom metadata.
@@ -145,7 +146,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FieldMappings property is set
         internal bool IsSetFieldMappings()
         {
-            return this._fieldMappings != null && this._fieldMappings.Count > 0; 
+            return this._fieldMappings != null && (this._fieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,7 +173,7 @@ namespace Amazon.Kendra.Model
         // Check to see if IncludeAttachmentFilePatterns property is set
         internal bool IsSetIncludeAttachmentFilePatterns()
         {
-            return this._includeAttachmentFilePatterns != null && this._includeAttachmentFilePatterns.Count > 0; 
+            return this._includeAttachmentFilePatterns != null && (this._includeAttachmentFilePatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
@@ -35,15 +36,15 @@ namespace Amazon.VoiceID.Model
     {
         private FraudDetectionAction _fraudDetectionAction;
         private int? _riskThreshold;
-        private List<string> _watchlistIds = new List<string>();
+        private List<string> _watchlistIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property FraudDetectionAction. 
         /// <para>
         /// The action to take when the given speaker is flagged by the fraud detection system.
-        /// The default value is <code>FAIL</code>, which fails the speaker enrollment. Changing
-        /// this value to <code>IGNORE</code> results in the speaker being enrolled even if they
-        /// are flagged by the fraud detection system.
+        /// The default value is <c>FAIL</c>, which fails the speaker enrollment. Changing this
+        /// value to <c>IGNORE</c> results in the speaker being enrolled even if they are flagged
+        /// by the fraud detection system.
         /// </para>
         /// </summary>
         public FraudDetectionAction FraudDetectionAction
@@ -95,7 +96,7 @@ namespace Amazon.VoiceID.Model
         // Check to see if WatchlistIds property is set
         internal bool IsSetWatchlistIds()
         {
-            return this._watchlistIds != null && this._watchlistIds.Count > 0; 
+            return this._watchlistIds != null && (this._watchlistIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

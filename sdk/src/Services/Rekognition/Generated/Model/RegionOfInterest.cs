@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
     /// Specifies a location within the frame that Rekognition checks for objects of interest
-    /// such as text, labels, or faces. It uses a <code>BoundingBox</code> or <code>Polygon</code>
-    /// to set a region of the screen.
+    /// such as text, labels, or faces. It uses a <c>BoundingBox</c> or <c>Polygon</c> to
+    /// set a region of the screen.
     /// 
     ///  
     /// <para>
@@ -44,7 +45,7 @@ namespace Amazon.Rekognition.Model
     public partial class RegionOfInterest
     {
         private BoundingBox _boundingBox;
-        private List<Point> _polygon = new List<Point>();
+        private List<Point> _polygon = AWSConfigs.InitializeCollections ? new List<Point>() : null;
 
         /// <summary>
         /// Gets and sets the property BoundingBox. 
@@ -67,8 +68,8 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property Polygon. 
         /// <para>
-        ///  Specifies a shape made up of up to 10 <code>Point</code> objects to define a region
-        /// of interest. 
+        ///  Specifies a shape made up of up to 10 <c>Point</c> objects to define a region of
+        /// interest. 
         /// </para>
         /// </summary>
         public List<Point> Polygon
@@ -80,7 +81,7 @@ namespace Amazon.Rekognition.Model
         // Check to see if Polygon property is set
         internal bool IsSetPolygon()
         {
-            return this._polygon != null && this._polygon.Count > 0; 
+            return this._polygon != null && (this._polygon.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

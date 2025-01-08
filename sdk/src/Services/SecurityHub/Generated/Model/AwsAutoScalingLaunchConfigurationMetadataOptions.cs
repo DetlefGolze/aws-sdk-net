@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property HttpPutResponseHopLimit. 
         /// <para>
-        /// The HTTP <code>PUT</code> response hop limit for instance metadata requests. The larger
+        /// The HTTP <c>PUT</c> response hop limit for instance metadata requests. The larger
         /// the number, the further instance metadata requests can travel.
         /// </para>
         /// </summary>
@@ -78,8 +79,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property HttpTokens. 
         /// <para>
-        /// Indicates whether token usage is <code>required</code> or <code>optional</code> for
-        /// metadata requests. By default, token usage is <code>optional</code>.
+        /// Indicates whether token usage is <c>required</c> or <c>optional</c> for metadata requests.
+        /// By default, token usage is <c>optional</c>.
         /// </para>
         /// </summary>
         public string HttpTokens

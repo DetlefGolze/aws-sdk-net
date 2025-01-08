@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
     /// The hosted zone you're trying to create already exists. Amazon Route 53 returns this
-    /// error when a hosted zone has already been created with the specified <code>CallerReference</code>.
+    /// error when a hosted zone has already been created with the specified <c>CallerReference</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

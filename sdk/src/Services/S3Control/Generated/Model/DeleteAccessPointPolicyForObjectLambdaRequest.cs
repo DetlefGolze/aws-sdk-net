@@ -26,15 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAccessPointPolicyForObjectLambda operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Removes the resource policy for an Object Lambda Access Point.
-    /// 
+    /// </para>
     ///  
     /// <para>
-    /// The following actions are related to <code>DeleteAccessPointPolicyForObjectLambda</code>:
+    /// The following actions are related to <c>DeleteAccessPointPolicyForObjectLambda</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -69,7 +76,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>

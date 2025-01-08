@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -34,13 +35,14 @@ namespace Amazon.CodeGuruSecurity.Model
     public partial class CreateUploadUrlResponse : AmazonWebServiceResponse
     {
         private string _codeArtifactId;
-        private Dictionary<string, string> _requestHeaders = new Dictionary<string, string>();
+        private Dictionary<string, string> _requestHeaders = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _s3Url;
 
         /// <summary>
         /// Gets and sets the property CodeArtifactId. 
         /// <para>
-        /// The identifier for the uploaded code resource. 
+        /// The identifier for the uploaded code resource. Pass this to <c>CreateScan</c> to use
+        /// the uploaded resources.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -72,14 +74,14 @@ namespace Amazon.CodeGuruSecurity.Model
         // Check to see if RequestHeaders property is set
         internal bool IsSetRequestHeaders()
         {
-            return this._requestHeaders != null && this._requestHeaders.Count > 0; 
+            return this._requestHeaders != null && (this._requestHeaders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property S3Url. 
         /// <para>
-        /// A pre-signed S3 URL. You can upload the code file you want to scan and add the required
-        /// <code>requestHeaders</code> using any HTTP client.
+        /// A pre-signed S3 URL. You can upload the code file you want to scan with the required
+        /// <c>requestHeaders</c> using any HTTP client.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1)]

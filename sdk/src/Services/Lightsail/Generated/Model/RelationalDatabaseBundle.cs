@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -173,7 +174,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property RamSizeInGb. 
         /// <para>
-        /// The amount of RAM in GB (for example, <code>2.0</code>) for the database bundle.
+        /// The amount of RAM in GB (for example, <c>2.0</c>) for the database bundle.
         /// </para>
         /// </summary>
         public float RamSizeInGb

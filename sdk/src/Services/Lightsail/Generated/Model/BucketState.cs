@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -47,12 +48,12 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>OK</code> - The bucket is in a running state.
+        ///  <c>OK</c> - The bucket is in a running state.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Unknown</code> - Creation of the bucket might have timed-out. You might want
-        /// to delete the bucket and create a new one.
+        ///  <c>Unknown</c> - Creation of the bucket might have timed-out. You might want to delete
+        /// the bucket and create a new one.
         /// </para>
         ///  </li> </ul>
         /// </summary>

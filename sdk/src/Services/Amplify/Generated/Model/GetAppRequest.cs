@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Amplify.Model
 {
     /// <summary>
     /// Container for the parameters to the GetApp operation.
-    /// Returns an existing Amplify app by appID.
+    /// Returns an existing Amplify app specified by an app ID.
     /// </summary>
     public partial class GetAppRequest : AmazonAmplifyRequest
     {
@@ -39,7 +40,7 @@ namespace Amazon.Amplify.Model
         /// <summary>
         /// Gets and sets the property AppId. 
         /// <para>
-        ///  The unique ID for an Amplify app. 
+        /// The unique ID for an Amplify app. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=20)]

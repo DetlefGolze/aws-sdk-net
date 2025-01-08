@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property LogicalResourceId. 
         /// <para>
-        /// If specified, lists only the hooks related to the specified <code>LogicalResourceId</code>.
+        /// If specified, lists only the hooks related to the specified <c>LogicalResourceId</c>.
         /// </para>
         /// </summary>
         public string LogicalResourceId
@@ -80,8 +81,8 @@ namespace Amazon.CloudFormation.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// A string, provided by the <code>DescribeChangeSetHooks</code> response output, that
-        /// identifies the next page of information that you want to retrieve.
+        /// A string, provided by the <c>DescribeChangeSetHooks</c> response output, that identifies
+        /// the next page of information that you want to retrieve.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubConfig.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.MigrationHubConfig.Model
     /// </summary>
     public partial class DescribeHomeRegionControlsResponse : AmazonWebServiceResponse
     {
-        private List<HomeRegionControl> _homeRegionControls = new List<HomeRegionControl>();
+        private List<HomeRegionControl> _homeRegionControls = AWSConfigs.InitializeCollections ? new List<HomeRegionControl>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property HomeRegionControls. 
         /// <para>
-        /// An array that contains your <code>HomeRegionControl</code> objects.
+        /// An array that contains your <c>HomeRegionControl</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Max=100)]
@@ -52,15 +53,15 @@ namespace Amazon.MigrationHubConfig.Model
         // Check to see if HomeRegionControls property is set
         internal bool IsSetHomeRegionControls()
         {
-            return this._homeRegionControls != null && this._homeRegionControls.Count > 0; 
+            return this._homeRegionControls != null && (this._homeRegionControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If a <code>NextToken</code> was returned by a previous call, more results are available.
+        /// If a <c>NextToken</c> was returned by a previous call, more results are available.
         /// To retrieve the next page of results, make the call again using the returned token
-        /// in <code>NextToken</code>.
+        /// in <c>NextToken</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2048)]

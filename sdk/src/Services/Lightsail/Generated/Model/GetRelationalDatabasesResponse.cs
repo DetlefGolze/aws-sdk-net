@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Lightsail.Model
     public partial class GetRelationalDatabasesResponse : AmazonWebServiceResponse
     {
         private string _nextPageToken;
-        private List<RelationalDatabase> _relationalDatabases = new List<RelationalDatabase>();
+        private List<RelationalDatabase> _relationalDatabases = AWSConfigs.InitializeCollections ? new List<RelationalDatabase>() : null;
 
         /// <summary>
         /// Gets and sets the property NextPageToken. 
@@ -47,8 +48,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get the next page of results, perform another <code>GetRelationalDatabases</code>
-        /// request and specify the next page token using the <code>pageToken</code> parameter.
+        /// To get the next page of results, perform another <c>GetRelationalDatabases</c> request
+        /// and specify the next page token using the <c>pageToken</c> parameter.
         /// </para>
         /// </summary>
         public string NextPageToken
@@ -78,7 +79,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if RelationalDatabases property is set
         internal bool IsSetRelationalDatabases()
         {
-            return this._relationalDatabases != null && this._relationalDatabases.Count > 0; 
+            return this._relationalDatabases != null && (this._relationalDatabases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

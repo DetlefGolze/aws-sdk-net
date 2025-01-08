@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -34,7 +35,9 @@ namespace Amazon.RDS.Model
     ///  
     /// <para>
     /// For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html">Tagging
-    /// Amazon RDS Resources</a> in the <i>Amazon RDS User Guide.</i> 
+    /// Amazon RDS resources</a> in the <i>Amazon RDS User Guide</i> or <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Tagging.html">Tagging
+    /// Amazon Aurora and Amazon RDS resources</a> in the <i>Amazon Aurora User Guide</i>.
+    /// 
     /// </para>
     /// </summary>
     public partial class Tag
@@ -46,9 +49,9 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property Key. 
         /// <para>
         /// A key is the required name of the tag. The string value can be from 1 to 128 Unicode
-        /// characters in length and can't be prefixed with <code>aws:</code> or <code>rds:</code>.
-        /// The string can only contain only the set of Unicode letters, digits, white-space,
-        /// '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+        /// characters in length and can't be prefixed with <c>aws:</c> or <c>rds:</c>. The string
+        /// can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':',
+        /// '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
         /// </para>
         /// </summary>
         public string Key
@@ -67,9 +70,9 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property Value. 
         /// <para>
         /// A value is the optional value of the tag. The string value can be from 1 to 256 Unicode
-        /// characters in length and can't be prefixed with <code>aws:</code> or <code>rds:</code>.
-        /// The string can only contain only the set of Unicode letters, digits, white-space,
-        /// '_', '.', ':', '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
+        /// characters in length and can't be prefixed with <c>aws:</c> or <c>rds:</c>. The string
+        /// can only contain only the set of Unicode letters, digits, white-space, '_', '.', ':',
+        /// '/', '=', '+', '-', '@' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$").
         /// </para>
         /// </summary>
         public string Value

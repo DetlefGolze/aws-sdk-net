@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.SageMaker.Model
         private string _trainingJobName;
         private TrainingJobStatus _trainingJobStatus;
         private DateTime? _trainingStartTime;
-        private Dictionary<string, string> _tunedHyperParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _tunedHyperParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _tuningJobName;
 
         /// <summary>
@@ -143,9 +144,9 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property TrainingEndTime. 
         /// <para>
         /// Specifies the time when the training job ends on training instances. You are billed
-        /// for the time interval between the value of <code>TrainingStartTime</code> and this
-        /// time. For successful jobs and stopped jobs, this is the time after model artifacts
-        /// are uploaded. For failed jobs, this is the time when SageMaker detects a job failure.
+        /// for the time interval between the value of <c>TrainingStartTime</c> and this time.
+        /// For successful jobs and stopped jobs, this is the time after model artifacts are uploaded.
+        /// For failed jobs, this is the time when SageMaker detects a job failure.
         /// </para>
         /// </summary>
         public DateTime TrainingEndTime
@@ -270,7 +271,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if TunedHyperParameters property is set
         internal bool IsSetTunedHyperParameters()
         {
-            return this._tunedHyperParameters != null && this._tunedHyperParameters.Count > 0; 
+            return this._tunedHyperParameters != null && (this._tunedHyperParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

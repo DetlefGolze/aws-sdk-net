@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -51,7 +52,7 @@ namespace Amazon.SimpleEmailV2.Model
         private DkimSigningAttributesOrigin _signingAttributesOrigin;
         private bool? _signingEnabled;
         private DkimStatus _status;
-        private List<string> _tokens = new List<string>();
+        private List<string> _tokens = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CurrentSigningKeyLength. 
@@ -116,14 +117,145 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AWS_SES</code> – Indicates that DKIM was configured for the identity by using
-        /// <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy
-        /// DKIM</a>.
+        ///  <c>AWS_SES</c> – Indicates that DKIM was configured for the identity by using <a
+        /// href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html">Easy DKIM</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EXTERNAL</code> – Indicates that DKIM was configured for the identity by using
-        /// Bring Your Own DKIM (BYODKIM).
+        ///  <c>EXTERNAL</c> – Indicates that DKIM was configured for the identity by using Bring
+        /// Your Own DKIM (BYODKIM).
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AF_SOUTH_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Africa (Cape Town) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_EU_NORTH_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Europe (Stockholm) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AP_SOUTH_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Asia Pacific (Mumbai) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_EU_WEST_3</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Europe (Paris) region using
+        /// Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_EU_WEST_2</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Europe (London) region using
+        /// Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_EU_SOUTH_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Europe (Milan) region using
+        /// Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_EU_WEST_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Europe (Ireland) region using
+        /// Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AP_NORTHEAST_3</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Asia Pacific (Osaka) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AP_NORTHEAST_2</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Asia Pacific (Seoul) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_ME_SOUTH_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in Middle East (Bahrain) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AP_NORTHEAST_1</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Asia Pacific (Tokyo) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_IL_CENTRAL_1</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Israel (Tel Aviv) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_SA_EAST_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in South America (São Paulo)
+        /// region using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_CA_CENTRAL_1</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Canada (Central) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AP_SOUTHEAST_1</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Asia Pacific (Singapore)
+        /// region using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AP_SOUTHEAST_2</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Asia Pacific (Sydney)
+        /// region using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_AP_SOUTHEAST_3</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Asia Pacific (Jakarta)
+        /// region using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_EU_CENTRAL_1</c> – Indicates that DKIM was configured for the identity
+        /// by replicating signing attributes from a parent identity in Europe (Frankfurt) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_US_EAST_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in US East (N. Virginia) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_US_EAST_2</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in US East (Ohio) region using
+        /// Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_US_WEST_1</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in US West (N. California) region
+        /// using Deterministic Easy-DKIM (DEED). 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS_SES_US_WEST_2</c> – Indicates that DKIM was configured for the identity by
+        /// replicating signing attributes from a parent identity in US West (Oregon) region using
+        /// Deterministic Easy-DKIM (DEED). 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -142,9 +274,9 @@ namespace Amazon.SimpleEmailV2.Model
         /// <summary>
         /// Gets and sets the property SigningEnabled. 
         /// <para>
-        /// If the value is <code>true</code>, then the messages that you send from the identity
-        /// are signed using DKIM. If the value is <code>false</code>, then the messages that
-        /// you send from the identity aren't DKIM-signed.
+        /// If the value is <c>true</c>, then the messages that you send from the identity are
+        /// signed using DKIM. If the value is <c>false</c>, then the messages that you send from
+        /// the identity aren't DKIM-signed.
         /// </para>
         /// </summary>
         public bool SigningEnabled
@@ -167,27 +299,27 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PENDING</code> – The verification process was initiated, but Amazon SES hasn't
-        /// yet detected the DKIM records in the DNS configuration for the domain.
+        ///  <c>PENDING</c> – The verification process was initiated, but Amazon SES hasn't yet
+        /// detected the DKIM records in the DNS configuration for the domain.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUCCESS</code> – The verification process completed successfully.
+        ///  <c>SUCCESS</c> – The verification process completed successfully.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> – The verification process failed. This typically occurs when
-        /// Amazon SES fails to find the DKIM records in the DNS configuration of the domain.
+        ///  <c>FAILED</c> – The verification process failed. This typically occurs when Amazon
+        /// SES fails to find the DKIM records in the DNS configuration of the domain.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TEMPORARY_FAILURE</code> – A temporary issue is preventing Amazon SES from
-        /// determining the DKIM authentication status of the domain.
+        ///  <c>TEMPORARY_FAILURE</c> – A temporary issue is preventing Amazon SES from determining
+        /// the DKIM authentication status of the domain.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NOT_STARTED</code> – The DKIM verification process hasn't been initiated for
-        /// the domain.
+        ///  <c>NOT_STARTED</c> – The DKIM verification process hasn't been initiated for the
+        /// domain.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -232,7 +364,7 @@ namespace Amazon.SimpleEmailV2.Model
         // Check to see if Tokens property is set
         internal bool IsSetTokens()
         {
-            return this._tokens != null && this._tokens.Count > 0; 
+            return this._tokens != null && (this._tokens.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

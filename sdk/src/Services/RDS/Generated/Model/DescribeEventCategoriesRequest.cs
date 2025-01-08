@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.RDS.Model
     /// </summary>
     public partial class DescribeEventCategoriesRequest : AmazonRDSRequest
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _sourceType;
 
         /// <summary>
@@ -56,19 +57,19 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceType. 
         /// <para>
-        /// The type of source that is generating the events. For RDS Proxy events, specify <code>db-proxy</code>.
+        /// The type of source that is generating the events. For RDS Proxy events, specify <c>db-proxy</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>db-instance</code> | <code>db-cluster</code> | <code>db-parameter-group</code>
-        /// | <code>db-security-group</code> | <code>db-snapshot</code> | <code>db-cluster-snapshot</code>
-        /// | <code>db-proxy</code> 
+        /// Valid Values: <c>db-instance</c> | <c>db-cluster</c> | <c>db-parameter-group</c> |
+        /// <c>db-security-group</c> | <c>db-snapshot</c> | <c>db-cluster-snapshot</c> | <c>db-proxy</c>
+        /// 
         /// </para>
         /// </summary>
         public string SourceType

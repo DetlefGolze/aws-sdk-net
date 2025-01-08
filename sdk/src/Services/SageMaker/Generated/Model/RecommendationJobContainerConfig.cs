@@ -26,15 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Specifies mandatory fields for running an Inference Recommender job directly in the
     /// <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateInferenceRecommendationsJob.html">CreateInferenceRecommendationsJob</a>
-    /// API. The fields specified in <code>ContainerConfig</code> override the corresponding
-    /// fields in the model package. Use <code>ContainerConfig</code> if you want to specify
-    /// these fields for the recommendation job but don't want to edit them in your model
-    /// package.
+    /// API. The fields specified in <c>ContainerConfig</c> override the corresponding fields
+    /// in the model package. Use <c>ContainerConfig</c> if you want to specify these fields
+    /// for the recommendation job but don't want to edit them in your model package.
     /// </summary>
     public partial class RecommendationJobContainerConfig
     {
@@ -45,8 +45,8 @@ namespace Amazon.SageMaker.Model
         private string _nearestModelName;
         private RecommendationJobPayloadConfig _payloadConfig;
         private RecommendationJobSupportedEndpointType _supportedEndpointType;
-        private List<string> _supportedInstanceTypes = new List<string>();
-        private List<string> _supportedResponseMIMETypes = new List<string>();
+        private List<string> _supportedInstanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedResponseMIMETypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _task;
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>COMPUTER_VISION | NATURAL_LANGUAGE_PROCESSING | MACHINE_LEARNING</code>
+        /// Valid Values: <c>COMPUTER_VISION | NATURAL_LANGUAGE_PROCESSING | MACHINE_LEARNING</c>
         /// 
         /// </para>
         /// </summary>
@@ -100,8 +100,7 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>TENSORFLOW | PYTORCH | XGBOOST | SAGEMAKER-SCIKIT-LEARN</code>
-        /// 
+        /// Valid Values: <c>TENSORFLOW | PYTORCH | XGBOOST | SAGEMAKER-SCIKIT-LEARN</c> 
         /// </para>
         /// </summary>
         public string Framework
@@ -122,6 +121,7 @@ namespace Amazon.SageMaker.Model
         /// The framework version of the container image.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=3, Max=10)]
         public string FrameworkVersion
         {
             get { return this._frameworkVersion; }
@@ -142,10 +142,10 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>efficientnetb7 | unet | xgboost | faster-rcnn-resnet101 | nasnetlarge
+        /// Valid Values: <c>efficientnetb7 | unet | xgboost | faster-rcnn-resnet101 | nasnetlarge
         /// | vgg16 | inception-v3 | mask-rcnn | sagemaker-scikit-learn | densenet201-gluon |
         /// resnet18v2-gluon | xception | densenet201 | yolov4 | resnet152 | bert-base-cased |
-        /// xceptionV1-keras | resnet50 | retinanet</code> 
+        /// xceptionV1-keras | resnet50 | retinanet</c> 
         /// </para>
         /// </summary>
         public string NearestModelName
@@ -163,7 +163,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property PayloadConfig. 
         /// <para>
-        /// Specifies the <code>SamplePayloadUrl</code> and all other sample payload-related fields.
+        /// Specifies the <c>SamplePayloadUrl</c> and all other sample payload-related fields.
         /// </para>
         /// </summary>
         public RecommendationJobPayloadConfig PayloadConfig
@@ -214,7 +214,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SupportedInstanceTypes property is set
         internal bool IsSetSupportedInstanceTypes()
         {
-            return this._supportedInstanceTypes != null && this._supportedInstanceTypes.Count > 0; 
+            return this._supportedInstanceTypes != null && (this._supportedInstanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if SupportedResponseMIMETypes property is set
         internal bool IsSetSupportedResponseMIMETypes()
         {
-            return this._supportedResponseMIMETypes != null && this._supportedResponseMIMETypes.Count > 0; 
+            return this._supportedResponseMIMETypes != null && (this._supportedResponseMIMETypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -242,8 +242,8 @@ namespace Amazon.SageMaker.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>IMAGE_CLASSIFICATION | OBJECT_DETECTION | TEXT_GENERATION | IMAGE_SEGMENTATION
-        /// | FILL_MASK | CLASSIFICATION | REGRESSION | OTHER</code> 
+        /// Valid Values: <c>IMAGE_CLASSIFICATION | OBJECT_DETECTION | TEXT_GENERATION | IMAGE_SEGMENTATION
+        /// | FILL_MASK | CLASSIFICATION | REGRESSION | OTHER</c> 
         /// </para>
         /// </summary>
         public string Task

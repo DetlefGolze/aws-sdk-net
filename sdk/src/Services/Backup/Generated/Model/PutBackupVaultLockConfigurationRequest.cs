@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -40,10 +41,14 @@ namespace Amazon.Backup.Model
     /// <para>
     /// Backup Vault Lock has been assessed by Cohasset Associates for use in environments
     /// that are subject to SEC 17a-4, CFTC, and FINRA regulations. For more information about
-    /// how Backup Vault Lock relates to these regulations, see the <a href="samples/cohassetreport.zip">Cohasset
+    /// how Backup Vault Lock relates to these regulations, see the <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/samples/cohassetreport.zip">Cohasset
     /// Associates Compliance Assessment.</a> 
     /// </para>
-    ///  </note>
+    ///  </note> 
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html">Backup
+    /// Vault Lock</a>.
+    /// </para>
     /// </summary>
     public partial class PutBackupVaultLockConfigurationRequest : AmazonBackupRequest
     {
@@ -76,26 +81,26 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property ChangeableForDays. 
         /// <para>
         /// The Backup Vault Lock configuration that specifies the number of days before the lock
-        /// date. For example, setting <code>ChangeableForDays</code> to 30 on Jan. 1, 2022 at
-        /// 8pm UTC will set the lock date to Jan. 31, 2022 at 8pm UTC.
+        /// date. For example, setting <c>ChangeableForDays</c> to 30 on Jan. 1, 2022 at 8pm UTC
+        /// will set the lock date to Jan. 31, 2022 at 8pm UTC.
         /// </para>
         ///  
         /// <para>
         /// Backup enforces a 72-hour cooling-off period before Vault Lock takes effect and becomes
-        /// immutable. Therefore, you must set <code>ChangeableForDays</code> to 3 or greater.
+        /// immutable. Therefore, you must set <c>ChangeableForDays</c> to 3 or greater.
         /// </para>
         ///  
         /// <para>
-        /// Before the lock date, you can delete Vault Lock from the vault using <code>DeleteBackupVaultLockConfiguration</code>
-        /// or change the Vault Lock configuration using <code>PutBackupVaultLockConfiguration</code>.
+        /// Before the lock date, you can delete Vault Lock from the vault using <c>DeleteBackupVaultLockConfiguration</c>
+        /// or change the Vault Lock configuration using <c>PutBackupVaultLockConfiguration</c>.
         /// On and after the lock date, the Vault Lock becomes immutable and cannot be changed
         /// or deleted.
         /// </para>
         ///  
         /// <para>
         /// If this parameter is not specified, you can delete Vault Lock from the vault using
-        /// <code>DeleteBackupVaultLockConfiguration</code> or change the Vault Lock configuration
-        /// using <code>PutBackupVaultLockConfiguration</code> at any time.
+        /// <c>DeleteBackupVaultLockConfiguration</c> or change the Vault Lock configuration using
+        /// <c>PutBackupVaultLockConfiguration</c> at any time.
         /// </para>
         /// </summary>
         public long ChangeableForDays
@@ -157,8 +162,9 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        /// If this parameter is not specified, Vault Lock will not enforce a minimum retention
-        /// period.
+        /// This parameter is required when a vault lock is created through CloudFormation; otherwise,
+        /// this parameter is optional. If this parameter is not specified, Vault Lock will not
+        /// enforce a minimum retention period.
         /// </para>
         ///  
         /// <para>

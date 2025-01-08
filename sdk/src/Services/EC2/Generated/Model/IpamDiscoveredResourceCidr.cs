@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,16 +37,38 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class IpamDiscoveredResourceCidr
     {
+        private string _availabilityZoneId;
         private string _ipamResourceDiscoveryId;
+        private IpamResourceCidrIpSource _ipSource;
         private double? _ipUsage;
+        private IpamNetworkInterfaceAttachmentStatus _networkInterfaceAttachmentStatus;
         private string _resourceCidr;
         private string _resourceId;
         private string _resourceOwnerId;
         private string _resourceRegion;
-        private List<IpamResourceTag> _resourceTags = new List<IpamResourceTag>();
+        private List<IpamResourceTag> _resourceTags = AWSConfigs.InitializeCollections ? new List<IpamResourceTag>() : null;
         private IpamResourceType _resourceType;
         private DateTime? _sampleTime;
+        private string _subnetId;
         private string _vpcId;
+
+        /// <summary>
+        /// Gets and sets the property AvailabilityZoneId. 
+        /// <para>
+        /// The Availability Zone ID.
+        /// </para>
+        /// </summary>
+        public string AvailabilityZoneId
+        {
+            get { return this._availabilityZoneId; }
+            set { this._availabilityZoneId = value; }
+        }
+
+        // Check to see if AvailabilityZoneId property is set
+        internal bool IsSetAvailabilityZoneId()
+        {
+            return this._availabilityZoneId != null;
+        }
 
         /// <summary>
         /// Gets and sets the property IpamResourceDiscoveryId. 
@@ -63,6 +86,26 @@ namespace Amazon.EC2.Model
         internal bool IsSetIpamResourceDiscoveryId()
         {
             return this._ipamResourceDiscoveryId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IpSource. 
+        /// <para>
+        /// The source that allocated the IP address space. <c>byoip</c> or <c>amazon</c> indicates
+        /// public IP address space allocated by Amazon or space that you have allocated with
+        /// Bring your own IP (BYOIP). <c>none</c> indicates private space.
+        /// </para>
+        /// </summary>
+        public IpamResourceCidrIpSource IpSource
+        {
+            get { return this._ipSource; }
+            set { this._ipSource = value; }
+        }
+
+        // Check to see if IpSource property is set
+        internal bool IsSetIpSource()
+        {
+            return this._ipSource != null;
         }
 
         /// <summary>
@@ -101,6 +144,25 @@ namespace Amazon.EC2.Model
         internal bool IsSetIpUsage()
         {
             return this._ipUsage.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property NetworkInterfaceAttachmentStatus. 
+        /// <para>
+        /// For elastic network interfaces, this is the status of whether or not the elastic network
+        /// interface is attached.
+        /// </para>
+        /// </summary>
+        public IpamNetworkInterfaceAttachmentStatus NetworkInterfaceAttachmentStatus
+        {
+            get { return this._networkInterfaceAttachmentStatus; }
+            set { this._networkInterfaceAttachmentStatus = value; }
+        }
+
+        // Check to see if NetworkInterfaceAttachmentStatus property is set
+        internal bool IsSetNetworkInterfaceAttachmentStatus()
+        {
+            return this._networkInterfaceAttachmentStatus != null;
         }
 
         /// <summary>
@@ -190,7 +252,7 @@ namespace Amazon.EC2.Model
         // Check to see if ResourceTags property is set
         internal bool IsSetResourceTags()
         {
-            return this._resourceTags != null && this._resourceTags.Count > 0; 
+            return this._resourceTags != null && (this._resourceTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -227,6 +289,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetSampleTime()
         {
             return this._sampleTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubnetId. 
+        /// <para>
+        /// The subnet ID.
+        /// </para>
+        /// </summary>
+        public string SubnetId
+        {
+            get { return this._subnetId; }
+            set { this._subnetId = value; }
+        }
+
+        // Check to see if SubnetId property is set
+        internal bool IsSetSubnetId()
+        {
+            return this._subnetId != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.Redshift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be the identifier for a valid automated snapshot whose state is <code>available</code>.
+        /// Must be the identifier for a valid automated snapshot whose state is <c>available</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>

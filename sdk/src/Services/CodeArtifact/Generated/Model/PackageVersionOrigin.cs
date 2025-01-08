@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -59,10 +60,10 @@ namespace Amazon.CodeArtifact.Model
         /// <summary>
         /// Gets and sets the property OriginType. 
         /// <para>
-        /// Describes how the package version was originally added to the domain. An <code>INTERNAL</code>
+        /// Describes how the package version was originally added to the domain. An <c>INTERNAL</c>
         /// origin type means the package version was published directly to a repository in the
-        /// domain. An <code>EXTERNAL</code> origin type means the package version was ingested
-        /// from an external connection.
+        /// domain. An <c>EXTERNAL</c> origin type means the package version was ingested from
+        /// an external connection.
         /// </para>
         /// </summary>
         public PackageVersionOriginType OriginType

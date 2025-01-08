@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -42,16 +43,16 @@ namespace Amazon.Connect.Model
     ///  <important> <ul> <li> 
     /// <para>
     /// We recommend using <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html">ListPhoneNumbersV2</a>
-    /// to return phone number types. ListPhoneNumbers doesn't support number types <code>UIFN</code>,
-    /// <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>.
-    /// While it returns numbers of those types, it incorrectly lists them as <code>TOLL_FREE</code>
-    /// or <code>DID</code>. 
+    /// to return phone number types. ListPhoneNumbers doesn't support number types <c>UIFN</c>,
+    /// <c>SHARED</c>, <c>THIRD_PARTY_TF</c>, and <c>THIRD_PARTY_DID</c>. While it returns
+    /// numbers of those types, it incorrectly lists them as <c>TOLL_FREE</c> or <c>DID</c>.
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// The phone number <code>Arn</code> value that is returned from each of the items in
-    /// the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList">PhoneNumberSummaryList</a>
-    /// cannot be used to tag phone number resources. It will fail with a <code>ResourceNotFoundException</code>.
+    /// The phone number <c>Arn</c> value that is returned from each of the items in the <a
+    /// href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList">PhoneNumberSummaryList</a>
+    /// cannot be used to tag phone number resources. It will fail with a <c>ResourceNotFoundException</c>.
     /// Instead, use the <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html">ListPhoneNumbersV2</a>
     /// API. It returns the new phone number ARN that can be used to tag phone number resources.
     /// </para>
@@ -62,8 +63,8 @@ namespace Amazon.Connect.Model
         private string _instanceId;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _phoneNumberCountryCodes = new List<string>();
-        private List<string> _phoneNumberTypes = new List<string>();
+        private List<string> _phoneNumberCountryCodes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _phoneNumberTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property InstanceId. 
@@ -139,7 +140,7 @@ namespace Amazon.Connect.Model
         // Check to see if PhoneNumberCountryCodes property is set
         internal bool IsSetPhoneNumberCountryCodes()
         {
-            return this._phoneNumberCountryCodes != null && this._phoneNumberCountryCodes.Count > 0; 
+            return this._phoneNumberCountryCodes != null && (this._phoneNumberCountryCodes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -150,9 +151,9 @@ namespace Amazon.Connect.Model
         ///  <note> 
         /// <para>
         /// We recommend using <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html">ListPhoneNumbersV2</a>
-        /// to return phone number types. While ListPhoneNumbers returns number types <code>UIFN</code>,
-        /// <code>SHARED</code>, <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>,
-        /// it incorrectly lists them as <code>TOLL_FREE</code> or <code>DID</code>. 
+        /// to return phone number types. While ListPhoneNumbers returns number types <c>UIFN</c>,
+        /// <c>SHARED</c>, <c>THIRD_PARTY_TF</c>, and <c>THIRD_PARTY_DID</c>, it incorrectly lists
+        /// them as <c>TOLL_FREE</c> or <c>DID</c>. 
         /// </para>
         ///  </note>
         /// </summary>
@@ -166,7 +167,7 @@ namespace Amazon.Connect.Model
         // Check to see if PhoneNumberTypes property is set
         internal bool IsSetPhoneNumberTypes()
         {
-            return this._phoneNumberTypes != null && this._phoneNumberTypes.Count > 0; 
+            return this._phoneNumberTypes != null && (this._phoneNumberTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

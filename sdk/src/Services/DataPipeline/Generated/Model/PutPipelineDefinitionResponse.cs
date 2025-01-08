@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.DataPipeline.Model
     public partial class PutPipelineDefinitionResponse : AmazonWebServiceResponse
     {
         private bool? _errored;
-        private List<ValidationError> _validationErrors = new List<ValidationError>();
-        private List<ValidationWarning> _validationWarnings = new List<ValidationWarning>();
+        private List<ValidationError> _validationErrors = AWSConfigs.InitializeCollections ? new List<ValidationError>() : null;
+        private List<ValidationWarning> _validationWarnings = AWSConfigs.InitializeCollections ? new List<ValidationWarning>() : null;
 
         /// <summary>
         /// Gets and sets the property Errored. 
         /// <para>
         /// Indicates whether there were validation errors, and the pipeline definition is stored
-        /// but cannot be activated until you correct the pipeline and call <code>PutPipelineDefinition</code>
+        /// but cannot be activated until you correct the pipeline and call <c>PutPipelineDefinition</c>
         /// to commit the corrected pipeline.
         /// </para>
         /// </summary>
@@ -61,7 +62,7 @@ namespace Amazon.DataPipeline.Model
         /// <summary>
         /// Gets and sets the property ValidationErrors. 
         /// <para>
-        /// The validation errors that are associated with the objects defined in <code>pipelineObjects</code>.
+        /// The validation errors that are associated with the objects defined in <c>pipelineObjects</c>.
         /// </para>
         /// </summary>
         public List<ValidationError> ValidationErrors
@@ -73,13 +74,13 @@ namespace Amazon.DataPipeline.Model
         // Check to see if ValidationErrors property is set
         internal bool IsSetValidationErrors()
         {
-            return this._validationErrors != null && this._validationErrors.Count > 0; 
+            return this._validationErrors != null && (this._validationErrors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ValidationWarnings. 
         /// <para>
-        /// The validation warnings that are associated with the objects defined in <code>pipelineObjects</code>.
+        /// The validation warnings that are associated with the objects defined in <c>pipelineObjects</c>.
         /// </para>
         /// </summary>
         public List<ValidationWarning> ValidationWarnings
@@ -91,7 +92,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if ValidationWarnings property is set
         internal bool IsSetValidationWarnings()
         {
-            return this._validationWarnings != null && this._validationWarnings.Count > 0; 
+            return this._validationWarnings != null && (this._validationWarnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

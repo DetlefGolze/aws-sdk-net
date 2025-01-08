@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.IoTAnalytics.Model
         private string _channelName;
         private ChannelStorage _channelStorage;
         private RetentionPeriod _retentionPeriod;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ChannelName. 
@@ -62,9 +63,9 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property ChannelStorage. 
         /// <para>
-        /// Where channel data is stored. You can choose one of <code>serviceManagedS3</code>
-        /// or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>.
-        /// You can't change this storage option after the channel is created.
+        /// Where channel data is stored. You can choose one of <c>serviceManagedS3</c> or <c>customerManagedS3</c>
+        /// storage. If not specified, the default is <c>serviceManagedS3</c>. You can't change
+        /// this storage option after the channel is created.
         /// </para>
         /// </summary>
         public ChannelStorage ChannelStorage
@@ -82,7 +83,7 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property RetentionPeriod. 
         /// <para>
-        /// How long, in days, message data is kept for the channel. When <code>customerManagedS3</code>
+        /// How long, in days, message data is kept for the channel. When <c>customerManagedS3</c>
         /// storage is selected, this parameter is ignored.
         /// </para>
         /// </summary>
@@ -114,7 +115,7 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

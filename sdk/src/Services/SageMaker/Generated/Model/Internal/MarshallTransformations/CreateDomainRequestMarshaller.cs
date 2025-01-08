@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAppNetworkAccessType())
@@ -145,6 +147,12 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                             context.Writer.Write(publicRequestSubnetIdsListValue);
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetTagPropagation())
+                {
+                    context.Writer.WritePropertyName("TagPropagation");
+                    context.Writer.Write(publicRequest.TagPropagation);
                 }
 
                 if(publicRequest.IsSetTags())

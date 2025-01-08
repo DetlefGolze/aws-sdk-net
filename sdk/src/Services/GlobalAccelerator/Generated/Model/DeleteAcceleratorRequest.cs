@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlobalAccelerator.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteAccelerator operation.
     /// Delete an accelerator. Before you can delete an accelerator, you must disable it and
     /// remove all dependent resources (listeners and endpoint groups). To disable the accelerator,
-    /// update the accelerator to set <code>Enabled</code> to false.
+    /// update the accelerator to set <c>Enabled</c> to false.
     /// 
     ///  <important> 
     /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -62,20 +63,24 @@ namespace Amazon.EC2.Model
         /// EC2 Fleet identifies the pools with the highest capacity availability for the number
         /// of instances that are launching. This means that we will request Spot Instances from
         /// the pools that we believe have the lowest chance of interruption in the near term.
-        /// To give certain instance types a higher chance of launching first, use <code>capacity-optimized-prioritized</code>.
-        /// Set a priority for each instance type by using the <code>Priority</code> parameter
-        /// for <code>LaunchTemplateOverrides</code>. You can assign the same priority to different
-        /// <code>LaunchTemplateOverrides</code>. EC2 implements the priorities on a best-effort
-        /// basis, but optimizes for capacity first. <code>capacity-optimized-prioritized</code>
-        /// is supported only if your EC2 Fleet uses a launch template. Note that if the On-Demand
-        /// <code>AllocationStrategy</code> is set to <code>prioritized</code>, the same priority
-        /// is applied when fulfilling On-Demand capacity.
+        /// To give certain instance types a higher chance of launching first, use <c>capacity-optimized-prioritized</c>.
+        /// Set a priority for each instance type by using the <c>Priority</c> parameter for <c>LaunchTemplateOverrides</c>.
+        /// You can assign the same priority to different <c>LaunchTemplateOverrides</c>. EC2
+        /// implements the priorities on a best-effort basis, but optimizes for capacity first.
+        /// <c>capacity-optimized-prioritized</c> is supported only if your EC2 Fleet uses a launch
+        /// template. Note that if the On-Demand <c>AllocationStrategy</c> is set to <c>prioritized</c>,
+        /// the same priority is applied when fulfilling On-Demand capacity.
         /// </para>
         ///  </dd> <dt>diversified</dt> <dd> 
         /// <para>
         /// EC2 Fleet requests instances from all of the Spot Instance pools that you specify.
         /// </para>
-        ///  </dd> <dt>lowest-price</dt> <dd> 
+        ///  </dd> <dt>lowest-price (not recommended)</dt> <dd> <important> 
+        /// <para>
+        /// We don't recommend the <c>lowest-price</c> allocation strategy because it has the
+        /// highest risk of interruption for your Spot Instances.
+        /// </para>
+        ///  </important> 
         /// <para>
         /// EC2 Fleet requests instances from the lowest priced Spot Instance pool that has available
         /// capacity. If the lowest priced pool doesn't have available capacity, the Spot Instances
@@ -88,7 +93,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  </dd> </dl> 
         /// <para>
-        /// Default: <code>lowest-price</code> 
+        /// Default: <c>lowest-price</c> 
         /// </para>
         /// </summary>
         public SpotAllocationStrategy AllocationStrategy
@@ -110,7 +115,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>terminate</code> 
+        /// Default: <c>terminate</c> 
         /// </para>
         /// </summary>
         public SpotInstanceInterruptionBehavior InstanceInterruptionBehavior
@@ -129,9 +134,9 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property InstancePoolsToUseCount. 
         /// <para>
         /// The number of Spot pools across which to allocate your target Spot capacity. Supported
-        /// only when <code>AllocationStrategy</code> is set to <code>lowest-price</code>. EC2
-        /// Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity
-        /// across the number of Spot pools that you specify.
+        /// only when <c>AllocationStrategy</c> is set to <c>lowest-price</c>. EC2 Fleet selects
+        /// the cheapest Spot pools and evenly allocates your target Spot capacity across the
+        /// number of Spot pools that you specify.
         /// </para>
         ///  
         /// <para>
@@ -189,12 +194,12 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  </important> <note> 
         /// <para>
-        /// If your fleet includes T instances that are configured as <code>unlimited</code>,
-        /// and if their average CPU usage exceeds the baseline utilization, you will incur a
-        /// charge for surplus credits. The <code>maxTotalPrice</code> does not account for surplus
-        /// credits, and, if you use surplus credits, your final cost might be higher than what
-        /// you specified for <code>maxTotalPrice</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#unlimited-mode-surplus-credits">Surplus
-        /// credits can incur charges</a> in the <i>EC2 User Guide</i>.
+        /// If your fleet includes T instances that are configured as <c>unlimited</c>, and if
+        /// their average CPU usage exceeds the baseline utilization, you will incur a charge
+        /// for surplus credits. The <c>maxTotalPrice</c> does not account for surplus credits,
+        /// and, if you use surplus credits, your final cost might be higher than what you specified
+        /// for <c>maxTotalPrice</c>. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode-concepts.html#unlimited-mode-surplus-credits">Surplus
+        /// credits can incur charges</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -213,17 +218,17 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property MinTargetCapacity. 
         /// <para>
-        /// The minimum target capacity for Spot Instances in the fleet. If the minimum target
-        /// capacity is not reached, the fleet launches no instances.
+        /// The minimum target capacity for Spot Instances in the fleet. If this minimum capacity
+        /// isn't reached, no instances are launched.
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>instant</code>.
+        /// Constraints: Maximum value of <c>1000</c>. Supported only for fleets of type <c>instant</c>.
         /// </para>
         ///  
         /// <para>
-        /// At least one of the following must be specified: <code>SingleAvailabilityZone</code>
-        /// | <code>SingleInstanceType</code> 
+        /// At least one of the following must be specified: <c>SingleAvailabilityZone</c> | <c>SingleInstanceType</c>
+        /// 
         /// </para>
         /// </summary>
         public int MinTargetCapacity
@@ -245,7 +250,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>instant</code>.
+        /// Supported only for fleets of type <c>instant</c>.
         /// </para>
         /// </summary>
         public bool SingleAvailabilityZone
@@ -268,7 +273,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Supported only for fleets of type <code>instant</code>.
+        /// Supported only for fleets of type <c>instant</c>.
         /// </para>
         /// </summary>
         public bool SingleInstanceType

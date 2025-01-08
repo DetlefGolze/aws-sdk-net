@@ -26,11 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
     /// Container for the parameters to the SearchImageSets operation.
     /// Search image sets based on defined input attributes.
+    /// 
+    ///  <note> 
+    /// <para>
+    ///  <c>SearchImageSets</c> accepts a single search query parameter and returns a paginated
+    /// response of all image sets that have the matching criteria. All date range queries
+    /// must be input as <c>(lowerBound, upperBound)</c>.
+    /// </para>
+    ///  
+    /// <para>
+    /// By default, <c>SearchImageSets</c> uses the <c>updatedAt</c> field for sorting in
+    /// descending order from newest to oldest.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class SearchImageSetsRequest : AmazonMedicalImagingRequest
     {
@@ -100,7 +114,7 @@ namespace Amazon.MedicalImaging.Model
         /// <summary>
         /// Gets and sets the property SearchCriteria. 
         /// <para>
-        /// The search criteria that filters by applying a maximum of 1 item to <code>SearchByAttribute</code>.
+        /// The search criteria that filters by applying a maximum of 1 item to <c>SearchByAttribute</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

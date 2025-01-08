@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -37,13 +38,13 @@ namespace Amazon.RoboMaker.Model
         private BatchPolicy _batchPolicy;
         private string _clientRequestToken;
         private DateTime? _createdAt;
-        private List<SimulationJobSummary> _createdRequests = new List<SimulationJobSummary>();
-        private List<FailedCreateSimulationJobRequest> _failedRequests = new List<FailedCreateSimulationJobRequest>();
+        private List<SimulationJobSummary> _createdRequests = AWSConfigs.InitializeCollections ? new List<SimulationJobSummary>() : null;
+        private List<FailedCreateSimulationJobRequest> _failedRequests = AWSConfigs.InitializeCollections ? new List<FailedCreateSimulationJobRequest>() : null;
         private SimulationJobBatchErrorCode _failureCode;
         private string _failureReason;
-        private List<SimulationJobRequest> _pendingRequests = new List<SimulationJobRequest>();
+        private List<SimulationJobRequest> _pendingRequests = AWSConfigs.InitializeCollections ? new List<SimulationJobRequest>() : null;
         private SimulationJobBatchStatus _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -136,7 +137,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if CreatedRequests property is set
         internal bool IsSetCreatedRequests()
         {
-            return this._createdRequests != null && this._createdRequests.Count > 0; 
+            return this._createdRequests != null && (this._createdRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if FailedRequests property is set
         internal bool IsSetFailedRequests()
         {
-            return this._failedRequests != null && this._failedRequests.Count > 0; 
+            return this._failedRequests != null && (this._failedRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -212,7 +213,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if PendingRequests property is set
         internal bool IsSetPendingRequests()
         {
-            return this._pendingRequests != null && this._pendingRequests.Count > 0; 
+            return this._pendingRequests != null && (this._pendingRequests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -231,16 +232,15 @@ namespace Amazon.RoboMaker.Model
         ///  </dd> <dt>Failed</dt> <dd> 
         /// <para>
         /// The simulation job batch failed. One or more simulation job requests could not be
-        /// completed due to an internal failure (like <code>InternalServiceError</code>). See
-        /// <code>failureCode</code> and <code>failureReason</code> for more information.
+        /// completed due to an internal failure (like <c>InternalServiceError</c>). See <c>failureCode</c>
+        /// and <c>failureReason</c> for more information.
         /// </para>
         ///  </dd> <dt>Completed</dt> <dd> 
         /// <para>
         /// The simulation batch job completed. A batch is complete when (1) there are no pending
         /// simulation job requests in the batch and none of the failed simulation job requests
-        /// are due to <code>InternalServiceError</code> and (2) when all created simulation jobs
-        /// have reached a terminal state (for example, <code>Completed</code> or <code>Failed</code>).
-        /// 
+        /// are due to <c>InternalServiceError</c> and (2) when all created simulation jobs have
+        /// reached a terminal state (for example, <c>Completed</c> or <c>Failed</c>). 
         /// </para>
         ///  </dd> <dt>Canceled</dt> <dd> 
         /// <para>
@@ -261,9 +261,8 @@ namespace Amazon.RoboMaker.Model
         ///  
         /// <para>
         /// If a batch timing out, and there are pending requests that were failing due to an
-        /// internal failure (like <code>InternalServiceError</code>), the batch status will be
-        /// <code>Failed</code>. If there are no such failing request, the batch status will be
-        /// <code>TimedOut</code>. 
+        /// internal failure (like <c>InternalServiceError</c>), the batch status will be <c>Failed</c>.
+        /// If there are no such failing request, the batch status will be <c>TimedOut</c>. 
         /// </para>
         ///  </dd> <dt>TimedOut</dt> <dd> 
         /// <para>
@@ -300,7 +299,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

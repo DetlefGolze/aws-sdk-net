@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LakeFormation.Model
     /// </summary>
     public partial class DataCellsFilter
     {
-        private List<string> _columnNames = new List<string>();
+        private List<string> _columnNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ColumnWildcard _columnWildcard;
         private string _databaseName;
         private string _name;
@@ -59,7 +60,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if ColumnNames property is set
         internal bool IsSetColumnNames()
         {
-            return this._columnNames != null && this._columnNames.Count > 0; 
+            return this._columnNames != null && (this._columnNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -69,8 +70,7 @@ namespace Amazon.LakeFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// You must specify either a <code>ColumnNames</code> list or the <code>ColumnWildCard</code>.
-        /// 
+        /// You must specify either a <c>ColumnNames</c> list or the <c>ColumnWildCard</c>. 
         /// </para>
         /// </summary>
         public ColumnWildcard ColumnWildcard

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property Path. 
         /// <para>
-        /// The path of the disk (e.g., <code>/dev/xvdf</code>).
+        /// The path of the disk (<c>/dev/xvdf</c>).
         /// </para>
         /// </summary>
         public string Path

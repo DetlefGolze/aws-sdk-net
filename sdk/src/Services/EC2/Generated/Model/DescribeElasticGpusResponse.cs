@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeElasticGpusResponse : AmazonWebServiceResponse
     {
-        private List<ElasticGpus> _elasticGpuSet = new List<ElasticGpus>();
+        private List<ElasticGpus> _elasticGpuSet = AWSConfigs.InitializeCollections ? new List<ElasticGpus>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -52,7 +53,7 @@ namespace Amazon.EC2.Model
         // Check to see if ElasticGpuSet property is set
         internal bool IsSetElasticGpuSet()
         {
-            return this._elasticGpuSet != null && this._elasticGpuSet.Count > 0; 
+            return this._elasticGpuSet != null && (this._elasticGpuSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -78,8 +79,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

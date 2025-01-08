@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMContacts.Model
 {
     /// <summary>
@@ -137,8 +138,7 @@ namespace Amazon.SSMContacts.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of contact channel. The type is <code>SMS</code>, <code>VOICE</code>, or
-        /// <code>EMAIL</code>.
+        /// The type of contact channel. The type is <c>SMS</c>, <c>VOICE</c>, or <c>EMAIL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

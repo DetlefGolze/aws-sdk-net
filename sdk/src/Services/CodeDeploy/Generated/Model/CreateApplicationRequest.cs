@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CodeDeploy.Model
     {
         private string _applicationName;
         private ComputePlatform _computePlatform;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ApplicationName. 
@@ -61,8 +62,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property ComputePlatform. 
         /// <para>
-        ///  The destination platform type for the deployment (<code>Lambda</code>, <code>Server</code>,
-        /// or <code>ECS</code>).
+        ///  The destination platform type for the deployment (<c>Lambda</c>, <c>Server</c>, or
+        /// <c>ECS</c>).
         /// </para>
         /// </summary>
         public ComputePlatform ComputePlatform
@@ -94,7 +95,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

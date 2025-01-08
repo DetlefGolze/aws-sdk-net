@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
     /// A context is a variable that contains information about the current state of the conversation
     /// between a user and Amazon Lex. Context can be set automatically by Amazon Lex when
-    /// an intent is fulfilled, or it can be set at runtime using the <code>PutContent</code>,
-    /// <code>PutText</code>, or <code>PutSession</code> operation.
+    /// an intent is fulfilled, or it can be set at runtime using the <c>PutContent</c>, <c>PutText</c>,
+    /// or <c>PutSession</c> operation.
     /// </summary>
     public partial class ActiveContext
     {
         private string _name;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ActiveContextTimeToLive _timeToLive;
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace Amazon.Lex.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

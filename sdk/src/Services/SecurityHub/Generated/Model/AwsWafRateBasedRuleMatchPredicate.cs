@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -59,13 +60,13 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Negated. 
         /// <para>
-        /// If set to <code>true</code>, then the rule actions are performed on requests that
-        /// match the predicate settings.
+        /// If set to <c>true</c>, then the rule actions are performed on requests that match
+        /// the predicate settings.
         /// </para>
         ///  
         /// <para>
-        /// If set to <code>false</code>, then the rule actions are performed on all requests
-        /// except those that match the predicate settings. 
+        /// If set to <c>false</c>, then the rule actions are performed on all requests except
+        /// those that match the predicate settings. 
         /// </para>
         /// </summary>
         public bool Negated
@@ -87,31 +88,31 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ByteMatch</code> 
+        ///  <c>ByteMatch</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>GeoMatch</code> 
+        ///  <c>GeoMatch</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IPMatch</code> 
+        ///  <c>IPMatch</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RegexMatch</code> 
+        ///  <c>RegexMatch</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SizeConstraint</code> 
+        ///  <c>SizeConstraint</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SqlInjectionMatch</code> 
+        ///  <c>SqlInjectionMatch</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>XssMatch</code> 
+        ///  <c>XssMatch</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

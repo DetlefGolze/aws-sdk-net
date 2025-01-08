@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -70,7 +71,7 @@ namespace Amazon.AuditManager.Model
         /// The unique identifier for the control. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=36, Max=36)]
+        [AWSProperty(Min=13, Max=2048)]
         public string Id
         {
             get { return this._id; }
@@ -107,7 +108,7 @@ namespace Amazon.AuditManager.Model
         /// The name of the control. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=2048)]
+        [AWSProperty(Min=0, Max=2048)]
         public string Name
         {
             get { return this._name; }

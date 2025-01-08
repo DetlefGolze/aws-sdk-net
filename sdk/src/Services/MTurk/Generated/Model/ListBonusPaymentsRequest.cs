@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the ListBonusPayments operation.
-    /// The <code>ListBonusPayments</code> operation retrieves the amounts of bonuses you
-    /// have paid to Workers for a given HIT or assignment.
+    /// The <c>ListBonusPayments</c> operation retrieves the amounts of bonuses you have
+    /// paid to Workers for a given HIT or assignment.
     /// </summary>
     public partial class ListBonusPaymentsRequest : AmazonMTurkRequest
     {

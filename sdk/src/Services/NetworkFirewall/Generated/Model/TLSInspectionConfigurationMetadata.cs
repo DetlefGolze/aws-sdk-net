@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
-    /// High-level information about a TLS inspection configuration, returned by <code>ListTLSInspectionConfigurations</code>.
+    /// High-level information about a TLS inspection configuration, returned by <c>ListTLSInspectionConfigurations</c>.
     /// You can use the information provided in the metadata to retrieve and manage a TLS
     /// configuration.
     /// </summary>

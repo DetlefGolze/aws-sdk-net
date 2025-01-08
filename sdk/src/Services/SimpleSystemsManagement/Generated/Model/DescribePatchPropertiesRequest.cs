@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -42,50 +43,48 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </para>
     ///  <dl> <dt>AMAZON_LINUX</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>CLASSIFICATION</code> | <code>SEVERITY</code>
-    /// 
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> | <c>SEVERITY</c> 
     /// </para>
     ///  </dd> <dt>AMAZON_LINUX_2</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>CLASSIFICATION</code> | <code>SEVERITY</code>
-    /// 
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> | <c>SEVERITY</c> 
+    /// </para>
+    ///  </dd> <dt>AMAZON_LINUX_2023</dt> <dd> 
+    /// <para>
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> | <c>SEVERITY</c> 
     /// </para>
     ///  </dd> <dt>CENTOS</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>CLASSIFICATION</code> | <code>SEVERITY</code>
-    /// 
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> | <c>SEVERITY</c> 
     /// </para>
     ///  </dd> <dt>DEBIAN</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>PRIORITY</code> 
+    /// Valid properties: <c>PRODUCT</c> | <c>PRIORITY</c> 
     /// </para>
     ///  </dd> <dt>MACOS</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>CLASSIFICATION</code> 
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> 
     /// </para>
     ///  </dd> <dt>ORACLE_LINUX</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>CLASSIFICATION</code> | <code>SEVERITY</code>
-    /// 
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> | <c>SEVERITY</c> 
     /// </para>
     ///  </dd> <dt>REDHAT_ENTERPRISE_LINUX</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>CLASSIFICATION</code> | <code>SEVERITY</code>
-    /// 
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> | <c>SEVERITY</c> 
     /// </para>
     ///  </dd> <dt>SUSE</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>CLASSIFICATION</code> | <code>SEVERITY</code>
-    /// 
+    /// Valid properties: <c>PRODUCT</c> | <c>CLASSIFICATION</c> | <c>SEVERITY</c> 
     /// </para>
     ///  </dd> <dt>UBUNTU</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>PRIORITY</code> 
+    /// Valid properties: <c>PRODUCT</c> | <c>PRIORITY</c> 
     /// </para>
     ///  </dd> <dt>WINDOWS</dt> <dd> 
     /// <para>
-    /// Valid properties: <code>PRODUCT</code> | <code>PRODUCT_FAMILY</code> | <code>CLASSIFICATION</code>
-    /// | <code>MSRC_SEVERITY</code> 
+    /// Valid properties: <c>PRODUCT</c> | <c>PRODUCT_FAMILY</c> | <c>CLASSIFICATION</c> |
+    /// <c>MSRC_SEVERITY</c> 
     /// </para>
     ///  </dd> </dl>
     /// </summary>

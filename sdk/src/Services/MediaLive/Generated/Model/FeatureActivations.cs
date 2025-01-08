@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.MediaLive.Model
     public partial class FeatureActivations
     {
         private FeatureActivationsInputPrepareScheduleActions _inputPrepareScheduleActions;
+        private FeatureActivationsOutputStaticImageOverlayScheduleActions _outputStaticImageOverlayScheduleActions;
 
         /// <summary>
         /// Gets and sets the property InputPrepareScheduleActions. Enables the Input Prepare
@@ -51,6 +53,23 @@ namespace Amazon.MediaLive.Model
         internal bool IsSetInputPrepareScheduleActions()
         {
             return this._inputPrepareScheduleActions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OutputStaticImageOverlayScheduleActions. Enables the output
+        /// static image overlay feature. Enabling this feature allows you to send channel schedule
+        /// updatesto display/clear/modify image overlays on an output-by-output bases.
+        /// </summary>
+        public FeatureActivationsOutputStaticImageOverlayScheduleActions OutputStaticImageOverlayScheduleActions
+        {
+            get { return this._outputStaticImageOverlayScheduleActions; }
+            set { this._outputStaticImageOverlayScheduleActions = value; }
+        }
+
+        // Check to see if OutputStaticImageOverlayScheduleActions property is set
+        internal bool IsSetOutputStaticImageOverlayScheduleActions()
+        {
+            return this._outputStaticImageOverlayScheduleActions != null;
         }
 
     }

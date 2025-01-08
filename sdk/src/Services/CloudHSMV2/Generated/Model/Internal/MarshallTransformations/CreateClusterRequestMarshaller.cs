@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudHSMV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.CloudHSMV2.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetBackupRetentionPolicy())
@@ -82,6 +84,18 @@ namespace Amazon.CloudHSMV2.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("HsmType");
                     context.Writer.Write(publicRequest.HsmType);
+                }
+
+                if(publicRequest.IsSetMode())
+                {
+                    context.Writer.WritePropertyName("Mode");
+                    context.Writer.Write(publicRequest.Mode);
+                }
+
+                if(publicRequest.IsSetNetworkType())
+                {
+                    context.Writer.WritePropertyName("NetworkType");
+                    context.Writer.Write(publicRequest.NetworkType);
                 }
 
                 if(publicRequest.IsSetSourceBackupId())

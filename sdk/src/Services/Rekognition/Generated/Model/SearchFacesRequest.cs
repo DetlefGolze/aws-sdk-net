@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Rekognition.Model
     /// 
     ///  <note> 
     /// <para>
-    /// You can also search faces without indexing faces by using the <code>SearchFacesByImage</code>
+    /// You can also search faces without indexing faces by using the <c>SearchFacesByImage</c>
     /// operation.
     /// </para>
     ///  </note> 
@@ -45,8 +46,8 @@ namespace Amazon.Rekognition.Model
     ///  The operation response returns an array of faces that match, ordered by similarity
     /// score with the highest similarity first. More specifically, it is an array of metadata
     /// for each face match that is found. Along with the metadata, the response also includes
-    /// a <code>confidence</code> value for each face match, indicating the confidence that
-    /// the specific face matches the input face. 
+    /// a <c>confidence</c> value for each face match, indicating the confidence that the
+    /// specific face matches the input face. 
     /// </para>
     ///  
     /// <para>
@@ -55,7 +56,7 @@ namespace Amazon.Rekognition.Model
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permissions to perform the <code>rekognition:SearchFaces</code>
+    /// This operation requires permissions to perform the <c>rekognition:SearchFaces</c>
     /// action.
     /// </para>
     /// </summary>

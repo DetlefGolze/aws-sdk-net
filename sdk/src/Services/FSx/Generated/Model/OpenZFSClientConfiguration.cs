@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.FSx.Model
     public partial class OpenZFSClientConfiguration
     {
         private string _clients;
-        private List<string> _options = new List<string>();
+        private List<string> _options = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Clients. 
         /// <para>
         /// A value that specifies who can mount the file system. You can provide a wildcard character
-        /// (<code>*</code>), an IP address (<code>0.0.0.0</code>), or a CIDR address (<code>192.0.2.0/24</code>).
+        /// (<c>*</c>), an IP address (<c>0.0.0.0</c>), or a CIDR address (<c>192.0.2.0/24</c>).
         /// By default, Amazon FSx uses the wildcard character when specifying the client. 
         /// </para>
         /// </summary>
@@ -67,15 +68,15 @@ namespace Amazon.FSx.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>crossmnt</code> is used by default. If you don't specify <code>crossmnt</code>
-        /// when changing the client configuration, you won't be able to see or access snapshots
-        /// in your file system's snapshot directory.
+        ///  <c>crossmnt</c> is used by default. If you don't specify <c>crossmnt</c> when changing
+        /// the client configuration, you won't be able to see or access snapshots in your file
+        /// system's snapshot directory.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>sync</code> is used by default. If you instead specify <code>async</code>,
-        /// the system acknowledges writes before writing to disk. If the system crashes before
-        /// the writes are finished, you lose the unwritten data. 
+        ///  <c>sync</c> is used by default. If you instead specify <c>async</c>, the system acknowledges
+        /// writes before writing to disk. If the system crashes before the writes are finished,
+        /// you lose the unwritten data. 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -89,7 +90,7 @@ namespace Amazon.FSx.Model
         // Check to see if Options property is set
         internal bool IsSetOptions()
         {
-            return this._options != null && this._options.Count > 0; 
+            return this._options != null && (this._options.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

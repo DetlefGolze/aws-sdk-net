@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
-    /// Represents a request to perform a <code>DeleteItem</code> operation.
+    /// Represents a request to perform a <c>DeleteItem</c> operation.
     /// </summary>
     public partial class Delete
     {
         private string _conditionExpression;
-        private Dictionary<string, string> _expressionAttributeNames = new Dictionary<string, string>();
-        private Dictionary<string, AttributeValue> _expressionAttributeValues = new Dictionary<string, AttributeValue>();
-        private Dictionary<string, AttributeValue> _key = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, string> _expressionAttributeNames = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, AttributeValue> _expressionAttributeValues = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
+        private Dictionary<string, AttributeValue> _key = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private ReturnValuesOnConditionCheckFailure _returnValuesOnConditionCheckFailure;
         private string _tableName;
 
@@ -73,7 +74,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExpressionAttributeNames property is set
         internal bool IsSetExpressionAttributeNames()
         {
-            return this._expressionAttributeNames != null && this._expressionAttributeNames.Count > 0; 
+            return this._expressionAttributeNames != null && (this._expressionAttributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if ExpressionAttributeValues property is set
         internal bool IsSetExpressionAttributeValues()
         {
-            return this._expressionAttributeValues != null && this._expressionAttributeValues.Count > 0; 
+            return this._expressionAttributeValues != null && (this._expressionAttributeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -111,15 +112,15 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Key property is set
         internal bool IsSetKey()
         {
-            return this._key != null && this._key.Count > 0; 
+            return this._key != null && (this._key.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ReturnValuesOnConditionCheckFailure. 
         /// <para>
-        /// Use <code>ReturnValuesOnConditionCheckFailure</code> to get the item attributes if
-        /// the <code>Delete</code> condition fails. For <code>ReturnValuesOnConditionCheckFailure</code>,
-        /// the valid values are: NONE and ALL_OLD.
+        /// Use <c>ReturnValuesOnConditionCheckFailure</c> to get the item attributes if the <c>Delete</c>
+        /// condition fails. For <c>ReturnValuesOnConditionCheckFailure</c>, the valid values
+        /// are: NONE and ALL_OLD.
         /// </para>
         /// </summary>
         public ReturnValuesOnConditionCheckFailure ReturnValuesOnConditionCheckFailure
@@ -137,10 +138,11 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property TableName. 
         /// <para>
-        /// Name of the table in which the item to be deleted resides.
+        /// Name of the table in which the item to be deleted resides. You can also provide the
+        /// Amazon Resource Name (ARN) of the table in this parameter.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=3, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=1024)]
         public string TableName
         {
             get { return this._tableName; }

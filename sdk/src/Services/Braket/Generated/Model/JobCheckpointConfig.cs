@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Braket.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Braket.Model
         /// Gets and sets the property LocalPath. 
         /// <para>
         /// (Optional) The local directory where checkpoints are written. The default directory
-        /// is <code>/opt/braket/checkpoints/</code>.
+        /// is <c>/opt/braket/checkpoints/</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -60,7 +61,7 @@ namespace Amazon.Braket.Model
         /// Gets and sets the property S3Uri. 
         /// <para>
         /// Identifies the S3 path where you want Amazon Braket to store checkpoints. For example,
-        /// <code>s3://bucket-name/key-name-prefix</code>.
+        /// <c>s3://bucket-name/key-name-prefix</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=1024)]

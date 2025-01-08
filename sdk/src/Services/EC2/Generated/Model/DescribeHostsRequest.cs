@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.EC2.Model
     /// <para>
     /// The results describe only the Dedicated Hosts in the Region you're currently using.
     /// All listed instances consume capacity on your Dedicated Host. Dedicated Hosts that
-    /// have recently been released are listed with the state <code>released</code>.
+    /// have recently been released are listed with the state <c>released</c>.
     /// </para>
     /// </summary>
     public partial class DescribeHostsRequest : AmazonEC2Request
     {
-        private List<Filter> _filter = new List<Filter>();
-        private List<string> _hostIds = new List<string>();
+        private List<Filter> _filter = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _hostIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -53,37 +54,36 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>auto-placement</code> - Whether auto-placement is enabled or disabled (<code>on</code>
-        /// | <code>off</code>).
+        ///  <c>auto-placement</c> - Whether auto-placement is enabled or disabled (<c>on</c>
+        /// | <c>off</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>availability-zone</code> - The Availability Zone of the host.
+        ///  <c>availability-zone</c> - The Availability Zone of the host.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>client-token</code> - The idempotency token that you provided when you allocated
+        ///  <c>client-token</c> - The idempotency token that you provided when you allocated
         /// the host.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>host-reservation-id</code> - The ID of the reservation assigned to this host.
+        ///  <c>host-reservation-id</c> - The ID of the reservation assigned to this host.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-type</code> - The instance type size that the Dedicated Host is configured
+        ///  <c>instance-type</c> - The instance type size that the Dedicated Host is configured
         /// to support.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>state</code> - The allocation state of the Dedicated Host (<code>available</code>
-        /// | <code>under-assessment</code> | <code>permanent-failure</code> | <code>released</code>
-        /// | <code>released-permanent-failure</code>).
+        ///  <c>state</c> - The allocation state of the Dedicated Host (<c>available</c> | <c>under-assessment</c>
+        /// | <c>permanent-failure</c> | <c>released</c> | <c>released-permanent-failure</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -96,7 +96,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filter property is set
         internal bool IsSetFilter()
         {
-            return this._filter != null && this._filter.Count > 0; 
+            return this._filter != null && (this._filter.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -114,16 +114,16 @@ namespace Amazon.EC2.Model
         // Check to see if HostIds property is set
         internal bool IsSetHostIds()
         {
-            return this._hostIds != null && this._hostIds.Count > 0; 
+            return this._hostIds != null && (this._hostIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// The maximum number of results to return for the request in a single page. The remaining
-        /// results can be seen by sending another request with the returned <code>nextToken</code>
-        /// value. This value can be between 5 and 500. If <code>maxResults</code> is given a
-        /// larger value than 500, you receive an error.
+        /// results can be seen by sending another request with the returned <c>nextToken</c>
+        /// value. This value can be between 5 and 500. If <c>maxResults</c> is given a larger
+        /// value than 500, you receive an error.
         /// </para>
         ///  
         /// <para>

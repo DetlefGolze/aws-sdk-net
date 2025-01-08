@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.Lightsail.Model
     /// </summary>
     public partial class ContainerServiceDeployment
     {
-        private Dictionary<string, Container> _containers = new Dictionary<string, Container>();
+        private Dictionary<string, Container> _containers = AWSConfigs.InitializeCollections ? new Dictionary<string, Container>() : null;
         private DateTime? _createdAt;
         private ContainerServiceEndpoint _publicEndpoint;
         private ContainerServiceDeploymentState _state;
@@ -60,7 +61,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Containers property is set
         internal bool IsSetContainers()
         {
-            return this._containers != null && this._containers.Count > 0; 
+            return this._containers != null && (this._containers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,24 +111,24 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Activating</code> - The deployment is being created.
+        ///  <c>ACTIVATING</c> - The deployment is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Active</code> - The deployment was successfully created, and it's currently
-        /// running on the container service. The container service can have only one deployment
-        /// in an active state at a time.
+        ///  <c>ACTIVE</c> - The deployment was successfully created, and it's currently running
+        /// on the container service. The container service can have only one deployment in an
+        /// active state at a time.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Inactive</code> - The deployment was previously successfully created, but it
-        /// is not currently running on the container service.
+        ///  <c>INACTIVE</c> - The deployment was previously successfully created, but it is not
+        /// currently running on the container service.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code> - The deployment failed. Use the <code>GetContainerLog</code>
-        /// action to view the log events for the containers in the deployment to try to determine
-        /// the reason for the failure.
+        ///  <c>FAILED</c> - The deployment failed. Use the <c>GetContainerLog</c> action to view
+        /// the log events for the containers in the deployment to try to determine the reason
+        /// for the failure.
         /// </para>
         ///  </li> </ul>
         /// </summary>

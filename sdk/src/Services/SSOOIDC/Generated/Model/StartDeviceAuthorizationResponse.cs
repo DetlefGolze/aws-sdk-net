@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSOOIDC.Model
 {
     /// <summary>
@@ -116,8 +117,7 @@ namespace Amazon.SSOOIDC.Model
         /// <summary>
         /// Gets and sets the property VerificationUri. 
         /// <para>
-        /// The URI of the verification page that takes the <code>userCode</code> to authorize
-        /// the device.
+        /// The URI of the verification page that takes the <c>userCode</c> to authorize the device.
         /// </para>
         /// </summary>
         public string VerificationUri

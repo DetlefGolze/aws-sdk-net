@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.Comprehend.Model
         /// Gets and sets the property Page. 
         /// <para>
         /// Page number where the label occurs. This field is present in the response only if
-        /// your request includes the <code>Byte</code> parameter. 
+        /// your request includes the <c>Byte</c> parameter. 
         /// </para>
         /// </summary>
         public int Page

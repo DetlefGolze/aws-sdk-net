@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleNotificationService.Model
 {
     /// <summary>
-    /// Two or more batch entries in the request have the same <code>Id</code>.
+    /// Two or more batch entries in the request have the same <c>Id</c>.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

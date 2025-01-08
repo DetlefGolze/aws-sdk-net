@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property PackageID. 
         /// <para>
-        /// The internal ID of the package you want to delete. Use <code>DescribePackages</code>
-        /// to find this value.
+        /// The internal ID of the package you want to delete. Use <c>DescribePackages</c> to
+        /// find this value.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

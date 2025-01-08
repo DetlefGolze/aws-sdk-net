@@ -26,30 +26,41 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Contains the details for an SFTP connector object. The connector object is used for
     /// transferring files to and from a partner's SFTP server.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// Because the <c>SftpConnectorConfig</c> data type is used for both creating and updating
+    /// SFTP connectors, its parameters, <c>TrustedHostKeys</c> and <c>UserSecretId</c> are
+    /// marked as not required. This is a bit misleading, as they are not required when you
+    /// are updating an existing SFTP connector, but <i>are required</i> when you are creating
+    /// a new SFTP connector.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class SftpConnectorConfig
     {
-        private List<string> _trustedHostKeys = new List<string>();
+        private List<string> _trustedHostKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _userSecretId;
 
         /// <summary>
         /// Gets and sets the property TrustedHostKeys. 
         /// <para>
         /// The public portion of the host key, or keys, that are used to identify the external
-        /// server to which you are connecting. You can use the <code>ssh-keyscan</code> command
-        /// against the SFTP server to retrieve the necessary key.
+        /// server to which you are connecting. You can use the <c>ssh-keyscan</c> command against
+        /// the SFTP server to retrieve the necessary key.
         /// </para>
         ///  
         /// <para>
-        /// The three standard SSH public key format elements are <code>&lt;key type&gt;</code>,
-        /// <code>&lt;body base64&gt;</code>, and an optional <code>&lt;comment&gt;</code>, with
-        /// spaces between each element. Specify only the <code>&lt;key type&gt;</code> and <code>&lt;body
-        /// base64&gt;</code>: do not enter the <code>&lt;comment&gt;</code> portion of the key.
+        /// The three standard SSH public key format elements are <c>&lt;key type&gt;</c>, <c>&lt;body
+        /// base64&gt;</c>, and an optional <c>&lt;comment&gt;</c>, with spaces between each element.
+        /// Specify only the <c>&lt;key type&gt;</c> and <c>&lt;body base64&gt;</c>: do not enter
+        /// the <c>&lt;comment&gt;</c> portion of the key.
         /// </para>
         ///  
         /// <para>
@@ -57,15 +68,36 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For RSA keys, the <code>&lt;key type&gt;</code> string is <code>ssh-rsa</code>.
+        /// For RSA keys, the <c>&lt;key type&gt;</c> string is <c>ssh-rsa</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For ECDSA keys, the <code>&lt;key type&gt;</code> string is either <code>ecdsa-sha2-nistp256</code>,
-        /// <code>ecdsa-sha2-nistp384</code>, or <code>ecdsa-sha2-nistp521</code>, depending on
-        /// the size of the key you generated.
+        /// For ECDSA keys, the <c>&lt;key type&gt;</c> string is either <c>ecdsa-sha2-nistp256</c>,
+        /// <c>ecdsa-sha2-nistp384</c>, or <c>ecdsa-sha2-nistp521</c>, depending on the size of
+        /// the key you generated.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> 
+        /// <para>
+        /// Run this command to retrieve the SFTP server host key, where your SFTP server name
+        /// is <c>ftp.host.com</c>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>ssh-keyscan ftp.host.com</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// This prints the public host key to standard output.
+        /// </para>
+        ///  
+        /// <para>
+        ///  <c>ftp.host.com ssh-rsa AAAAB3Nza...&lt;long-string-for-public-key</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Copy and paste this string into the <c>TrustedHostKeys</c> field for the <c>create-connector</c>
+        /// command or into the <b>Trusted host keys</b> field in the console.
+        /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
         public List<string> TrustedHostKeys
@@ -77,15 +109,15 @@ namespace Amazon.Transfer.Model
         // Check to see if TrustedHostKeys property is set
         internal bool IsSetTrustedHostKeys()
         {
-            return this._trustedHostKeys != null && this._trustedHostKeys.Count > 0; 
+            return this._trustedHostKeys != null && (this._trustedHostKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UserSecretId. 
         /// <para>
         /// The identifier for the secret (in Amazon Web Services Secrets Manager) that contains
-        /// the SFTP user's private key, password, or both. The identifier can be either the Amazon
-        /// Resource Name (ARN) or the name of the secret.
+        /// the SFTP user's private key, password, or both. The identifier must be the Amazon
+        /// Resource Name (ARN) of the secret.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]

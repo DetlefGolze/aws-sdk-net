@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property AssetStatus. 
         /// <para>
-        /// The status of the asset, which contains a state (<code>DELETING</code> after successfully
+        /// The status of the asset, which contains a state (<c>DELETING</c> after successfully
         /// calling this operation) and any error message.
         /// </para>
         /// </summary>

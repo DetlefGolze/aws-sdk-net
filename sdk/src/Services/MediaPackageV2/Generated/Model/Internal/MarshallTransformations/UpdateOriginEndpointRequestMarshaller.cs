@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -72,6 +73,7 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetContainerType())
@@ -80,10 +82,37 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.ContainerType);
                 }
 
+                if(publicRequest.IsSetDashManifests())
+                {
+                    context.Writer.WritePropertyName("DashManifests");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestDashManifestsListValue in publicRequest.DashManifests)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = CreateDashManifestConfigurationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestDashManifestsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
                 if(publicRequest.IsSetDescription())
                 {
                     context.Writer.WritePropertyName("Description");
                     context.Writer.Write(publicRequest.Description);
+                }
+
+                if(publicRequest.IsSetForceEndpointErrorConfiguration())
+                {
+                    context.Writer.WritePropertyName("ForceEndpointErrorConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ForceEndpointErrorConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ForceEndpointErrorConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetHlsManifests())
@@ -140,6 +169,11 @@ namespace Amazon.MediaPackageV2.Model.Internal.MarshallTransformations
                 request.Content = System.Text.Encoding.UTF8.GetBytes(snippet);
             }
 
+        
+            if (publicRequest.IsSetETag()) 
+            {
+                request.Headers["x-amzn-update-if-match"] = publicRequest.ETag;
+            }
 
             return request;
         }

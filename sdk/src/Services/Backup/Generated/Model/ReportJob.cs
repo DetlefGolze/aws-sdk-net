@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -47,9 +48,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CompletionTime. 
         /// <para>
         /// The date and time that a report job is completed, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CompletionTime</code> is accurate to milliseconds.
-        /// For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CompletionTime</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CompletionTime
@@ -68,9 +68,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// The date and time that a report job is created, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CreationTime</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CreationTime</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -150,8 +149,8 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
-        /// | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> 
+        ///  <c>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT
+        /// | RESTORE_JOB_REPORT</c> 
         /// </para>
         /// </summary>
         public string ReportTemplate
@@ -173,13 +172,13 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>CREATED | RUNNING | COMPLETED | FAILED</code> 
+        ///  <c>CREATED | RUNNING | COMPLETED | FAILED</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>COMPLETED</code> means that the report is available for your review at your
-        /// designated destination. If the status is <code>FAILED</code>, review the <code>StatusMessage</code>
-        /// for the reason.
+        ///  <c>COMPLETED</c> means that the report is available for your review at your designated
+        /// destination. If the status is <c>FAILED</c>, review the <c>StatusMessage</c> for the
+        /// reason.
         /// </para>
         /// </summary>
         public string Status

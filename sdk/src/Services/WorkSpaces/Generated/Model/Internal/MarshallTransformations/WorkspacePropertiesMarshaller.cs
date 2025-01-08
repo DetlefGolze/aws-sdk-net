@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,23 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(WorkspaceProperties requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetComputeTypeName())
             {
                 context.Writer.WritePropertyName("ComputeTypeName");
                 context.Writer.Write(requestObject.ComputeTypeName);
+            }
+
+            if(requestObject.IsSetGlobalAccelerator())
+            {
+                context.Writer.WritePropertyName("GlobalAccelerator");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = GlobalAcceleratorForWorkSpaceMarshaller.Instance;
+                marshaller.Marshall(requestObject.GlobalAccelerator, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetOperatingSystemName())

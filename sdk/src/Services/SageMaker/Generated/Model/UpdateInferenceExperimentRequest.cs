@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateInferenceExperiment operation.
     /// Updates an inference experiment that you created. The status of the inference experiment
-    /// has to be either <code>Created</code>, <code>Running</code>. For more information
-    /// on the status of an inference experiment, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeInferenceExperiment.html">DescribeInferenceExperiment</a>.
+    /// has to be either <c>Created</c>, <c>Running</c>. For more information on the status
+    /// of an inference experiment, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeInferenceExperiment.html">DescribeInferenceExperiment</a>.
     /// </summary>
     public partial class UpdateInferenceExperimentRequest : AmazonSageMakerRequest
     {
         private InferenceExperimentDataStorageConfig _dataStorageConfig;
         private string _description;
-        private List<ModelVariantConfig> _modelVariants = new List<ModelVariantConfig>();
+        private List<ModelVariantConfig> _modelVariants = AWSConfigs.InitializeCollections ? new List<ModelVariantConfig>() : null;
         private string _name;
         private InferenceExperimentSchedule _schedule;
         private ShadowModeConfig _shadowModeConfig;
@@ -84,8 +85,8 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ModelVariants. 
         /// <para>
-        ///  An array of <code>ModelVariantConfig</code> objects. There is one for each variant,
-        /// whose infrastructure configuration you want to update. 
+        ///  An array of <c>ModelVariantConfig</c> objects. There is one for each variant, whose
+        /// infrastructure configuration you want to update. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2)]
@@ -98,7 +99,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ModelVariants property is set
         internal bool IsSetModelVariants()
         {
-            return this._modelVariants != null && this._modelVariants.Count > 0; 
+            return this._modelVariants != null && (this._modelVariants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,9 +125,9 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property Schedule. 
         /// <para>
         ///  The duration for which the inference experiment will run. If the status of the inference
-        /// experiment is <code>Created</code>, then you can update both the start and end dates.
-        /// If the status of the inference experiment is <code>Running</code>, then you can update
-        /// only the end date. 
+        /// experiment is <c>Created</c>, then you can update both the start and end dates. If
+        /// the status of the inference experiment is <c>Running</c>, then you can update only
+        /// the end date. 
         /// </para>
         /// </summary>
         public InferenceExperimentSchedule Schedule
@@ -144,11 +145,11 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ShadowModeConfig. 
         /// <para>
-        ///  The configuration of <code>ShadowMode</code> inference experiment type. Use this
-        /// field to specify a production variant which takes all the inference requests, and
-        /// a shadow variant to which Amazon SageMaker replicates a percentage of the inference
-        /// requests. For the shadow variant also specify the percentage of requests that Amazon
-        /// SageMaker replicates. 
+        ///  The configuration of <c>ShadowMode</c> inference experiment type. Use this field
+        /// to specify a production variant which takes all the inference requests, and a shadow
+        /// variant to which Amazon SageMaker replicates a percentage of the inference requests.
+        /// For the shadow variant also specify the percentage of requests that Amazon SageMaker
+        /// replicates. 
         /// </para>
         /// </summary>
         public ShadowModeConfig ShadowModeConfig

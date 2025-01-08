@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -71,14 +72,14 @@ namespace Amazon.GameLift.Model
     {
         private string _name;
         private string _ruleSetBody;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
         /// A unique identifier for the matchmaking rule set. A matchmaking configuration identifies
         /// the rule set it uses by this name value. Note that the rule set name is different
-        /// from the optional <code>name</code> field in the rule set body.
+        /// from the optional <c>name</c> field in the rule set body.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=128)]
@@ -133,7 +134,7 @@ namespace Amazon.GameLift.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

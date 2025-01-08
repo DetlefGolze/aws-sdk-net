@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// The length of the <code>Content-Security-Policy</code> header value in the response
-    /// headers policy exceeds the maximum.
+    /// The length of the <c>Content-Security-Policy</c> header value in the response headers
+    /// policy exceeds the maximum.
     /// 
     ///  
     /// <para>

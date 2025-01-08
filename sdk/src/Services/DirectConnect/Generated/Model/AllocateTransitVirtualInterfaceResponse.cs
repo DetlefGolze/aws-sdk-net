@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -36,7 +37,10 @@ namespace Amazon.DirectConnect.Model
         private VirtualInterface _virtualInterface;
 
         /// <summary>
-        /// Gets and sets the property VirtualInterface.
+        /// Gets and sets the property VirtualInterface. 
+        /// <para>
+        /// Information about the transit virtual interface.
+        /// </para>
         /// </summary>
         public VirtualInterface VirtualInterface
         {

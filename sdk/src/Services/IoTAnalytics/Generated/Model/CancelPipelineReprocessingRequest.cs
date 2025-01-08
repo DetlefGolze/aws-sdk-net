@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -59,7 +60,7 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property ReprocessingId. 
         /// <para>
-        /// The ID of the reprocessing task (returned by <code>StartPipelineReprocessing</code>).
+        /// The ID of the reprocessing task (returned by <c>StartPipelineReprocessing</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

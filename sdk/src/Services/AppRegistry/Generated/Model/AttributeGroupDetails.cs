@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppRegistry.Model
 {
     /// <summary>
@@ -98,14 +99,13 @@ namespace Amazon.AppRegistry.Model
         /// Gets and sets the property Name. <important> 
         /// <para>
         ///  This field is no longer supported. We recommend you don't use the field when using
-        /// <code>ListAttributeGroupsForApplication</code>. 
+        /// <c>ListAttributeGroupsForApplication</c>. 
         /// </para>
         ///  </important> 
         /// <para>
         ///  The name of the attribute group. 
         /// </para>
         /// </summary>
-        [Obsolete("This field is deprecated. We recommend not using the field when using ListAttributeGroupsForApplication.")]
         [AWSProperty(Min=1, Max=256)]
         public string Name
         {

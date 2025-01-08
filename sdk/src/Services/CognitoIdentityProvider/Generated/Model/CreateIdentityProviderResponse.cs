@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property IdentityProvider. 
         /// <para>
-        /// The newly created IdP object.
+        /// The details of the new user pool IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

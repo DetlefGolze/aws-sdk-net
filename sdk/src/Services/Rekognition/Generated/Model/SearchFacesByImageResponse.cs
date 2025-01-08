@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class SearchFacesByImageResponse : AmazonWebServiceResponse
     {
-        private List<FaceMatch> _faceMatches = new List<FaceMatch>();
+        private List<FaceMatch> _faceMatches = AWSConfigs.InitializeCollections ? new List<FaceMatch>() : null;
         private string _faceModelVersion;
         private BoundingBox _searchedFaceBoundingBox;
         private float? _searchedFaceConfidence;
@@ -53,13 +54,13 @@ namespace Amazon.Rekognition.Model
         // Check to see if FaceMatches property is set
         internal bool IsSetFaceMatches()
         {
-            return this._faceMatches != null && this._faceMatches.Count > 0; 
+            return this._faceMatches != null && (this._faceMatches.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FaceModelVersion. 
         /// <para>
-        /// Version number of the face detection model associated with the input collection (<code>CollectionId</code>).
+        /// Version number of the face detection model associated with the input collection (<c>CollectionId</c>).
         /// </para>
         /// </summary>
         public string FaceModelVersion
@@ -96,8 +97,7 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property SearchedFaceConfidence. 
         /// <para>
-        /// The level of confidence that the <code>searchedFaceBoundingBox</code>, contains a
-        /// face.
+        /// The level of confidence that the <c>searchedFaceBoundingBox</c>, contains a face.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]

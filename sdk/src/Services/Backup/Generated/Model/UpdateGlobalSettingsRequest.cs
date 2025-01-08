@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateGlobalSettings operation.
     /// Updates whether the Amazon Web Services account is opted in to cross-account backup.
     /// Returns an error if the account is not an Organizations management account. Use the
-    /// <code>DescribeGlobalSettings</code> API to determine the current settings.
+    /// <c>DescribeGlobalSettings</c> API to determine the current settings.
     /// </summary>
     public partial class UpdateGlobalSettingsRequest : AmazonBackupRequest
     {
-        private Dictionary<string, string> _globalSettings = new Dictionary<string, string>();
+        private Dictionary<string, string> _globalSettings = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property GlobalSettings. 
         /// <para>
-        /// A value for <code>isCrossAccountBackupEnabled</code> and a Region. Example: <code>update-global-settings
-        /// --global-settings isCrossAccountBackupEnabled=false --region us-west-2</code>.
+        /// A value for <c>isCrossAccountBackupEnabled</c> and a Region. Example: <c>update-global-settings
+        /// --global-settings isCrossAccountBackupEnabled=false --region us-west-2</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> GlobalSettings
@@ -54,7 +55,7 @@ namespace Amazon.Backup.Model
         // Check to see if GlobalSettings property is set
         internal bool IsSetGlobalSettings()
         {
-            return this._globalSettings != null && this._globalSettings.Count > 0; 
+            return this._globalSettings != null && (this._globalSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

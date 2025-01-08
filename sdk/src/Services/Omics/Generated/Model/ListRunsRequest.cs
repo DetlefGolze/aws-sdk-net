@@ -26,11 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
     /// Container for the parameters to the ListRuns operation.
     /// Retrieves a list of runs.
+    /// 
+    ///  
+    /// <para>
+    /// HealthOmics stores a fixed number of runs that are available to the console and API.
+    /// If the ListRuns response doesn't include specific runs that you expected, you can
+    /// find run logs for all runs in the CloudWatch logs. For more information about viewing
+    /// the run logs, see <a href="https://docs.aws.amazon.com/omics/latest/dev/cloudwatch-logs.html">CloudWatch
+    /// logs</a> in the <i>AWS HealthOmics User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class ListRunsRequest : AmazonOmicsRequest
     {
@@ -120,7 +130,7 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        ///  The status of a run. 
+        /// The status of a run.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

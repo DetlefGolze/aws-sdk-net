@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -122,7 +123,7 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  </dd> <dt>ReverseLogarithmic</dt> <dd> 
         /// <para>
-        /// Not supported for <code>IntegerParameterRange</code>.
+        /// Not supported for <c>IntegerParameterRange</c>.
         /// </para>
         ///  
         /// <para>

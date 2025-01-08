@@ -26,20 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
-    /// Contains information about the certificate subject. The <code>Subject</code> field
-    /// in the certificate identifies the entity that owns or controls the public key in the
-    /// certificate. The entity can be a user, computer, device, or service. The <code>Subject
-    /// </code>must contain an X.500 distinguished name (DN). A DN is a sequence of relative
-    /// distinguished names (RDNs). The RDNs are separated by commas in the certificate.
+    /// Contains information about the certificate subject. The <c>Subject</c> field in the
+    /// certificate identifies the entity that owns or controls the public key in the certificate.
+    /// The entity can be a user, computer, device, or service. The <c>Subject </c>must contain
+    /// an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names
+    /// (RDNs). The RDNs are separated by commas in the certificate.
     /// </summary>
     public partial class ASN1Subject
     {
         private string _commonName;
         private string _country;
-        private List<CustomAttribute> _customAttributes = new List<CustomAttribute>();
+        private List<CustomAttribute> _customAttributes = AWSConfigs.InitializeCollections ? new List<CustomAttribute>() : null;
         private string _distinguishedNameQualifier;
         private string _generationQualifier;
         private string _givenName;
@@ -111,7 +112,7 @@ namespace Amazon.ACMPCA.Model
         /// </para>
         ///  </note>
         /// </summary>
-        [AWSProperty(Min=1, Max=30)]
+        [AWSProperty(Min=1, Max=150)]
         public List<CustomAttribute> CustomAttributes
         {
             get { return this._customAttributes; }
@@ -121,7 +122,7 @@ namespace Amazon.ACMPCA.Model
         // Check to see if CustomAttributes property is set
         internal bool IsSetCustomAttributes()
         {
-            return this._customAttributes != null && this._customAttributes.Count > 0; 
+            return this._customAttributes != null && (this._customAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

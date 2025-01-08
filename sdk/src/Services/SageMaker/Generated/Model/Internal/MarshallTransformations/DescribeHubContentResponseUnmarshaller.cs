@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -145,6 +146,24 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.HubName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ReferenceMinVersion", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.ReferenceMinVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SageMakerPublicHubContentArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SageMakerPublicHubContentArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SupportStatus", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SupportStatus = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

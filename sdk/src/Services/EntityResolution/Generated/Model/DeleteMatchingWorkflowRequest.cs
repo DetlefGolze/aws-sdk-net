@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteMatchingWorkflow operation.
-    /// Deletes the <code>MatchingWorkflow</code> with a given name. This operation will succeed
+    /// Deletes the <c>MatchingWorkflow</c> with a given name. This operation will succeed
     /// even if a workflow with the given name does not exist.
     /// </summary>
     public partial class DeleteMatchingWorkflowRequest : AmazonEntityResolutionRequest
@@ -43,7 +44,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the workflow to be retrieved.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string WorkflowName
         {
             get { return this._workflowName; }

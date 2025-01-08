@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public AmazonTranscribeProcessorConfiguration Unmarshall(JsonUnmarshallerContext context)
         {
+            AmazonTranscribeProcessorConfiguration unmarshalledObject = new AmazonTranscribeProcessorConfiguration();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            AmazonTranscribeProcessorConfiguration unmarshalledObject = new AmazonTranscribeProcessorConfiguration();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -92,6 +94,12 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = BoolUnmarshaller.Instance;
                     unmarshalledObject.IdentifyLanguage = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("IdentifyMultipleLanguages", targetDepth))
+                {
+                    var unmarshaller = BoolUnmarshaller.Instance;
+                    unmarshalledObject.IdentifyMultipleLanguages = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("LanguageCode", targetDepth))
@@ -167,7 +175,6 @@ namespace Amazon.ChimeSDKMediaPipelines.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

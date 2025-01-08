@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateBackupVault operation.
-    /// Creates a logical container where backups are stored. A <code>CreateBackupVault</code>
-    /// request includes a name, optionally one or more resource tags, an encryption key,
-    /// and a request ID.
+    /// Creates a logical container where backups are stored. A <c>CreateBackupVault</c> request
+    /// includes a name, optionally one or more resource tags, an encryption key, and a request
+    /// ID.
     /// 
     ///  <note> 
     /// <para>
@@ -43,7 +44,7 @@ namespace Amazon.Backup.Model
     public partial class CreateBackupVaultRequest : AmazonBackupRequest
     {
         private string _backupVaultName;
-        private Dictionary<string, string> _backupVaultTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _backupVaultTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _creatorRequestId;
         private string _encryptionKeyArn;
 
@@ -71,8 +72,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property BackupVaultTags. 
         /// <para>
-        /// Metadata that you can assign to help organize the resources that you create. Each
-        /// tag is a key-value pair.
+        /// The tags to assign to the backup vault.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -85,7 +85,7 @@ namespace Amazon.Backup.Model
         // Check to see if BackupVaultTags property is set
         internal bool IsSetBackupVaultTags()
         {
-            return this._backupVaultTags != null && this._backupVaultTags.Count > 0; 
+            return this._backupVaultTags != null && (this._backupVaultTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property EncryptionKeyArn. 
         /// <para>
         /// The server-side encryption key that is used to protect your backups; for example,
-        /// <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>.
+        /// <c>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>.
         /// </para>
         /// </summary>
         public string EncryptionKeyArn

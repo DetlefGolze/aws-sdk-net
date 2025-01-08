@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,20 +35,27 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// For a list of the Regions supported by Amazon EC2, see <a href="https://docs.aws.amazon.com/general/latest/gr/ec2-service.html">
-    /// Amazon Elastic Compute Cloud endpoints and quotas</a>.
+    /// For a list of the Regions supported by Amazon EC2, see <a href="https://docs.aws.amazon.com/ec2/latest/devguide/ec2-endpoints.html">Amazon
+    /// EC2 service endpoints</a>.
     /// </para>
     ///  
     /// <para>
-    /// For information about enabling and disabling Regions for your account, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html">Managing
-    /// Amazon Web Services Regions</a> in the <i>Amazon Web Services General Reference</i>.
+    /// For information about enabling and disabling Regions for your account, see <a href="https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-regions.html">Specify
+    /// which Amazon Web Services Regions your account can use</a> in the <i>Amazon Web Services
+    /// Account Management Reference Guide</i>.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// The order of the elements in the response, including those within nested structures,
+    /// might vary. Applications should not assume the elements appear in a particular order.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeRegionsRequest : AmazonEC2Request
     {
         private bool? _allRegions;
-        private List<Filter> _filters = new List<Filter>();
-        private List<string> _regionNames = new List<string>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
+        private List<string> _regionNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AllRegions. 
@@ -75,16 +83,16 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>endpoint</code> - The endpoint of the Region (for example, <code>ec2.us-east-1.amazonaws.com</code>).
+        ///  <c>endpoint</c> - The endpoint of the Region (for example, <c>ec2.us-east-1.amazonaws.com</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>opt-in-status</code> - The opt-in status of the Region (<code>opt-in-not-required</code>
-        /// | <code>opted-in</code> | <code>not-opted-in</code>).
+        ///  <c>opt-in-status</c> - The opt-in status of the Region (<c>opt-in-not-required</c>
+        /// | <c>opted-in</c> | <c>not-opted-in</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>region-name</code> - The name of the Region (for example, <code>us-east-1</code>).
+        ///  <c>region-name</c> - The name of the Region (for example, <c>us-east-1</c>).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -97,7 +105,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace Amazon.EC2.Model
         // Check to see if RegionNames property is set
         internal bool IsSetRegionNames()
         {
-            return this._regionNames != null && this._regionNames.Count > 0; 
+            return this._regionNames != null && (this._regionNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

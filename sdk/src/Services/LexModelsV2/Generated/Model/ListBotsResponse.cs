@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -33,16 +34,16 @@ namespace Amazon.LexModelsV2.Model
     /// </summary>
     public partial class ListBotsResponse : AmazonWebServiceResponse
     {
-        private List<BotSummary> _botSummaries = new List<BotSummary>();
+        private List<BotSummary> _botSummaries = AWSConfigs.InitializeCollections ? new List<BotSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property BotSummaries. 
         /// <para>
         /// Summary information for the bots that meet the filter criteria specified in the request.
-        /// The length of the list is specified in the <code>maxResults</code> parameter of the
-        /// request. If there are more bots available, the <code>nextToken</code> field contains
-        /// a token to the next page of results.
+        /// The length of the list is specified in the <c>maxResults</c> parameter of the request.
+        /// If there are more bots available, the <c>nextToken</c> field contains a token to the
+        /// next page of results.
         /// </para>
         /// </summary>
         public List<BotSummary> BotSummaries
@@ -54,16 +55,16 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotSummaries property is set
         internal bool IsSetBotSummaries()
         {
-            return this._botSummaries != null && this._botSummaries.Count > 0; 
+            return this._botSummaries != null && (this._botSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates whether there are more results to return in a response to the
-        /// <code>ListBots</code> operation. If the <code>nextToken</code> field is present, you
-        /// send the contents as the <code>nextToken</code> parameter of a <code>ListBots</code>
-        /// operation request to get the next page of results.
+        /// <c>ListBots</c> operation. If the <c>nextToken</c> field is present, you send the
+        /// contents as the <c>nextToken</c> parameter of a <c>ListBots</c> operation request
+        /// to get the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

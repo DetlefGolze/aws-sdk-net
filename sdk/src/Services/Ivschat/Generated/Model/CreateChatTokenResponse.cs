@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Ivschat.Model
 {
     /// <summary>
@@ -62,6 +63,7 @@ namespace Amazon.Ivschat.Model
         /// The issued client token, encrypted.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string Token
         {
             get { return this._token; }

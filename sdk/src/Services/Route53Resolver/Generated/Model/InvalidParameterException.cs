@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -126,8 +127,7 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property FieldName. 
         /// <para>
-        /// For an <code>InvalidParameterException</code> error, the name of the parameter that's
-        /// invalid.
+        /// For an <c>InvalidParameterException</c> error, the name of the parameter that's invalid.
         /// </para>
         /// </summary>
         public string FieldName

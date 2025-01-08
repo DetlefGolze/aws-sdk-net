@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexRuntimeV2.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.LexRuntimeV2.Model
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// The type of response. Same as the type specified in the <code>responseContentType</code>
+        /// The type of response. Same as the type specified in the <c>responseContentType</c>
         /// field in the request.
         /// </para>
         /// </summary>
@@ -76,7 +77,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
@@ -97,15 +98,15 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if Messages property is set
         internal bool IsSetMessages()
         {
-            return this._messages != null;
+            return !string.IsNullOrEmpty(this._messages);
         }
 
         /// <summary>
         /// Gets and sets the property RequestAttributes. 
         /// <para>
-        /// Request-specific information passed between the client application and Amazon Lex
-        /// V2. These are the same as the <code>requestAttribute</code> parameter in the call
-        /// to the <code>PutSession</code> operation.
+        /// A base-64-encoded gzipped field that provides request-specific information passed
+        /// between the client application and Amazon Lex V2. These are the same as the <c>requestAttribute</c>
+        /// parameter in the call to the <c>PutSession</c> operation.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -118,7 +119,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if RequestAttributes property is set
         internal bool IsSetRequestAttributes()
         {
-            return this._requestAttributes != null;
+            return !string.IsNullOrEmpty(this._requestAttributes);
         }
 
         /// <summary>
@@ -137,18 +138,15 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if SessionId property is set
         internal bool IsSetSessionId()
         {
-            return this._sessionId != null;
+            return !string.IsNullOrEmpty(this._sessionId);
         }
 
         /// <summary>
         /// Gets and sets the property SessionStateValue. 
         /// <para>
-        /// Represents the current state of the dialog between the user and the bot.
-        /// </para>
-        ///  
-        /// <para>
-        /// Use this to determine the progress of the conversation and what the next action may
-        /// be.
+        /// A base-64-encoded gzipped field that represents the current state of the dialog between
+        /// the user and the bot. Use this to determine the progress of the conversation and what
+        /// the next action may be.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -161,7 +159,7 @@ namespace Amazon.LexRuntimeV2.Model
         // Check to see if SessionStateValue property is set
         internal bool IsSetSessionStateValue()
         {
-            return this._sessionStateValue != null;
+            return !string.IsNullOrEmpty(this._sessionStateValue);
         }
 
         #region Dispose Pattern
@@ -177,6 +175,9 @@ namespace Amazon.LexRuntimeV2.Model
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of all managed and unmanaged resources.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

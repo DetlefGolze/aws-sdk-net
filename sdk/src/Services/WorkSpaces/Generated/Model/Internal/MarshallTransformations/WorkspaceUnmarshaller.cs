@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public Workspace Unmarshall(JsonUnmarshallerContext context)
         {
+            Workspace unmarshalledObject = new Workspace();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            Workspace unmarshalledObject = new Workspace();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ComputerName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DataReplicationSettings", targetDepth))
+                {
+                    var unmarshaller = DataReplicationSettingsUnmarshaller.Instance;
+                    unmarshalledObject.DataReplicationSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("DirectoryId", targetDepth))
@@ -118,6 +126,12 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                     unmarshalledObject.RootVolumeEncryptionEnabled = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("StandbyWorkspacesProperties", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StandbyWorkspacesProperties, StandbyWorkspacesPropertiesUnmarshaller>(StandbyWorkspacesPropertiesUnmarshaller.Instance);
+                    unmarshalledObject.StandbyWorkspacesProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("State", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -154,6 +168,12 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                     unmarshalledObject.WorkspaceId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("WorkspaceName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.WorkspaceName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("WorkspaceProperties", targetDepth))
                 {
                     var unmarshaller = WorkspacePropertiesUnmarshaller.Instance;
@@ -161,7 +181,6 @@ namespace Amazon.WorkSpaces.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

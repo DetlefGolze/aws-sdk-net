@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the RestoreDBClusterToPointInTime operation.
     /// Restores a DB cluster to an arbitrary point in time. Users can restore to any point
-    /// in time before <code>LatestRestorableTime</code> for up to <code>BackupRetentionPeriod</code>
+    /// in time before <c>LatestRestorableTime</c> for up to <c>BackupRetentionPeriod</c>
     /// days. The target DB cluster is created from the source DB cluster with the same configuration
     /// as the original DB cluster, except that the new DB cluster is created with the default
     /// DB security group.
     /// 
     ///  <note> 
     /// <para>
-    /// For Aurora, this action only restores the DB cluster, not the DB instances for that
-    /// DB cluster. You must invoke the <code>CreateDBInstance</code> action to create DB
+    /// For Aurora, this operation only restores the DB cluster, not the DB instances for
+    /// that DB cluster. You must invoke the <c>CreateDBInstance</c> operation to create DB
     /// instances for the restored DB cluster, specifying the identifier of the restored DB
-    /// cluster in <code>DBClusterIdentifier</code>. You can create DB instances only after
-    /// the <code>RestoreDBClusterToPointInTime</code> action has completed and the DB cluster
-    /// is available.
+    /// cluster in <c>DBClusterIdentifier</c>. You can create DB instances only after the
+    /// <c>RestoreDBClusterToPointInTime</c> operation has completed and the DB cluster is
+    /// available.
     /// </para>
     ///  </note> 
     /// <para>
@@ -67,15 +68,22 @@ namespace Amazon.RDS.Model
         private bool? _deletionProtection;
         private string _domain;
         private string _domainIAMRoleName;
-        private List<string> _enableCloudwatchLogsExports = new List<string>();
+        private List<string> _enableCloudwatchLogsExports = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableIAMDatabaseAuthentication;
+        private bool? _enablePerformanceInsights;
+        private string _engineLifecycleSupport;
         private string _engineMode;
         private int? _iops;
         private string _kmsKeyId;
+        private int? _monitoringInterval;
+        private string _monitoringRoleArn;
         private string _networkType;
         private string _optionGroupName;
+        private string _performanceInsightsKMSKeyId;
+        private int? _performanceInsightsRetentionPeriod;
         private int? _port;
         private bool? _publiclyAccessible;
+        private RdsCustomClusterConfiguration _rdsCustomClusterConfiguration;
         private DateTime? _restoreToTimeUtc;
         private string _restoreType;
         private ScalingConfiguration _scalingConfiguration;
@@ -83,9 +91,9 @@ namespace Amazon.RDS.Model
         private string _sourceDBClusterIdentifier;
         private string _sourceDbClusterResourceId;
         private string _storageType;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private bool? _useLatestRestorableTime;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property BacktrackWindow. 
@@ -221,8 +229,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// If the <code>DBClusterParameterGroupName</code> parameter is omitted, the default
-        /// DB cluster parameter group for the specified engine is used.
+        /// If the <c>DBClusterParameterGroupName</c> parameter is omitted, the default DB cluster
+        /// parameter group for the specified engine is used.
         /// </para>
         ///  
         /// <para>
@@ -272,7 +280,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Example: <code>mydbsubnetgroup</code> 
+        /// Example: <c>mydbsubnetgroup</c> 
         /// </para>
         ///  
         /// <para>
@@ -378,7 +386,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values are <code>error</code>, <code>general</code>, and <code>slowquery</code>.
+        /// Possible values are <c>error</c>, <c>general</c>, and <c>slowquery</c>.
         /// </para>
         ///  
         /// <para>
@@ -386,7 +394,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values are <code>postgresql</code> and <code>upgrade</code>.
+        /// Possible values are <c>postgresql</c> and <c>upgrade</c>.
         /// </para>
         ///  
         /// <para>
@@ -394,8 +402,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values are <code>audit</code>, <code>error</code>, <code>general</code>,
-        /// and <code>slowquery</code>.
+        /// Possible values are <c>audit</c>, <c>error</c>, <c>general</c>, and <c>slowquery</c>.
         /// </para>
         ///  
         /// <para>
@@ -403,7 +410,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible value is <code>postgresql</code>.
+        /// Possible value is <c>postgresql</c>.
         /// </para>
         ///  
         /// <para>
@@ -429,7 +436,7 @@ namespace Amazon.RDS.Model
         // Check to see if EnableCloudwatchLogsExports property is set
         internal bool IsSetEnableCloudwatchLogsExports()
         {
-            return this._enableCloudwatchLogsExports != null && this._enableCloudwatchLogsExports.Count > 0; 
+            return this._enableCloudwatchLogsExports != null && (this._enableCloudwatchLogsExports.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -441,11 +448,13 @@ namespace Amazon.RDS.Model
         ///  
         /// <para>
         /// For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html">
-        /// IAM Database Authentication</a> in the <i>Amazon Aurora User Guide</i>.
+        /// IAM Database Authentication</a> in the <i>Amazon Aurora User Guide</i> or <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html">
+        /// IAM database authentication for MariaDB, MySQL, and PostgreSQL</a> in the <i>Amazon
+        /// RDS User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// Valid for: Aurora DB clusters only
+        /// Valid for: Aurora DB clusters and Multi-AZ DB clusters
         /// </para>
         /// </summary>
         public bool EnableIAMDatabaseAuthentication
@@ -461,9 +470,83 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnablePerformanceInsights. 
+        /// <para>
+        /// Specifies whether to turn on Performance Insights for the DB cluster.
+        /// </para>
+        /// </summary>
+        public bool EnablePerformanceInsights
+        {
+            get { return this._enablePerformanceInsights.GetValueOrDefault(); }
+            set { this._enablePerformanceInsights = value; }
+        }
+
+        // Check to see if EnablePerformanceInsights property is set
+        internal bool IsSetEnablePerformanceInsights()
+        {
+            return this._enablePerformanceInsights.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property EngineLifecycleSupport. 
+        /// <para>
+        /// The life cycle type for this DB cluster.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// By default, this value is set to <c>open-source-rds-extended-support</c>, which enrolls
+        /// your DB cluster into Amazon RDS Extended Support. At the end of standard support,
+        /// you can avoid charges for Extended Support by setting the value to <c>open-source-rds-extended-support-disabled</c>.
+        /// In this case, RDS automatically upgrades your restored DB cluster to a higher engine
+        /// version, if the major engine version is past its end of standard support date.
+        /// </para>
+        ///  </note> 
+        /// <para>
+        /// You can use this setting to enroll your DB cluster into Amazon RDS Extended Support.
+        /// With RDS Extended Support, you can run the selected major engine version on your DB
+        /// cluster past the end of standard support for that engine version. For more information,
+        /// see the following sections:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Amazon Aurora - <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/extended-support.html">Using
+        /// Amazon RDS Extended Support</a> in the <i>Amazon Aurora User Guide</i> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Amazon RDS - <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html">Using
+        /// Amazon RDS Extended Support</a> in the <i>Amazon RDS User Guide</i> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Valid for Cluster Type: Aurora DB clusters and Multi-AZ DB clusters
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values: <c>open-source-rds-extended-support | open-source-rds-extended-support-disabled</c>
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>open-source-rds-extended-support</c> 
+        /// </para>
+        /// </summary>
+        public string EngineLifecycleSupport
+        {
+            get { return this._engineLifecycleSupport; }
+            set { this._engineLifecycleSupport = value; }
+        }
+
+        // Check to see if EngineLifecycleSupport property is set
+        internal bool IsSetEngineLifecycleSupport()
+        {
+            return this._engineLifecycleSupport != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EngineMode. 
         /// <para>
-        /// The engine mode of the new cluster. Specify <code>provisioned</code> or <code>serverless</code>,
+        /// The engine mode of the new cluster. Specify <c>provisioned</c> or <c>serverless</c>,
         /// depending on the type of the cluster you are creating. You can create an Aurora Serverless
         /// v1 clone from a provisioned cluster, or a provisioned clone from an Aurora Serverless
         /// v1 cluster. To create a clone that is an Aurora Serverless v1 cluster, the original
@@ -535,11 +618,11 @@ namespace Amazon.RDS.Model
         /// <para>
         /// You can restore to a new DB cluster and encrypt the new DB cluster with a KMS key
         /// that is different from the KMS key used to encrypt the source DB cluster. The new
-        /// DB cluster is encrypted with the KMS key identified by the <code>KmsKeyId</code> parameter.
+        /// DB cluster is encrypted with the KMS key identified by the <c>KmsKeyId</c> parameter.
         /// </para>
         ///  
         /// <para>
-        /// If you don't specify a value for the <code>KmsKeyId</code> parameter, then the following
+        /// If you don't specify a value for the <c>KmsKeyId</c> parameter, then the following
         /// occurs:
         /// </para>
         ///  <ul> <li> 
@@ -553,8 +636,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If <code>DBClusterIdentifier</code> refers to a DB cluster that isn't encrypted, then
-        /// the restore request is rejected.
+        /// If <c>DBClusterIdentifier</c> refers to a DB cluster that isn't encrypted, then the
+        /// restore request is rejected.
         /// </para>
         ///  
         /// <para>
@@ -574,6 +657,62 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MonitoringInterval. 
+        /// <para>
+        /// The interval, in seconds, between points when Enhanced Monitoring metrics are collected
+        /// for the DB cluster. To turn off collecting Enhanced Monitoring metrics, specify <c>0</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If <c>MonitoringRoleArn</c> is specified, also set <c>MonitoringInterval</c> to a
+        /// value other than <c>0</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values: <c>0 | 1 | 5 | 10 | 15 | 30 | 60</c> 
+        /// </para>
+        ///  
+        /// <para>
+        /// Default: <c>0</c> 
+        /// </para>
+        /// </summary>
+        public int MonitoringInterval
+        {
+            get { return this._monitoringInterval.GetValueOrDefault(); }
+            set { this._monitoringInterval = value; }
+        }
+
+        // Check to see if MonitoringInterval property is set
+        internal bool IsSetMonitoringInterval()
+        {
+            return this._monitoringInterval.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MonitoringRoleArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) for the IAM role that permits RDS to send Enhanced
+        /// Monitoring metrics to Amazon CloudWatch Logs. An example is <c>arn:aws:iam:123456789012:role/emaccess</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// If <c>MonitoringInterval</c> is set to a value other than <c>0</c>, supply a <c>MonitoringRoleArn</c>
+        /// value.
+        /// </para>
+        /// </summary>
+        public string MonitoringRoleArn
+        {
+            get { return this._monitoringRoleArn; }
+            set { this._monitoringRoleArn = value; }
+        }
+
+        // Check to see if MonitoringRoleArn property is set
+        internal bool IsSetMonitoringRoleArn()
+        {
+            return this._monitoringRoleArn != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property NetworkType. 
         /// <para>
         /// The network type of the DB cluster.
@@ -584,17 +723,17 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IPV4</code> 
+        ///  <c>IPV4</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DUAL</code> 
+        ///  <c>DUAL</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// The network type is determined by the <code>DBSubnetGroup</code> specified for the
-        /// DB cluster. A <code>DBSubnetGroup</code> can support only the IPv4 protocol or the
-        /// IPv4 and the IPv6 protocols (<code>DUAL</code>).
+        /// The network type is determined by the <c>DBSubnetGroup</c> specified for the DB cluster.
+        /// A <c>DBSubnetGroup</c> can support only the IPv4 protocol or the IPv4 and the IPv6
+        /// protocols (<c>DUAL</c>).
         /// </para>
         ///  
         /// <para>
@@ -641,13 +780,88 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property PerformanceInsightsKMSKeyId. 
+        /// <para>
+        /// The Amazon Web Services KMS key identifier for encryption of Performance Insights
+        /// data.
+        /// </para>
+        ///  
+        /// <para>
+        /// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias ARN, or alias
+        /// name for the KMS key.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you don't specify a value for <c>PerformanceInsightsKMSKeyId</c>, then Amazon RDS
+        /// uses your default KMS key. There is a default KMS key for your Amazon Web Services
+        /// account. Your Amazon Web Services account has a different default KMS key for each
+        /// Amazon Web Services Region.
+        /// </para>
+        /// </summary>
+        public string PerformanceInsightsKMSKeyId
+        {
+            get { return this._performanceInsightsKMSKeyId; }
+            set { this._performanceInsightsKMSKeyId = value; }
+        }
+
+        // Check to see if PerformanceInsightsKMSKeyId property is set
+        internal bool IsSetPerformanceInsightsKMSKeyId()
+        {
+            return this._performanceInsightsKMSKeyId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PerformanceInsightsRetentionPeriod. 
+        /// <para>
+        /// The number of days to retain Performance Insights data.
+        /// </para>
+        ///  
+        /// <para>
+        /// Valid Values:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>7</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <i>month</i> * 31, where <i>month</i> is a number of months from 1-23. Examples:
+        /// <c>93</c> (3 months * 31), <c>341</c> (11 months * 31), <c>589</c> (19 months * 31)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>731</c> 
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// Default: <c>7</c> days
+        /// </para>
+        ///  
+        /// <para>
+        /// If you specify a retention period that isn't valid, such as <c>94</c>, Amazon RDS
+        /// issues an error.
+        /// </para>
+        /// </summary>
+        public int PerformanceInsightsRetentionPeriod
+        {
+            get { return this._performanceInsightsRetentionPeriod.GetValueOrDefault(); }
+            set { this._performanceInsightsRetentionPeriod = value; }
+        }
+
+        // Check to see if PerformanceInsightsRetentionPeriod property is set
+        internal bool IsSetPerformanceInsightsRetentionPeriod()
+        {
+            return this._performanceInsightsRetentionPeriod.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property Port. 
         /// <para>
         /// The port number on which the new DB cluster accepts connections.
         /// </para>
         ///  
         /// <para>
-        /// Constraints: A value from <code>1150-65535</code>.
+        /// Constraints: A value from <c>1150-65535</c>.
         /// </para>
         ///  
         /// <para>
@@ -691,13 +905,13 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: The default behavior varies depending on whether <code>DBSubnetGroupName</code>
+        /// Default: The default behavior varies depending on whether <c>DBSubnetGroupName</c>
         /// is specified.
         /// </para>
         ///  
         /// <para>
-        /// If <code>DBSubnetGroupName</code> isn't specified, and <code>PubliclyAccessible</code>
-        /// isn't specified, the following applies:
+        /// If <c>DBSubnetGroupName</c> isn't specified, and <c>PubliclyAccessible</c> isn't specified,
+        /// the following applies:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -711,8 +925,8 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If <code>DBSubnetGroupName</code> is specified, and <code>PubliclyAccessible</code>
-        /// isn't specified, the following applies:
+        /// If <c>DBSubnetGroupName</c> is specified, and <c>PubliclyAccessible</c> isn't specified,
+        /// the following applies:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -742,6 +956,24 @@ namespace Amazon.RDS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RdsCustomClusterConfiguration. 
+        /// <para>
+        /// Reserved for future use.
+        /// </para>
+        /// </summary>
+        public RdsCustomClusterConfiguration RdsCustomClusterConfiguration
+        {
+            get { return this._rdsCustomClusterConfiguration; }
+            set { this._rdsCustomClusterConfiguration = value; }
+        }
+
+        // Check to see if RdsCustomClusterConfiguration property is set
+        internal bool IsSetRdsCustomClusterConfiguration()
+        {
+            return this._rdsCustomClusterConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property RestoreToTimeUtc. 
         /// <para>
         /// The date and time to restore the DB cluster to.
@@ -760,20 +992,19 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Must be specified if <code>UseLatestRestorableTime</code> parameter isn't provided
+        /// Must be specified if <c>UseLatestRestorableTime</c> parameter isn't provided
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can't be specified if the <code>UseLatestRestorableTime</code> parameter is enabled
+        /// Can't be specified if the <c>UseLatestRestorableTime</c> parameter is enabled
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can't be specified if the <code>RestoreType</code> parameter is <code>copy-on-write</code>
-        /// 
+        /// Can't be specified if the <c>RestoreType</c> parameter is <c>copy-on-write</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>2015-03-07T23:45:00Z</code> 
+        /// Example: <c>2015-03-07T23:45:00Z</c> 
         /// </para>
         ///  
         /// <para>
@@ -799,18 +1030,18 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>full-copy</code> - The new DB cluster is restored as a full copy of the source
-        /// DB cluster.
+        ///  <c>full-copy</c> - The new DB cluster is restored as a full copy of the source DB
+        /// cluster.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>copy-on-write</code> - The new DB cluster is restored as a clone of the source
-        /// DB cluster.
+        ///  <c>copy-on-write</c> - The new DB cluster is restored as a clone of the source DB
+        /// cluster.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify a <code>RestoreType</code> value, then the new DB cluster is
-        /// restored as a full copy of the source DB cluster.
+        /// If you don't specify a <c>RestoreType</c> value, then the new DB cluster is restored
+        /// as a full copy of the source DB cluster.
         /// </para>
         ///  
         /// <para>
@@ -832,8 +1063,8 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property ScalingConfiguration. 
         /// <para>
-        /// For DB clusters in <code>serverless</code> DB engine mode, the scaling properties
-        /// of the DB cluster.
+        /// For DB clusters in <c>serverless</c> DB engine mode, the scaling properties of the
+        /// DB cluster.
         /// </para>
         ///  
         /// <para>
@@ -922,17 +1153,17 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// When specified for a Multi-AZ DB cluster, a value for the <code>Iops</code> parameter
-        /// is required.
+        /// When specified for a Multi-AZ DB cluster, a value for the <c>Iops</c> parameter is
+        /// required.
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>aurora</code>, <code>aurora-iopt1</code> (Aurora DB clusters);
-        /// <code>io1</code> (Multi-AZ DB clusters)
+        /// Valid Values: <c>aurora</c>, <c>aurora-iopt1</c> (Aurora DB clusters); <c>io1</c>
+        /// (Multi-AZ DB clusters)
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>aurora</code> (Aurora DB clusters); <code>io1</code> (Multi-AZ DB clusters)
+        /// Default: <c>aurora</c> (Aurora DB clusters); <c>io1</c> (Multi-AZ DB clusters)
         /// </para>
         ///  
         /// <para>
@@ -963,7 +1194,7 @@ namespace Amazon.RDS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -974,7 +1205,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: Can't be specified if <code>RestoreToTime</code> parameter is provided.
+        /// Constraints: Can't be specified if <c>RestoreToTime</c> parameter is provided.
         /// </para>
         ///  
         /// <para>
@@ -1012,7 +1243,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
 #region Backwards compatible properties
@@ -1046,20 +1277,19 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Must be specified if <code>UseLatestRestorableTime</code> parameter isn't provided
+        /// Must be specified if <c>UseLatestRestorableTime</c> parameter isn't provided
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can't be specified if the <code>UseLatestRestorableTime</code> parameter is enabled
+        /// Can't be specified if the <c>UseLatestRestorableTime</c> parameter is enabled
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Can't be specified if the <code>RestoreType</code> parameter is <code>copy-on-write</code>
-        /// 
+        /// Can't be specified if the <c>RestoreType</c> parameter is <c>copy-on-write</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Example: <code>2015-03-07T23:45:00Z</code> 
+        /// Example: <c>2015-03-07T23:45:00Z</c> 
         /// </para>
         ///  
         /// <para>

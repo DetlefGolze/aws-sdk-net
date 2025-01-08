@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectConnect.Model
 {
     /// <summary>
@@ -37,14 +38,14 @@ namespace Amazon.DirectConnect.Model
     /// 
     ///  
     /// <para>
-    /// All connections in a LAG must use the same bandwidth (either 1Gbps or 10Gbps) and
-    /// must terminate at the same Direct Connect endpoint.
+    /// All connections in a LAG must use the same bandwidth (either 1Gbps, 10Gbps, 100Gbps,
+    /// or 400Gbps) and must terminate at the same Direct Connect endpoint.
     /// </para>
     ///  
     /// <para>
-    /// You can have up to 10 dedicated connections per LAG. Regardless of this limit, if
-    /// you request more connections for the LAG than Direct Connect can allocate on a single
-    /// endpoint, no LAG is created.
+    /// You can have up to 10 dedicated connections per location. Regardless of this limit,
+    /// if you request more connections for the LAG than Direct Connect can allocate on a
+    /// single endpoint, no LAG is created..
     /// </para>
     ///  
     /// <para>
@@ -65,7 +66,7 @@ namespace Amazon.DirectConnect.Model
     /// </summary>
     public partial class CreateLagRequest : AmazonDirectConnectRequest
     {
-        private List<Tag> _childConnectionTags = new List<Tag>();
+        private List<Tag> _childConnectionTags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _connectionId;
         private string _connectionsBandwidth;
         private string _lagName;
@@ -73,7 +74,7 @@ namespace Amazon.DirectConnect.Model
         private int? _numberOfConnections;
         private string _providerName;
         private bool? _requestmacSec;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ChildConnectionTags. 
@@ -91,7 +92,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if ChildConnectionTags property is set
         internal bool IsSetChildConnectionTags()
         {
-            return this._childConnectionTags != null && this._childConnectionTags.Count > 0; 
+            return this._childConnectionTags != null && (this._childConnectionTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -116,7 +117,7 @@ namespace Amazon.DirectConnect.Model
         /// Gets and sets the property ConnectionsBandwidth. 
         /// <para>
         /// The bandwidth of the individual physical dedicated connections bundled by the LAG.
-        /// The possible values are 1Gbps and 10Gbps. 
+        /// The possible values are 1Gbps,10Gbps, 100Gbps, and 400Gbps. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -174,8 +175,8 @@ namespace Amazon.DirectConnect.Model
         /// Gets and sets the property NumberOfConnections. 
         /// <para>
         /// The number of physical dedicated connections initially provisioned and bundled by
-        /// the LAG. You can have a maximum of four connections when the port speed is 1G or 10G,
-        /// or two when the port speed is 100G. 
+        /// the LAG. You can have a maximum of four connections when the port speed is 1Gbps or
+        /// 10Gbps, or two when the port speed is 100Gbps or 400Gbps.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -250,7 +251,7 @@ namespace Amazon.DirectConnect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

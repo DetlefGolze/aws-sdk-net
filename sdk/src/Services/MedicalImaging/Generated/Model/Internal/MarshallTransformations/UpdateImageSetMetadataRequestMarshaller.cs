@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,12 +67,16 @@ namespace Amazon.MedicalImaging.Model.Internal.MarshallTransformations
                 throw new AmazonMedicalImagingException("Request object does not have required field ImageSetId set");
             request.AddPathResource("{imageSetId}", StringUtils.FromString(publicRequest.ImageSetId));
             
+            if (publicRequest.IsSetForce())
+                request.Parameters.Add("force", StringUtils.FromBool(publicRequest.Force));
+            
             if (publicRequest.IsSetLatestVersionId())
                 request.Parameters.Add("latestVersion", StringUtils.FromString(publicRequest.LatestVersionId));
             request.ResourcePath = "/datastore/{datastoreId}/imageSet/{imageSetId}/updateImageSetMetadata";
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 var context = new JsonMarshallerContext(request, writer);
                 context.Writer.WriteObjectStart();
 

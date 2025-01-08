@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// A <code>CategoryFilter</code> filters text values.
+    /// A <c>CategoryFilter</c> filters text values.
     /// 
     ///  
     /// <para>
@@ -41,6 +42,7 @@ namespace Amazon.QuickSight.Model
     {
         private ColumnIdentifier _column;
         private CategoryFilterConfiguration _configuration;
+        private DefaultFilterControlConfiguration _defaultFilterControlConfiguration;
         private string _filterId;
 
         /// <summary>
@@ -65,7 +67,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Configuration. 
         /// <para>
-        /// The configuration for a <code>CategoryFilter</code>.
+        /// The configuration for a <c>CategoryFilter</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -79,6 +81,25 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetConfiguration()
         {
             return this._configuration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DefaultFilterControlConfiguration. 
+        /// <para>
+        /// The default configurations for the associated controls. This applies only for filters
+        /// that are scoped to multiple sheets.
+        /// </para>
+        /// </summary>
+        public DefaultFilterControlConfiguration DefaultFilterControlConfiguration
+        {
+            get { return this._defaultFilterControlConfiguration; }
+            set { this._defaultFilterControlConfiguration = value; }
+        }
+
+        // Check to see if DefaultFilterControlConfiguration property is set
+        internal bool IsSetDefaultFilterControlConfiguration()
+        {
+            return this._defaultFilterControlConfiguration != null;
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The source controls that are used in a <code>CascadingControlConfiguration</code>.
+    /// The source controls that are used in a <c>CascadingControlConfiguration</c>.
     /// </summary>
     public partial class CascadingControlSource
     {
@@ -58,7 +59,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceSheetControlId. 
         /// <para>
-        /// The source sheet control ID of a <code>CascadingControlSource</code>.
+        /// The source sheet control ID of a <c>CascadingControlSource</c>.
         /// </para>
         /// </summary>
         public string SourceSheetControlId

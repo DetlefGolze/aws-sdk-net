@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
-    /// Information about the state of a vehicle and how it relates to the status of a campaign.
+    /// Information about a campaign associated with a vehicle.
     /// </summary>
     public partial class VehicleStatus
     {
@@ -43,6 +44,7 @@ namespace Amazon.IoTFleetWise.Model
         /// The name of a campaign.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=100)]
         public string CampaignName
         {
             get { return this._campaignName; }
@@ -58,30 +60,29 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The state of a vehicle, which can be one of the following:
+        /// The status of a campaign, which can be one of the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATED</code> - Amazon Web Services IoT FleetWise sucessfully created the
-        /// vehicle. 
+        ///  <c>CREATED</c> - The campaign has been created successfully but has not been approved.
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>READY</code> - The vehicle is ready to receive a campaign deployment. 
+        ///  <c>READY</c> - The campaign has been approved but has not been deployed to the vehicle.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HEALTHY</code> - A campaign deployment was delivered to the vehicle. 
+        ///  <c>HEALTHY</c> - The campaign has been deployed to the vehicle. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SUSPENDED</code> - A campaign associated with the vehicle was suspended and
-        /// data collection was paused. 
+        ///  <c>SUSPENDED</c> - The campaign has been suspended and data collection is paused.
+        /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - Amazon Web Services IoT FleetWise is removing a campaign
-        /// from the vehicle. 
+        ///  <c>DELETING</c> - The campaign is being removed from the vehicle.
         /// </para>
         ///  </li> </ul>
         /// </summary>

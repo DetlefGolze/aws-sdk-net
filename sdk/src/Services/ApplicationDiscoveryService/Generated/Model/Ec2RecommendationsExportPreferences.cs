@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
     {
         private UsageMetricBasis _cpuPerformanceMetricBasis;
         private bool? _enabled;
-        private List<string> _excludedInstanceTypes = new List<string>();
+        private List<string> _excludedInstanceTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _preferredRegion;
         private UsageMetricBasis _ramPerformanceMetricBasis;
         private ReservedInstanceOptions _reservedInstanceOptions;
@@ -65,7 +66,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// Gets and sets the property Enabled. 
         /// <para>
         ///  If set to true, the export <a href="https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_StartExportTask.html#API_StartExportTask_RequestSyntax">preferences</a>
-        /// is set to <code>Ec2RecommendationsExportPreferences</code>. 
+        /// is set to <c>Ec2RecommendationsExportPreferences</c>. 
         /// </para>
         /// </summary>
         public bool Enabled
@@ -95,7 +96,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if ExcludedInstanceTypes property is set
         internal bool IsSetExcludedInstanceTypes()
         {
-            return this._excludedInstanceTypes != null && this._excludedInstanceTypes.Count > 0; 
+            return this._excludedInstanceTypes != null && (this._excludedInstanceTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

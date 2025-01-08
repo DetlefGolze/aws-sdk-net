@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the datazone-2018-05-10.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -26,9 +27,24 @@ namespace Amazon.DataZone.Model
     {
 
         /// <summary>
+        /// Paginator for ListAssetFilters operation
+        ///</summary>
+        IListAssetFiltersPaginator ListAssetFilters(ListAssetFiltersRequest request);
+
+        /// <summary>
         /// Paginator for ListAssetRevisions operation
         ///</summary>
         IListAssetRevisionsPaginator ListAssetRevisions(ListAssetRevisionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListConnections operation
+        ///</summary>
+        IListConnectionsPaginator ListConnections(ListConnectionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListDataProductRevisions operation
+        ///</summary>
+        IListDataProductRevisionsPaginator ListDataProductRevisions(ListDataProductRevisionsRequest request);
 
         /// <summary>
         /// Paginator for ListDataSourceRunActivities operation
@@ -51,6 +67,21 @@ namespace Amazon.DataZone.Model
         IListDomainsPaginator ListDomains(ListDomainsRequest request);
 
         /// <summary>
+        /// Paginator for ListDomainUnitsForParent operation
+        ///</summary>
+        IListDomainUnitsForParentPaginator ListDomainUnitsForParent(ListDomainUnitsForParentRequest request);
+
+        /// <summary>
+        /// Paginator for ListEntityOwners operation
+        ///</summary>
+        IListEntityOwnersPaginator ListEntityOwners(ListEntityOwnersRequest request);
+
+        /// <summary>
+        /// Paginator for ListEnvironmentActions operation
+        ///</summary>
+        IListEnvironmentActionsPaginator ListEnvironmentActions(ListEnvironmentActionsRequest request);
+
+        /// <summary>
         /// Paginator for ListEnvironmentBlueprintConfigurations operation
         ///</summary>
         IListEnvironmentBlueprintConfigurationsPaginator ListEnvironmentBlueprintConfigurations(ListEnvironmentBlueprintConfigurationsRequest request);
@@ -71,9 +102,34 @@ namespace Amazon.DataZone.Model
         IListEnvironmentsPaginator ListEnvironments(ListEnvironmentsRequest request);
 
         /// <summary>
+        /// Paginator for ListJobRuns operation
+        ///</summary>
+        IListJobRunsPaginator ListJobRuns(ListJobRunsRequest request);
+
+        /// <summary>
+        /// Paginator for ListLineageEvents operation
+        ///</summary>
+        IListLineageEventsPaginator ListLineageEvents(ListLineageEventsRequest request);
+
+        /// <summary>
+        /// Paginator for ListLineageNodeHistory operation
+        ///</summary>
+        IListLineageNodeHistoryPaginator ListLineageNodeHistory(ListLineageNodeHistoryRequest request);
+
+        /// <summary>
+        /// Paginator for ListMetadataGenerationRuns operation
+        ///</summary>
+        IListMetadataGenerationRunsPaginator ListMetadataGenerationRuns(ListMetadataGenerationRunsRequest request);
+
+        /// <summary>
         /// Paginator for ListNotifications operation
         ///</summary>
         IListNotificationsPaginator ListNotifications(ListNotificationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListPolicyGrants operation
+        ///</summary>
+        IListPolicyGrantsPaginator ListPolicyGrants(ListPolicyGrantsRequest request);
 
         /// <summary>
         /// Paginator for ListProjectMemberships operation
@@ -81,9 +137,19 @@ namespace Amazon.DataZone.Model
         IListProjectMembershipsPaginator ListProjectMemberships(ListProjectMembershipsRequest request);
 
         /// <summary>
+        /// Paginator for ListProjectProfiles operation
+        ///</summary>
+        IListProjectProfilesPaginator ListProjectProfiles(ListProjectProfilesRequest request);
+
+        /// <summary>
         /// Paginator for ListProjects operation
         ///</summary>
         IListProjectsPaginator ListProjects(ListProjectsRequest request);
+
+        /// <summary>
+        /// Paginator for ListRules operation
+        ///</summary>
+        IListRulesPaginator ListRules(ListRulesRequest request);
 
         /// <summary>
         /// Paginator for ListSubscriptionGrants operation
@@ -104,6 +170,11 @@ namespace Amazon.DataZone.Model
         /// Paginator for ListSubscriptionTargets operation
         ///</summary>
         IListSubscriptionTargetsPaginator ListSubscriptionTargets(ListSubscriptionTargetsRequest request);
+
+        /// <summary>
+        /// Paginator for ListTimeSeriesDataPoints operation
+        ///</summary>
+        IListTimeSeriesDataPointsPaginator ListTimeSeriesDataPoints(ListTimeSeriesDataPointsRequest request);
 
         /// <summary>
         /// Paginator for Search operation

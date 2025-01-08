@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -77,7 +78,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property JobRunId. 
         /// <para>
-        /// The <code>JobRunId</code> of the job run in question.
+        /// The <c>JobRunId</c> of the job run in question.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

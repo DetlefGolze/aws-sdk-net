@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.SageMaker.Model
     {
         private bool? _disableProfiler;
         private long? _profilingIntervalInMilliseconds;
-        private Dictionary<string, string> _profilingParameters = new Dictionary<string, string>();
+        private Dictionary<string, string> _profilingParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _s3OutputPath;
 
         /// <summary>
         /// Gets and sets the property DisableProfiler. 
         /// <para>
         /// Configuration to turn off Amazon SageMaker Debugger's system monitoring and profiling
-        /// functionality. To turn it off, set to <code>True</code>.
+        /// functionality. To turn it off, set to <c>True</c>.
         /// </para>
         /// </summary>
         public bool DisableProfiler
@@ -82,10 +83,10 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property ProfilingParameters. 
         /// <para>
         /// Configuration information for capturing framework metrics. Available key strings for
-        /// different profiling options are <code>DetailedProfilingConfig</code>, <code>PythonProfilingConfig</code>,
-        /// and <code>DataLoaderProfilingConfig</code>. The following codes are configuration
-        /// structures for the <code>ProfilingParameters</code> parameter. To learn more about
-        /// how to configure the <code>ProfilingParameters</code> parameter, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html">Use
+        /// different profiling options are <c>DetailedProfilingConfig</c>, <c>PythonProfilingConfig</c>,
+        /// and <c>DataLoaderProfilingConfig</c>. The following codes are configuration structures
+        /// for the <c>ProfilingParameters</c> parameter. To learn more about how to configure
+        /// the <c>ProfilingParameters</c> parameter, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html">Use
         /// the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug
         /// Your Training Job</a>. 
         /// </para>
@@ -100,7 +101,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ProfilingParameters property is set
         internal bool IsSetProfilingParameters()
         {
-            return this._profilingParameters != null && this._profilingParameters.Count > 0; 
+            return this._profilingParameters != null && (this._profilingParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

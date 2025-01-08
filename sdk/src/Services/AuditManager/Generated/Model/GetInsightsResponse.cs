@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AuditManager.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.AuditManager.Model
         /// <summary>
         /// Gets and sets the property Insights. 
         /// <para>
-        /// The analytics data that the <code>GetInsights</code> API returned. 
+        /// The analytics data that the <c>GetInsights</c> API returned. 
         /// </para>
         /// </summary>
         public Insights Insights

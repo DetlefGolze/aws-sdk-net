@@ -26,29 +26,28 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
-    /// The native Hive / HCatalog JsonSerDe. Used by Kinesis Data Firehose for deserializing
-    /// data, which means converting it from the JSON format in preparation for serializing
-    /// it to the Parquet or ORC format. This is one of two deserializers you can choose,
-    /// depending on which one offers the functionality you need. The other option is the
-    /// OpenX SerDe.
+    /// The native Hive / HCatalog JsonSerDe. Used by Firehose for deserializing data, which
+    /// means converting it from the JSON format in preparation for serializing it to the
+    /// Parquet or ORC format. This is one of two deserializers you can choose, depending
+    /// on which one offers the functionality you need. The other option is the OpenX SerDe.
     /// </summary>
     public partial class HiveJsonSerDe
     {
-        private List<string> _timestampFormats = new List<string>();
+        private List<string> _timestampFormats = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property TimestampFormats. 
         /// <para>
-        /// Indicates how you want Kinesis Data Firehose to parse the date and timestamps that
-        /// may be present in your input data JSON. To specify these format strings, follow the
-        /// pattern syntax of JodaTime's DateTimeFormat format strings. For more information,
-        /// see <a href="https://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html">Class
-        /// DateTimeFormat</a>. You can also use the special value <code>millis</code> to parse
-        /// timestamps in epoch milliseconds. If you don't specify a format, Kinesis Data Firehose
-        /// uses <code>java.sql.Timestamp::valueOf</code> by default.
+        /// Indicates how you want Firehose to parse the date and timestamps that may be present
+        /// in your input data JSON. To specify these format strings, follow the pattern syntax
+        /// of JodaTime's DateTimeFormat format strings. For more information, see <a href="https://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html">Class
+        /// DateTimeFormat</a>. You can also use the special value <c>millis</c> to parse timestamps
+        /// in epoch milliseconds. If you don't specify a format, Firehose uses <c>java.sql.Timestamp::valueOf</c>
+        /// by default.
         /// </para>
         /// </summary>
         public List<string> TimestampFormats
@@ -60,7 +59,7 @@ namespace Amazon.KinesisFirehose.Model
         // Check to see if TimestampFormats property is set
         internal bool IsSetTimestampFormats()
         {
-            return this._timestampFormats != null && this._timestampFormats.Count > 0; 
+            return this._timestampFormats != null && (this._timestampFormats.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

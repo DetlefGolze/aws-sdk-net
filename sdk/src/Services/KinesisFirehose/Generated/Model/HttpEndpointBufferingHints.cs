@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Describes the buffering options that can be applied before data is delivered to the
-    /// HTTP endpoint destination. Kinesis Data Firehose treats these options as hints, and
-    /// it might choose to use more optimal values. The <code>SizeInMBs</code> and <code>IntervalInSeconds</code>
-    /// parameters are optional. However, if specify a value for one of them, you must also
-    /// provide a value for the other.
+    /// HTTP endpoint destination. Firehose treats these options as hints, and it might choose
+    /// to use more optimal values. The <c>SizeInMBs</c> and <c>IntervalInSeconds</c> parameters
+    /// are optional. However, if specify a value for one of them, you must also provide a
+    /// value for the other.
     /// </summary>
     public partial class HttpEndpointBufferingHints
     {
@@ -47,7 +48,7 @@ namespace Amazon.KinesisFirehose.Model
         /// it to the destination. The default value is 300 (5 minutes). 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=60, Max=900)]
+        [AWSProperty(Min=0, Max=900)]
         public int IntervalInSeconds
         {
             get { return this._intervalInSeconds.GetValueOrDefault(); }
@@ -69,7 +70,7 @@ namespace Amazon.KinesisFirehose.Model
         ///  
         /// <para>
         /// We recommend setting this parameter to a value greater than the amount of data you
-        /// typically ingest into the delivery stream in 10 seconds. For example, if you typically
+        /// typically ingest into the Firehose stream in 10 seconds. For example, if you typically
         /// ingest data at 1 MB/sec, the value should be 10 MB or higher. 
         /// </para>
         /// </summary>

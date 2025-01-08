@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -87,8 +88,8 @@ namespace Amazon.CloudFormation.Model
         /// <para>
         /// Summarizes information about whether a stack's actual configuration differs, or has
         /// <i>drifted</i>, from its expected configuration, as defined in the stack template
-        /// and any values specified as template parameters. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detecting
-        /// Unregulated Configuration Changes to Stacks and Resources</a>.
+        /// and any values specified as template parameters. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detect
+        /// unmanaged configuration changes to stacks and resources with drift detection</a>.
         /// </para>
         /// </summary>
         public StackDriftInformationSummary DriftInformation
@@ -131,8 +132,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
-        /// with Nested Stacks</a> in the <i>CloudFormation User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Embed
+        /// stacks within other stacks using nested stacks</a> in the <i>CloudFormation User Guide</i>.
         /// </para>
         /// </summary>
         public string ParentId
@@ -155,8 +156,8 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Working
-        /// with Nested Stacks</a> in the <i>CloudFormation User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html">Embed
+        /// stacks within other stacks using nested stacks</a> in the <i>CloudFormation User Guide</i>.
         /// </para>
         /// </summary>
         public string RootId

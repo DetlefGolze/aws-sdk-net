@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
-    /// An object representing the elastic network interface for tasks that use the <code>awsvpc</code>
+    /// An object representing the elastic network interface for tasks that use the <c>awsvpc</c>
     /// network mode.
     /// </summary>
     public partial class NetworkInterface

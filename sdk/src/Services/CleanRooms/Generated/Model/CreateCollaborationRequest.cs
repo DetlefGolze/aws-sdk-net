@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -34,14 +35,35 @@ namespace Amazon.CleanRooms.Model
     /// </summary>
     public partial class CreateCollaborationRequest : AmazonCleanRoomsRequest
     {
+        private AnalyticsEngine _analyticsEngine;
         private string _creatorDisplayName;
-        private List<string> _creatorMemberAbilities = new List<string>();
+        private List<string> _creatorMemberAbilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private MLMemberAbilities _creatormlMemberAbilities;
+        private PaymentConfiguration _creatorPaymentConfiguration;
         private DataEncryptionMetadata _dataEncryptionMetadata;
         private string _description;
-        private List<MemberSpecification> _members = new List<MemberSpecification>();
+        private List<MemberSpecification> _members = AWSConfigs.InitializeCollections ? new List<MemberSpecification>() : null;
         private string _name;
         private CollaborationQueryLogStatus _queryLogStatus;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+
+        /// <summary>
+        /// Gets and sets the property AnalyticsEngine. 
+        /// <para>
+        ///  The analytics engine.
+        /// </para>
+        /// </summary>
+        public AnalyticsEngine AnalyticsEngine
+        {
+            get { return this._analyticsEngine; }
+            set { this._analyticsEngine = value; }
+        }
+
+        // Check to see if AnalyticsEngine property is set
+        internal bool IsSetAnalyticsEngine()
+        {
+            return this._analyticsEngine != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CreatorDisplayName. 
@@ -78,7 +100,55 @@ namespace Amazon.CleanRooms.Model
         // Check to see if CreatorMemberAbilities property is set
         internal bool IsSetCreatorMemberAbilities()
         {
-            return this._creatorMemberAbilities != null && this._creatorMemberAbilities.Count > 0; 
+            return this._creatorMemberAbilities != null && (this._creatorMemberAbilities.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CreatorMLMemberAbilities. 
+        /// <para>
+        /// The ML abilities granted to the collaboration creator.
+        /// </para>
+        ///  
+        /// <para>
+        /// Custom ML modeling is in beta release and is subject to change. For beta terms and
+        /// conditions, see <i>Betas and Previews</i> in the <a href="https://aws.amazon.com/service-terms/">Amazon
+        /// Web Services Service Terms</a>.
+        /// </para>
+        /// </summary>
+        public MLMemberAbilities CreatorMLMemberAbilities
+        {
+            get { return this._creatormlMemberAbilities; }
+            set { this._creatormlMemberAbilities = value; }
+        }
+
+        // Check to see if CreatorMLMemberAbilities property is set
+        internal bool IsSetCreatorMLMemberAbilities()
+        {
+            return this._creatormlMemberAbilities != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CreatorPaymentConfiguration. 
+        /// <para>
+        /// The collaboration creator's payment responsibilities set by the collaboration creator.
+        /// 
+        /// </para>
+        ///  
+        /// <para>
+        /// If the collaboration creator hasn't specified anyone as the member paying for query
+        /// compute costs, then the member who can query is the default payer.
+        /// </para>
+        /// </summary>
+        public PaymentConfiguration CreatorPaymentConfiguration
+        {
+            get { return this._creatorPaymentConfiguration; }
+            set { this._creatorPaymentConfiguration = value; }
+        }
+
+        // Check to see if CreatorPaymentConfiguration property is set
+        internal bool IsSetCreatorPaymentConfiguration()
+        {
+            return this._creatorPaymentConfiguration != null;
         }
 
         /// <summary>
@@ -134,7 +204,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if Members property is set
         internal bool IsSetMembers()
         {
-            return this._members != null && this._members.Count > 0; 
+            return this._members != null && (this._members.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -193,7 +263,7 @@ namespace Amazon.CleanRooms.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

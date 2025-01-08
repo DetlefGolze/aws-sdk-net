@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -175,8 +176,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The status of the SSM document, such as <code>Creating</code>, <code>Active</code>,
-        /// <code>Failed</code>, and <code>Deleting</code>.
+        /// The status of the SSM document, such as <c>Creating</c>, <c>Active</c>, <c>Failed</c>,
+        /// and <c>Deleting</c>.
         /// </para>
         /// </summary>
         public DocumentStatus Status
@@ -194,8 +195,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property StatusInformation. 
         /// <para>
-        /// A message returned by Amazon Web Services Systems Manager that explains the <code>Status</code>
-        /// value. For example, a <code>Failed</code> status might be explained by the <code>StatusInformation</code>
+        /// A message returned by Amazon Web Services Systems Manager that explains the <c>Status</c>
+        /// value. For example, a <c>Failed</c> status might be explained by the <c>StatusInformation</c>
         /// message, "The specified S3 bucket doesn't exist. Verify that the URL of the S3 bucket
         /// is correct."
         /// </para>
@@ -215,8 +216,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <summary>
         /// Gets and sets the property VersionName. 
         /// <para>
-        /// The version of the artifact associated with the document. For example, "Release 12,
-        /// Update 6". This value is unique across all versions of a document, and can't be changed.
+        /// The version of the artifact associated with the document. For example, 12.6. This
+        /// value is unique across all versions of a document, and can't be changed.
         /// </para>
         /// </summary>
         public string VersionName

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -42,21 +43,21 @@ namespace Amazon.LexModelBuildingService.Model
         private CodeHook _dialogCodeHook;
         private FollowUpPrompt _followUpPrompt;
         private FulfillmentActivity _fulfillmentActivity;
-        private List<InputContext> _inputContexts = new List<InputContext>();
+        private List<InputContext> _inputContexts = AWSConfigs.InitializeCollections ? new List<InputContext>() : null;
         private KendraConfiguration _kendraConfiguration;
         private DateTime? _lastUpdatedDate;
         private string _name;
-        private List<OutputContext> _outputContexts = new List<OutputContext>();
+        private List<OutputContext> _outputContexts = AWSConfigs.InitializeCollections ? new List<OutputContext>() : null;
         private string _parentIntentSignature;
         private Statement _rejectionStatement;
-        private List<string> _sampleUtterances = new List<string>();
-        private List<Slot> _slots = new List<Slot>();
+        private List<string> _sampleUtterances = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Slot> _slots = AWSConfigs.InitializeCollections ? new List<Slot>() : null;
         private string _version;
 
         /// <summary>
         /// Gets and sets the property Checksum. 
         /// <para>
-        /// Checksum of the <code>$LATEST</code>version of the intent created or updated.
+        /// Checksum of the <c>$LATEST</c>version of the intent created or updated.
         /// </para>
         /// </summary>
         public string Checksum
@@ -74,7 +75,7 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property ConclusionStatement. 
         /// <para>
-        /// After the Lambda function specified in the<code>fulfillmentActivity</code>intent fulfills
+        /// After the Lambda function specified in the<c>fulfillmentActivity</c>intent fulfills
         /// the intent, Amazon Lex conveys this statement to the user.
         /// </para>
         /// </summary>
@@ -130,9 +131,9 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property CreateVersion. 
         /// <para>
-        ///  <code>True</code> if a new version of the intent was created. If the <code>createVersion</code>
-        /// field was not specified in the request, the <code>createVersion</code> field is set
-        /// to false in the response.
+        ///  <c>True</c> if a new version of the intent was created. If the <c>createVersion</c>
+        /// field was not specified in the request, the <c>createVersion</c> field is set to false
+        /// in the response.
         /// </para>
         /// </summary>
         public bool CreateVersion
@@ -225,8 +226,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property InputContexts. 
         /// <para>
-        /// An array of <code>InputContext</code> objects that lists the contexts that must be
-        /// active for Amazon Lex to choose the intent in a conversation with the user.
+        /// An array of <c>InputContext</c> objects that lists the contexts that must be active
+        /// for Amazon Lex to choose the intent in a conversation with the user.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
@@ -239,14 +240,14 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if InputContexts property is set
         internal bool IsSetInputContexts()
         {
-            return this._inputContexts != null && this._inputContexts.Count > 0; 
+            return this._inputContexts != null && (this._inputContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property KendraConfiguration. 
         /// <para>
         /// Configuration information, if any, required to connect to an Amazon Kendra index and
-        /// use the <code>AMAZON.KendraSearchIntent</code> intent.
+        /// use the <c>AMAZON.KendraSearchIntent</c> intent.
         /// </para>
         /// </summary>
         public KendraConfiguration KendraConfiguration
@@ -302,8 +303,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property OutputContexts. 
         /// <para>
-        /// An array of <code>OutputContext</code> objects that lists the contexts that the intent
-        /// activates when the intent is fulfilled.
+        /// An array of <c>OutputContext</c> objects that lists the contexts that the intent activates
+        /// when the intent is fulfilled.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=10)]
@@ -316,7 +317,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if OutputContexts property is set
         internal bool IsSetOutputContexts()
         {
-            return this._outputContexts != null && this._outputContexts.Count > 0; 
+            return this._outputContexts != null && (this._outputContexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -340,9 +341,8 @@ namespace Amazon.LexModelBuildingService.Model
         /// <summary>
         /// Gets and sets the property RejectionStatement. 
         /// <para>
-        /// If the user answers "no" to the question defined in <code>confirmationPrompt</code>
-        /// Amazon Lex responds with this statement to acknowledge that the intent was canceled.
-        /// 
+        /// If the user answers "no" to the question defined in <c>confirmationPrompt</c> Amazon
+        /// Lex responds with this statement to acknowledge that the intent was canceled. 
         /// </para>
         /// </summary>
         public Statement RejectionStatement
@@ -373,7 +373,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if SampleUtterances property is set
         internal bool IsSetSampleUtterances()
         {
-            return this._sampleUtterances != null && this._sampleUtterances.Count > 0; 
+            return this._sampleUtterances != null && (this._sampleUtterances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -392,13 +392,13 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if Slots property is set
         internal bool IsSetSlots()
         {
-            return this._slots != null && this._slots.Count > 0; 
+            return this._slots != null && (this._slots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Version. 
         /// <para>
-        /// The version of the intent. For a new intent, the version is always <code>$LATEST</code>.
+        /// The version of the intent. For a new intent, the version is always <c>$LATEST</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

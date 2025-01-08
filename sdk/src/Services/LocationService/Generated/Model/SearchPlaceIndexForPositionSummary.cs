@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
-    /// A summary of the request sent by using <code>SearchPlaceIndexForPosition</code>.
+    /// A summary of the request sent by using <c>SearchPlaceIndexForPosition</c>.
     /// </summary>
     public partial class SearchPlaceIndexForPositionSummary
     {
         private string _dataSource;
         private string _language;
         private int? _maxResults;
-        private List<double> _position = new List<double>();
+        private List<double> _position = AWSConfigs.InitializeCollections ? new List<double>() : null;
 
         /// <summary>
         /// Gets and sets the property DataSource. 
@@ -80,7 +81,7 @@ namespace Amazon.LocationService.Model
         /// <para>
         /// The preferred language used to return results. Matches the language in the request.
         /// The value is a valid <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
-        /// tag, for example, <code>en</code> for English.
+        /// tag, for example, <c>en</c> for English.
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=35)]
@@ -103,7 +104,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Default value: <code>50</code> 
+        /// Default value: <c>50</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -135,7 +136,7 @@ namespace Amazon.LocationService.Model
         // Check to see if Position property is set
         internal bool IsSetPosition()
         {
-            return this._position != null && this._position.Count > 0; 
+            return this._position != null && (this._position.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

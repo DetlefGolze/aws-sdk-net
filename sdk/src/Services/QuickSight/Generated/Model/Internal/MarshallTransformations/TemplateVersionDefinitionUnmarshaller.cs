@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public TemplateVersionDefinition Unmarshall(JsonUnmarshallerContext context)
         {
+            TemplateVersionDefinition unmarshalledObject = new TemplateVersionDefinition();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            TemplateVersionDefinition unmarshalledObject = new TemplateVersionDefinition();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,10 +96,22 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     unmarshalledObject.FilterGroups = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("Options", targetDepth))
+                {
+                    var unmarshaller = AssetOptionsUnmarshaller.Instance;
+                    unmarshalledObject.Options = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ParameterDeclarations", targetDepth))
                 {
                     var unmarshaller = new ListUnmarshaller<ParameterDeclaration, ParameterDeclarationUnmarshaller>(ParameterDeclarationUnmarshaller.Instance);
                     unmarshalledObject.ParameterDeclarations = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("QueryExecutionOptions", targetDepth))
+                {
+                    var unmarshaller = QueryExecutionOptionsUnmarshaller.Instance;
+                    unmarshalledObject.QueryExecutionOptions = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("Sheets", targetDepth))
@@ -106,8 +120,13 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
                     unmarshalledObject.Sheets = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("StaticFiles", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<StaticFile, StaticFileUnmarshaller>(StaticFileUnmarshaller.Instance);
+                    unmarshalledObject.StaticFiles = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

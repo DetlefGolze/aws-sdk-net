@@ -26,33 +26,36 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateEndpoint operation.
-    /// Deploys the new <code>EndpointConfig</code> specified in the request, switches to
-    /// using newly created endpoint, and then deletes resources provisioned for the endpoint
-    /// using the previous <code>EndpointConfig</code> (there is no availability loss). 
+    /// Deploys the <c>EndpointConfig</c> specified in the request to a new fleet of instances.
+    /// SageMaker shifts endpoint traffic to the new instances with the updated endpoint configuration
+    /// and then deletes the old instances using the previous <c>EndpointConfig</c> (there
+    /// is no availability loss). For more information about how to control the update and
+    /// traffic shifting process, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails.html">
+    /// Update models in production</a>.
     /// 
     ///  
     /// <para>
-    /// When SageMaker receives the request, it sets the endpoint status to <code>Updating</code>.
-    /// After updating the endpoint, it sets the status to <code>InService</code>. To check
-    /// the status of an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
+    /// When SageMaker receives the request, it sets the endpoint status to <c>Updating</c>.
+    /// After updating the endpoint, it sets the status to <c>InService</c>. To check the
+    /// status of an endpoint, use the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeEndpoint.html">DescribeEndpoint</a>
     /// API. 
     /// </para>
     ///  <note> 
     /// <para>
-    /// You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live
-    /// or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations
-    /// are being performed on the endpoint. To update an endpoint, you must create a new
-    /// <code>EndpointConfig</code>.
+    /// You must not delete an <c>EndpointConfig</c> in use by an endpoint that is live or
+    /// while the <c>UpdateEndpoint</c> or <c>CreateEndpoint</c> operations are being performed
+    /// on the endpoint. To update an endpoint, you must create a new <c>EndpointConfig</c>.
     /// </para>
     ///  
     /// <para>
-    /// If you delete the <code>EndpointConfig</code> of an endpoint that is active or being
-    /// created or updated you may lose visibility into the instance type the endpoint is
-    /// using. The endpoint must be deleted in order to stop incurring charges.
+    /// If you delete the <c>EndpointConfig</c> of an endpoint that is active or being created
+    /// or updated you may lose visibility into the instance type the endpoint is using. The
+    /// endpoint must be deleted in order to stop incurring charges.
     /// </para>
     ///  </note>
     /// </summary>
@@ -61,7 +64,7 @@ namespace Amazon.SageMaker.Model
         private DeploymentConfig _deploymentConfig;
         private string _endpointConfigName;
         private string _endpointName;
-        private List<VariantProperty> _excludeRetainedVariantProperties = new List<VariantProperty>();
+        private List<VariantProperty> _excludeRetainedVariantProperties = AWSConfigs.InitializeCollections ? new List<VariantProperty>() : null;
         private bool? _retainAllVariantProperties;
         private bool? _retainDeploymentConfig;
 
@@ -125,12 +128,12 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property ExcludeRetainedVariantProperties. 
         /// <para>
-        /// When you are updating endpoint resources with <code>RetainAllVariantProperties</code>,
-        /// whose value is set to <code>true</code>, <code>ExcludeRetainedVariantProperties</code>
-        /// specifies the list of type <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VariantProperty.html">VariantProperty</a>
-        /// to override with the values provided by <code>EndpointConfig</code>. If you don't
-        /// specify a value for <code>ExcludeRetainedVariantProperties</code>, no variant properties
-        /// are overridden. 
+        /// When you are updating endpoint resources with <c>RetainAllVariantProperties</c>, whose
+        /// value is set to <c>true</c>, <c>ExcludeRetainedVariantProperties</c> specifies the
+        /// list of type <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VariantProperty.html">VariantProperty</a>
+        /// to override with the values provided by <c>EndpointConfig</c>. If you don't specify
+        /// a value for <c>ExcludeRetainedVariantProperties</c>, no variant properties are overridden.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=3)]
@@ -143,7 +146,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if ExcludeRetainedVariantProperties property is set
         internal bool IsSetExcludeRetainedVariantProperties()
         {
-            return this._excludeRetainedVariantProperties != null && this._excludeRetainedVariantProperties.Count > 0; 
+            return this._excludeRetainedVariantProperties != null && (this._excludeRetainedVariantProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -151,10 +154,10 @@ namespace Amazon.SageMaker.Model
         /// <para>
         /// When updating endpoint resources, enables or disables the retention of <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_VariantProperty.html">variant
         /// properties</a>, such as the instance count or the variant weight. To retain the variant
-        /// properties of an endpoint when updating it, set <code>RetainAllVariantProperties</code>
-        /// to <code>true</code>. To use the variant properties specified in a new <code>EndpointConfig</code>
-        /// call when updating an endpoint, set <code>RetainAllVariantProperties</code> to <code>false</code>.
-        /// The default is <code>false</code>.
+        /// properties of an endpoint when updating it, set <c>RetainAllVariantProperties</c>
+        /// to <c>true</c>. To use the variant properties specified in a new <c>EndpointConfig</c>
+        /// call when updating an endpoint, set <c>RetainAllVariantProperties</c> to <c>false</c>.
+        /// The default is <c>false</c>.
         /// </para>
         /// </summary>
         public bool RetainAllVariantProperties

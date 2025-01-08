@@ -26,12 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Cloud9.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateEnvironmentEC2 operation.
     /// Creates an Cloud9 development environment, launches an Amazon Elastic Compute Cloud
     /// (Amazon EC2) instance, and then connects from the instance to the environment.
+    /// 
+    ///  <important> 
+    /// <para>
+    /// Cloud9 is no longer available to new customers. Existing customers of Cloud9 can continue
+    /// to use the service as normal. <a href="http://aws.amazon.com/blogs/devops/how-to-migrate-from-aws-cloud9-to-aws-ide-toolkits-or-aws-cloudshell/">Learn
+    /// more"</a> 
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class CreateEnvironmentEC2Request : AmazonCloud9Request
     {
@@ -45,7 +54,7 @@ namespace Amazon.Cloud9.Model
         private string _name;
         private string _ownerArn;
         private string _subnetId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property AutomaticStopTimeMinutes. 
@@ -95,8 +104,8 @@ namespace Amazon.Cloud9.Model
         /// Gets and sets the property ConnectionType. 
         /// <para>
         /// The connection type used for connecting to an Amazon EC2 environment. Valid values
-        /// are <code>CONNECT_SSH</code> (default) and <code>CONNECT_SSM</code> (connected through
-        /// Amazon EC2 Systems Manager).
+        /// are <c>CONNECT_SSH</c> (default) and <c>CONNECT_SSM</c> (connected through Amazon
+        /// EC2 Systems Manager).
         /// </para>
         ///  
         /// <para>
@@ -141,7 +150,7 @@ namespace Amazon.Cloud9.Model
         /// <para>
         /// Checks whether you have the required permissions for the action, without actually
         /// making the request, and provides an error response. If you have the required permissions,
-        /// the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.
+        /// the error response is <c>DryRunOperation</c>. Otherwise, it is <c>UnauthorizedOperation</c>.
         /// </para>
         /// </summary>
         public bool DryRun
@@ -163,18 +172,17 @@ namespace Amazon.Cloud9.Model
         /// To choose an AMI for the instance, you must specify a valid AMI alias or a valid Amazon
         /// EC2 Systems Manager (SSM) path.
         /// </para>
-        ///  
+        ///   
         /// <para>
-        /// The default Amazon Linux AMI is currently used if the parameter isn't explicitly assigned
-        /// a value in the request. Because Amazon Linux AMI has ended standard support as of
-        /// December 31, 2020, we recommend you choose Amazon Linux 2, which includes long term
-        /// support through 2023.
+        /// We recommend using Amazon Linux 2023 as the AMI to create your environment as it is
+        /// fully supported.
         /// </para>
         ///  
         /// <para>
-        /// From December 31, 2023, the parameter for Amazon Linux will no longer be available
-        /// when you specify an AMI for your instance. Amazon Linux 2 will then become the default
-        /// AMI, which is used to launch your instance if no parameter is explicitly defined.
+        /// From December 16, 2024, Ubuntu 18.04 will be removed from the list of available <c>imageIds</c>
+        /// for Cloud9. This change is necessary as Ubuntu 18.04 has ended standard support on
+        /// May 31, 2023. This change will only affect direct API consumers, and not Cloud9 console
+        /// users.
         /// </para>
         ///  
         /// <para>
@@ -187,19 +195,19 @@ namespace Amazon.Cloud9.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Amazon Linux (default): <code>amazonlinux-1-x86_64</code> </b> 
+        /// Amazon Linux 2: <c>amazonlinux-2-x86_64</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Amazon Linux 2: <code>amazonlinux-2-x86_64</code> 
+        /// Amazon Linux 2023 (recommended): <c>amazonlinux-2023-x86_64</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Ubuntu 18.04: <code>ubuntu-18.04-x86_64</code> 
+        /// Ubuntu 18.04: <c>ubuntu-18.04-x86_64</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Ubuntu 22.04: <code>ubuntu-22.04-x86_64</code> 
+        /// Ubuntu 22.04: <c>ubuntu-22.04-x86_64</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -207,27 +215,24 @@ namespace Amazon.Cloud9.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Amazon Linux (default): <code>resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64</code>
-        /// </b> 
+        /// Amazon Linux 2: <c>resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Amazon Linux 2: <code>resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64</code>
+        /// Amazon Linux 2023 (recommended): <c>resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2023-x86_64</c>
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Ubuntu 18.04: <code>resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64</code>
-        /// 
+        /// Ubuntu 18.04: <c>resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Ubuntu 22.04: <code>resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64</code>
-        /// 
+        /// Ubuntu 22.04: <c>resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Max=512)]
+        [AWSProperty(Required=true, Max=512)]
         public string ImageId
         {
             get { return this._imageId; }
@@ -243,7 +248,7 @@ namespace Amazon.Cloud9.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The type of instance to connect to the environment (for example, <code>t2.micro</code>).
+        /// The type of instance to connect to the environment (for example, <c>t2.micro</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=20)]
@@ -339,7 +344,7 @@ namespace Amazon.Cloud9.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

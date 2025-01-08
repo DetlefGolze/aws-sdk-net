@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -60,6 +61,14 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Paginator for ExecuteQuery operation
+        ///</summary>
+        public IExecuteQueryPaginator ExecuteQuery(ExecuteQueryRequest request) 
+        {
+            return new ExecuteQueryPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for GetAssetPropertyAggregates operation
         ///</summary>
         public IGetAssetPropertyAggregatesPaginator GetAssetPropertyAggregates(GetAssetPropertyAggregatesRequest request) 
@@ -89,6 +98,22 @@ namespace Amazon.IoTSiteWise.Model
         public IListAccessPoliciesPaginator ListAccessPolicies(ListAccessPoliciesRequest request) 
         {
             return new ListAccessPoliciesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListActions operation
+        ///</summary>
+        public IListActionsPaginator ListActions(ListActionsRequest request) 
+        {
+            return new ListActionsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAssetModelCompositeModels operation
+        ///</summary>
+        public IListAssetModelCompositeModelsPaginator ListAssetModelCompositeModels(ListAssetModelCompositeModelsRequest request) 
+        {
+            return new ListAssetModelCompositeModelsPaginator(this.client, request);
         }
 
         /// <summary>
@@ -148,11 +173,27 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Paginator for ListCompositionRelationships operation
+        ///</summary>
+        public IListCompositionRelationshipsPaginator ListCompositionRelationships(ListCompositionRelationshipsRequest request) 
+        {
+            return new ListCompositionRelationshipsPaginator(this.client, request);
+        }
+
+        /// <summary>
         /// Paginator for ListDashboards operation
         ///</summary>
         public IListDashboardsPaginator ListDashboards(ListDashboardsRequest request) 
         {
             return new ListDashboardsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListDatasets operation
+        ///</summary>
+        public IListDatasetsPaginator ListDatasets(ListDatasetsRequest request) 
+        {
+            return new ListDatasetsPaginator(this.client, request);
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// </summary>
     public partial class ListPoolOriginationIdentitiesRequest : AmazonPinpointSMSVoiceV2Request
     {
-        private List<PoolOriginationIdentitiesFilter> _filters = new List<PoolOriginationIdentitiesFilter>();
+        private List<PoolOriginationIdentitiesFilter> _filters = AWSConfigs.InitializeCollections ? new List<PoolOriginationIdentitiesFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _poolId;
@@ -61,7 +62,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -108,6 +109,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <para>
         /// The unique identifier for the pool. This value can be either the PoolId or PoolArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string PoolId

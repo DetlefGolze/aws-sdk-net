@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeEgressOnlyInternetGatewaysResponse : AmazonWebServiceResponse
     {
-        private List<EgressOnlyInternetGateway> _egressOnlyInternetGateways = new List<EgressOnlyInternetGateway>();
+        private List<EgressOnlyInternetGateway> _egressOnlyInternetGateways = AWSConfigs.InitializeCollections ? new List<EgressOnlyInternetGateway>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if EgressOnlyInternetGateways property is set
         internal bool IsSetEgressOnlyInternetGateways()
         {
-            return this._egressOnlyInternetGateways != null && this._egressOnlyInternetGateways.Count > 0; 
+            return this._egressOnlyInternetGateways != null && (this._egressOnlyInternetGateways.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken

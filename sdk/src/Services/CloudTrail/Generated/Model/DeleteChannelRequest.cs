@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.CloudTrail.Model
         /// <summary>
         /// Gets and sets the property Channel. 
         /// <para>
-        /// The ARN or the <code>UUID</code> value of the channel that you want to delete.
+        /// The ARN or the <c>UUID</c> value of the channel that you want to delete.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=3, Max=256)]

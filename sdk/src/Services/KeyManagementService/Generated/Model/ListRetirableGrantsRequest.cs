@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -50,8 +51,10 @@ namespace Amazon.KeyManagementService.Model
     ///  
     /// <para>
     ///  <b>Cross-account use</b>: You must specify a principal in your Amazon Web Services
-    /// account. However, this operation can return grants in any Amazon Web Services account.
-    /// You do not need <code>kms:ListRetirableGrants</code> permission (or any other additional
+    /// account. This operation returns a list of grants where the retiring principal specified
+    /// in the <c>ListRetirableGrants</c> request is the same retiring principal on the grant.
+    /// This can include grants on KMS keys owned by other Amazon Web Services accounts, but
+    /// you do not need <c>kms:ListRetirableGrants</c> permission (or any other additional
     /// permission) in any Amazon Web Services account other than your own.
     /// </para>
     ///  
@@ -59,7 +62,15 @@ namespace Amazon.KeyManagementService.Model
     ///  <b>Required permissions</b>: <a href="https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html">kms:ListRetirableGrants</a>
     /// (IAM policy) in your Amazon Web Services account.
     /// </para>
-    ///  
+    ///  <note> 
+    /// <para>
+    /// KMS authorizes <c>ListRetirableGrants</c> requests by evaluating the caller account's
+    /// kms:ListRetirableGrants permissions. The authorized resource in <c>ListRetirableGrants</c>
+    /// calls is the retiring principal specified in the request. KMS does not evaluate the
+    /// caller's permissions to verify their access to any KMS keys or grants that might be
+    /// returned by the <c>ListRetirableGrants</c> call.
+    /// </para>
+    ///  </note> 
     /// <para>
     ///  <b>Related operations:</b> 
     /// </para>
@@ -79,7 +90,12 @@ namespace Amazon.KeyManagementService.Model
     /// <para>
     ///  <a>RevokeGrant</a> 
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    ///  <b>Eventual consistency</b>: The KMS API follows an eventual consistency model. For
+    /// more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html">KMS
+    /// eventual consistency</a>.
+    /// </para>
     /// </summary>
     public partial class ListRetirableGrantsRequest : AmazonKeyManagementServiceRequest
     {
@@ -117,8 +133,8 @@ namespace Amazon.KeyManagementService.Model
         /// Gets and sets the property Marker. 
         /// <para>
         /// Use this parameter in a subsequent request after you receive a response with truncated
-        /// results. Set it to the value of <code>NextMarker</code> from the truncated response
-        /// you just received.
+        /// results. Set it to the value of <c>NextMarker</c> from the truncated response you
+        /// just received.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

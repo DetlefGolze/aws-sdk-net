@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -44,7 +45,7 @@ namespace Amazon.KinesisFirehose.Model
         /// it to the destination. The default value is 300 (5 minutes). 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=60, Max=900)]
+        [AWSProperty(Min=0, Max=900)]
         public int IntervalInSeconds
         {
             get { return this._intervalInSeconds.GetValueOrDefault(); }
@@ -66,7 +67,7 @@ namespace Amazon.KinesisFirehose.Model
         ///  
         /// <para>
         /// We recommend setting this parameter to a value greater than the amount of data you
-        /// typically ingest into the delivery stream in 10 seconds. For example, if you typically
+        /// typically ingest into the Firehose stream in 10 seconds. For example, if you typically
         /// ingest data at 1 MB/sec, the value should be 10 MB or higher. 
         /// </para>
         /// </summary>

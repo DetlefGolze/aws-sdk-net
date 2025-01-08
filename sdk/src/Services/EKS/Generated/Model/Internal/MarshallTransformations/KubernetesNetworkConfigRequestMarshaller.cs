@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EKS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.EKS.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(KubernetesNetworkConfigRequest requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetElasticLoadBalancing())
+            {
+                context.Writer.WritePropertyName("elasticLoadBalancing");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = ElasticLoadBalancingMarshaller.Instance;
+                marshaller.Marshall(requestObject.ElasticLoadBalancing, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetIpFamily())
             {
                 context.Writer.WritePropertyName("ipFamily");

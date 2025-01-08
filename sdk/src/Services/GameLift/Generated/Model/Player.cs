@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -35,8 +36,8 @@ namespace Amazon.GameLift.Model
     /// </summary>
     public partial class Player
     {
-        private Dictionary<string, int> _latencyInMs = new Dictionary<string, int>();
-        private Dictionary<string, AttributeValue> _playerAttributes = new Dictionary<string, AttributeValue>();
+        private Dictionary<string, int> _latencyInMs = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
+        private Dictionary<string, AttributeValue> _playerAttributes = AWSConfigs.InitializeCollections ? new Dictionary<string, AttributeValue>() : null;
         private string _playerId;
         private string _team;
 
@@ -64,7 +65,7 @@ namespace Amazon.GameLift.Model
         // Check to see if LatencyInMs property is set
         internal bool IsSetLatencyInMs()
         {
-            return this._latencyInMs != null && this._latencyInMs.Count > 0; 
+            return this._latencyInMs != null && (this._latencyInMs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -72,12 +73,12 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// A collection of key:value pairs containing player information for use in matchmaking.
         /// Player attribute keys must match the <i>playerAttributes</i> used in a matchmaking
-        /// rule set. Example: <code>"PlayerAttributes": {"skill": {"N": "23"}, "gameMode": {"S":
-        /// "deathmatch"}}</code>.
+        /// rule set. Example: <c>"PlayerAttributes": {"skill": {"N": "23"}, "gameMode": {"S":
+        /// "deathmatch"}}</c>.
         /// </para>
         ///  
         /// <para>
-        /// You can provide up to 10 <code>PlayerAttributes</code>.
+        /// You can provide up to 10 <c>PlayerAttributes</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, AttributeValue> PlayerAttributes
@@ -89,7 +90,7 @@ namespace Amazon.GameLift.Model
         // Check to see if PlayerAttributes property is set
         internal bool IsSetPlayerAttributes()
         {
-            return this._playerAttributes != null && this._playerAttributes.Count > 0; 
+            return this._playerAttributes != null && (this._playerAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for a player
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1024)]
+        [AWSProperty(Sensitive=true, Min=1, Max=1024)]
         public string PlayerId
         {
             get { return this._playerId; }

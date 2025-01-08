@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Information about the dataflow endpoint <code>Config</code>.
+    /// Information about the dataflow endpoint <c>Config</c>.
     /// </summary>
     public partial class DataflowEndpointConfig
     {

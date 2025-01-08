@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -36,10 +37,12 @@ namespace Amazon.Glue.Model
     {
         private string _catalogId;
         private string _databaseName;
+        private bool? _force;
         private bool? _skipArchive;
         private TableInput _tableInput;
         private string _transactionId;
         private string _versionId;
+        private ViewUpdateAction _viewUpdateAction;
 
         /// <summary>
         /// Gets and sets the property CatalogId. 
@@ -82,11 +85,30 @@ namespace Amazon.Glue.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Force. 
+        /// <para>
+        /// A flag that can be set to true to ignore matching storage descriptor and subobject
+        /// matching requirements.
+        /// </para>
+        /// </summary>
+        public bool Force
+        {
+            get { return this._force.GetValueOrDefault(); }
+            set { this._force = value; }
+        }
+
+        // Check to see if Force property is set
+        internal bool IsSetForce()
+        {
+            return this._force.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property SkipArchive. 
         /// <para>
-        /// By default, <code>UpdateTable</code> always creates an archived version of the table
-        /// before updating it. However, if <code>skipArchive</code> is set to true, <code>UpdateTable</code>
-        /// does not create the archived version.
+        /// By default, <c>UpdateTable</c> always creates an archived version of the table before
+        /// updating it. However, if <c>skipArchive</c> is set to true, <c>UpdateTable</c> does
+        /// not create the archived version.
         /// </para>
         /// </summary>
         public bool SkipArchive
@@ -104,7 +126,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property TableInput. 
         /// <para>
-        /// An updated <code>TableInput</code> object to define the metadata table in the catalog.
+        /// An updated <c>TableInput</c> object to define the metadata table in the catalog.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -156,6 +178,24 @@ namespace Amazon.Glue.Model
         internal bool IsSetVersionId()
         {
             return this._versionId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ViewUpdateAction. 
+        /// <para>
+        /// The operation to be performed when updating the view.
+        /// </para>
+        /// </summary>
+        public ViewUpdateAction ViewUpdateAction
+        {
+            get { return this._viewUpdateAction; }
+            set { this._viewUpdateAction = value; }
+        }
+
+        // Check to see if ViewUpdateAction property is set
+        internal bool IsSetViewUpdateAction()
+        {
+            return this._viewUpdateAction != null;
         }
 
     }

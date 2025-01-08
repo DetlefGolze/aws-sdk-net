@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
-    /// The details of an Amazon S3 bucket.
+    /// The details of an Amazon Simple Storage Service (Amazon S3) bucket.
     /// </summary>
     public partial class AwsS3BucketDetails
     {
@@ -40,6 +41,7 @@ namespace Amazon.SecurityHub.Model
         private AwsS3BucketBucketVersioningConfiguration _bucketVersioningConfiguration;
         private AwsS3BucketWebsiteConfiguration _bucketWebsiteConfiguration;
         private string _createdAt;
+        private string _name;
         private AwsS3BucketObjectLockConfiguration _objectLockConfiguration;
         private string _ownerAccountId;
         private string _ownerId;
@@ -68,7 +70,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property BucketLifecycleConfiguration. 
         /// <para>
-        /// The lifecycle configuration for objects in the S3 bucket.
+        /// The lifecycle configuration for objects in the specified bucket.
         /// </para>
         /// </summary>
         public AwsS3BucketBucketLifecycleConfigurationDetails BucketLifecycleConfiguration
@@ -162,9 +164,8 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  
         /// <para>
-        /// Uses the <code>date-time</code> format specified in <a href="https://tools.ietf.org/html/rfc3339#section-5.6">RFC
-        /// 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces,
-        /// and date and time should be separated by <code>T</code>. For example, <code>2020-03-22T13:22:13.933Z</code>.
+        /// For more information about the validation and formatting of timestamp fields in Security
+        /// Hub, see <a href="https://docs.aws.amazon.com/securityhub/1.0/APIReference/Welcome.html#timestamps">Timestamps</a>.
         /// </para>
         /// </summary>
         public string CreatedAt
@@ -180,10 +181,28 @@ namespace Amazon.SecurityHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Name. 
+        /// <para>
+        ///  The name of the bucket. 
+        /// </para>
+        /// </summary>
+        public string Name
+        {
+            get { return this._name; }
+            set { this._name = value; }
+        }
+
+        // Check to see if Name property is set
+        internal bool IsSetName()
+        {
+            return this._name != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ObjectLockConfiguration. 
         /// <para>
         ///  Specifies which rule Amazon S3 applies by default to every new object placed in the
-        /// specified bucket. 
+        /// bucket. 
         /// </para>
         /// </summary>
         public AwsS3BucketObjectLockConfiguration ObjectLockConfiguration

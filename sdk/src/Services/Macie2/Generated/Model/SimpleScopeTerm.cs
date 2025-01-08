@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Macie2.Model
     {
         private JobComparator _comparator;
         private ScopeFilterKey _key;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Comparator. 
@@ -54,11 +55,13 @@ namespace Amazon.Macie2.Model
         /// </para>
         /// </li> <li>
         /// <para>
-        /// OBJECT_LAST_MODIFIED_DATE - Any operator except CONTAINS
+        /// OBJECT_LAST_MODIFIED_DATE - EQ (equals), GT (greater than), GTE (greater than or equals),
+        /// LT (less than), LTE (less than or equals), or NE (not equals)
         /// </para>
         /// </li> <li>
         /// <para>
-        /// OBJECT_SIZE - Any operator except CONTAINS
+        /// OBJECT_SIZE - EQ (equals), GT (greater than), GTE (greater than or equals), LT (less
+        /// than), LTE (less than or equals), or NE (not equals)
         /// </para>
         /// </li></ul>
         /// </summary>
@@ -118,7 +121,7 @@ namespace Amazon.Macie2.Model
         /// </li> <li>
         /// <para>
         /// OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601 format)
-        /// when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z
+        /// when an object was created or last changed, whichever is latest. For example: 2023-09-24T14:31:13Z
         /// </para>
         /// </li> <li>
         /// <para>
@@ -139,7 +142,7 @@ namespace Amazon.Macie2.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

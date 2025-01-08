@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTTwinMaker.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.IoTTwinMaker.Model
         private string _description;
         private string _role;
         private string _s3Location;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _workspaceId;
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace Amazon.IoTTwinMaker.Model
         /// The ARN of the execution role associated with the workspace.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=20, Max=2048)]
+        [AWSProperty(Min=20, Max=2048)]
         public string Role
         {
             get { return this._role; }
@@ -84,7 +85,7 @@ namespace Amazon.IoTTwinMaker.Model
         /// The ARN of the S3 bucket where resources associated with the workspace are stored.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=1024)]
+        [AWSProperty(Min=0, Max=1024)]
         public string S3Location
         {
             get { return this._s3Location; }
@@ -113,7 +114,7 @@ namespace Amazon.IoTTwinMaker.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

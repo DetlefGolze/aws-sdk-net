@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
-    /// A <code>DeadLetterConfig</code> object that contains information about a dead-letter
-    /// queue configuration.
+    /// A <c>DeadLetterConfig</c> object that contains information about a dead-letter queue
+    /// configuration.
     /// </summary>
     public partial class DeadLetterConfig
     {

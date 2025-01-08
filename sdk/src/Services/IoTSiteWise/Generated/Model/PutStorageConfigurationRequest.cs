@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -38,27 +39,29 @@ namespace Amazon.IoTSiteWise.Model
         private MultiLayerStorage _multiLayerStorage;
         private RetentionPeriod _retentionPeriod;
         private StorageType _storageType;
+        private WarmTierState _warmTier;
+        private WarmTierRetentionPeriod _warmTierRetentionPeriod;
 
         /// <summary>
         /// Gets and sets the property DisassociatedDataStorage. 
         /// <para>
         /// Contains the storage configuration for time series (data streams) that aren't associated
-        /// with asset properties. The <code>disassociatedDataStorage</code> can be one of the
-        /// following values:
+        /// with asset properties. The <c>disassociatedDataStorage</c> can be one of the following
+        /// values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ENABLED</code> – IoT SiteWise accepts time series that aren't associated with
-        /// asset properties.
+        ///  <c>ENABLED</c> – IoT SiteWise accepts time series that aren't associated with asset
+        /// properties.
         /// </para>
         ///  <important> 
         /// <para>
-        /// After the <code>disassociatedDataStorage</code> is enabled, you can't disable it.
+        /// After the <c>disassociatedDataStorage</c> is enabled, you can't disable it.
         /// </para>
         ///  </important> </li> <li> 
         /// <para>
-        ///  <code>DISABLED</code> – IoT SiteWise doesn't accept time series (data streams) that
-        /// aren't associated with asset properties.
+        ///  <c>DISABLED</c> – IoT SiteWise doesn't accept time series (data streams) that aren't
+        /// associated with asset properties.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -81,8 +84,8 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property MultiLayerStorage. 
         /// <para>
-        /// Identifies a storage destination. If you specified <code>MULTI_LAYER_STORAGE</code>
-        /// for the storage type, you must specify a <code>MultiLayerStorage</code> object.
+        /// Identifies a storage destination. If you specified <c>MULTI_LAYER_STORAGE</c> for
+        /// the storage type, you must specify a <c>MultiLayerStorage</c> object.
         /// </para>
         /// </summary>
         public MultiLayerStorage MultiLayerStorage
@@ -115,18 +118,18 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property StorageType. 
         /// <para>
-        /// The storage tier that you specified for your data. The <code>storageType</code> parameter
+        /// The storage tier that you specified for your data. The <c>storageType</c> parameter
         /// can be one of the following values:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SITEWISE_DEFAULT_STORAGE</code> – IoT SiteWise saves your data into the hot
-        /// tier. The hot tier is a service-managed database.
+        ///  <c>SITEWISE_DEFAULT_STORAGE</c> – IoT SiteWise saves your data into the hot tier.
+        /// The hot tier is a service-managed database.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MULTI_LAYER_STORAGE</code> – IoT SiteWise saves your data in both the cold
-        /// tier and the hot tier. The cold tier is a customer-managed Amazon S3 bucket.
+        ///  <c>MULTI_LAYER_STORAGE</c> – IoT SiteWise saves your data in both the cold tier and
+        /// the hot tier. The cold tier is a customer-managed Amazon S3 bucket.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -141,6 +144,44 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetStorageType()
         {
             return this._storageType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WarmTier. 
+        /// <para>
+        /// A service managed storage tier optimized for analytical queries. It stores periodically
+        /// uploaded, buffered and historical data ingested with the CreaeBulkImportJob API.
+        /// </para>
+        /// </summary>
+        public WarmTierState WarmTier
+        {
+            get { return this._warmTier; }
+            set { this._warmTier = value; }
+        }
+
+        // Check to see if WarmTier property is set
+        internal bool IsSetWarmTier()
+        {
+            return this._warmTier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WarmTierRetentionPeriod. 
+        /// <para>
+        /// Set this period to specify how long your data is stored in the warm tier before it
+        /// is deleted. You can set this only if cold tier is enabled.
+        /// </para>
+        /// </summary>
+        public WarmTierRetentionPeriod WarmTierRetentionPeriod
+        {
+            get { return this._warmTierRetentionPeriod; }
+            set { this._warmTierRetentionPeriod = value; }
+        }
+
+        // Check to see if WarmTierRetentionPeriod property is set
+        internal bool IsSetWarmTierRetentionPeriod()
+        {
+            return this._warmTierRetentionPeriod != null;
         }
 
     }

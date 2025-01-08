@@ -26,30 +26,33 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// This data type is used as a response element in the <code>ModifyDBCluster</code> operation
+    /// This data type is used as a response element in the <c>ModifyDBCluster</c> operation
     /// and contains changes that will be applied during the next maintenance window.
     /// </summary>
     public partial class ClusterPendingModifiedValues
     {
         private int? _allocatedStorage;
         private int? _backupRetentionPeriod;
+        private CertificateDetails _certificateDetails;
         private string _dbClusterIdentifier;
         private string _engineVersion;
         private bool? _iamDatabaseAuthenticationEnabled;
         private int? _iops;
         private string _masterUserPassword;
         private PendingCloudwatchLogsExports _pendingCloudwatchLogsExports;
+        private RdsCustomClusterConfiguration _rdsCustomClusterConfiguration;
         private string _storageType;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
         /// <para>
         /// The allocated storage size in gibibytes (GiB) for all database engines except Amazon
-        /// Aurora. For Aurora, <code>AllocatedStorage</code> always returns 1, because Aurora
-        /// DB cluster storage size isn't fixed, but instead automatically adjusts as needed.
+        /// Aurora. For Aurora, <c>AllocatedStorage</c> always returns 1, because Aurora DB cluster
+        /// storage size isn't fixed, but instead automatically adjusts as needed.
         /// </para>
         /// </summary>
         public int AllocatedStorage
@@ -80,6 +83,21 @@ namespace Amazon.RDS.Model
         internal bool IsSetBackupRetentionPeriod()
         {
             return this._backupRetentionPeriod.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CertificateDetails.
+        /// </summary>
+        public CertificateDetails CertificateDetails
+        {
+            get { return this._certificateDetails; }
+            set { this._certificateDetails = value; }
+        }
+
+        // Check to see if CertificateDetails property is set
+        internal bool IsSetCertificateDetails()
+        {
+            return this._certificateDetails != null;
         }
 
         /// <summary>
@@ -187,6 +205,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetPendingCloudwatchLogsExports()
         {
             return this._pendingCloudwatchLogsExports != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RdsCustomClusterConfiguration. 
+        /// <para>
+        /// Reserved for future use.
+        /// </para>
+        /// </summary>
+        public RdsCustomClusterConfiguration RdsCustomClusterConfiguration
+        {
+            get { return this._rdsCustomClusterConfiguration; }
+            set { this._rdsCustomClusterConfiguration = value; }
+        }
+
+        // Check to see if RdsCustomClusterConfiguration property is set
+        internal bool IsSetRdsCustomClusterConfiguration()
+        {
+            return this._rdsCustomClusterConfiguration != null;
         }
 
         /// <summary>

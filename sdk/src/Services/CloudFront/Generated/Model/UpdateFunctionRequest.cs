@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -39,9 +40,9 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  
     /// <para>
-    /// To update a function, you provide the function's name and version (<code>ETag</code>
-    /// value) along with the updated function code. To get the name and version, you can
-    /// use <code>ListFunctions</code> and <code>DescribeFunction</code>.
+    /// To update a function, you provide the function's name and version (<c>ETag</c> value)
+    /// along with the updated function code. To get the name and version, you can use <c>ListFunctions</c>
+    /// and <c>DescribeFunction</c>.
     /// </para>
     /// </summary>
     public partial class UpdateFunctionRequest : AmazonCloudFrontRequest
@@ -94,8 +95,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property IfMatch. 
         /// <para>
-        /// The current version (<code>ETag</code> value) of the function that you are updating,
-        /// which you can get using <code>DescribeFunction</code>.
+        /// The current version (<c>ETag</c> value) of the function that you are updating, which
+        /// you can get using <c>DescribeFunction</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -108,7 +109,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if IfMatch property is set
         internal bool IsSetIfMatch()
         {
-            return this._ifMatch != null;
+            return !string.IsNullOrEmpty(this._ifMatch);
         }
 
         /// <summary>

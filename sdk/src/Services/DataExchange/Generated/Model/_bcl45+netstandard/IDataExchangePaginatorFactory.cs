@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the dataexchange-2017-07-25.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DataExchange.Model
 {
     /// <summary>
@@ -24,6 +25,11 @@ namespace Amazon.DataExchange.Model
     ///</summary>
     public interface IDataExchangePaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for ListDataGrants operation
+        ///</summary>
+        IListDataGrantsPaginator ListDataGrants(ListDataGrantsRequest request);
 
         /// <summary>
         /// Paginator for ListDataSetRevisions operation
@@ -44,6 +50,11 @@ namespace Amazon.DataExchange.Model
         /// Paginator for ListJobs operation
         ///</summary>
         IListJobsPaginator ListJobs(ListJobsRequest request);
+
+        /// <summary>
+        /// Paginator for ListReceivedDataGrants operation
+        ///</summary>
+        IListReceivedDataGrantsPaginator ListReceivedDataGrants(ListReceivedDataGrantsRequest request);
 
         /// <summary>
         /// Paginator for ListRevisionAssets operation

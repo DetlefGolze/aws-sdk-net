@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Results. 
         /// <para>
-        /// A text blob containing the openCypher <code>explain</code> results.
+        /// A text blob containing the openCypher <c>explain</c> results.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

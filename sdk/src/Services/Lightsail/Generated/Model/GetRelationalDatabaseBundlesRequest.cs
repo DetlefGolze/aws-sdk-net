@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -69,9 +70,9 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// To get a page token, perform an initial <code>GetRelationalDatabaseBundles</code>
-        /// request. If your results are paginated, the response will return a next page token
-        /// that you can specify as the page token in a subsequent request.
+        /// To get a page token, perform an initial <c>GetRelationalDatabaseBundles</c> request.
+        /// If your results are paginated, the response will return a next page token that you
+        /// can specify as the page token in a subsequent request.
         /// </para>
         /// </summary>
         public string PageToken

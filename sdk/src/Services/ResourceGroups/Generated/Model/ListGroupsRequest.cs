@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -42,41 +43,61 @@ namespace Amazon.ResourceGroups.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>resource-groups:ListGroups</code> 
+    ///  <c>resource-groups:ListGroups</c> 
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class ListGroupsRequest : AmazonResourceGroupsRequest
     {
-        private List<GroupFilter> _filters = new List<GroupFilter>();
+        private List<GroupFilter> _filters = AWSConfigs.InitializeCollections ? new List<GroupFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// Filters, formatted as <a>GroupFilter</a> objects, that you want to apply to a <code>ListGroups</code>
+        /// Filters, formatted as <a>GroupFilter</a> objects, that you want to apply to a <c>ListGroups</c>
         /// operation.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>resource-type</code> - Filter the results to include only those of the specified
-        /// resource types. Specify up to five resource types in the format <code>AWS::<i>ServiceCode</i>::<i>ResourceType</i>
-        /// </code>. For example, <code>AWS::EC2::Instance</code>, or <code>AWS::S3::Bucket</code>.
+        ///  <c>resource-type</c> - Filter the results to include only those resource groups that
+        /// have the specified resource type in their <c>ResourceTypeFilter</c>. For example,
+        /// <c>AWS::EC2::Instance</c> would return any resource group with a <c>ResourceTypeFilter</c>
+        /// that includes <c>AWS::EC2::Instance</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>configuration-type</code> - Filter the results to include only those groups
-        /// that have the specified configuration types attached. The current supported values
-        /// are:
+        ///  <c>configuration-type</c> - Filter the results to include only those groups that
+        /// have the specified configuration types attached. The current supported values are:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AWS::EC2::CapacityReservationPool</code> 
+        ///  <c>AWS::ResourceGroups::ApplicationGroup</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AWS::EC2::HostManagement</code> 
+        ///  <c>AWS::AppRegistry::Application</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS::AppRegistry::ApplicationResourceGroups</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS::CloudFormation::Stack</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS::EC2::CapacityReservationPool</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS::EC2::HostManagement</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>AWS::NetworkFirewall::RuleGroup</c> 
         /// </para>
         ///  </li> </ul> </li> </ul>
         /// </summary>
@@ -89,7 +110,7 @@ namespace Amazon.ResourceGroups.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -97,12 +118,12 @@ namespace Amazon.ResourceGroups.Model
         /// <para>
         /// The total number of results that you want included on each page of the response. If
         /// you do not include this parameter, it defaults to a value that is specific to the
-        /// operation. If additional items exist beyond the maximum you specify, the <code>NextToken</code>
+        /// operation. If additional items exist beyond the maximum you specify, the <c>NextToken</c>
         /// response element is present and has a value (is not null). Include that value as the
-        /// <code>NextToken</code> request parameter in the next call to the operation to get
-        /// the next part of the results. Note that the service might return fewer results than
-        /// the maximum even when there are more results available. You should check <code>NextToken</code>
-        /// after every operation to ensure that you receive all of the results.
+        /// <c>NextToken</c> request parameter in the next call to the operation to get the next
+        /// part of the results. Note that the service might return fewer results than the maximum
+        /// even when there are more results available. You should check <c>NextToken</c> after
+        /// every operation to ensure that you receive all of the results.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -121,10 +142,10 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The parameter for receiving additional results if you receive a <code>NextToken</code>
-        /// response in a previous request. A <code>NextToken</code> response indicates that more
-        /// output is available. Set this parameter to the value provided by a previous call's
-        /// <code>NextToken</code> response to indicate where the output should continue from.
+        /// The parameter for receiving additional results if you receive a <c>NextToken</c> response
+        /// in a previous request. A <c>NextToken</c> response indicates that more output is available.
+        /// Set this parameter to the value provided by a previous call's <c>NextToken</c> response
+        /// to indicate where the output should continue from.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=8192)]

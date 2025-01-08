@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateSourceRepository operation.
     /// Creates an empty Git-based source repository in a specified project. The repository
-    /// is created with an initial empty commit with a default branch named <code>main</code>.
+    /// is created with an initial empty commit with a default branch named <c>main</c>.
     /// </summary>
     public partial class CreateSourceRepositoryRequest : AmazonCodeCatalystRequest
     {

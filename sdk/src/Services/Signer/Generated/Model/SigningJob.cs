@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Signer.Model
 {
     /// <summary>
@@ -235,8 +236,8 @@ namespace Amazon.Signer.Model
         /// <summary>
         /// Gets and sets the property SignedObject. 
         /// <para>
-        /// A <code>SignedObject</code> structure that contains information about a signing job's
-        /// signed code image.
+        /// A <c>SignedObject</c> structure that contains information about a signing job's signed
+        /// code image.
         /// </para>
         /// </summary>
         public SignedObject SignedObject
@@ -254,8 +255,8 @@ namespace Amazon.Signer.Model
         /// <summary>
         /// Gets and sets the property SigningMaterial. 
         /// <para>
-        /// A <code>SigningMaterial</code> object that contains the Amazon Resource Name (ARN)
-        /// of the certificate used for the signing job.
+        /// A <c>SigningMaterial</c> object that contains the Amazon Resource Name (ARN) of the
+        /// certificate used for the signing job.
         /// </para>
         /// </summary>
         public SigningMaterial SigningMaterial
@@ -273,7 +274,7 @@ namespace Amazon.Signer.Model
         /// <summary>
         /// Gets and sets the property Source. 
         /// <para>
-        /// A <code>Source</code> that contains information about a signing job's code image source.
+        /// A <c>Source</c> that contains information about a signing job's code image source.
         /// </para>
         /// </summary>
         public Source Source

@@ -27,6 +27,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.CognitoIdentityProvider.Model
     /// for this API operation. For this operation, you can't use IAM credentials to authorize
     /// requests, and you can't grant IAM permissions in policies. For more information about
     /// authorization models in Amazon Cognito, see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html">Using
-    /// the Amazon Cognito native and OIDC APIs</a>.
+    /// the Amazon Cognito user pools API and user pool endpoints</a>.
     /// </para>
     ///  </note>
     /// </summary>
@@ -94,11 +95,11 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property FeedbackValue. 
         /// <para>
-        /// The authentication event feedback value. When you provide a <code>FeedbackValue</code>
-        /// value of <code>valid</code>, you tell Amazon Cognito that you trust a user session
-        /// where Amazon Cognito has evaluated some level of risk. When you provide a <code>FeedbackValue</code>
-        /// value of <code>invalid</code>, you tell Amazon Cognito that you don't trust a user
-        /// session, or you don't believe that Amazon Cognito evaluated a high-enough risk level.
+        /// The authentication event feedback value. When you provide a <c>FeedbackValue</c> value
+        /// of <c>valid</c>, you tell Amazon Cognito that you trust a user session where Amazon
+        /// Cognito has evaluated some level of risk. When you provide a <c>FeedbackValue</c>
+        /// value of <c>invalid</c>, you tell Amazon Cognito that you don't trust a user session,
+        /// or you don't believe that Amazon Cognito evaluated a high-enough risk level.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -117,7 +118,10 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Username. 
         /// <para>
-        /// The user pool username.
+        /// The username of the user that you want to query or modify. The value of this parameter
+        /// is typically your user's username, but it can be any of their alias attributes. If
+        /// <c>username</c> isn't an alias attribute in your user pool, this value must be the
+        /// <c>sub</c> of a local user or the username of a user from a third-party IdP.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=128)]

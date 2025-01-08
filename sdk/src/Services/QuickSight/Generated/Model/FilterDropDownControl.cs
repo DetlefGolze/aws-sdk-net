@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.QuickSight.Model
     public partial class FilterDropDownControl
     {
         private CascadingControlConfiguration _cascadingControlConfiguration;
+        private CommitMode _commitMode;
         private DropDownControlDisplayOptions _displayOptions;
         private string _filterControlId;
         private FilterSelectableValues _selectableValues;
@@ -62,9 +64,27 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CommitMode. 
+        /// <para>
+        /// The visibility configuration of the Apply button on a <c>FilterDropDownControl</c>.
+        /// </para>
+        /// </summary>
+        public CommitMode CommitMode
+        {
+            get { return this._commitMode; }
+            set { this._commitMode = value; }
+        }
+
+        // Check to see if CommitMode property is set
+        internal bool IsSetCommitMode()
+        {
+            return this._commitMode != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DisplayOptions. 
         /// <para>
-        /// The display options of the <code>FilterDropDownControl</code>.
+        /// The display options of the <c>FilterDropDownControl</c>.
         /// </para>
         /// </summary>
         public DropDownControlDisplayOptions DisplayOptions
@@ -82,7 +102,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FilterControlId. 
         /// <para>
-        /// The ID of the <code>FilterDropDownControl</code>.
+        /// The ID of the <c>FilterDropDownControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -119,7 +139,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceFilterId. 
         /// <para>
-        /// The source filter ID of the <code>FilterDropDownControl</code>.
+        /// The source filter ID of the <c>FilterDropDownControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -138,7 +158,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>FilterDropDownControl</code>.
+        /// The title of the <c>FilterDropDownControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -157,15 +177,15 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the <code>FilterDropDownControl</code>. Choose one of the following options:
+        /// The type of the <c>FilterDropDownControl</c>. Choose one of the following options:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>MULTI_SELECT</code>: The user can select multiple entries from a dropdown menu.
+        ///  <c>MULTI_SELECT</c>: The user can select multiple entries from a dropdown menu.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SINGLE_SELECT</code>: The user can select a single entry from a dropdown menu.
+        ///  <c>SINGLE_SELECT</c>: The user can select a single entry from a dropdown menu.
         /// </para>
         ///  </li> </ul>
         /// </summary>

@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// The Spot Instance replacement strategy to use when Amazon EC2 emits a signal that
     /// your Spot Instance is at an elevated risk of being interrupted. For more information,
     /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-capacity-rebalance.html">Capacity
-    /// rebalancing</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
+    /// rebalancing</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class SpotCapacityRebalance
     {
@@ -42,22 +43,22 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ReplacementStrategy. 
         /// <para>
-        /// The replacement strategy to use. Only available for fleets of type <code>maintain</code>.
+        /// The replacement strategy to use. Only available for fleets of type <c>maintain</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>launch</code> - Spot Fleet launches a new replacement Spot Instance when a
-        /// rebalance notification is emitted for an existing Spot Instance in the fleet. Spot
-        /// Fleet does not terminate the instances that receive a rebalance notification. You
-        /// can terminate the old instances, or you can leave them running. You are charged for
-        /// all instances while they are running. 
+        ///  <c>launch</c> - Spot Fleet launches a new replacement Spot Instance when a rebalance
+        /// notification is emitted for an existing Spot Instance in the fleet. Spot Fleet does
+        /// not terminate the instances that receive a rebalance notification. You can terminate
+        /// the old instances, or you can leave them running. You are charged for all instances
+        /// while they are running. 
         /// </para>
         ///  
         /// <para>
-        ///  <code>launch-before-terminate</code> - Spot Fleet launches a new replacement Spot
-        /// Instance when a rebalance notification is emitted for an existing Spot Instance in
-        /// the fleet, and then, after a delay that you specify (in <code>TerminationDelay</code>),
-        /// terminates the instances that received a rebalance notification.
+        ///  <c>launch-before-terminate</c> - Spot Fleet launches a new replacement Spot Instance
+        /// when a rebalance notification is emitted for an existing Spot Instance in the fleet,
+        /// and then, after a delay that you specify (in <c>TerminationDelay</c>), terminates
+        /// the instances that received a rebalance notification.
         /// </para>
         /// </summary>
         public ReplacementStrategy ReplacementStrategy
@@ -80,16 +81,15 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Required when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.
+        /// Required when <c>ReplacementStrategy</c> is set to <c>launch-before-terminate</c>.
         /// </para>
         ///  
         /// <para>
-        /// Not valid when <code>ReplacementStrategy</code> is set to <code>launch</code>.
+        /// Not valid when <c>ReplacementStrategy</c> is set to <c>launch</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code>
-        /// seconds.
+        /// Valid values: Minimum value of <c>120</c> seconds. Maximum value of <c>7200</c> seconds.
         /// </para>
         /// </summary>
         public int TerminationDelay

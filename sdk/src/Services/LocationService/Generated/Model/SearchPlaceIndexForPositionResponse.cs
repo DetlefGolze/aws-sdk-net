@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class SearchPlaceIndexForPositionResponse : AmazonWebServiceResponse
     {
-        private List<SearchForPositionResult> _results = new List<SearchForPositionResult>();
+        private List<SearchForPositionResult> _results = AWSConfigs.InitializeCollections ? new List<SearchForPositionResult>() : null;
         private SearchPlaceIndexForPositionSummary _summary;
 
         /// <summary>
@@ -53,15 +54,14 @@ namespace Amazon.LocationService.Model
         // Check to see if Results property is set
         internal bool IsSetResults()
         {
-            return this._results != null && this._results.Count > 0; 
+            return this._results != null && (this._results.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Summary. 
         /// <para>
-        /// Contains a summary of the request. Echoes the input values for <code>Position</code>,
-        /// <code>Language</code>, <code>MaxResults</code>, and the <code>DataSource</code> of
-        /// the place index. 
+        /// Contains a summary of the request. Echoes the input values for <c>Position</c>, <c>Language</c>,
+        /// <c>MaxResults</c>, and the <c>DataSource</c> of the place index. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

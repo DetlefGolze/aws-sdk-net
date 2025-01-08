@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -37,14 +38,14 @@ namespace Amazon.ECS.Model
         private int? _integerValue;
         private long? _longValue;
         private string _name;
-        private List<string> _stringSetValue = new List<string>();
+        private List<string> _stringSetValue = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _type;
 
         /// <summary>
         /// Gets and sets the property DoubleValue. 
         /// <para>
-        /// When the <code>doubleValue</code> type is set, the value of the resource must be a
-        /// double precision floating-point type.
+        /// When the <c>doubleValue</c> type is set, the value of the resource must be a double
+        /// precision floating-point type.
         /// </para>
         /// </summary>
         public double DoubleValue
@@ -62,8 +63,7 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property IntegerValue. 
         /// <para>
-        /// When the <code>integerValue</code> type is set, the value of the resource must be
-        /// an integer.
+        /// When the <c>integerValue</c> type is set, the value of the resource must be an integer.
         /// </para>
         /// </summary>
         public int IntegerValue
@@ -81,8 +81,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property LongValue. 
         /// <para>
-        /// When the <code>longValue</code> type is set, the value of the resource must be an
-        /// extended precision floating-point type.
+        /// When the <c>longValue</c> type is set, the value of the resource must be an extended
+        /// precision floating-point type.
         /// </para>
         /// </summary>
         public long LongValue
@@ -100,8 +100,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the resource, such as <code>CPU</code>, <code>MEMORY</code>, <code>PORTS</code>,
-        /// <code>PORTS_UDP</code>, or a user-defined resource.
+        /// The name of the resource, such as <c>CPU</c>, <c>MEMORY</c>, <c>PORTS</c>, <c>PORTS_UDP</c>,
+        /// or a user-defined resource.
         /// </para>
         /// </summary>
         public string Name
@@ -119,8 +119,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property StringSetValue. 
         /// <para>
-        /// When the <code>stringSetValue</code> type is set, the value of the resource must be
-        /// a string type.
+        /// When the <c>stringSetValue</c> type is set, the value of the resource must be a string
+        /// type.
         /// </para>
         /// </summary>
         public List<string> StringSetValue
@@ -132,14 +132,14 @@ namespace Amazon.ECS.Model
         // Check to see if StringSetValue property is set
         internal bool IsSetStringSetValue()
         {
-            return this._stringSetValue != null && this._stringSetValue.Count > 0; 
+            return this._stringSetValue != null && (this._stringSetValue.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the resource. Valid values: <code>INTEGER</code>, <code>DOUBLE</code>,
-        /// <code>LONG</code>, or <code>STRINGSET</code>.
+        /// The type of the resource. Valid values: <c>INTEGER</c>, <c>DOUBLE</c>, <c>LONG</c>,
+        /// or <c>STRINGSET</c>.
         /// </para>
         /// </summary>
         public string Type

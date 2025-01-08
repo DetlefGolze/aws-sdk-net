@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.Comprehend.Model
     ///  
     /// <para>
     /// For more information about targeted sentiment, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html">Targeted
-    /// sentiment</a>.
+    /// sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
     /// </para>
     /// </summary>
     public partial class BatchDetectTargetedSentimentRequest : AmazonComprehendRequest
     {
         private LanguageCode _languageCode;
-        private List<string> _textList = new List<string>();
+        private List<string> _textList = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property LanguageCode. 
@@ -80,7 +81,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if TextList property is set
         internal bool IsSetTextList()
         {
-            return this._textList != null && this._textList.Count > 0; 
+            return this._textList != null && (this._textList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

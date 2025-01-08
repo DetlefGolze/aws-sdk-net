@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.ApplicationInsights.Model
     public partial class TagResourceRequest : AmazonApplicationInsightsRequest
     {
         private string _resourceARN;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceARN. 
@@ -71,8 +72,8 @@ namespace Amazon.ApplicationInsights.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// A list of tags that to add to the application. A tag consists of a required tag key
-        /// (<code>Key</code>) and an associated tag value (<code>Value</code>). The maximum length
-        /// of a tag key is 128 characters. The maximum length of a tag value is 256 characters.
+        /// (<c>Key</c>) and an associated tag value (<c>Value</c>). The maximum length of a tag
+        /// key is 128 characters. The maximum length of a tag value is 256 characters.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=200)]
@@ -85,7 +86,7 @@ namespace Amazon.ApplicationInsights.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

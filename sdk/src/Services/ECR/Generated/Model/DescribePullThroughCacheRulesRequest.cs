@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.ECR.Model
     /// </summary>
     public partial class DescribePullThroughCacheRulesRequest : AmazonECRRequest
     {
-        private List<string> _ecrRepositoryPrefixes = new List<string>();
+        private List<string> _ecrRepositoryPrefixes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maxResults;
         private string _nextToken;
         private string _registryId;
@@ -57,20 +58,19 @@ namespace Amazon.ECR.Model
         // Check to see if EcrRepositoryPrefixes property is set
         internal bool IsSetEcrRepositoryPrefixes()
         {
-            return this._ecrRepositoryPrefixes != null && this._ecrRepositoryPrefixes.Count > 0; 
+            return this._ecrRepositoryPrefixes != null && (this._ecrRepositoryPrefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of pull through cache rules returned by <code>DescribePullThroughCacheRulesRequest</code>
-        /// in paginated output. When this parameter is used, <code>DescribePullThroughCacheRulesRequest</code>
-        /// only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code>
+        /// The maximum number of pull through cache rules returned by <c>DescribePullThroughCacheRulesRequest</c>
+        /// in paginated output. When this parameter is used, <c>DescribePullThroughCacheRulesRequest</c>
+        /// only returns <c>maxResults</c> results in a single page along with a <c>nextToken</c>
         /// response element. The remaining results of the initial request can be seen by sending
-        /// another <code>DescribePullThroughCacheRulesRequest</code> request with the returned
-        /// <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter
-        /// is not used, then <code>DescribePullThroughCacheRulesRequest</code> returns up to
-        /// 100 results and a <code>nextToken</code> value, if applicable.
+        /// another <c>DescribePullThroughCacheRulesRequest</c> request with the returned <c>nextToken</c>
+        /// value. This value can be between 1 and 1000. If this parameter is not used, then <c>DescribePullThroughCacheRulesRequest</c>
+        /// returns up to 100 results and a <c>nextToken</c> value, if applicable.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]
@@ -89,11 +89,10 @@ namespace Amazon.ECR.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a previous paginated <code>DescribePullThroughCacheRulesRequest</code>
-        /// request where <code>maxResults</code> was used and the results exceeded the value
-        /// of that parameter. Pagination continues from the end of the previous results that
-        /// returned the <code>nextToken</code> value. This value is null when there are no more
-        /// results to return.
+        /// The <c>nextToken</c> value returned from a previous paginated <c>DescribePullThroughCacheRulesRequest</c>
+        /// request where <c>maxResults</c> was used and the results exceeded the value of that
+        /// parameter. Pagination continues from the end of the previous results that returned
+        /// the <c>nextToken</c> value. This value is null when there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

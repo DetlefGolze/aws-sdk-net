@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Redshift.Model
 {
     /// <summary>
@@ -34,16 +35,16 @@ namespace Amazon.Redshift.Model
     public partial class DescribeClusterParameterGroupsResponse : AmazonWebServiceResponse
     {
         private string _marker;
-        private List<ClusterParameterGroup> _parameterGroups = new List<ClusterParameterGroup>();
+        private List<ClusterParameterGroup> _parameterGroups = AWSConfigs.InitializeCollections ? new List<ClusterParameterGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
         /// A value that indicates the starting point for the next set of response records in
         /// a subsequent request. If a value is returned in a response, you can retrieve the next
-        /// set of records by providing this returned marker value in the <code>Marker</code>
-        /// parameter and retrying the command. If the <code>Marker</code> field is empty, all
-        /// response records have been retrieved for the request. 
+        /// set of records by providing this returned marker value in the <c>Marker</c> parameter
+        /// and retrying the command. If the <c>Marker</c> field is empty, all response records
+        /// have been retrieved for the request. 
         /// </para>
         /// </summary>
         [AWSProperty(Max=2147483647)]
@@ -75,7 +76,7 @@ namespace Amazon.Redshift.Model
         // Check to see if ParameterGroups property is set
         internal bool IsSetParameterGroups()
         {
-            return this._parameterGroups != null && this._parameterGroups.Count > 0; 
+            return this._parameterGroups != null && (this._parameterGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

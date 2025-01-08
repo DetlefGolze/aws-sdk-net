@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -37,6 +38,11 @@ namespace Amazon.IoT.Model
     /// This is a control plane operation. See <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html">Authorization</a>
     /// for information about authorizing control plane actions.
     /// </para>
+    ///  
+    /// <para>
+    /// If the <c>ThingGroup</c> that you create has the exact same attributes as an existing
+    /// <c>ThingGroup</c>, you will get a 200 success response. 
+    /// </para>
     ///  </note> 
     /// <para>
     /// Requires permission to access the <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions">CreateThingGroup</a>
@@ -46,7 +52,7 @@ namespace Amazon.IoT.Model
     public partial class CreateThingGroupRequest : AmazonIoTRequest
     {
         private string _parentGroupName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _thingGroupName;
         private ThingGroupProperties _thingGroupProperties;
 
@@ -84,7 +90,7 @@ namespace Amazon.IoT.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
     /// Container for the parameters to the DeclineHandshake operation.
-    /// Declines a handshake request. This sets the handshake state to <code>DECLINED</code>
-    /// and effectively deactivates the request.
+    /// Declines a handshake request. This sets the handshake state to <c>DECLINED</c> and
+    /// effectively deactivates the request.
     /// 
     ///  
     /// <para>

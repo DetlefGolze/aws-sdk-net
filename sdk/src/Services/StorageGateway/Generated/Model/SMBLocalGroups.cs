@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.StorageGateway.Model
     /// </summary>
     public partial class SMBLocalGroups
     {
-        private List<string> _gatewayAdmins = new List<string>();
+        private List<string> _gatewayAdmins = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property GatewayAdmins. 
         /// <para>
         /// A list of Active Directory users and groups that have local Gateway Admin permissions.
-        /// Acceptable formats include: <code>DOMAIN\User1</code>, <code>user1</code>, <code>DOMAIN\group1</code>,
-        /// and <code>group1</code>.
+        /// Acceptable formats include: <c>DOMAIN\User1</c>, <c>user1</c>, <c>DOMAIN\group1</c>,
+        /// and <c>group1</c>.
         /// </para>
         ///  
         /// <para>
@@ -59,7 +60,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if GatewayAdmins property is set
         internal bool IsSetGatewayAdmins()
         {
-            return this._gatewayAdmins != null && this._gatewayAdmins.Count > 0; 
+            return this._gatewayAdmins != null && (this._gatewayAdmins.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

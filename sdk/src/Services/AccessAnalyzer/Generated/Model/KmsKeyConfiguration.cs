@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AccessAnalyzer.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.AccessAnalyzer.Model
     /// </summary>
     public partial class KmsKeyConfiguration
     {
-        private List<KmsGrantConfiguration> _grants = new List<KmsGrantConfiguration>();
-        private Dictionary<string, string> _keyPolicies = new Dictionary<string, string>();
+        private List<KmsGrantConfiguration> _grants = AWSConfigs.InitializeCollections ? new List<KmsGrantConfiguration>() : null;
+        private Dictionary<string, string> _keyPolicies = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Grants. 
@@ -62,14 +63,14 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if Grants property is set
         internal bool IsSetGrants()
         {
-            return this._grants != null && this._grants.Count > 0; 
+            return this._grants != null && (this._grants.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property KeyPolicies. 
         /// <para>
         /// Resource policy configuration for the KMS key. The only valid value for the name of
-        /// the key policy is <code>default</code>. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default">Default
+        /// the key policy is <c>default</c>. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default">Default
         /// key policy</a>.
         /// </para>
         /// </summary>
@@ -82,7 +83,7 @@ namespace Amazon.AccessAnalyzer.Model
         // Check to see if KeyPolicies property is set
         internal bool IsSetKeyPolicies()
         {
-            return this._keyPolicies != null && this._keyPolicies.Count > 0; 
+            return this._keyPolicies != null && (this._keyPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
-    /// The information for a phone number in an Amazon Web Services account.
+    /// The information for a phone number, in E.164 format, in an Amazon Web Services account.
     /// </summary>
     public partial class PhoneNumberInformation
     {
@@ -38,16 +39,18 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         private string _isoCountryCode;
         private MessageType _messageType;
         private string _monthlyLeasingPrice;
-        private List<string> _numberCapabilities = new List<string>();
+        private List<string> _numberCapabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private NumberType _numberType;
         private string _optOutListName;
         private string _phoneNumber;
         private string _phoneNumberArn;
         private string _phoneNumberId;
         private string _poolId;
+        private string _registrationId;
         private bool? _selfManagedOptOutsEnabled;
         private NumberStatus _status;
         private string _twoWayChannelArn;
+        private string _twoWayChannelRole;
         private bool? _twoWayEnabled;
 
         /// <summary>
@@ -154,7 +157,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// both.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=2)]
+        [AWSProperty(Required=true, Min=1, Max=3)]
         public List<string> NumberCapabilities
         {
             get { return this._numberCapabilities; }
@@ -164,7 +167,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if NumberCapabilities property is set
         internal bool IsSetNumberCapabilities()
         {
-            return this._numberCapabilities != null && this._numberCapabilities.Count > 0; 
+            return this._numberCapabilities != null && (this._numberCapabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -280,13 +283,32 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property RegistrationId. 
+        /// <para>
+        /// The unique identifier for the registration.
+        /// </para>
+        /// </summary>
+        public string RegistrationId
+        {
+            get { return this._registrationId; }
+            set { this._registrationId = value; }
+        }
+
+        // Check to see if RegistrationId property is set
+        internal bool IsSetRegistrationId()
+        {
+            return this._registrationId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SelfManagedOptOutsEnabled. 
         /// <para>
         /// When set to false an end recipient sends a message that begins with HELP or STOP to
-        /// one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable
-        /// message and adds the end recipient to the OptOutList. When set to true you're responsible
-        /// for responding to HELP and STOP requests. You're also responsible for tracking and
-        /// honoring opt-out request. For more information see <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out">Self-managed
+        /// one of your dedicated numbers, AWS End User Messaging SMS and Voice automatically
+        /// replies with a customizable message and adds the end recipient to the OptOutList.
+        /// When set to true you're responsible for responding to HELP and STOP requests. You're
+        /// also responsible for tracking and honoring opt-out request. For more information see
+        /// <a href="https://docs.aws.amazon.com/pinpoint/latest/userguide/settings-sms-managing.html#settings-account-sms-self-managed-opt-out">Self-managed
         /// opt-outs</a> 
         /// </para>
         /// </summary>
@@ -339,6 +361,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetTwoWayChannelArn()
         {
             return this._twoWayChannelArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TwoWayChannelRole. 
+        /// <para>
+        /// An optional IAM Role Arn for a service to assume, to be able to post inbound SMS messages.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string TwoWayChannelRole
+        {
+            get { return this._twoWayChannelRole; }
+            set { this._twoWayChannelRole = value; }
+        }
+
+        // Check to see if TwoWayChannelRole property is set
+        internal bool IsSetTwoWayChannelRole()
+        {
+            return this._twoWayChannelRole != null;
         }
 
         /// <summary>

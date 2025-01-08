@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lex.Model
 {
     /// <summary>
@@ -56,7 +57,7 @@ namespace Amazon.Lex.Model
         /// Gets and sets the property ActiveContexts. 
         /// <para>
         /// A list of active contexts for the session. A context can be set when an intent is
-        /// fulfilled or by calling the <code>PostContent</code>, <code>PostText</code>, or <code>PutSession</code>
+        /// fulfilled or by calling the <c>PostContent</c>, <c>PostText</c>, or <c>PutSession</c>
         /// operation.
         /// </para>
         ///  
@@ -75,7 +76,7 @@ namespace Amazon.Lex.Model
         // Check to see if ActiveContexts property is set
         internal bool IsSetActiveContexts()
         {
-            return this._activeContexts != null;
+            return !string.IsNullOrEmpty(this._activeContexts);
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Amazon.Lex.Model
         // Check to see if AlternativeIntents property is set
         internal bool IsSetAlternativeIntents()
         {
-            return this._alternativeIntents != null;
+            return !string.IsNullOrEmpty(this._alternativeIntents);
         }
 
         /// <summary>
@@ -106,11 +107,11 @@ namespace Amazon.Lex.Model
         /// <para>
         /// The prompt (or statement) to convey to the user. This is based on the bot configuration
         /// and context. For example, if Amazon Lex did not understand the user intent, it sends
-        /// the <code>clarificationPrompt</code> configured for the bot. If the intent requires
-        /// confirmation before taking the fulfillment action, it sends the <code>confirmationPrompt</code>.
-        /// Another example: Suppose that the Lambda function successfully fulfilled the intent,
-        /// and sent a message to convey to the user. Then Amazon Lex sends that message in the
-        /// response. 
+        /// the <c>clarificationPrompt</c> configured for the bot. If the intent requires confirmation
+        /// before taking the fulfillment action, it sends the <c>confirmationPrompt</c>. Another
+        /// example: Suppose that the Lambda function successfully fulfilled the intent, and sent
+        /// a message to convey to the user. Then Amazon Lex sends that message in the response.
+        /// 
         /// </para>
         /// </summary>
         public Stream AudioStream
@@ -142,13 +143,13 @@ namespace Amazon.Lex.Model
         // Check to see if BotVersion property is set
         internal bool IsSetBotVersion()
         {
-            return this._botVersion != null;
+            return !string.IsNullOrEmpty(this._botVersion);
         }
 
         /// <summary>
         /// Gets and sets the property ContentType. 
         /// <para>
-        /// Content type as specified in the <code>Accept</code> HTTP header in the request.
+        /// Content type as specified in the <c>Accept</c> HTTP header in the request.
         /// </para>
         /// </summary>
         public string ContentType
@@ -160,20 +161,20 @@ namespace Amazon.Lex.Model
         // Check to see if ContentType property is set
         internal bool IsSetContentType()
         {
-            return this._contentType != null;
+            return !string.IsNullOrEmpty(this._contentType);
         }
 
         /// <summary>
         /// Gets and sets the property DialogState. 
         /// <para>
         /// Identifies the current state of the user interaction. Amazon Lex returns one of the
-        /// following values as <code>dialogState</code>. The client can optionally use this information
+        /// following values as <c>dialogState</c>. The client can optionally use this information
         /// to customize the user interface. 
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ElicitIntent</code> - Amazon Lex wants to elicit the user's intent. Consider
-        /// the following examples: 
+        ///  <c>ElicitIntent</c> - Amazon Lex wants to elicit the user's intent. Consider the
+        /// following examples: 
         /// </para>
         ///  
         /// <para>
@@ -183,7 +184,7 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ConfirmIntent</code> - Amazon Lex is expecting a "yes" or "no" response. 
+        ///  <c>ConfirmIntent</c> - Amazon Lex is expecting a "yes" or "no" response. 
         /// </para>
         ///  
         /// <para>
@@ -195,8 +196,8 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ElicitSlot</code> - Amazon Lex is expecting the value of a slot for the current
-        /// intent. 
+        ///  <c>ElicitSlot</c> - Amazon Lex is expecting the value of a slot for the current intent.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -207,17 +208,17 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Fulfilled</code> - Conveys that the Lambda function has successfully fulfilled
-        /// the intent. 
+        ///  <c>Fulfilled</c> - Conveys that the Lambda function has successfully fulfilled the
+        /// intent. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ReadyForFulfillment</code> - Conveys that the client has to fulfill the request.
+        ///  <c>ReadyForFulfillment</c> - Conveys that the client has to fulfill the request.
         /// 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Failed</code> - Conveys that the conversation with the user failed. 
+        ///  <c>Failed</c> - Conveys that the conversation with the user failed. 
         /// </para>
         ///  
         /// <para>
@@ -237,7 +238,7 @@ namespace Amazon.Lex.Model
         // Check to see if DialogState property is set
         internal bool IsSetDialogState()
         {
-            return this._dialogState != null;
+            return !string.IsNullOrEmpty(this._dialogState);
         }
 
         /// <summary>
@@ -247,15 +248,15 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  
         /// <para>
-        /// If the input was an audio stream, the <code>encodedInputTranscript</code> field contains
+        /// If the input was an audio stream, the <c>encodedInputTranscript</c> field contains
         /// the text extracted from the audio stream. This is the text that is actually processed
         /// to recognize intents and slot values. You can use this information to determine if
         /// Amazon Lex is correctly processing the audio that you send.
         /// </para>
         ///  
         /// <para>
-        /// The <code>encodedInputTranscript</code> field is base-64 encoded. You must decode
-        /// the field before you can use the value.
+        /// The <c>encodedInputTranscript</c> field is base-64 encoded. You must decode the field
+        /// before you can use the value.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]
@@ -268,7 +269,7 @@ namespace Amazon.Lex.Model
         // Check to see if EncodedInputTranscript property is set
         internal bool IsSetEncodedInputTranscript()
         {
-            return this._encodedInputTranscript != null;
+            return !string.IsNullOrEmpty(this._encodedInputTranscript);
         }
 
         /// <summary>
@@ -280,11 +281,10 @@ namespace Amazon.Lex.Model
         ///  
         /// <para>
         /// If the intent is not configured with a Lambda function, or if the Lambda function
-        /// returned <code>Delegate</code> as the <code>dialogAction.type</code> in its response,
-        /// Amazon Lex decides on the next course of action and selects an appropriate message
-        /// from the bot's configuration based on the current interaction context. For example,
-        /// if Amazon Lex isn't able to understand user input, it uses a clarification prompt
-        /// message.
+        /// returned <c>Delegate</c> as the <c>dialogAction.type</c> in its response, Amazon Lex
+        /// decides on the next course of action and selects an appropriate message from the bot's
+        /// configuration based on the current interaction context. For example, if Amazon Lex
+        /// isn't able to understand user input, it uses a clarification prompt message.
         /// </para>
         ///  
         /// <para>
@@ -300,8 +300,8 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  
         /// <para>
-        /// The <code>encodedMessage</code> field is base-64 encoded. You must decode the field
-        /// before you can use the value.
+        /// The <c>encodedMessage</c> field is base-64 encoded. You must decode the field before
+        /// you can use the value.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=1366)]
@@ -314,7 +314,7 @@ namespace Amazon.Lex.Model
         // Check to see if EncodedMessage property is set
         internal bool IsSetEncodedMessage()
         {
-            return this._encodedMessage != null;
+            return !string.IsNullOrEmpty(this._encodedMessage);
         }
 
         /// <summary>
@@ -325,15 +325,15 @@ namespace Amazon.Lex.Model
         ///  
         /// <para>
         /// You can use this field only in the de-DE, en-AU, en-GB, en-US, es-419, es-ES, es-US,
-        /// fr-CA, fr-FR, and it-IT locales. In all other locales, the <code>inputTranscript</code>
-        /// field is null. You should use the <code>encodedInputTranscript</code> field instead.
+        /// fr-CA, fr-FR, and it-IT locales. In all other locales, the <c>inputTranscript</c>
+        /// field is null. You should use the <c>encodedInputTranscript</c> field instead.
         /// </para>
         ///  
         /// <para>
-        /// If the input was an audio stream, the <code>inputTranscript</code> field contains
-        /// the text extracted from the audio stream. This is the text that is actually processed
-        /// to recognize intents and slot values. You can use this information to determine if
-        /// Amazon Lex is correctly processing the audio that you send.
+        /// If the input was an audio stream, the <c>inputTranscript</c> field contains the text
+        /// extracted from the audio stream. This is the text that is actually processed to recognize
+        /// intents and slot values. You can use this information to determine if Amazon Lex is
+        /// correctly processing the audio that you send.
         /// </para>
         /// </summary>
         [Obsolete("The inputTranscript field is deprecated, use the encodedInputTranscript field instead. The inputTranscript field is available only in the de-DE, en-AU, en-GB, en-US, es-419, es-ES, es-US, fr-CA, fr-FR and it-IT locales.")]
@@ -346,7 +346,7 @@ namespace Amazon.Lex.Model
         // Check to see if InputTranscript property is set
         internal bool IsSetInputTranscript()
         {
-            return this._inputTranscript != null;
+            return !string.IsNullOrEmpty(this._inputTranscript);
         }
 
         /// <summary>
@@ -364,15 +364,15 @@ namespace Amazon.Lex.Model
         // Check to see if IntentName property is set
         internal bool IsSetIntentName()
         {
-            return this._intentName != null;
+            return !string.IsNullOrEmpty(this._intentName);
         }
 
         /// <summary>
         /// Gets and sets the property Message. 
         /// <para>
         /// You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419, es-ES, es-US,
-        /// fr-CA, fr-FR, and it-IT locales. In all other locales, the <code>message</code> field
-        /// is null. You should use the <code>encodedMessage</code> field instead.
+        /// fr-CA, fr-FR, and it-IT locales. In all other locales, the <c>message</c> field is
+        /// null. You should use the <c>encodedMessage</c> field instead.
         /// </para>
         ///  
         /// <para>
@@ -382,11 +382,10 @@ namespace Amazon.Lex.Model
         ///  
         /// <para>
         /// If the intent is not configured with a Lambda function, or if the Lambda function
-        /// returned <code>Delegate</code> as the <code>dialogAction.type</code> in its response,
-        /// Amazon Lex decides on the next course of action and selects an appropriate message
-        /// from the bot's configuration based on the current interaction context. For example,
-        /// if Amazon Lex isn't able to understand user input, it uses a clarification prompt
-        /// message.
+        /// returned <c>Delegate</c> as the <c>dialogAction.type</c> in its response, Amazon Lex
+        /// decides on the next course of action and selects an appropriate message from the bot's
+        /// configuration based on the current interaction context. For example, if Amazon Lex
+        /// isn't able to understand user input, it uses a clarification prompt message.
         /// </para>
         ///  
         /// <para>
@@ -412,7 +411,7 @@ namespace Amazon.Lex.Model
         // Check to see if Message property is set
         internal bool IsSetMessage()
         {
-            return this._message != null;
+            return !string.IsNullOrEmpty(this._message);
         }
 
         /// <summary>
@@ -422,21 +421,20 @@ namespace Amazon.Lex.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PlainText</code> - The message contains plain UTF-8 text.
+        ///  <c>PlainText</c> - The message contains plain UTF-8 text.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CustomPayload</code> - The message is a custom format for the client.
+        ///  <c>CustomPayload</c> - The message is a custom format for the client.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SSML</code> - The message contains text formatted for voice output.
+        ///  <c>SSML</c> - The message contains text formatted for voice output.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Composite</code> - The message contains an escaped JSON object containing one
-        /// or more messages from the groups that messages were assigned to when the intent was
-        /// created.
+        ///  <c>Composite</c> - The message contains an escaped JSON object containing one or
+        /// more messages from the groups that messages were assigned to when the intent was created.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -449,7 +447,7 @@ namespace Amazon.Lex.Model
         // Check to see if MessageFormat property is set
         internal bool IsSetMessageFormat()
         {
-            return this._messageFormat != null;
+            return !string.IsNullOrEmpty(this._messageFormat);
         }
 
         /// <summary>
@@ -473,7 +471,7 @@ namespace Amazon.Lex.Model
         // Check to see if NluIntentConfidence property is set
         internal bool IsSetNluIntentConfidence()
         {
-            return this._nluIntentConfidence != null;
+            return !string.IsNullOrEmpty(this._nluIntentConfidence);
         }
 
         /// <summary>
@@ -496,7 +494,7 @@ namespace Amazon.Lex.Model
         // Check to see if SentimentResponse property is set
         internal bool IsSetSentimentResponse()
         {
-            return this._sentimentResponse != null;
+            return !string.IsNullOrEmpty(this._sentimentResponse);
         }
 
         /// <summary>
@@ -514,7 +512,7 @@ namespace Amazon.Lex.Model
         // Check to see if SessionAttributes property is set
         internal bool IsSetSessionAttributes()
         {
-            return this._sessionAttributes != null;
+            return !string.IsNullOrEmpty(this._sessionAttributes);
         }
 
         /// <summary>
@@ -532,7 +530,7 @@ namespace Amazon.Lex.Model
         // Check to see if SessionId property is set
         internal bool IsSetSessionId()
         {
-            return this._sessionId != null;
+            return !string.IsNullOrEmpty(this._sessionId);
         }
 
         /// <summary>
@@ -544,13 +542,12 @@ namespace Amazon.Lex.Model
         ///  
         /// <para>
         /// Amazon Lex creates a resolution list containing likely values for a slot. The value
-        /// that it returns is determined by the <code>valueSelectionStrategy</code> selected
-        /// when the slot type was created or updated. If <code>valueSelectionStrategy</code>
-        /// is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned,
-        /// if the user value is similar to the slot values. If <code>valueSelectionStrategy</code>
-        /// is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution
-        /// list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>,
-        /// the default is <code>ORIGINAL_VALUE</code>.
+        /// that it returns is determined by the <c>valueSelectionStrategy</c> selected when the
+        /// slot type was created or updated. If <c>valueSelectionStrategy</c> is set to <c>ORIGINAL_VALUE</c>,
+        /// the value provided by the user is returned, if the user value is similar to the slot
+        /// values. If <c>valueSelectionStrategy</c> is set to <c>TOP_RESOLUTION</c> Amazon Lex
+        /// returns the first value in the resolution list or, if there is no resolution list,
+        /// null. If you don't specify a <c>valueSelectionStrategy</c>, the default is <c>ORIGINAL_VALUE</c>.
         /// </para>
         /// </summary>
         public string Slots
@@ -562,14 +559,14 @@ namespace Amazon.Lex.Model
         // Check to see if Slots property is set
         internal bool IsSetSlots()
         {
-            return this._slots != null;
+            return !string.IsNullOrEmpty(this._slots);
         }
 
         /// <summary>
         /// Gets and sets the property SlotToElicit. 
         /// <para>
-        ///  If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns the name
-        /// of the slot for which Amazon Lex is eliciting a value. 
+        ///  If the <c>dialogState</c> value is <c>ElicitSlot</c>, returns the name of the slot
+        /// for which Amazon Lex is eliciting a value. 
         /// </para>
         /// </summary>
         public string SlotToElicit
@@ -581,7 +578,7 @@ namespace Amazon.Lex.Model
         // Check to see if SlotToElicit property is set
         internal bool IsSetSlotToElicit()
         {
-            return this._slotToElicit != null;
+            return !string.IsNullOrEmpty(this._slotToElicit);
         }
 
         #region Dispose Pattern
@@ -597,6 +594,9 @@ namespace Amazon.Lex.Model
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Disposes of all managed and unmanaged resources.
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

@@ -26,15 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
-    /// Contains the result of a successful invocation of the <code>DescribeDBClusters</code>
-    /// action.
+    /// Contains the result of a successful invocation of the <c>DescribeDBClusters</c> action.
     /// </summary>
     public partial class DescribeDBClustersResponse : AmazonWebServiceResponse
     {
-        private List<DBCluster> _dbClusters = new List<DBCluster>();
+        private List<DBCluster> _dbClusters = AWSConfigs.InitializeCollections ? new List<DBCluster>() : null;
         private string _marker;
 
         /// <summary>
@@ -52,13 +52,13 @@ namespace Amazon.RDS.Model
         // Check to see if DBClusters property is set
         internal bool IsSetDBClusters()
         {
-            return this._dbClusters != null && this._dbClusters.Count > 0; 
+            return this._dbClusters != null && (this._dbClusters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// A pagination token that can be used in a later <code>DescribeDBClusters</code> request.
+        /// A pagination token that can be used in a later <c>DescribeDBClusters</c> request.
         /// </para>
         /// </summary>
         public string Marker

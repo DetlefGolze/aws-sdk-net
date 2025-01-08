@@ -26,13 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
     /// Container for the parameters to the Query operation.
     /// Searches an index given an input query.
     /// 
-    ///  
+    ///  <note> 
+    /// <para>
+    /// If you are working with large language models (LLMs) or implementing retrieval augmented
+    /// generation (RAG) systems, you can use Amazon Kendra's <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_Retrieve.html">Retrieve</a>
+    /// API, which can return longer semantically relevant passages. We recommend using the
+    /// <c>Retrieve</c> API instead of filing a service limit increase to increase the <c>Query</c>
+    /// API document excerpt length.
+    /// </para>
+    ///  </note> 
     /// <para>
     /// You can configure boosting or relevance tuning at the query level to override boosting
     /// at the index level, filter based on document fields/attributes and faceted search,
@@ -59,24 +68,35 @@ namespace Amazon.Kendra.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// You can specify that the query return only one type of result using the <code>QueryResultTypeFilter</code>
+    /// You can specify that the query return only one type of result using the <c>QueryResultTypeFilter</c>
     /// parameter. Each query returns the 100 most relevant results. If you filter result
     /// type to only question-answers, a maximum of four results are returned. If you filter
     /// result type to only answers, a maximum of three results are returned.
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// If you're using an Amazon Kendra Gen AI Enterprise Edition index, you can only use
+    /// <c>ATTRIBUTE_FILTER</c> to filter search results by user context. If you're using
+    /// an Amazon Kendra Gen AI Enterprise Edition index and you try to use <c>USER_TOKEN</c>
+    /// to configure user context policy, Amazon Kendra returns a <c>ValidationException</c>
+    /// error.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class QueryRequest : AmazonKendraRequest
     {
         private AttributeFilter _attributeFilter;
-        private List<DocumentRelevanceConfiguration> _documentRelevanceOverrideConfigurations = new List<DocumentRelevanceConfiguration>();
-        private List<Facet> _facets = new List<Facet>();
+        private CollapseConfiguration _collapseConfiguration;
+        private List<DocumentRelevanceConfiguration> _documentRelevanceOverrideConfigurations = AWSConfigs.InitializeCollections ? new List<DocumentRelevanceConfiguration>() : null;
+        private List<Facet> _facets = AWSConfigs.InitializeCollections ? new List<Facet>() : null;
         private string _indexId;
         private int? _pageNumber;
         private int? _pageSize;
         private QueryResultType _queryResultTypeFilter;
         private string _queryText;
-        private List<string> _requestedDocumentAttributes = new List<string>();
+        private List<string> _requestedDocumentAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SortingConfiguration _sortingConfiguration;
+        private List<SortingConfiguration> _sortingConfigurations = AWSConfigs.InitializeCollections ? new List<SortingConfiguration>() : null;
         private SpellCorrectionConfiguration _spellCorrectionConfiguration;
         private UserContext _userContext;
         private string _visitorId;
@@ -85,14 +105,21 @@ namespace Amazon.Kendra.Model
         /// Gets and sets the property AttributeFilter. 
         /// <para>
         /// Filters search results by document fields/attributes. You can only provide one attribute
-        /// filter; however, the <code>AndAllFilters</code>, <code>NotFilter</code>, and <code>OrAllFilters</code>
+        /// filter; however, the <c>AndAllFilters</c>, <c>NotFilter</c>, and <c>OrAllFilters</c>
         /// parameters contain a list of other filters.
         /// </para>
         ///  
         /// <para>
-        /// The <code>AttributeFilter</code> parameter means you can create a set of filtering
-        /// rules that a document must satisfy to be included in the query results.
+        /// The <c>AttributeFilter</c> parameter means you can create a set of filtering rules
+        /// that a document must satisfy to be included in the query results.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// For Amazon Kendra Gen AI Enterprise Edition indices use <c>AttributeFilter</c> to
+        /// enable document filtering for end users using <c>_email_id</c> or include public documents
+        /// (<c>_email_id=null</c>).
+        /// </para>
+        ///  </note>
         /// </summary>
         public AttributeFilter AttributeFilter
         {
@@ -104,6 +131,26 @@ namespace Amazon.Kendra.Model
         internal bool IsSetAttributeFilter()
         {
             return this._attributeFilter != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CollapseConfiguration. 
+        /// <para>
+        /// Provides configuration to determine how to group results by document attribute value,
+        /// and how to display them (collapsed or expanded) under a designated primary document
+        /// for each group.
+        /// </para>
+        /// </summary>
+        public CollapseConfiguration CollapseConfiguration
+        {
+            get { return this._collapseConfiguration; }
+            set { this._collapseConfiguration = value; }
+        }
+
+        // Check to see if CollapseConfiguration property is set
+        internal bool IsSetCollapseConfiguration()
+        {
+            return this._collapseConfiguration != null;
         }
 
         /// <summary>
@@ -134,7 +181,7 @@ namespace Amazon.Kendra.Model
         // Check to see if DocumentRelevanceOverrideConfigurations property is set
         internal bool IsSetDocumentRelevanceOverrideConfigurations()
         {
-            return this._documentRelevanceOverrideConfigurations != null && this._documentRelevanceOverrideConfigurations.Count > 0; 
+            return this._documentRelevanceOverrideConfigurations != null && (this._documentRelevanceOverrideConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -153,7 +200,7 @@ namespace Amazon.Kendra.Model
         // Check to see if Facets property is set
         internal bool IsSetFacets()
         {
-            return this._facets != null && this._facets.Count > 0; 
+            return this._facets != null && (this._facets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -178,9 +225,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property PageNumber. 
         /// <para>
-        /// Query results are returned in pages the size of the <code>PageSize</code> parameter.
-        /// By default, Amazon Kendra returns the first page of results. Use this parameter to
-        /// get result pages after the first one.
+        /// Query results are returned in pages the size of the <c>PageSize</c> parameter. By
+        /// default, Amazon Kendra returns the first page of results. Use this parameter to get
+        /// result pages after the first one.
         /// </para>
         /// </summary>
         public int PageNumber
@@ -239,7 +286,10 @@ namespace Amazon.Kendra.Model
         /// <para>
         /// The input query text for the search. Amazon Kendra truncates queries at 30 token words,
         /// which excludes punctuation and stop words. Truncation still applies if you use Boolean
-        /// or more advanced, complex queries. 
+        /// or more advanced, complex queries. For example, <c>Timeoff AND October AND Category:HR</c>
+        /// is counted as 3 tokens: <c>timeoff</c>, <c>october</c>, <c>hr</c>. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/searching-example.html#searching-index-query-syntax">Searching
+        /// with advanced query syntax</a> in the Amazon Kendra Developer Guide. 
         /// </para>
         /// </summary>
         public string QueryText
@@ -272,7 +322,7 @@ namespace Amazon.Kendra.Model
         // Check to see if RequestedDocumentAttributes property is set
         internal bool IsSetRequestedDocumentAttributes()
         {
-            return this._requestedDocumentAttributes != null && this._requestedDocumentAttributes.Count > 0; 
+            return this._requestedDocumentAttributes != null && (this._requestedDocumentAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -299,6 +349,37 @@ namespace Amazon.Kendra.Model
         internal bool IsSetSortingConfiguration()
         {
             return this._sortingConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SortingConfigurations. 
+        /// <para>
+        /// Provides configuration information to determine how the results of a query are sorted.
+        /// </para>
+        ///  
+        /// <para>
+        /// You can set upto 3 fields that Amazon Kendra should sort the results on, and specify
+        /// whether the results should be sorted in ascending or descending order. The sort field
+        /// quota can be increased.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you don't provide a sorting configuration, the results are sorted by the relevance
+        /// that Amazon Kendra determines for the result. In the case of ties in sorting the results,
+        /// the results are sorted by relevance. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public List<SortingConfiguration> SortingConfigurations
+        {
+            get { return this._sortingConfigurations; }
+            set { this._sortingConfigurations = value; }
+        }
+
+        // Check to see if SortingConfigurations property is set
+        internal bool IsSetSortingConfigurations()
+        {
+            return this._sortingConfigurations != null && (this._sortingConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -340,9 +421,9 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property VisitorId. 
         /// <para>
-        /// Provides an identifier for a specific user. The <code>VisitorId</code> should be a
-        /// unique identifier, such as a GUID. Don't use personally identifiable information,
-        /// such as the user's email address, as the <code>VisitorId</code>.
+        /// Provides an identifier for a specific user. The <c>VisitorId</c> should be a unique
+        /// identifier, such as a GUID. Don't use personally identifiable information, such as
+        /// the user's email address, as the <c>VisitorId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

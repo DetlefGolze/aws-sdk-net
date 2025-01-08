@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
-    /// Each step type has its own <code>StepDetails</code> structure.
+    /// Each step type has its own <c>StepDetails</c> structure.
     /// </summary>
     public partial class CustomStepDetails
     {
@@ -44,7 +45,7 @@ namespace Amazon.Transfer.Model
         /// The name of the step, used as an identifier.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=30)]
+        [AWSProperty(Min=0, Max=30)]
         public string Name
         {
             get { return this._name; }
@@ -65,17 +66,17 @@ namespace Amazon.Transfer.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To use the previous file as the input, enter <code>${previous.file}</code>. In this
-        /// case, this workflow step uses the output file from the previous workflow step as input.
+        /// To use the previous file as the input, enter <c>${previous.file}</c>. In this case,
+        /// this workflow step uses the output file from the previous workflow step as input.
         /// This is the default value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To use the originally uploaded file location as input for this step, enter <code>${original.file}</code>.
+        /// To use the originally uploaded file location as input for this step, enter <c>${original.file}</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
-        [AWSProperty(Max=256)]
+        [AWSProperty(Min=0, Max=256)]
         public string SourceFileLocation
         {
             get { return this._sourceFileLocation; }
@@ -94,7 +95,7 @@ namespace Amazon.Transfer.Model
         /// The ARN for the Lambda function that is being called.
         /// </para>
         /// </summary>
-        [AWSProperty(Max=170)]
+        [AWSProperty(Min=0, Max=170)]
         public string Target
         {
             get { return this._target; }

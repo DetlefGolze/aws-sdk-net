@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -34,19 +35,21 @@ namespace Amazon.DynamoDBv2.Model
     public partial class TableDescription
     {
         private ArchivalSummary _archivalSummary;
-        private List<AttributeDefinition> _attributeDefinitions = new List<AttributeDefinition>();
+        private List<AttributeDefinition> _attributeDefinitions = AWSConfigs.InitializeCollections ? new List<AttributeDefinition>() : null;
         private BillingModeSummary _billingModeSummary;
         private DateTime? _creationDateTime;
         private bool? _deletionProtectionEnabled;
-        private List<GlobalSecondaryIndexDescription> _globalSecondaryIndexes = new List<GlobalSecondaryIndexDescription>();
+        private List<GlobalSecondaryIndexDescription> _globalSecondaryIndexes = AWSConfigs.InitializeCollections ? new List<GlobalSecondaryIndexDescription>() : null;
         private string _globalTableVersion;
         private long? _itemCount;
-        private List<KeySchemaElement> _keySchema = new List<KeySchemaElement>();
+        private List<KeySchemaElement> _keySchema = AWSConfigs.InitializeCollections ? new List<KeySchemaElement>() : null;
         private string _latestStreamArn;
         private string _latestStreamLabel;
-        private List<LocalSecondaryIndexDescription> _localSecondaryIndexes = new List<LocalSecondaryIndexDescription>();
+        private List<LocalSecondaryIndexDescription> _localSecondaryIndexes = AWSConfigs.InitializeCollections ? new List<LocalSecondaryIndexDescription>() : null;
+        private MultiRegionConsistency _multiRegionConsistency;
+        private OnDemandThroughput _onDemandThroughput;
         private ProvisionedThroughputDescription _provisionedThroughput;
-        private List<ReplicaDescription> _replicas = new List<ReplicaDescription>();
+        private List<ReplicaDescription> _replicas = AWSConfigs.InitializeCollections ? new List<ReplicaDescription>() : null;
         private RestoreSummary _restoreSummary;
         private SSEDescription _sseDescription;
         private StreamSpecification _streamSpecification;
@@ -56,6 +59,7 @@ namespace Amazon.DynamoDBv2.Model
         private string _tableName;
         private long? _tableSizeBytes;
         private TableStatus _tableStatus;
+        private TableWarmThroughputDescription _warmThroughput;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -83,20 +87,20 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property AttributeDefinitions. 
         /// <para>
-        /// An array of <code>AttributeDefinition</code> objects. Each of these objects describes
-        /// one attribute in the table and index key schema.
+        /// An array of <c>AttributeDefinition</c> objects. Each of these objects describes one
+        /// attribute in the table and index key schema.
         /// </para>
         ///  
         /// <para>
-        /// Each <code>AttributeDefinition</code> object in this array is composed of:
+        /// Each <c>AttributeDefinition</c> object in this array is composed of:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AttributeName</code> - The name of the attribute.
+        ///  <c>AttributeName</c> - The name of the attribute.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AttributeType</code> - The data type for the attribute.
+        ///  <c>AttributeType</c> - The data type for the attribute.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -109,7 +113,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if AttributeDefinitions property is set
         internal bool IsSetAttributeDefinitions()
         {
-            return this._attributeDefinitions != null && this._attributeDefinitions.Count > 0; 
+            return this._attributeDefinitions != null && (this._attributeDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -176,104 +180,104 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Backfilling</code> - If true, then the index is currently in the backfilling
-        /// phase. Backfilling occurs only when a new global secondary index is added to the table.
-        /// It is the process by which DynamoDB populates the new index with data from the table.
-        /// (This attribute does not appear for indexes that were created during a <code>CreateTable</code>
+        ///  <c>Backfilling</c> - If true, then the index is currently in the backfilling phase.
+        /// Backfilling occurs only when a new global secondary index is added to the table. It
+        /// is the process by which DynamoDB populates the new index with data from the table.
+        /// (This attribute does not appear for indexes that were created during a <c>CreateTable</c>
         /// operation.) 
         /// </para>
         ///  
         /// <para>
-        ///  You can delete an index that is being created during the <code>Backfilling</code>
-        /// phase when <code>IndexStatus</code> is set to CREATING and <code>Backfilling</code>
-        /// is true. You can't delete the index that is being created when <code>IndexStatus</code>
-        /// is set to CREATING and <code>Backfilling</code> is false. (This attribute does not
-        /// appear for indexes that were created during a <code>CreateTable</code> operation.)
+        ///  You can delete an index that is being created during the <c>Backfilling</c> phase
+        /// when <c>IndexStatus</c> is set to CREATING and <c>Backfilling</c> is true. You can't
+        /// delete the index that is being created when <c>IndexStatus</c> is set to CREATING
+        /// and <c>Backfilling</c> is false. (This attribute does not appear for indexes that
+        /// were created during a <c>CreateTable</c> operation.)
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IndexName</code> - The name of the global secondary index.
+        ///  <c>IndexName</c> - The name of the global secondary index.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>IndexSizeBytes</code> - The total size of the global secondary index, in bytes.
-        /// DynamoDB updates this value approximately every six hours. Recent changes might not
-        /// be reflected in this value. 
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>IndexStatus</code> - The current status of the global secondary index:
-        /// </para>
-        ///  <ul> <li> 
-        /// <para>
-        ///  <code>CREATING</code> - The index is being created.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>UPDATING</code> - The index is being updated.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>DELETING</code> - The index is being deleted.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>ACTIVE</code> - The index is ready for use.
-        /// </para>
-        ///  </li> </ul> </li> <li> 
-        /// <para>
-        ///  <code>ItemCount</code> - The number of items in the global secondary index. DynamoDB
+        ///  <c>IndexSizeBytes</c> - The total size of the global secondary index, in bytes. DynamoDB
         /// updates this value approximately every six hours. Recent changes might not be reflected
         /// in this value. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KeySchema</code> - Specifies the complete index key schema. The attribute names
-        /// in the key schema must be between 1 and 255 characters (inclusive). The key schema
-        /// must begin with the same partition key as the table.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        ///  <code>Projection</code> - Specifies attributes that are copied (projected) from the
-        /// table into the index. These are in addition to the primary key attributes and index
-        /// key attributes, which are automatically projected. Each attribute specification is
-        /// composed of:
+        ///  <c>IndexStatus</c> - The current status of the global secondary index:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ProjectionType</code> - One of the following:
+        ///  <c>CREATING</c> - The index is being created.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>UPDATING</c> - The index is being updated.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>DELETING</c> - The index is being deleted.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>ACTIVE</c> - The index is ready for use.
+        /// </para>
+        ///  </li> </ul> </li> <li> 
+        /// <para>
+        ///  <c>ItemCount</c> - The number of items in the global secondary index. DynamoDB updates
+        /// this value approximately every six hours. Recent changes might not be reflected in
+        /// this value. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>KeySchema</c> - Specifies the complete index key schema. The attribute names in
+        /// the key schema must be between 1 and 255 characters (inclusive). The key schema must
+        /// begin with the same partition key as the table.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>Projection</c> - Specifies attributes that are copied (projected) from the table
+        /// into the index. These are in addition to the primary key attributes and index key
+        /// attributes, which are automatically projected. Each attribute specification is composed
+        /// of:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>KEYS_ONLY</code> - Only the index and primary keys are projected into the index.
+        ///  <c>ProjectionType</c> - One of the following:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>KEYS_ONLY</c> - Only the index and primary keys are projected into the index.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INCLUDE</code> - In addition to the attributes described in <code>KEYS_ONLY</code>,
-        /// the secondary index will include other non-key attributes that you specify.
+        ///  <c>INCLUDE</c> - In addition to the attributes described in <c>KEYS_ONLY</c>, the
+        /// secondary index will include other non-key attributes that you specify.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL</code> - All of the table attributes are projected into the index.
+        ///  <c>ALL</c> - All of the table attributes are projected into the index.
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>NonKeyAttributes</code> - A list of one or more non-key attribute names that
-        /// are projected into the secondary index. The total count of attributes provided in
-        /// <code>NonKeyAttributes</code>, summed across all of the secondary indexes, must not
-        /// exceed 100. If you project the same attribute into two different indexes, this counts
-        /// as two distinct attributes when determining the total.
+        ///  <c>NonKeyAttributes</c> - A list of one or more non-key attribute names that are
+        /// projected into the secondary index. The total count of attributes provided in <c>NonKeyAttributes</c>,
+        /// summed across all of the secondary indexes, must not exceed 100. If you project the
+        /// same attribute into two different indexes, this counts as two distinct attributes
+        /// when determining the total.
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>ProvisionedThroughput</code> - The provisioned throughput settings for the
-        /// global secondary index, consisting of read and write capacity units, along with data
-        /// about increases and decreases. 
+        ///  <c>ProvisionedThroughput</c> - The provisioned throughput settings for the global
+        /// secondary index, consisting of read and write capacity units, along with data about
+        /// increases and decreases. 
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If the table is in the <code>DELETING</code> state, no information about indexes will
-        /// be returned.
+        /// If the table is in the <c>DELETING</c> state, no information about indexes will be
+        /// returned.
         /// </para>
         /// </summary>
         public List<GlobalSecondaryIndexDescription> GlobalSecondaryIndexes
@@ -285,7 +289,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if GlobalSecondaryIndexes property is set
         internal bool IsSetGlobalSecondaryIndexes()
         {
-            return this._globalSecondaryIndexes != null && this._globalSecondaryIndexes.Count > 0; 
+            return this._globalSecondaryIndexes != null && (this._globalSecondaryIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -329,24 +333,23 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property KeySchema. 
         /// <para>
-        /// The primary key structure for the table. Each <code>KeySchemaElement</code> consists
-        /// of:
+        /// The primary key structure for the table. Each <c>KeySchemaElement</c> consists of:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>AttributeName</code> - The name of the attribute.
+        ///  <c>AttributeName</c> - The name of the attribute.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KeyType</code> - The role of the attribute:
+        ///  <c>KeyType</c> - The role of the attribute:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>HASH</code> - partition key
+        ///  <c>HASH</c> - partition key
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RANGE</code> - sort key
+        ///  <c>RANGE</c> - sort key
         /// </para>
         ///  </li> </ul> <note> 
         /// <para>
@@ -376,7 +379,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if KeySchema property is set
         internal bool IsSetKeySchema()
         {
-            return this._keySchema != null && this._keySchema.Count > 0; 
+            return this._keySchema != null && (this._keySchema.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -406,9 +409,9 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  
         /// <para>
-        /// Note that <code>LatestStreamLabel</code> is not a unique identifier for the stream,
-        /// because it is possible that a stream from another table might have the same timestamp.
-        /// However, the combination of the following three elements is guaranteed to be unique:
+        /// Note that <c>LatestStreamLabel</c> is not a unique identifier for the stream, because
+        /// it is possible that a stream from another table might have the same timestamp. However,
+        /// the combination of the following three elements is guaranteed to be unique:
         /// </para>
         ///  <ul> <li> 
         /// <para>
@@ -420,7 +423,7 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>StreamLabel</code> 
+        ///  <c>StreamLabel</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -446,62 +449,62 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>IndexName</code> - The name of the local secondary index.
+        ///  <c>IndexName</c> - The name of the local secondary index.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KeySchema</code> - Specifies the complete index key schema. The attribute names
-        /// in the key schema must be between 1 and 255 characters (inclusive). The key schema
-        /// must begin with the same partition key as the table.
+        ///  <c>KeySchema</c> - Specifies the complete index key schema. The attribute names in
+        /// the key schema must be between 1 and 255 characters (inclusive). The key schema must
+        /// begin with the same partition key as the table.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Projection</code> - Specifies attributes that are copied (projected) from the
-        /// table into the index. These are in addition to the primary key attributes and index
-        /// key attributes, which are automatically projected. Each attribute specification is
-        /// composed of:
+        ///  <c>Projection</c> - Specifies attributes that are copied (projected) from the table
+        /// into the index. These are in addition to the primary key attributes and index key
+        /// attributes, which are automatically projected. Each attribute specification is composed
+        /// of:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ProjectionType</code> - One of the following:
+        ///  <c>ProjectionType</c> - One of the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>KEYS_ONLY</code> - Only the index and primary keys are projected into the index.
+        ///  <c>KEYS_ONLY</c> - Only the index and primary keys are projected into the index.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INCLUDE</code> - Only the specified table attributes are projected into the
-        /// index. The list of projected attributes is in <code>NonKeyAttributes</code>.
+        ///  <c>INCLUDE</c> - Only the specified table attributes are projected into the index.
+        /// The list of projected attributes is in <c>NonKeyAttributes</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ALL</code> - All of the table attributes are projected into the index.
+        ///  <c>ALL</c> - All of the table attributes are projected into the index.
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>NonKeyAttributes</code> - A list of one or more non-key attribute names that
-        /// are projected into the secondary index. The total count of attributes provided in
-        /// <code>NonKeyAttributes</code>, summed across all of the secondary indexes, must not
-        /// exceed 100. If you project the same attribute into two different indexes, this counts
-        /// as two distinct attributes when determining the total.
+        ///  <c>NonKeyAttributes</c> - A list of one or more non-key attribute names that are
+        /// projected into the secondary index. The total count of attributes provided in <c>NonKeyAttributes</c>,
+        /// summed across all of the secondary indexes, must not exceed 100. If you project the
+        /// same attribute into two different indexes, this counts as two distinct attributes
+        /// when determining the total.
         /// </para>
         ///  </li> </ul> </li> <li> 
         /// <para>
-        ///  <code>IndexSizeBytes</code> - Represents the total size of the index, in bytes. DynamoDB
+        ///  <c>IndexSizeBytes</c> - Represents the total size of the index, in bytes. DynamoDB
         /// updates this value approximately every six hours. Recent changes might not be reflected
         /// in this value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ItemCount</code> - Represents the number of items in the index. DynamoDB updates
+        ///  <c>ItemCount</c> - Represents the number of items in the index. DynamoDB updates
         /// this value approximately every six hours. Recent changes might not be reflected in
         /// this value.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If the table is in the <code>DELETING</code> state, no information about indexes will
-        /// be returned.
+        /// If the table is in the <c>DELETING</c> state, no information about indexes will be
+        /// returned.
         /// </para>
         /// </summary>
         public List<LocalSecondaryIndexDescription> LocalSecondaryIndexes
@@ -513,7 +516,65 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if LocalSecondaryIndexes property is set
         internal bool IsSetLocalSecondaryIndexes()
         {
-            return this._localSecondaryIndexes != null && this._localSecondaryIndexes.Count > 0; 
+            return this._localSecondaryIndexes != null && (this._localSecondaryIndexes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MultiRegionConsistency. 
+        /// <para>
+        /// Indicates one of the following consistency modes for a global table:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>EVENTUAL</c>: Indicates that the global table is configured for multi-Region eventual
+        /// consistency.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>STRONG</c>: Indicates that the global table is configured for multi-Region strong
+        /// consistency (preview).
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Multi-Region strong consistency (MRSC) is a new DynamoDB global tables capability
+        /// currently available in preview mode. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PreviewFeatures.html#multi-region-strong-consistency-gt">Global
+        /// tables multi-Region strong consistency</a>.
+        /// </para>
+        ///  </note> </li> </ul> 
+        /// <para>
+        /// If you don't specify this field, the global table consistency mode defaults to <c>EVENTUAL</c>.
+        /// </para>
+        /// </summary>
+        public MultiRegionConsistency MultiRegionConsistency
+        {
+            get { return this._multiRegionConsistency; }
+            set { this._multiRegionConsistency = value; }
+        }
+
+        // Check to see if MultiRegionConsistency property is set
+        internal bool IsSetMultiRegionConsistency()
+        {
+            return this._multiRegionConsistency != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OnDemandThroughput. 
+        /// <para>
+        /// The maximum number of read and write units for the specified on-demand table. If you
+        /// use this parameter, you must specify <c>MaxReadRequestUnits</c>, <c>MaxWriteRequestUnits</c>,
+        /// or both.
+        /// </para>
+        /// </summary>
+        public OnDemandThroughput OnDemandThroughput
+        {
+            get { return this._onDemandThroughput; }
+            set { this._onDemandThroughput = value; }
+        }
+
+        // Check to see if OnDemandThroughput property is set
+        internal bool IsSetOnDemandThroughput()
+        {
+            return this._onDemandThroughput != null;
         }
 
         /// <summary>
@@ -550,7 +611,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Replicas property is set
         internal bool IsSetReplicas()
         {
-            return this._replicas != null && this._replicas.Count > 0; 
+            return this._replicas != null && (this._replicas.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -706,37 +767,37 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CREATING</code> - The table is being created.
+        ///  <c>CREATING</c> - The table is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UPDATING</code> - The table/index configuration is being updated. The table/index
-        /// remains available for data operations when <code>UPDATING</code>.
+        ///  <c>UPDATING</c> - The table/index configuration is being updated. The table/index
+        /// remains available for data operations when <c>UPDATING</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DELETING</code> - The table is being deleted.
+        ///  <c>DELETING</c> - The table is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> - The table is ready for use.
+        ///  <c>ACTIVE</c> - The table is ready for use.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS</code> - The KMS key used to encrypt the
-        /// table in inaccessible. Table operations may fail due to failure to use the KMS key.
-        /// DynamoDB will initiate the table archival process when a table's KMS key remains inaccessible
+        ///  <c>INACCESSIBLE_ENCRYPTION_CREDENTIALS</c> - The KMS key used to encrypt the table
+        /// in inaccessible. Table operations may fail due to failure to use the KMS key. DynamoDB
+        /// will initiate the table archival process when a table's KMS key remains inaccessible
         /// for more than seven days. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ARCHIVING</code> - The table is being archived. Operations are not allowed
-        /// until archival is complete. 
+        ///  <c>ARCHIVING</c> - The table is being archived. Operations are not allowed until
+        /// archival is complete. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ARCHIVED</code> - The table has been archived. See the ArchivalReason for more
-        /// information. 
+        ///  <c>ARCHIVED</c> - The table has been archived. See the ArchivalReason for more information.
+        /// 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -750,6 +811,24 @@ namespace Amazon.DynamoDBv2.Model
         internal bool IsSetTableStatus()
         {
             return this._tableStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WarmThroughput. 
+        /// <para>
+        /// Describes the warm throughput value of the base table.
+        /// </para>
+        /// </summary>
+        public TableWarmThroughputDescription WarmThroughput
+        {
+            get { return this._warmThroughput; }
+            set { this._warmThroughput = value; }
+        }
+
+        // Check to see if WarmThroughput property is set
+        internal bool IsSetWarmThroughput()
+        {
+            return this._warmThroughput != null;
         }
 
     }

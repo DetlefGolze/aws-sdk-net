@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
@@ -34,17 +35,17 @@ namespace Amazon.RDSDataService.Model
     /// </summary>
     public partial class ExecuteStatementResponse : AmazonWebServiceResponse
     {
-        private List<ColumnMetadata> _columnMetadata = new List<ColumnMetadata>();
+        private List<ColumnMetadata> _columnMetadata = AWSConfigs.InitializeCollections ? new List<ColumnMetadata>() : null;
         private string _formattedRecords;
-        private List<Field> _generatedFields = new List<Field>();
+        private List<Field> _generatedFields = AWSConfigs.InitializeCollections ? new List<Field>() : null;
         private long? _numberOfRecordsUpdated;
-        private List<List<Field>> _records = new List<List<Field>>();
+        private List<List<Field>> _records = AWSConfigs.InitializeCollections ? new List<List<Field>>() : null;
 
         /// <summary>
         /// Gets and sets the property ColumnMetadata. 
         /// <para>
-        /// Metadata for the columns included in the results. This field is blank if the <code>formatRecordsAs</code>
-        /// parameter is set to <code>JSON</code>.
+        /// Metadata for the columns included in the results. This field is blank if the <c>formatRecordsAs</c>
+        /// parameter is set to <c>JSON</c>.
         /// </para>
         /// </summary>
         public List<ColumnMetadata> ColumnMetadata
@@ -56,15 +57,15 @@ namespace Amazon.RDSDataService.Model
         // Check to see if ColumnMetadata property is set
         internal bool IsSetColumnMetadata()
         {
-            return this._columnMetadata != null && this._columnMetadata.Count > 0; 
+            return this._columnMetadata != null && (this._columnMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FormattedRecords. 
         /// <para>
-        /// A string value that represents the result set of a <code>SELECT</code> statement in
-        /// JSON format. This value is only present when the <code>formatRecordsAs</code> parameter
-        /// is set to <code>JSON</code>.
+        /// A string value that represents the result set of a <c>SELECT</c> statement in JSON
+        /// format. This value is only present when the <c>formatRecordsAs</c> parameter is set
+        /// to <c>JSON</c>.
         /// </para>
         ///  
         /// <para>
@@ -89,11 +90,14 @@ namespace Amazon.RDSDataService.Model
         /// <para>
         /// Values for fields generated during a DML request.
         /// </para>
-        ///  <pre><code> &lt;note&gt; &lt;p&gt;The &lt;code&gt;generatedFields&lt;/code&gt; data
-        /// isn't supported by Aurora PostgreSQL. To get the values of generated fields, use the
-        /// &lt;code&gt;RETURNING&lt;/code&gt; clause. For more information, see &lt;a href=&quot;https://www.postgresql.org/docs/10/dml-returning.html&quot;&gt;Returning
-        /// Data From Modified Rows&lt;/a&gt; in the PostgreSQL documentation.&lt;/p&gt; &lt;/note&gt;
-        /// </code></pre>
+        ///  <note> 
+        /// <para>
+        /// The <c>generatedFields</c> data isn't supported by Aurora PostgreSQL. To get the values
+        /// of generated fields, use the <c>RETURNING</c> clause. For more information, see <a
+        /// href="https://www.postgresql.org/docs/10/dml-returning.html">Returning Data From Modified
+        /// Rows</a> in the PostgreSQL documentation.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<Field> GeneratedFields
         {
@@ -104,7 +108,7 @@ namespace Amazon.RDSDataService.Model
         // Check to see if GeneratedFields property is set
         internal bool IsSetGeneratedFields()
         {
-            return this._generatedFields != null && this._generatedFields.Count > 0; 
+            return this._generatedFields != null && (this._generatedFields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -128,8 +132,8 @@ namespace Amazon.RDSDataService.Model
         /// <summary>
         /// Gets and sets the property Records. 
         /// <para>
-        /// The records returned by the SQL statement. This field is blank if the <code>formatRecordsAs</code>
-        /// parameter is set to <code>JSON</code>.
+        /// The records returned by the SQL statement. This field is blank if the <c>formatRecordsAs</c>
+        /// parameter is set to <c>JSON</c>.
         /// </para>
         /// </summary>
         public List<List<Field>> Records
@@ -141,7 +145,7 @@ namespace Amazon.RDSDataService.Model
         // Check to see if Records property is set
         internal bool IsSetRecords()
         {
-            return this._records != null && this._records.Count > 0; 
+            return this._records != null && (this._records.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

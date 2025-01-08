@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTDeviceAdvisor.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,8 +64,20 @@ namespace Amazon.IoTDeviceAdvisor.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetClientToken())
+                {
+                    context.Writer.WritePropertyName("clientToken");
+                    context.Writer.Write(publicRequest.ClientToken);
+                }
+
+                else if(!(publicRequest.IsSetClientToken()))
+                {
+                    context.Writer.WritePropertyName("clientToken");
+                    context.Writer.Write(Guid.NewGuid().ToString());
+                }
                 if(publicRequest.IsSetSuiteDefinitionConfiguration())
                 {
                     context.Writer.WritePropertyName("suiteDefinitionConfiguration");

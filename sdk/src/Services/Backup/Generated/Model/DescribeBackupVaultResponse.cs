@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -43,13 +44,14 @@ namespace Amazon.Backup.Model
         private long? _maxRetentionDays;
         private long? _minRetentionDays;
         private long? _numberOfRecoveryPoints;
+        private VaultState _vaultState;
         private VaultType _vaultType;
 
         /// <summary>
         /// Gets and sets the property BackupVaultArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:backup-vault:aBackupVault</c>.
         /// </para>
         /// </summary>
         public string BackupVaultArn
@@ -69,7 +71,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Region where they
-        /// are created. They consist of lowercase letters, numbers, and hyphens.
+        /// are created.
         /// </para>
         /// </summary>
         public string BackupVaultName
@@ -88,9 +90,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationDate. 
         /// <para>
         /// The date and time that a backup vault is created, in Unix format and Coordinated Universal
-        /// Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For
-        /// example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
-        /// AM.
+        /// Time (UTC). The value of <c>CreationDate</c> is accurate to milliseconds. For example,
+        /// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -109,7 +110,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreatorRequestId. 
         /// <para>
         /// A unique string that identifies the request and allows failed requests to be retried
-        /// without the risk of running the operation twice.
+        /// without the risk of running the operation twice. This parameter is optional. If used,
+        /// this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
         /// </para>
         /// </summary>
         public string CreatorRequestId
@@ -128,7 +130,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property EncryptionKeyArn. 
         /// <para>
         /// The server-side encryption key that is used to protect your backups; for example,
-        /// <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>.
+        /// <c>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</c>.
         /// </para>
         /// </summary>
         public string EncryptionKeyArn
@@ -177,8 +179,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property Locked. 
         /// <para>
         /// A Boolean that indicates whether Backup Vault Lock is currently protecting the backup
-        /// vault. <code>True</code> means that Vault Lock causes delete or update operations
-        /// on the recovery points stored in the vault to fail.
+        /// vault. <c>True</c> means that Vault Lock causes delete or update operations on the
+        /// recovery points stored in the vault to fail.
         /// </para>
         /// </summary>
         public bool Locked
@@ -228,7 +230,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The Backup Vault Lock setting that specifies the minimum retention period that the
         /// vault retains its recovery points. If this parameter is not specified, Vault Lock
-        /// does not enforce a minimum retention period.
+        /// will not enforce a minimum retention period.
         /// </para>
         ///  
         /// <para>
@@ -271,9 +273,27 @@ namespace Amazon.Backup.Model
         }
 
         /// <summary>
+        /// Gets and sets the property VaultState. 
+        /// <para>
+        /// The current state of the vault.-&gt;
+        /// </para>
+        /// </summary>
+        public VaultState VaultState
+        {
+            get { return this._vaultState; }
+            set { this._vaultState = value; }
+        }
+
+        // Check to see if VaultState property is set
+        internal bool IsSetVaultState()
+        {
+            return this._vaultState != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property VaultType. 
         /// <para>
-        /// This is the type of vault described.
+        /// The type of vault described.
         /// </para>
         /// </summary>
         public VaultType VaultType

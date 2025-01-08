@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
-    /// S3-customer-managed; When you choose customer-managed storage, the <code>retentionPeriod</code>
+    /// S3-customer-managed; When you choose customer-managed storage, the <c>retentionPeriod</c>
     /// parameter is ignored. You can't change the choice of Amazon S3 storage after your
     /// data store is created.
     /// </summary>

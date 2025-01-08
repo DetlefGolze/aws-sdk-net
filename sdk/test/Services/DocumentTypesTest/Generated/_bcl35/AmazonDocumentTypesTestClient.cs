@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.DocumentTypesTest
 {
     /// <summary>
-    /// Implementation for accessing DocumentTypesTest
+    /// <para>Implementation for accessing DocumentTypesTest</para>
     ///
     /// 
     /// </summary>

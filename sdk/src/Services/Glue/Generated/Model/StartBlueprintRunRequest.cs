@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Parameters. 
         /// <para>
-        /// Specifies the parameters as a <code>BlueprintParameters</code> object.
+        /// Specifies the parameters as a <c>BlueprintParameters</c> object.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=131072)]

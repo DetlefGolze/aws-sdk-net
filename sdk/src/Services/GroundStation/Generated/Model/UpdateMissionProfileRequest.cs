@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.GroundStation.Model
     {
         private int? _contactPostPassDurationSeconds;
         private int? _contactPrePassDurationSeconds;
-        private List<List<string>> _dataflowEdges = new List<List<string>>();
+        private List<List<string>> _dataflowEdges = AWSConfigs.InitializeCollections ? new List<List<string>>() : null;
         private int? _minimumViableContactDurationSeconds;
         private string _missionProfileId;
         private string _name;
@@ -53,8 +54,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ContactPostPassDurationSeconds. 
         /// <para>
-        /// Amount of time after a contact ends that you’d like to receive a CloudWatch event
-        /// indicating the pass has finished.
+        /// Amount of time after a contact ends that you’d like to receive a Ground Station Contact
+        /// State Change event indicating the pass has finished.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=21600)]
@@ -73,8 +74,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property ContactPrePassDurationSeconds. 
         /// <para>
-        /// Amount of time after a contact ends that you’d like to receive a CloudWatch event
-        /// indicating the pass has finished.
+        /// Amount of time after a contact ends that you’d like to receive a Ground Station Contact
+        /// State Change event indicating the pass has finished.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=21600)]
@@ -93,8 +94,8 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property DataflowEdges. 
         /// <para>
-        /// A list of lists of ARNs. Each list of ARNs is an edge, with a <i>from</i> <code>Config</code>
-        /// and a <i>to</i> <code>Config</code>.
+        /// A list of lists of ARNs. Each list of ARNs is an edge, with a <i>from</i> <c>Config</c>
+        /// and a <i>to</i> <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=500)]
@@ -107,7 +108,7 @@ namespace Amazon.GroundStation.Model
         // Check to see if DataflowEdges property is set
         internal bool IsSetDataflowEdges()
         {
-            return this._dataflowEdges != null && this._dataflowEdges.Count > 0; 
+            return this._dataflowEdges != null && (this._dataflowEdges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -207,7 +208,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property TrackingConfigArn. 
         /// <para>
-        /// ARN of a tracking <code>Config</code>.
+        /// ARN of a tracking <c>Config</c>.
         /// </para>
         /// </summary>
         public string TrackingConfigArn

@@ -24,7 +24,6 @@ using System.Net.Http;
 
 namespace Amazon.Runtime
 {
-    [CLSCompliant(false)]
     public partial interface IClientConfig
     {
         /// <summary>
@@ -44,13 +43,25 @@ namespace Amazon.Runtime
         IWebProxy GetWebProxy();
 
         /// <summary>
+        /// Returns a WebProxy instance to use for HTTPS connections if an
+        /// explicit web proxy hasn't been configured.
+        /// </summary>
+        IWebProxy GetHttpsProxy();
+
+        /// <summary>
+        /// Returns a WebProxy instance to use for HTTP connections if an
+        /// explicit web proxy hasn't been configured.
+        /// </summary>
+        IWebProxy GetHttpProxy();
+
+        /// <summary>
         /// HttpClientFactory used to create new HttpClients.
         /// If null, an HttpClient will be created by the SDK.
         /// Note that IClientConfig members such as ProxyHost, ProxyPort, GetWebProxy, and AllowAutoRedirect
         /// will have no effect unless they're used explicitly by the HttpClientFactory implementation.
         ///
         /// See https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/http-stack?context=xamarin/ios and
-        /// https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/http-stack?context=xamarin%2Fcross-platform&tabs=macos#ssltls-implementation-build-option
+        /// https://learn.microsoft.com/en-us/xamarin/android/app-fundamentals/http-stack?context=xamarin%2Fcross-platform
         /// for guidance on creating HttpClients for your platform.
         /// </summary>
         HttpClientFactory HttpClientFactory { get; }

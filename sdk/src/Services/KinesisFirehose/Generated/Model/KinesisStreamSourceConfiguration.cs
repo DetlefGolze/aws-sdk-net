@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// The stream and role Amazon Resource Names (ARNs) for a Kinesis data stream used as
-    /// the source for a delivery stream.
+    /// the source for a Firehose stream.
     /// </summary>
     public partial class KinesisStreamSourceConfiguration
     {

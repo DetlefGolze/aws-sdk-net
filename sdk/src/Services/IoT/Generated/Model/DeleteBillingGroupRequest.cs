@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property ExpectedVersion. 
         /// <para>
         /// The expected version of the billing group. If the version of the billing group does
-        /// not match the expected version specified in the request, the <code>DeleteBillingGroup</code>
-        /// request is rejected with a <code>VersionConflictException</code>.
+        /// not match the expected version specified in the request, the <c>DeleteBillingGroup</c>
+        /// request is rejected with a <c>VersionConflictException</c>.
         /// </para>
         /// </summary>
         public long ExpectedVersion

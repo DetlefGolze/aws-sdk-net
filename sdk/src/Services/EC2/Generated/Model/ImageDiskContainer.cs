@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -83,8 +84,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>OVA</code> | <code>VHD</code> | <code>VHDX</code> | <code>VMDK</code>
-        /// | <code>RAW</code> 
+        /// Valid values: <c>OVA</c> | <c>VHD</c> | <c>VHDX</c> | <c>VMDK</c> | <c>RAW</c> 
         /// </para>
         /// </summary>
         public string Format

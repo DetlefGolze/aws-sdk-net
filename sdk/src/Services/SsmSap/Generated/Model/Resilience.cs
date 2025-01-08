@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SsmSap.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.SsmSap.Model
     public partial class Resilience
     {
         private ClusterStatus _clusterStatus;
+        private bool? _enqueueReplication;
         private OperationMode _hsrOperationMode;
         private ReplicationMode _hsrReplicationMode;
         private string _hsrTier;
@@ -54,6 +56,24 @@ namespace Amazon.SsmSap.Model
         internal bool IsSetClusterStatus()
         {
             return this._clusterStatus != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EnqueueReplication. 
+        /// <para>
+        /// Indicates if or not enqueue replication is enabled for the ASCS component.
+        /// </para>
+        /// </summary>
+        public bool EnqueueReplication
+        {
+            get { return this._enqueueReplication.GetValueOrDefault(); }
+            set { this._enqueueReplication = value; }
+        }
+
+        // Check to see if EnqueueReplication property is set
+        internal bool IsSetEnqueueReplication()
+        {
+            return this._enqueueReplication.HasValue; 
         }
 
         /// <summary>

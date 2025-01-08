@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Route53Resolver.Model
     /// Associates an Amazon VPC with a specified query logging configuration. Route 53 Resolver
     /// logs DNS queries that originate in all of the Amazon VPCs that are associated with
     /// a specified query logging configuration. To associate more than one VPC with a configuration,
-    /// submit one <code>AssociateResolverQueryLogConfig</code> request for each VPC.
+    /// submit one <c>AssociateResolverQueryLogConfig</c> request for each VPC.
     /// 
     ///  <note> 
     /// <para>

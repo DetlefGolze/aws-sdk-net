@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SnowDeviceManagement.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeDeviceEc2Instances operation.
-    /// Checks the current state of the Amazon EC2 instances. The output is similar to <code>describeDevice</code>,
+    /// Checks the current state of the Amazon EC2 instances. The output is similar to <c>describeDevice</c>,
     /// but the results are sourced from the device cache in the Amazon Web Services Cloud
     /// and include a subset of the available fields.
     /// </summary>
     public partial class DescribeDeviceEc2InstancesRequest : AmazonSnowDeviceManagementRequest
     {
-        private List<string> _instanceIds = new List<string>();
+        private List<string> _instanceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _managedDeviceId;
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Amazon.SnowDeviceManagement.Model
         // Check to see if InstanceIds property is set
         internal bool IsSetInstanceIds()
         {
-            return this._instanceIds != null && this._instanceIds.Count > 0; 
+            return this._instanceIds != null && (this._instanceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

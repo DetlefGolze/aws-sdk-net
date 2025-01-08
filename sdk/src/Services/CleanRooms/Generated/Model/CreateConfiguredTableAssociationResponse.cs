@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CleanRooms.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CleanRooms.Model
         /// <summary>
         /// Gets and sets the property ConfiguredTableAssociation. 
         /// <para>
-        /// The entire configured table association object.
+        /// The configured table association.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

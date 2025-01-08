@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// The results of an <code>UpdateDomain</code> request. Contains the status of the domain
-    /// being updated.
+    /// The results of an <c>UpdateDomain</c> request. Contains the status of the domain being
+    /// updated.
     /// </summary>
     public partial class UpdateDomainConfigResponse : AmazonWebServiceResponse
     {

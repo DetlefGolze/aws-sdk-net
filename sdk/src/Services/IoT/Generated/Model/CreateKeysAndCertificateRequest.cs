@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateKeysAndCertificate operation.
     /// Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public
-    /// key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device,
-    /// for more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
+    /// key. You can also call <c>CreateKeysAndCertificate</c> over MQTT from a device, for
+    /// more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api">Provisioning
     /// MQTT API</a>.
     /// 
     ///  

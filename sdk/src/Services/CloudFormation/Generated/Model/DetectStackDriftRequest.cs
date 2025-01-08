@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -37,23 +38,23 @@ namespace Amazon.CloudFormation.Model
     /// template configuration. Only resource properties explicitly defined in the stack template
     /// are checked for drift. A stack is considered to have drifted if one or more of its
     /// resources differ from their expected template configurations. For more information,
-    /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detecting
-    /// Unregulated Configuration Changes to Stacks and Resources</a>.
+    /// see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html">Detect
+    /// unmanaged configuration changes to stacks and resources with drift detection</a>.
     /// 
     ///  
     /// <para>
-    /// Use <code>DetectStackDrift</code> to detect drift on all supported resources for a
-    /// given stack, or <a>DetectStackResourceDrift</a> to detect drift on individual resources.
+    /// Use <c>DetectStackDrift</c> to detect drift on all supported resources for a given
+    /// stack, or <a>DetectStackResourceDrift</a> to detect drift on individual resources.
     /// </para>
     ///  
     /// <para>
-    /// For a list of stack resources that currently support drift detection, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift-resource-list.html">Resources
-    /// that Support Drift Detection</a>.
+    /// For a list of stack resources that currently support drift detection, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resource-import-supported-resources.html">Resource
+    /// type support for imports and drift detection</a>.
     /// </para>
     ///  
     /// <para>
-    ///  <code>DetectStackDrift</code> can take up to several minutes, depending on the number
-    /// of resources contained within the stack. Use <a>DescribeStackDriftDetectionStatus</a>
+    ///  <c>DetectStackDrift</c> can take up to several minutes, depending on the number of
+    /// resources contained within the stack. Use <a>DescribeStackDriftDetectionStatus</a>
     /// to monitor the progress of a detect stack drift operation. Once the drift detection
     /// operation has completed, use <a>DescribeStackResourceDrifts</a> to return drift information
     /// about the stack and its resources.
@@ -61,13 +62,13 @@ namespace Amazon.CloudFormation.Model
     ///  
     /// <para>
     /// When detecting drift on a stack, CloudFormation doesn't detect drift on any nested
-    /// stacks belonging to that stack. Perform <code>DetectStackDrift</code> directly on
-    /// the nested stack itself.
+    /// stacks belonging to that stack. Perform <c>DetectStackDrift</c> directly on the nested
+    /// stack itself.
     /// </para>
     /// </summary>
     public partial class DetectStackDriftRequest : AmazonCloudFormationRequest
     {
-        private List<string> _logicalResourceIds = new List<string>();
+        private List<string> _logicalResourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _stackName;
 
         /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.CloudFormation.Model
         // Check to see if LogicalResourceIds property is set
         internal bool IsSetLogicalResourceIds()
         {
-            return this._logicalResourceIds != null && this._logicalResourceIds.Count > 0; 
+            return this._logicalResourceIds != null && (this._logicalResourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

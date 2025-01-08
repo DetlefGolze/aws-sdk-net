@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAF.Model
 {
     /// <summary>
@@ -38,18 +39,18 @@ namespace Amazon.WAF.Model
         /// <summary>
         /// Gets and sets the property Rule. 
         /// <para>
-        /// Information about the <a>Rule</a> that you specified in the <code>GetRule</code> request.
+        /// Information about the <a>Rule</a> that you specified in the <c>GetRule</c> request.
         /// For more information, see the following topics:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <a>Rule</a>: Contains <code>MetricName</code>, <code>Name</code>, an array of <code>Predicate</code>
-        /// objects, and <code>RuleId</code> 
+        ///  <a>Rule</a>: Contains <c>MetricName</c>, <c>Name</c>, an array of <c>Predicate</c>
+        /// objects, and <c>RuleId</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <a>Predicate</a>: Each <code>Predicate</code> object contains <code>DataId</code>,
-        /// <code>Negated</code>, and <code>Type</code> 
+        ///  <a>Predicate</a>: Each <c>Predicate</c> object contains <c>DataId</c>, <c>Negated</c>,
+        /// and <c>Type</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

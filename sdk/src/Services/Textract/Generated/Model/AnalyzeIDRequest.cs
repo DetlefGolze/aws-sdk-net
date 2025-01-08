@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
     /// Container for the parameters to the AnalyzeID operation.
     /// Analyzes identity documents for relevant information. This information is extracted
-    /// and returned as <code>IdentityDocumentFields</code>, which records both the normalized
-    /// field and value of the extracted text. Unlike other Amazon Textract operations, <code>AnalyzeID</code>
+    /// and returned as <c>IdentityDocumentFields</c>, which records both the normalized field
+    /// and value of the extracted text. Unlike other Amazon Textract operations, <c>AnalyzeID</c>
     /// doesn't return any Geometry data.
     /// </summary>
     public partial class AnalyzeIDRequest : AmazonTextractRequest
     {
-        private List<Document> _documentPages = new List<Document>();
+        private List<Document> _documentPages = AWSConfigs.InitializeCollections ? new List<Document>() : null;
 
         /// <summary>
         /// Gets and sets the property DocumentPages. 
@@ -55,7 +56,7 @@ namespace Amazon.Textract.Model
         // Check to see if DocumentPages property is set
         internal bool IsSetDocumentPages()
         {
-            return this._documentPages != null && this._documentPages.Count > 0; 
+            return this._documentPages != null && (this._documentPages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -87,6 +88,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     if(publicRequest.Options.IsSetMulticastSupport())
                     {
                         request.Parameters.Add("Options" + "." + "MulticastSupport", StringUtils.FromString(publicRequest.Options.MulticastSupport));
+                    }
+                    if(publicRequest.Options.IsSetSecurityGroupReferencingSupport())
+                    {
+                        request.Parameters.Add("Options" + "." + "SecurityGroupReferencingSupport", StringUtils.FromString(publicRequest.Options.SecurityGroupReferencingSupport));
                     }
                     if(publicRequest.Options.IsSetTransitGatewayCidrBlocks())
                     {

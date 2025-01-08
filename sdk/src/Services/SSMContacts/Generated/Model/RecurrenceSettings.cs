@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMContacts.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.SSMContacts.Model
     /// </summary>
     public partial class RecurrenceSettings
     {
-        private List<HandOffTime> _dailySettings = new List<HandOffTime>();
-        private List<MonthlySetting> _monthlySettings = new List<MonthlySetting>();
+        private List<HandOffTime> _dailySettings = AWSConfigs.InitializeCollections ? new List<HandOffTime>() : null;
+        private List<MonthlySetting> _monthlySettings = AWSConfigs.InitializeCollections ? new List<MonthlySetting>() : null;
         private int? _numberOfOnCalls;
         private int? _recurrenceMultiplier;
-        private Dictionary<string, List<CoverageTime>> _shiftCoverages = new Dictionary<string, List<CoverageTime>>();
-        private List<WeeklySetting> _weeklySettings = new List<WeeklySetting>();
+        private Dictionary<string, List<CoverageTime>> _shiftCoverages = AWSConfigs.InitializeCollections ? new Dictionary<string, List<CoverageTime>>() : null;
+        private List<WeeklySetting> _weeklySettings = AWSConfigs.InitializeCollections ? new List<WeeklySetting>() : null;
 
         /// <summary>
         /// Gets and sets the property DailySettings. 
@@ -56,7 +57,7 @@ namespace Amazon.SSMContacts.Model
         // Check to see if DailySettings property is set
         internal bool IsSetDailySettings()
         {
-            return this._dailySettings != null && this._dailySettings.Count > 0; 
+            return this._dailySettings != null && (this._dailySettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace Amazon.SSMContacts.Model
         // Check to see if MonthlySettings property is set
         internal bool IsSetMonthlySettings()
         {
-            return this._monthlySettings != null && this._monthlySettings.Count > 0; 
+            return this._monthlySettings != null && (this._monthlySettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.SSMContacts.Model
         /// <para>
         /// The number of contacts, or shift team members designated to be on call concurrently
         /// during a shift. For example, in an on-call schedule containing ten contacts, a value
-        /// of <code>2</code> designates that two of them are on call at any given time.
+        /// of <c>2</c> designates that two of them are on call at any given time.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1)]
@@ -132,7 +133,7 @@ namespace Amazon.SSMContacts.Model
         // Check to see if ShiftCoverages property is set
         internal bool IsSetShiftCoverages()
         {
-            return this._shiftCoverages != null && this._shiftCoverages.Count > 0; 
+            return this._shiftCoverages != null && (this._shiftCoverages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace Amazon.SSMContacts.Model
         // Check to see if WeeklySettings property is set
         internal bool IsSetWeeklySettings()
         {
-            return this._weeklySettings != null && this._weeklySettings.Count > 0; 
+            return this._weeklySettings != null && (this._weeklySettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

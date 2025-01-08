@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -36,7 +37,9 @@ namespace Amazon.SecurityHub.Model
     public partial class SecurityControlDefinition
     {
         private RegionAvailabilityStatus _currentRegionAvailability;
+        private List<string> _customizableProperties = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _description;
+        private Dictionary<string, ParameterDefinition> _parameterDefinitions = AWSConfigs.InitializeCollections ? new Dictionary<string, ParameterDefinition>() : null;
         private string _remediationUrl;
         private string _securityControlId;
         private SeverityRating _severityRating;
@@ -63,6 +66,26 @@ namespace Amazon.SecurityHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property CustomizableProperties. 
+        /// <para>
+        ///  Security control properties that you can customize. Currently, only parameter customization
+        /// is supported for select controls. An empty array is returned for controls that don’t
+        /// support custom properties. 
+        /// </para>
+        /// </summary>
+        public List<string> CustomizableProperties
+        {
+            get { return this._customizableProperties; }
+            set { this._customizableProperties = value; }
+        }
+
+        // Check to see if CustomizableProperties property is set
+        internal bool IsSetCustomizableProperties()
+        {
+            return this._customizableProperties != null && (this._customizableProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property Description. 
         /// <para>
         ///  The description of a security control across standards. This typically summarizes
@@ -81,6 +104,26 @@ namespace Amazon.SecurityHub.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ParameterDefinitions. 
+        /// <para>
+        ///  An object that provides a security control parameter name, description, and the options
+        /// for customizing it. This object is excluded for a control that doesn't support custom
+        /// parameters. 
+        /// </para>
+        /// </summary>
+        public Dictionary<string, ParameterDefinition> ParameterDefinitions
+        {
+            get { return this._parameterDefinitions; }
+            set { this._parameterDefinitions = value; }
+        }
+
+        // Check to see if ParameterDefinitions property is set
+        internal bool IsSetParameterDefinitions()
+        {
+            return this._parameterDefinitions != null && (this._parameterDefinitions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -107,10 +150,10 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property SecurityControlId. 
         /// <para>
         ///  The unique identifier of a security control across standards. Values for this field
-        /// typically consist of an Amazon Web Service name and a number (for example, APIGateway.3).
-        /// This parameter differs from <code>SecurityControlArn</code>, which is a unique Amazon
-        /// Resource Name (ARN) assigned to a control. The ARN references the security control
-        /// ID (for example, arn:aws:securityhub:eu-central-1:123456789012:security-control/APIGateway.3).
+        /// typically consist of an Amazon Web Services service name and a number (for example,
+        /// APIGateway.3). This parameter differs from <c>SecurityControlArn</c>, which is a unique
+        /// Amazon Resource Name (ARN) assigned to a control. The ARN references the security
+        /// control ID (for example, arn:aws:securityhub:eu-central-1:123456789012:security-control/APIGateway.3).
         /// 
         /// </para>
         /// </summary>

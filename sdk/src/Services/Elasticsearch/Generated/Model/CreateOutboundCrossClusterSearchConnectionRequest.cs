@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -61,8 +62,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property DestinationDomainInfo. 
         /// <para>
-        /// Specifies the <code><a>DomainInformation</a></code> for the destination Elasticsearch
-        /// domain.
+        /// Specifies the <c><a>DomainInformation</a></c> for the destination Elasticsearch domain.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -81,7 +81,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property SourceDomainInfo. 
         /// <para>
-        /// Specifies the <code><a>DomainInformation</a></code> for the source Elasticsearch domain.
+        /// Specifies the <c><a>DomainInformation</a></c> for the source Elasticsearch domain.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

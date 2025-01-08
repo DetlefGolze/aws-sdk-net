@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -34,23 +35,24 @@ namespace Amazon.KeyManagementService.Model
     public partial class GetPublicKeyResponse : AmazonWebServiceResponse
     {
         private CustomerMasterKeySpec _customerMasterKeySpec;
-        private List<string> _encryptionAlgorithms = new List<string>();
+        private List<string> _encryptionAlgorithms = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _keyAgreementAlgorithms = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _keyId;
         private KeySpec _keySpec;
         private KeyUsageType _keyUsage;
         private MemoryStream _publicKey;
-        private List<string> _signingAlgorithms = new List<string>();
+        private List<string> _signingAlgorithms = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CustomerMasterKeySpec. 
         /// <para>
-        /// Instead, use the <code>KeySpec</code> field in the <code>GetPublicKey</code> response.
+        /// Instead, use the <c>KeySpec</c> field in the <c>GetPublicKey</c> response.
         /// </para>
         ///  
         /// <para>
-        /// The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields have the same
-        /// value. We recommend that you use the <code>KeySpec</code> field in your code. However,
-        /// to avoid breaking changes, KMS supports both fields.
+        /// The <c>KeySpec</c> and <c>CustomerMasterKeySpec</c> fields have the same value. We
+        /// recommend that you use the <c>KeySpec</c> field in your code. However, to avoid breaking
+        /// changes, KMS supports both fields.
         /// </para>
         /// </summary>
         [Obsolete("This field has been deprecated. Instead, use the KeySpec field.")]
@@ -78,8 +80,8 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  
         /// <para>
-        /// This field appears in the response only when the <code>KeyUsage</code> of the public
-        /// key is <code>ENCRYPT_DECRYPT</code>.
+        /// This field appears in the response only when the <c>KeyUsage</c> of the public key
+        /// is <c>ENCRYPT_DECRYPT</c>.
         /// </para>
         /// </summary>
         public List<string> EncryptionAlgorithms
@@ -91,7 +93,26 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if EncryptionAlgorithms property is set
         internal bool IsSetEncryptionAlgorithms()
         {
-            return this._encryptionAlgorithms != null && this._encryptionAlgorithms.Count > 0; 
+            return this._encryptionAlgorithms != null && (this._encryptionAlgorithms.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property KeyAgreementAlgorithms. 
+        /// <para>
+        /// The key agreement algorithm used to derive a shared secret. This field is present
+        /// only when the KMS key has a <c>KeyUsage</c> value of <c>KEY_AGREEMENT</c>.
+        /// </para>
+        /// </summary>
+        public List<string> KeyAgreementAlgorithms
+        {
+            get { return this._keyAgreementAlgorithms; }
+            set { this._keyAgreementAlgorithms = value; }
+        }
+
+        // Check to see if KeyAgreementAlgorithms property is set
+        internal bool IsSetKeyAgreementAlgorithms()
+        {
+            return this._keyAgreementAlgorithms != null && (this._keyAgreementAlgorithms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -135,13 +156,13 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property KeyUsage. 
         /// <para>
-        /// The permitted use of the public key. Valid values are <code>ENCRYPT_DECRYPT</code>
-        /// or <code>SIGN_VERIFY</code>. 
+        /// The permitted use of the public key. Valid values for asymmetric key pairs are <c>ENCRYPT_DECRYPT</c>,
+        /// <c>SIGN_VERIFY</c>, and <c>KEY_AGREEMENT</c>. 
         /// </para>
         ///  
         /// <para>
-        /// This information is critical. If a public key with <code>SIGN_VERIFY</code> key usage
-        /// encrypts data outside of KMS, the ciphertext cannot be decrypted. 
+        /// This information is critical. For example, if a public key with <c>SIGN_VERIFY</c>
+        /// key usage encrypts data outside of KMS, the ciphertext cannot be decrypted. 
         /// </para>
         /// </summary>
         public KeyUsageType KeyUsage
@@ -163,7 +184,7 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  
         /// <para>
-        /// The value is a DER-encoded X.509 public key, also known as <code>SubjectPublicKeyInfo</code>
+        /// The value is a DER-encoded X.509 public key, also known as <c>SubjectPublicKeyInfo</c>
         /// (SPKI), as defined in <a href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>.
         /// When you use the HTTP API or the Amazon Web Services CLI, the value is Base64-encoded.
         /// Otherwise, it is not Base64-encoded.
@@ -189,8 +210,8 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  
         /// <para>
-        /// This field appears in the response only when the <code>KeyUsage</code> of the public
-        /// key is <code>SIGN_VERIFY</code>.
+        /// This field appears in the response only when the <c>KeyUsage</c> of the public key
+        /// is <c>SIGN_VERIFY</c>.
         /// </para>
         /// </summary>
         public List<string> SigningAlgorithms
@@ -202,7 +223,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if SigningAlgorithms property is set
         internal bool IsSetSigningAlgorithms()
         {
-            return this._signingAlgorithms != null && this._signingAlgorithms.Count > 0; 
+            return this._signingAlgorithms != null && (this._signingAlgorithms.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

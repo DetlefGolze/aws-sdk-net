@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.KinesisVideoSignalingChannels.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.KinesisVideoSignalingChannels
 {
     /// <summary>
-    /// Interface for accessing KinesisVideoSignalingChannels
+    /// <para>Interface for accessing KinesisVideoSignalingChannels</para>
     ///
     /// Kinesis Video Streams Signaling Service is a intermediate service that establishes
     /// a communication channel for discovering peers, transmitting offers and answers in

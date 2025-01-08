@@ -18,6 +18,7 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Endpoints;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Util;
+using Amazon.Runtime.Telemetry;
 #if NETSTANDARD
 using System.Net.Http;
 #endif
@@ -274,6 +275,19 @@ namespace Amazon.Runtime
         long RequestMinCompressionSizeBytes { get; }
 
         /// <summary>
+        /// <para>
+        /// ClientAppId is an optional application specific identifier that can be set. When set it will be appended to the User-Agent header of every request in the form of <c>app/{ClientAppId}</c>. 
+        /// </para>
+        /// <para>
+        /// If the ClientAppId is not set on the object the SDK will search the environment variable <c>AWS_SDK_UA_APP_ID</c> and the shared config profile attribute <c>sdk_ua_app_id</c> for a potential value for the ClientAppId.
+        /// </para>
+        /// </summary>
+        /// <remarks>
+        /// See <see href="https://docs.aws.amazon.com/sdkref/latest/guide/settings-reference.html"/> for more information on environment variables and shared config settings.
+        /// </remarks>
+        string ClientAppId { get; }
+
+        /// <summary>
         /// Configures a flag enabling to either opt in or opt out of the retry throttling service.
         /// Note: set value to true to enable retry throttling feature. The Default value for this flag is false.
         /// </summary>
@@ -356,6 +370,16 @@ namespace Amazon.Runtime
         /// which doesn't allow to specify the User-Agent header.
         /// </summary>
         bool UseAlternateUserAgentHeader { get; }
+        
+        /// <summary>
+        /// <para>
+        /// This telemetry provider is used to collect and report telemetry data 
+        /// (such as traces and metrics) for operations performed by this specific client.
+        /// If this property is not explicitly set, it will default to the global 
+        /// <see cref="AWSConfigs.TelemetryProvider"/>.
+        /// </para>
+        /// </summary>
+        TelemetryProvider TelemetryProvider { get; }
 #if BCL
         /// <summary>
         /// Gets the TCP keep-alive values to use for service requests. Enabling TCP keep-alive sends periodic TCP keep-alive probe packets, to prevent disconnection due to 

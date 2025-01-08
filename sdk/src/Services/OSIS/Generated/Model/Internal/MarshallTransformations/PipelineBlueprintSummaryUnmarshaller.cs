@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.OSIS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PipelineBlueprintSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            PipelineBlueprintSummary unmarshalledObject = new PipelineBlueprintSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PipelineBlueprintSummary unmarshalledObject = new PipelineBlueprintSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,8 +72,31 @@ namespace Amazon.OSIS.Model.Internal.MarshallTransformations
                     unmarshalledObject.BlueprintName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DisplayDescription", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DisplayDescription = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("DisplayName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DisplayName = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Service", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Service = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("UseCase", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.UseCase = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

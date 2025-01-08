@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
-    /// The specified queue doesn't exist.
+    /// Ensure that the <c>QueueUrl</c> is correct and that the queue has not been deleted.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

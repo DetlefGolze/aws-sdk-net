@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the StartOutboundVoiceContact operation.
     /// Places an outbound call to a contact, and then initiates the flow. It performs the
-    /// actions in the flow that's specified (in <code>ContactFlowId</code>).
+    /// actions in the flow that's specified (in <c>ContactFlowId</c>).
     /// 
     ///  
     /// <para>
@@ -53,9 +54,9 @@ namespace Amazon.Connect.Model
     /// </para>
     ///  </note> <note> 
     /// <para>
-    /// Campaign calls are not allowed by default. Before you can make a call with <code>TrafficType</code>
-    /// = <code>CAMPAIGN</code>, you must submit a service quota increase request to the quota
-    /// <a href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas">Amazon
+    /// Campaign calls are not allowed by default. Before you can make a call with <c>TrafficType</c>
+    /// = <c>CAMPAIGN</c>, you must submit a service quota increase request to the quota <a
+    /// href="https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas">Amazon
     /// Connect campaigns</a>. 
     /// </para>
     ///  </note>
@@ -63,13 +64,17 @@ namespace Amazon.Connect.Model
     public partial class StartOutboundVoiceContactRequest : AmazonConnectRequest
     {
         private AnswerMachineDetectionConfig _answerMachineDetectionConfig;
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _campaignId;
         private string _clientToken;
         private string _contactFlowId;
+        private string _description;
         private string _destinationPhoneNumber;
         private string _instanceId;
+        private string _name;
         private string _queueId;
+        private Dictionary<string, Reference> _references = AWSConfigs.InitializeCollections ? new Dictionary<string, Reference>() : null;
+        private string _relatedContactId;
         private string _sourcePhoneNumber;
         private TrafficType _trafficType;
 
@@ -112,7 +117,7 @@ namespace Amazon.Connect.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -161,10 +166,10 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property ContactFlowId. 
         /// <para>
         /// The identifier of the flow for the outbound call. To see the ContactFlowId in the
-        /// Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>,
-        /// <b>Contact Flows</b>. Choose the flow. On the flow page, under the name of the flow,
-        /// choose <b>Show additional flow information</b>. The ContactFlowId is the last part
-        /// of the ARN, shown here in bold: 
+        /// Amazon Connect admin website, on the navigation menu go to <b>Routing</b>, <b>Contact
+        /// Flows</b>. Choose the flow. On the flow page, under the name of the flow, choose <b>Show
+        /// additional flow information</b>. The ContactFlowId is the last part of the ARN, shown
+        /// here in bold: 
         /// </para>
         ///  
         /// <para>
@@ -183,6 +188,26 @@ namespace Amazon.Connect.Model
         internal bool IsSetContactFlowId()
         {
             return this._contactFlowId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Description. 
+        /// <para>
+        /// A description of the voice contact that is shown to an agent in the Contact Control
+        /// Panel (CCP).
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=0, Max=4096)]
+        public string Description
+        {
+            get { return this._description; }
+            set { this._description = value; }
+        }
+
+        // Check to see if Description property is set
+        internal bool IsSetDescription()
+        {
+            return this._description != null;
         }
 
         /// <summary>
@@ -225,6 +250,26 @@ namespace Amazon.Connect.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Name. 
+        /// <para>
+        /// The name of a voice contact that is shown to an agent in the Contact Control Panel
+        /// (CCP).
+        /// </para>
+        /// </summary>
+        [AWSProperty(Sensitive=true, Min=0, Max=1024)]
+        public string Name
+        {
+            get { return this._name; }
+            set { this._name = value; }
+        }
+
+        // Check to see if Name property is set
+        internal bool IsSetName()
+        {
+            return this._name != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property QueueId. 
         /// <para>
         /// The queue for the call. If you specify a queue, the phone displayed for caller ID
@@ -243,6 +288,50 @@ namespace Amazon.Connect.Model
         internal bool IsSetQueueId()
         {
             return this._queueId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property References. 
+        /// <para>
+        /// A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Contacts
+        /// can have the following reference types at the time of creation: <c>URL</c> | <c>NUMBER</c>
+        /// | <c>STRING</c> | <c>DATE</c> | <c>EMAIL</c>. <c>ATTACHMENT</c> is not a supported
+        /// reference type during voice contact creation.
+        /// </para>
+        /// </summary>
+        public Dictionary<string, Reference> References
+        {
+            get { return this._references; }
+            set { this._references = value; }
+        }
+
+        // Check to see if References property is set
+        internal bool IsSetReferences()
+        {
+            return this._references != null && (this._references.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RelatedContactId. 
+        /// <para>
+        /// The <c>contactId</c> that is related to this contact. Linking voice, task, or chat
+        /// by using <c>RelatedContactID</c> copies over contact attributes from the related contact
+        /// to the new contact. All updates to user-defined attributes in the new contact are
+        /// limited to the individual contact ID. There are no limits to the number of contacts
+        /// that can be linked by using <c>RelatedContactId</c>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string RelatedContactId
+        {
+            get { return this._relatedContactId; }
+            set { this._relatedContactId = value; }
+        }
+
+        // Check to see if RelatedContactId property is set
+        internal bool IsSetRelatedContactId()
+        {
+            return this._relatedContactId != null;
         }
 
         /// <summary>
@@ -268,9 +357,8 @@ namespace Amazon.Connect.Model
         /// Gets and sets the property TrafficType. 
         /// <para>
         /// Denotes the class of traffic. Calls with different traffic types are handled differently
-        /// by Amazon Connect. The default value is <code>GENERAL</code>. Use <code>CAMPAIGN</code>
-        /// if <code>EnableAnswerMachineDetection</code> is set to <code>true</code>. For all
-        /// other cases, use <code>GENERAL</code>. 
+        /// by Amazon Connect. The default value is <c>GENERAL</c>. Use <c>CAMPAIGN</c> if <c>EnableAnswerMachineDetection</c>
+        /// is set to <c>true</c>. For all other cases, use <c>GENERAL</c>. 
         /// </para>
         /// </summary>
         public TrafficType TrafficType

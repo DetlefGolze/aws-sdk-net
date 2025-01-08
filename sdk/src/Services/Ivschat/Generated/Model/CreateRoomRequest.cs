@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Ivschat.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.Ivschat.Model
     /// </summary>
     public partial class CreateRoomRequest : AmazonIvschatRequest
     {
-        private List<string> _loggingConfigurationIdentifiers = new List<string>();
+        private List<string> _loggingConfigurationIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _maximumMessageLength;
         private int? _maximumMessageRatePerSecond;
         private MessageReviewHandler _messageReviewHandler;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property LoggingConfigurationIdentifiers. 
@@ -57,7 +58,7 @@ namespace Amazon.Ivschat.Model
         // Check to see if LoggingConfigurationIdentifiers property is set
         internal bool IsSetLoggingConfigurationIdentifiers()
         {
-            return this._loggingConfigurationIdentifiers != null && this._loggingConfigurationIdentifiers.Count > 0; 
+            return this._loggingConfigurationIdentifiers != null && (this._loggingConfigurationIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -141,11 +142,11 @@ namespace Amazon.Ivschat.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// Tags to attach to the resource. Array of maps, each of the form <code>string:string
-        /// (key:value)</code>. See <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-        /// AWS Resources</a> for details, including restrictions that apply to tags and "Tag
-        /// naming limits and requirements"; Amazon IVS Chat has no constraints beyond what is
-        /// documented there.
+        /// Tags to attach to the resource. Array of maps, each of the form <c>string:string (key:value)</c>.
+        /// See <a href="https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html">Best
+        /// practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i>
+        /// for details, including restrictions that apply to tags and "Tag naming limits and
+        /// requirements"; Amazon IVS Chat has no constraints beyond what is documented there.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=50)]
@@ -158,7 +159,7 @@ namespace Amazon.Ivschat.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

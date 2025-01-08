@@ -15,8 +15,7 @@
 using System;
 using System.Net;
 using Amazon.Runtime;
-using Amazon.Util;
-using Amazon.Runtime.Internal.Util;
+using Amazon.Util.Internal;
 
 #if AWS_ASYNC_API
 using System.Threading.Tasks;
@@ -74,7 +73,9 @@ namespace Amazon.S3
 
         internal static HttpWebRequest GetHeadHttpRequest(IClientConfig config, string url)
         {
+#pragma warning disable SYSLIB0014 // We need to use WebRequest.Create because the SDK still targets .NET Framework 3.5
             var httpRequest = WebRequest.Create(url) as HttpWebRequest;
+#pragma warning restore SYSLIB0014
             httpRequest.Method = "HEAD";
             SetProxyIfAvailableAndConfigured(config, httpRequest);
             return httpRequest;
@@ -112,15 +113,22 @@ namespace Amazon.S3
 
         private static void SetProxyIfAvailableAndConfigured(IClientConfig config, HttpWebRequest httpWebRequest)
         {
-            var proxy = GetProxyIfAvailableAndConfigured(config);
+            var proxy = config.GetWebProxy();
             if (proxy != null)
             {
                 httpWebRequest.Proxy = proxy;
             }
-        }
-        private static IWebProxy GetProxyIfAvailableAndConfigured(IClientConfig config)
-        {
-            return config.GetWebProxy();
+            else if (!NoProxyFilter.Instance.Match(httpWebRequest.RequestUri))
+            {
+                if (httpWebRequest.RequestUri.Scheme == Uri.UriSchemeHttp)
+                {
+                    httpWebRequest.Proxy = config.GetHttpProxy();
+                }
+                else if (httpWebRequest.RequestUri.Scheme == Uri.UriSchemeHttps)
+                {
+                    httpWebRequest.Proxy = config.GetHttpsProxy();
+                }
+            }
         }
     }
 }

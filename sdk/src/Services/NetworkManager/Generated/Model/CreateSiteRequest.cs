@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.NetworkManager.Model
         private string _description;
         private string _globalNetworkId;
         private Location _location;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -90,15 +91,15 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>Address</code>: The physical address of the site.
+        ///  <c>Address</c>: The physical address of the site.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Latitude</code>: The latitude of the site. 
+        ///  <c>Latitude</c>: The latitude of the site. 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Longitude</code>: The longitude of the site.
+        ///  <c>Longitude</c>: The longitude of the site.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -130,7 +131,7 @@ namespace Amazon.NetworkManager.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

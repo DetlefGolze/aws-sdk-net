@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -35,12 +36,12 @@ namespace Amazon.Kendra.Model
     {
         private long? _creationTimestamp;
         private string _description;
-        private List<FeaturedDocumentMissing> _featuredDocumentsMissing = new List<FeaturedDocumentMissing>();
-        private List<FeaturedDocumentWithMetadata> _featuredDocumentsWithMetadata = new List<FeaturedDocumentWithMetadata>();
+        private List<FeaturedDocumentMissing> _featuredDocumentsMissing = AWSConfigs.InitializeCollections ? new List<FeaturedDocumentMissing>() : null;
+        private List<FeaturedDocumentWithMetadata> _featuredDocumentsWithMetadata = AWSConfigs.InitializeCollections ? new List<FeaturedDocumentWithMetadata>() : null;
         private string _featuredResultsSetId;
         private string _featuredResultsSetName;
         private long? _lastUpdatedTimestamp;
-        private List<string> _queryTexts = new List<string>();
+        private List<string> _queryTexts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private FeaturedResultsSetStatus _status;
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FeaturedDocumentsMissing property is set
         internal bool IsSetFeaturedDocumentsMissing()
         {
-            return this._featuredDocumentsMissing != null && this._featuredDocumentsMissing.Count > 0; 
+            return this._featuredDocumentsMissing != null && (this._featuredDocumentsMissing.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FeaturedDocumentsWithMetadata property is set
         internal bool IsSetFeaturedDocumentsWithMetadata()
         {
-            return this._featuredDocumentsWithMetadata != null && this._featuredDocumentsWithMetadata.Count > 0; 
+            return this._featuredDocumentsWithMetadata != null && (this._featuredDocumentsWithMetadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -194,18 +195,18 @@ namespace Amazon.Kendra.Model
         // Check to see if QueryTexts property is set
         internal bool IsSetQueryTexts()
         {
-            return this._queryTexts != null && this._queryTexts.Count > 0; 
+            return this._queryTexts != null && (this._queryTexts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The current status of the set of featured results. When the value is <code>ACTIVE</code>,
+        /// The current status of the set of featured results. When the value is <c>ACTIVE</c>,
         /// featured results are ready for use. You can still configure your settings before setting
-        /// the status to <code>ACTIVE</code>. You can set the status to <code>ACTIVE</code> or
-        /// <code>INACTIVE</code> using the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html">UpdateFeaturedResultsSet</a>
+        /// the status to <c>ACTIVE</c>. You can set the status to <c>ACTIVE</c> or <c>INACTIVE</c>
+        /// using the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateFeaturedResultsSet.html">UpdateFeaturedResultsSet</a>
         /// API. The queries you specify for featured results must be unique per featured results
-        /// set for each index, whether the status is <code>ACTIVE</code> or <code>INACTIVE</code>.
+        /// set for each index, whether the status is <c>ACTIVE</c> or <c>INACTIVE</c>.
         /// </para>
         /// </summary>
         public FeaturedResultsSetStatus Status

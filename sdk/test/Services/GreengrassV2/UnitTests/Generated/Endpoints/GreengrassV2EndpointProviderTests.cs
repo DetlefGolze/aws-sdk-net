@@ -18,6 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.GreengrassV2.Endpoints;
 using Amazon.GreengrassV2.Internal;
@@ -36,8 +37,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "ap-northeast-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.ap-northeast-1.amazonaws.com", endpoint.URL);
         }
@@ -51,8 +52,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "ap-northeast-2";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.ap-northeast-2.amazonaws.com", endpoint.URL);
         }
@@ -66,8 +67,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "ap-south-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.ap-south-1.amazonaws.com", endpoint.URL);
         }
@@ -81,8 +82,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "ap-southeast-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.ap-southeast-1.amazonaws.com", endpoint.URL);
         }
@@ -96,8 +97,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "ap-southeast-2";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.ap-southeast-2.amazonaws.com", endpoint.URL);
         }
@@ -111,8 +112,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "ca-central-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.ca-central-1.amazonaws.com", endpoint.URL);
         }
@@ -126,8 +127,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "eu-central-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.eu-central-1.amazonaws.com", endpoint.URL);
         }
@@ -141,8 +142,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "eu-west-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.eu-west-1.amazonaws.com", endpoint.URL);
         }
@@ -156,8 +157,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "eu-west-2";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.eu-west-2.amazonaws.com", endpoint.URL);
         }
@@ -171,8 +172,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-east-1.amazonaws.com", endpoint.URL);
         }
@@ -186,8 +187,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-2";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-east-2.amazonaws.com", endpoint.URL);
         }
@@ -201,8 +202,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-west-2";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-west-2.amazonaws.com", endpoint.URL);
         }
@@ -216,8 +217,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-fips.us-east-1.api.aws", endpoint.URL);
         }
@@ -231,8 +232,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-fips.us-east-1.amazonaws.com", endpoint.URL);
         }
@@ -246,8 +247,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-east-1.api.aws", endpoint.URL);
         }
@@ -261,8 +262,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "cn-north-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.cn-north-1.amazonaws.com.cn", endpoint.URL);
         }
@@ -276,8 +277,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "cn-north-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-fips.cn-north-1.api.amazonwebservices.com.cn", endpoint.URL);
         }
@@ -291,8 +292,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "cn-north-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-fips.cn-north-1.amazonaws.com.cn", endpoint.URL);
         }
@@ -306,8 +307,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "cn-north-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.cn-north-1.api.amazonwebservices.com.cn", endpoint.URL);
         }
@@ -321,8 +322,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "dataplane-us-gov-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-ats.iot.us-gov-east-1.amazonaws.com", endpoint.URL);
         }
@@ -336,8 +337,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "dataplane-us-gov-west-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-ats.iot.us-gov-west-1.amazonaws.com", endpoint.URL);
         }
@@ -351,8 +352,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-gov-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-gov-east-1.amazonaws.com", endpoint.URL);
         }
@@ -366,8 +367,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-gov-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-gov-east-1.amazonaws.com", endpoint.URL);
         }
@@ -381,8 +382,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-gov-west-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-gov-west-1.amazonaws.com", endpoint.URL);
         }
@@ -396,8 +397,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-gov-west-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-gov-west-1.amazonaws.com", endpoint.URL);
         }
@@ -411,8 +412,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-gov-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-fips.us-gov-east-1.api.aws", endpoint.URL);
         }
@@ -426,8 +427,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-gov-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-gov-east-1.api.aws", endpoint.URL);
         }
@@ -442,8 +443,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-iso-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
         }
 
@@ -456,8 +457,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-iso-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-fips.us-iso-east-1.c2s.ic.gov", endpoint.URL);
         }
@@ -472,8 +473,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-iso-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
         }
 
@@ -486,8 +487,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-iso-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-iso-east-1.c2s.ic.gov", endpoint.URL);
         }
@@ -502,8 +503,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-isob-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
         }
 
@@ -516,8 +517,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-isob-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass-fips.us-isob-east-1.sc2s.sgov.gov", endpoint.URL);
         }
@@ -532,8 +533,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-isob-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
         }
 
@@ -546,8 +547,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-isob-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://greengrass.us-isob-east-1.sc2s.sgov.gov", endpoint.URL);
         }
@@ -561,8 +562,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://example.com", endpoint.URL);
@@ -576,8 +577,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         public void For_custom_endpoint_with_region_not_set_and_fips_disabled_and_dualstack_disabled_Test()
         {
             var parameters = new GreengrassV2EndpointParameters();
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = false;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
             Assert.AreEqual("https://example.com", endpoint.URL);
@@ -593,8 +594,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = false;
             parameters["UseFIPS"] = true;
+            parameters["UseDualStack"] = false;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
         }
@@ -609,8 +610,8 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
         {
             var parameters = new GreengrassV2EndpointParameters();
             parameters["Region"] = "us-east-1";
-            parameters["UseDualStack"] = true;
             parameters["UseFIPS"] = false;
+            parameters["UseDualStack"] = true;
             parameters["Endpoint"] = "https://example.com";
             var endpoint = new AmazonGreengrassV2EndpointProvider().ResolveEndpoint(parameters);
         }

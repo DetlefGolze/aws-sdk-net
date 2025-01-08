@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -213,15 +214,15 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>dxcon</code> - The definition model is <a href="https://docs.aws.amazon.com/directconnect/latest/APIReference/API_Connection.html">Connection</a>.
+        ///  <c>dxcon</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-gateway</code> - The definition model is <a href="https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DirectConnectGateway.html">DirectConnectGateway</a>.
+        ///  <c>dx-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>dx-vif</code> - The definition model is <a href="https://docs.aws.amazon.com/directconnect/latest/APIReference/API_VirtualInterface.html">VirtualInterface</a>.
+        ///  <c>dx-vif</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -229,19 +230,35 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>connection</code> - The definition model is <a href="https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Connection.html">Connection</a>.
+        ///  <c>attachment</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>device</code> - The definition model is <a href="https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Device.html">Device</a>.
+        ///  <c>connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>link</code> - The definition model is <a href="https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Link.html">Link</a>.
+        ///  <c>connection</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>site</code> - The definition model is <a href="https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Site.html">Site</a>.
+        ///  <c>core-network</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>device</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>link</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>peering</c> 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>site</c> 
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -249,27 +266,27 @@ namespace Amazon.NetworkManager.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>customer-gateway</code> - The definition model is <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CustomerGateway.html">CustomerGateway</a>.
+        ///  <c>customer-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway</code> - The definition model is <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGateway.html">TransitGateway</a>.
+        ///  <c>transit-gateway</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-attachment</code> - The definition model is <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayAttachment.html">TransitGatewayAttachment</a>.
+        ///  <c>transit-gateway-attachment</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-connect-peer</code> - The definition model is <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayConnectPeer.html">TransitGatewayConnectPeer</a>.
+        ///  <c>transit-gateway-connect-peer</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>transit-gateway-route-table</code> - The definition model is <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayRouteTable.html">TransitGatewayRouteTable</a>.
+        ///  <c>transit-gateway-route-table</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>vpn-connection</code> - The definition model is <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpnConnection.html">VpnConnection</a>.
+        ///  <c>vpn-connection</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

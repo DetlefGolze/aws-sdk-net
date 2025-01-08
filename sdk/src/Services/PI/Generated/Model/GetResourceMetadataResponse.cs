@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PI.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.PI.Model
     /// </summary>
     public partial class GetResourceMetadataResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, FeatureMetadata> _features = new Dictionary<string, FeatureMetadata>();
+        private Dictionary<string, FeatureMetadata> _features = AWSConfigs.InitializeCollections ? new Dictionary<string, FeatureMetadata>() : null;
         private string _identifier;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.PI.Model
         // Check to see if Features property is set
         internal bool IsSetFeatures()
         {
-            return this._features != null && this._features.Count > 0; 
+            return this._features != null && (this._features.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.PI.Model
         /// <para>
         /// An immutable identifier for a data source that is unique for an Amazon Web Services
         /// Region. Performance Insights gathers metrics from this data source. To use a DB instance
-        /// as a data source, specify its <code>DbiResourceId</code> value. For example, specify
-        /// <code>db-ABCDEFGHIJKLMNOPQRSTU1VW2X</code>. 
+        /// as a data source, specify its <c>DbiResourceId</c> value. For example, specify <c>db-ABCDEFGHIJKLMNOPQRSTU1VW2X</c>.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=256)]

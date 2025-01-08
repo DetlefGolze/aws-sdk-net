@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AwsSecurityFindingFilters requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAwsAccountId())
             {
                 context.Writer.WritePropertyName("AwsAccountId");
@@ -55,6 +58,22 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 
                     var marshaller = StringFilterMarshaller.Instance;
                     marshaller.Marshall(requestObjectAwsAccountIdListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetAwsAccountName())
+            {
+                context.Writer.WritePropertyName("AwsAccountName");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectAwsAccountNameListValue in requestObject.AwsAccountName)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StringFilterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectAwsAccountNameListValue, context);
 
                     context.Writer.WriteObjectEnd();
                 }
@@ -103,6 +122,38 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 
                     var marshaller = StringFilterMarshaller.Instance;
                     marshaller.Marshall(requestObjectComplianceSecurityControlIdListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetComplianceSecurityControlParametersName())
+            {
+                context.Writer.WritePropertyName("ComplianceSecurityControlParametersName");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectComplianceSecurityControlParametersNameListValue in requestObject.ComplianceSecurityControlParametersName)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StringFilterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectComplianceSecurityControlParametersNameListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetComplianceSecurityControlParametersValue())
+            {
+                context.Writer.WritePropertyName("ComplianceSecurityControlParametersValue");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectComplianceSecurityControlParametersValueListValue in requestObject.ComplianceSecurityControlParametersValue)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StringFilterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectComplianceSecurityControlParametersValueListValue, context);
 
                     context.Writer.WriteObjectEnd();
                 }
@@ -893,6 +944,38 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 context.Writer.WriteArrayEnd();
             }
 
+            if(requestObject.IsSetResourceApplicationArn())
+            {
+                context.Writer.WritePropertyName("ResourceApplicationArn");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectResourceApplicationArnListValue in requestObject.ResourceApplicationArn)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StringFilterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectResourceApplicationArnListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetResourceApplicationName())
+            {
+                context.Writer.WritePropertyName("ResourceApplicationName");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectResourceApplicationNameListValue in requestObject.ResourceApplicationName)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StringFilterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectResourceApplicationNameListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
             if(requestObject.IsSetResourceAwsEc2InstanceIamInstanceProfileArn())
             {
                 context.Writer.WritePropertyName("ResourceAwsEc2InstanceIamInstanceProfileArn");
@@ -1559,6 +1642,38 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 
                     var marshaller = StringFilterMarshaller.Instance;
                     marshaller.Marshall(requestObjectVerificationStateListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetVulnerabilitiesExploitAvailable())
+            {
+                context.Writer.WritePropertyName("VulnerabilitiesExploitAvailable");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectVulnerabilitiesExploitAvailableListValue in requestObject.VulnerabilitiesExploitAvailable)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StringFilterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectVulnerabilitiesExploitAvailableListValue, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+                context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetVulnerabilitiesFixAvailable())
+            {
+                context.Writer.WritePropertyName("VulnerabilitiesFixAvailable");
+                context.Writer.WriteArrayStart();
+                foreach(var requestObjectVulnerabilitiesFixAvailableListValue in requestObject.VulnerabilitiesFixAvailable)
+                {
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = StringFilterMarshaller.Instance;
+                    marshaller.Marshall(requestObjectVulnerabilitiesFixAvailableListValue, context);
 
                     context.Writer.WriteObjectEnd();
                 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -48,37 +49,34 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If the source type is a DB instance, a <code>DBInstanceIdentifier</code> value must
+        /// If the source type is a DB instance, a <c>DBInstanceIdentifier</c> value must be supplied.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the source type is a DB cluster, a <c>DBClusterIdentifier</c> value must be supplied.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// If the source type is a DB parameter group, a <c>DBParameterGroupName</c> value must
         /// be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB cluster, a <code>DBClusterIdentifier</code> value must
+        /// If the source type is a DB security group, a <c>DBSecurityGroupName</c> value must
         /// be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB parameter group, a <code>DBParameterGroupName</code> value
-        /// must be supplied.
+        /// If the source type is a DB snapshot, a <c>DBSnapshotIdentifier</c> value must be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is a DB security group, a <code>DBSecurityGroupName</code> value
-        /// must be supplied.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// If the source type is a DB snapshot, a <code>DBSnapshotIdentifier</code> value must
-        /// be supplied.
-        /// </para>
-        ///  </li> <li> 
-        /// <para>
-        /// If the source type is a DB cluster snapshot, a <code>DBClusterSnapshotIdentifier</code>
+        /// If the source type is a DB cluster snapshot, a <c>DBClusterSnapshotIdentifier</c>
         /// value must be supplied.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the source type is an RDS Proxy, a <code>DBProxyName</code> value must be supplied.
+        /// If the source type is an RDS Proxy, a <c>DBProxyName</c> value must be supplied.
         /// </para>
         ///  </li> </ul>
         /// </summary>

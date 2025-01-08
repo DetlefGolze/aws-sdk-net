@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,10 @@ namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
 
             if(publicRequest != null)
             {
+                if(publicRequest.IsSetEnablePrefixForIpv6SourceNat())
+                {
+                    request.Parameters.Add("EnablePrefixForIpv6SourceNat", StringUtils.FromString(publicRequest.EnablePrefixForIpv6SourceNat));
+                }
                 if(publicRequest.IsSetIpAddressType())
                 {
                     request.Parameters.Add("IpAddressType", StringUtils.FromString(publicRequest.IpAddressType));
@@ -82,6 +87,10 @@ namespace Amazon.ElasticLoadBalancingV2.Model.Internal.MarshallTransformations
                         if(publicRequestlistValue.IsSetPrivateIPv4Address())
                         {
                             request.Parameters.Add("SubnetMappings" + "." + "member" + "." + publicRequestlistValueIndex + "." + "PrivateIPv4Address", StringUtils.FromString(publicRequestlistValue.PrivateIPv4Address));
+                        }
+                        if(publicRequestlistValue.IsSetSourceNatIpv6Prefix())
+                        {
+                            request.Parameters.Add("SubnetMappings" + "." + "member" + "." + publicRequestlistValueIndex + "." + "SourceNatIpv6Prefix", StringUtils.FromString(publicRequestlistValue.SourceNatIpv6Prefix));
                         }
                         if(publicRequestlistValue.IsSetSubnetId())
                         {

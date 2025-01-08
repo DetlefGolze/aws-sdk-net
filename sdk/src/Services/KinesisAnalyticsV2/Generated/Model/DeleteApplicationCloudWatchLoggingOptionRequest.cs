@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteApplicationCloudWatchLoggingOption operation.
-    /// Deletes an Amazon CloudWatch log stream from an Kinesis Data Analytics application.
+    /// Deletes an Amazon CloudWatch log stream from an SQL-based Kinesis Data Analytics application.
     /// </summary>
     public partial class DeleteApplicationCloudWatchLoggingOptionRequest : AmazonKinesisAnalyticsV2Request
     {
@@ -61,8 +62,8 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property CloudWatchLoggingOptionId. 
         /// <para>
-        /// The <code>CloudWatchLoggingOptionId</code> of the Amazon CloudWatch logging option
-        /// to delete. You can get the <code>CloudWatchLoggingOptionId</code> by using the <a>DescribeApplication</a>
+        /// The <c>CloudWatchLoggingOptionId</c> of the Amazon CloudWatch logging option to delete.
+        /// You can get the <c>CloudWatchLoggingOptionId</c> by using the <a>DescribeApplication</a>
         /// operation. 
         /// </para>
         /// </summary>
@@ -83,10 +84,10 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// Gets and sets the property ConditionalToken. 
         /// <para>
         /// A value you use to implement strong concurrency for application updates. You must
-        /// provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>.
-        /// You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.
-        /// For better concurrency support, use the <code>ConditionalToken</code> parameter instead
-        /// of <code>CurrentApplicationVersionId</code>.
+        /// provide the <c>CurrentApplicationVersionId</c> or the <c>ConditionalToken</c>. You
+        /// get the application's current <c>ConditionalToken</c> using <a>DescribeApplication</a>.
+        /// For better concurrency support, use the <c>ConditionalToken</c> parameter instead
+        /// of <c>CurrentApplicationVersionId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]
@@ -105,10 +106,10 @@ namespace Amazon.KinesisAnalyticsV2.Model
         /// <summary>
         /// Gets and sets the property CurrentApplicationVersionId. 
         /// <para>
-        /// The version ID of the application. You must provide the <code>CurrentApplicationVersionId</code>
-        /// or the <code>ConditionalToken</code>. You can retrieve the application version ID
-        /// using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code>
-        /// parameter instead of <code>CurrentApplicationVersionId</code>.
+        /// The version ID of the application. You must provide the <c>CurrentApplicationVersionId</c>
+        /// or the <c>ConditionalToken</c>. You can retrieve the application version ID using
+        /// <a>DescribeApplication</a>. For better concurrency support, use the <c>ConditionalToken</c>
+        /// parameter instead of <c>CurrentApplicationVersionId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=999999999)]

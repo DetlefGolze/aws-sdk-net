@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
     /// Specifies the deserializer you want to use to convert the format of the input data.
-    /// This parameter is required if <code>Enabled</code> is set to true.
+    /// This parameter is required if <c>Enabled</c> is set to true.
     /// </summary>
     public partial class InputFormatConfiguration
     {

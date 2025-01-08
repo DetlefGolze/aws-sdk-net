@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -51,24 +52,24 @@ namespace Amazon.OpsWorks.Model
     /// </summary>
     public partial class CreateLayerRequest : AmazonOpsWorksRequest
     {
-        private Dictionary<string, string> _attributes = new Dictionary<string, string>();
+        private Dictionary<string, string> _attributes = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private bool? _autoAssignElasticIps;
         private bool? _autoAssignPublicIps;
         private CloudWatchLogsConfiguration _cloudWatchLogsConfiguration;
         private string _customInstanceProfileArn;
         private string _customJson;
         private Recipes _customRecipes;
-        private List<string> _customSecurityGroupIds = new List<string>();
+        private List<string> _customSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _enableAutoHealing;
         private bool? _installUpdatesOnBoot;
         private LifecycleEventConfiguration _lifecycleEventConfiguration;
         private string _name;
-        private List<string> _packages = new List<string>();
+        private List<string> _packages = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _shortname;
         private string _stackId;
         private LayerType _type;
         private bool? _useEbsOptimizedInstances;
-        private List<VolumeConfiguration> _volumeConfigurations = new List<VolumeConfiguration>();
+        private List<VolumeConfiguration> _volumeConfigurations = AWSConfigs.InitializeCollections ? new List<VolumeConfiguration>() : null;
 
         /// <summary>
         /// Gets and sets the property Attributes. 
@@ -77,7 +78,7 @@ namespace Amazon.OpsWorks.Model
         /// </para>
         ///  
         /// <para>
-        /// To create a cluster layer, set the <code>EcsClusterArn</code> attribute to the cluster's
+        /// To create a cluster layer, set the <c>EcsClusterArn</c> attribute to the cluster's
         /// ARN.
         /// </para>
         /// </summary>
@@ -90,7 +91,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -177,7 +178,7 @@ namespace Amazon.OpsWorks.Model
         /// <para>
         /// A JSON-formatted string containing custom stack configuration and deployment attributes
         /// to be installed on the layer's instances. For more information, see <a href="https://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-json-override.html">
-        /// Using Custom JSON</a>. This feature is supported as of version 1.7.42 of the AWS CLI.
+        /// Using Custom JSON</a>. This feature is supported as of version 1.7.42 of the CLI.
         /// 
         /// </para>
         /// </summary>
@@ -196,7 +197,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property CustomRecipes. 
         /// <para>
-        /// A <code>LayerCustomRecipes</code> object that specifies the layer custom recipes.
+        /// A <c>LayerCustomRecipes</c> object that specifies the layer custom recipes.
         /// </para>
         /// </summary>
         public Recipes CustomRecipes
@@ -226,7 +227,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if CustomSecurityGroupIds property is set
         internal bool IsSetCustomSecurityGroupIds()
         {
-            return this._customSecurityGroupIds != null && this._customSecurityGroupIds.Count > 0; 
+            return this._customSecurityGroupIds != null && (this._customSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -251,16 +252,15 @@ namespace Amazon.OpsWorks.Model
         /// Gets and sets the property InstallUpdatesOnBoot. 
         /// <para>
         /// Whether to install operating system and package updates when the instance boots. The
-        /// default value is <code>true</code>. To control when updates are installed, set this
-        /// value to <code>false</code>. You must then update your instances manually by using
-        /// <a>CreateDeployment</a> to run the <code>update_dependencies</code> stack command
-        /// or by manually running <code>yum</code> (Amazon Linux) or <code>apt-get</code> (Ubuntu)
-        /// on the instances. 
+        /// default value is <c>true</c>. To control when updates are installed, set this value
+        /// to <c>false</c>. You must then update your instances manually by using <a>CreateDeployment</a>
+        /// to run the <c>update_dependencies</c> stack command or by manually running <c>yum</c>
+        /// (Amazon Linux) or <c>apt-get</c> (Ubuntu) on the instances. 
         /// </para>
         ///  <note> 
         /// <para>
         /// To ensure that your instances have the latest security updates, we strongly recommend
-        /// using the default value of <code>true</code>.
+        /// using the default value of <c>true</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -279,9 +279,9 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property LifecycleEventConfiguration. 
         /// <para>
-        /// A <code>LifeCycleEventConfiguration</code> object that you can use to configure the
-        /// Shutdown event to specify an execution timeout and enable or disable Elastic Load
-        /// Balancer connection draining.
+        /// A <c>LifeCycleEventConfiguration</c> object that you can use to configure the Shutdown
+        /// event to specify an execution timeout and enable or disable Elastic Load Balancer
+        /// connection draining.
         /// </para>
         /// </summary>
         public LifecycleEventConfiguration LifecycleEventConfiguration
@@ -299,7 +299,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The layer name, which is used by the console.
+        /// The layer name, which is used by the console. Layer names can be a maximum of 32 characters.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -318,7 +318,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property Packages. 
         /// <para>
-        /// An array of <code>Package</code> objects that describes the layer packages.
+        /// An array of <c>Package</c> objects that describes the layer packages.
         /// </para>
         /// </summary>
         public List<string> Packages
@@ -330,22 +330,22 @@ namespace Amazon.OpsWorks.Model
         // Check to see if Packages property is set
         internal bool IsSetPackages()
         {
-            return this._packages != null && this._packages.Count > 0; 
+            return this._packages != null && (this._packages.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Shortname. 
         /// <para>
         /// For custom layers only, use this parameter to specify the layer's short name, which
-        /// is used internally by AWS OpsWorks Stacks and by Chef recipes. The short name is also
+        /// is used internally by OpsWorks Stacks and by Chef recipes. The short name is also
         /// used as the name for the directory where your app files are installed. It can have
-        /// a maximum of 200 characters, which are limited to the alphanumeric characters, '-',
+        /// a maximum of 32 characters, which are limited to the alphanumeric characters, '-',
         /// '_', and '.'.
         /// </para>
         ///  
         /// <para>
-        /// The built-in layers' short names are defined by AWS OpsWorks Stacks. For more information,
-        /// see the <a href="https://docs.aws.amazon.com/opsworks/latest/userguide/layers.html">Layer
+        /// Built-in layer short names are defined by OpsWorks Stacks. For more information, see
+        /// the <a href="https://docs.aws.amazon.com/opsworks/latest/userguide/layers.html">Layer
         /// Reference</a>.
         /// </para>
         /// </summary>
@@ -423,7 +423,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property VolumeConfigurations. 
         /// <para>
-        /// A <code>VolumeConfigurations</code> object that describes the layer's Amazon EBS volumes.
+        /// A <c>VolumeConfigurations</c> object that describes the layer's Amazon EBS volumes.
         /// </para>
         /// </summary>
         public List<VolumeConfiguration> VolumeConfigurations
@@ -435,7 +435,7 @@ namespace Amazon.OpsWorks.Model
         // Check to see if VolumeConfigurations property is set
         internal bool IsSetVolumeConfigurations()
         {
-            return this._volumeConfigurations != null && this._volumeConfigurations.Count > 0; 
+            return this._volumeConfigurations != null && (this._volumeConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

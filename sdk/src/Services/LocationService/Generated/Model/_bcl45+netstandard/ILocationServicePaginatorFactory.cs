@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the location-2020-11-19.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -24,6 +25,11 @@ namespace Amazon.LocationService.Model
     ///</summary>
     public interface ILocationServicePaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for ForecastGeofenceEvents operation
+        ///</summary>
+        IForecastGeofenceEventsPaginator ForecastGeofenceEvents(ForecastGeofenceEventsRequest request);
 
         /// <summary>
         /// Paginator for GetDevicePositionHistory operation

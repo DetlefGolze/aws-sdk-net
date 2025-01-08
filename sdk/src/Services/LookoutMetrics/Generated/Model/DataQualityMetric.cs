@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutMetrics.Model
 {
     /// <summary>
-    /// An array that describes a data quality metric. Each <code>DataQualityMetric</code>
-    /// object contains the data quality metric name, its value, a description of the metric,
-    /// and the affected column.
+    /// An array that describes a data quality metric. Each <c>DataQualityMetric</c> object
+    /// contains the data quality metric name, its value, a description of the metric, and
+    /// the affected column.
     /// </summary>
     public partial class DataQualityMetric
     {

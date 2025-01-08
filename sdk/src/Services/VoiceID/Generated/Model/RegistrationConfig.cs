@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VoiceID.Model
 {
     /// <summary>
@@ -36,15 +37,14 @@ namespace Amazon.VoiceID.Model
     {
         private DuplicateRegistrationAction _duplicateRegistrationAction;
         private int? _fraudsterSimilarityThreshold;
-        private List<string> _watchlistIds = new List<string>();
+        private List<string> _watchlistIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DuplicateRegistrationAction. 
         /// <para>
         /// The action to take when a fraudster is identified as a duplicate. The default action
-        /// is <code>SKIP</code>, which skips registering the duplicate fraudster. Setting the
-        /// value to <code>REGISTER_AS_NEW</code> always registers a new fraudster into the specified
-        /// domain.
+        /// is <c>SKIP</c>, which skips registering the duplicate fraudster. Setting the value
+        /// to <c>REGISTER_AS_NEW</c> always registers a new fraudster into the specified domain.
         /// </para>
         /// </summary>
         public DuplicateRegistrationAction DuplicateRegistrationAction
@@ -96,7 +96,7 @@ namespace Amazon.VoiceID.Model
         // Check to see if WatchlistIds property is set
         internal bool IsSetWatchlistIds()
         {
-            return this._watchlistIds != null && this._watchlistIds.Count > 0; 
+            return this._watchlistIds != null && (this._watchlistIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

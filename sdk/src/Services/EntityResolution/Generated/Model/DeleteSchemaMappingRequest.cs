@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EntityResolution.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteSchemaMapping operation.
-    /// Deletes the <code>SchemaMapping</code> with a given name. This operation will succeed
-    /// even if a schema with the given name does not exist. This operation will fail if there
-    /// is a <code>DataIntegrationWorkflow</code> object that references the <code>SchemaMapping</code>
-    /// in the workflow's <code>InputSourceConfig</code>.
+    /// Deletes the <c>SchemaMapping</c> with a given name. This operation will succeed even
+    /// if a schema with the given name does not exist. This operation will fail if there
+    /// is a <c>MatchingWorkflow</c> object that references the <c>SchemaMapping</c> in the
+    /// workflow's <c>InputSourceConfig</c>.
     /// </summary>
     public partial class DeleteSchemaMappingRequest : AmazonEntityResolutionRequest
     {
@@ -45,7 +46,7 @@ namespace Amazon.EntityResolution.Model
         /// The name of the schema to delete.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=0, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=255)]
         public string SchemaName
         {
             get { return this._schemaName; }

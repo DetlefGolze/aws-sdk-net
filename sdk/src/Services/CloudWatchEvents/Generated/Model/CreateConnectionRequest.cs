@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudWatchEvents.Model
 {
     /// <summary>
@@ -62,7 +63,7 @@ namespace Amazon.CloudWatchEvents.Model
         /// <summary>
         /// Gets and sets the property AuthParameters. 
         /// <para>
-        /// A <code>CreateConnectionAuthRequestParameters</code> object that contains the authorization
+        /// A <c>CreateConnectionAuthRequestParameters</c> object that contains the authorization
         /// parameters to use to authorize with the endpoint. 
         /// </para>
         /// </summary>

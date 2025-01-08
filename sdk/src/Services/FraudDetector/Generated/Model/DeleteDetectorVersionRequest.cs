@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FraudDetector.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteDetectorVersion operation.
-    /// Deletes the detector version. You cannot delete detector versions that are in <code>ACTIVE</code>
+    /// Deletes the detector version. You cannot delete detector versions that are in <c>ACTIVE</c>
     /// status.
     /// 
     ///  

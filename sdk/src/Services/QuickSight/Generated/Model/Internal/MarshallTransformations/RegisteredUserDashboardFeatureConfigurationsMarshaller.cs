@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(RegisteredUserDashboardFeatureConfigurations requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetBookmarks())
             {
                 context.Writer.WritePropertyName("Bookmarks");
@@ -52,6 +55,17 @@ namespace Amazon.QuickSight.Model.Internal.MarshallTransformations
 
                 var marshaller = BookmarksConfigurationsMarshaller.Instance;
                 marshaller.Marshall(requestObject.Bookmarks, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetSharedView())
+            {
+                context.Writer.WritePropertyName("SharedView");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SharedViewConfigurationsMarshaller.Instance;
+                marshaller.Marshall(requestObject.SharedView, context);
 
                 context.Writer.WriteObjectEnd();
             }

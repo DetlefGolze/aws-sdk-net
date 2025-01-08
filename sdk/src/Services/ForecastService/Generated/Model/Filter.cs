@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
     /// Describes a filter for choosing a subset of objects. Each filter consists of a condition
-    /// and a match statement. The condition is either <code>IS</code> or <code>IS_NOT</code>,
-    /// which specifies whether to include or exclude the objects that match the statement,
-    /// respectively. The match statement consists of a key and a value.
+    /// and a match statement. The condition is either <c>IS</c> or <c>IS_NOT</c>, which specifies
+    /// whether to include or exclude the objects that match the statement, respectively.
+    /// The match statement consists of a key and a value.
     /// </summary>
     public partial class Filter
     {
@@ -43,8 +44,8 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property Condition. 
         /// <para>
-        /// The condition to apply. To include the objects that match the statement, specify <code>IS</code>.
-        /// To exclude matching objects, specify <code>IS_NOT</code>.
+        /// The condition to apply. To include the objects that match the statement, specify <c>IS</c>.
+        /// To exclude matching objects, specify <c>IS_NOT</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
-    /// Configuration information for pre-signed URLs. Valid when <code>protocols</code> contains
+    /// Configuration information for pre-signed URLs. Valid when <c>protocols</c> contains
     /// HTTP.
     /// </summary>
     public partial class AwsJobPresignedUrlConfig

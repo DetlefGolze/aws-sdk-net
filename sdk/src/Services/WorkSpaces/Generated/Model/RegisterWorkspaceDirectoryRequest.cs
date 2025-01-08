@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -38,12 +39,37 @@ namespace Amazon.WorkSpaces.Model
     /// </summary>
     public partial class RegisterWorkspaceDirectoryRequest : AmazonWorkSpacesRequest
     {
+        private ActiveDirectoryConfig _activeDirectoryConfig;
         private string _directoryId;
         private bool? _enableSelfService;
         private bool? _enableWorkDocs;
-        private List<string> _subnetIds = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private string _idcInstanceArn;
+        private MicrosoftEntraConfig _microsoftEntraConfig;
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private Tenancy _tenancy;
+        private UserIdentityType _userIdentityType;
+        private string _workspaceDirectoryDescription;
+        private string _workspaceDirectoryName;
+        private WorkspaceType _workspaceType;
+
+        /// <summary>
+        /// Gets and sets the property ActiveDirectoryConfig. 
+        /// <para>
+        /// The active directory config of the directory.
+        /// </para>
+        /// </summary>
+        public ActiveDirectoryConfig ActiveDirectoryConfig
+        {
+            get { return this._activeDirectoryConfig; }
+            set { this._activeDirectoryConfig = value; }
+        }
+
+        // Check to see if ActiveDirectoryConfig property is set
+        internal bool IsSetActiveDirectoryConfig()
+        {
+            return this._activeDirectoryConfig != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DirectoryId. 
@@ -56,7 +82,7 @@ namespace Amazon.WorkSpaces.Model
         /// for WorkSpaces, and try again.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=10, Max=65)]
+        [AWSProperty(Min=10, Max=65)]
         public string DirectoryId
         {
             get { return this._directoryId; }
@@ -92,10 +118,9 @@ namespace Amazon.WorkSpaces.Model
         /// <para>
         /// Indicates whether Amazon WorkDocs is enabled or disabled. If you have enabled this
         /// parameter and WorkDocs is not available in the Region, you will receive an OperationNotSupportedException
-        /// error. Set <code>EnableWorkDocs</code> to disabled, and try again.
+        /// error. Set <c>EnableWorkDocs</c> to disabled, and try again.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public bool EnableWorkDocs
         {
             get { return this._enableWorkDocs.GetValueOrDefault(); }
@@ -106,6 +131,42 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetEnableWorkDocs()
         {
             return this._enableWorkDocs.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IdcInstanceArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the identity center instance.
+        /// </para>
+        /// </summary>
+        public string IdcInstanceArn
+        {
+            get { return this._idcInstanceArn; }
+            set { this._idcInstanceArn = value; }
+        }
+
+        // Check to see if IdcInstanceArn property is set
+        internal bool IsSetIdcInstanceArn()
+        {
+            return this._idcInstanceArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MicrosoftEntraConfig. 
+        /// <para>
+        /// The details about Microsoft Entra config.
+        /// </para>
+        /// </summary>
+        public MicrosoftEntraConfig MicrosoftEntraConfig
+        {
+            get { return this._microsoftEntraConfig; }
+            set { this._microsoftEntraConfig = value; }
+        }
+
+        // Check to see if MicrosoftEntraConfig property is set
+        internal bool IsSetMicrosoftEntraConfig()
+        {
+            return this._microsoftEntraConfig != null;
         }
 
         /// <summary>
@@ -127,7 +188,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -145,17 +206,17 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tenancy. 
         /// <para>
         /// Indicates whether your WorkSpace directory is dedicated or shared. To use Bring Your
-        /// Own License (BYOL) images, this value must be set to <code>DEDICATED</code> and your
-        /// Amazon Web Services account must be enabled for BYOL. If your account has not been
-        /// enabled for BYOL, you will receive an InvalidParameterValuesException error. For more
-        /// information about BYOL images, see <a href="https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html">Bring
+        /// Own License (BYOL) images, this value must be set to <c>DEDICATED</c> and your Amazon
+        /// Web Services account must be enabled for BYOL. If your account has not been enabled
+        /// for BYOL, you will receive an InvalidParameterValuesException error. For more information
+        /// about BYOL images, see <a href="https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html">Bring
         /// Your Own Windows Desktop Images</a>.
         /// </para>
         /// </summary>
@@ -169,6 +230,78 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetTenancy()
         {
             return this._tenancy != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property UserIdentityType. 
+        /// <para>
+        /// The type of identity management the user is using.
+        /// </para>
+        /// </summary>
+        public UserIdentityType UserIdentityType
+        {
+            get { return this._userIdentityType; }
+            set { this._userIdentityType = value; }
+        }
+
+        // Check to see if UserIdentityType property is set
+        internal bool IsSetUserIdentityType()
+        {
+            return this._userIdentityType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkspaceDirectoryDescription. 
+        /// <para>
+        /// Description of the directory to register.
+        /// </para>
+        /// </summary>
+        public string WorkspaceDirectoryDescription
+        {
+            get { return this._workspaceDirectoryDescription; }
+            set { this._workspaceDirectoryDescription = value; }
+        }
+
+        // Check to see if WorkspaceDirectoryDescription property is set
+        internal bool IsSetWorkspaceDirectoryDescription()
+        {
+            return this._workspaceDirectoryDescription != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkspaceDirectoryName. 
+        /// <para>
+        /// The name of the directory to register.
+        /// </para>
+        /// </summary>
+        public string WorkspaceDirectoryName
+        {
+            get { return this._workspaceDirectoryName; }
+            set { this._workspaceDirectoryName = value; }
+        }
+
+        // Check to see if WorkspaceDirectoryName property is set
+        internal bool IsSetWorkspaceDirectoryName()
+        {
+            return this._workspaceDirectoryName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WorkspaceType. 
+        /// <para>
+        /// Indicates whether the directory's WorkSpace type is personal or pools.
+        /// </para>
+        /// </summary>
+        public WorkspaceType WorkspaceType
+        {
+            get { return this._workspaceType; }
+            set { this._workspaceType = value; }
+        }
+
+        // Check to see if WorkspaceType property is set
+        internal bool IsSetWorkspaceType()
+        {
+            return this._workspaceType != null;
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.WAFV2.Model
         private AssociationConfig _associationConfig;
         private CaptchaConfig _captchaConfig;
         private ChallengeConfig _challengeConfig;
-        private Dictionary<string, CustomResponseBody> _customResponseBodies = new Dictionary<string, CustomResponseBody>();
+        private Dictionary<string, CustomResponseBody> _customResponseBodies = AWSConfigs.InitializeCollections ? new Dictionary<string, CustomResponseBody>() : null;
         private DefaultAction _defaultAction;
         private string _description;
         private string _name;
-        private List<Rule> _rules = new List<Rule>();
+        private List<Rule> _rules = AWSConfigs.InitializeCollections ? new List<Rule>() : null;
         private Scope _scope;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _tokenDomains = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _tokenDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VisibilityConfig _visibilityConfig;
 
         /// <summary>
@@ -69,9 +70,10 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Use this to customize the maximum size of the request body that your protected CloudFront
-        /// distributions forward to WAF for inspection. The default is 16 KB (16,384 bytes).
-        /// 
+        /// Use this to customize the maximum size of the request body that your protected resources
+        /// forward to WAF for inspection. You can customize this setting for CloudFront, API
+        /// Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting
+        /// is 16 KB (16,384 bytes). 
         /// </para>
         ///  <note> 
         /// <para>
@@ -79,7 +81,10 @@ namespace Amazon.WAFV2.Model
         /// are larger than the default. For more information, see <a href="http://aws.amazon.com/waf/pricing/">WAF
         /// Pricing</a>.
         /// </para>
-        ///  </note>
+        ///  </note> 
+        /// <para>
+        /// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+        /// </para>
         /// </summary>
         public AssociationConfig AssociationConfig
         {
@@ -96,9 +101,9 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property CaptchaConfig. 
         /// <para>
-        /// Specifies how WAF should handle <code>CAPTCHA</code> evaluations for rules that don't
-        /// have their own <code>CaptchaConfig</code> settings. If you don't specify this, WAF
-        /// uses its default settings for <code>CaptchaConfig</code>. 
+        /// Specifies how WAF should handle <c>CAPTCHA</c> evaluations for rules that don't have
+        /// their own <c>CaptchaConfig</c> settings. If you don't specify this, WAF uses its default
+        /// settings for <c>CaptchaConfig</c>. 
         /// </para>
         /// </summary>
         public CaptchaConfig CaptchaConfig
@@ -117,8 +122,8 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property ChallengeConfig. 
         /// <para>
         /// Specifies how WAF should handle challenge evaluations for rules that don't have their
-        /// own <code>ChallengeConfig</code> settings. If you don't specify this, WAF uses its
-        /// default settings for <code>ChallengeConfig</code>. 
+        /// own <c>ChallengeConfig</c> settings. If you don't specify this, WAF uses its default
+        /// settings for <c>ChallengeConfig</c>. 
         /// </para>
         /// </summary>
         public ChallengeConfig ChallengeConfig
@@ -163,14 +168,14 @@ namespace Amazon.WAFV2.Model
         // Check to see if CustomResponseBodies property is set
         internal bool IsSetCustomResponseBodies()
         {
-            return this._customResponseBodies != null && this._customResponseBodies.Count > 0; 
+            return this._customResponseBodies != null && (this._customResponseBodies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultAction. 
         /// <para>
-        /// The action to perform if none of the <code>Rules</code> contained in the <code>WebACL</code>
-        /// match. 
+        /// The action to perform if none of the <c>Rules</c> contained in the <c>WebACL</c> match.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -242,7 +247,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -260,8 +265,8 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// CLI - Specify the Region when you use the CloudFront scope: <code>--scope=CLOUDFRONT
-        /// --region=us-east-1</code>. 
+        /// CLI - Specify the Region when you use the CloudFront scope: <c>--scope=CLOUDFRONT
+        /// --region=us-east-1</c>. 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -298,7 +303,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -313,13 +318,12 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Example JSON: <code>"TokenDomains": { "mywebsite.com", "myotherwebsite.com" }</code>
-        /// 
+        /// Example JSON: <c>"TokenDomains": { "mywebsite.com", "myotherwebsite.com" }</c> 
         /// </para>
         ///  
         /// <para>
-        /// Public suffixes aren't allowed. For example, you can't use <code>usa.gov</code> or
-        /// <code>co.uk</code> as token domains.
+        /// Public suffixes aren't allowed. For example, you can't use <c>gov.au</c> or <c>co.uk</c>
+        /// as token domains.
         /// </para>
         /// </summary>
         public List<string> TokenDomains
@@ -331,7 +335,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if TokenDomains property is set
         internal bool IsSetTokenDomains()
         {
-            return this._tokenDomains != null && this._tokenDomains.Count > 0; 
+            return this._tokenDomains != null && (this._tokenDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

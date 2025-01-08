@@ -91,6 +91,56 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type ActivationState.
+    /// </summary>
+    public class ActivationState : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Disabled for ActivationState
+        /// </summary>
+        public static readonly ActivationState Disabled = new ActivationState("Disabled");
+        /// <summary>
+        /// Constant Enabled for ActivationState
+        /// </summary>
+        public static readonly ActivationState Enabled = new ActivationState("Enabled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ActivationState(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ActivationState FindValue(string value)
+        {
+            return FindValue<ActivationState>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ActivationState(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type AdditionalS3DataSourceDataType.
     /// </summary>
     public class AdditionalS3DataSourceDataType : ConstantClass
@@ -100,6 +150,10 @@ namespace Amazon.SageMaker
         /// Constant S3Object for AdditionalS3DataSourceDataType
         /// </summary>
         public static readonly AdditionalS3DataSourceDataType S3Object = new AdditionalS3DataSourceDataType("S3Object");
+        /// <summary>
+        /// Constant S3Prefix for AdditionalS3DataSourceDataType
+        /// </summary>
+        public static readonly AdditionalS3DataSourceDataType S3Prefix = new AdditionalS3DataSourceDataType("S3Prefix");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -403,6 +457,114 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly AppInstanceType MlC5Xlarge = new AppInstanceType("ml.c5.xlarge");
         /// <summary>
+        /// Constant MlC6i12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6i12xlarge = new AppInstanceType("ml.c6i.12xlarge");
+        /// <summary>
+        /// Constant MlC6i16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6i16xlarge = new AppInstanceType("ml.c6i.16xlarge");
+        /// <summary>
+        /// Constant MlC6i24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6i24xlarge = new AppInstanceType("ml.c6i.24xlarge");
+        /// <summary>
+        /// Constant MlC6i2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6i2xlarge = new AppInstanceType("ml.c6i.2xlarge");
+        /// <summary>
+        /// Constant MlC6i32xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6i32xlarge = new AppInstanceType("ml.c6i.32xlarge");
+        /// <summary>
+        /// Constant MlC6i4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6i4xlarge = new AppInstanceType("ml.c6i.4xlarge");
+        /// <summary>
+        /// Constant MlC6i8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6i8xlarge = new AppInstanceType("ml.c6i.8xlarge");
+        /// <summary>
+        /// Constant MlC6id12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6id12xlarge = new AppInstanceType("ml.c6id.12xlarge");
+        /// <summary>
+        /// Constant MlC6id16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6id16xlarge = new AppInstanceType("ml.c6id.16xlarge");
+        /// <summary>
+        /// Constant MlC6id24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6id24xlarge = new AppInstanceType("ml.c6id.24xlarge");
+        /// <summary>
+        /// Constant MlC6id2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6id2xlarge = new AppInstanceType("ml.c6id.2xlarge");
+        /// <summary>
+        /// Constant MlC6id32xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6id32xlarge = new AppInstanceType("ml.c6id.32xlarge");
+        /// <summary>
+        /// Constant MlC6id4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6id4xlarge = new AppInstanceType("ml.c6id.4xlarge");
+        /// <summary>
+        /// Constant MlC6id8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6id8xlarge = new AppInstanceType("ml.c6id.8xlarge");
+        /// <summary>
+        /// Constant MlC6idLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6idLarge = new AppInstanceType("ml.c6id.large");
+        /// <summary>
+        /// Constant MlC6idXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6idXlarge = new AppInstanceType("ml.c6id.xlarge");
+        /// <summary>
+        /// Constant MlC6iLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6iLarge = new AppInstanceType("ml.c6i.large");
+        /// <summary>
+        /// Constant MlC6iXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC6iXlarge = new AppInstanceType("ml.c6i.xlarge");
+        /// <summary>
+        /// Constant MlC7i12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7i12xlarge = new AppInstanceType("ml.c7i.12xlarge");
+        /// <summary>
+        /// Constant MlC7i16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7i16xlarge = new AppInstanceType("ml.c7i.16xlarge");
+        /// <summary>
+        /// Constant MlC7i24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7i24xlarge = new AppInstanceType("ml.c7i.24xlarge");
+        /// <summary>
+        /// Constant MlC7i2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7i2xlarge = new AppInstanceType("ml.c7i.2xlarge");
+        /// <summary>
+        /// Constant MlC7i48xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7i48xlarge = new AppInstanceType("ml.c7i.48xlarge");
+        /// <summary>
+        /// Constant MlC7i4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7i4xlarge = new AppInstanceType("ml.c7i.4xlarge");
+        /// <summary>
+        /// Constant MlC7i8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7i8xlarge = new AppInstanceType("ml.c7i.8xlarge");
+        /// <summary>
+        /// Constant MlC7iLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7iLarge = new AppInstanceType("ml.c7i.large");
+        /// <summary>
+        /// Constant MlC7iXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlC7iXlarge = new AppInstanceType("ml.c7i.xlarge");
+        /// <summary>
         /// Constant MlG4dn12xlarge for AppInstanceType
         /// </summary>
         public static readonly AppInstanceType MlG4dn12xlarge = new AppInstanceType("ml.g4dn.12xlarge");
@@ -458,6 +620,70 @@ namespace Amazon.SageMaker
         /// Constant MlG5Xlarge for AppInstanceType
         /// </summary>
         public static readonly AppInstanceType MlG5Xlarge = new AppInstanceType("ml.g5.xlarge");
+        /// <summary>
+        /// Constant MlG612xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG612xlarge = new AppInstanceType("ml.g6.12xlarge");
+        /// <summary>
+        /// Constant MlG616xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG616xlarge = new AppInstanceType("ml.g6.16xlarge");
+        /// <summary>
+        /// Constant MlG624xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG624xlarge = new AppInstanceType("ml.g6.24xlarge");
+        /// <summary>
+        /// Constant MlG62xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG62xlarge = new AppInstanceType("ml.g6.2xlarge");
+        /// <summary>
+        /// Constant MlG648xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG648xlarge = new AppInstanceType("ml.g6.48xlarge");
+        /// <summary>
+        /// Constant MlG64xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG64xlarge = new AppInstanceType("ml.g6.4xlarge");
+        /// <summary>
+        /// Constant MlG68xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG68xlarge = new AppInstanceType("ml.g6.8xlarge");
+        /// <summary>
+        /// Constant MlG6e12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6e12xlarge = new AppInstanceType("ml.g6e.12xlarge");
+        /// <summary>
+        /// Constant MlG6e16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6e16xlarge = new AppInstanceType("ml.g6e.16xlarge");
+        /// <summary>
+        /// Constant MlG6e24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6e24xlarge = new AppInstanceType("ml.g6e.24xlarge");
+        /// <summary>
+        /// Constant MlG6e2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6e2xlarge = new AppInstanceType("ml.g6e.2xlarge");
+        /// <summary>
+        /// Constant MlG6e48xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6e48xlarge = new AppInstanceType("ml.g6e.48xlarge");
+        /// <summary>
+        /// Constant MlG6e4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6e4xlarge = new AppInstanceType("ml.g6e.4xlarge");
+        /// <summary>
+        /// Constant MlG6e8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6e8xlarge = new AppInstanceType("ml.g6e.8xlarge");
+        /// <summary>
+        /// Constant MlG6eXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6eXlarge = new AppInstanceType("ml.g6e.xlarge");
+        /// <summary>
+        /// Constant MlG6Xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlG6Xlarge = new AppInstanceType("ml.g6.xlarge");
         /// <summary>
         /// Constant MlGeospatialInteractive for AppInstanceType
         /// </summary>
@@ -527,6 +753,114 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly AppInstanceType MlM5Xlarge = new AppInstanceType("ml.m5.xlarge");
         /// <summary>
+        /// Constant MlM6i12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6i12xlarge = new AppInstanceType("ml.m6i.12xlarge");
+        /// <summary>
+        /// Constant MlM6i16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6i16xlarge = new AppInstanceType("ml.m6i.16xlarge");
+        /// <summary>
+        /// Constant MlM6i24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6i24xlarge = new AppInstanceType("ml.m6i.24xlarge");
+        /// <summary>
+        /// Constant MlM6i2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6i2xlarge = new AppInstanceType("ml.m6i.2xlarge");
+        /// <summary>
+        /// Constant MlM6i32xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6i32xlarge = new AppInstanceType("ml.m6i.32xlarge");
+        /// <summary>
+        /// Constant MlM6i4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6i4xlarge = new AppInstanceType("ml.m6i.4xlarge");
+        /// <summary>
+        /// Constant MlM6i8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6i8xlarge = new AppInstanceType("ml.m6i.8xlarge");
+        /// <summary>
+        /// Constant MlM6id12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6id12xlarge = new AppInstanceType("ml.m6id.12xlarge");
+        /// <summary>
+        /// Constant MlM6id16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6id16xlarge = new AppInstanceType("ml.m6id.16xlarge");
+        /// <summary>
+        /// Constant MlM6id24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6id24xlarge = new AppInstanceType("ml.m6id.24xlarge");
+        /// <summary>
+        /// Constant MlM6id2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6id2xlarge = new AppInstanceType("ml.m6id.2xlarge");
+        /// <summary>
+        /// Constant MlM6id32xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6id32xlarge = new AppInstanceType("ml.m6id.32xlarge");
+        /// <summary>
+        /// Constant MlM6id4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6id4xlarge = new AppInstanceType("ml.m6id.4xlarge");
+        /// <summary>
+        /// Constant MlM6id8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6id8xlarge = new AppInstanceType("ml.m6id.8xlarge");
+        /// <summary>
+        /// Constant MlM6idLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6idLarge = new AppInstanceType("ml.m6id.large");
+        /// <summary>
+        /// Constant MlM6idXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6idXlarge = new AppInstanceType("ml.m6id.xlarge");
+        /// <summary>
+        /// Constant MlM6iLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6iLarge = new AppInstanceType("ml.m6i.large");
+        /// <summary>
+        /// Constant MlM6iXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM6iXlarge = new AppInstanceType("ml.m6i.xlarge");
+        /// <summary>
+        /// Constant MlM7i12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7i12xlarge = new AppInstanceType("ml.m7i.12xlarge");
+        /// <summary>
+        /// Constant MlM7i16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7i16xlarge = new AppInstanceType("ml.m7i.16xlarge");
+        /// <summary>
+        /// Constant MlM7i24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7i24xlarge = new AppInstanceType("ml.m7i.24xlarge");
+        /// <summary>
+        /// Constant MlM7i2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7i2xlarge = new AppInstanceType("ml.m7i.2xlarge");
+        /// <summary>
+        /// Constant MlM7i48xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7i48xlarge = new AppInstanceType("ml.m7i.48xlarge");
+        /// <summary>
+        /// Constant MlM7i4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7i4xlarge = new AppInstanceType("ml.m7i.4xlarge");
+        /// <summary>
+        /// Constant MlM7i8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7i8xlarge = new AppInstanceType("ml.m7i.8xlarge");
+        /// <summary>
+        /// Constant MlM7iLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7iLarge = new AppInstanceType("ml.m7i.large");
+        /// <summary>
+        /// Constant MlM7iXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlM7iXlarge = new AppInstanceType("ml.m7i.xlarge");
+        /// <summary>
         /// Constant MlP316xlarge for AppInstanceType
         /// </summary>
         public static readonly AppInstanceType MlP316xlarge = new AppInstanceType("ml.p3.16xlarge");
@@ -550,6 +884,10 @@ namespace Amazon.SageMaker
         /// Constant MlP4de24xlarge for AppInstanceType
         /// </summary>
         public static readonly AppInstanceType MlP4de24xlarge = new AppInstanceType("ml.p4de.24xlarge");
+        /// <summary>
+        /// Constant MlP548xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlP548xlarge = new AppInstanceType("ml.p5.48xlarge");
         /// <summary>
         /// Constant MlR512xlarge for AppInstanceType
         /// </summary>
@@ -583,6 +921,114 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly AppInstanceType MlR5Xlarge = new AppInstanceType("ml.r5.xlarge");
         /// <summary>
+        /// Constant MlR6i12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6i12xlarge = new AppInstanceType("ml.r6i.12xlarge");
+        /// <summary>
+        /// Constant MlR6i16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6i16xlarge = new AppInstanceType("ml.r6i.16xlarge");
+        /// <summary>
+        /// Constant MlR6i24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6i24xlarge = new AppInstanceType("ml.r6i.24xlarge");
+        /// <summary>
+        /// Constant MlR6i2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6i2xlarge = new AppInstanceType("ml.r6i.2xlarge");
+        /// <summary>
+        /// Constant MlR6i32xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6i32xlarge = new AppInstanceType("ml.r6i.32xlarge");
+        /// <summary>
+        /// Constant MlR6i4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6i4xlarge = new AppInstanceType("ml.r6i.4xlarge");
+        /// <summary>
+        /// Constant MlR6i8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6i8xlarge = new AppInstanceType("ml.r6i.8xlarge");
+        /// <summary>
+        /// Constant MlR6id12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6id12xlarge = new AppInstanceType("ml.r6id.12xlarge");
+        /// <summary>
+        /// Constant MlR6id16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6id16xlarge = new AppInstanceType("ml.r6id.16xlarge");
+        /// <summary>
+        /// Constant MlR6id24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6id24xlarge = new AppInstanceType("ml.r6id.24xlarge");
+        /// <summary>
+        /// Constant MlR6id2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6id2xlarge = new AppInstanceType("ml.r6id.2xlarge");
+        /// <summary>
+        /// Constant MlR6id32xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6id32xlarge = new AppInstanceType("ml.r6id.32xlarge");
+        /// <summary>
+        /// Constant MlR6id4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6id4xlarge = new AppInstanceType("ml.r6id.4xlarge");
+        /// <summary>
+        /// Constant MlR6id8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6id8xlarge = new AppInstanceType("ml.r6id.8xlarge");
+        /// <summary>
+        /// Constant MlR6idLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6idLarge = new AppInstanceType("ml.r6id.large");
+        /// <summary>
+        /// Constant MlR6idXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6idXlarge = new AppInstanceType("ml.r6id.xlarge");
+        /// <summary>
+        /// Constant MlR6iLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6iLarge = new AppInstanceType("ml.r6i.large");
+        /// <summary>
+        /// Constant MlR6iXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR6iXlarge = new AppInstanceType("ml.r6i.xlarge");
+        /// <summary>
+        /// Constant MlR7i12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7i12xlarge = new AppInstanceType("ml.r7i.12xlarge");
+        /// <summary>
+        /// Constant MlR7i16xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7i16xlarge = new AppInstanceType("ml.r7i.16xlarge");
+        /// <summary>
+        /// Constant MlR7i24xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7i24xlarge = new AppInstanceType("ml.r7i.24xlarge");
+        /// <summary>
+        /// Constant MlR7i2xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7i2xlarge = new AppInstanceType("ml.r7i.2xlarge");
+        /// <summary>
+        /// Constant MlR7i48xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7i48xlarge = new AppInstanceType("ml.r7i.48xlarge");
+        /// <summary>
+        /// Constant MlR7i4xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7i4xlarge = new AppInstanceType("ml.r7i.4xlarge");
+        /// <summary>
+        /// Constant MlR7i8xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7i8xlarge = new AppInstanceType("ml.r7i.8xlarge");
+        /// <summary>
+        /// Constant MlR7iLarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7iLarge = new AppInstanceType("ml.r7i.large");
+        /// <summary>
+        /// Constant MlR7iXlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlR7iXlarge = new AppInstanceType("ml.r7i.xlarge");
+        /// <summary>
         /// Constant MlT32xlarge for AppInstanceType
         /// </summary>
         public static readonly AppInstanceType MlT32xlarge = new AppInstanceType("ml.t3.2xlarge");
@@ -606,6 +1052,18 @@ namespace Amazon.SageMaker
         /// Constant MlT3Xlarge for AppInstanceType
         /// </summary>
         public static readonly AppInstanceType MlT3Xlarge = new AppInstanceType("ml.t3.xlarge");
+        /// <summary>
+        /// Constant MlTrn12xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlTrn12xlarge = new AppInstanceType("ml.trn1.2xlarge");
+        /// <summary>
+        /// Constant MlTrn132xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlTrn132xlarge = new AppInstanceType("ml.trn1.32xlarge");
+        /// <summary>
+        /// Constant MlTrn1n32xlarge for AppInstanceType
+        /// </summary>
+        public static readonly AppInstanceType MlTrn1n32xlarge = new AppInstanceType("ml.trn1n.32xlarge");
         /// <summary>
         /// Constant System for AppInstanceType
         /// </summary>
@@ -861,6 +1319,22 @@ namespace Amazon.SageMaker
     {
 
         /// <summary>
+        /// Constant Canvas for AppType
+        /// </summary>
+        public static readonly AppType Canvas = new AppType("Canvas");
+        /// <summary>
+        /// Constant CodeEditor for AppType
+        /// </summary>
+        public static readonly AppType CodeEditor = new AppType("CodeEditor");
+        /// <summary>
+        /// Constant DetailedProfiler for AppType
+        /// </summary>
+        public static readonly AppType DetailedProfiler = new AppType("DetailedProfiler");
+        /// <summary>
+        /// Constant JupyterLab for AppType
+        /// </summary>
+        public static readonly AppType JupyterLab = new AppType("JupyterLab");
+        /// <summary>
         /// Constant JupyterServer for AppType
         /// </summary>
         public static readonly AppType JupyterServer = new AppType("JupyterServer");
@@ -1046,6 +1520,10 @@ namespace Amazon.SageMaker
         /// Constant Produced for AssociationEdgeType
         /// </summary>
         public static readonly AssociationEdgeType Produced = new AssociationEdgeType("Produced");
+        /// <summary>
+        /// Constant SameAs for AssociationEdgeType
+        /// </summary>
+        public static readonly AssociationEdgeType SameAs = new AssociationEdgeType("SameAs");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -1305,9 +1783,25 @@ namespace Amazon.SageMaker
     {
 
         /// <summary>
+        /// Constant Arima for AutoMLAlgorithm
+        /// </summary>
+        public static readonly AutoMLAlgorithm Arima = new AutoMLAlgorithm("arima");
+        /// <summary>
         /// Constant Catboost for AutoMLAlgorithm
         /// </summary>
         public static readonly AutoMLAlgorithm Catboost = new AutoMLAlgorithm("catboost");
+        /// <summary>
+        /// Constant CnnQr for AutoMLAlgorithm
+        /// </summary>
+        public static readonly AutoMLAlgorithm CnnQr = new AutoMLAlgorithm("cnn-qr");
+        /// <summary>
+        /// Constant Deepar for AutoMLAlgorithm
+        /// </summary>
+        public static readonly AutoMLAlgorithm Deepar = new AutoMLAlgorithm("deepar");
+        /// <summary>
+        /// Constant Ets for AutoMLAlgorithm
+        /// </summary>
+        public static readonly AutoMLAlgorithm Ets = new AutoMLAlgorithm("ets");
         /// <summary>
         /// Constant ExtraTrees for AutoMLAlgorithm
         /// </summary>
@@ -1332,6 +1826,14 @@ namespace Amazon.SageMaker
         /// Constant NnTorch for AutoMLAlgorithm
         /// </summary>
         public static readonly AutoMLAlgorithm NnTorch = new AutoMLAlgorithm("nn-torch");
+        /// <summary>
+        /// Constant Npts for AutoMLAlgorithm
+        /// </summary>
+        public static readonly AutoMLAlgorithm Npts = new AutoMLAlgorithm("npts");
+        /// <summary>
+        /// Constant Prophet for AutoMLAlgorithm
+        /// </summary>
+        public static readonly AutoMLAlgorithm Prophet = new AutoMLAlgorithm("prophet");
         /// <summary>
         /// Constant Randomforest for AutoMLAlgorithm
         /// </summary>
@@ -1821,6 +2323,10 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly AutoMLMetricExtendedEnum MSE = new AutoMLMetricExtendedEnum("MSE");
         /// <summary>
+        /// Constant Perplexity for AutoMLMetricExtendedEnum
+        /// </summary>
+        public static readonly AutoMLMetricExtendedEnum Perplexity = new AutoMLMetricExtendedEnum("Perplexity");
+        /// <summary>
         /// Constant Precision for AutoMLMetricExtendedEnum
         /// </summary>
         public static readonly AutoMLMetricExtendedEnum Precision = new AutoMLMetricExtendedEnum("Precision");
@@ -1844,6 +2350,30 @@ namespace Amazon.SageMaker
         /// Constant RMSE for AutoMLMetricExtendedEnum
         /// </summary>
         public static readonly AutoMLMetricExtendedEnum RMSE = new AutoMLMetricExtendedEnum("RMSE");
+        /// <summary>
+        /// Constant Rouge1 for AutoMLMetricExtendedEnum
+        /// </summary>
+        public static readonly AutoMLMetricExtendedEnum Rouge1 = new AutoMLMetricExtendedEnum("Rouge1");
+        /// <summary>
+        /// Constant Rouge2 for AutoMLMetricExtendedEnum
+        /// </summary>
+        public static readonly AutoMLMetricExtendedEnum Rouge2 = new AutoMLMetricExtendedEnum("Rouge2");
+        /// <summary>
+        /// Constant RougeL for AutoMLMetricExtendedEnum
+        /// </summary>
+        public static readonly AutoMLMetricExtendedEnum RougeL = new AutoMLMetricExtendedEnum("RougeL");
+        /// <summary>
+        /// Constant RougeLSum for AutoMLMetricExtendedEnum
+        /// </summary>
+        public static readonly AutoMLMetricExtendedEnum RougeLSum = new AutoMLMetricExtendedEnum("RougeLSum");
+        /// <summary>
+        /// Constant TrainingLoss for AutoMLMetricExtendedEnum
+        /// </summary>
+        public static readonly AutoMLMetricExtendedEnum TrainingLoss = new AutoMLMetricExtendedEnum("TrainingLoss");
+        /// <summary>
+        /// Constant ValidationLoss for AutoMLMetricExtendedEnum
+        /// </summary>
+        public static readonly AutoMLMetricExtendedEnum ValidationLoss = new AutoMLMetricExtendedEnum("ValidationLoss");
         /// <summary>
         /// Constant WAPE for AutoMLMetricExtendedEnum
         /// </summary>
@@ -1956,6 +2486,10 @@ namespace Amazon.SageMaker
         /// Constant TextClassification for AutoMLProblemTypeConfigName
         /// </summary>
         public static readonly AutoMLProblemTypeConfigName TextClassification = new AutoMLProblemTypeConfigName("TextClassification");
+        /// <summary>
+        /// Constant TextGeneration for AutoMLProblemTypeConfigName
+        /// </summary>
+        public static readonly AutoMLProblemTypeConfigName TextGeneration = new AutoMLProblemTypeConfigName("TextGeneration");
         /// <summary>
         /// Constant TimeSeriesForecasting for AutoMLProblemTypeConfigName
         /// </summary>
@@ -2205,6 +2739,60 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type AutoMountHomeEFS.
+    /// </summary>
+    public class AutoMountHomeEFS : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DefaultAsDomain for AutoMountHomeEFS
+        /// </summary>
+        public static readonly AutoMountHomeEFS DefaultAsDomain = new AutoMountHomeEFS("DefaultAsDomain");
+        /// <summary>
+        /// Constant Disabled for AutoMountHomeEFS
+        /// </summary>
+        public static readonly AutoMountHomeEFS Disabled = new AutoMountHomeEFS("Disabled");
+        /// <summary>
+        /// Constant Enabled for AutoMountHomeEFS
+        /// </summary>
+        public static readonly AutoMountHomeEFS Enabled = new AutoMountHomeEFS("Enabled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public AutoMountHomeEFS(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static AutoMountHomeEFS FindValue(string value)
+        {
+            return FindValue<AutoMountHomeEFS>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator AutoMountHomeEFS(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type AutotuneMode.
     /// </summary>
     public class AutotuneMode : ConstantClass
@@ -2294,6 +2882,60 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator AwsManagedHumanLoopRequestSource(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type BatchDeleteClusterNodesErrorCode.
+    /// </summary>
+    public class BatchDeleteClusterNodesErrorCode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant InvalidNodeStatus for BatchDeleteClusterNodesErrorCode
+        /// </summary>
+        public static readonly BatchDeleteClusterNodesErrorCode InvalidNodeStatus = new BatchDeleteClusterNodesErrorCode("InvalidNodeStatus");
+        /// <summary>
+        /// Constant NodeIdInUse for BatchDeleteClusterNodesErrorCode
+        /// </summary>
+        public static readonly BatchDeleteClusterNodesErrorCode NodeIdInUse = new BatchDeleteClusterNodesErrorCode("NodeIdInUse");
+        /// <summary>
+        /// Constant NodeIdNotFound for BatchDeleteClusterNodesErrorCode
+        /// </summary>
+        public static readonly BatchDeleteClusterNodesErrorCode NodeIdNotFound = new BatchDeleteClusterNodesErrorCode("NodeIdNotFound");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public BatchDeleteClusterNodesErrorCode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static BatchDeleteClusterNodesErrorCode FindValue(string value)
+        {
+            return FindValue<BatchDeleteClusterNodesErrorCode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator BatchDeleteClusterNodesErrorCode(string value)
         {
             return FindValue(value);
         }
@@ -2630,6 +3272,10 @@ namespace Amazon.SageMaker
         /// Constant Input for CaptureMode
         /// </summary>
         public static readonly CaptureMode Input = new CaptureMode("Input");
+        /// <summary>
+        /// Constant InputAndOutput for CaptureMode
+        /// </summary>
+        public static readonly CaptureMode InputAndOutput = new CaptureMode("InputAndOutput");
         /// <summary>
         /// Constant Output for CaptureMode
         /// </summary>
@@ -3104,6 +3750,628 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator ClarifyTextLanguage(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ClusterInstanceStatus.
+    /// </summary>
+    public class ClusterInstanceStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DeepHealthCheckInProgress for ClusterInstanceStatus
+        /// </summary>
+        public static readonly ClusterInstanceStatus DeepHealthCheckInProgress = new ClusterInstanceStatus("DeepHealthCheckInProgress");
+        /// <summary>
+        /// Constant Failure for ClusterInstanceStatus
+        /// </summary>
+        public static readonly ClusterInstanceStatus Failure = new ClusterInstanceStatus("Failure");
+        /// <summary>
+        /// Constant Pending for ClusterInstanceStatus
+        /// </summary>
+        public static readonly ClusterInstanceStatus Pending = new ClusterInstanceStatus("Pending");
+        /// <summary>
+        /// Constant Running for ClusterInstanceStatus
+        /// </summary>
+        public static readonly ClusterInstanceStatus Running = new ClusterInstanceStatus("Running");
+        /// <summary>
+        /// Constant ShuttingDown for ClusterInstanceStatus
+        /// </summary>
+        public static readonly ClusterInstanceStatus ShuttingDown = new ClusterInstanceStatus("ShuttingDown");
+        /// <summary>
+        /// Constant SystemUpdating for ClusterInstanceStatus
+        /// </summary>
+        public static readonly ClusterInstanceStatus SystemUpdating = new ClusterInstanceStatus("SystemUpdating");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ClusterInstanceStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ClusterInstanceStatus FindValue(string value)
+        {
+            return FindValue<ClusterInstanceStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ClusterInstanceStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ClusterInstanceType.
+    /// </summary>
+    public class ClusterInstanceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MlC512xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC512xlarge = new ClusterInstanceType("ml.c5.12xlarge");
+        /// <summary>
+        /// Constant MlC518xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC518xlarge = new ClusterInstanceType("ml.c5.18xlarge");
+        /// <summary>
+        /// Constant MlC524xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC524xlarge = new ClusterInstanceType("ml.c5.24xlarge");
+        /// <summary>
+        /// Constant MlC52xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC52xlarge = new ClusterInstanceType("ml.c5.2xlarge");
+        /// <summary>
+        /// Constant MlC54xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC54xlarge = new ClusterInstanceType("ml.c5.4xlarge");
+        /// <summary>
+        /// Constant MlC59xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC59xlarge = new ClusterInstanceType("ml.c5.9xlarge");
+        /// <summary>
+        /// Constant MlC5Large for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC5Large = new ClusterInstanceType("ml.c5.large");
+        /// <summary>
+        /// Constant MlC5n18xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC5n18xlarge = new ClusterInstanceType("ml.c5n.18xlarge");
+        /// <summary>
+        /// Constant MlC5n2xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC5n2xlarge = new ClusterInstanceType("ml.c5n.2xlarge");
+        /// <summary>
+        /// Constant MlC5n4xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC5n4xlarge = new ClusterInstanceType("ml.c5n.4xlarge");
+        /// <summary>
+        /// Constant MlC5n9xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC5n9xlarge = new ClusterInstanceType("ml.c5n.9xlarge");
+        /// <summary>
+        /// Constant MlC5nLarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC5nLarge = new ClusterInstanceType("ml.c5n.large");
+        /// <summary>
+        /// Constant MlC5Xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC5Xlarge = new ClusterInstanceType("ml.c5.xlarge");
+        /// <summary>
+        /// Constant MlC6i12xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6i12xlarge = new ClusterInstanceType("ml.c6i.12xlarge");
+        /// <summary>
+        /// Constant MlC6i16xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6i16xlarge = new ClusterInstanceType("ml.c6i.16xlarge");
+        /// <summary>
+        /// Constant MlC6i24xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6i24xlarge = new ClusterInstanceType("ml.c6i.24xlarge");
+        /// <summary>
+        /// Constant MlC6i2xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6i2xlarge = new ClusterInstanceType("ml.c6i.2xlarge");
+        /// <summary>
+        /// Constant MlC6i32xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6i32xlarge = new ClusterInstanceType("ml.c6i.32xlarge");
+        /// <summary>
+        /// Constant MlC6i4xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6i4xlarge = new ClusterInstanceType("ml.c6i.4xlarge");
+        /// <summary>
+        /// Constant MlC6i8xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6i8xlarge = new ClusterInstanceType("ml.c6i.8xlarge");
+        /// <summary>
+        /// Constant MlC6iLarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6iLarge = new ClusterInstanceType("ml.c6i.large");
+        /// <summary>
+        /// Constant MlC6iXlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlC6iXlarge = new ClusterInstanceType("ml.c6i.xlarge");
+        /// <summary>
+        /// Constant MlG512xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG512xlarge = new ClusterInstanceType("ml.g5.12xlarge");
+        /// <summary>
+        /// Constant MlG516xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG516xlarge = new ClusterInstanceType("ml.g5.16xlarge");
+        /// <summary>
+        /// Constant MlG524xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG524xlarge = new ClusterInstanceType("ml.g5.24xlarge");
+        /// <summary>
+        /// Constant MlG52xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG52xlarge = new ClusterInstanceType("ml.g5.2xlarge");
+        /// <summary>
+        /// Constant MlG548xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG548xlarge = new ClusterInstanceType("ml.g5.48xlarge");
+        /// <summary>
+        /// Constant MlG54xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG54xlarge = new ClusterInstanceType("ml.g5.4xlarge");
+        /// <summary>
+        /// Constant MlG58xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG58xlarge = new ClusterInstanceType("ml.g5.8xlarge");
+        /// <summary>
+        /// Constant MlG5Xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG5Xlarge = new ClusterInstanceType("ml.g5.xlarge");
+        /// <summary>
+        /// Constant MlG612xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG612xlarge = new ClusterInstanceType("ml.g6.12xlarge");
+        /// <summary>
+        /// Constant MlG616xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG616xlarge = new ClusterInstanceType("ml.g6.16xlarge");
+        /// <summary>
+        /// Constant MlG624xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG624xlarge = new ClusterInstanceType("ml.g6.24xlarge");
+        /// <summary>
+        /// Constant MlG62xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG62xlarge = new ClusterInstanceType("ml.g6.2xlarge");
+        /// <summary>
+        /// Constant MlG648xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG648xlarge = new ClusterInstanceType("ml.g6.48xlarge");
+        /// <summary>
+        /// Constant MlG64xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG64xlarge = new ClusterInstanceType("ml.g6.4xlarge");
+        /// <summary>
+        /// Constant MlG68xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG68xlarge = new ClusterInstanceType("ml.g6.8xlarge");
+        /// <summary>
+        /// Constant MlG6e12xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6e12xlarge = new ClusterInstanceType("ml.g6e.12xlarge");
+        /// <summary>
+        /// Constant MlG6e16xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6e16xlarge = new ClusterInstanceType("ml.g6e.16xlarge");
+        /// <summary>
+        /// Constant MlG6e24xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6e24xlarge = new ClusterInstanceType("ml.g6e.24xlarge");
+        /// <summary>
+        /// Constant MlG6e2xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6e2xlarge = new ClusterInstanceType("ml.g6e.2xlarge");
+        /// <summary>
+        /// Constant MlG6e48xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6e48xlarge = new ClusterInstanceType("ml.g6e.48xlarge");
+        /// <summary>
+        /// Constant MlG6e4xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6e4xlarge = new ClusterInstanceType("ml.g6e.4xlarge");
+        /// <summary>
+        /// Constant MlG6e8xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6e8xlarge = new ClusterInstanceType("ml.g6e.8xlarge");
+        /// <summary>
+        /// Constant MlG6eXlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6eXlarge = new ClusterInstanceType("ml.g6e.xlarge");
+        /// <summary>
+        /// Constant MlG6Xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlG6Xlarge = new ClusterInstanceType("ml.g6.xlarge");
+        /// <summary>
+        /// Constant MlGr64xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlGr64xlarge = new ClusterInstanceType("ml.gr6.4xlarge");
+        /// <summary>
+        /// Constant MlGr68xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlGr68xlarge = new ClusterInstanceType("ml.gr6.8xlarge");
+        /// <summary>
+        /// Constant MlM512xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM512xlarge = new ClusterInstanceType("ml.m5.12xlarge");
+        /// <summary>
+        /// Constant MlM516xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM516xlarge = new ClusterInstanceType("ml.m5.16xlarge");
+        /// <summary>
+        /// Constant MlM524xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM524xlarge = new ClusterInstanceType("ml.m5.24xlarge");
+        /// <summary>
+        /// Constant MlM52xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM52xlarge = new ClusterInstanceType("ml.m5.2xlarge");
+        /// <summary>
+        /// Constant MlM54xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM54xlarge = new ClusterInstanceType("ml.m5.4xlarge");
+        /// <summary>
+        /// Constant MlM58xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM58xlarge = new ClusterInstanceType("ml.m5.8xlarge");
+        /// <summary>
+        /// Constant MlM5Large for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM5Large = new ClusterInstanceType("ml.m5.large");
+        /// <summary>
+        /// Constant MlM5Xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM5Xlarge = new ClusterInstanceType("ml.m5.xlarge");
+        /// <summary>
+        /// Constant MlM6i12xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6i12xlarge = new ClusterInstanceType("ml.m6i.12xlarge");
+        /// <summary>
+        /// Constant MlM6i16xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6i16xlarge = new ClusterInstanceType("ml.m6i.16xlarge");
+        /// <summary>
+        /// Constant MlM6i24xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6i24xlarge = new ClusterInstanceType("ml.m6i.24xlarge");
+        /// <summary>
+        /// Constant MlM6i2xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6i2xlarge = new ClusterInstanceType("ml.m6i.2xlarge");
+        /// <summary>
+        /// Constant MlM6i32xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6i32xlarge = new ClusterInstanceType("ml.m6i.32xlarge");
+        /// <summary>
+        /// Constant MlM6i4xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6i4xlarge = new ClusterInstanceType("ml.m6i.4xlarge");
+        /// <summary>
+        /// Constant MlM6i8xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6i8xlarge = new ClusterInstanceType("ml.m6i.8xlarge");
+        /// <summary>
+        /// Constant MlM6iLarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6iLarge = new ClusterInstanceType("ml.m6i.large");
+        /// <summary>
+        /// Constant MlM6iXlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlM6iXlarge = new ClusterInstanceType("ml.m6i.xlarge");
+        /// <summary>
+        /// Constant MlP4d24xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlP4d24xlarge = new ClusterInstanceType("ml.p4d.24xlarge");
+        /// <summary>
+        /// Constant MlP4de24xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlP4de24xlarge = new ClusterInstanceType("ml.p4de.24xlarge");
+        /// <summary>
+        /// Constant MlP548xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlP548xlarge = new ClusterInstanceType("ml.p5.48xlarge");
+        /// <summary>
+        /// Constant MlP5e48xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlP5e48xlarge = new ClusterInstanceType("ml.p5e.48xlarge");
+        /// <summary>
+        /// Constant MlP5en48xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlP5en48xlarge = new ClusterInstanceType("ml.p5en.48xlarge");
+        /// <summary>
+        /// Constant MlR6i12xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6i12xlarge = new ClusterInstanceType("ml.r6i.12xlarge");
+        /// <summary>
+        /// Constant MlR6i16xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6i16xlarge = new ClusterInstanceType("ml.r6i.16xlarge");
+        /// <summary>
+        /// Constant MlR6i24xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6i24xlarge = new ClusterInstanceType("ml.r6i.24xlarge");
+        /// <summary>
+        /// Constant MlR6i2xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6i2xlarge = new ClusterInstanceType("ml.r6i.2xlarge");
+        /// <summary>
+        /// Constant MlR6i32xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6i32xlarge = new ClusterInstanceType("ml.r6i.32xlarge");
+        /// <summary>
+        /// Constant MlR6i4xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6i4xlarge = new ClusterInstanceType("ml.r6i.4xlarge");
+        /// <summary>
+        /// Constant MlR6i8xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6i8xlarge = new ClusterInstanceType("ml.r6i.8xlarge");
+        /// <summary>
+        /// Constant MlR6iLarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6iLarge = new ClusterInstanceType("ml.r6i.large");
+        /// <summary>
+        /// Constant MlR6iXlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlR6iXlarge = new ClusterInstanceType("ml.r6i.xlarge");
+        /// <summary>
+        /// Constant MlT32xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlT32xlarge = new ClusterInstanceType("ml.t3.2xlarge");
+        /// <summary>
+        /// Constant MlT3Large for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlT3Large = new ClusterInstanceType("ml.t3.large");
+        /// <summary>
+        /// Constant MlT3Medium for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlT3Medium = new ClusterInstanceType("ml.t3.medium");
+        /// <summary>
+        /// Constant MlT3Xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlT3Xlarge = new ClusterInstanceType("ml.t3.xlarge");
+        /// <summary>
+        /// Constant MlTrn132xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlTrn132xlarge = new ClusterInstanceType("ml.trn1.32xlarge");
+        /// <summary>
+        /// Constant MlTrn1n32xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlTrn1n32xlarge = new ClusterInstanceType("ml.trn1n.32xlarge");
+        /// <summary>
+        /// Constant MlTrn248xlarge for ClusterInstanceType
+        /// </summary>
+        public static readonly ClusterInstanceType MlTrn248xlarge = new ClusterInstanceType("ml.trn2.48xlarge");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ClusterInstanceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ClusterInstanceType FindValue(string value)
+        {
+            return FindValue<ClusterInstanceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ClusterInstanceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ClusterNodeRecovery.
+    /// </summary>
+    public class ClusterNodeRecovery : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Automatic for ClusterNodeRecovery
+        /// </summary>
+        public static readonly ClusterNodeRecovery Automatic = new ClusterNodeRecovery("Automatic");
+        /// <summary>
+        /// Constant None for ClusterNodeRecovery
+        /// </summary>
+        public static readonly ClusterNodeRecovery None = new ClusterNodeRecovery("None");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ClusterNodeRecovery(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ClusterNodeRecovery FindValue(string value)
+        {
+            return FindValue<ClusterNodeRecovery>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ClusterNodeRecovery(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ClusterSortBy.
+    /// </summary>
+    public class ClusterSortBy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CREATION_TIME for ClusterSortBy
+        /// </summary>
+        public static readonly ClusterSortBy CREATION_TIME = new ClusterSortBy("CREATION_TIME");
+        /// <summary>
+        /// Constant NAME for ClusterSortBy
+        /// </summary>
+        public static readonly ClusterSortBy NAME = new ClusterSortBy("NAME");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ClusterSortBy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ClusterSortBy FindValue(string value)
+        {
+            return FindValue<ClusterSortBy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ClusterSortBy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ClusterStatus.
+    /// </summary>
+    public class ClusterStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Creating for ClusterStatus
+        /// </summary>
+        public static readonly ClusterStatus Creating = new ClusterStatus("Creating");
+        /// <summary>
+        /// Constant Deleting for ClusterStatus
+        /// </summary>
+        public static readonly ClusterStatus Deleting = new ClusterStatus("Deleting");
+        /// <summary>
+        /// Constant Failed for ClusterStatus
+        /// </summary>
+        public static readonly ClusterStatus Failed = new ClusterStatus("Failed");
+        /// <summary>
+        /// Constant InService for ClusterStatus
+        /// </summary>
+        public static readonly ClusterStatus InService = new ClusterStatus("InService");
+        /// <summary>
+        /// Constant RollingBack for ClusterStatus
+        /// </summary>
+        public static readonly ClusterStatus RollingBack = new ClusterStatus("RollingBack");
+        /// <summary>
+        /// Constant SystemUpdating for ClusterStatus
+        /// </summary>
+        public static readonly ClusterStatus SystemUpdating = new ClusterStatus("SystemUpdating");
+        /// <summary>
+        /// Constant Updating for ClusterStatus
+        /// </summary>
+        public static readonly ClusterStatus Updating = new ClusterStatus("Updating");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ClusterStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ClusterStatus FindValue(string value)
+        {
+            return FindValue<ClusterStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ClusterStatus(string value)
         {
             return FindValue(value);
         }
@@ -3735,6 +5003,56 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type DeepHealthCheckType.
+    /// </summary>
+    public class DeepHealthCheckType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant InstanceConnectivity for DeepHealthCheckType
+        /// </summary>
+        public static readonly DeepHealthCheckType InstanceConnectivity = new DeepHealthCheckType("InstanceConnectivity");
+        /// <summary>
+        /// Constant InstanceStress for DeepHealthCheckType
+        /// </summary>
+        public static readonly DeepHealthCheckType InstanceStress = new DeepHealthCheckType("InstanceStress");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public DeepHealthCheckType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static DeepHealthCheckType FindValue(string value)
+        {
+            return FindValue<DeepHealthCheckType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator DeepHealthCheckType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type DetailedAlgorithmStatus.
     /// </summary>
     public class DetailedAlgorithmStatus : ConstantClass
@@ -4307,6 +5625,56 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type EnabledOrDisabled.
+    /// </summary>
+    public class EnabledOrDisabled : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Disabled for EnabledOrDisabled
+        /// </summary>
+        public static readonly EnabledOrDisabled Disabled = new EnabledOrDisabled("Disabled");
+        /// <summary>
+        /// Constant Enabled for EnabledOrDisabled
+        /// </summary>
+        public static readonly EnabledOrDisabled Enabled = new EnabledOrDisabled("Enabled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public EnabledOrDisabled(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static EnabledOrDisabled FindValue(string value)
+        {
+            return FindValue<EnabledOrDisabled>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator EnabledOrDisabled(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type EndpointConfigSortKey.
     /// </summary>
     public class EndpointConfigSortKey : ConstantClass
@@ -4652,6 +6020,56 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator FailureHandlingPolicy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type FairShare.
+    /// </summary>
+    public class FairShare : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Disabled for FairShare
+        /// </summary>
+        public static readonly FairShare Disabled = new FairShare("Disabled");
+        /// <summary>
+        /// Constant Enabled for FairShare
+        /// </summary>
+        public static readonly FairShare Enabled = new FairShare("Enabled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public FairShare(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static FairShare FindValue(string value)
+        {
+            return FindValue<FairShare>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator FairShare(string value)
         {
             return FindValue(value);
         }
@@ -5409,6 +6827,56 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type HubContentSupportStatus.
+    /// </summary>
+    public class HubContentSupportStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Deprecated for HubContentSupportStatus
+        /// </summary>
+        public static readonly HubContentSupportStatus Deprecated = new HubContentSupportStatus("Deprecated");
+        /// <summary>
+        /// Constant Supported for HubContentSupportStatus
+        /// </summary>
+        public static readonly HubContentSupportStatus Supported = new HubContentSupportStatus("Supported");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public HubContentSupportStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static HubContentSupportStatus FindValue(string value)
+        {
+            return FindValue<HubContentSupportStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator HubContentSupportStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type HubContentType.
     /// </summary>
     public class HubContentType : ConstantClass
@@ -5418,6 +6886,10 @@ namespace Amazon.SageMaker
         /// Constant Model for HubContentType
         /// </summary>
         public static readonly HubContentType Model = new HubContentType("Model");
+        /// <summary>
+        /// Constant ModelReference for HubContentType
+        /// </summary>
+        public static readonly HubContentType ModelReference = new HubContentType("ModelReference");
         /// <summary>
         /// Constant Notebook for HubContentType
         /// </summary>
@@ -5854,6 +7326,14 @@ namespace Amazon.SageMaker
         /// Constant Completed for HyperParameterTuningJobStatus
         /// </summary>
         public static readonly HyperParameterTuningJobStatus Completed = new HyperParameterTuningJobStatus("Completed");
+        /// <summary>
+        /// Constant DeleteFailed for HyperParameterTuningJobStatus
+        /// </summary>
+        public static readonly HyperParameterTuningJobStatus DeleteFailed = new HyperParameterTuningJobStatus("DeleteFailed");
+        /// <summary>
+        /// Constant Deleting for HyperParameterTuningJobStatus
+        /// </summary>
+        public static readonly HyperParameterTuningJobStatus Deleting = new HyperParameterTuningJobStatus("Deleting");
         /// <summary>
         /// Constant Failed for HyperParameterTuningJobStatus
         /// </summary>
@@ -6355,6 +7835,122 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type InferenceComponentSortKey.
+    /// </summary>
+    public class InferenceComponentSortKey : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CreationTime for InferenceComponentSortKey
+        /// </summary>
+        public static readonly InferenceComponentSortKey CreationTime = new InferenceComponentSortKey("CreationTime");
+        /// <summary>
+        /// Constant Name for InferenceComponentSortKey
+        /// </summary>
+        public static readonly InferenceComponentSortKey Name = new InferenceComponentSortKey("Name");
+        /// <summary>
+        /// Constant Status for InferenceComponentSortKey
+        /// </summary>
+        public static readonly InferenceComponentSortKey Status = new InferenceComponentSortKey("Status");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public InferenceComponentSortKey(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static InferenceComponentSortKey FindValue(string value)
+        {
+            return FindValue<InferenceComponentSortKey>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator InferenceComponentSortKey(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type InferenceComponentStatus.
+    /// </summary>
+    public class InferenceComponentStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Creating for InferenceComponentStatus
+        /// </summary>
+        public static readonly InferenceComponentStatus Creating = new InferenceComponentStatus("Creating");
+        /// <summary>
+        /// Constant Deleting for InferenceComponentStatus
+        /// </summary>
+        public static readonly InferenceComponentStatus Deleting = new InferenceComponentStatus("Deleting");
+        /// <summary>
+        /// Constant Failed for InferenceComponentStatus
+        /// </summary>
+        public static readonly InferenceComponentStatus Failed = new InferenceComponentStatus("Failed");
+        /// <summary>
+        /// Constant InService for InferenceComponentStatus
+        /// </summary>
+        public static readonly InferenceComponentStatus InService = new InferenceComponentStatus("InService");
+        /// <summary>
+        /// Constant Updating for InferenceComponentStatus
+        /// </summary>
+        public static readonly InferenceComponentStatus Updating = new InferenceComponentStatus("Updating");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public InferenceComponentStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static InferenceComponentStatus FindValue(string value)
+        {
+            return FindValue<InferenceComponentStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator InferenceComponentStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type InferenceExecutionMode.
     /// </summary>
     public class InferenceExecutionMode : ConstantClass
@@ -6625,6 +8221,76 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type InstanceGroupStatus.
+    /// </summary>
+    public class InstanceGroupStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Creating for InstanceGroupStatus
+        /// </summary>
+        public static readonly InstanceGroupStatus Creating = new InstanceGroupStatus("Creating");
+        /// <summary>
+        /// Constant Degraded for InstanceGroupStatus
+        /// </summary>
+        public static readonly InstanceGroupStatus Degraded = new InstanceGroupStatus("Degraded");
+        /// <summary>
+        /// Constant Deleting for InstanceGroupStatus
+        /// </summary>
+        public static readonly InstanceGroupStatus Deleting = new InstanceGroupStatus("Deleting");
+        /// <summary>
+        /// Constant Failed for InstanceGroupStatus
+        /// </summary>
+        public static readonly InstanceGroupStatus Failed = new InstanceGroupStatus("Failed");
+        /// <summary>
+        /// Constant InService for InstanceGroupStatus
+        /// </summary>
+        public static readonly InstanceGroupStatus InService = new InstanceGroupStatus("InService");
+        /// <summary>
+        /// Constant SystemUpdating for InstanceGroupStatus
+        /// </summary>
+        public static readonly InstanceGroupStatus SystemUpdating = new InstanceGroupStatus("SystemUpdating");
+        /// <summary>
+        /// Constant Updating for InstanceGroupStatus
+        /// </summary>
+        public static readonly InstanceGroupStatus Updating = new InstanceGroupStatus("Updating");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public InstanceGroupStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static InstanceGroupStatus FindValue(string value)
+        {
+            return FindValue<InstanceGroupStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator InstanceGroupStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type InstanceType.
     /// </summary>
     public class InstanceType : ConstantClass
@@ -6687,6 +8353,114 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly InstanceType MlC5Xlarge = new InstanceType("ml.c5.xlarge");
         /// <summary>
+        /// Constant MlC6i12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6i12xlarge = new InstanceType("ml.c6i.12xlarge");
+        /// <summary>
+        /// Constant MlC6i16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6i16xlarge = new InstanceType("ml.c6i.16xlarge");
+        /// <summary>
+        /// Constant MlC6i24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6i24xlarge = new InstanceType("ml.c6i.24xlarge");
+        /// <summary>
+        /// Constant MlC6i2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6i2xlarge = new InstanceType("ml.c6i.2xlarge");
+        /// <summary>
+        /// Constant MlC6i32xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6i32xlarge = new InstanceType("ml.c6i.32xlarge");
+        /// <summary>
+        /// Constant MlC6i4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6i4xlarge = new InstanceType("ml.c6i.4xlarge");
+        /// <summary>
+        /// Constant MlC6i8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6i8xlarge = new InstanceType("ml.c6i.8xlarge");
+        /// <summary>
+        /// Constant MlC6id12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6id12xlarge = new InstanceType("ml.c6id.12xlarge");
+        /// <summary>
+        /// Constant MlC6id16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6id16xlarge = new InstanceType("ml.c6id.16xlarge");
+        /// <summary>
+        /// Constant MlC6id24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6id24xlarge = new InstanceType("ml.c6id.24xlarge");
+        /// <summary>
+        /// Constant MlC6id2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6id2xlarge = new InstanceType("ml.c6id.2xlarge");
+        /// <summary>
+        /// Constant MlC6id32xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6id32xlarge = new InstanceType("ml.c6id.32xlarge");
+        /// <summary>
+        /// Constant MlC6id4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6id4xlarge = new InstanceType("ml.c6id.4xlarge");
+        /// <summary>
+        /// Constant MlC6id8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6id8xlarge = new InstanceType("ml.c6id.8xlarge");
+        /// <summary>
+        /// Constant MlC6idLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6idLarge = new InstanceType("ml.c6id.large");
+        /// <summary>
+        /// Constant MlC6idXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6idXlarge = new InstanceType("ml.c6id.xlarge");
+        /// <summary>
+        /// Constant MlC6iLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6iLarge = new InstanceType("ml.c6i.large");
+        /// <summary>
+        /// Constant MlC6iXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC6iXlarge = new InstanceType("ml.c6i.xlarge");
+        /// <summary>
+        /// Constant MlC7i12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7i12xlarge = new InstanceType("ml.c7i.12xlarge");
+        /// <summary>
+        /// Constant MlC7i16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7i16xlarge = new InstanceType("ml.c7i.16xlarge");
+        /// <summary>
+        /// Constant MlC7i24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7i24xlarge = new InstanceType("ml.c7i.24xlarge");
+        /// <summary>
+        /// Constant MlC7i2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7i2xlarge = new InstanceType("ml.c7i.2xlarge");
+        /// <summary>
+        /// Constant MlC7i48xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7i48xlarge = new InstanceType("ml.c7i.48xlarge");
+        /// <summary>
+        /// Constant MlC7i4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7i4xlarge = new InstanceType("ml.c7i.4xlarge");
+        /// <summary>
+        /// Constant MlC7i8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7i8xlarge = new InstanceType("ml.c7i.8xlarge");
+        /// <summary>
+        /// Constant MlC7iLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7iLarge = new InstanceType("ml.c7i.large");
+        /// <summary>
+        /// Constant MlC7iXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlC7iXlarge = new InstanceType("ml.c7i.xlarge");
+        /// <summary>
         /// Constant MlG4dn12xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType MlG4dn12xlarge = new InstanceType("ml.g4dn.12xlarge");
@@ -6743,6 +8517,38 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly InstanceType MlG5Xlarge = new InstanceType("ml.g5.xlarge");
         /// <summary>
+        /// Constant MlG612xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG612xlarge = new InstanceType("ml.g6.12xlarge");
+        /// <summary>
+        /// Constant MlG616xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG616xlarge = new InstanceType("ml.g6.16xlarge");
+        /// <summary>
+        /// Constant MlG624xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG624xlarge = new InstanceType("ml.g6.24xlarge");
+        /// <summary>
+        /// Constant MlG62xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG62xlarge = new InstanceType("ml.g6.2xlarge");
+        /// <summary>
+        /// Constant MlG648xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG648xlarge = new InstanceType("ml.g6.48xlarge");
+        /// <summary>
+        /// Constant MlG64xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG64xlarge = new InstanceType("ml.g6.4xlarge");
+        /// <summary>
+        /// Constant MlG68xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG68xlarge = new InstanceType("ml.g6.8xlarge");
+        /// <summary>
+        /// Constant MlG6Xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlG6Xlarge = new InstanceType("ml.g6.xlarge");
+        /// <summary>
         /// Constant MlInf124xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType MlInf124xlarge = new InstanceType("ml.inf1.24xlarge");
@@ -6758,6 +8564,22 @@ namespace Amazon.SageMaker
         /// Constant MlInf1Xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType MlInf1Xlarge = new InstanceType("ml.inf1.xlarge");
+        /// <summary>
+        /// Constant MlInf224xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlInf224xlarge = new InstanceType("ml.inf2.24xlarge");
+        /// <summary>
+        /// Constant MlInf248xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlInf248xlarge = new InstanceType("ml.inf2.48xlarge");
+        /// <summary>
+        /// Constant MlInf28xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlInf28xlarge = new InstanceType("ml.inf2.8xlarge");
+        /// <summary>
+        /// Constant MlInf2Xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlInf2Xlarge = new InstanceType("ml.inf2.xlarge");
         /// <summary>
         /// Constant MlM410xlarge for InstanceType
         /// </summary>
@@ -6831,6 +8653,114 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly InstanceType MlM5Xlarge = new InstanceType("ml.m5.xlarge");
         /// <summary>
+        /// Constant MlM6i12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6i12xlarge = new InstanceType("ml.m6i.12xlarge");
+        /// <summary>
+        /// Constant MlM6i16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6i16xlarge = new InstanceType("ml.m6i.16xlarge");
+        /// <summary>
+        /// Constant MlM6i24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6i24xlarge = new InstanceType("ml.m6i.24xlarge");
+        /// <summary>
+        /// Constant MlM6i2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6i2xlarge = new InstanceType("ml.m6i.2xlarge");
+        /// <summary>
+        /// Constant MlM6i32xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6i32xlarge = new InstanceType("ml.m6i.32xlarge");
+        /// <summary>
+        /// Constant MlM6i4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6i4xlarge = new InstanceType("ml.m6i.4xlarge");
+        /// <summary>
+        /// Constant MlM6i8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6i8xlarge = new InstanceType("ml.m6i.8xlarge");
+        /// <summary>
+        /// Constant MlM6id12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6id12xlarge = new InstanceType("ml.m6id.12xlarge");
+        /// <summary>
+        /// Constant MlM6id16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6id16xlarge = new InstanceType("ml.m6id.16xlarge");
+        /// <summary>
+        /// Constant MlM6id24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6id24xlarge = new InstanceType("ml.m6id.24xlarge");
+        /// <summary>
+        /// Constant MlM6id2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6id2xlarge = new InstanceType("ml.m6id.2xlarge");
+        /// <summary>
+        /// Constant MlM6id32xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6id32xlarge = new InstanceType("ml.m6id.32xlarge");
+        /// <summary>
+        /// Constant MlM6id4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6id4xlarge = new InstanceType("ml.m6id.4xlarge");
+        /// <summary>
+        /// Constant MlM6id8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6id8xlarge = new InstanceType("ml.m6id.8xlarge");
+        /// <summary>
+        /// Constant MlM6idLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6idLarge = new InstanceType("ml.m6id.large");
+        /// <summary>
+        /// Constant MlM6idXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6idXlarge = new InstanceType("ml.m6id.xlarge");
+        /// <summary>
+        /// Constant MlM6iLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6iLarge = new InstanceType("ml.m6i.large");
+        /// <summary>
+        /// Constant MlM6iXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM6iXlarge = new InstanceType("ml.m6i.xlarge");
+        /// <summary>
+        /// Constant MlM7i12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7i12xlarge = new InstanceType("ml.m7i.12xlarge");
+        /// <summary>
+        /// Constant MlM7i16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7i16xlarge = new InstanceType("ml.m7i.16xlarge");
+        /// <summary>
+        /// Constant MlM7i24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7i24xlarge = new InstanceType("ml.m7i.24xlarge");
+        /// <summary>
+        /// Constant MlM7i2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7i2xlarge = new InstanceType("ml.m7i.2xlarge");
+        /// <summary>
+        /// Constant MlM7i48xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7i48xlarge = new InstanceType("ml.m7i.48xlarge");
+        /// <summary>
+        /// Constant MlM7i4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7i4xlarge = new InstanceType("ml.m7i.4xlarge");
+        /// <summary>
+        /// Constant MlM7i8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7i8xlarge = new InstanceType("ml.m7i.8xlarge");
+        /// <summary>
+        /// Constant MlM7iLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7iLarge = new InstanceType("ml.m7i.large");
+        /// <summary>
+        /// Constant MlM7iXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlM7iXlarge = new InstanceType("ml.m7i.xlarge");
+        /// <summary>
         /// Constant MlP216xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType MlP216xlarge = new InstanceType("ml.p2.16xlarge");
@@ -6867,6 +8797,10 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly InstanceType MlP4de24xlarge = new InstanceType("ml.p4de.24xlarge");
         /// <summary>
+        /// Constant MlP548xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlP548xlarge = new InstanceType("ml.p5.48xlarge");
+        /// <summary>
         /// Constant MlR512xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType MlR512xlarge = new InstanceType("ml.r5.12xlarge");
@@ -6899,6 +8833,114 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly InstanceType MlR5Xlarge = new InstanceType("ml.r5.xlarge");
         /// <summary>
+        /// Constant MlR6i12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6i12xlarge = new InstanceType("ml.r6i.12xlarge");
+        /// <summary>
+        /// Constant MlR6i16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6i16xlarge = new InstanceType("ml.r6i.16xlarge");
+        /// <summary>
+        /// Constant MlR6i24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6i24xlarge = new InstanceType("ml.r6i.24xlarge");
+        /// <summary>
+        /// Constant MlR6i2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6i2xlarge = new InstanceType("ml.r6i.2xlarge");
+        /// <summary>
+        /// Constant MlR6i32xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6i32xlarge = new InstanceType("ml.r6i.32xlarge");
+        /// <summary>
+        /// Constant MlR6i4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6i4xlarge = new InstanceType("ml.r6i.4xlarge");
+        /// <summary>
+        /// Constant MlR6i8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6i8xlarge = new InstanceType("ml.r6i.8xlarge");
+        /// <summary>
+        /// Constant MlR6id12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6id12xlarge = new InstanceType("ml.r6id.12xlarge");
+        /// <summary>
+        /// Constant MlR6id16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6id16xlarge = new InstanceType("ml.r6id.16xlarge");
+        /// <summary>
+        /// Constant MlR6id24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6id24xlarge = new InstanceType("ml.r6id.24xlarge");
+        /// <summary>
+        /// Constant MlR6id2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6id2xlarge = new InstanceType("ml.r6id.2xlarge");
+        /// <summary>
+        /// Constant MlR6id32xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6id32xlarge = new InstanceType("ml.r6id.32xlarge");
+        /// <summary>
+        /// Constant MlR6id4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6id4xlarge = new InstanceType("ml.r6id.4xlarge");
+        /// <summary>
+        /// Constant MlR6id8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6id8xlarge = new InstanceType("ml.r6id.8xlarge");
+        /// <summary>
+        /// Constant MlR6idLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6idLarge = new InstanceType("ml.r6id.large");
+        /// <summary>
+        /// Constant MlR6idXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6idXlarge = new InstanceType("ml.r6id.xlarge");
+        /// <summary>
+        /// Constant MlR6iLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6iLarge = new InstanceType("ml.r6i.large");
+        /// <summary>
+        /// Constant MlR6iXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR6iXlarge = new InstanceType("ml.r6i.xlarge");
+        /// <summary>
+        /// Constant MlR7i12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7i12xlarge = new InstanceType("ml.r7i.12xlarge");
+        /// <summary>
+        /// Constant MlR7i16xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7i16xlarge = new InstanceType("ml.r7i.16xlarge");
+        /// <summary>
+        /// Constant MlR7i24xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7i24xlarge = new InstanceType("ml.r7i.24xlarge");
+        /// <summary>
+        /// Constant MlR7i2xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7i2xlarge = new InstanceType("ml.r7i.2xlarge");
+        /// <summary>
+        /// Constant MlR7i48xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7i48xlarge = new InstanceType("ml.r7i.48xlarge");
+        /// <summary>
+        /// Constant MlR7i4xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7i4xlarge = new InstanceType("ml.r7i.4xlarge");
+        /// <summary>
+        /// Constant MlR7i8xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7i8xlarge = new InstanceType("ml.r7i.8xlarge");
+        /// <summary>
+        /// Constant MlR7iLarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7iLarge = new InstanceType("ml.r7i.large");
+        /// <summary>
+        /// Constant MlR7iXlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlR7iXlarge = new InstanceType("ml.r7i.xlarge");
+        /// <summary>
         /// Constant MlT22xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType MlT22xlarge = new InstanceType("ml.t2.2xlarge");
@@ -6930,6 +8972,18 @@ namespace Amazon.SageMaker
         /// Constant MlT3Xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType MlT3Xlarge = new InstanceType("ml.t3.xlarge");
+        /// <summary>
+        /// Constant MlTrn12xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlTrn12xlarge = new InstanceType("ml.trn1.2xlarge");
+        /// <summary>
+        /// Constant MlTrn132xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlTrn132xlarge = new InstanceType("ml.trn1.32xlarge");
+        /// <summary>
+        /// Constant MlTrn1n32xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType MlTrn1n32xlarge = new InstanceType("ml.trn1n.32xlarge");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -6960,6 +9014,56 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator InstanceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type IsTrackingServerActive.
+    /// </summary>
+    public class IsTrackingServerActive : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Active for IsTrackingServerActive
+        /// </summary>
+        public static readonly IsTrackingServerActive Active = new IsTrackingServerActive("Active");
+        /// <summary>
+        /// Constant Inactive for IsTrackingServerActive
+        /// </summary>
+        public static readonly IsTrackingServerActive Inactive = new IsTrackingServerActive("Inactive");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public IsTrackingServerActive(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static IsTrackingServerActive FindValue(string value)
+        {
+            return FindValue<IsTrackingServerActive>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator IsTrackingServerActive(string value)
         {
             return FindValue(value);
         }
@@ -7184,6 +9288,56 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator LastUpdateStatusValue(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type LifecycleManagement.
+    /// </summary>
+    public class LifecycleManagement : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for LifecycleManagement
+        /// </summary>
+        public static readonly LifecycleManagement DISABLED = new LifecycleManagement("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for LifecycleManagement
+        /// </summary>
+        public static readonly LifecycleManagement ENABLED = new LifecycleManagement("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public LifecycleManagement(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static LifecycleManagement FindValue(string value)
+        {
+            return FindValue<LifecycleManagement>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator LifecycleManagement(string value)
         {
             return FindValue(value);
         }
@@ -7577,6 +9731,60 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type ListOptimizationJobsSortBy.
+    /// </summary>
+    public class ListOptimizationJobsSortBy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CreationTime for ListOptimizationJobsSortBy
+        /// </summary>
+        public static readonly ListOptimizationJobsSortBy CreationTime = new ListOptimizationJobsSortBy("CreationTime");
+        /// <summary>
+        /// Constant Name for ListOptimizationJobsSortBy
+        /// </summary>
+        public static readonly ListOptimizationJobsSortBy Name = new ListOptimizationJobsSortBy("Name");
+        /// <summary>
+        /// Constant Status for ListOptimizationJobsSortBy
+        /// </summary>
+        public static readonly ListOptimizationJobsSortBy Status = new ListOptimizationJobsSortBy("Status");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ListOptimizationJobsSortBy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ListOptimizationJobsSortBy FindValue(string value)
+        {
+            return FindValue<ListOptimizationJobsSortBy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ListOptimizationJobsSortBy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ListWorkforcesSortByOptions.
     /// </summary>
     public class ListWorkforcesSortByOptions : ConstantClass
@@ -7677,6 +9885,56 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type ManagedInstanceScalingStatus.
+    /// </summary>
+    public class ManagedInstanceScalingStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for ManagedInstanceScalingStatus
+        /// </summary>
+        public static readonly ManagedInstanceScalingStatus DISABLED = new ManagedInstanceScalingStatus("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for ManagedInstanceScalingStatus
+        /// </summary>
+        public static readonly ManagedInstanceScalingStatus ENABLED = new ManagedInstanceScalingStatus("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ManagedInstanceScalingStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ManagedInstanceScalingStatus FindValue(string value)
+        {
+            return FindValue<ManagedInstanceScalingStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ManagedInstanceScalingStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type MetricSetSource.
     /// </summary>
     public class MetricSetSource : ConstantClass
@@ -7724,6 +9982,128 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator MetricSetSource(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type MlTools.
+    /// </summary>
+    public class MlTools : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant AutoMl for MlTools
+        /// </summary>
+        public static readonly MlTools AutoMl = new MlTools("AutoMl");
+        /// <summary>
+        /// Constant Comet for MlTools
+        /// </summary>
+        public static readonly MlTools Comet = new MlTools("Comet");
+        /// <summary>
+        /// Constant DataWrangler for MlTools
+        /// </summary>
+        public static readonly MlTools DataWrangler = new MlTools("DataWrangler");
+        /// <summary>
+        /// Constant DeepchecksLLMEvaluation for MlTools
+        /// </summary>
+        public static readonly MlTools DeepchecksLLMEvaluation = new MlTools("DeepchecksLLMEvaluation");
+        /// <summary>
+        /// Constant EmrClusters for MlTools
+        /// </summary>
+        public static readonly MlTools EmrClusters = new MlTools("EmrClusters");
+        /// <summary>
+        /// Constant Endpoints for MlTools
+        /// </summary>
+        public static readonly MlTools Endpoints = new MlTools("Endpoints");
+        /// <summary>
+        /// Constant Experiments for MlTools
+        /// </summary>
+        public static readonly MlTools Experiments = new MlTools("Experiments");
+        /// <summary>
+        /// Constant FeatureStore for MlTools
+        /// </summary>
+        public static readonly MlTools FeatureStore = new MlTools("FeatureStore");
+        /// <summary>
+        /// Constant Fiddler for MlTools
+        /// </summary>
+        public static readonly MlTools Fiddler = new MlTools("Fiddler");
+        /// <summary>
+        /// Constant HyperPodClusters for MlTools
+        /// </summary>
+        public static readonly MlTools HyperPodClusters = new MlTools("HyperPodClusters");
+        /// <summary>
+        /// Constant InferenceOptimization for MlTools
+        /// </summary>
+        public static readonly MlTools InferenceOptimization = new MlTools("InferenceOptimization");
+        /// <summary>
+        /// Constant InferenceRecommender for MlTools
+        /// </summary>
+        public static readonly MlTools InferenceRecommender = new MlTools("InferenceRecommender");
+        /// <summary>
+        /// Constant JumpStart for MlTools
+        /// </summary>
+        public static readonly MlTools JumpStart = new MlTools("JumpStart");
+        /// <summary>
+        /// Constant LakeraGuard for MlTools
+        /// </summary>
+        public static readonly MlTools LakeraGuard = new MlTools("LakeraGuard");
+        /// <summary>
+        /// Constant ModelEvaluation for MlTools
+        /// </summary>
+        public static readonly MlTools ModelEvaluation = new MlTools("ModelEvaluation");
+        /// <summary>
+        /// Constant Models for MlTools
+        /// </summary>
+        public static readonly MlTools Models = new MlTools("Models");
+        /// <summary>
+        /// Constant PerformanceEvaluation for MlTools
+        /// </summary>
+        public static readonly MlTools PerformanceEvaluation = new MlTools("PerformanceEvaluation");
+        /// <summary>
+        /// Constant Pipelines for MlTools
+        /// </summary>
+        public static readonly MlTools Pipelines = new MlTools("Pipelines");
+        /// <summary>
+        /// Constant Projects for MlTools
+        /// </summary>
+        public static readonly MlTools Projects = new MlTools("Projects");
+        /// <summary>
+        /// Constant Training for MlTools
+        /// </summary>
+        public static readonly MlTools Training = new MlTools("Training");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public MlTools(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static MlTools FindValue(string value)
+        {
+            return FindValue<MlTools>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator MlTools(string value)
         {
             return FindValue(value);
         }
@@ -9749,7 +12129,7 @@ namespace Amazon.SageMaker
         /// <summary>
         /// Constant Equals for Operator
         /// </summary>
-        public static readonly Operator Equals = new Operator("Equals");
+        public new static readonly Operator Equals = new Operator("Equals");
         /// <summary>
         /// Constant Exists for Operator
         /// </summary>
@@ -9812,6 +12192,218 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator Operator(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type OptimizationJobDeploymentInstanceType.
+    /// </summary>
+    public class OptimizationJobDeploymentInstanceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MlG512xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG512xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.12xlarge");
+        /// <summary>
+        /// Constant MlG516xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG516xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.16xlarge");
+        /// <summary>
+        /// Constant MlG524xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG524xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.24xlarge");
+        /// <summary>
+        /// Constant MlG52xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG52xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.2xlarge");
+        /// <summary>
+        /// Constant MlG548xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG548xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.48xlarge");
+        /// <summary>
+        /// Constant MlG54xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG54xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.4xlarge");
+        /// <summary>
+        /// Constant MlG58xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG58xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.8xlarge");
+        /// <summary>
+        /// Constant MlG5Xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG5Xlarge = new OptimizationJobDeploymentInstanceType("ml.g5.xlarge");
+        /// <summary>
+        /// Constant MlG612xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG612xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.12xlarge");
+        /// <summary>
+        /// Constant MlG616xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG616xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.16xlarge");
+        /// <summary>
+        /// Constant MlG624xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG624xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.24xlarge");
+        /// <summary>
+        /// Constant MlG62xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG62xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.2xlarge");
+        /// <summary>
+        /// Constant MlG648xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG648xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.48xlarge");
+        /// <summary>
+        /// Constant MlG64xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG64xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.4xlarge");
+        /// <summary>
+        /// Constant MlG68xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG68xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.8xlarge");
+        /// <summary>
+        /// Constant MlG6Xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlG6Xlarge = new OptimizationJobDeploymentInstanceType("ml.g6.xlarge");
+        /// <summary>
+        /// Constant MlInf224xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlInf224xlarge = new OptimizationJobDeploymentInstanceType("ml.inf2.24xlarge");
+        /// <summary>
+        /// Constant MlInf248xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlInf248xlarge = new OptimizationJobDeploymentInstanceType("ml.inf2.48xlarge");
+        /// <summary>
+        /// Constant MlInf28xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlInf28xlarge = new OptimizationJobDeploymentInstanceType("ml.inf2.8xlarge");
+        /// <summary>
+        /// Constant MlInf2Xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlInf2Xlarge = new OptimizationJobDeploymentInstanceType("ml.inf2.xlarge");
+        /// <summary>
+        /// Constant MlP4d24xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlP4d24xlarge = new OptimizationJobDeploymentInstanceType("ml.p4d.24xlarge");
+        /// <summary>
+        /// Constant MlP4de24xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlP4de24xlarge = new OptimizationJobDeploymentInstanceType("ml.p4de.24xlarge");
+        /// <summary>
+        /// Constant MlP548xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlP548xlarge = new OptimizationJobDeploymentInstanceType("ml.p5.48xlarge");
+        /// <summary>
+        /// Constant MlTrn12xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlTrn12xlarge = new OptimizationJobDeploymentInstanceType("ml.trn1.2xlarge");
+        /// <summary>
+        /// Constant MlTrn132xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlTrn132xlarge = new OptimizationJobDeploymentInstanceType("ml.trn1.32xlarge");
+        /// <summary>
+        /// Constant MlTrn1n32xlarge for OptimizationJobDeploymentInstanceType
+        /// </summary>
+        public static readonly OptimizationJobDeploymentInstanceType MlTrn1n32xlarge = new OptimizationJobDeploymentInstanceType("ml.trn1n.32xlarge");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public OptimizationJobDeploymentInstanceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static OptimizationJobDeploymentInstanceType FindValue(string value)
+        {
+            return FindValue<OptimizationJobDeploymentInstanceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator OptimizationJobDeploymentInstanceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type OptimizationJobStatus.
+    /// </summary>
+    public class OptimizationJobStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant COMPLETED for OptimizationJobStatus
+        /// </summary>
+        public static readonly OptimizationJobStatus COMPLETED = new OptimizationJobStatus("COMPLETED");
+        /// <summary>
+        /// Constant FAILED for OptimizationJobStatus
+        /// </summary>
+        public static readonly OptimizationJobStatus FAILED = new OptimizationJobStatus("FAILED");
+        /// <summary>
+        /// Constant INPROGRESS for OptimizationJobStatus
+        /// </summary>
+        public static readonly OptimizationJobStatus INPROGRESS = new OptimizationJobStatus("INPROGRESS");
+        /// <summary>
+        /// Constant STARTING for OptimizationJobStatus
+        /// </summary>
+        public static readonly OptimizationJobStatus STARTING = new OptimizationJobStatus("STARTING");
+        /// <summary>
+        /// Constant STOPPED for OptimizationJobStatus
+        /// </summary>
+        public static readonly OptimizationJobStatus STOPPED = new OptimizationJobStatus("STOPPED");
+        /// <summary>
+        /// Constant STOPPING for OptimizationJobStatus
+        /// </summary>
+        public static readonly OptimizationJobStatus STOPPING = new OptimizationJobStatus("STOPPING");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public OptimizationJobStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static OptimizationJobStatus FindValue(string value)
+        {
+            return FindValue<OptimizationJobStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator OptimizationJobStatus(string value)
         {
             return FindValue(value);
         }
@@ -9977,6 +12569,180 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type PartnerAppAuthType.
+    /// </summary>
+    public class PartnerAppAuthType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant IAM for PartnerAppAuthType
+        /// </summary>
+        public static readonly PartnerAppAuthType IAM = new PartnerAppAuthType("IAM");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PartnerAppAuthType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PartnerAppAuthType FindValue(string value)
+        {
+            return FindValue<PartnerAppAuthType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PartnerAppAuthType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PartnerAppStatus.
+    /// </summary>
+    public class PartnerAppStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Available for PartnerAppStatus
+        /// </summary>
+        public static readonly PartnerAppStatus Available = new PartnerAppStatus("Available");
+        /// <summary>
+        /// Constant Creating for PartnerAppStatus
+        /// </summary>
+        public static readonly PartnerAppStatus Creating = new PartnerAppStatus("Creating");
+        /// <summary>
+        /// Constant Deleted for PartnerAppStatus
+        /// </summary>
+        public static readonly PartnerAppStatus Deleted = new PartnerAppStatus("Deleted");
+        /// <summary>
+        /// Constant Deleting for PartnerAppStatus
+        /// </summary>
+        public static readonly PartnerAppStatus Deleting = new PartnerAppStatus("Deleting");
+        /// <summary>
+        /// Constant Failed for PartnerAppStatus
+        /// </summary>
+        public static readonly PartnerAppStatus Failed = new PartnerAppStatus("Failed");
+        /// <summary>
+        /// Constant UpdateFailed for PartnerAppStatus
+        /// </summary>
+        public static readonly PartnerAppStatus UpdateFailed = new PartnerAppStatus("UpdateFailed");
+        /// <summary>
+        /// Constant Updating for PartnerAppStatus
+        /// </summary>
+        public static readonly PartnerAppStatus Updating = new PartnerAppStatus("Updating");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PartnerAppStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PartnerAppStatus FindValue(string value)
+        {
+            return FindValue<PartnerAppStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PartnerAppStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PartnerAppType.
+    /// </summary>
+    public class PartnerAppType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Comet for PartnerAppType
+        /// </summary>
+        public static readonly PartnerAppType Comet = new PartnerAppType("comet");
+        /// <summary>
+        /// Constant DeepchecksLlmEvaluation for PartnerAppType
+        /// </summary>
+        public static readonly PartnerAppType DeepchecksLlmEvaluation = new PartnerAppType("deepchecks-llm-evaluation");
+        /// <summary>
+        /// Constant Fiddler for PartnerAppType
+        /// </summary>
+        public static readonly PartnerAppType Fiddler = new PartnerAppType("fiddler");
+        /// <summary>
+        /// Constant LakeraGuard for PartnerAppType
+        /// </summary>
+        public static readonly PartnerAppType LakeraGuard = new PartnerAppType("lakera-guard");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PartnerAppType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PartnerAppType FindValue(string value)
+        {
+            return FindValue<PartnerAppType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PartnerAppType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type PipelineExecutionStatus.
     /// </summary>
     public class PipelineExecutionStatus : ConstantClass
@@ -10048,6 +12814,10 @@ namespace Amazon.SageMaker
         /// Constant Active for PipelineStatus
         /// </summary>
         public static readonly PipelineStatus Active = new PipelineStatus("Active");
+        /// <summary>
+        /// Constant Deleting for PipelineStatus
+        /// </summary>
+        public static readonly PipelineStatus Deleting = new PipelineStatus("Deleting");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -10078,6 +12848,56 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator PipelineStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type PreemptTeamTasks.
+    /// </summary>
+    public class PreemptTeamTasks : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant LowerPriority for PreemptTeamTasks
+        /// </summary>
+        public static readonly PreemptTeamTasks LowerPriority = new PreemptTeamTasks("LowerPriority");
+        /// <summary>
+        /// Constant Never for PreemptTeamTasks
+        /// </summary>
+        public static readonly PreemptTeamTasks Never = new PreemptTeamTasks("Never");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public PreemptTeamTasks(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static PreemptTeamTasks FindValue(string value)
+        {
+            return FindValue<PreemptTeamTasks>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator PreemptTeamTasks(string value)
         {
             return FindValue(value);
         }
@@ -10205,6 +13025,38 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly ProcessingInstanceType MlG4dnXlarge = new ProcessingInstanceType("ml.g4dn.xlarge");
         /// <summary>
+        /// Constant MlG512xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG512xlarge = new ProcessingInstanceType("ml.g5.12xlarge");
+        /// <summary>
+        /// Constant MlG516xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG516xlarge = new ProcessingInstanceType("ml.g5.16xlarge");
+        /// <summary>
+        /// Constant MlG524xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG524xlarge = new ProcessingInstanceType("ml.g5.24xlarge");
+        /// <summary>
+        /// Constant MlG52xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG52xlarge = new ProcessingInstanceType("ml.g5.2xlarge");
+        /// <summary>
+        /// Constant MlG548xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG548xlarge = new ProcessingInstanceType("ml.g5.48xlarge");
+        /// <summary>
+        /// Constant MlG54xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG54xlarge = new ProcessingInstanceType("ml.g5.4xlarge");
+        /// <summary>
+        /// Constant MlG58xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG58xlarge = new ProcessingInstanceType("ml.g5.8xlarge");
+        /// <summary>
+        /// Constant MlG5Xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlG5Xlarge = new ProcessingInstanceType("ml.g5.xlarge");
+        /// <summary>
         /// Constant MlM410xlarge for ProcessingInstanceType
         /// </summary>
         public static readonly ProcessingInstanceType MlM410xlarge = new ProcessingInstanceType("ml.m4.10xlarge");
@@ -10296,6 +13148,38 @@ namespace Amazon.SageMaker
         /// Constant MlR58xlarge for ProcessingInstanceType
         /// </summary>
         public static readonly ProcessingInstanceType MlR58xlarge = new ProcessingInstanceType("ml.r5.8xlarge");
+        /// <summary>
+        /// Constant MlR5d12xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5d12xlarge = new ProcessingInstanceType("ml.r5d.12xlarge");
+        /// <summary>
+        /// Constant MlR5d16xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5d16xlarge = new ProcessingInstanceType("ml.r5d.16xlarge");
+        /// <summary>
+        /// Constant MlR5d24xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5d24xlarge = new ProcessingInstanceType("ml.r5d.24xlarge");
+        /// <summary>
+        /// Constant MlR5d2xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5d2xlarge = new ProcessingInstanceType("ml.r5d.2xlarge");
+        /// <summary>
+        /// Constant MlR5d4xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5d4xlarge = new ProcessingInstanceType("ml.r5d.4xlarge");
+        /// <summary>
+        /// Constant MlR5d8xlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5d8xlarge = new ProcessingInstanceType("ml.r5d.8xlarge");
+        /// <summary>
+        /// Constant MlR5dLarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5dLarge = new ProcessingInstanceType("ml.r5d.large");
+        /// <summary>
+        /// Constant MlR5dXlarge for ProcessingInstanceType
+        /// </summary>
+        public static readonly ProcessingInstanceType MlR5dXlarge = new ProcessingInstanceType("ml.r5d.xlarge");
         /// <summary>
         /// Constant MlR5Large for ProcessingInstanceType
         /// </summary>
@@ -10785,6 +13669,52 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type ProductionVariantInferenceAmiVersion.
+    /// </summary>
+    public class ProductionVariantInferenceAmiVersion : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Al2AmiSagemakerInferenceGpu2 for ProductionVariantInferenceAmiVersion
+        /// </summary>
+        public static readonly ProductionVariantInferenceAmiVersion Al2AmiSagemakerInferenceGpu2 = new ProductionVariantInferenceAmiVersion("al2-ami-sagemaker-inference-gpu-2");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ProductionVariantInferenceAmiVersion(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ProductionVariantInferenceAmiVersion FindValue(string value)
+        {
+            return FindValue<ProductionVariantInferenceAmiVersion>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ProductionVariantInferenceAmiVersion(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ProductionVariantInstanceType.
     /// </summary>
     public class ProductionVariantInstanceType : ConstantClass
@@ -11007,6 +13937,46 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly ProductionVariantInstanceType MlC7gXlarge = new ProductionVariantInstanceType("ml.c7g.xlarge");
         /// <summary>
+        /// Constant MlC7i12xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7i12xlarge = new ProductionVariantInstanceType("ml.c7i.12xlarge");
+        /// <summary>
+        /// Constant MlC7i16xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7i16xlarge = new ProductionVariantInstanceType("ml.c7i.16xlarge");
+        /// <summary>
+        /// Constant MlC7i24xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7i24xlarge = new ProductionVariantInstanceType("ml.c7i.24xlarge");
+        /// <summary>
+        /// Constant MlC7i2xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7i2xlarge = new ProductionVariantInstanceType("ml.c7i.2xlarge");
+        /// <summary>
+        /// Constant MlC7i48xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7i48xlarge = new ProductionVariantInstanceType("ml.c7i.48xlarge");
+        /// <summary>
+        /// Constant MlC7i4xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7i4xlarge = new ProductionVariantInstanceType("ml.c7i.4xlarge");
+        /// <summary>
+        /// Constant MlC7i8xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7i8xlarge = new ProductionVariantInstanceType("ml.c7i.8xlarge");
+        /// <summary>
+        /// Constant MlC7iLarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7iLarge = new ProductionVariantInstanceType("ml.c7i.large");
+        /// <summary>
+        /// Constant MlC7iXlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlC7iXlarge = new ProductionVariantInstanceType("ml.c7i.xlarge");
+        /// <summary>
+        /// Constant MlDl124xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlDl124xlarge = new ProductionVariantInstanceType("ml.dl1.24xlarge");
+        /// <summary>
         /// Constant MlG4dn12xlarge for ProductionVariantInstanceType
         /// </summary>
         public static readonly ProductionVariantInstanceType MlG4dn12xlarge = new ProductionVariantInstanceType("ml.g4dn.12xlarge");
@@ -11062,6 +14032,70 @@ namespace Amazon.SageMaker
         /// Constant MlG5Xlarge for ProductionVariantInstanceType
         /// </summary>
         public static readonly ProductionVariantInstanceType MlG5Xlarge = new ProductionVariantInstanceType("ml.g5.xlarge");
+        /// <summary>
+        /// Constant MlG612xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG612xlarge = new ProductionVariantInstanceType("ml.g6.12xlarge");
+        /// <summary>
+        /// Constant MlG616xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG616xlarge = new ProductionVariantInstanceType("ml.g6.16xlarge");
+        /// <summary>
+        /// Constant MlG624xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG624xlarge = new ProductionVariantInstanceType("ml.g6.24xlarge");
+        /// <summary>
+        /// Constant MlG62xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG62xlarge = new ProductionVariantInstanceType("ml.g6.2xlarge");
+        /// <summary>
+        /// Constant MlG648xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG648xlarge = new ProductionVariantInstanceType("ml.g6.48xlarge");
+        /// <summary>
+        /// Constant MlG64xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG64xlarge = new ProductionVariantInstanceType("ml.g6.4xlarge");
+        /// <summary>
+        /// Constant MlG68xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG68xlarge = new ProductionVariantInstanceType("ml.g6.8xlarge");
+        /// <summary>
+        /// Constant MlG6e12xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6e12xlarge = new ProductionVariantInstanceType("ml.g6e.12xlarge");
+        /// <summary>
+        /// Constant MlG6e16xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6e16xlarge = new ProductionVariantInstanceType("ml.g6e.16xlarge");
+        /// <summary>
+        /// Constant MlG6e24xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6e24xlarge = new ProductionVariantInstanceType("ml.g6e.24xlarge");
+        /// <summary>
+        /// Constant MlG6e2xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6e2xlarge = new ProductionVariantInstanceType("ml.g6e.2xlarge");
+        /// <summary>
+        /// Constant MlG6e48xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6e48xlarge = new ProductionVariantInstanceType("ml.g6e.48xlarge");
+        /// <summary>
+        /// Constant MlG6e4xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6e4xlarge = new ProductionVariantInstanceType("ml.g6e.4xlarge");
+        /// <summary>
+        /// Constant MlG6e8xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6e8xlarge = new ProductionVariantInstanceType("ml.g6e.8xlarge");
+        /// <summary>
+        /// Constant MlG6eXlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6eXlarge = new ProductionVariantInstanceType("ml.g6e.xlarge");
+        /// <summary>
+        /// Constant MlG6Xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlG6Xlarge = new ProductionVariantInstanceType("ml.g6.xlarge");
         /// <summary>
         /// Constant MlInf124xlarge for ProductionVariantInstanceType
         /// </summary>
@@ -11219,6 +14253,78 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly ProductionVariantInstanceType MlM6gXlarge = new ProductionVariantInstanceType("ml.m6g.xlarge");
         /// <summary>
+        /// Constant MlM6i12xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6i12xlarge = new ProductionVariantInstanceType("ml.m6i.12xlarge");
+        /// <summary>
+        /// Constant MlM6i16xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6i16xlarge = new ProductionVariantInstanceType("ml.m6i.16xlarge");
+        /// <summary>
+        /// Constant MlM6i24xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6i24xlarge = new ProductionVariantInstanceType("ml.m6i.24xlarge");
+        /// <summary>
+        /// Constant MlM6i2xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6i2xlarge = new ProductionVariantInstanceType("ml.m6i.2xlarge");
+        /// <summary>
+        /// Constant MlM6i32xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6i32xlarge = new ProductionVariantInstanceType("ml.m6i.32xlarge");
+        /// <summary>
+        /// Constant MlM6i4xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6i4xlarge = new ProductionVariantInstanceType("ml.m6i.4xlarge");
+        /// <summary>
+        /// Constant MlM6i8xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6i8xlarge = new ProductionVariantInstanceType("ml.m6i.8xlarge");
+        /// <summary>
+        /// Constant MlM6iLarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6iLarge = new ProductionVariantInstanceType("ml.m6i.large");
+        /// <summary>
+        /// Constant MlM6iXlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM6iXlarge = new ProductionVariantInstanceType("ml.m6i.xlarge");
+        /// <summary>
+        /// Constant MlM7i12xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7i12xlarge = new ProductionVariantInstanceType("ml.m7i.12xlarge");
+        /// <summary>
+        /// Constant MlM7i16xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7i16xlarge = new ProductionVariantInstanceType("ml.m7i.16xlarge");
+        /// <summary>
+        /// Constant MlM7i24xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7i24xlarge = new ProductionVariantInstanceType("ml.m7i.24xlarge");
+        /// <summary>
+        /// Constant MlM7i2xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7i2xlarge = new ProductionVariantInstanceType("ml.m7i.2xlarge");
+        /// <summary>
+        /// Constant MlM7i48xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7i48xlarge = new ProductionVariantInstanceType("ml.m7i.48xlarge");
+        /// <summary>
+        /// Constant MlM7i4xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7i4xlarge = new ProductionVariantInstanceType("ml.m7i.4xlarge");
+        /// <summary>
+        /// Constant MlM7i8xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7i8xlarge = new ProductionVariantInstanceType("ml.m7i.8xlarge");
+        /// <summary>
+        /// Constant MlM7iLarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7iLarge = new ProductionVariantInstanceType("ml.m7i.large");
+        /// <summary>
+        /// Constant MlM7iXlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlM7iXlarge = new ProductionVariantInstanceType("ml.m7i.xlarge");
+        /// <summary>
         /// Constant MlP216xlarge for ProductionVariantInstanceType
         /// </summary>
         public static readonly ProductionVariantInstanceType MlP216xlarge = new ProductionVariantInstanceType("ml.p2.16xlarge");
@@ -11254,6 +14360,10 @@ namespace Amazon.SageMaker
         /// Constant MlP548xlarge for ProductionVariantInstanceType
         /// </summary>
         public static readonly ProductionVariantInstanceType MlP548xlarge = new ProductionVariantInstanceType("ml.p5.48xlarge");
+        /// <summary>
+        /// Constant MlP5e48xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlP5e48xlarge = new ProductionVariantInstanceType("ml.p5e.48xlarge");
         /// <summary>
         /// Constant MlR512xlarge for ProductionVariantInstanceType
         /// </summary>
@@ -11359,6 +14469,78 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly ProductionVariantInstanceType MlR6gXlarge = new ProductionVariantInstanceType("ml.r6g.xlarge");
         /// <summary>
+        /// Constant MlR6i12xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6i12xlarge = new ProductionVariantInstanceType("ml.r6i.12xlarge");
+        /// <summary>
+        /// Constant MlR6i16xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6i16xlarge = new ProductionVariantInstanceType("ml.r6i.16xlarge");
+        /// <summary>
+        /// Constant MlR6i24xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6i24xlarge = new ProductionVariantInstanceType("ml.r6i.24xlarge");
+        /// <summary>
+        /// Constant MlR6i2xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6i2xlarge = new ProductionVariantInstanceType("ml.r6i.2xlarge");
+        /// <summary>
+        /// Constant MlR6i32xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6i32xlarge = new ProductionVariantInstanceType("ml.r6i.32xlarge");
+        /// <summary>
+        /// Constant MlR6i4xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6i4xlarge = new ProductionVariantInstanceType("ml.r6i.4xlarge");
+        /// <summary>
+        /// Constant MlR6i8xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6i8xlarge = new ProductionVariantInstanceType("ml.r6i.8xlarge");
+        /// <summary>
+        /// Constant MlR6iLarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6iLarge = new ProductionVariantInstanceType("ml.r6i.large");
+        /// <summary>
+        /// Constant MlR6iXlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR6iXlarge = new ProductionVariantInstanceType("ml.r6i.xlarge");
+        /// <summary>
+        /// Constant MlR7i12xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7i12xlarge = new ProductionVariantInstanceType("ml.r7i.12xlarge");
+        /// <summary>
+        /// Constant MlR7i16xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7i16xlarge = new ProductionVariantInstanceType("ml.r7i.16xlarge");
+        /// <summary>
+        /// Constant MlR7i24xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7i24xlarge = new ProductionVariantInstanceType("ml.r7i.24xlarge");
+        /// <summary>
+        /// Constant MlR7i2xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7i2xlarge = new ProductionVariantInstanceType("ml.r7i.2xlarge");
+        /// <summary>
+        /// Constant MlR7i48xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7i48xlarge = new ProductionVariantInstanceType("ml.r7i.48xlarge");
+        /// <summary>
+        /// Constant MlR7i4xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7i4xlarge = new ProductionVariantInstanceType("ml.r7i.4xlarge");
+        /// <summary>
+        /// Constant MlR7i8xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7i8xlarge = new ProductionVariantInstanceType("ml.r7i.8xlarge");
+        /// <summary>
+        /// Constant MlR7iLarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7iLarge = new ProductionVariantInstanceType("ml.r7i.large");
+        /// <summary>
+        /// Constant MlR7iXlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlR7iXlarge = new ProductionVariantInstanceType("ml.r7i.xlarge");
+        /// <summary>
         /// Constant MlT22xlarge for ProductionVariantInstanceType
         /// </summary>
         public static readonly ProductionVariantInstanceType MlT22xlarge = new ProductionVariantInstanceType("ml.t2.2xlarge");
@@ -11382,6 +14564,14 @@ namespace Amazon.SageMaker
         /// Constant MlTrn132xlarge for ProductionVariantInstanceType
         /// </summary>
         public static readonly ProductionVariantInstanceType MlTrn132xlarge = new ProductionVariantInstanceType("ml.trn1.32xlarge");
+        /// <summary>
+        /// Constant MlTrn1n32xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlTrn1n32xlarge = new ProductionVariantInstanceType("ml.trn1n.32xlarge");
+        /// <summary>
+        /// Constant MlTrn248xlarge for ProductionVariantInstanceType
+        /// </summary>
+        public static readonly ProductionVariantInstanceType MlTrn248xlarge = new ProductionVariantInstanceType("ml.trn2.48xlarge");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -11660,6 +14850,14 @@ namespace Amazon.SageMaker
         /// Constant COMPLETED for RecommendationJobStatus
         /// </summary>
         public static readonly RecommendationJobStatus COMPLETED = new RecommendationJobStatus("COMPLETED");
+        /// <summary>
+        /// Constant DELETED for RecommendationJobStatus
+        /// </summary>
+        public static readonly RecommendationJobStatus DELETED = new RecommendationJobStatus("DELETED");
+        /// <summary>
+        /// Constant DELETING for RecommendationJobStatus
+        /// </summary>
+        public static readonly RecommendationJobStatus DELETING = new RecommendationJobStatus("DELETING");
         /// <summary>
         /// Constant FAILED for RecommendationJobStatus
         /// </summary>
@@ -12133,6 +15331,130 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type ReservedCapacityInstanceType.
+    /// </summary>
+    public class ReservedCapacityInstanceType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant MlP4d24xlarge for ReservedCapacityInstanceType
+        /// </summary>
+        public static readonly ReservedCapacityInstanceType MlP4d24xlarge = new ReservedCapacityInstanceType("ml.p4d.24xlarge");
+        /// <summary>
+        /// Constant MlP548xlarge for ReservedCapacityInstanceType
+        /// </summary>
+        public static readonly ReservedCapacityInstanceType MlP548xlarge = new ReservedCapacityInstanceType("ml.p5.48xlarge");
+        /// <summary>
+        /// Constant MlP5e48xlarge for ReservedCapacityInstanceType
+        /// </summary>
+        public static readonly ReservedCapacityInstanceType MlP5e48xlarge = new ReservedCapacityInstanceType("ml.p5e.48xlarge");
+        /// <summary>
+        /// Constant MlP5en48xlarge for ReservedCapacityInstanceType
+        /// </summary>
+        public static readonly ReservedCapacityInstanceType MlP5en48xlarge = new ReservedCapacityInstanceType("ml.p5en.48xlarge");
+        /// <summary>
+        /// Constant MlTrn248xlarge for ReservedCapacityInstanceType
+        /// </summary>
+        public static readonly ReservedCapacityInstanceType MlTrn248xlarge = new ReservedCapacityInstanceType("ml.trn2.48xlarge");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ReservedCapacityInstanceType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ReservedCapacityInstanceType FindValue(string value)
+        {
+            return FindValue<ReservedCapacityInstanceType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ReservedCapacityInstanceType(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type ReservedCapacityStatus.
+    /// </summary>
+    public class ReservedCapacityStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Active for ReservedCapacityStatus
+        /// </summary>
+        public static readonly ReservedCapacityStatus Active = new ReservedCapacityStatus("Active");
+        /// <summary>
+        /// Constant Expired for ReservedCapacityStatus
+        /// </summary>
+        public static readonly ReservedCapacityStatus Expired = new ReservedCapacityStatus("Expired");
+        /// <summary>
+        /// Constant Failed for ReservedCapacityStatus
+        /// </summary>
+        public static readonly ReservedCapacityStatus Failed = new ReservedCapacityStatus("Failed");
+        /// <summary>
+        /// Constant Pending for ReservedCapacityStatus
+        /// </summary>
+        public static readonly ReservedCapacityStatus Pending = new ReservedCapacityStatus("Pending");
+        /// <summary>
+        /// Constant Scheduled for ReservedCapacityStatus
+        /// </summary>
+        public static readonly ReservedCapacityStatus Scheduled = new ReservedCapacityStatus("Scheduled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ReservedCapacityStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ReservedCapacityStatus FindValue(string value)
+        {
+            return FindValue<ReservedCapacityStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ReservedCapacityStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ResourceCatalogSortBy.
     /// </summary>
     public class ResourceCatalogSortBy : ConstantClass
@@ -12229,6 +15551,60 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type ResourceSharingStrategy.
+    /// </summary>
+    public class ResourceSharingStrategy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DontLend for ResourceSharingStrategy
+        /// </summary>
+        public static readonly ResourceSharingStrategy DontLend = new ResourceSharingStrategy("DontLend");
+        /// <summary>
+        /// Constant Lend for ResourceSharingStrategy
+        /// </summary>
+        public static readonly ResourceSharingStrategy Lend = new ResourceSharingStrategy("Lend");
+        /// <summary>
+        /// Constant LendAndBorrow for ResourceSharingStrategy
+        /// </summary>
+        public static readonly ResourceSharingStrategy LendAndBorrow = new ResourceSharingStrategy("LendAndBorrow");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ResourceSharingStrategy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ResourceSharingStrategy FindValue(string value)
+        {
+            return FindValue<ResourceSharingStrategy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ResourceSharingStrategy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type ResourceType.
     /// </summary>
     public class ResourceType : ConstantClass
@@ -12262,6 +15638,14 @@ namespace Amazon.SageMaker
         /// Constant HyperParameterTuningJob for ResourceType
         /// </summary>
         public static readonly ResourceType HyperParameterTuningJob = new ResourceType("HyperParameterTuningJob");
+        /// <summary>
+        /// Constant Image for ResourceType
+        /// </summary>
+        public static readonly ResourceType Image = new ResourceType("Image");
+        /// <summary>
+        /// Constant ImageVersion for ResourceType
+        /// </summary>
+        public static readonly ResourceType ImageVersion = new ResourceType("ImageVersion");
         /// <summary>
         /// Constant Model for ResourceType
         /// </summary>
@@ -12424,6 +15808,56 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator RootAccess(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type RoutingStrategy.
+    /// </summary>
+    public class RoutingStrategy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant LEAST_OUTSTANDING_REQUESTS for RoutingStrategy
+        /// </summary>
+        public static readonly RoutingStrategy LEAST_OUTSTANDING_REQUESTS = new RoutingStrategy("LEAST_OUTSTANDING_REQUESTS");
+        /// <summary>
+        /// Constant RANDOM for RoutingStrategy
+        /// </summary>
+        public static readonly RoutingStrategy RANDOM = new RoutingStrategy("RANDOM");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public RoutingStrategy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static RoutingStrategy FindValue(string value)
+        {
+            return FindValue<RoutingStrategy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator RoutingStrategy(string value)
         {
             return FindValue(value);
         }
@@ -12751,6 +16185,102 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type SageMakerImageName.
+    /// </summary>
+    public class SageMakerImageName : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Sagemaker_distribution for SageMakerImageName
+        /// </summary>
+        public static readonly SageMakerImageName Sagemaker_distribution = new SageMakerImageName("sagemaker_distribution");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SageMakerImageName(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SageMakerImageName FindValue(string value)
+        {
+            return FindValue<SageMakerImageName>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SageMakerImageName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SageMakerResourceName.
+    /// </summary>
+    public class SageMakerResourceName : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant HyperpodCluster for SageMakerResourceName
+        /// </summary>
+        public static readonly SageMakerResourceName HyperpodCluster = new SageMakerResourceName("hyperpod-cluster");
+        /// <summary>
+        /// Constant TrainingJob for SageMakerResourceName
+        /// </summary>
+        public static readonly SageMakerResourceName TrainingJob = new SageMakerResourceName("training-job");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SageMakerResourceName(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SageMakerResourceName FindValue(string value)
+        {
+            return FindValue<SageMakerResourceName>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SageMakerResourceName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type SagemakerServicecatalogStatus.
     /// </summary>
     public class SagemakerServicecatalogStatus : ConstantClass
@@ -12794,6 +16324,96 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SagemakerServicecatalogStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SchedulerResourceStatus.
+    /// </summary>
+    public class SchedulerResourceStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Created for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus Created = new SchedulerResourceStatus("Created");
+        /// <summary>
+        /// Constant CreateFailed for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus CreateFailed = new SchedulerResourceStatus("CreateFailed");
+        /// <summary>
+        /// Constant CreateRollbackFailed for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus CreateRollbackFailed = new SchedulerResourceStatus("CreateRollbackFailed");
+        /// <summary>
+        /// Constant Creating for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus Creating = new SchedulerResourceStatus("Creating");
+        /// <summary>
+        /// Constant Deleted for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus Deleted = new SchedulerResourceStatus("Deleted");
+        /// <summary>
+        /// Constant DeleteFailed for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus DeleteFailed = new SchedulerResourceStatus("DeleteFailed");
+        /// <summary>
+        /// Constant DeleteRollbackFailed for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus DeleteRollbackFailed = new SchedulerResourceStatus("DeleteRollbackFailed");
+        /// <summary>
+        /// Constant Deleting for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus Deleting = new SchedulerResourceStatus("Deleting");
+        /// <summary>
+        /// Constant Updated for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus Updated = new SchedulerResourceStatus("Updated");
+        /// <summary>
+        /// Constant UpdateFailed for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus UpdateFailed = new SchedulerResourceStatus("UpdateFailed");
+        /// <summary>
+        /// Constant UpdateRollbackFailed for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus UpdateRollbackFailed = new SchedulerResourceStatus("UpdateRollbackFailed");
+        /// <summary>
+        /// Constant Updating for SchedulerResourceStatus
+        /// </summary>
+        public static readonly SchedulerResourceStatus Updating = new SchedulerResourceStatus("Updating");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SchedulerResourceStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SchedulerResourceStatus FindValue(string value)
+        {
+            return FindValue<SchedulerResourceStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SchedulerResourceStatus(string value)
         {
             return FindValue(value);
         }
@@ -12947,6 +16567,10 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly SecondaryStatus MaxWaitTimeExceeded = new SecondaryStatus("MaxWaitTimeExceeded");
         /// <summary>
+        /// Constant Pending for SecondaryStatus
+        /// </summary>
+        public static readonly SecondaryStatus Pending = new SecondaryStatus("Pending");
+        /// <summary>
         /// Constant PreparingTrainingStack for SecondaryStatus
         /// </summary>
         public static readonly SecondaryStatus PreparingTrainingStack = new SecondaryStatus("PreparingTrainingStack");
@@ -13008,6 +16632,56 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SecondaryStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SharingType.
+    /// </summary>
+    public class SharingType : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Private for SharingType
+        /// </summary>
+        public static readonly SharingType Private = new SharingType("Private");
+        /// <summary>
+        /// Constant Shared for SharingType
+        /// </summary>
+        public static readonly SharingType Shared = new SharingType("Shared");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SharingType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SharingType FindValue(string value)
+        {
+            return FindValue<SharingType>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SharingType(string value)
         {
             return FindValue(value);
         }
@@ -13270,6 +16944,60 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SortBy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SortClusterSchedulerConfigBy.
+    /// </summary>
+    public class SortClusterSchedulerConfigBy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CreationTime for SortClusterSchedulerConfigBy
+        /// </summary>
+        public static readonly SortClusterSchedulerConfigBy CreationTime = new SortClusterSchedulerConfigBy("CreationTime");
+        /// <summary>
+        /// Constant Name for SortClusterSchedulerConfigBy
+        /// </summary>
+        public static readonly SortClusterSchedulerConfigBy Name = new SortClusterSchedulerConfigBy("Name");
+        /// <summary>
+        /// Constant Status for SortClusterSchedulerConfigBy
+        /// </summary>
+        public static readonly SortClusterSchedulerConfigBy Status = new SortClusterSchedulerConfigBy("Status");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SortClusterSchedulerConfigBy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SortClusterSchedulerConfigBy FindValue(string value)
+        {
+            return FindValue<SortClusterSchedulerConfigBy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SortClusterSchedulerConfigBy(string value)
         {
             return FindValue(value);
         }
@@ -13624,6 +17352,118 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator SortPipelinesBy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SortQuotaBy.
+    /// </summary>
+    public class SortQuotaBy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant ClusterArn for SortQuotaBy
+        /// </summary>
+        public static readonly SortQuotaBy ClusterArn = new SortQuotaBy("ClusterArn");
+        /// <summary>
+        /// Constant CreationTime for SortQuotaBy
+        /// </summary>
+        public static readonly SortQuotaBy CreationTime = new SortQuotaBy("CreationTime");
+        /// <summary>
+        /// Constant Name for SortQuotaBy
+        /// </summary>
+        public static readonly SortQuotaBy Name = new SortQuotaBy("Name");
+        /// <summary>
+        /// Constant Status for SortQuotaBy
+        /// </summary>
+        public static readonly SortQuotaBy Status = new SortQuotaBy("Status");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SortQuotaBy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SortQuotaBy FindValue(string value)
+        {
+            return FindValue<SortQuotaBy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SortQuotaBy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type SortTrackingServerBy.
+    /// </summary>
+    public class SortTrackingServerBy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant CreationTime for SortTrackingServerBy
+        /// </summary>
+        public static readonly SortTrackingServerBy CreationTime = new SortTrackingServerBy("CreationTime");
+        /// <summary>
+        /// Constant Name for SortTrackingServerBy
+        /// </summary>
+        public static readonly SortTrackingServerBy Name = new SortTrackingServerBy("Name");
+        /// <summary>
+        /// Constant Status for SortTrackingServerBy
+        /// </summary>
+        public static readonly SortTrackingServerBy Status = new SortTrackingServerBy("Status");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public SortTrackingServerBy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static SortTrackingServerBy FindValue(string value)
+        {
+            return FindValue<SortTrackingServerBy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator SortTrackingServerBy(string value)
         {
             return FindValue(value);
         }
@@ -14167,6 +18007,14 @@ namespace Amazon.SageMaker
     {
 
         /// <summary>
+        /// Constant CodeEditor for StudioLifecycleConfigAppType
+        /// </summary>
+        public static readonly StudioLifecycleConfigAppType CodeEditor = new StudioLifecycleConfigAppType("CodeEditor");
+        /// <summary>
+        /// Constant JupyterLab for StudioLifecycleConfigAppType
+        /// </summary>
+        public static readonly StudioLifecycleConfigAppType JupyterLab = new StudioLifecycleConfigAppType("JupyterLab");
+        /// <summary>
         /// Constant JupyterServer for StudioLifecycleConfigAppType
         /// </summary>
         public static readonly StudioLifecycleConfigAppType JupyterServer = new StudioLifecycleConfigAppType("JupyterServer");
@@ -14265,11 +18113,65 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type StudioWebPortal.
+    /// </summary>
+    public class StudioWebPortal : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for StudioWebPortal
+        /// </summary>
+        public static readonly StudioWebPortal DISABLED = new StudioWebPortal("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for StudioWebPortal
+        /// </summary>
+        public static readonly StudioWebPortal ENABLED = new StudioWebPortal("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public StudioWebPortal(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static StudioWebPortal FindValue(string value)
+        {
+            return FindValue<StudioWebPortal>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator StudioWebPortal(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type TableFormat.
     /// </summary>
     public class TableFormat : ConstantClass
     {
 
+        /// <summary>
+        /// Constant Default for TableFormat
+        /// </summary>
+        public static readonly TableFormat Default = new TableFormat("Default");
         /// <summary>
         /// Constant Glue for TableFormat
         /// </summary>
@@ -14308,6 +18210,56 @@ namespace Amazon.SageMaker
         /// <param name="value">The string value to convert to the constant class.</param>
         /// <returns></returns>
         public static implicit operator TableFormat(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TagPropagation.
+    /// </summary>
+    public class TagPropagation : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant DISABLED for TagPropagation
+        /// </summary>
+        public static readonly TagPropagation DISABLED = new TagPropagation("DISABLED");
+        /// <summary>
+        /// Constant ENABLED for TagPropagation
+        /// </summary>
+        public static readonly TagPropagation ENABLED = new TagPropagation("ENABLED");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TagPropagation(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TagPropagation FindValue(string value)
+        {
+            return FindValue<TagPropagation>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TagPropagation(string value)
         {
             return FindValue(value);
         }
@@ -14385,6 +18337,10 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TargetDevice Ml_c5 = new TargetDevice("ml_c5");
         /// <summary>
+        /// Constant Ml_c6g for TargetDevice
+        /// </summary>
+        public static readonly TargetDevice Ml_c6g = new TargetDevice("ml_c6g");
+        /// <summary>
         /// Constant Ml_eia2 for TargetDevice
         /// </summary>
         public static readonly TargetDevice Ml_eia2 = new TargetDevice("ml_eia2");
@@ -14409,6 +18365,10 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TargetDevice Ml_m5 = new TargetDevice("ml_m5");
         /// <summary>
+        /// Constant Ml_m6g for TargetDevice
+        /// </summary>
+        public static readonly TargetDevice Ml_m6g = new TargetDevice("ml_m6g");
+        /// <summary>
         /// Constant Ml_p2 for TargetDevice
         /// </summary>
         public static readonly TargetDevice Ml_p2 = new TargetDevice("ml_p2");
@@ -14432,6 +18392,10 @@ namespace Amazon.SageMaker
         /// Constant Rasp3b for TargetDevice
         /// </summary>
         public static readonly TargetDevice Rasp3b = new TargetDevice("rasp3b");
+        /// <summary>
+        /// Constant Rasp4b for TargetDevice
+        /// </summary>
+        public static readonly TargetDevice Rasp4b = new TargetDevice("rasp4b");
         /// <summary>
         /// Constant Rk3288 for TargetDevice
         /// </summary>
@@ -14663,6 +18627,220 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type ThroughputMode.
+    /// </summary>
+    public class ThroughputMode : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant OnDemand for ThroughputMode
+        /// </summary>
+        public static readonly ThroughputMode OnDemand = new ThroughputMode("OnDemand");
+        /// <summary>
+        /// Constant Provisioned for ThroughputMode
+        /// </summary>
+        public static readonly ThroughputMode Provisioned = new ThroughputMode("Provisioned");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public ThroughputMode(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static ThroughputMode FindValue(string value)
+        {
+            return FindValue<ThroughputMode>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator ThroughputMode(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TrackingServerSize.
+    /// </summary>
+    public class TrackingServerSize : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Large for TrackingServerSize
+        /// </summary>
+        public static readonly TrackingServerSize Large = new TrackingServerSize("Large");
+        /// <summary>
+        /// Constant Medium for TrackingServerSize
+        /// </summary>
+        public static readonly TrackingServerSize Medium = new TrackingServerSize("Medium");
+        /// <summary>
+        /// Constant Small for TrackingServerSize
+        /// </summary>
+        public static readonly TrackingServerSize Small = new TrackingServerSize("Small");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrackingServerSize(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrackingServerSize FindValue(string value)
+        {
+            return FindValue<TrackingServerSize>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrackingServerSize(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TrackingServerStatus.
+    /// </summary>
+    public class TrackingServerStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Created for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Created = new TrackingServerStatus("Created");
+        /// <summary>
+        /// Constant CreateFailed for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus CreateFailed = new TrackingServerStatus("CreateFailed");
+        /// <summary>
+        /// Constant Creating for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Creating = new TrackingServerStatus("Creating");
+        /// <summary>
+        /// Constant DeleteFailed for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus DeleteFailed = new TrackingServerStatus("DeleteFailed");
+        /// <summary>
+        /// Constant Deleting for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Deleting = new TrackingServerStatus("Deleting");
+        /// <summary>
+        /// Constant MaintenanceComplete for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus MaintenanceComplete = new TrackingServerStatus("MaintenanceComplete");
+        /// <summary>
+        /// Constant MaintenanceFailed for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus MaintenanceFailed = new TrackingServerStatus("MaintenanceFailed");
+        /// <summary>
+        /// Constant MaintenanceInProgress for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus MaintenanceInProgress = new TrackingServerStatus("MaintenanceInProgress");
+        /// <summary>
+        /// Constant Started for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Started = new TrackingServerStatus("Started");
+        /// <summary>
+        /// Constant StartFailed for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus StartFailed = new TrackingServerStatus("StartFailed");
+        /// <summary>
+        /// Constant Starting for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Starting = new TrackingServerStatus("Starting");
+        /// <summary>
+        /// Constant StopFailed for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus StopFailed = new TrackingServerStatus("StopFailed");
+        /// <summary>
+        /// Constant Stopped for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Stopped = new TrackingServerStatus("Stopped");
+        /// <summary>
+        /// Constant Stopping for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Stopping = new TrackingServerStatus("Stopping");
+        /// <summary>
+        /// Constant Updated for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Updated = new TrackingServerStatus("Updated");
+        /// <summary>
+        /// Constant UpdateFailed for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus UpdateFailed = new TrackingServerStatus("UpdateFailed");
+        /// <summary>
+        /// Constant Updating for TrackingServerStatus
+        /// </summary>
+        public static readonly TrackingServerStatus Updating = new TrackingServerStatus("Updating");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrackingServerStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrackingServerStatus FindValue(string value)
+        {
+            return FindValue<TrackingServerStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrackingServerStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type TrafficRoutingConfigType.
     /// </summary>
     public class TrafficRoutingConfigType : ConstantClass
@@ -14883,6 +19061,38 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TrainingInstanceType MlC5Xlarge = new TrainingInstanceType("ml.c5.xlarge");
         /// <summary>
+        /// Constant MlC6i12xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6i12xlarge = new TrainingInstanceType("ml.c6i.12xlarge");
+        /// <summary>
+        /// Constant MlC6i16xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6i16xlarge = new TrainingInstanceType("ml.c6i.16xlarge");
+        /// <summary>
+        /// Constant MlC6i24xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6i24xlarge = new TrainingInstanceType("ml.c6i.24xlarge");
+        /// <summary>
+        /// Constant MlC6i2xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6i2xlarge = new TrainingInstanceType("ml.c6i.2xlarge");
+        /// <summary>
+        /// Constant MlC6i32xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6i32xlarge = new TrainingInstanceType("ml.c6i.32xlarge");
+        /// <summary>
+        /// Constant MlC6i4xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6i4xlarge = new TrainingInstanceType("ml.c6i.4xlarge");
+        /// <summary>
+        /// Constant MlC6i8xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6i8xlarge = new TrainingInstanceType("ml.c6i.8xlarge");
+        /// <summary>
+        /// Constant MlC6iXlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlC6iXlarge = new TrainingInstanceType("ml.c6i.xlarge");
+        /// <summary>
         /// Constant MlG4dn12xlarge for TrainingInstanceType
         /// </summary>
         public static readonly TrainingInstanceType MlG4dn12xlarge = new TrainingInstanceType("ml.g4dn.12xlarge");
@@ -14939,6 +19149,70 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TrainingInstanceType MlG5Xlarge = new TrainingInstanceType("ml.g5.xlarge");
         /// <summary>
+        /// Constant MlG612xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG612xlarge = new TrainingInstanceType("ml.g6.12xlarge");
+        /// <summary>
+        /// Constant MlG616xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG616xlarge = new TrainingInstanceType("ml.g6.16xlarge");
+        /// <summary>
+        /// Constant MlG624xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG624xlarge = new TrainingInstanceType("ml.g6.24xlarge");
+        /// <summary>
+        /// Constant MlG62xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG62xlarge = new TrainingInstanceType("ml.g6.2xlarge");
+        /// <summary>
+        /// Constant MlG648xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG648xlarge = new TrainingInstanceType("ml.g6.48xlarge");
+        /// <summary>
+        /// Constant MlG64xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG64xlarge = new TrainingInstanceType("ml.g6.4xlarge");
+        /// <summary>
+        /// Constant MlG68xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG68xlarge = new TrainingInstanceType("ml.g6.8xlarge");
+        /// <summary>
+        /// Constant MlG6e12xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6e12xlarge = new TrainingInstanceType("ml.g6e.12xlarge");
+        /// <summary>
+        /// Constant MlG6e16xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6e16xlarge = new TrainingInstanceType("ml.g6e.16xlarge");
+        /// <summary>
+        /// Constant MlG6e24xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6e24xlarge = new TrainingInstanceType("ml.g6e.24xlarge");
+        /// <summary>
+        /// Constant MlG6e2xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6e2xlarge = new TrainingInstanceType("ml.g6e.2xlarge");
+        /// <summary>
+        /// Constant MlG6e48xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6e48xlarge = new TrainingInstanceType("ml.g6e.48xlarge");
+        /// <summary>
+        /// Constant MlG6e4xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6e4xlarge = new TrainingInstanceType("ml.g6e.4xlarge");
+        /// <summary>
+        /// Constant MlG6e8xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6e8xlarge = new TrainingInstanceType("ml.g6e.8xlarge");
+        /// <summary>
+        /// Constant MlG6eXlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6eXlarge = new TrainingInstanceType("ml.g6e.xlarge");
+        /// <summary>
+        /// Constant MlG6Xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlG6Xlarge = new TrainingInstanceType("ml.g6.xlarge");
+        /// <summary>
         /// Constant MlM410xlarge for TrainingInstanceType
         /// </summary>
         public static readonly TrainingInstanceType MlM410xlarge = new TrainingInstanceType("ml.m4.10xlarge");
@@ -14983,6 +19257,42 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TrainingInstanceType MlM5Xlarge = new TrainingInstanceType("ml.m5.xlarge");
         /// <summary>
+        /// Constant MlM6i12xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6i12xlarge = new TrainingInstanceType("ml.m6i.12xlarge");
+        /// <summary>
+        /// Constant MlM6i16xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6i16xlarge = new TrainingInstanceType("ml.m6i.16xlarge");
+        /// <summary>
+        /// Constant MlM6i24xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6i24xlarge = new TrainingInstanceType("ml.m6i.24xlarge");
+        /// <summary>
+        /// Constant MlM6i2xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6i2xlarge = new TrainingInstanceType("ml.m6i.2xlarge");
+        /// <summary>
+        /// Constant MlM6i32xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6i32xlarge = new TrainingInstanceType("ml.m6i.32xlarge");
+        /// <summary>
+        /// Constant MlM6i4xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6i4xlarge = new TrainingInstanceType("ml.m6i.4xlarge");
+        /// <summary>
+        /// Constant MlM6i8xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6i8xlarge = new TrainingInstanceType("ml.m6i.8xlarge");
+        /// <summary>
+        /// Constant MlM6iLarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6iLarge = new TrainingInstanceType("ml.m6i.large");
+        /// <summary>
+        /// Constant MlM6iXlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlM6iXlarge = new TrainingInstanceType("ml.m6i.xlarge");
+        /// <summary>
         /// Constant MlP216xlarge for TrainingInstanceType
         /// </summary>
         public static readonly TrainingInstanceType MlP216xlarge = new TrainingInstanceType("ml.p2.16xlarge");
@@ -15015,9 +19325,101 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TrainingInstanceType MlP4d24xlarge = new TrainingInstanceType("ml.p4d.24xlarge");
         /// <summary>
+        /// Constant MlP4de24xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlP4de24xlarge = new TrainingInstanceType("ml.p4de.24xlarge");
+        /// <summary>
         /// Constant MlP548xlarge for TrainingInstanceType
         /// </summary>
         public static readonly TrainingInstanceType MlP548xlarge = new TrainingInstanceType("ml.p5.48xlarge");
+        /// <summary>
+        /// Constant MlP5e48xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlP5e48xlarge = new TrainingInstanceType("ml.p5e.48xlarge");
+        /// <summary>
+        /// Constant MlP5en48xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlP5en48xlarge = new TrainingInstanceType("ml.p5en.48xlarge");
+        /// <summary>
+        /// Constant MlR512xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR512xlarge = new TrainingInstanceType("ml.r5.12xlarge");
+        /// <summary>
+        /// Constant MlR516xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR516xlarge = new TrainingInstanceType("ml.r5.16xlarge");
+        /// <summary>
+        /// Constant MlR524xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR524xlarge = new TrainingInstanceType("ml.r5.24xlarge");
+        /// <summary>
+        /// Constant MlR52xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR52xlarge = new TrainingInstanceType("ml.r5.2xlarge");
+        /// <summary>
+        /// Constant MlR54xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR54xlarge = new TrainingInstanceType("ml.r5.4xlarge");
+        /// <summary>
+        /// Constant MlR58xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR58xlarge = new TrainingInstanceType("ml.r5.8xlarge");
+        /// <summary>
+        /// Constant MlR5d12xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5d12xlarge = new TrainingInstanceType("ml.r5d.12xlarge");
+        /// <summary>
+        /// Constant MlR5d16xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5d16xlarge = new TrainingInstanceType("ml.r5d.16xlarge");
+        /// <summary>
+        /// Constant MlR5d24xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5d24xlarge = new TrainingInstanceType("ml.r5d.24xlarge");
+        /// <summary>
+        /// Constant MlR5d2xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5d2xlarge = new TrainingInstanceType("ml.r5d.2xlarge");
+        /// <summary>
+        /// Constant MlR5d4xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5d4xlarge = new TrainingInstanceType("ml.r5d.4xlarge");
+        /// <summary>
+        /// Constant MlR5d8xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5d8xlarge = new TrainingInstanceType("ml.r5d.8xlarge");
+        /// <summary>
+        /// Constant MlR5dLarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5dLarge = new TrainingInstanceType("ml.r5d.large");
+        /// <summary>
+        /// Constant MlR5dXlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5dXlarge = new TrainingInstanceType("ml.r5d.xlarge");
+        /// <summary>
+        /// Constant MlR5Large for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5Large = new TrainingInstanceType("ml.r5.large");
+        /// <summary>
+        /// Constant MlR5Xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlR5Xlarge = new TrainingInstanceType("ml.r5.xlarge");
+        /// <summary>
+        /// Constant MlT32xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlT32xlarge = new TrainingInstanceType("ml.t3.2xlarge");
+        /// <summary>
+        /// Constant MlT3Large for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlT3Large = new TrainingInstanceType("ml.t3.large");
+        /// <summary>
+        /// Constant MlT3Medium for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlT3Medium = new TrainingInstanceType("ml.t3.medium");
+        /// <summary>
+        /// Constant MlT3Xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlT3Xlarge = new TrainingInstanceType("ml.t3.xlarge");
         /// <summary>
         /// Constant MlTrn12xlarge for TrainingInstanceType
         /// </summary>
@@ -15030,6 +19432,10 @@ namespace Amazon.SageMaker
         /// Constant MlTrn1n32xlarge for TrainingInstanceType
         /// </summary>
         public static readonly TrainingInstanceType MlTrn1n32xlarge = new TrainingInstanceType("ml.trn1n.32xlarge");
+        /// <summary>
+        /// Constant MlTrn248xlarge for TrainingInstanceType
+        /// </summary>
+        public static readonly TrainingInstanceType MlTrn248xlarge = new TrainingInstanceType("ml.trn2.48xlarge");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant
@@ -15237,6 +19643,218 @@ namespace Amazon.SageMaker
 
 
     /// <summary>
+    /// Constants used for properties of type TrainingPlanFilterName.
+    /// </summary>
+    public class TrainingPlanFilterName : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Status for TrainingPlanFilterName
+        /// </summary>
+        public static readonly TrainingPlanFilterName Status = new TrainingPlanFilterName("Status");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrainingPlanFilterName(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrainingPlanFilterName FindValue(string value)
+        {
+            return FindValue<TrainingPlanFilterName>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrainingPlanFilterName(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TrainingPlanSortBy.
+    /// </summary>
+    public class TrainingPlanSortBy : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant StartTime for TrainingPlanSortBy
+        /// </summary>
+        public static readonly TrainingPlanSortBy StartTime = new TrainingPlanSortBy("StartTime");
+        /// <summary>
+        /// Constant Status for TrainingPlanSortBy
+        /// </summary>
+        public static readonly TrainingPlanSortBy Status = new TrainingPlanSortBy("Status");
+        /// <summary>
+        /// Constant TrainingPlanName for TrainingPlanSortBy
+        /// </summary>
+        public static readonly TrainingPlanSortBy TrainingPlanName = new TrainingPlanSortBy("TrainingPlanName");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrainingPlanSortBy(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrainingPlanSortBy FindValue(string value)
+        {
+            return FindValue<TrainingPlanSortBy>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrainingPlanSortBy(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TrainingPlanSortOrder.
+    /// </summary>
+    public class TrainingPlanSortOrder : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Ascending for TrainingPlanSortOrder
+        /// </summary>
+        public static readonly TrainingPlanSortOrder Ascending = new TrainingPlanSortOrder("Ascending");
+        /// <summary>
+        /// Constant Descending for TrainingPlanSortOrder
+        /// </summary>
+        public static readonly TrainingPlanSortOrder Descending = new TrainingPlanSortOrder("Descending");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrainingPlanSortOrder(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrainingPlanSortOrder FindValue(string value)
+        {
+            return FindValue<TrainingPlanSortOrder>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrainingPlanSortOrder(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
+    /// Constants used for properties of type TrainingPlanStatus.
+    /// </summary>
+    public class TrainingPlanStatus : ConstantClass
+    {
+
+        /// <summary>
+        /// Constant Active for TrainingPlanStatus
+        /// </summary>
+        public static readonly TrainingPlanStatus Active = new TrainingPlanStatus("Active");
+        /// <summary>
+        /// Constant Expired for TrainingPlanStatus
+        /// </summary>
+        public static readonly TrainingPlanStatus Expired = new TrainingPlanStatus("Expired");
+        /// <summary>
+        /// Constant Failed for TrainingPlanStatus
+        /// </summary>
+        public static readonly TrainingPlanStatus Failed = new TrainingPlanStatus("Failed");
+        /// <summary>
+        /// Constant Pending for TrainingPlanStatus
+        /// </summary>
+        public static readonly TrainingPlanStatus Pending = new TrainingPlanStatus("Pending");
+        /// <summary>
+        /// Constant Scheduled for TrainingPlanStatus
+        /// </summary>
+        public static readonly TrainingPlanStatus Scheduled = new TrainingPlanStatus("Scheduled");
+
+        /// <summary>
+        /// This constant constructor does not need to be called if the constant
+        /// you are attempting to use is already defined as a static instance of 
+        /// this class.
+        /// This constructor should be used to construct constants that are not
+        /// defined as statics, for instance if attempting to use a feature that is
+        /// newer than the current version of the SDK.
+        /// </summary>
+        public TrainingPlanStatus(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value">The unique value for the constant</param>
+        /// <returns>The constant for the unique value</returns>
+        public static TrainingPlanStatus FindValue(string value)
+        {
+            return FindValue<TrainingPlanStatus>(value);
+        }
+
+        /// <summary>
+        /// Utility method to convert strings to the constant class.
+        /// </summary>
+        /// <param name="value">The string value to convert to the constant class.</param>
+        /// <returns></returns>
+        public static implicit operator TrainingPlanStatus(string value)
+        {
+            return FindValue(value);
+        }
+    }
+
+
+    /// <summary>
     /// Constants used for properties of type TrainingRepositoryAccessMode.
     /// </summary>
     public class TrainingRepositoryAccessMode : ConstantClass
@@ -15329,6 +19947,78 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TransformInstanceType MlC5Xlarge = new TransformInstanceType("ml.c5.xlarge");
         /// <summary>
+        /// Constant MlC6i12xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6i12xlarge = new TransformInstanceType("ml.c6i.12xlarge");
+        /// <summary>
+        /// Constant MlC6i16xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6i16xlarge = new TransformInstanceType("ml.c6i.16xlarge");
+        /// <summary>
+        /// Constant MlC6i24xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6i24xlarge = new TransformInstanceType("ml.c6i.24xlarge");
+        /// <summary>
+        /// Constant MlC6i2xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6i2xlarge = new TransformInstanceType("ml.c6i.2xlarge");
+        /// <summary>
+        /// Constant MlC6i32xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6i32xlarge = new TransformInstanceType("ml.c6i.32xlarge");
+        /// <summary>
+        /// Constant MlC6i4xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6i4xlarge = new TransformInstanceType("ml.c6i.4xlarge");
+        /// <summary>
+        /// Constant MlC6i8xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6i8xlarge = new TransformInstanceType("ml.c6i.8xlarge");
+        /// <summary>
+        /// Constant MlC6iLarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6iLarge = new TransformInstanceType("ml.c6i.large");
+        /// <summary>
+        /// Constant MlC6iXlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC6iXlarge = new TransformInstanceType("ml.c6i.xlarge");
+        /// <summary>
+        /// Constant MlC7i12xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7i12xlarge = new TransformInstanceType("ml.c7i.12xlarge");
+        /// <summary>
+        /// Constant MlC7i16xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7i16xlarge = new TransformInstanceType("ml.c7i.16xlarge");
+        /// <summary>
+        /// Constant MlC7i24xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7i24xlarge = new TransformInstanceType("ml.c7i.24xlarge");
+        /// <summary>
+        /// Constant MlC7i2xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7i2xlarge = new TransformInstanceType("ml.c7i.2xlarge");
+        /// <summary>
+        /// Constant MlC7i48xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7i48xlarge = new TransformInstanceType("ml.c7i.48xlarge");
+        /// <summary>
+        /// Constant MlC7i4xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7i4xlarge = new TransformInstanceType("ml.c7i.4xlarge");
+        /// <summary>
+        /// Constant MlC7i8xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7i8xlarge = new TransformInstanceType("ml.c7i.8xlarge");
+        /// <summary>
+        /// Constant MlC7iLarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7iLarge = new TransformInstanceType("ml.c7i.large");
+        /// <summary>
+        /// Constant MlC7iXlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlC7iXlarge = new TransformInstanceType("ml.c7i.xlarge");
+        /// <summary>
         /// Constant MlG4dn12xlarge for TransformInstanceType
         /// </summary>
         public static readonly TransformInstanceType MlG4dn12xlarge = new TransformInstanceType("ml.g4dn.12xlarge");
@@ -15352,6 +20042,54 @@ namespace Amazon.SageMaker
         /// Constant MlG4dnXlarge for TransformInstanceType
         /// </summary>
         public static readonly TransformInstanceType MlG4dnXlarge = new TransformInstanceType("ml.g4dn.xlarge");
+        /// <summary>
+        /// Constant MlG512xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG512xlarge = new TransformInstanceType("ml.g5.12xlarge");
+        /// <summary>
+        /// Constant MlG516xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG516xlarge = new TransformInstanceType("ml.g5.16xlarge");
+        /// <summary>
+        /// Constant MlG524xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG524xlarge = new TransformInstanceType("ml.g5.24xlarge");
+        /// <summary>
+        /// Constant MlG52xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG52xlarge = new TransformInstanceType("ml.g5.2xlarge");
+        /// <summary>
+        /// Constant MlG548xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG548xlarge = new TransformInstanceType("ml.g5.48xlarge");
+        /// <summary>
+        /// Constant MlG54xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG54xlarge = new TransformInstanceType("ml.g5.4xlarge");
+        /// <summary>
+        /// Constant MlG58xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG58xlarge = new TransformInstanceType("ml.g5.8xlarge");
+        /// <summary>
+        /// Constant MlG5Xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlG5Xlarge = new TransformInstanceType("ml.g5.xlarge");
+        /// <summary>
+        /// Constant MlInf224xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlInf224xlarge = new TransformInstanceType("ml.inf2.24xlarge");
+        /// <summary>
+        /// Constant MlInf248xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlInf248xlarge = new TransformInstanceType("ml.inf2.48xlarge");
+        /// <summary>
+        /// Constant MlInf28xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlInf28xlarge = new TransformInstanceType("ml.inf2.8xlarge");
+        /// <summary>
+        /// Constant MlInf2Xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlInf2Xlarge = new TransformInstanceType("ml.inf2.xlarge");
         /// <summary>
         /// Constant MlM410xlarge for TransformInstanceType
         /// </summary>
@@ -15397,6 +20135,78 @@ namespace Amazon.SageMaker
         /// </summary>
         public static readonly TransformInstanceType MlM5Xlarge = new TransformInstanceType("ml.m5.xlarge");
         /// <summary>
+        /// Constant MlM6i12xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6i12xlarge = new TransformInstanceType("ml.m6i.12xlarge");
+        /// <summary>
+        /// Constant MlM6i16xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6i16xlarge = new TransformInstanceType("ml.m6i.16xlarge");
+        /// <summary>
+        /// Constant MlM6i24xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6i24xlarge = new TransformInstanceType("ml.m6i.24xlarge");
+        /// <summary>
+        /// Constant MlM6i2xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6i2xlarge = new TransformInstanceType("ml.m6i.2xlarge");
+        /// <summary>
+        /// Constant MlM6i32xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6i32xlarge = new TransformInstanceType("ml.m6i.32xlarge");
+        /// <summary>
+        /// Constant MlM6i4xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6i4xlarge = new TransformInstanceType("ml.m6i.4xlarge");
+        /// <summary>
+        /// Constant MlM6i8xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6i8xlarge = new TransformInstanceType("ml.m6i.8xlarge");
+        /// <summary>
+        /// Constant MlM6iLarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6iLarge = new TransformInstanceType("ml.m6i.large");
+        /// <summary>
+        /// Constant MlM6iXlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM6iXlarge = new TransformInstanceType("ml.m6i.xlarge");
+        /// <summary>
+        /// Constant MlM7i12xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7i12xlarge = new TransformInstanceType("ml.m7i.12xlarge");
+        /// <summary>
+        /// Constant MlM7i16xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7i16xlarge = new TransformInstanceType("ml.m7i.16xlarge");
+        /// <summary>
+        /// Constant MlM7i24xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7i24xlarge = new TransformInstanceType("ml.m7i.24xlarge");
+        /// <summary>
+        /// Constant MlM7i2xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7i2xlarge = new TransformInstanceType("ml.m7i.2xlarge");
+        /// <summary>
+        /// Constant MlM7i48xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7i48xlarge = new TransformInstanceType("ml.m7i.48xlarge");
+        /// <summary>
+        /// Constant MlM7i4xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7i4xlarge = new TransformInstanceType("ml.m7i.4xlarge");
+        /// <summary>
+        /// Constant MlM7i8xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7i8xlarge = new TransformInstanceType("ml.m7i.8xlarge");
+        /// <summary>
+        /// Constant MlM7iLarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7iLarge = new TransformInstanceType("ml.m7i.large");
+        /// <summary>
+        /// Constant MlM7iXlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlM7iXlarge = new TransformInstanceType("ml.m7i.xlarge");
+        /// <summary>
         /// Constant MlP216xlarge for TransformInstanceType
         /// </summary>
         public static readonly TransformInstanceType MlP216xlarge = new TransformInstanceType("ml.p2.16xlarge");
@@ -15420,6 +20230,86 @@ namespace Amazon.SageMaker
         /// Constant MlP38xlarge for TransformInstanceType
         /// </summary>
         public static readonly TransformInstanceType MlP38xlarge = new TransformInstanceType("ml.p3.8xlarge");
+        /// <summary>
+        /// Constant MlR6i12xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6i12xlarge = new TransformInstanceType("ml.r6i.12xlarge");
+        /// <summary>
+        /// Constant MlR6i16xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6i16xlarge = new TransformInstanceType("ml.r6i.16xlarge");
+        /// <summary>
+        /// Constant MlR6i24xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6i24xlarge = new TransformInstanceType("ml.r6i.24xlarge");
+        /// <summary>
+        /// Constant MlR6i2xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6i2xlarge = new TransformInstanceType("ml.r6i.2xlarge");
+        /// <summary>
+        /// Constant MlR6i32xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6i32xlarge = new TransformInstanceType("ml.r6i.32xlarge");
+        /// <summary>
+        /// Constant MlR6i4xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6i4xlarge = new TransformInstanceType("ml.r6i.4xlarge");
+        /// <summary>
+        /// Constant MlR6i8xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6i8xlarge = new TransformInstanceType("ml.r6i.8xlarge");
+        /// <summary>
+        /// Constant MlR6iLarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6iLarge = new TransformInstanceType("ml.r6i.large");
+        /// <summary>
+        /// Constant MlR6iXlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR6iXlarge = new TransformInstanceType("ml.r6i.xlarge");
+        /// <summary>
+        /// Constant MlR7i12xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7i12xlarge = new TransformInstanceType("ml.r7i.12xlarge");
+        /// <summary>
+        /// Constant MlR7i16xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7i16xlarge = new TransformInstanceType("ml.r7i.16xlarge");
+        /// <summary>
+        /// Constant MlR7i24xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7i24xlarge = new TransformInstanceType("ml.r7i.24xlarge");
+        /// <summary>
+        /// Constant MlR7i2xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7i2xlarge = new TransformInstanceType("ml.r7i.2xlarge");
+        /// <summary>
+        /// Constant MlR7i48xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7i48xlarge = new TransformInstanceType("ml.r7i.48xlarge");
+        /// <summary>
+        /// Constant MlR7i4xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7i4xlarge = new TransformInstanceType("ml.r7i.4xlarge");
+        /// <summary>
+        /// Constant MlR7i8xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7i8xlarge = new TransformInstanceType("ml.r7i.8xlarge");
+        /// <summary>
+        /// Constant MlR7iLarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7iLarge = new TransformInstanceType("ml.r7i.large");
+        /// <summary>
+        /// Constant MlR7iXlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlR7iXlarge = new TransformInstanceType("ml.r7i.xlarge");
+        /// <summary>
+        /// Constant MlTrn12xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlTrn12xlarge = new TransformInstanceType("ml.trn1.2xlarge");
+        /// <summary>
+        /// Constant MlTrn132xlarge for TransformInstanceType
+        /// </summary>
+        public static readonly TransformInstanceType MlTrn132xlarge = new TransformInstanceType("ml.trn1.32xlarge");
 
         /// <summary>
         /// This constant constructor does not need to be called if the constant

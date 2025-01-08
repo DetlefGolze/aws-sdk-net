@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Lambda.Model
     /// </summary>
     public partial class PublishVersionResponse : AmazonWebServiceResponse
     {
-        private List<string> _architectures = new List<string>();
+        private List<string> _architectures = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _codeSha256;
         private long? _codeSize;
         private DeadLetterConfig _deadLetterConfig;
         private string _description;
         private EnvironmentResponse _environment;
         private EphemeralStorage _ephemeralStorage;
-        private List<FileSystemConfig> _fileSystemConfigs = new List<FileSystemConfig>();
+        private List<FileSystemConfig> _fileSystemConfigs = AWSConfigs.InitializeCollections ? new List<FileSystemConfig>() : null;
         private string _functionArn;
         private string _functionName;
         private string _handler;
@@ -50,7 +51,8 @@ namespace Amazon.Lambda.Model
         private LastUpdateStatus _lastUpdateStatus;
         private string _lastUpdateStatusReason;
         private LastUpdateStatusReasonCode _lastUpdateStatusReasonCode;
-        private List<Layer> _layers = new List<Layer>();
+        private List<Layer> _layers = AWSConfigs.InitializeCollections ? new List<Layer>() : null;
+        private LoggingConfig _loggingConfig;
         private string _masterArn;
         private int? _memorySize;
         private PackageType _packageType;
@@ -73,7 +75,7 @@ namespace Amazon.Lambda.Model
         /// Gets and sets the property Architectures. 
         /// <para>
         /// The instruction set architecture that the function supports. Architecture is a string
-        /// array with one of the valid values. The default architecture value is <code>x86_64</code>.
+        /// array with one of the valid values. The default architecture value is <c>x86_64</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1)]
@@ -86,7 +88,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Architectures property is set
         internal bool IsSetArchitectures()
         {
-            return this._architectures != null && this._architectures.Count > 0; 
+            return this._architectures != null && (this._architectures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -184,8 +186,10 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property EphemeralStorage. 
         /// <para>
-        /// The size of the function’s <code>/tmp</code> directory in MB. The default value is
-        /// 512, but it can be any whole number between 512 and 10,240 MB.
+        /// The size of the function's <c>/tmp</c> directory in MB. The default value is 512,
+        /// but can be any whole number between 512 and 10,240 MB. For more information, see <a
+        /// href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html#configuration-ephemeral-storage">Configuring
+        /// ephemeral storage (console)</a>.
         /// </para>
         /// </summary>
         public EphemeralStorage EphemeralStorage
@@ -217,7 +221,7 @@ namespace Amazon.Lambda.Model
         // Check to see if FileSystemConfigs property is set
         internal bool IsSetFileSystemConfigs()
         {
-            return this._fileSystemConfigs != null && this._fileSystemConfigs.Count > 0; 
+            return this._fileSystemConfigs != null && (this._fileSystemConfigs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -297,10 +301,37 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property KMSKeyArn. 
         /// <para>
-        /// The KMS key that's used to encrypt the function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption">environment
-        /// variables</a>. When <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html">Lambda
-        /// SnapStart</a> is activated, this key is also used to encrypt the function's snapshot.
-        /// This key is returned only if you've configured a customer managed key.
+        /// The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt
+        /// the following resources:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// The function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-encryption">environment
+        /// variables</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart-security.html">Lambda
+        /// SnapStart</a> snapshots.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// When used with <c>SourceKMSKeyArn</c>, the unzipped version of the .zip deployment
+        /// package that's used for function invocations. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/encrypt-zip-package.html#enable-zip-custom-encryption">
+        /// Specifying a customer managed key for Lambda</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The optimized version of the container image that's used for function invocations.
+        /// Note that this is not the same key that's used to protect your container image in
+        /// the Amazon Elastic Container Registry (Amazon ECR). For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-lifecycle">Function
+        /// lifecycle</a>.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// If you don't provide a customer managed key, Lambda uses an <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk">Amazon
+        /// Web Services owned key</a> or an <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk">Amazon
+        /// Web Services managed key</a>.
         /// </para>
         /// </summary>
         public string KMSKeyArn
@@ -338,7 +369,7 @@ namespace Amazon.Lambda.Model
         /// Gets and sets the property LastUpdateStatus. 
         /// <para>
         /// The status of the last update that was performed on the function. This is first set
-        /// to <code>Successful</code> after function creation completes.
+        /// to <c>Successful</c> after function creation completes.
         /// </para>
         /// </summary>
         public LastUpdateStatus LastUpdateStatus
@@ -404,7 +435,25 @@ namespace Amazon.Lambda.Model
         // Check to see if Layers property is set
         internal bool IsSetLayers()
         {
-            return this._layers != null && this._layers.Count > 0; 
+            return this._layers != null && (this._layers.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property LoggingConfig. 
+        /// <para>
+        /// The function's Amazon CloudWatch Logs configuration settings.
+        /// </para>
+        /// </summary>
+        public LoggingConfig LoggingConfig
+        {
+            get { return this._loggingConfig; }
+            set { this._loggingConfig = value; }
+        }
+
+        // Check to see if LoggingConfig property is set
+        internal bool IsSetLoggingConfig()
+        {
+            return this._loggingConfig != null;
         }
 
         /// <summary>
@@ -447,8 +496,8 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property PackageType. 
         /// <para>
-        /// The type of deployment package. Set to <code>Image</code> for container image and
-        /// set <code>Zip</code> for .zip file archive.
+        /// The type of deployment package. Set to <c>Image</c> for container image and set <c>Zip</c>
+        /// for .zip file archive.
         /// </para>
         /// </summary>
         public PackageType PackageType
@@ -502,13 +551,22 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property Runtime. 
         /// <para>
-        /// The identifier of the function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">runtime</a>.
-        /// Runtime is required if the deployment package is a .zip file archive.
+        /// The identifier of the function's <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html">
+        /// runtime</a>. Runtime is required if the deployment package is a .zip file archive.
+        /// Specifying a runtime results in an error if you're deploying a function using a container
+        /// image.
         /// </para>
         ///  
         /// <para>
-        /// The following list includes deprecated runtimes. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-support-policy">Runtime
-        /// deprecation policy</a>.
+        /// The following list includes deprecated runtimes. Lambda blocks creating new functions
+        /// and updating existing functions shortly after each runtime is deprecated. For more
+        /// information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-levels">Runtime
+        /// use after deprecation</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For a list of all currently supported runtimes, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtimes-supported">Supported
+        /// runtimes</a>.
         /// </para>
         /// </summary>
         public Runtime Runtime
@@ -580,10 +638,10 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property SnapStart. 
         /// <para>
-        /// Set <code>ApplyOn</code> to <code>PublishedVersions</code> to create a snapshot of
-        /// the initialized execution environment when you publish a function version. For more
-        /// information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">Improving
-        /// startup performance with Lambda SnapStart</a>.
+        /// Set <c>ApplyOn</c> to <c>PublishedVersions</c> to create a snapshot of the initialized
+        /// execution environment when you publish a function version. For more information, see
+        /// <a href="https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html">Improving startup
+        /// performance with Lambda SnapStart</a>.
         /// </para>
         /// </summary>
         public SnapStartResponse SnapStart
@@ -601,8 +659,8 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The current state of the function. When the state is <code>Inactive</code>, you can
-        /// reactivate the function by invoking it.
+        /// The current state of the function. When the state is <c>Inactive</c>, you can reactivate
+        /// the function by invoking it.
         /// </para>
         /// </summary>
         public State State
@@ -638,7 +696,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property StateReasonCode. 
         /// <para>
-        /// The reason code for the function's current state. When the code is <code>Creating</code>,
+        /// The reason code for the function's current state. When the code is <c>Creating</c>,
         /// you can't invoke or modify the function.
         /// </para>
         /// </summary>

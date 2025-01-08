@@ -26,24 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
     /// Container for the parameters to the SendVoiceMessage operation.
-    /// Allows you to send a request that sends a text message through Amazon Pinpoint. This
-    /// operation uses <a href="http://aws.amazon.com/polly/">Amazon Polly</a> to convert
-    /// a text script into a voice message.
+    /// Allows you to send a request that sends a voice message. This operation uses <a href="http://aws.amazon.com/polly/">Amazon
+    /// Polly</a> to convert a text script into a voice message.
     /// </summary>
     public partial class SendVoiceMessageRequest : AmazonPinpointSMSVoiceV2Request
     {
         private string _configurationSetName;
-        private Dictionary<string, string> _context = new Dictionary<string, string>();
+        private Dictionary<string, string> _context = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _destinationPhoneNumber;
         private bool? _dryRun;
         private string _maxPricePerMinute;
         private string _messageBody;
         private VoiceMessageBodyTextType _messageBodyTextType;
+        private bool? _messageFeedbackEnabled;
         private string _originationIdentity;
+        private string _protectConfigurationId;
         private int? _timeToLive;
         private VoiceId _voiceId;
 
@@ -84,7 +86,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if Context property is set
         internal bool IsSetContext()
         {
-            return this._context != null && this._context.Count > 0; 
+            return this._context != null && (this._context.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -192,11 +194,36 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MessageFeedbackEnabled. 
+        /// <para>
+        /// Set to true to enable message feedback for the message. When a user receives the message
+        /// you need to update the message status using <a>PutMessageFeedback</a>.
+        /// </para>
+        /// </summary>
+        public bool MessageFeedbackEnabled
+        {
+            get { return this._messageFeedbackEnabled.GetValueOrDefault(); }
+            set { this._messageFeedbackEnabled = value; }
+        }
+
+        // Check to see if MessageFeedbackEnabled property is set
+        internal bool IsSetMessageFeedbackEnabled()
+        {
+            return this._messageFeedbackEnabled.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property OriginationIdentity. 
         /// <para>
         /// The origination identity to use for the voice call. This can be the PhoneNumber, PhoneNumberId,
         /// PhoneNumberArn, PoolId, or PoolArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=256)]
         public string OriginationIdentity
@@ -209,6 +236,25 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         internal bool IsSetOriginationIdentity()
         {
             return this._originationIdentity != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProtectConfigurationId. 
+        /// <para>
+        /// The unique identifier for the protect configuration.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string ProtectConfigurationId
+        {
+            get { return this._protectConfigurationId; }
+            set { this._protectConfigurationId = value; }
+        }
+
+        // Check to see if ProtectConfigurationId property is set
+        internal bool IsSetProtectConfigurationId()
+        {
+            return this._protectConfigurationId != null;
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
-    /// The filter name isn't valid. Verify the you entered the correct name and try again.
+    /// The filter name isn't valid. Verify that you entered the correct name and try again.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

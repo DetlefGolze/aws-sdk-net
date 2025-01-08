@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the securityhub-2018-10-26.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -64,6 +65,16 @@ namespace Amazon.SecurityHub.Model
         /// Paginator for GetInsights operation
         ///</summary>
         IGetInsightsPaginator GetInsights(GetInsightsRequest request);
+
+        /// <summary>
+        /// Paginator for ListConfigurationPolicies operation
+        ///</summary>
+        IListConfigurationPoliciesPaginator ListConfigurationPolicies(ListConfigurationPoliciesRequest request);
+
+        /// <summary>
+        /// Paginator for ListConfigurationPolicyAssociations operation
+        ///</summary>
+        IListConfigurationPolicyAssociationsPaginator ListConfigurationPolicyAssociations(ListConfigurationPolicyAssociationsRequest request);
 
         /// <summary>
         /// Paginator for ListEnabledProductsForImport operation

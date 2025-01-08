@@ -26,18 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// Container for the parameters to the ImportNotebook operation.
-    /// Imports a single <code>ipynb</code> file to a Spark enabled workgroup. The maximum
-    /// file size that can be imported is 10 megabytes. If an <code>ipynb</code> file with
-    /// the same name already exists in the workgroup, throws an error.
+    /// Imports a single <c>ipynb</c> file to a Spark enabled workgroup. To import the notebook,
+    /// the request must specify a value for either <c>Payload</c> or <c>NoteBookS3LocationUri</c>.
+    /// If neither is specified or both are specified, an <c>InvalidRequestException</c> occurs.
+    /// The maximum file size that can be imported is 10 megabytes. If an <c>ipynb</c> file
+    /// with the same name already exists in the workgroup, throws an error.
     /// </summary>
     public partial class ImportNotebookRequest : AmazonAthenaRequest
     {
         private string _clientRequestToken;
         private string _name;
+        private string _notebookS3LocationUri;
         private string _payload;
         private NotebookType _type;
         private string _workGroup;
@@ -90,12 +94,31 @@ namespace Amazon.Athena.Model
         }
 
         /// <summary>
-        /// Gets and sets the property Payload. 
+        /// Gets and sets the property NotebookS3LocationUri. 
         /// <para>
-        /// The notebook content to be imported.
+        /// A URI that specifies the Amazon S3 location of a notebook file in <c>ipynb</c> format.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=10485760)]
+        [AWSProperty(Max=1024)]
+        public string NotebookS3LocationUri
+        {
+            get { return this._notebookS3LocationUri; }
+            set { this._notebookS3LocationUri = value; }
+        }
+
+        // Check to see if NotebookS3LocationUri property is set
+        internal bool IsSetNotebookS3LocationUri()
+        {
+            return this._notebookS3LocationUri != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Payload. 
+        /// <para>
+        /// The notebook content to be imported. The payload must be in <c>ipynb</c> format.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=10485760)]
         public string Payload
         {
             get { return this._payload; }
@@ -111,7 +134,7 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The notebook content type. Currently, the only valid type is <code>IPYNB</code>.
+        /// The notebook content type. Currently, the only valid type is <c>IPYNB</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

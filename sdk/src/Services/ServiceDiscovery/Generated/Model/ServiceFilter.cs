@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -36,18 +37,18 @@ namespace Amazon.ServiceDiscovery.Model
     {
         private FilterCondition _condition;
         private ServiceFilterName _name;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Condition. 
         /// <para>
-        /// The operator that you want to use to determine whether a service is returned by <code>ListServices</code>.
-        /// Valid values for <code>Condition</code> include the following:
+        /// The operator that you want to use to determine whether a service is returned by <c>ListServices</c>.
+        /// Valid values for <c>Condition</c> include the following:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>EQ</code>: When you specify <code>EQ</code>, specify one namespace ID for <code>Values</code>.
-        /// <code>EQ</code> is the default condition and can be omitted.
+        ///  <c>EQ</c>: When you specify <c>EQ</c>, specify one namespace ID for <c>Values</c>.
+        /// <c>EQ</c> is the default condition and can be omitted.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -66,7 +67,7 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// Specify <code>NAMESPACE_ID</code>.
+        /// Specify <c>NAMESPACE_ID</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -85,7 +86,7 @@ namespace Amazon.ServiceDiscovery.Model
         /// <summary>
         /// Gets and sets the property Values. 
         /// <para>
-        /// The values that are applicable to the value that you specify for <code>Condition</code>
+        /// The values that are applicable to the value that you specify for <c>Condition</c>
         /// to filter the list of services.
         /// </para>
         /// </summary>
@@ -99,7 +100,7 @@ namespace Amazon.ServiceDiscovery.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VerifiedPermissions.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.VerifiedPermissions.Model
     {
         private DateTime? _createdDate;
         private DateTime? _lastUpdatedDate;
+        private List<string> _namespaces = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _policyStoreId;
         private string _schema;
 
@@ -77,6 +79,24 @@ namespace Amazon.VerifiedPermissions.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Namespaces. 
+        /// <para>
+        /// The namespaces of the entities referenced by this schema.
+        /// </para>
+        /// </summary>
+        public List<string> Namespaces
+        {
+            get { return this._namespaces; }
+            set { this._namespaces = value; }
+        }
+
+        // Check to see if Namespaces property is set
+        internal bool IsSetNamespaces()
+        {
+            return this._namespaces != null && (this._namespaces.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
         /// Gets and sets the property PolicyStoreId. 
         /// <para>
         /// The ID of the policy store that contains the schema.
@@ -101,7 +121,7 @@ namespace Amazon.VerifiedPermissions.Model
         /// The body of the schema, written in Cedar schema JSON.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=10000)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1)]
         public string Schema
         {
             get { return this._schema; }

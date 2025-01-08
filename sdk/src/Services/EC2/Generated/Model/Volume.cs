@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class Volume
     {
-        private List<VolumeAttachment> _attachments = new List<VolumeAttachment>();
+        private List<VolumeAttachment> _attachments = AWSConfigs.InitializeCollections ? new List<VolumeAttachment>() : null;
         private string _availabilityZone;
         private DateTime? _createTime;
         private bool? _encrypted;
@@ -41,18 +42,23 @@ namespace Amazon.EC2.Model
         private int? _iops;
         private string _kmsKeyId;
         private bool? _multiAttachEnabled;
+        private OperatorResponse _operator;
         private string _outpostArn;
         private int? _size;
         private string _snapshotId;
         private SSEType _sseType;
         private VolumeState _state;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private int? _throughput;
         private string _volumeId;
         private VolumeType _volumeType;
 
         /// <summary>
-        /// Gets and sets the property Attachments. 
+        /// Gets and sets the property Attachments. <note> 
+        /// <para>
+        /// This parameter is not returned by CreateVolume.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Information about the volume attachments.
         /// </para>
@@ -66,7 +72,7 @@ namespace Amazon.EC2.Model
         // Check to see if Attachments property is set
         internal bool IsSetAttachments()
         {
-            return this._attachments != null && this._attachments.Count > 0; 
+            return this._attachments != null && (this._attachments.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -124,7 +130,11 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
-        /// Gets and sets the property FastRestored. 
+        /// Gets and sets the property FastRestored. <note> 
+        /// <para>
+        /// This parameter is not returned by CreateVolume.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Indicates whether the volume was created using fast snapshot restore.
         /// </para>
@@ -144,10 +154,10 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Iops. 
         /// <para>
-        /// The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>,
-        /// and <code>io2</code> volumes, this represents the number of IOPS that are provisioned
-        /// for the volume. For <code>gp2</code> volumes, this represents the baseline performance
-        /// of the volume and the rate at which the volume accumulates I/O credits for bursting.
+        /// The number of I/O operations per second (IOPS). For <c>gp3</c>, <c>io1</c>, and <c>io2</c>
+        /// volumes, this represents the number of IOPS that are provisioned for the volume. For
+        /// <c>gp2</c> volumes, this represents the baseline performance of the volume and the
+        /// rate at which the volume accumulates I/O credits for bursting.
         /// </para>
         /// </summary>
         public int Iops
@@ -165,8 +175,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property KmsKeyId. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Key Management Service (KMS) KMS key that was
-        /// used to protect the volume encryption key for the volume.
+        /// The Amazon Resource Name (ARN) of the KMS key that was used to protect the volume
+        /// encryption key for the volume.
         /// </para>
         /// </summary>
         public string KmsKeyId
@@ -197,6 +207,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetMultiAttachEnabled()
         {
             return this._multiAttachEnabled.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The service provider that manages the volume.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>
@@ -254,7 +282,11 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SseType. 
+        /// Gets and sets the property SseType. <note> 
+        /// <para>
+        /// This parameter is not returned by CreateVolume.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Reserved for future use.
         /// </para>
@@ -304,7 +336,7 @@ namespace Amazon.EC2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

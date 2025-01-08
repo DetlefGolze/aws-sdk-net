@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Personalize.Model
 {
     /// <summary>
@@ -33,8 +34,7 @@ namespace Amazon.Personalize.Model
     /// 
     ///  <note> 
     /// <para>
-    /// Amazon Personalize doesn't support configuring the <code>hpoObjective</code> at this
-    /// time.
+    /// Amazon Personalize doesn't support configuring the <c>hpoObjective</c> at this time.
     /// </para>
     ///  </note>
     /// </summary>
@@ -85,7 +85,7 @@ namespace Amazon.Personalize.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the metric. Valid values are <code>Maximize</code> and <code>Minimize</code>.
+        /// The type of the metric. Valid values are <c>Maximize</c> and <c>Minimize</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=256)]

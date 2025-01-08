@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKVoice.Model
 {
     /// <summary>
     /// Container for the parameters to the GetVoiceConnectorGroup operation.
     /// Retrieves details for the specified Amazon Chime SDK Voice Connector group, such as
-    /// timestamps,name, and associated <code>VoiceConnectorItems</code>.
+    /// timestamps,name, and associated <c>VoiceConnectorItems</c>.
     /// </summary>
     public partial class GetVoiceConnectorGroupRequest : AmazonChimeSDKVoiceRequest
     {

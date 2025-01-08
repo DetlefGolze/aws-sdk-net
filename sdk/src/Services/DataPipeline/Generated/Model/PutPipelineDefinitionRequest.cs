@@ -26,33 +26,34 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
     /// Container for the parameters to the PutPipelineDefinition operation.
-    /// Adds tasks, schedules, and preconditions to the specified pipeline. You can use <code>PutPipelineDefinition</code>
+    /// Adds tasks, schedules, and preconditions to the specified pipeline. You can use <c>PutPipelineDefinition</c>
     /// to populate a new pipeline.
     /// 
     ///  
     /// <para>
-    ///  <code>PutPipelineDefinition</code> also validates the configuration as it adds it
-    /// to the pipeline. Changes to the pipeline are saved unless one of the following three
-    /// validation errors exists in the pipeline. 
+    ///  <c>PutPipelineDefinition</c> also validates the configuration as it adds it to the
+    /// pipeline. Changes to the pipeline are saved unless one of the following three validation
+    /// errors exists in the pipeline. 
     /// </para>
     ///  <ol> <li>An object is missing a name or identifier field.</li> <li>A string or reference
     /// field is empty.</li> <li>The number of objects in the pipeline exceeds the maximum
     /// allowed objects.</li> <li>The pipeline is in a FINISHED state.</li> </ol> 
     /// <para>
-    ///  Pipeline object definitions are passed to the <code>PutPipelineDefinition</code>
-    /// action and returned by the <a>GetPipelineDefinition</a> action. 
+    ///  Pipeline object definitions are passed to the <c>PutPipelineDefinition</c> action
+    /// and returned by the <a>GetPipelineDefinition</a> action. 
     /// </para>
     /// </summary>
     public partial class PutPipelineDefinitionRequest : AmazonDataPipelineRequest
     {
-        private List<ParameterObject> _parameterObjects = new List<ParameterObject>();
-        private List<ParameterValue> _parameterValues = new List<ParameterValue>();
+        private List<ParameterObject> _parameterObjects = AWSConfigs.InitializeCollections ? new List<ParameterObject>() : null;
+        private List<ParameterValue> _parameterValues = AWSConfigs.InitializeCollections ? new List<ParameterValue>() : null;
         private string _pipelineId;
-        private List<PipelineObject> _pipelineObjects = new List<PipelineObject>();
+        private List<PipelineObject> _pipelineObjects = AWSConfigs.InitializeCollections ? new List<PipelineObject>() : null;
 
         /// <summary>
         /// Gets and sets the property ParameterObjects. 
@@ -69,7 +70,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if ParameterObjects property is set
         internal bool IsSetParameterObjects()
         {
-            return this._parameterObjects != null && this._parameterObjects.Count > 0; 
+            return this._parameterObjects != null && (this._parameterObjects.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,7 +88,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if ParameterValues property is set
         internal bool IsSetParameterValues()
         {
-            return this._parameterValues != null && this._parameterValues.Count > 0; 
+            return this._parameterValues != null && (this._parameterValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,7 +127,7 @@ namespace Amazon.DataPipeline.Model
         // Check to see if PipelineObjects property is set
         internal bool IsSetPipelineObjects()
         {
-            return this._pipelineObjects != null && this._pipelineObjects.Count > 0; 
+            return this._pipelineObjects != null && (this._pipelineObjects.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

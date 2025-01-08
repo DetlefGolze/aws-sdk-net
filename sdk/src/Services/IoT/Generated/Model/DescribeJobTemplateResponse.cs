@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -36,14 +37,14 @@ namespace Amazon.IoT.Model
         private AbortConfig _abortConfig;
         private DateTime? _createdAt;
         private string _description;
-        private List<string> _destinationPackageVersions = new List<string>();
+        private List<string> _destinationPackageVersions = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _document;
         private string _documentSource;
         private JobExecutionsRetryConfig _jobExecutionsRetryConfig;
         private JobExecutionsRolloutConfig _jobExecutionsRolloutConfig;
         private string _jobTemplateArn;
         private string _jobTemplateId;
-        private List<MaintenanceWindow> _maintenanceWindows = new List<MaintenanceWindow>();
+        private List<MaintenanceWindow> _maintenanceWindows = AWSConfigs.InitializeCollections ? new List<MaintenanceWindow>() : null;
         private PresignedUrlConfig _presignedUrlConfig;
         private TimeoutConfig _timeoutConfig;
 
@@ -103,12 +104,14 @@ namespace Amazon.IoT.Model
         /// Gets and sets the property DestinationPackageVersions. 
         /// <para>
         /// The package version Amazon Resource Names (ARNs) that are installed on the device
-        /// when the job successfully completes. 
+        /// when the job successfully completes. The package version must be in either the Published
+        /// or Deprecated state when the job deploys. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle">Package
+        /// version lifecycle</a>.
         /// </para>
         ///  
         /// <para>
-        ///  <b>Note:</b>The following Length Constraints relates to a single string. Up to five
-        /// strings are allowed.
+        ///  <b>Note:</b>The following Length Constraints relates to a single ARN. Up to 25 package
+        /// version ARNs are allowed.
         /// </para>
         /// </summary>
         public List<string> DestinationPackageVersions
@@ -120,7 +123,7 @@ namespace Amazon.IoT.Model
         // Check to see if DestinationPackageVersions property is set
         internal bool IsSetDestinationPackageVersions()
         {
-            return this._destinationPackageVersions != null && this._destinationPackageVersions.Count > 0; 
+            return this._destinationPackageVersions != null && (this._destinationPackageVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -249,7 +252,7 @@ namespace Amazon.IoT.Model
         // Check to see if MaintenanceWindows property is set
         internal bool IsSetMaintenanceWindows()
         {
-            return this._maintenanceWindows != null && this._maintenanceWindows.Count > 0; 
+            return this._maintenanceWindows != null && (this._maintenanceWindows.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudControlApi.Model
 {
     /// <summary>
     /// The resource handler has returned that the downstream service returned an internal
-    /// error, typically with a <code>5XX HTTP</code> status code.
+    /// error, typically with a <c>5XX HTTP</c> status code.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

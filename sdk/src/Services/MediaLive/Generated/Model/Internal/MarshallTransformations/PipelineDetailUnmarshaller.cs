@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PipelineDetail Unmarshall(JsonUnmarshallerContext context)
         {
+            PipelineDetail unmarshalledObject = new PipelineDetail();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PipelineDetail unmarshalledObject = new PipelineDetail();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -88,6 +90,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     unmarshalledObject.ActiveMotionGraphicsUri = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("channelEngineVersion", targetDepth))
+                {
+                    var unmarshaller = ChannelEngineVersionResponseUnmarshaller.Instance;
+                    unmarshalledObject.ChannelEngineVersion = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("pipelineId", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -95,7 +103,6 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

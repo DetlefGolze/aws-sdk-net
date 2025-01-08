@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -47,8 +48,9 @@ namespace Amazon.EKS.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// If you use Cluster Autoscaler, you shouldn't change the desiredSize value directly,
-        /// as this can cause the Cluster Autoscaler to suddenly scale up or scale down.
+        /// If you use the Kubernetes <a href="https://github.com/kubernetes/autoscaler#kubernetes-autoscaler">Cluster
+        /// Autoscaler</a>, you shouldn't change the <c>desiredSize</c> value directly, as this
+        /// can cause the Cluster Autoscaler to suddenly scale up or scale down.
         /// </para>
         ///  </important> 
         /// <para>
@@ -60,13 +62,13 @@ namespace Amazon.EKS.Model
         /// </para>
         ///  
         /// <para>
-        /// This parameter can be different from minSize in some cases, such as when starting
+        /// This parameter can be different from <c>minSize</c> in some cases, such as when starting
         /// with extra hosts for testing. This parameter can also be different when you want to
-        /// start with an estimated number of needed hosts, but let Cluster Autoscaler reduce
-        /// the number if there are too many. When Cluster Autoscaler is used, the desiredSize
-        /// parameter is altered by Cluster Autoscaler (but can be out-of-date for short periods
-        /// of time). Cluster Autoscaler doesn't scale a managed node group lower than minSize
-        /// or higher than maxSize.
+        /// start with an estimated number of needed hosts, but let the Cluster Autoscaler reduce
+        /// the number if there are too many. When the Cluster Autoscaler is used, the <c>desiredSize</c>
+        /// parameter is altered by the Cluster Autoscaler (but can be out-of-date for short periods
+        /// of time). the Cluster Autoscaler doesn't scale a managed node group lower than <c>minSize</c>
+        /// or higher than <c>maxSize</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

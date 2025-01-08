@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
-    /// Parameter information for key material import using TR-34 standard.
+    /// Parameter information for key material import using the asymmetric TR-34 key exchange
+    /// method.
     /// </summary>
     public partial class ImportTr34KeyBlock
     {
@@ -43,7 +45,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property CertificateAuthorityPublicKeyIdentifier. 
         /// <para>
-        /// The <code>KeyARN</code> of the certificate chain that signs the signing key certificate
+        /// The <c>KeyARN</c> of the certificate chain that signs the signing key certificate
         /// during TR-34 key import.
         /// </para>
         /// </summary>
@@ -63,9 +65,9 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property ImportToken. 
         /// <para>
-        /// The import token that initiates key import into Amazon Web Services Payment Cryptography.
-        /// It expires after 7 days. You can use the same import token to import multiple keys
-        /// to the same service account.
+        /// The import token that initiates key import using the asymmetric TR-34 key exchange
+        /// method into Amazon Web Services Payment Cryptography. It expires after 7 days. You
+        /// can use the same import token to import multiple keys to the same service account.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -84,7 +86,7 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property KeyBlockFormat. 
         /// <para>
-        /// The key block format to use during key import. The only value allowed is <code>X9_TR34_2012</code>.
+        /// The key block format to use during key import. The only value allowed is <c>X9_TR34_2012</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -108,7 +110,7 @@ namespace Amazon.PaymentCryptography.Model
         /// generated using 2 pass.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=16, Max=16)]
+        [AWSProperty(Min=16, Max=32)]
         public string RandomNonce
         {
             get { return this._randomNonce; }
@@ -125,7 +127,7 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property SigningKeyCertificate. 
         /// <para>
         /// The public key component in PEM certificate format of the private key that signs the
-        /// KDH TR-34 wrapped key block.
+        /// KDH TR-34 WrappedKeyBlock.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=1, Max=32768)]
@@ -147,7 +149,7 @@ namespace Amazon.PaymentCryptography.Model
         /// The TR-34 wrapped key block to import.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=2, Max=4096)]
+        [AWSProperty(Required=true, Sensitive=true, Min=2, Max=4096)]
         public string WrappedKeyBlock
         {
             get { return this._wrappedKeyBlock; }

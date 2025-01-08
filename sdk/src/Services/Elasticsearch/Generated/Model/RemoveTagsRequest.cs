@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
@@ -35,13 +36,13 @@ namespace Amazon.Elasticsearch.Model
     public partial class RemoveTagsRequest : AmazonElasticsearchRequest
     {
         private string _arn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ARN. 
         /// <para>
-        /// Specifies the <code>ARN</code> for the Elasticsearch domain from which you want to
-        /// delete the specified tags.
+        /// Specifies the <c>ARN</c> for the Elasticsearch domain from which you want to delete
+        /// the specified tags.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -60,8 +61,7 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// Specifies the <code>TagKey</code> list which you want to remove from the Elasticsearch
-        /// domain.
+        /// Specifies the <c>TagKey</c> list which you want to remove from the Elasticsearch domain.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -74,7 +74,7 @@ namespace Amazon.Elasticsearch.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

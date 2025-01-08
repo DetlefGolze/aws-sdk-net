@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MedicalImaging.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.MedicalImaging.Model
         private string _clientToken;
         private string _datastoreName;
         private string _kmsKeyArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -80,8 +81,8 @@ namespace Amazon.MedicalImaging.Model
         /// <summary>
         /// Gets and sets the property KmsKeyArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) assigned to the AWS Key Management Service (AWS KMS)
-        /// key for accessing encrypted data.
+        /// The Amazon Resource Name (ARN) assigned to the Key Management Service (KMS) key for
+        /// accessing encrypted data.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]
@@ -112,7 +113,7 @@ namespace Amazon.MedicalImaging.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

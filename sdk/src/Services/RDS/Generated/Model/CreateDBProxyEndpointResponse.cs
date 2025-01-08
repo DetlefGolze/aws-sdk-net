@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -38,9 +39,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property DBProxyEndpoint. 
         /// <para>
-        /// The <code>DBProxyEndpoint</code> object that is created by the API operation. The
-        /// DB proxy endpoint that you create might provide capabilities such as read/write or
-        /// read-only operations, or using a different VPC than the proxy's default VPC.
+        /// The <c>DBProxyEndpoint</c> object that is created by the API operation. The DB proxy
+        /// endpoint that you create might provide capabilities such as read/write or read-only
+        /// operations, or using a different VPC than the proxy's default VPC.
         /// </para>
         /// </summary>
         public DBProxyEndpoint DBProxyEndpoint

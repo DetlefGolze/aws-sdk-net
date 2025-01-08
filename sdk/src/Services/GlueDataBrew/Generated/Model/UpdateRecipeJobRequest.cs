@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GlueDataBrew.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.GlueDataBrew.Model
     /// </summary>
     public partial class UpdateRecipeJobRequest : AmazonGlueDataBrewRequest
     {
-        private List<DatabaseOutput> _databaseOutputs = new List<DatabaseOutput>();
-        private List<DataCatalogOutput> _dataCatalogOutputs = new List<DataCatalogOutput>();
+        private List<DatabaseOutput> _databaseOutputs = AWSConfigs.InitializeCollections ? new List<DatabaseOutput>() : null;
+        private List<DataCatalogOutput> _dataCatalogOutputs = AWSConfigs.InitializeCollections ? new List<DataCatalogOutput>() : null;
         private string _encryptionKeyArn;
         private EncryptionMode _encryptionMode;
         private LogSubscription _logSubscription;
         private int? _maxCapacity;
         private int? _maxRetries;
         private string _name;
-        private List<Output> _outputs = new List<Output>();
+        private List<Output> _outputs = AWSConfigs.InitializeCollections ? new List<Output>() : null;
         private string _roleArn;
         private int? _timeout;
 
@@ -63,7 +64,7 @@ namespace Amazon.GlueDataBrew.Model
         // Check to see if DatabaseOutputs property is set
         internal bool IsSetDatabaseOutputs()
         {
-            return this._databaseOutputs != null && this._databaseOutputs.Count > 0; 
+            return this._databaseOutputs != null && (this._databaseOutputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Amazon.GlueDataBrew.Model
         // Check to see if DataCatalogOutputs property is set
         internal bool IsSetDataCatalogOutputs()
         {
-            return this._dataCatalogOutputs != null && this._dataCatalogOutputs.Count > 0; 
+            return this._dataCatalogOutputs != null && (this._dataCatalogOutputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -112,11 +113,11 @@ namespace Amazon.GlueDataBrew.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SSE-KMS</code> - Server-side encryption with keys managed by KMS.
+        ///  <c>SSE-KMS</c> - Server-side encryption with keys managed by KMS.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.
+        ///  <c>SSE-S3</c> - Server-side encryption with keys managed by Amazon S3.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -223,7 +224,7 @@ namespace Amazon.GlueDataBrew.Model
         // Check to see if Outputs property is set
         internal bool IsSetOutputs()
         {
-            return this._outputs != null && this._outputs.Count > 0; 
+            return this._outputs != null && (this._outputs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -250,7 +251,7 @@ namespace Amazon.GlueDataBrew.Model
         /// Gets and sets the property Timeout. 
         /// <para>
         /// The job's timeout in minutes. A job that attempts to run longer than this timeout
-        /// period ends with a status of <code>TIMEOUT</code>.
+        /// period ends with a status of <c>TIMEOUT</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]

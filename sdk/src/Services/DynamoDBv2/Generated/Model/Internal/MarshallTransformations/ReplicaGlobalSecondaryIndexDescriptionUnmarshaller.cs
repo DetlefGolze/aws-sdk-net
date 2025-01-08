@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.DynamoDBv2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.DynamoDBv2.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ReplicaGlobalSecondaryIndexDescription Unmarshall(JsonUnmarshallerContext context)
         {
+            ReplicaGlobalSecondaryIndexDescription unmarshalledObject = new ReplicaGlobalSecondaryIndexDescription();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ReplicaGlobalSecondaryIndexDescription unmarshalledObject = new ReplicaGlobalSecondaryIndexDescription();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,14 +72,25 @@ namespace Amazon.DynamoDBv2.Model.Internal.MarshallTransformations
                     unmarshalledObject.IndexName = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("OnDemandThroughputOverride", targetDepth))
+                {
+                    var unmarshaller = OnDemandThroughputOverrideUnmarshaller.Instance;
+                    unmarshalledObject.OnDemandThroughputOverride = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("ProvisionedThroughputOverride", targetDepth))
                 {
                     var unmarshaller = ProvisionedThroughputOverrideUnmarshaller.Instance;
                     unmarshalledObject.ProvisionedThroughputOverride = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("WarmThroughput", targetDepth))
+                {
+                    var unmarshaller = GlobalSecondaryIndexWarmThroughputDescriptionUnmarshaller.Instance;
+                    unmarshalledObject.WarmThroughput = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

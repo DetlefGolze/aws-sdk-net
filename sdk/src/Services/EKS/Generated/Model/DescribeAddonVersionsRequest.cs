@@ -26,13 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAddonVersions operation.
-    /// Describes the versions for an add-on. Information such as the Kubernetes versions
-    /// that you can use the add-on with, the <code>owner</code>, <code>publisher</code>,
-    /// and the <code>type</code> of the add-on are returned.
+    /// Describes the versions for an add-on.
+    /// 
+    ///  
+    /// <para>
+    /// Information such as the Kubernetes versions that you can use the add-on with, the
+    /// <c>owner</c>, <c>publisher</c>, and the <c>type</c> of the add-on are returned.
+    /// </para>
     /// </summary>
     public partial class DescribeAddonVersionsRequest : AmazonEKSRequest
     {
@@ -40,15 +45,15 @@ namespace Amazon.EKS.Model
         private string _kubernetesVersion;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _owners = new List<string>();
-        private List<string> _publishers = new List<string>();
-        private List<string> _types = new List<string>();
+        private List<string> _owners = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _publishers = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _types = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AddonName. 
         /// <para>
         /// The name of the add-on. The name must match one of the names returned by <a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html">
-        /// <code>ListAddons</code> </a>.
+        /// <c>ListAddons</c> </a>.
         /// </para>
         /// </summary>
         public string AddonName
@@ -84,7 +89,11 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of results to return.
+        /// The maximum number of results, returned in paginated output. You receive <c>maxResults</c>
+        /// in a single page, along with a <c>nextToken</c> response element. You can see the
+        /// remaining results of the initial request by sending another request with the returned
+        /// <c>nextToken</c> value. This value can be between 1 and 100. If you don't use this
+        /// parameter, 100 results and a <c>nextToken</c> value, if applicable, are returned.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -103,10 +112,10 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value returned from a previous paginated <code>DescribeAddonVersionsRequest</code>
-        /// where <code>maxResults</code> was used and the results exceeded the value of that
-        /// parameter. Pagination continues from the end of the previous results that returned
-        /// the <code>nextToken</code> value.
+        /// The <c>nextToken</c> value returned from a previous paginated request, where <c>maxResults</c>
+        /// was used and the results exceeded the value of that parameter. Pagination continues
+        /// from the end of the previous results that returned the <c>nextToken</c> value. This
+        /// value is null when there are no more results to return.
         /// </para>
         ///  <note> 
         /// <para>
@@ -130,8 +139,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Owners. 
         /// <para>
-        /// The owner of the add-on. For valid <code>owners</code>, don't specify a value for
-        /// this property.
+        /// The owner of the add-on. For valid <c>owners</c>, don't specify a value for this property.
         /// </para>
         /// </summary>
         public List<string> Owners
@@ -143,14 +151,14 @@ namespace Amazon.EKS.Model
         // Check to see if Owners property is set
         internal bool IsSetOwners()
         {
-            return this._owners != null && this._owners.Count > 0; 
+            return this._owners != null && (this._owners.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Publishers. 
         /// <para>
-        /// The publisher of the add-on. For valid <code>publishers</code>, don't specify a value
-        /// for this property.
+        /// The publisher of the add-on. For valid <c>publishers</c>, don't specify a value for
+        /// this property.
         /// </para>
         /// </summary>
         public List<string> Publishers
@@ -162,14 +170,13 @@ namespace Amazon.EKS.Model
         // Check to see if Publishers property is set
         internal bool IsSetPublishers()
         {
-            return this._publishers != null && this._publishers.Count > 0; 
+            return this._publishers != null && (this._publishers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Types. 
         /// <para>
-        /// The type of the add-on. For valid <code>types</code>, don't specify a value for this
-        /// property.
+        /// The type of the add-on. For valid <c>types</c>, don't specify a value for this property.
         /// </para>
         /// </summary>
         public List<string> Types
@@ -181,7 +188,7 @@ namespace Amazon.EKS.Model
         // Check to see if Types property is set
         internal bool IsSetTypes()
         {
-            return this._types != null && this._types.Count > 0; 
+            return this._types != null && (this._types.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

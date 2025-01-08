@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Route53.Model
     /// 
     ///  
     /// <para>
-    /// For information about how of deleting a traffic policy affects the response from <code>GetTrafficPolicy</code>,
+    /// For information about how of deleting a traffic policy affects the response from <c>GetTrafficPolicy</c>,
     /// see <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteTrafficPolicy.html">DeleteTrafficPolicy</a>.
     /// 
     /// </para>

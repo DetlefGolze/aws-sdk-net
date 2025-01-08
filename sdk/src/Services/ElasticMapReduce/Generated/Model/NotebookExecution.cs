@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
     /// A notebook execution. An execution is a specific instance that an Amazon EMR Notebook
-    /// is run using the <code>StartNotebookExecution</code> action.
+    /// is run using the <c>StartNotebookExecution</c> action.
     /// </summary>
     public partial class NotebookExecution
     {
         private string _arn;
         private string _editorId;
         private DateTime? _endTime;
-        private Dictionary<string, string> _environmentVariables = new Dictionary<string, string>();
+        private Dictionary<string, string> _environmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private ExecutionEngineConfig _executionEngine;
         private string _lastStateChangeReason;
         private string _notebookExecutionId;
@@ -50,7 +51,7 @@ namespace Amazon.ElasticMapReduce.Model
         private string _outputNotebookURI;
         private DateTime? _startTime;
         private NotebookExecutionStatus _status;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -123,7 +124,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -341,47 +342,46 @@ namespace Amazon.ElasticMapReduce.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>START_PENDING</code> indicates that the cluster has received the execution
-        /// request but execution has not begun.
+        ///  <c>START_PENDING</c> indicates that the cluster has received the execution request
+        /// but execution has not begun.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STARTING</code> indicates that the execution is starting on the cluster.
+        ///  <c>STARTING</c> indicates that the execution is starting on the cluster.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RUNNING</code> indicates that the execution is being processed by the cluster.
+        ///  <c>RUNNING</c> indicates that the execution is being processed by the cluster.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FINISHING</code> indicates that execution processing is in the final stages.
+        ///  <c>FINISHING</c> indicates that execution processing is in the final stages.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FINISHED</code> indicates that the execution has completed without error.
+        ///  <c>FINISHED</c> indicates that the execution has completed without error.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILING</code> indicates that the execution is failing and will not finish
-        /// successfully.
+        ///  <c>FAILING</c> indicates that the execution is failing and will not finish successfully.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FAILED</code> indicates that the execution failed.
+        ///  <c>FAILED</c> indicates that the execution failed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STOP_PENDING</code> indicates that the cluster has received a <code>StopNotebookExecution</code>
+        ///  <c>STOP_PENDING</c> indicates that the cluster has received a <c>StopNotebookExecution</c>
         /// request and the stop is pending.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STOPPING</code> indicates that the cluster is in the process of stopping the
-        /// execution as a result of a <code>StopNotebookExecution</code> request.
+        ///  <c>STOPPING</c> indicates that the cluster is in the process of stopping the execution
+        /// as a result of a <c>StopNotebookExecution</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STOPPED</code> indicates that the execution stopped because of a <code>StopNotebookExecution</code>
+        ///  <c>STOPPED</c> indicates that the execution stopped because of a <c>StopNotebookExecution</c>
         /// request.
         /// </para>
         ///  </li> </ul>
@@ -415,7 +415,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

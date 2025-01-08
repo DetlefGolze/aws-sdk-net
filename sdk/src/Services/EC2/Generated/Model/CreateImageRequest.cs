@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -48,12 +49,12 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class CreateImageRequest : AmazonEC2Request
     {
-        private List<BlockDeviceMapping> _blockDeviceMappings = new List<BlockDeviceMapping>();
+        private List<BlockDeviceMapping> _blockDeviceMappings = AWSConfigs.InitializeCollections ? new List<BlockDeviceMapping>() : null;
         private string _description;
         private string _instanceId;
         private string _name;
         private bool? _noReboot;
-        private List<TagSpecification> _tagSpecifications = new List<TagSpecification>();
+        private List<TagSpecification> _tagSpecifications = AWSConfigs.InitializeCollections ? new List<TagSpecification>() : null;
 
         /// <summary>
         /// Empty constructor used to set  properties independently even when a simple constructor is available
@@ -74,10 +75,29 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property BlockDeviceMappings. 
         /// <para>
-        /// The block device mappings. This parameter cannot be used to modify the encryption
-        /// status of existing volumes or snapshots. To create an AMI with encrypted snapshots,
-        /// use the <a>CopyImage</a> action.
+        /// The block device mappings.
         /// </para>
+        ///  
+        /// <para>
+        /// When using the CreateImage action:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// You can't change the volume size using the VolumeSize parameter. If you want a different
+        /// volume size, you must first change the volume size of the source instance.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You can't modify the encryption status of existing volumes or snapshots. To create
+        /// an AMI with volumes or snapshots that have a different encryption status (for example,
+        /// where the source volume and snapshots are unencrypted, and you want to create an AMI
+        /// with encrypted volumes or snapshots), use the <a>CopyImage</a> action.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// The only option that can be changed for existing mappings or snapshots is <c>DeleteOnTermination</c>.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public List<BlockDeviceMapping> BlockDeviceMappings
         {
@@ -88,7 +108,7 @@ namespace Amazon.EC2.Model
         // Check to see if BlockDeviceMappings property is set
         internal bool IsSetBlockDeviceMappings()
         {
-            return this._blockDeviceMappings != null && this._blockDeviceMappings.Count > 0; 
+            return this._blockDeviceMappings != null && (this._blockDeviceMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -161,20 +181,20 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>true</code> - The instance is not rebooted before creating the image. This
-        /// creates crash-consistent snapshots that include only the data that has been written
-        /// to the volumes at the time the snapshots are created. Buffered data and data in memory
-        /// that has not yet been written to the volumes is not included in the snapshots.
+        ///  <c>true</c> - The instance is not rebooted before creating the image. This creates
+        /// crash-consistent snapshots that include only the data that has been written to the
+        /// volumes at the time the snapshots are created. Buffered data and data in memory that
+        /// has not yet been written to the volumes is not included in the snapshots.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>false</code> - The instance is rebooted before creating the image. This ensures
-        /// that all buffered data and data in memory is written to the volumes before the snapshots
+        ///  <c>false</c> - The instance is rebooted before creating the image. This ensures that
+        /// all buffered data and data in memory is written to the volumes before the snapshots
         /// are created.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// Default: <code>false</code> 
+        /// Default: <c>false</c> 
         /// </para>
         /// </summary>
         public bool NoReboot
@@ -197,17 +217,17 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To tag the AMI, the value for <code>ResourceType</code> must be <code>image</code>.
+        /// To tag the AMI, the value for <c>ResourceType</c> must be <c>image</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// To tag the snapshots that are created of the root volume and of other Amazon EBS volumes
-        /// that are attached to the instance, the value for <code>ResourceType</code> must be
-        /// <code>snapshot</code>. The same tag is applied to all of the snapshots that are created.
+        /// that are attached to the instance, the value for <c>ResourceType</c> must be <c>snapshot</c>.
+        /// The same tag is applied to all of the snapshots that are created.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you specify other values for <code>ResourceType</code>, the request fails.
+        /// If you specify other values for <c>ResourceType</c>, the request fails.
         /// </para>
         ///  
         /// <para>
@@ -224,7 +244,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSpecifications property is set
         internal bool IsSetTagSpecifications()
         {
-            return this._tagSpecifications != null && this._tagSpecifications.Count > 0; 
+            return this._tagSpecifications != null && (this._tagSpecifications.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

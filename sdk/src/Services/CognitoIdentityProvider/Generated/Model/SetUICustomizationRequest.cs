@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
@@ -36,11 +37,10 @@ namespace Amazon.CognitoIdentityProvider.Model
     ///  
     /// <para>
     /// You can specify app UI customization settings for a single client (with a specific
-    /// <code>clientId</code>) or for all clients (by setting the <code>clientId</code> to
-    /// <code>ALL</code>). If you specify <code>ALL</code>, the default configuration is used
-    /// for every client that has no previously set UI customization. If you specify UI customization
-    /// settings for a particular client, it will no longer return to the <code>ALL</code>
-    /// configuration.
+    /// <c>clientId</c>) or for all clients (by setting the <c>clientId</c> to <c>ALL</c>).
+    /// If you specify <c>ALL</c>, the default configuration is used for every client that
+    /// has no previously set UI customization. If you specify UI customization settings for
+    /// a particular client, it will no longer return to the <c>ALL</c> configuration.
     /// </para>
     ///  <note> 
     /// <para>
@@ -116,7 +116,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property UserPoolId. 
         /// <para>
-        /// The user pool ID for the user pool.
+        /// The ID of the user pool.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=55)]

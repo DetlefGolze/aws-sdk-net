@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.VPCLattice.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateAccessLogSubscription operation.
     /// Enables access logs to be sent to Amazon CloudWatch, Amazon S3, and Amazon Kinesis
     /// Data Firehose. The service network owner can use the access logs to audit the services
-    /// in the network. The service network owner will only see access logs from clients and
+    /// in the network. The service network owner can only see access logs from clients and
     /// services that are associated with their service network. Access log entries represent
     /// traffic originated from VPCs associated with that network. For more information, see
     /// <a href="https://docs.aws.amazon.com/vpc-lattice/latest/ug/monitoring-access-logs.html">Access
@@ -43,7 +44,8 @@ namespace Amazon.VPCLattice.Model
         private string _clientToken;
         private string _destinationArn;
         private string _resourceIdentifier;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private ServiceNetworkLogType _serviceNetworkLogType;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClientToken. 
@@ -90,7 +92,7 @@ namespace Amazon.VPCLattice.Model
         /// <summary>
         /// Gets and sets the property ResourceIdentifier. 
         /// <para>
-        /// The ID or Amazon Resource Name (ARN) of the service network or service.
+        /// The ID or ARN of the service network or service.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=17, Max=200)]
@@ -104,6 +106,24 @@ namespace Amazon.VPCLattice.Model
         internal bool IsSetResourceIdentifier()
         {
             return this._resourceIdentifier != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ServiceNetworkLogType. 
+        /// <para>
+        /// The type of log that monitors your Amazon VPC Lattice service networks.
+        /// </para>
+        /// </summary>
+        public ServiceNetworkLogType ServiceNetworkLogType
+        {
+            get { return this._serviceNetworkLogType; }
+            set { this._serviceNetworkLogType = value; }
+        }
+
+        // Check to see if ServiceNetworkLogType property is set
+        internal bool IsSetServiceNetworkLogType()
+        {
+            return this._serviceNetworkLogType != null;
         }
 
         /// <summary>
@@ -122,7 +142,7 @@ namespace Amazon.VPCLattice.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

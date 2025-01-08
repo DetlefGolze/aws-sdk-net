@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,18 +53,43 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public SpaceSettings Unmarshall(JsonUnmarshallerContext context)
         {
+            SpaceSettings unmarshalledObject = new SpaceSettings();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            SpaceSettings unmarshalledObject = new SpaceSettings();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("AppType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.AppType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("CodeEditorAppSettings", targetDepth))
+                {
+                    var unmarshaller = SpaceCodeEditorAppSettingsUnmarshaller.Instance;
+                    unmarshalledObject.CodeEditorAppSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("CustomFileSystems", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<CustomFileSystem, CustomFileSystemUnmarshaller>(CustomFileSystemUnmarshaller.Instance);
+                    unmarshalledObject.CustomFileSystems = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("JupyterLabAppSettings", targetDepth))
+                {
+                    var unmarshaller = SpaceJupyterLabAppSettingsUnmarshaller.Instance;
+                    unmarshalledObject.JupyterLabAppSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("JupyterServerAppSettings", targetDepth))
                 {
                     var unmarshaller = JupyterServerAppSettingsUnmarshaller.Instance;
@@ -76,8 +102,13 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     unmarshalledObject.KernelGatewayAppSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SpaceStorageSettings", targetDepth))
+                {
+                    var unmarshaller = SpaceStorageSettingsUnmarshaller.Instance;
+                    unmarshalledObject.SpaceStorageSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

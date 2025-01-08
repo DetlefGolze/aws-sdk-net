@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -35,11 +36,13 @@ namespace Amazon.CustomerProfiles.Model
     {
         private DateTime? _createdAt;
         private string _domainName;
+        private List<string> _eventTriggerNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _isUnstructured;
         private DateTime? _lastUpdatedAt;
         private string _objectTypeName;
-        private Dictionary<string, string> _objectTypeNames = new Dictionary<string, string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _objectTypeNames = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private string _roleArn;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _uri;
         private string _workflowId;
 
@@ -79,6 +82,26 @@ namespace Amazon.CustomerProfiles.Model
         internal bool IsSetDomainName()
         {
             return this._domainName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EventTriggerNames. 
+        /// <para>
+        /// A list of unique names for active event triggers associated with the integration.
+        /// This list would be empty if no Event Trigger is associated with the integration.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=1)]
+        public List<string> EventTriggerNames
+        {
+            get { return this._eventTriggerNames; }
+            set { this._eventTriggerNames = value; }
+        }
+
+        // Check to see if EventTriggerNames property is set
+        internal bool IsSetEventTriggerNames()
+        {
+            return this._eventTriggerNames != null && (this._eventTriggerNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,10 +165,10 @@ namespace Amazon.CustomerProfiles.Model
         /// Gets and sets the property ObjectTypeNames. 
         /// <para>
         /// A map in which each key is an event type from an external application such as Segment
-        /// or Shopify, and each value is an <code>ObjectTypeName</code> (template) used to ingest
-        /// the event. It supports the following event types: <code>SegmentIdentify</code>, <code>ShopifyCreateCustomers</code>,
-        /// <code>ShopifyUpdateCustomers</code>, <code>ShopifyCreateDraftOrders</code>, <code>ShopifyUpdateDraftOrders</code>,
-        /// <code>ShopifyCreateOrders</code>, and <code>ShopifyUpdatedOrders</code>.
+        /// or Shopify, and each value is an <c>ObjectTypeName</c> (template) used to ingest the
+        /// event. It supports the following event types: <c>SegmentIdentify</c>, <c>ShopifyCreateCustomers</c>,
+        /// <c>ShopifyUpdateCustomers</c>, <c>ShopifyCreateDraftOrders</c>, <c>ShopifyUpdateDraftOrders</c>,
+        /// <c>ShopifyCreateOrders</c>, and <c>ShopifyUpdatedOrders</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> ObjectTypeNames
@@ -157,7 +180,27 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if ObjectTypeNames property is set
         internal bool IsSetObjectTypeNames()
         {
-            return this._objectTypeNames != null && this._objectTypeNames.Count > 0; 
+            return this._objectTypeNames != null && (this._objectTypeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RoleArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the IAM role. The Integration uses this role to
+        /// make Customer Profiles requests on your behalf.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Max=512)]
+        public string RoleArn
+        {
+            get { return this._roleArn; }
+            set { this._roleArn = value; }
+        }
+
+        // Check to see if RoleArn property is set
+        internal bool IsSetRoleArn()
+        {
+            return this._roleArn != null;
         }
 
         /// <summary>
@@ -176,7 +219,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -34,17 +35,16 @@ namespace Amazon.RoboMaker.Model
     public partial class ListRobotApplicationsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<RobotApplicationSummary> _robotApplicationSummaries = new List<RobotApplicationSummary>();
+        private List<RobotApplicationSummary> _robotApplicationSummaries = AWSConfigs.InitializeCollections ? new List<RobotApplicationSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// If the previous paginated request did not return all of the remaining results, the
-        /// response object's <code>nextToken</code> parameter value is set to a token. To retrieve
-        /// the next set of results, call <code>ListRobotApplications</code> again and assign
-        /// that token to the request object's <code>nextToken</code> parameter. If there are
-        /// no remaining results, the previous response object's NextToken parameter is set to
-        /// null. 
+        /// response object's <c>nextToken</c> parameter value is set to a token. To retrieve
+        /// the next set of results, call <c>ListRobotApplications</c> again and assign that token
+        /// to the request object's <c>nextToken</c> parameter. If there are no remaining results,
+        /// the previous response object's NextToken parameter is set to null. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2048)]
@@ -76,7 +76,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if RobotApplicationSummaries property is set
         internal bool IsSetRobotApplicationSummaries()
         {
-            return this._robotApplicationSummaries != null && this._robotApplicationSummaries.Count > 0; 
+            return this._robotApplicationSummaries != null && (this._robotApplicationSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

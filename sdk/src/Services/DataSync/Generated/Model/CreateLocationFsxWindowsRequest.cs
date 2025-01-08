@@ -26,27 +26,41 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataSync.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateLocationFsxWindows operation.
-    /// Creates an endpoint for an Amazon FSx for Windows File Server file system.
+    /// Creates a transfer <i>location</i> for an Amazon FSx for Windows File Server file
+    /// system. DataSync can use this location as a source or destination for transferring
+    /// data.
+    /// 
+    ///  
+    /// <para>
+    /// Before you begin, make sure that you understand how DataSync <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-location-access">accesses
+    /// FSx for Windows File Server file systems</a>.
+    /// </para>
     /// </summary>
     public partial class CreateLocationFsxWindowsRequest : AmazonDataSyncRequest
     {
         private string _domain;
         private string _fsxFilesystemArn;
         private string _password;
-        private List<string> _securityGroupArns = new List<string>();
+        private List<string> _securityGroupArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _subdirectory;
-        private List<TagListEntry> _tags = new List<TagListEntry>();
+        private List<TagListEntry> _tags = AWSConfigs.InitializeCollections ? new List<TagListEntry>() : null;
         private string _user;
 
         /// <summary>
         /// Gets and sets the property Domain. 
         /// <para>
-        /// Specifies the name of the Windows domain that the FSx for Windows File Server belongs
-        /// to.
+        /// Specifies the name of the Windows domain that the FSx for Windows File Server file
+        /// system belongs to.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you have multiple Active Directory domains in your environment, configuring this
+        /// parameter makes sure that DataSync connects to the right file system.
         /// </para>
         /// </summary>
         [AWSProperty(Max=253)]
@@ -85,8 +99,8 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property Password. 
         /// <para>
-        /// Specifies the password of the user who has the permissions to access files and folders
-        /// in the file system.
+        /// Specifies the password of the user with the permissions to mount and access the files,
+        /// folders, and file metadata in your FSx for Windows File Server file system.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Max=104)]
@@ -105,8 +119,15 @@ namespace Amazon.DataSync.Model
         /// <summary>
         /// Gets and sets the property SecurityGroupArns. 
         /// <para>
-        /// Specifies the ARNs of the security groups that provide access to your file system's
-        /// preferred subnet.
+        /// Specifies the ARNs of the Amazon EC2 security groups that provide access to your file
+        /// system's preferred subnet.
+        /// </para>
+        ///  
+        /// <para>
+        /// The security groups that you specify must be able to communicate with your file system's
+        /// security groups. For information about configuring security groups for file system
+        /// access, see the <a href="https://docs.aws.amazon.com/fsx/latest/WindowsGuide/limit-access-security-groups.html">
+        /// <i>Amazon FSx for Windows File Server User Guide</i> </a>.
         /// </para>
         ///  <note> 
         /// <para>
@@ -134,7 +155,7 @@ namespace Amazon.DataSync.Model
         // Check to see if SecurityGroupArns property is set
         internal bool IsSetSecurityGroupArns()
         {
-            return this._securityGroupArns != null && this._securityGroupArns.Count > 0; 
+            return this._securityGroupArns != null && (this._securityGroupArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -174,19 +195,20 @@ namespace Amazon.DataSync.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property User. 
         /// <para>
-        /// Specifies the user who has the permissions to access files, folders, and metadata
-        /// in your file system.
+        /// Specifies the user with the permissions to mount and access the files, folders, and
+        /// file metadata in your FSx for Windows File Server file system.
         /// </para>
         ///  
         /// <para>
-        /// For information about choosing a user with sufficient permissions, see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions">Required
-        /// permissions</a>.
+        /// For information about choosing a user with the right level of access for your transfer,
+        /// see <a href="https://docs.aws.amazon.com/datasync/latest/userguide/create-fsx-location.html#create-fsx-windows-location-permissions">required
+        /// permissions</a> for FSx for Windows File Server locations.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=104)]

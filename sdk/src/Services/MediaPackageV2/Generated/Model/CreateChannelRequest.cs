@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaPackageV2.Model
 {
     /// <summary>
@@ -44,7 +45,10 @@ namespace Amazon.MediaPackageV2.Model
         private string _channelName;
         private string _clientToken;
         private string _description;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private InputSwitchConfiguration _inputSwitchConfiguration;
+        private InputType _inputType;
+        private OutputHeaderConfiguration _outputHeaderConfiguration;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ChannelGroupName. 
@@ -103,7 +107,7 @@ namespace Amazon.MediaPackageV2.Model
         // Check to see if ClientToken property is set
         internal bool IsSetClientToken()
         {
-            return this._clientToken != null;
+            return !string.IsNullOrEmpty(this._clientToken);
         }
 
         /// <summary>
@@ -126,17 +130,92 @@ namespace Amazon.MediaPackageV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InputSwitchConfiguration. 
+        /// <para>
+        /// The configuration for input switching based on the media quality confidence score
+        /// (MQCS) as provided from AWS Elemental MediaLive. This setting is valid only when <c>InputType</c>
+        /// is <c>CMAF</c>.
+        /// </para>
+        /// </summary>
+        public InputSwitchConfiguration InputSwitchConfiguration
+        {
+            get { return this._inputSwitchConfiguration; }
+            set { this._inputSwitchConfiguration = value; }
+        }
+
+        // Check to see if InputSwitchConfiguration property is set
+        internal bool IsSetInputSwitchConfiguration()
+        {
+            return this._inputSwitchConfiguration != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InputType. 
+        /// <para>
+        /// The input type will be an immutable field which will be used to define whether the
+        /// channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS
+        /// to preserve current behavior.
+        /// </para>
+        ///  
+        /// <para>
+        /// The allowed values are:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>HLS</c> - The HLS streaming specification (which defines M3U8 manifests and TS
+        /// segments).
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>CMAF</c> - The DASH-IF CMAF Ingest specification (which defines CMAF segments
+        /// with optional DASH manifests).
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public InputType InputType
+        {
+            get { return this._inputType; }
+            set { this._inputType = value; }
+        }
+
+        // Check to see if InputType property is set
+        internal bool IsSetInputType()
+        {
+            return this._inputType != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OutputHeaderConfiguration. 
+        /// <para>
+        /// The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage
+        /// includes in responses to the CDN. This setting is valid only when <c>InputType</c>
+        /// is <c>CMAF</c>.
+        /// </para>
+        /// </summary>
+        public OutputHeaderConfiguration OutputHeaderConfiguration
+        {
+            get { return this._outputHeaderConfiguration; }
+            set { this._outputHeaderConfiguration = value; }
+        }
+
+        // Check to see if OutputHeaderConfiguration property is set
+        internal bool IsSetOutputHeaderConfiguration()
+        {
+            return this._outputHeaderConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// A comma-separated list of tag key:value pairs that you define. For example:
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Key1": "Value1",</code> 
+        ///  <c>"Key1": "Value1",</c> 
         /// </para>
         ///  
         /// <para>
-        ///  <code>"Key2": "Value2"</code> 
+        ///  <c>"Key2": "Value2"</c> 
         /// </para>
         /// </summary>
         public Dictionary<string, string> Tags
@@ -148,7 +227,7 @@ namespace Amazon.MediaPackageV2.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeVerifiedAccessInstancesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<VerifiedAccessInstance> _verifiedAccessInstances = new List<VerifiedAccessInstance>();
+        private List<VerifiedAccessInstance> _verifiedAccessInstances = AWSConfigs.InitializeCollections ? new List<VerifiedAccessInstance>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -58,7 +59,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property VerifiedAccessInstances. 
         /// <para>
-        /// The IDs of the Verified Access instances.
+        /// Details about the Verified Access instances.
         /// </para>
         /// </summary>
         public List<VerifiedAccessInstance> VerifiedAccessInstances
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if VerifiedAccessInstances property is set
         internal bool IsSetVerifiedAccessInstances()
         {
-            return this._verifiedAccessInstances != null && this._verifiedAccessInstances.Count > 0; 
+            return this._verifiedAccessInstances != null && (this._verifiedAccessInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

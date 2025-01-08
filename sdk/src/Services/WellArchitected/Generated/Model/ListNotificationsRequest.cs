@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WellArchitected.Model
 {
     /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.WellArchitected.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// Only one of <code>WorkloadID</code> or <code>ResourceARN</code> should be specified.
+        /// Only one of <c>WorkloadID</c> or <c>ResourceARN</c> should be specified.
         /// </para>
         ///  </note>
         /// </summary>

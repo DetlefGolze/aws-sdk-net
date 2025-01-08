@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKMediaPipelines.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ChimeSDKMediaPipelines.Model
         /// <summary>
         /// Gets and sets the property PresenterPosition. 
         /// <para>
-        /// Defines the position of the presenter video tile. Default: <code>TopRight</code>.
+        /// Defines the position of the presenter video tile. Default: <c>TopRight</c>.
         /// </para>
         /// </summary>
         public PresenterPosition PresenterPosition

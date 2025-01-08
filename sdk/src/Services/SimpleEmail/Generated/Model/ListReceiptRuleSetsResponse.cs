@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.SimpleEmail.Model
     public partial class ListReceiptRuleSetsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ReceiptRuleSetMetadata> _ruleSets = new List<ReceiptRuleSetMetadata>();
+        private List<ReceiptRuleSetMetadata> _ruleSets = AWSConfigs.InitializeCollections ? new List<ReceiptRuleSetMetadata>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token indicating that there are additional receipt rule sets available to be listed.
-        /// Pass this token to successive calls of <code>ListReceiptRuleSets</code> to retrieve
-        /// up to 100 receipt rule sets at a time.
+        /// Pass this token to successive calls of <c>ListReceiptRuleSets</c> to retrieve up to
+        /// 100 receipt rule sets at a time.
         /// </para>
         /// </summary>
         public string NextToken
@@ -72,7 +73,7 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if RuleSets property is set
         internal bool IsSetRuleSets()
         {
-            return this._ruleSets != null && this._ruleSets.Count > 0; 
+            return this._ruleSets != null && (this._ruleSets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

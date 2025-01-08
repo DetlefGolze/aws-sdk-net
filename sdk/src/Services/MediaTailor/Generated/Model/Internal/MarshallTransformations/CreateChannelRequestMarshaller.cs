@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaTailor.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,8 +67,20 @@ namespace Amazon.MediaTailor.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAudiences())
+                {
+                    context.Writer.WritePropertyName("Audiences");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestAudiencesListValue in publicRequest.Audiences)
+                    {
+                            context.Writer.Write(publicRequestAudiencesListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
                 if(publicRequest.IsSetFillerSlate())
                 {
                     context.Writer.WritePropertyName("FillerSlate");
@@ -119,6 +132,17 @@ namespace Amazon.MediaTailor.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Tier");
                     context.Writer.Write(publicRequest.Tier);
+                }
+
+                if(publicRequest.IsSetTimeShiftConfiguration())
+                {
+                    context.Writer.WritePropertyName("TimeShiftConfiguration");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = TimeShiftConfigurationMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.TimeShiftConfiguration, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 writer.WriteObjectEnd();

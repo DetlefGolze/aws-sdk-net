@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -75,7 +76,7 @@ namespace Amazon.KinesisAnalytics.Model
         /// <para>
         /// Provides the CloudWatch log stream Amazon Resource Name (ARN) and the IAM role ARN.
         /// Note: To write application messages to CloudWatch, the IAM role that is used must
-        /// have the <code>PutLogEvents</code> policy action enabled.
+        /// have the <c>PutLogEvents</c> policy action enabled.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

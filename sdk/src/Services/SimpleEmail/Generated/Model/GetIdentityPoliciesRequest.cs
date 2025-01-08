@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmail.Model
 {
     /// <summary>
@@ -54,14 +55,14 @@ namespace Amazon.SimpleEmail.Model
     public partial class GetIdentityPoliciesRequest : AmazonSimpleEmailServiceRequest
     {
         private string _identity;
-        private List<string> _policyNames = new List<string>();
+        private List<string> _policyNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Identity. 
         /// <para>
         /// The identity for which the policies are retrieved. You can specify an identity by
-        /// using its name or by using its Amazon Resource Name (ARN). Examples: <code>user@example.com</code>,
-        /// <code>example.com</code>, <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
+        /// using its name or by using its Amazon Resource Name (ARN). Examples: <c>user@example.com</c>,
+        /// <c>example.com</c>, <c>arn:aws:ses:us-east-1:123456789012:identity/example.com</c>.
         /// </para>
         ///  
         /// <para>
@@ -86,7 +87,7 @@ namespace Amazon.SimpleEmail.Model
         /// <para>
         /// A list of the names of policies to be retrieved. You can retrieve a maximum of 20
         /// policies at a time. If you do not know the names of the policies that are attached
-        /// to the identity, you can use <code>ListIdentityPolicies</code>.
+        /// to the identity, you can use <c>ListIdentityPolicies</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -99,7 +100,7 @@ namespace Amazon.SimpleEmail.Model
         // Check to see if PolicyNames property is set
         internal bool IsSetPolicyNames()
         {
-            return this._policyNames != null && this._policyNames.Count > 0; 
+            return this._policyNames != null && (this._policyNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.CodeDeploy.Model
     public partial class ListTagsForResourceResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -59,8 +60,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        ///  A list of tags returned by <code>ListTagsForResource</code>. The tags are associated
-        /// with the resource identified by the input <code>ResourceArn</code> parameter. 
+        ///  A list of tags returned by <c>ListTagsForResource</c>. The tags are associated with
+        /// the resource identified by the input <c>ResourceArn</c> parameter. 
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -72,7 +73,7 @@ namespace Amazon.CodeDeploy.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

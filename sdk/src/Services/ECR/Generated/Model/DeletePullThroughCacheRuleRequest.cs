@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECR.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.ECR.Model
         /// The Amazon ECR repository prefix associated with the pull through cache rule to delete.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=2, Max=20)]
+        [AWSProperty(Required=true, Min=2, Max=30)]
         public string EcrRepositoryPrefix
         {
             get { return this._ecrRepositoryPrefix; }

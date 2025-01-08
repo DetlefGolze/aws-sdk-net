@@ -26,16 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Inspector2.Model
 {
     /// <summary>
-    /// A response that contains the results of an AWS Lambda function finding aggregation.
+    /// A response that contains the results of an Amazon Web Services Lambda function finding
+    /// aggregation.
     /// </summary>
     public partial class LambdaFunctionAggregationResponse
     {
         private string _accountId;
         private string _functionName;
-        private Dictionary<string, string> _lambdaTags = new Dictionary<string, string>();
+        private Dictionary<string, string> _lambdaTags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _lastModifiedAt;
         private string _resourceId;
         private string _runtime;
@@ -44,7 +46,8 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// The ID of the AWS account that owns the AWS Lambda function. 
+        /// The ID of the Amazon Web Services account that owns the Amazon Web Services Lambda
+        /// function. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=12, Max=12)]
@@ -63,7 +66,7 @@ namespace Amazon.Inspector2.Model
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The AWS Lambda function names included in the aggregation results.
+        /// The Amazon Web Services Lambda function names included in the aggregation results.
         /// </para>
         /// </summary>
         public string FunctionName
@@ -93,14 +96,14 @@ namespace Amazon.Inspector2.Model
         // Check to see if LambdaTags property is set
         internal bool IsSetLambdaTags()
         {
-            return this._lambdaTags != null && this._lambdaTags.Count > 0; 
+            return this._lambdaTags != null && (this._lambdaTags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LastModifiedAt. 
         /// <para>
-        /// The date that the AWS Lambda function included in the aggregation results was last
-        /// changed.
+        /// The date that the Amazon Web Services Lambda function included in the aggregation
+        /// results was last changed.
         /// </para>
         /// </summary>
         public DateTime LastModifiedAt
@@ -153,7 +156,10 @@ namespace Amazon.Inspector2.Model
         }
 
         /// <summary>
-        /// Gets and sets the property SeverityCounts.
+        /// Gets and sets the property SeverityCounts. 
+        /// <para>
+        /// An object that contains the counts of aggregated finding per severity.
+        /// </para>
         /// </summary>
         public SeverityCounts SeverityCounts
         {

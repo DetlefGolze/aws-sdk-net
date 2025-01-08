@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
     /// Container for the parameters to the GetBackupPlan operation.
-    /// Returns <code>BackupPlan</code> details for the specified <code>BackupPlanId</code>.
-    /// The details are the body of a backup plan in JSON format, in addition to plan metadata.
+    /// Returns <c>BackupPlan</c> details for the specified <c>BackupPlanId</c>. The details
+    /// are the body of a backup plan in JSON format, in addition to plan metadata.
     /// </summary>
     public partial class GetBackupPlanRequest : AmazonBackupRequest
     {

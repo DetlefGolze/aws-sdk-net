@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.QuickSight.Model
     ///  
     /// <para>
     /// Poll job descriptions after a job starts to know the status of the job. For information
-    /// on available status codes, see <code>JobStatus</code>.
+    /// on available status codes, see <c>JobStatus</c>.
     /// </para>
     /// </summary>
     public partial class DescribeDashboardSnapshotJobRequest : AmazonQuickSightRequest
@@ -87,7 +88,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property SnapshotJobId. 
         /// <para>
         /// The ID of the job to be described. The job ID is set when you start a new job with
-        /// a <code>StartDashboardSnapshotJob</code> API call.
+        /// a <c>StartDashboardSnapshotJob</c> API call.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]

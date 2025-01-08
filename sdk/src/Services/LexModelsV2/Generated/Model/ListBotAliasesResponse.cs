@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LexModelsV2.Model
     /// </summary>
     public partial class ListBotAliasesResponse : AmazonWebServiceResponse
     {
-        private List<BotAliasSummary> _botAliasSummaries = new List<BotAliasSummary>();
+        private List<BotAliasSummary> _botAliasSummaries = AWSConfigs.InitializeCollections ? new List<BotAliasSummary>() : null;
         private string _botId;
         private string _nextToken;
 
@@ -41,9 +42,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property BotAliasSummaries. 
         /// <para>
         /// Summary information for the bot aliases that meet the filter criteria specified in
-        /// the request. The length of the list is specified in the <code>maxResults</code> parameter
-        /// of the request. If there are more aliases available, the <code>nextToken</code> field
-        /// contains a token to get the next page of results.
+        /// the request. The length of the list is specified in the <c>maxResults</c> parameter
+        /// of the request. If there are more aliases available, the <c>nextToken</c> field contains
+        /// a token to get the next page of results.
         /// </para>
         /// </summary>
         public List<BotAliasSummary> BotAliasSummaries
@@ -55,7 +56,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if BotAliasSummaries property is set
         internal bool IsSetBotAliasSummaries()
         {
-            return this._botAliasSummaries != null && this._botAliasSummaries.Count > 0; 
+            return this._botAliasSummaries != null && (this._botAliasSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -81,9 +82,9 @@ namespace Amazon.LexModelsV2.Model
         /// Gets and sets the property NextToken. 
         /// <para>
         /// A token that indicates whether there are more results to return in a response to the
-        /// <code>ListBotAliases</code> operation. If the <code>nextToken</code> field is present,
-        /// you send the contents as the <code>nextToken</code> parameter of a <code>ListBotAliases</code>
-        /// operation request to get the next page of results.
+        /// <c>ListBotAliases</c> operation. If the <c>nextToken</c> field is present, you send
+        /// the contents as the <c>nextToken</c> parameter of a <c>ListBotAliases</c> operation
+        /// request to get the next page of results.
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
@@ -121,8 +122,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <summary>
         /// Gets and sets the property InputFormat. 
         /// <para>
-        ///  The format of the source data. Valid values are <code>CSV</code>, <code>DYNAMODB_JSON</code>
-        /// or <code>ION</code>.
+        ///  The format of the source data. Valid values are <c>CSV</c>, <c>DYNAMODB_JSON</c>
+        /// or <c>ION</c>.
         /// </para>
         /// </summary>
         public InputFormat InputFormat
@@ -181,6 +182,7 @@ namespace Amazon.DynamoDBv2.Model
         ///  The Amazon Resource Number (ARN) of the table being imported into. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=1024)]
         public string TableArn
         {
             get { return this._tableArn; }

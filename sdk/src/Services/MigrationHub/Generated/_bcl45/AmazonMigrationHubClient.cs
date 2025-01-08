@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.MigrationHub
 {
     /// <summary>
-    /// Implementation for accessing MigrationHub
+    /// <para>Implementation for accessing MigrationHub</para>
     ///
     /// The AWS Migration Hub API methods help to obtain server and application migration
     /// status and integrate your resource-specific migration tool by providing a programmatic
@@ -45,8 +46,8 @@ namespace Amazon.MigrationHub
     ///  
     /// <para>
     /// Remember that you must set your AWS Migration Hub home region before you call any
-    /// of these APIs, or a <code>HomeRegionNotSetException</code> error will be returned.
-    /// Also, you must make the API calls while in your home region.
+    /// of these APIs, or a <c>HomeRegionNotSetException</c> error will be returned. Also,
+    /// you must make the API calls while in your home region.
     /// </para>
     /// </summary>
     public partial class AmazonMigrationHubClient : AmazonServiceClient, IAmazonMigrationHub
@@ -282,13 +283,13 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Migration tools can call the <code>AssociateCreatedArtifact</code> operation to indicate
+        /// Migration tools can call the <c>AssociateCreatedArtifact</c> operation to indicate
         /// which AWS artifact is associated with a migration task.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The created artifact name must be provided in ARN (Amazon Resource Name) format which
-        /// will contain information about type and region; for example: <code>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</code>.
+        /// will contain information about type and region; for example: <c>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -304,7 +305,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -329,8 +330,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateCreatedArtifact">REST API Reference for AssociateCreatedArtifact Operation</seealso>
         public virtual AssociateCreatedArtifactResponse AssociateCreatedArtifact(AssociateCreatedArtifactRequest request)
@@ -350,13 +351,13 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Migration tools can call the <code>AssociateCreatedArtifact</code> operation to indicate
+        /// Migration tools can call the <c>AssociateCreatedArtifact</c> operation to indicate
         /// which AWS artifact is associated with a migration task.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The created artifact name must be provided in ARN (Amazon Resource Name) format which
-        /// will contain information about type and region; for example: <code>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</code>.
+        /// will contain information about type and region; for example: <c>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -375,7 +376,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -400,8 +401,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateCreatedArtifact">REST API Reference for AssociateCreatedArtifact Operation</seealso>
         public virtual Task<AssociateCreatedArtifactResponse> AssociateCreatedArtifactAsync(AssociateCreatedArtifactRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -429,7 +430,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -444,7 +445,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -459,8 +460,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateDiscoveredResource">REST API Reference for AssociateDiscoveredResource Operation</seealso>
         public virtual AssociateDiscoveredResourceResponse AssociateDiscoveredResource(AssociateDiscoveredResourceRequest request)
@@ -487,7 +488,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -502,7 +503,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -517,8 +518,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateDiscoveredResource">REST API Reference for AssociateDiscoveredResource Operation</seealso>
         public virtual Task<AssociateDiscoveredResourceResponse> AssociateDiscoveredResourceAsync(AssociateDiscoveredResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -528,6 +529,107 @@ namespace Amazon.MigrationHub
             options.ResponseUnmarshaller = AssociateDiscoveredResourceResponseUnmarshaller.Instance;
             
             return InvokeAsync<AssociateDiscoveredResourceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  AssociateSourceResource
+
+
+        /// <summary>
+        /// Associates a source resource with a migration task. For example, the source resource
+        /// can be a source server, an application, or a migration wave.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateSourceResource service method.</param>
+        /// 
+        /// <returns>The response from the AssociateSourceResource service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
+        /// flag is set to "true".
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateSourceResource">REST API Reference for AssociateSourceResource Operation</seealso>
+        public virtual AssociateSourceResourceResponse AssociateSourceResource(AssociateSourceResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AssociateSourceResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AssociateSourceResourceResponseUnmarshaller.Instance;
+
+            return Invoke<AssociateSourceResourceResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Associates a source resource with a migration task. For example, the source resource
+        /// can be a source server, an application, or a migration wave.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the AssociateSourceResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the AssociateSourceResource service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
+        /// flag is set to "true".
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateSourceResource">REST API Reference for AssociateSourceResource Operation</seealso>
+        public virtual Task<AssociateSourceResourceResponse> AssociateSourceResourceAsync(AssociateSourceResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = AssociateSourceResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = AssociateSourceResourceResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<AssociateSourceResourceResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -549,7 +651,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -569,8 +671,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/CreateProgressUpdateStream">REST API Reference for CreateProgressUpdateStream Operation</seealso>
         public virtual CreateProgressUpdateStreamResponse CreateProgressUpdateStream(CreateProgressUpdateStreamRequest request)
@@ -600,7 +702,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -620,8 +722,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/CreateProgressUpdateStream">REST API Reference for CreateProgressUpdateStream Operation</seealso>
         public virtual Task<CreateProgressUpdateStreamResponse> CreateProgressUpdateStreamAsync(CreateProgressUpdateStreamRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -644,8 +746,8 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// The only parameter needed for <code>DeleteProgressUpdateStream</code> is the stream
-        /// name (same as a <code>CreateProgressUpdateStream</code> call).
+        /// The only parameter needed for <c>DeleteProgressUpdateStream</c> is the stream name
+        /// (same as a <c>CreateProgressUpdateStream</c> call).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -655,19 +757,19 @@ namespace Amazon.MigrationHub
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the stream takes time to be deleted, it might still show up on a <code>ListProgressUpdateStreams</code>
+        /// If the stream takes time to be deleted, it might still show up on a <c>ListProgressUpdateStreams</c>
         /// call.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreateProgressUpdateStream</code>, <code>ImportMigrationTask</code>, <code>NotifyMigrationTaskState</code>,
+        ///  <c>CreateProgressUpdateStream</c>, <c>ImportMigrationTask</c>, <c>NotifyMigrationTaskState</c>,
         /// and all Associate[*] APIs related to the tasks belonging to the stream will throw
         /// "InvalidInputException" if the stream of the same name is in the process of being
         /// deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Once the stream and all of its resources are deleted, <code>CreateProgressUpdateStream</code>
+        /// Once the stream and all of its resources are deleted, <c>CreateProgressUpdateStream</c>
         /// for a stream of the same name will succeed, and that stream will be an entirely new
         /// logical resource (without any resources associated with the old stream).
         /// </para>
@@ -680,7 +782,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -705,8 +807,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DeleteProgressUpdateStream">REST API Reference for DeleteProgressUpdateStream Operation</seealso>
         public virtual DeleteProgressUpdateStreamResponse DeleteProgressUpdateStream(DeleteProgressUpdateStreamRequest request)
@@ -725,8 +827,8 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// The only parameter needed for <code>DeleteProgressUpdateStream</code> is the stream
-        /// name (same as a <code>CreateProgressUpdateStream</code> call).
+        /// The only parameter needed for <c>DeleteProgressUpdateStream</c> is the stream name
+        /// (same as a <c>CreateProgressUpdateStream</c> call).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -736,19 +838,19 @@ namespace Amazon.MigrationHub
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the stream takes time to be deleted, it might still show up on a <code>ListProgressUpdateStreams</code>
+        /// If the stream takes time to be deleted, it might still show up on a <c>ListProgressUpdateStreams</c>
         /// call.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CreateProgressUpdateStream</code>, <code>ImportMigrationTask</code>, <code>NotifyMigrationTaskState</code>,
+        ///  <c>CreateProgressUpdateStream</c>, <c>ImportMigrationTask</c>, <c>NotifyMigrationTaskState</c>,
         /// and all Associate[*] APIs related to the tasks belonging to the stream will throw
         /// "InvalidInputException" if the stream of the same name is in the process of being
         /// deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Once the stream and all of its resources are deleted, <code>CreateProgressUpdateStream</code>
+        /// Once the stream and all of its resources are deleted, <c>CreateProgressUpdateStream</c>
         /// for a stream of the same name will succeed, and that stream will be an entirely new
         /// logical resource (without any resources associated with the old stream).
         /// </para>
@@ -764,7 +866,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -789,8 +891,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DeleteProgressUpdateStream">REST API Reference for DeleteProgressUpdateStream Operation</seealso>
         public virtual Task<DeleteProgressUpdateStreamResponse> DeleteProgressUpdateStreamAsync(DeleteProgressUpdateStreamRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -828,7 +930,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -877,7 +979,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -1001,13 +1103,13 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// A migration user can call the <code>DisassociateCreatedArtifacts</code> operation
-        /// to disassociate a created AWS Artifact from a migration task.
+        /// A migration user can call the <c>DisassociateCreatedArtifacts</c> operation to disassociate
+        /// a created AWS Artifact from a migration task.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The created artifact name must be provided in ARN (Amazon Resource Name) format which
-        /// will contain information about type and region; for example: <code>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</code>.
+        /// will contain information about type and region; for example: <c>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1023,7 +1125,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1048,8 +1150,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateCreatedArtifact">REST API Reference for DisassociateCreatedArtifact Operation</seealso>
         public virtual DisassociateCreatedArtifactResponse DisassociateCreatedArtifact(DisassociateCreatedArtifactRequest request)
@@ -1068,13 +1170,13 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// A migration user can call the <code>DisassociateCreatedArtifacts</code> operation
-        /// to disassociate a created AWS Artifact from a migration task.
+        /// A migration user can call the <c>DisassociateCreatedArtifacts</c> operation to disassociate
+        /// a created AWS Artifact from a migration task.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The created artifact name must be provided in ARN (Amazon Resource Name) format which
-        /// will contain information about type and region; for example: <code>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</code>.
+        /// will contain information about type and region; for example: <c>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1093,7 +1195,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1118,8 +1220,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateCreatedArtifact">REST API Reference for DisassociateCreatedArtifact Operation</seealso>
         public virtual Task<DisassociateCreatedArtifactResponse> DisassociateCreatedArtifactAsync(DisassociateCreatedArtifactRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1147,7 +1249,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1172,8 +1274,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateDiscoveredResource">REST API Reference for DisassociateDiscoveredResource Operation</seealso>
         public virtual DisassociateDiscoveredResourceResponse DisassociateDiscoveredResource(DisassociateDiscoveredResourceRequest request)
@@ -1200,7 +1302,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1225,8 +1327,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateDiscoveredResource">REST API Reference for DisassociateDiscoveredResource Operation</seealso>
         public virtual Task<DisassociateDiscoveredResourceResponse> DisassociateDiscoveredResourceAsync(DisassociateDiscoveredResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1240,6 +1342,105 @@ namespace Amazon.MigrationHub
 
         #endregion
         
+        #region  DisassociateSourceResource
+
+
+        /// <summary>
+        /// Removes the association between a source resource and a migration task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateSourceResource service method.</param>
+        /// 
+        /// <returns>The response from the DisassociateSourceResource service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
+        /// flag is set to "true".
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateSourceResource">REST API Reference for DisassociateSourceResource Operation</seealso>
+        public virtual DisassociateSourceResourceResponse DisassociateSourceResource(DisassociateSourceResourceRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DisassociateSourceResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DisassociateSourceResourceResponseUnmarshaller.Instance;
+
+            return Invoke<DisassociateSourceResourceResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Removes the association between a source resource and a migration task.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DisassociateSourceResource service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DisassociateSourceResource service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
+        /// flag is set to "true".
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateSourceResource">REST API Reference for DisassociateSourceResource Operation</seealso>
+        public virtual Task<DisassociateSourceResourceResponse> DisassociateSourceResourceAsync(DisassociateSourceResourceRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DisassociateSourceResourceRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DisassociateSourceResourceResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<DisassociateSourceResourceResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ImportMigrationTask
 
 
@@ -1249,8 +1450,8 @@ namespace Amazon.MigrationHub
         /// 
         ///  
         /// <para>
-        /// This API is a prerequisite to calling the <code>NotifyMigrationTaskState</code> API
-        /// as the migration tool must first register the migration task with Migration Hub.
+        /// This API is a prerequisite to calling the <c>NotifyMigrationTaskState</c> API as the
+        /// migration tool must first register the migration task with Migration Hub.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportMigrationTask service method.</param>
@@ -1260,7 +1461,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1285,8 +1486,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ImportMigrationTask">REST API Reference for ImportMigrationTask Operation</seealso>
         public virtual ImportMigrationTaskResponse ImportMigrationTask(ImportMigrationTaskRequest request)
@@ -1305,8 +1506,8 @@ namespace Amazon.MigrationHub
         /// 
         ///  
         /// <para>
-        /// This API is a prerequisite to calling the <code>NotifyMigrationTaskState</code> API
-        /// as the migration tool must first register the migration task with Migration Hub.
+        /// This API is a prerequisite to calling the <c>NotifyMigrationTaskState</c> API as the
+        /// migration tool must first register the migration task with Migration Hub.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ImportMigrationTask service method.</param>
@@ -1319,7 +1520,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1344,8 +1545,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ImportMigrationTask">REST API Reference for ImportMigrationTask Operation</seealso>
         public virtual Task<ImportMigrationTaskResponse> ImportMigrationTaskAsync(ImportMigrationTaskRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1363,7 +1564,7 @@ namespace Amazon.MigrationHub
 
 
         /// <summary>
-        /// Lists all the migration statuses for your applications. If you use the optional <code>ApplicationIds</code>
+        /// Lists all the migration statuses for your applications. If you use the optional <c>ApplicationIds</c>
         /// parameter, only the migration statuses for those applications will be returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListApplicationStates service method.</param>
@@ -1400,7 +1601,7 @@ namespace Amazon.MigrationHub
 
 
         /// <summary>
-        /// Lists all the migration statuses for your applications. If you use the optional <code>ApplicationIds</code>
+        /// Lists all the migration statuses for your applications. If you use the optional <c>ApplicationIds</c>
         /// parameter, only the migration statuses for those applications will be returned.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListApplicationStates service method.</param>
@@ -1453,7 +1654,7 @@ namespace Amazon.MigrationHub
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Shows the artifacts created by the migration tool that was associated by the <code>AssociateCreatedArtifact</code>
+        /// Shows the artifacts created by the migration tool that was associated by the <c>AssociateCreatedArtifact</c>
         /// API. 
         /// </para>
         ///  </li> <li> 
@@ -1510,7 +1711,7 @@ namespace Amazon.MigrationHub
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Shows the artifacts created by the migration tool that was associated by the <code>AssociateCreatedArtifact</code>
+        /// Shows the artifacts created by the migration tool that was associated by the <c>AssociateCreatedArtifact</c>
         /// API. 
         /// </para>
         ///  </li> <li> 
@@ -1565,7 +1766,7 @@ namespace Amazon.MigrationHub
 
 
         /// <summary>
-        /// Lists discovered resources associated with the given <code>MigrationTask</code>.
+        /// Lists discovered resources associated with the given <c>MigrationTask</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDiscoveredResources service method.</param>
         /// 
@@ -1606,7 +1807,7 @@ namespace Amazon.MigrationHub
 
 
         /// <summary>
-        /// Lists discovered resources associated with the given <code>MigrationTask</code>.
+        /// Lists discovered resources associated with the given <c>MigrationTask</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListDiscoveredResources service method.</param>
         /// <param name="cancellationToken">
@@ -1689,7 +1890,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -1753,7 +1954,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -1775,6 +1976,91 @@ namespace Amazon.MigrationHub
             options.ResponseUnmarshaller = ListMigrationTasksResponseUnmarshaller.Instance;
             
             return InvokeAsync<ListMigrationTasksResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
+        #region  ListMigrationTaskUpdates
+
+
+        /// <summary>
+        /// This is a paginated API that returns all the migration-task states for the specified
+        /// <c>MigrationTaskName</c> and <c>ProgressUpdateStream</c>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMigrationTaskUpdates service method.</param>
+        /// 
+        /// <returns>The response from the ListMigrationTaskUpdates service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListMigrationTaskUpdates">REST API Reference for ListMigrationTaskUpdates Operation</seealso>
+        public virtual ListMigrationTaskUpdatesResponse ListMigrationTaskUpdates(ListMigrationTaskUpdatesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMigrationTaskUpdatesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMigrationTaskUpdatesResponseUnmarshaller.Instance;
+
+            return Invoke<ListMigrationTaskUpdatesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// This is a paginated API that returns all the migration-task states for the specified
+        /// <c>MigrationTaskName</c> and <c>ProgressUpdateStream</c>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListMigrationTaskUpdates service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListMigrationTaskUpdates service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListMigrationTaskUpdates">REST API Reference for ListMigrationTaskUpdates Operation</seealso>
+        public virtual Task<ListMigrationTaskUpdatesResponse> ListMigrationTaskUpdatesAsync(ListMigrationTaskUpdatesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListMigrationTaskUpdatesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListMigrationTaskUpdatesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListMigrationTaskUpdatesResponse>(request, options, cancellationToken);
         }
 
         #endregion
@@ -1858,13 +2144,98 @@ namespace Amazon.MigrationHub
 
         #endregion
         
+        #region  ListSourceResources
+
+
+        /// <summary>
+        /// Lists all the source resource that are associated with the specified <c>MigrationTaskName</c>
+        /// and <c>ProgressUpdateStream</c>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSourceResources service method.</param>
+        /// 
+        /// <returns>The response from the ListSourceResources service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListSourceResources">REST API Reference for ListSourceResources Operation</seealso>
+        public virtual ListSourceResourcesResponse ListSourceResources(ListSourceResourcesRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSourceResourcesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSourceResourcesResponseUnmarshaller.Instance;
+
+            return Invoke<ListSourceResourcesResponse>(request, options);
+        }
+
+
+        /// <summary>
+        /// Lists all the source resource that are associated with the specified <c>MigrationTaskName</c>
+        /// and <c>ProgressUpdateStream</c>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListSourceResources service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the ListSourceResources service method, as returned by MigrationHub.</returns>
+        /// <exception cref="Amazon.MigrationHub.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InternalServerErrorException">
+        /// Exception raised when an internal, configuration, or dependency error is encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.InvalidInputException">
+        /// Exception raised when the provided input violates a policy constraint or is entered
+        /// in the wrong format or data type.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
+        /// Exception raised when the request references a resource (Application Discovery Service
+        /// configuration, update stream, migration task, etc.) that does not exist in Application
+        /// Discovery Service (Application Discovery Service) or in Migration Hub's repository.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ServiceUnavailableException">
+        /// Exception raised when there is an internal, configuration, or dependency error encountered.
+        /// </exception>
+        /// <exception cref="Amazon.MigrationHub.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListSourceResources">REST API Reference for ListSourceResources Operation</seealso>
+        public virtual Task<ListSourceResourcesResponse> ListSourceResourcesAsync(ListSourceResourcesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = ListSourceResourcesRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = ListSourceResourcesResponseUnmarshaller.Instance;
+            
+            return InvokeAsync<ListSourceResourcesResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  NotifyApplicationState
 
 
         /// <summary>
         /// Sets the migration state of an application. For a given application identified by
-        /// the value passed to <code>ApplicationId</code>, its status is set or updated by passing
-        /// one of three values to <code>Status</code>: <code>NOT_STARTED | IN_PROGRESS | COMPLETED</code>.
+        /// the value passed to <c>ApplicationId</c>, its status is set or updated by passing
+        /// one of three values to <c>Status</c>: <c>NOT_STARTED | IN_PROGRESS | COMPLETED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the NotifyApplicationState service method.</param>
         /// 
@@ -1873,7 +2244,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1888,7 +2259,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -1903,8 +2274,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyApplicationState">REST API Reference for NotifyApplicationState Operation</seealso>
         public virtual NotifyApplicationStateResponse NotifyApplicationState(NotifyApplicationStateRequest request)
@@ -1919,8 +2290,8 @@ namespace Amazon.MigrationHub
 
         /// <summary>
         /// Sets the migration state of an application. For a given application identified by
-        /// the value passed to <code>ApplicationId</code>, its status is set or updated by passing
-        /// one of three values to <code>Status</code>: <code>NOT_STARTED | IN_PROGRESS | COMPLETED</code>.
+        /// the value passed to <c>ApplicationId</c>, its status is set or updated by passing
+        /// one of three values to <c>Status</c>: <c>NOT_STARTED | IN_PROGRESS | COMPLETED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the NotifyApplicationState service method.</param>
         /// <param name="cancellationToken">
@@ -1932,7 +2303,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -1947,7 +2318,7 @@ namespace Amazon.MigrationHub
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.PolicyErrorException">
         /// Exception raised when there are problems accessing Application Discovery Service (Application
-        /// Discovery Service); most likely due to a misconfigured policy or the <code>migrationhub-discovery</code>
+        /// Discovery Service); most likely due to a misconfigured policy or the <c>migrationhub-discovery</c>
         /// role is missing or not configured correctly.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.ResourceNotFoundException">
@@ -1962,8 +2333,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyApplicationState">REST API Reference for NotifyApplicationState Operation</seealso>
         public virtual Task<NotifyApplicationStateResponse> NotifyApplicationStateAsync(NotifyApplicationStateRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -1986,16 +2357,16 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Migration tools will call the <code>NotifyMigrationTaskState</code> API to share the
-        /// latest progress and status.
+        /// Migration tools will call the <c>NotifyMigrationTaskState</c> API to share the latest
+        /// progress and status.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MigrationTaskName</code> is used for addressing updates to the correct target.
+        ///  <c>MigrationTaskName</c> is used for addressing updates to the correct target.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ProgressUpdateStream</code> is used for access control and to provide a namespace
+        ///  <c>ProgressUpdateStream</c> is used for access control and to provide a namespace
         /// for each migration tool.
         /// </para>
         ///  </li> </ul>
@@ -2007,7 +2378,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -2032,8 +2403,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyMigrationTaskState">REST API Reference for NotifyMigrationTaskState Operation</seealso>
         public virtual NotifyMigrationTaskStateResponse NotifyMigrationTaskState(NotifyMigrationTaskStateRequest request)
@@ -2052,16 +2423,16 @@ namespace Amazon.MigrationHub
         /// 
         ///  <ul> <li> 
         /// <para>
-        /// Migration tools will call the <code>NotifyMigrationTaskState</code> API to share the
-        /// latest progress and status.
+        /// Migration tools will call the <c>NotifyMigrationTaskState</c> API to share the latest
+        /// progress and status.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MigrationTaskName</code> is used for addressing updates to the correct target.
+        ///  <c>MigrationTaskName</c> is used for addressing updates to the correct target.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ProgressUpdateStream</code> is used for access control and to provide a namespace
+        ///  <c>ProgressUpdateStream</c> is used for access control and to provide a namespace
         /// for each migration tool.
         /// </para>
         ///  </li> </ul>
@@ -2076,7 +2447,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -2101,8 +2472,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyMigrationTaskState">REST API Reference for NotifyMigrationTaskState Operation</seealso>
         public virtual Task<NotifyMigrationTaskStateResponse> NotifyMigrationTaskStateAsync(NotifyMigrationTaskStateRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2122,7 +2493,7 @@ namespace Amazon.MigrationHub
         /// <summary>
         /// Provides identifying details of the resource being migrated so that it can be associated
         /// in the Application Discovery Service repository. This association occurs asynchronously
-        /// after <code>PutResourceAttributes</code> returns.
+        /// after <c>PutResourceAttributes</c> returns.
         /// 
         ///  <important> <ul> <li> 
         /// <para>
@@ -2134,14 +2505,13 @@ namespace Amazon.MigrationHub
         ///  </li> <li> 
         /// <para>
         /// Note the instructions regarding the special use case of the <a href="https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#migrationhub-PutResourceAttributes-request-ResourceAttributeList">
-        /// <code>ResourceAttributeList</code> </a> parameter when specifying any "VM" related
-        /// value.
+        /// <c>ResourceAttributeList</c> </a> parameter when specifying any "VM" related value.
         /// </para>
         ///  </li> </ul> </important> <note> 
         /// <para>
         /// Because this is an asynchronous call, it will always return 200, whether an association
         /// occurs or not. To confirm if an association was found based on the provided details,
-        /// call <code>ListDiscoveredResources</code>.
+        /// call <c>ListDiscoveredResources</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2152,7 +2522,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -2177,8 +2547,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/PutResourceAttributes">REST API Reference for PutResourceAttributes Operation</seealso>
         public virtual PutResourceAttributesResponse PutResourceAttributes(PutResourceAttributesRequest request)
@@ -2194,7 +2564,7 @@ namespace Amazon.MigrationHub
         /// <summary>
         /// Provides identifying details of the resource being migrated so that it can be associated
         /// in the Application Discovery Service repository. This association occurs asynchronously
-        /// after <code>PutResourceAttributes</code> returns.
+        /// after <c>PutResourceAttributes</c> returns.
         /// 
         ///  <important> <ul> <li> 
         /// <para>
@@ -2206,14 +2576,13 @@ namespace Amazon.MigrationHub
         ///  </li> <li> 
         /// <para>
         /// Note the instructions regarding the special use case of the <a href="https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#migrationhub-PutResourceAttributes-request-ResourceAttributeList">
-        /// <code>ResourceAttributeList</code> </a> parameter when specifying any "VM" related
-        /// value.
+        /// <c>ResourceAttributeList</c> </a> parameter when specifying any "VM" related value.
         /// </para>
         ///  </li> </ul> </important> <note> 
         /// <para>
         /// Because this is an asynchronous call, it will always return 200, whether an association
         /// occurs or not. To confirm if an association was found based on the provided details,
-        /// call <code>ListDiscoveredResources</code>.
+        /// call <c>ListDiscoveredResources</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2227,7 +2596,7 @@ namespace Amazon.MigrationHub
         /// You do not have sufficient access to perform this action.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.DryRunOperationException">
-        /// Exception raised to indicate a successfully authorized action when the <code>DryRun</code>
+        /// Exception raised to indicate a successfully authorized action when the <c>DryRun</c>
         /// flag is set to "true".
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.HomeRegionNotSetException">
@@ -2252,8 +2621,8 @@ namespace Amazon.MigrationHub
         /// The request was denied due to request throttling.
         /// </exception>
         /// <exception cref="Amazon.MigrationHub.Model.UnauthorizedOperationException">
-        /// Exception raised to indicate a request was not authorized when the <code>DryRun</code>
-        /// flag is set to "true".
+        /// Exception raised to indicate a request was not authorized when the <c>DryRun</c> flag
+        /// is set to "true".
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/PutResourceAttributes">REST API Reference for PutResourceAttributes Operation</seealso>
         public virtual Task<PutResourceAttributesResponse> PutResourceAttributesAsync(PutResourceAttributesRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2276,11 +2645,11 @@ namespace Amazon.MigrationHub
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

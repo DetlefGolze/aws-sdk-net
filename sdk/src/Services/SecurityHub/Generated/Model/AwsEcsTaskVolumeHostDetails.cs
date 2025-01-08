@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,9 +39,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property SourcePath. 
         /// <para>
-        /// When the <code>host</code> parameter is used, specify a <code>sourcePath</code> to
-        /// declare the path on the host container instance that's presented to the container.
-        /// 
+        /// When the <c>host</c> parameter is used, specify a <c>sourcePath</c> to declare the
+        /// path on the host container instance that's presented to the container. 
         /// </para>
         /// </summary>
         public string SourcePath

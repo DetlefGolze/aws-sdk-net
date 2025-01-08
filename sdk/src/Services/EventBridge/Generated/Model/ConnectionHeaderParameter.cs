@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.EventBridge.Model
         /// <summary>
         /// Gets and sets the property IsValueSecret. 
         /// <para>
-        /// Specified whether the value is a secret.
+        /// Specifies whether the value is a secret.
         /// </para>
         /// </summary>
         public bool IsValueSecret

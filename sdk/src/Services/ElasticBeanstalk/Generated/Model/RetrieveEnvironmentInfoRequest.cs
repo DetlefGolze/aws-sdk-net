@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticBeanstalk.Model
 {
     /// <summary>
@@ -69,12 +70,12 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        /// If no such environment is found, returns an <code>InvalidParameterValue</code> error.
+        /// If no such environment is found, returns an <c>InvalidParameterValue</c> error.
         /// </para>
         ///  
         /// <para>
         /// Condition: You must specify either this or an EnvironmentName, or both. If you do
-        /// not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code>
+        /// not specify either, AWS Elastic Beanstalk returns <c>MissingRequiredParameter</c>
         /// error.
         /// </para>
         /// </summary>
@@ -97,14 +98,13 @@ namespace Amazon.ElasticBeanstalk.Model
         /// </para>
         ///  
         /// <para>
-        ///  If no such environment is found, returns an <code>InvalidParameterValue</code> error.
-        /// 
+        ///  If no such environment is found, returns an <c>InvalidParameterValue</c> error. 
         /// </para>
         ///  
         /// <para>
         ///  Condition: You must specify either this or an EnvironmentId, or both. If you do not
-        /// specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code>
-        /// error. 
+        /// specify either, AWS Elastic Beanstalk returns <c>MissingRequiredParameter</c> error.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Min=4, Max=40)]

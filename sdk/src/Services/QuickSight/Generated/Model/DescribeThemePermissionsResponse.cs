@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.QuickSight.Model
     /// </summary>
     public partial class DescribeThemePermissionsResponse : AmazonWebServiceResponse
     {
-        private List<ResourcePermission> _permissions = new List<ResourcePermission>();
+        private List<ResourcePermission> _permissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
         private string _requestId;
         private int? _status;
         private string _themeArn;
@@ -45,7 +46,7 @@ namespace Amazon.QuickSight.Model
         /// A list of resource permissions set on the theme. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=64)]
+        [AWSProperty(Max=100)]
         public List<ResourcePermission> Permissions
         {
             get { return this._permissions; }
@@ -55,7 +56,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if Permissions property is set
         internal bool IsSetPermissions()
         {
-            return this._permissions != null && this._permissions.Count > 0; 
+            return this._permissions != null && (this._permissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -45,7 +46,7 @@ namespace Amazon.IoTFleetWise.Model
         /// Specifies the version of the conditional expression language.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1)]
+        [AWSProperty(Min=1, Max=1)]
         public int ConditionLanguageVersion
         {
             get { return this._conditionLanguageVersion.GetValueOrDefault(); }
@@ -61,11 +62,11 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property Expression. 
         /// <para>
-        /// The logical expression used to recognize what data to collect. For example, <code>$variable.Vehicle.OutsideAirTemperature
-        /// &gt;= 105.0</code>.
+        /// The logical expression used to recognize what data to collect. For example, <c>$variable.`Vehicle.OutsideAirTemperature`
+        /// &gt;= 105.0</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=2048)]
+        [AWSProperty(Required=true, Sensitive=true, Min=1, Max=2048)]
         public string Expression
         {
             get { return this._expression; }
@@ -105,7 +106,7 @@ namespace Amazon.IoTFleetWise.Model
         /// <summary>
         /// Gets and sets the property TriggerMode. 
         /// <para>
-        /// Whether to collect data for all triggering events (<code>ALWAYS</code>). Specify (<code>RISING_EDGE</code>),
+        /// Whether to collect data for all triggering events (<c>ALWAYS</c>). Specify (<c>RISING_EDGE</c>),
         /// or specify only when the condition first evaluates to false. For example, triggering
         /// on "AirbagDeployed"; Users aren't interested on triggering when the airbag is already
         /// exploded; they only care about the change from not deployed =&gt; deployed.

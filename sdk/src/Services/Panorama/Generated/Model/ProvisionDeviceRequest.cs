@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Panorama.Model
 {
     /// <summary>
     /// Container for the parameters to the ProvisionDevice operation.
     /// Creates a device and returns a configuration archive. The configuration archive is
     /// a ZIP file that contains a provisioning certificate that is valid for 5 minutes. Name
-    /// the configuration archive <code>certificates-omni_<i>device-name</i>.zip</code> and
-    /// transfer it to the device within 5 minutes. Use the included USB storage device and
-    /// connect it to the USB 3.0 port next to the HDMI output.
+    /// the configuration archive <c>certificates-omni_<i>device-name</i>.zip</c> and transfer
+    /// it to the device within 5 minutes. Use the included USB storage device and connect
+    /// it to the USB 3.0 port next to the HDMI output.
     /// </summary>
     public partial class ProvisionDeviceRequest : AmazonPanoramaRequest
     {
         private string _description;
         private string _name;
         private NetworkPayload _networkingConfiguration;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Description. 
@@ -115,7 +116,7 @@ namespace Amazon.Panorama.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

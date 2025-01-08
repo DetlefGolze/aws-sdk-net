@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.RDS.Model
     {
         private string _dbProxyEndpointName;
         private string _newDBProxyEndpointName;
-        private List<string> _vpcSecurityGroupIds = new List<string>();
+        private List<string> _vpcSecurityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DBProxyEndpointName. 
@@ -60,9 +61,9 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property NewDBProxyEndpointName. 
         /// <para>
-        /// The new identifier for the <code>DBProxyEndpoint</code>. An identifier must begin
-        /// with a letter and must contain only ASCII letters, digits, and hyphens; it can't end
-        /// with a hyphen or contain two consecutive hyphens.
+        /// The new identifier for the <c>DBProxyEndpoint</c>. An identifier must begin with a
+        /// letter and must contain only ASCII letters, digits, and hyphens; it can't end with
+        /// a hyphen or contain two consecutive hyphens.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=63)]
@@ -95,7 +96,7 @@ namespace Amazon.RDS.Model
         // Check to see if VpcSecurityGroupIds property is set
         internal bool IsSetVpcSecurityGroupIds()
         {
-            return this._vpcSecurityGroupIds != null && this._vpcSecurityGroupIds.Count > 0; 
+            return this._vpcSecurityGroupIds != null && (this._vpcSecurityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

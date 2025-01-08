@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Rekognition.Model
 {
     /// <summary>
@@ -33,9 +34,31 @@ namespace Amazon.Rekognition.Model
     /// </summary>
     public partial class DetectModerationLabelsResponse : AmazonWebServiceResponse
     {
+        private List<ContentType> _contentTypes = AWSConfigs.InitializeCollections ? new List<ContentType>() : null;
         private HumanLoopActivationOutput _humanLoopActivationOutput;
-        private List<ModerationLabel> _moderationLabels = new List<ModerationLabel>();
+        private List<ModerationLabel> _moderationLabels = AWSConfigs.InitializeCollections ? new List<ModerationLabel>() : null;
         private string _moderationModelVersion;
+        private string _projectVersion;
+
+        /// <summary>
+        /// Gets and sets the property ContentTypes. 
+        /// <para>
+        /// A list of predicted results for the type of content an image contains. For example,
+        /// the image content might be from animation, sports, or a video game.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0, Max=50)]
+        public List<ContentType> ContentTypes
+        {
+            get { return this._contentTypes; }
+            set { this._contentTypes = value; }
+        }
+
+        // Check to see if ContentTypes property is set
+        internal bool IsSetContentTypes()
+        {
+            return this._contentTypes != null && (this._contentTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
 
         /// <summary>
         /// Gets and sets the property HumanLoopActivationOutput. 
@@ -58,8 +81,8 @@ namespace Amazon.Rekognition.Model
         /// <summary>
         /// Gets and sets the property ModerationLabels. 
         /// <para>
-        /// Array of detected Moderation labels and the time, in milliseconds from the start of
-        /// the video, they were detected.
+        /// Array of detected Moderation labels. For video operations, this includes the time,
+        /// in milliseconds from the start of the video, they were detected.
         /// </para>
         /// </summary>
         public List<ModerationLabel> ModerationLabels
@@ -71,13 +94,14 @@ namespace Amazon.Rekognition.Model
         // Check to see if ModerationLabels property is set
         internal bool IsSetModerationLabels()
         {
-            return this._moderationLabels != null && this._moderationLabels.Count > 0; 
+            return this._moderationLabels != null && (this._moderationLabels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ModerationModelVersion. 
         /// <para>
-        /// Version number of the moderation detection model that was used to detect unsafe content.
+        /// Version number of the base moderation detection model that was used to detect unsafe
+        /// content.
         /// </para>
         /// </summary>
         public string ModerationModelVersion
@@ -90,6 +114,27 @@ namespace Amazon.Rekognition.Model
         internal bool IsSetModerationModelVersion()
         {
             return this._moderationModelVersion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ProjectVersion. 
+        /// <para>
+        /// Identifier of the custom adapter that was used during inference. If during inference
+        /// the adapter was EXPIRED, then the parameter will not be returned, indicating that
+        /// a base moderation detection project version was used.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string ProjectVersion
+        {
+            get { return this._projectVersion; }
+            set { this._projectVersion = value; }
+        }
+
+        // Check to see if ProjectVersion property is set
+        internal bool IsSetProjectVersion()
+        {
+            return this._projectVersion != null;
         }
 
     }

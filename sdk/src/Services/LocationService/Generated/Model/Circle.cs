@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.LocationService.Model
     /// </summary>
     public partial class Circle
     {
-        private List<double> _center = new List<double>();
+        private List<double> _center = AWSConfigs.InitializeCollections ? new List<double>() : null;
         private double? _radius;
 
         /// <summary>
         /// Gets and sets the property Center. 
         /// <para>
         /// A single point geometry, specifying the center of the circle, using <a href="https://gisgeography.com/wgs84-world-geodetic-system/">WGS
-        /// 84</a> coordinates, in the form <code>[longitude, latitude]</code>.
+        /// 84</a> coordinates, in the form <c>[longitude, latitude]</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Sensitive=true, Min=2, Max=2)]
@@ -53,7 +54,7 @@ namespace Amazon.LocationService.Model
         // Check to see if Center property is set
         internal bool IsSetCenter()
         {
-            return this._center != null && this._center.Count > 0; 
+            return this._center != null && (this._center.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

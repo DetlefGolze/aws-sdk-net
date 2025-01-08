@@ -27,7 +27,10 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.EventStreams;
 using Amazon.Runtime.EventStreams.Internal;
+using Amazon.Lambda.Model.Internal.MarshallTransformations;
+using Amazon.Runtime.EventStreams.Utils;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -36,16 +39,6 @@ namespace Amazon.Lambda.Model
     public partial class InvokeWithResponseStreamCompleteEvent
         : IEventStreamEvent
     {
-    public InvokeWithResponseStreamCompleteEvent()
-    {
-    }
-
-    public InvokeWithResponseStreamCompleteEvent(IEventStreamMessage message)
-    {
-        Deserialize(message);
-    }
-
-    partial void Deserialize(IEventStreamMessage message);
         private string _errorCode;
         private string _errorDetails;
         private string _logResult;

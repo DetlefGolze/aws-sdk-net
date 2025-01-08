@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeSnapshotsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Snapshot> _snapshots = new List<Snapshot>();
+        private List<Snapshot> _snapshots = AWSConfigs.InitializeCollections ? new List<Snapshot>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to include in another request to return the next page of snapshots. This
-        /// value is <code>null</code> when there are no more snapshots to return.
+        /// The token to include in another request to get the next page of items. This value
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if Snapshots property is set
         internal bool IsSetSnapshots()
         {
-            return this._snapshots != null && this._snapshots.Count > 0; 
+            return this._snapshots != null && (this._snapshots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

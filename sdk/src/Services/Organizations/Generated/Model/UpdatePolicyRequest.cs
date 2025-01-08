@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -54,8 +55,14 @@ namespace Amazon.Organizations.Model
         /// <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_syntax.html">SCP
         /// syntax</a> in the <i>Organizations User Guide</i>.
         /// </para>
+        ///  
+        /// <para>
+        /// The maximum size of a policy document depends on the policy's type. For more information,
+        /// see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html#min-max-values">Maximum
+        /// and minimum values</a> in the <i>Organizations User Guide</i>.
+        /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000000)]
+        [AWSProperty(Min=1)]
         public string Content
         {
             get { return this._content; }

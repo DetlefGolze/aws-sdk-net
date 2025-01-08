@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A string repesenting the status of DNSSEC signing.
+    /// A string representing the status of DNSSEC signing.
     /// </summary>
     public partial class DNSSECStatus
     {
@@ -87,7 +88,7 @@ namespace Amazon.Route53.Model
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        /// The status message provided for the following DNSSEC signing status: <code>INTERNAL_FAILURE</code>.
+        /// The status message provided for the following DNSSEC signing status: <c>INTERNAL_FAILURE</c>.
         /// The status message includes information about what the problem might be and steps
         /// that you can take to correct the issue.
         /// </para>

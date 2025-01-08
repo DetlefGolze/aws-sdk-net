@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -39,13 +40,19 @@ namespace Amazon.QuickSight.Model
         private AssetBundleCloudFormationOverridePropertyConfiguration _cloudFormationOverridePropertyConfiguration;
         private DateTime? _createdTime;
         private string _downloadUrl;
-        private List<AssetBundleExportJobError> _errors = new List<AssetBundleExportJobError>();
+        private List<AssetBundleExportJobError> _errors = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobError>() : null;
         private AssetBundleExportFormat _exportFormat;
         private bool? _includeAllDependencies;
+        private IncludeFolderMembers _includeFolderMembers;
+        private bool? _includeFolderMemberships;
+        private bool? _includePermissions;
+        private bool? _includeTags;
         private AssetBundleExportJobStatus _jobStatus;
         private string _requestId;
-        private List<string> _resourceArns = new List<string>();
+        private List<string> _resourceArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _status;
+        private AssetBundleExportJobValidationStrategy _validationStrategy;
+        private List<AssetBundleExportJobWarning> _warnings = AWSConfigs.InitializeCollections ? new List<AssetBundleExportJobWarning>() : null;
 
         /// <summary>
         /// Gets and sets the property Arn. 
@@ -68,7 +75,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property AssetBundleExportJobId. 
         /// <para>
-        /// The ID of the job. The job ID is set when you start a new job with a <code>StartAssetBundleExportJob</code>
+        /// The ID of the job. The job ID is set when you start a new job with a <c>StartAssetBundleExportJob</c>
         /// API call.
         /// </para>
         /// </summary>
@@ -148,20 +155,21 @@ namespace Amazon.QuickSight.Model
         ///  
         /// <para>
         /// This URL is available only after the job has succeeded. This URL is valid for 5 minutes
-        /// after issuance. Call <code>DescribeAssetBundleExportJob</code> again for a fresh URL
-        /// if needed.
+        /// after issuance. Call <c>DescribeAssetBundleExportJob</c> again for a fresh URL if
+        /// needed.
         /// </para>
         ///  
         /// <para>
-        /// The downloaded asset bundle is a zip file named <code>assetbundle-{jobId}.qs</code>.
-        /// The file has a <code>.qs</code> extension.
+        /// The downloaded asset bundle is a zip file named <c>assetbundle-{jobId}.qs</c>. The
+        /// file has a <c>.qs</c> extension.
         /// </para>
         ///  
         /// <para>
-        /// This URL can't be used in a <code>StartAssetBundleImportJob</code> API call and should
-        /// only be used for download purposes.
+        /// This URL can't be used in a <c>StartAssetBundleImportJob</c> API call and should only
+        /// be used for download purposes.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string DownloadUrl
         {
             get { return this._downloadUrl; }
@@ -195,14 +203,14 @@ namespace Amazon.QuickSight.Model
         // Check to see if Errors property is set
         internal bool IsSetErrors()
         {
-            return this._errors != null && this._errors.Count > 0; 
+            return this._errors != null && (this._errors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ExportFormat. 
         /// <para>
-        /// The format of the exported asset bundle. A <code>QUICKSIGHT_JSON</code> formatted
-        /// file can be used to make a <code>StartAssetBundleImportJob</code> API call. A <code>CLOUDFORMATION_JSON</code>
+        /// The format of the exported asset bundle. A <c>QUICKSIGHT_JSON</c> formatted file can
+        /// be used to make a <c>StartAssetBundleImportJob</c> API call. A <c>CLOUDFORMATION_JSON</c>
         /// formatted file can be used in the CloudFormation console and with the CloudFormation
         /// APIs.
         /// </para>
@@ -238,14 +246,86 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property IncludeFolderMembers. 
+        /// <para>
+        /// A setting that determines whether folder members are included.
+        /// </para>
+        /// </summary>
+        public IncludeFolderMembers IncludeFolderMembers
+        {
+            get { return this._includeFolderMembers; }
+            set { this._includeFolderMembers = value; }
+        }
+
+        // Check to see if IncludeFolderMembers property is set
+        internal bool IsSetIncludeFolderMembers()
+        {
+            return this._includeFolderMembers != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludeFolderMemberships. 
+        /// <para>
+        /// The include folder memberships flag.
+        /// </para>
+        /// </summary>
+        public bool IncludeFolderMemberships
+        {
+            get { return this._includeFolderMemberships.GetValueOrDefault(); }
+            set { this._includeFolderMemberships = value; }
+        }
+
+        // Check to see if IncludeFolderMemberships property is set
+        internal bool IsSetIncludeFolderMemberships()
+        {
+            return this._includeFolderMemberships.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludePermissions. 
+        /// <para>
+        /// The include permissions flag.
+        /// </para>
+        /// </summary>
+        public bool IncludePermissions
+        {
+            get { return this._includePermissions.GetValueOrDefault(); }
+            set { this._includePermissions = value; }
+        }
+
+        // Check to see if IncludePermissions property is set
+        internal bool IsSetIncludePermissions()
+        {
+            return this._includePermissions.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property IncludeTags. 
+        /// <para>
+        /// The include tags flag.
+        /// </para>
+        /// </summary>
+        public bool IncludeTags
+        {
+            get { return this._includeTags.GetValueOrDefault(); }
+            set { this._includeTags = value; }
+        }
+
+        // Check to see if IncludeTags property is set
+        internal bool IsSetIncludeTags()
+        {
+            return this._includeTags.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property JobStatus. 
         /// <para>
         /// Indicates the status of a job through its queuing and execution.
         /// </para>
         ///  
         /// <para>
-        /// Poll this <code>DescribeAssetBundleExportApi</code> until <code>JobStatus</code> is
-        /// either <code>SUCCESSFUL</code> or <code>FAILED</code>.
+        /// Poll this <c>DescribeAssetBundleExportApi</c> until <c>JobStatus</c> is either <c>SUCCESSFUL</c>
+        /// or <c>FAILED</c>.
         /// </para>
         /// </summary>
         public AssetBundleExportJobStatus JobStatus
@@ -294,7 +374,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ResourceArns property is set
         internal bool IsSetResourceArns()
         {
-            return this._resourceArns != null && this._resourceArns.Count > 0; 
+            return this._resourceArns != null && (this._resourceArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -313,6 +393,48 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetStatus()
         {
             return this._status.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ValidationStrategy. 
+        /// <para>
+        /// The validation strategy that is used to export the analysis or dashboard.
+        /// </para>
+        /// </summary>
+        public AssetBundleExportJobValidationStrategy ValidationStrategy
+        {
+            get { return this._validationStrategy; }
+            set { this._validationStrategy = value; }
+        }
+
+        // Check to see if ValidationStrategy property is set
+        internal bool IsSetValidationStrategy()
+        {
+            return this._validationStrategy != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Warnings. 
+        /// <para>
+        /// An array of warning records that describe the analysis or dashboard that is exported.
+        /// This array includes UI errors that can be skipped during the validation process.
+        /// </para>
+        ///  
+        /// <para>
+        /// This property only appears if <c>StrictModeForAllResources</c> in <c>ValidationStrategy</c>
+        /// is set to <c>FALSE</c>.
+        /// </para>
+        /// </summary>
+        public List<AssetBundleExportJobWarning> Warnings
+        {
+            get { return this._warnings; }
+            set { this._warnings = value; }
+        }
+
+        // Check to see if Warnings property is set
+        internal bool IsSetWarnings()
+        {
+            return this._warnings != null && (this._warnings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

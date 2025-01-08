@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -64,7 +65,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FilterControlId. 
         /// <para>
-        /// The ID of the <code>FilterSliderControl</code>.
+        /// The ID of the <c>FilterSliderControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -83,7 +84,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property MaximumValue. 
         /// <para>
-        /// The smaller value that is displayed at the left of the slider.
+        /// The larger value that is displayed at the right of the slider.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -102,7 +103,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property MinimumValue. 
         /// <para>
-        /// The larger value that is displayed at the right of the slider.
+        /// The smaller value that is displayed at the left of the slider.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -121,7 +122,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceFilterId. 
         /// <para>
-        /// The source filter ID of the <code>FilterSliderControl</code>.
+        /// The source filter ID of the <c>FilterSliderControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -159,7 +160,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>FilterSliderControl</code>.
+        /// The title of the <c>FilterSliderControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -178,15 +179,15 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of <code>FilterSliderControl</code>. Choose one of the following options:
+        /// The type of the <c>FilterSliderControl</c>. Choose one of the following options:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>SINGLE_POINT</code>: Filter against(equals) a single data point.
+        ///  <c>SINGLE_POINT</c>: Filter against(equals) a single data point.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RANGE</code>: Filter data that is in a specified range.
+        ///  <c>RANGE</c>: Filter data that is in a specified range.
         /// </para>
         ///  </li> </ul>
         /// </summary>

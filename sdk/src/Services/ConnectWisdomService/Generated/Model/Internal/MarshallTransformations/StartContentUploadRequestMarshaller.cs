@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConnectWisdomService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,12 +67,19 @@ namespace Amazon.ConnectWisdomService.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetContentType())
                 {
                     context.Writer.WritePropertyName("contentType");
                     context.Writer.Write(publicRequest.ContentType);
+                }
+
+                if(publicRequest.IsSetPresignedUrlTimeToLive())
+                {
+                    context.Writer.WritePropertyName("presignedUrlTimeToLive");
+                    context.Writer.Write(publicRequest.PresignedUrlTimeToLive);
                 }
 
                 writer.WriteObjectEnd();

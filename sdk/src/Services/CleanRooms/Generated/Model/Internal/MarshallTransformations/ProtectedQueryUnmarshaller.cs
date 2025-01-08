@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,22 +53,35 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public ProtectedQuery Unmarshall(JsonUnmarshallerContext context)
         {
+            ProtectedQuery unmarshalledObject = new ProtectedQuery();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            ProtectedQuery unmarshalledObject = new ProtectedQuery();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
+                if (context.TestExpression("computeConfiguration", targetDepth))
+                {
+                    var unmarshaller = ComputeConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.ComputeConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("createTime", targetDepth))
                 {
                     var unmarshaller = DateTimeUnmarshaller.Instance;
                     unmarshalledObject.CreateTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("differentialPrivacy", targetDepth))
+                {
+                    var unmarshaller = DifferentialPrivacyParametersUnmarshaller.Instance;
+                    unmarshalledObject.DifferentialPrivacy = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("error", targetDepth))
@@ -125,7 +139,6 @@ namespace Amazon.CleanRooms.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

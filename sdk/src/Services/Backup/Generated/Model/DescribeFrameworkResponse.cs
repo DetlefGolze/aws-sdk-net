@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.Backup.Model
         private DateTime? _creationTime;
         private string _deploymentStatus;
         private string _frameworkArn;
-        private List<FrameworkControl> _frameworkControls = new List<FrameworkControl>();
+        private List<FrameworkControl> _frameworkControls = AWSConfigs.InitializeCollections ? new List<FrameworkControl>() : null;
         private string _frameworkDescription;
         private string _frameworkName;
         private string _frameworkStatus;
@@ -46,7 +47,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// The date and time that a framework is created, in ISO 8601 representation. The value
-        /// of <code>CreationTime</code> is accurate to milliseconds. For example, 2020-07-10T15:00:00.000-08:00
+        /// of <c>CreationTime</c> is accurate to milliseconds. For example, 2020-07-10T15:00:00.000-08:00
         /// represents the 10th of July 2020 at 3:00 PM 8 hours behind UTC.
         /// </para>
         /// </summary>
@@ -69,8 +70,8 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>CREATE_IN_PROGRESS | UPDATE_IN_PROGRESS | DELETE_IN_PROGRESS | COMPLETED |
-        /// FAILED</code> 
+        ///  <c>CREATE_IN_PROGRESS | UPDATE_IN_PROGRESS | DELETE_IN_PROGRESS | COMPLETED | FAILED</c>
+        /// 
         /// </para>
         /// </summary>
         public string DeploymentStatus
@@ -107,8 +108,8 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property FrameworkControls. 
         /// <para>
-        /// A list of the controls that make up the framework. Each control in the list has a
-        /// name, input parameters, and scope.
+        /// The controls that make up the framework. Each control in the list has a name, input
+        /// parameters, and scope.
         /// </para>
         /// </summary>
         public List<FrameworkControl> FrameworkControls
@@ -120,7 +121,7 @@ namespace Amazon.Backup.Model
         // Check to see if FrameworkControls property is set
         internal bool IsSetFrameworkControls()
         {
-            return this._frameworkControls != null && this._frameworkControls.Count > 0; 
+            return this._frameworkControls != null && (this._frameworkControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,23 +171,20 @@ namespace Amazon.Backup.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACTIVE</code> when recording is turned on for all resources governed by the
-        /// framework.
+        ///  <c>ACTIVE</c> when recording is turned on for all resources governed by the framework.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PARTIALLY_ACTIVE</code> when recording is turned off for at least one resource
-        /// governed by the framework.
+        ///  <c>PARTIALLY_ACTIVE</c> when recording is turned off for at least one resource governed
+        /// by the framework.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INACTIVE</code> when recording is turned off for all resources governed by
-        /// the framework.
+        ///  <c>INACTIVE</c> when recording is turned off for all resources governed by the framework.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNAVAILABLE</code> when Backup is unable to validate recording status at this
-        /// time.
+        ///  <c>UNAVAILABLE</c> when Backup is unable to validate recording status at this time.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -206,8 +204,8 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property IdempotencyToken. 
         /// <para>
         /// A customer-chosen string that you can use to distinguish between otherwise identical
-        /// calls to <code>DescribeFrameworkOutput</code>. Retrying a successful request with
-        /// the same idempotency token results in a success message with no action taken.
+        /// calls to <c>DescribeFrameworkOutput</c>. Retrying a successful request with the same
+        /// idempotency token results in a success message with no action taken.
         /// </para>
         /// </summary>
         public string IdempotencyToken

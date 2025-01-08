@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FSx.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.FSx.Model
         /// <summary>
         /// Gets and sets the property Volume. 
         /// <para>
-        /// A description of the volume just updated. Returned after a successful <code>UpdateVolume</code>
+        /// A description of the volume just updated. Returned after a successful <c>UpdateVolume</c>
         /// API operation.
         /// </para>
         /// </summary>

@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the s3control-2018-08-20.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.S3Control.Model
 {
     /// <summary>
@@ -24,6 +25,21 @@ namespace Amazon.S3Control.Model
     ///</summary>
     public interface IS3ControlPaginatorFactory
     {
+
+        /// <summary>
+        /// Paginator for ListAccessGrants operation
+        ///</summary>
+        IListAccessGrantsPaginator ListAccessGrants(ListAccessGrantsRequest request);
+
+        /// <summary>
+        /// Paginator for ListAccessGrantsInstances operation
+        ///</summary>
+        IListAccessGrantsInstancesPaginator ListAccessGrantsInstances(ListAccessGrantsInstancesRequest request);
+
+        /// <summary>
+        /// Paginator for ListAccessGrantsLocations operation
+        ///</summary>
+        IListAccessGrantsLocationsPaginator ListAccessGrantsLocations(ListAccessGrantsLocationsRequest request);
 
         /// <summary>
         /// Paginator for ListAccessPoints operation
@@ -34,6 +50,11 @@ namespace Amazon.S3Control.Model
         /// Paginator for ListAccessPointsForObjectLambda operation
         ///</summary>
         IListAccessPointsForObjectLambdaPaginator ListAccessPointsForObjectLambda(ListAccessPointsForObjectLambdaRequest request);
+
+        /// <summary>
+        /// Paginator for ListCallerAccessGrants operation
+        ///</summary>
+        IListCallerAccessGrantsPaginator ListCallerAccessGrants(ListCallerAccessGrantsRequest request);
 
         /// <summary>
         /// Paginator for ListJobs operation
@@ -54,5 +75,10 @@ namespace Amazon.S3Control.Model
         /// Paginator for ListStorageLensConfigurations operation
         ///</summary>
         IListStorageLensConfigurationsPaginator ListStorageLensConfigurations(ListStorageLensConfigurationsRequest request);
+
+        /// <summary>
+        /// Paginator for ListStorageLensGroups operation
+        ///</summary>
+        IListStorageLensGroupsPaginator ListStorageLensGroups(ListStorageLensGroupsRequest request);
     }
 }

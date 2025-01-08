@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FilterControlId. 
         /// <para>
-        /// The ID of the <code>FilterListControl</code>.
+        /// The ID of the <c>FilterListControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -119,7 +120,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property SourceFilterId. 
         /// <para>
-        /// The source filter ID of the <code>FilterListControl</code>.
+        /// The source filter ID of the <c>FilterListControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=512)]
@@ -138,7 +139,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Title. 
         /// <para>
-        /// The title of the <code>FilterListControl</code>.
+        /// The title of the <c>FilterListControl</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
@@ -157,15 +158,15 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of <code>FilterListControl</code>. Choose one of the following options:
+        /// The type of the <c>FilterListControl</c>. Choose one of the following options:
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>MULTI_SELECT</code>: The user can select multiple entries from the list.
+        ///  <c>MULTI_SELECT</c>: The user can select multiple entries from the list.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SINGLE_SELECT</code>: The user can select a single entry from the list.
+        ///  <c>SINGLE_SELECT</c>: The user can select a single entry from the list.
         /// </para>
         ///  </li> </ul>
         /// </summary>

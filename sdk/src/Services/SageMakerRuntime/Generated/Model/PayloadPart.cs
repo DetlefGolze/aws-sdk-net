@@ -27,7 +27,10 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.EventStreams;
 using Amazon.Runtime.EventStreams.Internal;
+using Amazon.SageMakerRuntime.Model.Internal.MarshallTransformations;
+using Amazon.Runtime.EventStreams.Utils;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMakerRuntime.Model
 {
     /// <summary>
@@ -37,16 +40,6 @@ namespace Amazon.SageMakerRuntime.Model
     public partial class PayloadPart
         : IEventStreamEvent
     {
-    public PayloadPart()
-    {
-    }
-
-    public PayloadPart(IEventStreamMessage message)
-    {
-        Bytes = new MemoryStream(message.Payload);
-    }
-
-    partial void Deserialize(IEventStreamMessage message);
         private MemoryStream _bytes;
 
         /// <summary>

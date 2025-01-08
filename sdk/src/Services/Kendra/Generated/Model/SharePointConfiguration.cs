@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -38,14 +39,14 @@ namespace Amazon.Kendra.Model
         private bool? _crawlAttachments;
         private bool? _disableLocalGroups;
         private string _documentTitleFieldName;
-        private List<string> _exclusionPatterns = new List<string>();
-        private List<DataSourceToIndexFieldMapping> _fieldMappings = new List<DataSourceToIndexFieldMapping>();
-        private List<string> _inclusionPatterns = new List<string>();
+        private List<string> _exclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<DataSourceToIndexFieldMapping> _fieldMappings = AWSConfigs.InitializeCollections ? new List<DataSourceToIndexFieldMapping>() : null;
+        private List<string> _inclusionPatterns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private ProxyConfiguration _proxyConfiguration;
         private string _secretArn;
         private SharePointVersion _sharePointVersion;
         private S3Path _sslCertificateS3Path;
-        private List<string> _urls = new List<string>();
+        private List<string> _urls = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _useChangeLog;
         private DataSourceVpcConfiguration _vpcConfiguration;
 
@@ -72,7 +73,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property CrawlAttachments. 
         /// <para>
-        ///  <code>TRUE</code> to index document attachments.
+        ///  <c>TRUE</c> to index document attachments.
         /// </para>
         /// </summary>
         public bool CrawlAttachments
@@ -90,7 +91,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property DisableLocalGroups. 
         /// <para>
-        ///  <code>TRUE</code> to disable local groups information.
+        ///  <c>TRUE</c> to disable local groups information.
         /// </para>
         /// </summary>
         public bool DisableLocalGroups
@@ -148,16 +149,16 @@ namespace Amazon.Kendra.Model
         // Check to see if ExclusionPatterns property is set
         internal bool IsSetExclusionPatterns()
         {
-            return this._exclusionPatterns != null && this._exclusionPatterns.Count > 0; 
+            return this._exclusionPatterns != null && (this._exclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property FieldMappings. 
         /// <para>
-        /// A list of <code>DataSourceToIndexFieldMapping</code> objects that map SharePoint data
-        /// source attributes or field names to Amazon Kendra index field names. To create custom
-        /// fields, use the <code>UpdateIndex</code> API before you map to SharePoint fields.
-        /// For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
+        /// A list of <c>DataSourceToIndexFieldMapping</c> objects that map SharePoint data source
+        /// attributes or field names to Amazon Kendra index field names. To create custom fields,
+        /// use the <c>UpdateIndex</c> API before you map to SharePoint fields. For more information,
+        /// see <a href="https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html">Mapping
         /// data source fields</a>. The SharePoint data source field names must exist in your
         /// SharePoint custom metadata.
         /// </para>
@@ -172,7 +173,7 @@ namespace Amazon.Kendra.Model
         // Check to see if FieldMappings property is set
         internal bool IsSetFieldMappings()
         {
-            return this._fieldMappings != null && this._fieldMappings.Count > 0; 
+            return this._fieldMappings != null && (this._fieldMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -199,7 +200,7 @@ namespace Amazon.Kendra.Model
         // Check to see if InclusionPatterns property is set
         internal bool IsSetInclusionPatterns()
         {
-            return this._inclusionPatterns != null && this._inclusionPatterns.Count > 0; 
+            return this._inclusionPatterns != null && (this._inclusionPatterns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -324,13 +325,13 @@ namespace Amazon.Kendra.Model
         // Check to see if Urls property is set
         internal bool IsSetUrls()
         {
-            return this._urls != null && this._urls.Count > 0; 
+            return this._urls != null && (this._urls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property UseChangeLog. 
         /// <para>
-        ///  <code>TRUE</code> to use the SharePoint change log to determine which documents require
+        ///  <c>TRUE</c> to use the SharePoint change log to determine which documents require
         /// updating in the index. Depending on the change log's size, it may take longer for
         /// Amazon Kendra to use the change log than to scan all of your documents in SharePoint.
         /// </para>

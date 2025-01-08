@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -169,8 +170,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property ServerTimingHeadersConfig. 
         /// <para>
-        /// A configuration for enabling the <code>Server-Timing</code> header in HTTP responses
-        /// sent from CloudFront.
+        /// A configuration for enabling the <c>Server-Timing</c> header in HTTP responses sent
+        /// from CloudFront.
         /// </para>
         /// </summary>
         public ResponseHeadersPolicyServerTimingHeadersConfig ServerTimingHeadersConfig

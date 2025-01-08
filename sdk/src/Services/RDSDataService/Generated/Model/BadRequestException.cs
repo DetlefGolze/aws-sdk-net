@@ -26,10 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDSDataService.Model
 {
     /// <summary>
-    /// There is an error in the call or in a SQL statement.
+    /// There is an error in the call or in a SQL statement. (This error only appears in calls
+    /// from Aurora Serverless v1 databases.)
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubConfig.Model
 {
     /// <summary>
     /// Exception raised to indicate that authorization of an action was successful, when
-    /// the <code>DryRun</code> flag is set to true.
+    /// the <c>DryRun</c> flag is set to true.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

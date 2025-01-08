@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.SecurityLake.Model
         /// <summary>
         /// Gets and sets the property HttpsNotificationConfiguration. 
         /// <para>
-        /// The configurations for HTTPS subscriber notification.
+        /// The configurations used for HTTPS subscriber notification.
         /// </para>
         /// </summary>
         public HttpsNotificationConfiguration HttpsNotificationConfiguration

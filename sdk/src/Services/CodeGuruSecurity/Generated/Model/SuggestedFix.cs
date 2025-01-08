@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -39,7 +40,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property Code. 
         /// <para>
-        /// The suggested code to add to your file. 
+        /// The suggested code fix. If applicable, includes code patch to replace your source
+        /// code. 
         /// </para>
         /// </summary>
         public string Code

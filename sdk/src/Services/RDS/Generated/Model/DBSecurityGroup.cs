@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <code>DescribeDBSecurityGroups</code>
+    /// This data type is used as a response element in the <c>DescribeDBSecurityGroups</c>
     /// action.
     /// </para>
     /// </summary>
@@ -42,8 +43,8 @@ namespace Amazon.RDS.Model
         private string _dbSecurityGroupArn;
         private string _dbSecurityGroupDescription;
         private string _dbSecurityGroupName;
-        private List<EC2SecurityGroup> _ec2SecurityGroups = new List<EC2SecurityGroup>();
-        private List<IPRange> _ipRanges = new List<IPRange>();
+        private List<EC2SecurityGroup> _ec2SecurityGroups = AWSConfigs.InitializeCollections ? new List<EC2SecurityGroup>() : null;
+        private List<IPRange> _ipRanges = AWSConfigs.InitializeCollections ? new List<IPRange>() : null;
         private string _ownerId;
         private string _vpcId;
 
@@ -104,7 +105,7 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property EC2SecurityGroups. 
         /// <para>
-        /// Contains a list of <code>EC2SecurityGroup</code> elements.
+        /// Contains a list of <c>EC2SecurityGroup</c> elements.
         /// </para>
         /// </summary>
         public List<EC2SecurityGroup> EC2SecurityGroups
@@ -116,13 +117,13 @@ namespace Amazon.RDS.Model
         // Check to see if EC2SecurityGroups property is set
         internal bool IsSetEC2SecurityGroups()
         {
-            return this._ec2SecurityGroups != null && this._ec2SecurityGroups.Count > 0; 
+            return this._ec2SecurityGroups != null && (this._ec2SecurityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property IPRanges. 
         /// <para>
-        /// Contains a list of <code>IPRange</code> elements.
+        /// Contains a list of <c>IPRange</c> elements.
         /// </para>
         /// </summary>
         public List<IPRange> IPRanges
@@ -134,7 +135,7 @@ namespace Amazon.RDS.Model
         // Check to see if IPRanges property is set
         internal bool IsSetIPRanges()
         {
-            return this._ipRanges != null && this._ipRanges.Count > 0; 
+            return this._ipRanges != null && (this._ipRanges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

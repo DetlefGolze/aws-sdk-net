@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -33,24 +34,23 @@ namespace Amazon.LexModelsV2.Model
     /// 
     ///  
     /// <para>
-    ///  <code>DefaultValueSpecification</code> is a list of default values for a constituent
-    /// sub slot in a composite slot. Default values are used when Amazon Lex hasn't determined
+    ///  <c>DefaultValueSpecification</c> is a list of default values for a constituent sub
+    /// slot in a composite slot. Default values are used when Amazon Lex hasn't determined
     /// a value for a slot. You can specify default values from context variables, session
-    /// attributes, and defined values. This is similar to <code>DefaultValueSpecification</code>
+    /// attributes, and defined values. This is similar to <c>DefaultValueSpecification</c>
     /// for slots.
     /// </para>
     ///  
     /// <para>
-    ///  <code>PromptSpecification</code> is the prompt that Amazon Lex uses to elicit the
-    /// sub slot value from the user. This is similar to <code>PromptSpecification</code>
-    /// for slots.
+    ///  <c>PromptSpecification</c> is the prompt that Amazon Lex uses to elicit the sub slot
+    /// value from the user. This is similar to <c>PromptSpecification</c> for slots.
     /// </para>
     /// </summary>
     public partial class SubSlotValueElicitationSetting
     {
         private SlotDefaultValueSpecification _defaultValueSpecification;
         private PromptSpecification _promptSpecification;
-        private List<SampleUtterance> _sampleUtterances = new List<SampleUtterance>();
+        private List<SampleUtterance> _sampleUtterances = AWSConfigs.InitializeCollections ? new List<SampleUtterance>() : null;
         private WaitAndContinueSpecification _waitAndContinueSpecification;
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Amazon.LexModelsV2.Model
         /// If you know a specific pattern that users might respond to an Amazon Lex request for
         /// a sub slot value, you can provide those utterances to improve accuracy. This is optional.
         /// In most cases Amazon Lex is capable of understanding user utterances. This is similar
-        /// to <code>SampleUtterances</code> for slots.
+        /// to <c>SampleUtterances</c> for slots.
         /// </para>
         /// </summary>
         public List<SampleUtterance> SampleUtterances
@@ -102,7 +102,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if SampleUtterances property is set
         internal bool IsSetSampleUtterances()
         {
-            return this._sampleUtterances != null && this._sampleUtterances.Count > 0; 
+            return this._sampleUtterances != null && (this._sampleUtterances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

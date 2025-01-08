@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.CustomerProfiles.Model
     /// </summary>
     public partial class ListRuleBasedMatchesResponse : AmazonWebServiceResponse
     {
-        private List<string> _matchIds = new List<string>();
+        private List<string> _matchIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property MatchIds. 
         /// <para>
-        /// The list of <code>MatchIds</code> for the given domain.
+        /// The list of <c>MatchIds</c> for the given domain.
         /// </para>
         /// </summary>
         public List<string> MatchIds
@@ -51,13 +52,13 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if MatchIds property is set
         internal bool IsSetMatchIds()
         {
-            return this._matchIds != null && this._matchIds.Count > 0; 
+            return this._matchIds != null && (this._matchIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token from the previous <code>ListRuleBasedMatches</code> API call.
+        /// The pagination token from the previous <c>ListRuleBasedMatches</c> API call.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]

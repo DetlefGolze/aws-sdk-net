@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -49,12 +50,12 @@ namespace Amazon.OpsWorksCM.Model
         private int? _s3DataSize;
         private string _s3DataUrl;
         private string _s3LogUrl;
-        private List<string> _securityGroupIds = new List<string>();
+        private List<string> _securityGroupIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _serverName;
         private string _serviceRoleArn;
         private BackupStatus _status;
         private string _statusDescription;
-        private List<string> _subnetIds = new List<string>();
+        private List<string> _subnetIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _toolsVersion;
         private string _userArn;
 
@@ -80,8 +81,7 @@ namespace Amazon.OpsWorksCM.Model
         /// <summary>
         /// Gets and sets the property BackupId. 
         /// <para>
-        ///  The generated ID of the backup. Example: <code>myServerName-yyyyMMddHHmmssSSS</code>
-        /// 
+        ///  The generated ID of the backup. Example: <c>myServerName-yyyyMMddHHmmssSSS</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Max=79)]
@@ -100,8 +100,7 @@ namespace Amazon.OpsWorksCM.Model
         /// <summary>
         /// Gets and sets the property BackupType. 
         /// <para>
-        ///  The backup type. Valid values are <code>automated</code> or <code>manual</code>.
-        /// 
+        ///  The backup type. Valid values are <c>automated</c> or <c>manual</c>. 
         /// </para>
         /// </summary>
         public BackupType BackupType
@@ -119,7 +118,7 @@ namespace Amazon.OpsWorksCM.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        ///  The time stamp when the backup was created in the database. Example: <code>2016-07-29T13:38:47.520Z</code>
+        ///  The time stamp when the backup was created in the database. Example: <c>2016-07-29T13:38:47.520Z</c>
         /// 
         /// </para>
         /// </summary>
@@ -385,7 +384,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if SecurityGroupIds property is set
         internal bool IsSetSecurityGroupIds()
         {
-            return this._securityGroupIds != null && this._securityGroupIds.Count > 0; 
+            return this._securityGroupIds != null && (this._securityGroupIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -479,7 +478,7 @@ namespace Amazon.OpsWorksCM.Model
         // Check to see if SubnetIds property is set
         internal bool IsSetSubnetIds()
         {
-            return this._subnetIds != null && this._subnetIds.Count > 0; 
+            return this._subnetIds != null && (this._subnetIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

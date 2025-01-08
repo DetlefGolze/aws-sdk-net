@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kafka.Model
 {
     /// <summary>
@@ -33,7 +34,8 @@ namespace Amazon.Kafka.Model
     /// </summary>
     public partial class MutableClusterInfo
     {
-        private List<BrokerEBSVolumeInfo> _brokerEBSVolumeInfo = new List<BrokerEBSVolumeInfo>();
+        private BrokerCountUpdateInfo _brokerCountUpdateInfo;
+        private List<BrokerEBSVolumeInfo> _brokerEBSVolumeInfo = AWSConfigs.InitializeCollections ? new List<BrokerEBSVolumeInfo>() : null;
         private ClientAuthentication _clientAuthentication;
         private ConfigurationInfo _configurationInfo;
         private ConnectivityInfo _connectivityInfo;
@@ -45,6 +47,24 @@ namespace Amazon.Kafka.Model
         private int? _numberOfBrokerNodes;
         private OpenMonitoring _openMonitoring;
         private StorageMode _storageMode;
+
+        /// <summary>
+        /// Gets and sets the property BrokerCountUpdateInfo.             
+        /// <para>
+        /// Describes brokers being changed during a broker count update.
+        /// </para>
+        /// </summary>
+        public BrokerCountUpdateInfo BrokerCountUpdateInfo
+        {
+            get { return this._brokerCountUpdateInfo; }
+            set { this._brokerCountUpdateInfo = value; }
+        }
+
+        // Check to see if BrokerCountUpdateInfo property is set
+        internal bool IsSetBrokerCountUpdateInfo()
+        {
+            return this._brokerCountUpdateInfo != null;
+        }
 
         /// <summary>
         /// Gets and sets the property BrokerEBSVolumeInfo.             
@@ -61,7 +81,7 @@ namespace Amazon.Kafka.Model
         // Check to see if BrokerEBSVolumeInfo property is set
         internal bool IsSetBrokerEBSVolumeInfo()
         {
-            return this._brokerEBSVolumeInfo != null && this._brokerEBSVolumeInfo.Count > 0; 
+            return this._brokerEBSVolumeInfo != null && (this._brokerEBSVolumeInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

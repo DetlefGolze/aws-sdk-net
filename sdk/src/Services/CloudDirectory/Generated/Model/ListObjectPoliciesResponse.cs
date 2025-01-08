@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.CloudDirectory.Model
     /// </summary>
     public partial class ListObjectPoliciesResponse : AmazonWebServiceResponse
     {
-        private List<string> _attachedPolicyIds = new List<string>();
+        private List<string> _attachedPolicyIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AttachedPolicyIds. 
         /// <para>
-        /// A list of policy <code>ObjectIdentifiers</code>, that are attached to the object.
+        /// A list of policy <c>ObjectIdentifiers</c>, that are attached to the object.
         /// </para>
         /// </summary>
         public List<string> AttachedPolicyIds
@@ -51,7 +52,7 @@ namespace Amazon.CloudDirectory.Model
         // Check to see if AttachedPolicyIds property is set
         internal bool IsSetAttachedPolicyIds()
         {
-            return this._attachedPolicyIds != null && this._attachedPolicyIds.Count > 0; 
+            return this._attachedPolicyIds != null && (this._attachedPolicyIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.Comprehend
 {
     /// <summary>
-    /// Implementation for accessing Comprehend
+    /// <para>Implementation for accessing Comprehend</para>
     ///
     /// Amazon Comprehend is an Amazon Web Services service for gaining insight into the content
     /// of documents. Use these actions to determine the topics contained in your documents,
@@ -359,9 +360,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectEntities">REST API Reference for BatchDetectEntities Operation</seealso>
@@ -432,9 +432,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectKeyPhrases">REST API Reference for BatchDetectKeyPhrases Operation</seealso>
@@ -487,8 +486,7 @@ namespace Amazon.Comprehend
 
         /// <summary>
         /// Inspects a batch of documents and returns an inference of the prevailing sentiment,
-        /// <code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>,
-        /// in each one.
+        /// <c>POSITIVE</c>, <c>NEUTRAL</c>, <c>MIXED</c>, or <c>NEGATIVE</c>, in each one.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchDetectSentiment service method.</param>
         /// 
@@ -507,9 +505,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectSentiment">REST API Reference for BatchDetectSentiment Operation</seealso>
@@ -583,9 +580,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectSyntax">REST API Reference for BatchDetectSyntax Operation</seealso>
@@ -643,7 +639,7 @@ namespace Amazon.Comprehend
         ///  
         /// <para>
         /// For more information about targeted sentiment, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html">Targeted
-        /// sentiment</a>.
+        /// sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchDetectTargetedSentiment service method.</param>
@@ -663,9 +659,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/BatchDetectTargetedSentiment">REST API Reference for BatchDetectTargetedSentiment Operation</seealso>
@@ -717,23 +712,33 @@ namespace Amazon.Comprehend
         #region  ClassifyDocument
 
         /// <summary>
-        /// Creates a new document classification request to analyze a single document in real-time,
-        /// using a previously created and trained custom model and an endpoint.
+        /// Creates a classification request to analyze a single document in real-time. <c>ClassifyDocument</c>
+        /// supports the following model types:
         /// 
-        ///  
+        ///  <ul> <li> 
         /// <para>
-        /// You can input plain text or you can upload a single-page input document (text, PDF,
-        /// Word, or image). 
+        /// Custom classifier - a custom model that you have created and trained. For input, you
+        /// can provide plain text, a single-page document (PDF, Word, or image), or Amazon Textract
+        /// API output. For more information, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html">Custom
+        /// classification</a> in the <i>Amazon Comprehend Developer Guide</i>.
         /// </para>
-        ///  
+        ///  </li> <li> 
+        /// <para>
+        /// Prompt safety classifier - Amazon Comprehend provides a pre-trained model for classifying
+        /// input prompts for generative AI applications. For input, you provide English plain
+        /// text input. For prompt safety classification, the response includes only the <c>Classes</c>
+        /// field. For more information about prompt safety classifiers, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/trust-safety.html#prompt-classification">Prompt
+        /// safety classification</a> in the <i>Amazon Comprehend Developer Guide</i>.
+        /// </para>
+        ///  </li> </ul> 
         /// <para>
         /// If the system detects errors while processing a page in the input document, the API
-        /// response includes an entry in <code>Errors</code> that describes the errors.
+        /// response includes an <c>Errors</c> field that describes the errors.
         /// </para>
         ///  
         /// <para>
         /// If the system detects a document-level error in your input document, the API returns
-        /// an <code>InvalidRequestException</code> error response. For details about this exception,
+        /// an <c>InvalidRequestException</c> error response. For details about this exception,
         /// see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html">
         /// Errors in semi-structured documents</a> in the Comprehend Developer Guide. 
         /// </para>
@@ -819,9 +824,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ContainsPiiEntities">REST API Reference for ContainsPiiEntities Operation</seealso>
@@ -989,9 +993,8 @@ namespace Amazon.Comprehend
         /// in your current request.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateDocumentClassifier">REST API Reference for CreateDocumentClassifier Operation</seealso>
@@ -1127,8 +1130,8 @@ namespace Amazon.Comprehend
         #region  CreateEntityRecognizer
 
         /// <summary>
-        /// Creates an entity recognizer using submitted files. After your <code>CreateEntityRecognizer</code>
-        /// request is submitted, you can check job status using the <code>DescribeEntityRecognizer</code>
+        /// Creates an entity recognizer using submitted files. After your <c>CreateEntityRecognizer</c>
+        /// request is submitted, you can check job status using the <c>DescribeEntityRecognizer</c>
         /// API.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateEntityRecognizer service method.</param>
@@ -1161,9 +1164,8 @@ namespace Amazon.Comprehend
         /// in your current request.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateEntityRecognizer">REST API Reference for CreateEntityRecognizer Operation</seealso>
@@ -1278,9 +1280,8 @@ namespace Amazon.Comprehend
         /// in your current request.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateFlywheel">REST API Reference for CreateFlywheel Operation</seealso>
@@ -1337,8 +1338,8 @@ namespace Amazon.Comprehend
         ///  
         /// <para>
         /// Only those classifiers that are in terminated states (IN_ERROR, TRAINED) will be deleted.
-        /// If an active inference job is using the model, a <code>ResourceInUseException</code>
-        /// will be returned.
+        /// If an active inference job is using the model, a <c>ResourceInUseException</c> will
+        /// be returned.
         /// </para>
         ///  
         /// <para>
@@ -1496,8 +1497,8 @@ namespace Amazon.Comprehend
         ///  
         /// <para>
         /// Only those recognizers that are in terminated states (IN_ERROR, TRAINED) will be deleted.
-        /// If an active inference job is using the model, a <code>ResourceInUseException</code>
-        /// will be returned.
+        /// If an active inference job is using the model, a <c>ResourceInUseException</c> will
+        /// be returned.
         /// </para>
         ///  
         /// <para>
@@ -2873,12 +2874,12 @@ namespace Amazon.Comprehend
         ///  
         /// <para>
         /// If the system detects errors while processing a page in the input document, the API
-        /// response includes an entry in <code>Errors</code> for each error. 
+        /// response includes an entry in <c>Errors</c> for each error. 
         /// </para>
         ///  
         /// <para>
         /// If the system detects a document-level error in your input document, the API returns
-        /// an <code>InvalidRequestException</code> error response. For details about this exception,
+        /// an <c>InvalidRequestException</c> error response. For details about this exception,
         /// see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html">
         /// Errors in semi-structured documents</a> in the Comprehend Developer Guide. 
         /// </para>
@@ -2899,9 +2900,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectEntities">REST API Reference for DetectEntities Operation</seealso>
@@ -2968,9 +2968,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectKeyPhrases">REST API Reference for DetectKeyPhrases Operation</seealso>
@@ -3038,9 +3037,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectPiiEntities">REST API Reference for DetectPiiEntities Operation</seealso>
@@ -3092,8 +3090,8 @@ namespace Amazon.Comprehend
         #region  DetectSentiment
 
         /// <summary>
-        /// Inspects text and returns an inference of the prevailing sentiment (<code>POSITIVE</code>,
-        /// <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>).
+        /// Inspects text and returns an inference of the prevailing sentiment (<c>POSITIVE</c>,
+        /// <c>NEUTRAL</c>, <c>MIXED</c>, or <c>NEGATIVE</c>).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DetectSentiment service method.</param>
         /// 
@@ -3108,9 +3106,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectSentiment">REST API Reference for DetectSentiment Operation</seealso>
@@ -3179,9 +3176,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectSyntax">REST API Reference for DetectSyntax Operation</seealso>
@@ -3239,7 +3235,7 @@ namespace Amazon.Comprehend
         ///  
         /// <para>
         /// For more information about targeted sentiment, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html">Targeted
-        /// sentiment</a>.
+        /// sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DetectTargetedSentiment service method.</param>
@@ -3255,9 +3251,8 @@ namespace Amazon.Comprehend
         /// The size of the input text exceeds the limit. Use a smaller document.
         /// </exception>
         /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
-        /// Amazon Comprehend can't process the language of the input text. For custom entity
-        /// recognition APIs, only English, Spanish, French, Italian, German, or Portuguese are
-        /// accepted. For a list of supported languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
         /// languages</a> in the Comprehend Developer Guide.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectTargetedSentiment">REST API Reference for DetectTargetedSentiment Operation</seealso>
@@ -3302,6 +3297,77 @@ namespace Amazon.Comprehend
         public virtual DetectTargetedSentimentResponse EndDetectTargetedSentiment(IAsyncResult asyncResult)
         {
             return EndInvoke<DetectTargetedSentimentResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DetectToxicContent
+
+        /// <summary>
+        /// Performs toxicity analysis on the list of text strings that you provide as input.
+        /// The API response contains a results list that matches the size of the input list.
+        /// For more information about toxicity detection, see <a href="https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html">Toxicity
+        /// detection</a> in the <i>Amazon Comprehend Developer Guide</i>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DetectToxicContent service method.</param>
+        /// 
+        /// <returns>The response from the DetectToxicContent service method, as returned by Comprehend.</returns>
+        /// <exception cref="Amazon.Comprehend.Model.InternalServerException">
+        /// An internal server error occurred. Retry your request.
+        /// </exception>
+        /// <exception cref="Amazon.Comprehend.Model.InvalidRequestException">
+        /// The request is invalid.
+        /// </exception>
+        /// <exception cref="Amazon.Comprehend.Model.TextSizeLimitExceededException">
+        /// The size of the input text exceeds the limit. Use a smaller document.
+        /// </exception>
+        /// <exception cref="Amazon.Comprehend.Model.UnsupportedLanguageException">
+        /// Amazon Comprehend can't process the language of the input text. For a list of supported
+        /// languages, <a href="https://docs.aws.amazon.com/comprehend/latest/dg/supported-languages.html">Supported
+        /// languages</a> in the Comprehend Developer Guide.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectToxicContent">REST API Reference for DetectToxicContent Operation</seealso>
+        public virtual DetectToxicContentResponse DetectToxicContent(DetectToxicContentRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DetectToxicContentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DetectToxicContentResponseUnmarshaller.Instance;
+
+            return Invoke<DetectToxicContentResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DetectToxicContent operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DetectToxicContent operation on AmazonComprehendClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDetectToxicContent
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectToxicContent">REST API Reference for DetectToxicContent Operation</seealso>
+        public virtual IAsyncResult BeginDetectToxicContent(DetectToxicContentRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DetectToxicContentRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DetectToxicContentResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DetectToxicContent operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDetectToxicContent.</param>
+        /// 
+        /// <returns>Returns a  DetectToxicContentResult from Comprehend.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectToxicContent">REST API Reference for DetectToxicContent Operation</seealso>
+        public virtual DetectToxicContentResponse EndDetectToxicContent(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DetectToxicContentResponse>(asyncResult);
         }
 
         #endregion
@@ -4669,8 +4735,9 @@ namespace Amazon.Comprehend
         #region  StartDocumentClassificationJob
 
         /// <summary>
-        /// Starts an asynchronous document classification job. Use the <code>DescribeDocumentClassificationJob</code>
-        /// operation to track the progress of the job.
+        /// Starts an asynchronous document classification job using a custom classification model.
+        /// Use the <c>DescribeDocumentClassificationJob</c> operation to track the progress of
+        /// the job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartDocumentClassificationJob service method.</param>
         /// 
@@ -4835,7 +4902,7 @@ namespace Amazon.Comprehend
         ///  
         /// <para>
         /// This API can be used for either standard entity detection or custom entity recognition.
-        /// In order to be used for custom entity recognition, the optional <code>EntityRecognizerArn</code>
+        /// In order to be used for custom entity recognition, the optional <c>EntityRecognizerArn</c>
         /// must be used in order to provide access to the recognizer being used to detect the
         /// custom entity.
         /// </para>
@@ -5299,8 +5366,8 @@ namespace Amazon.Comprehend
 
         /// <summary>
         /// Starts an asynchronous targeted sentiment detection job for a collection of documents.
-        /// Use the <code>DescribeTargetedSentimentDetectionJob</code> operation to track the
-        /// status of a job.
+        /// Use the <c>DescribeTargetedSentimentDetectionJob</c> operation to track the status
+        /// of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartTargetedSentimentDetectionJob service method.</param>
         /// 
@@ -5376,7 +5443,7 @@ namespace Amazon.Comprehend
         #region  StartTopicsDetectionJob
 
         /// <summary>
-        /// Starts an asynchronous topic detection job. Use the <code>DescribeTopicDetectionJob</code>
+        /// Starts an asynchronous topic detection job. Use the <c>DescribeTopicDetectionJob</c>
         /// operation to track the status of a job.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartTopicsDetectionJob service method.</param>
@@ -5457,16 +5524,15 @@ namespace Amazon.Comprehend
         /// 
         ///  
         /// <para>
-        /// If the job state is <code>IN_PROGRESS</code> the job is marked for termination and
-        /// put into the <code>STOP_REQUESTED</code> state. If the job completes before it can
-        /// be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is
-        /// stopped and put into the <code>STOPPED</code> state.
+        /// If the job state is <c>IN_PROGRESS</c> the job is marked for termination and put into
+        /// the <c>STOP_REQUESTED</c> state. If the job completes before it can be stopped, it
+        /// is put into the <c>COMPLETED</c> state; otherwise the job is stopped and put into
+        /// the <c>STOPPED</c> state.
         /// </para>
         ///  
         /// <para>
-        /// If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you
-        /// call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns
-        /// a 400 Internal Request Exception. 
+        /// If the job is in the <c>COMPLETED</c> or <c>FAILED</c> state when you call the <c>StopDominantLanguageDetectionJob</c>
+        /// operation, the operation returns a 400 Internal Request Exception. 
         /// </para>
         ///  
         /// <para>
@@ -5538,16 +5604,15 @@ namespace Amazon.Comprehend
         /// 
         ///  
         /// <para>
-        /// If the job state is <code>IN_PROGRESS</code> the job is marked for termination and
-        /// put into the <code>STOP_REQUESTED</code> state. If the job completes before it can
-        /// be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is
-        /// stopped and put into the <code>STOPPED</code> state.
+        /// If the job state is <c>IN_PROGRESS</c> the job is marked for termination and put into
+        /// the <c>STOP_REQUESTED</c> state. If the job completes before it can be stopped, it
+        /// is put into the <c>COMPLETED</c> state; otherwise the job is stopped and put into
+        /// the <c>STOPPED</c> state.
         /// </para>
         ///  
         /// <para>
-        /// If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you
-        /// call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns
-        /// a 400 Internal Request Exception. 
+        /// If the job is in the <c>COMPLETED</c> or <c>FAILED</c> state when you call the <c>StopDominantLanguageDetectionJob</c>
+        /// operation, the operation returns a 400 Internal Request Exception. 
         /// </para>
         ///  
         /// <para>
@@ -5682,16 +5747,15 @@ namespace Amazon.Comprehend
         /// 
         ///  
         /// <para>
-        /// If the job state is <code>IN_PROGRESS</code> the job is marked for termination and
-        /// put into the <code>STOP_REQUESTED</code> state. If the job completes before it can
-        /// be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is
-        /// stopped and put into the <code>STOPPED</code> state.
+        /// If the job state is <c>IN_PROGRESS</c> the job is marked for termination and put into
+        /// the <c>STOP_REQUESTED</c> state. If the job completes before it can be stopped, it
+        /// is put into the <c>COMPLETED</c> state; otherwise the job is stopped and put into
+        /// the <c>STOPPED</c> state.
         /// </para>
         ///  
         /// <para>
-        /// If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you
-        /// call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns
-        /// a 400 Internal Request Exception. 
+        /// If the job is in the <c>COMPLETED</c> or <c>FAILED</c> state when you call the <c>StopDominantLanguageDetectionJob</c>
+        /// operation, the operation returns a 400 Internal Request Exception. 
         /// </para>
         ///  
         /// <para>
@@ -5826,16 +5890,15 @@ namespace Amazon.Comprehend
         /// 
         ///  
         /// <para>
-        /// If the job state is <code>IN_PROGRESS</code>, the job is marked for termination and
-        /// put into the <code>STOP_REQUESTED</code> state. If the job completes before it can
-        /// be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is
-        /// be stopped and put into the <code>STOPPED</code> state.
+        /// If the job state is <c>IN_PROGRESS</c>, the job is marked for termination and put
+        /// into the <c>STOP_REQUESTED</c> state. If the job completes before it can be stopped,
+        /// it is put into the <c>COMPLETED</c> state; otherwise the job is be stopped and put
+        /// into the <c>STOPPED</c> state.
         /// </para>
         ///  
         /// <para>
-        /// If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you
-        /// call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns
-        /// a 400 Internal Request Exception. 
+        /// If the job is in the <c>COMPLETED</c> or <c>FAILED</c> state when you call the <c>StopDominantLanguageDetectionJob</c>
+        /// operation, the operation returns a 400 Internal Request Exception. 
         /// </para>
         ///  
         /// <para>
@@ -5907,16 +5970,15 @@ namespace Amazon.Comprehend
         /// 
         ///  
         /// <para>
-        /// If the job state is <code>IN_PROGRESS</code>, the job is marked for termination and
-        /// put into the <code>STOP_REQUESTED</code> state. If the job completes before it can
-        /// be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is
-        /// be stopped and put into the <code>STOPPED</code> state.
+        /// If the job state is <c>IN_PROGRESS</c>, the job is marked for termination and put
+        /// into the <c>STOP_REQUESTED</c> state. If the job completes before it can be stopped,
+        /// it is put into the <c>COMPLETED</c> state; otherwise the job is be stopped and put
+        /// into the <c>STOPPED</c> state.
         /// </para>
         ///  
         /// <para>
-        /// If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you
-        /// call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns
-        /// a 400 Internal Request Exception. 
+        /// If the job is in the <c>COMPLETED</c> or <c>FAILED</c> state when you call the <c>StopDominantLanguageDetectionJob</c>
+        /// operation, the operation returns a 400 Internal Request Exception. 
         /// </para>
         ///  
         /// <para>
@@ -5988,11 +6050,11 @@ namespace Amazon.Comprehend
         /// 
         ///  
         /// <para>
-        /// If the training job state is <code>TRAINING</code>, the job is marked for termination
-        /// and put into the <code>STOP_REQUESTED</code> state. If the training job completes
-        /// before it can be stopped, it is put into the <code>TRAINED</code>; otherwise the training
-        /// job is stopped and put into the <code>STOPPED</code> state and the service sends back
-        /// an HTTP 200 response with an empty HTTP body. 
+        /// If the training job state is <c>TRAINING</c>, the job is marked for termination and
+        /// put into the <c>STOP_REQUESTED</c> state. If the training job completes before it
+        /// can be stopped, it is put into the <c>TRAINED</c>; otherwise the training job is stopped
+        /// and put into the <c>STOPPED</c> state and the service sends back an HTTP 200 response
+        /// with an empty HTTP body. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopTrainingDocumentClassifier service method.</param>
@@ -6063,11 +6125,11 @@ namespace Amazon.Comprehend
         /// 
         ///  
         /// <para>
-        /// If the training job state is <code>TRAINING</code>, the job is marked for termination
-        /// and put into the <code>STOP_REQUESTED</code> state. If the training job completes
-        /// before it can be stopped, it is put into the <code>TRAINED</code>; otherwise the training
-        /// job is stopped and putted into the <code>STOPPED</code> state and the service sends
-        /// back an HTTP 200 response with an empty HTTP body.
+        /// If the training job state is <c>TRAINING</c>, the job is marked for termination and
+        /// put into the <c>STOP_REQUESTED</c> state. If the training job completes before it
+        /// can be stopped, it is put into the <c>TRAINED</c>; otherwise the training job is stopped
+        /// and putted into the <c>STOPPED</c> state and the service sends back an HTTP 200 response
+        /// with an empty HTTP body.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StopTrainingEntityRecognizer service method.</param>
@@ -6435,11 +6497,11 @@ namespace Amazon.Comprehend
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalytics.Model
 {
     /// <summary>
@@ -60,7 +61,7 @@ namespace Amazon.KinesisAnalytics.Model
         /// Gets and sets the property RoleARN. 
         /// <para>
         /// IAM ARN of the role to use to send application messages. Note: To write application
-        /// messages to CloudWatch, the IAM role that is used must have the <code>PutLogEvents</code>
+        /// messages to CloudWatch, the IAM role that is used must have the <c>PutLogEvents</c>
         /// policy action enabled.
         /// </para>
         /// </summary>

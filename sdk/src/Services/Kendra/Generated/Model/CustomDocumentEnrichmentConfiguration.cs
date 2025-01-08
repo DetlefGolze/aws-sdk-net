@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.Kendra.Model
     /// </summary>
     public partial class CustomDocumentEnrichmentConfiguration
     {
-        private List<InlineCustomDocumentEnrichmentConfiguration> _inlineConfigurations = new List<InlineCustomDocumentEnrichmentConfiguration>();
+        private List<InlineCustomDocumentEnrichmentConfiguration> _inlineConfigurations = AWSConfigs.InitializeCollections ? new List<InlineCustomDocumentEnrichmentConfiguration>() : null;
         private HookConfiguration _postExtractionHookConfiguration;
         private HookConfiguration _preExtractionHookConfiguration;
         private string _roleArn;
@@ -62,7 +63,7 @@ namespace Amazon.Kendra.Model
         // Check to see if InlineConfigurations property is set
         internal bool IsSetInlineConfigurations()
         {
-            return this._inlineConfigurations != null && this._inlineConfigurations.Count > 0; 
+            return this._inlineConfigurations != null && (this._inlineConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -112,10 +113,10 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of a role with permission to run <code>PreExtractionHookConfiguration</code>
-        /// and <code>PostExtractionHookConfiguration</code> for altering document metadata and
-        /// content during the document ingestion process. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">IAM
-        /// roles for Amazon Kendra</a>.
+        /// The Amazon Resource Name (ARN) of an IAM role with permission to run <c>PreExtractionHookConfiguration</c>
+        /// and <c>PostExtractionHookConfiguration</c> for altering document metadata and content
+        /// during the document ingestion process. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html">an
+        /// IAM roles for Amazon Kendra</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=1284)]

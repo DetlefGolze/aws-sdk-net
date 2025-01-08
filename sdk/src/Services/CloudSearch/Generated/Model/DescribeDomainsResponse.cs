@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeDomains</code> request. Contains the status of the domains
+    /// The result of a <c>DescribeDomains</c> request. Contains the status of the domains
     /// specified in the request or all domains owned by the account.
     /// </summary>
     public partial class DescribeDomainsResponse : AmazonWebServiceResponse
     {
-        private List<DomainStatus> _domainStatusList = new List<DomainStatus>();
+        private List<DomainStatus> _domainStatusList = AWSConfigs.InitializeCollections ? new List<DomainStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property DomainStatusList.
@@ -49,7 +50,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if DomainStatusList property is set
         internal bool IsSetDomainStatusList()
         {
-            return this._domainStatusList != null && this._domainStatusList.Count > 0; 
+            return this._domainStatusList != null && (this._domainStatusList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

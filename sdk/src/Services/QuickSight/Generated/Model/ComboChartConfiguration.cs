@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of a <code>ComboChartVisual</code>.
+    /// The configuration of a <c>ComboChartVisual</c>.
     /// </summary>
     public partial class ComboChartConfiguration
     {
@@ -39,13 +40,15 @@ namespace Amazon.QuickSight.Model
         private ChartAxisLabelOptions _categoryLabelOptions;
         private ChartAxisLabelOptions _colorLabelOptions;
         private ComboChartFieldWells _fieldWells;
+        private VisualInteractionOptions _interactions;
         private LegendOptions _legend;
         private DataLabelOptions _lineDataLabels;
         private AxisDisplayOptions _primaryYAxisDisplayOptions;
         private ChartAxisLabelOptions _primaryYAxisLabelOptions;
-        private List<ReferenceLine> _referenceLines = new List<ReferenceLine>();
+        private List<ReferenceLine> _referenceLines = AWSConfigs.InitializeCollections ? new List<ReferenceLine>() : null;
         private AxisDisplayOptions _secondaryYAxisDisplayOptions;
         private ChartAxisLabelOptions _secondaryYAxisLabelOptions;
+        private SingleAxisOptions _singleAxisOptions;
         private ComboChartSortConfiguration _sortConfiguration;
         private TooltipOptions _tooltip;
         private VisualPalette _visualPalette;
@@ -80,15 +83,15 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CLUSTERED</code>: For clustered bar combo charts.
+        ///  <c>CLUSTERED</c>: For clustered bar combo charts.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STACKED</code>: For stacked bar combo charts.
+        ///  <c>STACKED</c>: For stacked bar combo charts.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>STACKED_PERCENT</code>: Do not use. If you use this value, the operation returns
+        ///  <c>STACKED_PERCENT</c>: Do not use. If you use this value, the operation returns
         /// a validation error.
         /// </para>
         ///  </li> </ul>
@@ -177,6 +180,24 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetFieldWells()
         {
             return this._fieldWells != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Interactions. 
+        /// <para>
+        /// The general visual interactions setup for a visual.
+        /// </para>
+        /// </summary>
+        public VisualInteractionOptions Interactions
+        {
+            get { return this._interactions; }
+            set { this._interactions = value; }
+        }
+
+        // Check to see if Interactions property is set
+        internal bool IsSetInteractions()
+        {
+            return this._interactions != null;
         }
 
         /// <summary>
@@ -273,7 +294,7 @@ namespace Amazon.QuickSight.Model
         // Check to see if ReferenceLines property is set
         internal bool IsSetReferenceLines()
         {
-            return this._referenceLines != null && this._referenceLines.Count > 0; 
+            return this._referenceLines != null && (this._referenceLines.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -315,9 +336,24 @@ namespace Amazon.QuickSight.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SingleAxisOptions.
+        /// </summary>
+        public SingleAxisOptions SingleAxisOptions
+        {
+            get { return this._singleAxisOptions; }
+            set { this._singleAxisOptions = value; }
+        }
+
+        // Check to see if SingleAxisOptions property is set
+        internal bool IsSetSingleAxisOptions()
+        {
+            return this._singleAxisOptions != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property SortConfiguration. 
         /// <para>
-        /// The sort configuration of a <code>ComboChartVisual</code>.
+        /// The sort configuration of a <c>ComboChartVisual</c>.
         /// </para>
         /// </summary>
         public ComboChartSortConfiguration SortConfiguration

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -68,11 +69,12 @@ namespace Amazon.AutoScaling.Model
     ///  </li> <li> 
     /// <para>
     /// If you need more time, record the lifecycle action heartbeat to keep the instance
-    /// in a wait state using the <a>RecordLifecycleActionHeartbeat</a> API call.
+    /// in a wait state using the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_RecordLifecycleActionHeartbeat.html">RecordLifecycleActionHeartbeat</a>
+    /// API call.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If you finish before the timeout period ends, send a callback by using the <a>CompleteLifecycleAction</a>
+    /// If you finish before the timeout period ends, send a callback by using the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_CompleteLifecycleAction.html">CompleteLifecycleAction</a>
     /// API call.
     /// </para>
     ///  </li> </ol> 
@@ -87,9 +89,10 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  
     /// <para>
-    /// You can view the lifecycle hooks for an Auto Scaling group using the <a>DescribeLifecycleHooks</a>
+    /// You can view the lifecycle hooks for an Auto Scaling group using the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeLifecycleHooks.html">DescribeLifecycleHooks</a>
     /// API call. If you are no longer using a lifecycle hook, you can delete it by calling
-    /// the <a>DeleteLifecycleHook</a> API.
+    /// the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DeleteLifecycleHook.html">DeleteLifecycleHook</a>
+    /// API.
     /// </para>
     /// </summary>
     public partial class PutLifecycleHookRequest : AmazonAutoScalingRequest
@@ -126,11 +129,11 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property DefaultResult. 
         /// <para>
         /// The action the Auto Scaling group takes when the lifecycle hook timeout elapses or
-        /// if an unexpected failure occurs. The default value is <code>ABANDON</code>.
+        /// if an unexpected failure occurs. The default value is <c>ABANDON</c>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>CONTINUE</code> | <code>ABANDON</code> 
+        /// Valid values: <c>CONTINUE</c> | <c>ABANDON</c> 
         /// </para>
         /// </summary>
         public string DefaultResult
@@ -149,8 +152,8 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property HeartbeatTimeout. 
         /// <para>
         /// The maximum time, in seconds, that can elapse before the lifecycle hook times out.
-        /// The range is from <code>30</code> to <code>7200</code> seconds. The default value
-        /// is <code>3600</code> seconds (1 hour).
+        /// The range is from <c>30</c> to <c>7200</c> seconds. The default value is <c>3600</c>
+        /// seconds (1 hour).
         /// </para>
         /// </summary>
         public int HeartbeatTimeout
@@ -191,11 +194,11 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// To create a lifecycle hook for scale-out events, specify <code>autoscaling:EC2_INSTANCE_LAUNCHING</code>.
+        /// To create a lifecycle hook for scale-out events, specify <c>autoscaling:EC2_INSTANCE_LAUNCHING</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// To create a lifecycle hook for scale-in events, specify <code>autoscaling:EC2_INSTANCE_TERMINATING</code>.
+        /// To create a lifecycle hook for scale-in events, specify <c>autoscaling:EC2_INSTANCE_TERMINATING</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -221,7 +224,7 @@ namespace Amazon.AutoScaling.Model
         /// a message to the notification target.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1023)]
+        [AWSProperty(Min=1, Max=4000)]
         public string NotificationMetadata
         {
             get { return this._notificationMetadata; }
@@ -253,7 +256,7 @@ namespace Amazon.AutoScaling.Model
         ///  
         /// <para>
         /// When you specify a notification target, Amazon EC2 Auto Scaling sends it a test message.
-        /// Test messages contain the following additional key-value pair: <code>"Event": "autoscaling:TEST_NOTIFICATION"</code>.
+        /// Test messages contain the following additional key-value pair: <c>"Event": "autoscaling:TEST_NOTIFICATION"</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=255)]

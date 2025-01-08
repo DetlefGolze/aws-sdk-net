@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DomainName Unmarshall(JsonUnmarshallerContext context)
         {
+            DomainName unmarshalledObject = new DomainName();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DomainName unmarshalledObject = new DomainName();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -94,6 +96,18 @@ namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
                     unmarshalledObject.DistributionHostedZoneId = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("domainNameArn", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DomainNameArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("domainNameId", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DomainNameId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("domainNameStatus", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -112,6 +126,12 @@ namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
                     unmarshalledObject.EndpointConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("managementPolicy", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.ManagementPolicy = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("mutualTlsAuthentication", targetDepth))
                 {
                     var unmarshaller = MutualTlsAuthenticationUnmarshaller.Instance;
@@ -128,6 +148,12 @@ namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.OwnershipVerificationCertificateArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("policy", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.Policy = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("regionalCertificateArn", targetDepth))
@@ -167,7 +193,6 @@ namespace Amazon.APIGateway.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

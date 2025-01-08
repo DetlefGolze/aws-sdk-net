@@ -26,23 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteEventDataStore operation.
-    /// Disables the event data store specified by <code>EventDataStore</code>, which accepts
-    /// an event data store ARN. After you run <code>DeleteEventDataStore</code>, the event
-    /// data store enters a <code>PENDING_DELETION</code> state, and is automatically deleted
-    /// after a wait period of seven days. <code>TerminationProtectionEnabled</code> must
-    /// be set to <code>False</code> on the event data store; this operation cannot work if
-    /// <code>TerminationProtectionEnabled</code> is <code>True</code>.
+    /// Disables the event data store specified by <c>EventDataStore</c>, which accepts an
+    /// event data store ARN. After you run <c>DeleteEventDataStore</c>, the event data store
+    /// enters a <c>PENDING_DELETION</c> state, and is automatically deleted after a wait
+    /// period of seven days. <c>TerminationProtectionEnabled</c> must be set to <c>False</c>
+    /// on the event data store and the <c>FederationStatus</c> must be <c>DISABLED</c>. You
+    /// cannot delete an event data store if <c>TerminationProtectionEnabled</c> is <c>True</c>
+    /// or the <c>FederationStatus</c> is <c>ENABLED</c>.
     /// 
     ///  
     /// <para>
-    /// After you run <code>DeleteEventDataStore</code> on an event data store, you cannot
-    /// run <code>ListQueries</code>, <code>DescribeQuery</code>, or <code>GetQueryResults</code>
-    /// on queries that are using an event data store in a <code>PENDING_DELETION</code> state.
-    /// An event data store in the <code>PENDING_DELETION</code> state does not incur costs.
+    /// After you run <c>DeleteEventDataStore</c> on an event data store, you cannot run <c>ListQueries</c>,
+    /// <c>DescribeQuery</c>, or <c>GetQueryResults</c> on queries that are using an event
+    /// data store in a <c>PENDING_DELETION</c> state. An event data store in the <c>PENDING_DELETION</c>
+    /// state does not incur costs.
     /// </para>
     /// </summary>
     public partial class DeleteEventDataStoreRequest : AmazonCloudTrailRequest

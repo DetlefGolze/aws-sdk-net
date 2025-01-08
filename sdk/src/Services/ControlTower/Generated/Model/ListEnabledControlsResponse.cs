@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ControlTower.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.ControlTower.Model
     /// </summary>
     public partial class ListEnabledControlsResponse : AmazonWebServiceResponse
     {
-        private List<EnabledControlSummary> _enabledControls = new List<EnabledControlSummary>();
+        private List<EnabledControlSummary> _enabledControls = AWSConfigs.InitializeCollections ? new List<EnabledControlSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property EnabledControls. 
         /// <para>
-        /// Lists the controls enabled by AWS Control Tower on the specified organizational unit
-        /// and the accounts it contains.
+        /// Lists the controls enabled by Amazon Web Services Control Tower on the specified organizational
+        /// unit and the accounts it contains.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -53,14 +54,14 @@ namespace Amazon.ControlTower.Model
         // Check to see if EnabledControls property is set
         internal bool IsSetEnabledControls()
         {
-            return this._enabledControls != null && this._enabledControls.Count > 0; 
+            return this._enabledControls != null && (this._enabledControls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Retrieves the next page of results. If the string is empty, the current response is
-        /// the end of the results.
+        /// Retrieves the next page of results. If the string is empty, the response is the end
+        /// of the results.
         /// </para>
         /// </summary>
         public string NextToken

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.Connect.Model
         private Channel _channel;
         private QueueReference _queue;
         private RoutingProfileReference _routingProfile;
+        private string _routingStepExpression;
 
         /// <summary>
         /// Gets and sets the property Channel. 
@@ -86,6 +88,25 @@ namespace Amazon.Connect.Model
         internal bool IsSetRoutingProfile()
         {
             return this._routingProfile != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RoutingStepExpression. 
+        /// <para>
+        /// The expression of a step in a routing criteria.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=3000)]
+        public string RoutingStepExpression
+        {
+            get { return this._routingStepExpression; }
+            set { this._routingStepExpression = value; }
+        }
+
+        // Check to see if RoutingStepExpression property is set
+        internal bool IsSetRoutingStepExpression()
+        {
+            return this._routingStepExpression != null;
         }
 
     }

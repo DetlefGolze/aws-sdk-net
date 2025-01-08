@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -41,19 +42,19 @@ namespace Amazon.Backup.Model
     /// <para>
     /// When an IAM role's permissions are insufficient to call this API, the service sends
     /// back an HTTP 200 response with an empty HTTP body, but the recovery point is not deleted.
-    /// Instead, it enters an <code>EXPIRED</code> state.
+    /// Instead, it enters an <c>EXPIRED</c> state.
     /// </para>
     ///  
     /// <para>
-    ///  <code>EXPIRED</code> recovery points can be deleted with this API once the IAM role
-    /// has the <code>iam:CreateServiceLinkedRole</code> action. To learn more about adding
-    /// this role, see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/deleting-backups.html#deleting-backups-troubleshooting">
+    ///  <c>EXPIRED</c> recovery points can be deleted with this API once the IAM role has
+    /// the <c>iam:CreateServiceLinkedRole</c> action. To learn more about adding this role,
+    /// see <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/deleting-backups.html#deleting-backups-troubleshooting">
     /// Troubleshooting manual deletions</a>.
     /// </para>
     ///  
     /// <para>
     /// If the user or role is deleted or the permission within the role is removed, the deletion
-    /// will not be successful and will enter an <code>EXPIRED</code> state.
+    /// will not be successful and will enter an <c>EXPIRED</c> state.
     /// </para>
     /// </summary>
     public partial class DeleteRecoveryPointRequest : AmazonBackupRequest
@@ -66,7 +67,7 @@ namespace Amazon.Backup.Model
         /// <para>
         /// The name of a logical container where backups are stored. Backup vaults are identified
         /// by names that are unique to the account used to create them and the Amazon Web Services
-        /// Region where they are created. They consist of lowercase letters, numbers, and hyphens.
+        /// Region where they are created.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -86,7 +87,7 @@ namespace Amazon.Backup.Model
         /// Gets and sets the property RecoveryPointArn. 
         /// <para>
         /// An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example,
-        /// <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.
+        /// <c>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

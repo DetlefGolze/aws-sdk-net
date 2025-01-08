@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityManagement.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.IdentityManagement.Model
     ///  
     /// <para>
     /// Modifies only the description of a role. This operation performs the same function
-    /// as the <code>Description</code> parameter in the <code>UpdateRole</code> operation.
+    /// as the <c>Description</c> parameter in the <c>UpdateRole</c> operation.
     /// </para>
     /// </summary>
     public partial class UpdateRoleDescriptionRequest : AmazonIdentityManagementServiceRequest

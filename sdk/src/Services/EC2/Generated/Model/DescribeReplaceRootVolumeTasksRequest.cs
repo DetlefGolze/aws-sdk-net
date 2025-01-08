@@ -26,19 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeReplaceRootVolumeTasks operation.
     /// Describes a root volume replacement task. For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/replace-root.html">Replace
-    /// a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+    /// a root volume</a> in the <i>Amazon EC2 User Guide</i>.
     /// </summary>
     public partial class DescribeReplaceRootVolumeTasksRequest : AmazonEC2Request
     {
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _replaceRootVolumeTaskIds = new List<string>();
+        private List<string> _replaceRootVolumeTaskIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Filters. 
@@ -47,7 +48,7 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>instance-id</code> - The ID of the instance for which the root volume replacement
+        ///  <c>instance-id</c> - The ID of the instance for which the root volume replacement
         /// task was created.
         /// </para>
         ///  </li> </ul>
@@ -61,7 +62,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Amazon.EC2.Model
         // Check to see if ReplaceRootVolumeTaskIds property is set
         internal bool IsSetReplaceRootVolumeTaskIds()
         {
-            return this._replaceRootVolumeTaskIds != null && this._replaceRootVolumeTaskIds.Count > 0; 
+            return this._replaceRootVolumeTaskIds != null && (this._replaceRootVolumeTaskIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

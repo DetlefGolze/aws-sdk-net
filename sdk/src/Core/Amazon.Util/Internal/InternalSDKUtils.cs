@@ -17,19 +17,34 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Net;
+using System.Text.RegularExpressions;
 using Amazon.Runtime.Internal.Util;
 using Amazon.Util.Internal.PlatformServices;
+using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Amazon.Util.Internal
 {
     public static partial class InternalSDKUtils
     {
         #region UserAgent
-        static string _versionNumber;
-        static string _customSdkUserAgent;
+        static string _overrideVersionNumber;
         static string _customData;
- 
+        const string USER_AGENT_VERSION = "ua/2.0";
+
+        // Define a regular expression to match disallowed characters
+        private const string DisallowedCharactersRegexPattern = "[^ /!#$%&'*+-.^_`|~\\w\\d]";
+
+#if NET8_0_OR_GREATER
+        [GeneratedRegex(DisallowedCharactersRegexPattern)]
+        private static partial Regex DisallowedCharactersRegex();
+#else
+        private static Regex DisallowedCharactersRegex() => _disallowedCharactersRegex;
+        private static readonly Regex _disallowedCharactersRegex = new Regex(DisallowedCharactersRegexPattern, RegexOptions.Compiled);
+#endif
+
         public static void SetUserAgent(string productName, string versionNumber)
         {
             SetUserAgent(productName, versionNumber, null);
@@ -38,97 +53,115 @@ namespace Amazon.Util.Internal
         public static void SetUserAgent(string productName, string versionNumber, string customData)
         {
             _userAgentBaseName = productName;
-            _versionNumber = versionNumber;
+            _overrideVersionNumber = versionNumber;
             _customData = customData;
-
-            BuildCustomUserAgentString();
         }
-        
-        static void BuildCustomUserAgentString()
+
+        /// <summary>
+        /// Replace disallowed characters by a hyphen in <paramref name="userAgent"/>
+        /// </summary>
+        /// <param name="userAgent"> Unsanitized user agent string</param>
+        /// <returns> Sanitized user agent string </returns>
+        internal static string ReplaceInvalidUserAgentCharacters(string userAgent)
         {
-            if (_versionNumber == null)
-            {
-                _versionNumber = CoreVersionNumber;
-            }
+            // Use the regular expression to replace disallowed characters by a hyphen
+            var validUserAgent = DisallowedCharactersRegex().Replace(userAgent, "-");
 
-            var environmentInfo = ServiceFactory.Instance.GetService<IEnvironmentInfo>();
-            string executionEnvironmentString = "";
-            executionEnvironmentString = GetExecutionEnvironmentUserAgentString();
-
-            if (string.IsNullOrEmpty(executionEnvironmentString))
-            {
-                _customSdkUserAgent = string.Format(CultureInfo.InvariantCulture, "{0}/{1} {2} OS/{3} {4}",
-                    _userAgentBaseName,
-                    _versionNumber,
-                    environmentInfo.FrameworkUserAgent,
-                    environmentInfo.PlatformUserAgent,
-                    _customData).Trim();
-            }
-            else
-            {
-                _customSdkUserAgent = string.Format(CultureInfo.InvariantCulture, "{0}/{1} {2} OS/{3} {4} {5}",
-                    _userAgentBaseName,
-                    _versionNumber,
-                    environmentInfo.FrameworkUserAgent,
-                    environmentInfo.PlatformUserAgent,
-                    executionEnvironmentString,
-                    _customData).Trim();
-            }
+            return validUserAgent;
         }
 
-
+        /// <summary>
+        /// Build user agent string statically. This method is currently used by PowerShell and high level libraries.
+        /// </summary>
+        /// <param name="serviceSdkVersion"> Version of the service </param>
+        /// <returns> User agent header string </returns>
         public static string BuildUserAgentString(string serviceSdkVersion)
         {
-            if (!string.IsNullOrEmpty(_customSdkUserAgent))
-            {
-                return _customSdkUserAgent;
-            }
-
-            var environmentInfo = ServiceFactory.Instance.GetService<IEnvironmentInfo>();
-
-#if BCL
-            return string.Format(CultureInfo.InvariantCulture, "{0}/{1} aws-sdk-dotnet-core/{2} {3} OS/{4} {5} {6}",
-                _userAgentBaseName,
-                serviceSdkVersion,
-                CoreVersionNumber,
-                environmentInfo.FrameworkUserAgent,
-                environmentInfo.PlatformUserAgent,
-                GetExecutionEnvironmentUserAgentString(),
-                _customData).Trim();
-#elif NETSTANDARD
-            return string.Format(CultureInfo.InvariantCulture, "{0}/{1} aws-sdk-dotnet-core/{2} {3} OS/{4} {5} {6}",
-                _userAgentBaseName,
-                serviceSdkVersion,
-                CoreVersionNumber,
-                environmentInfo.FrameworkUserAgent,
-                environmentInfo.PlatformUserAgent,
-                GetExecutionEnvironmentUserAgentString(),
-                _customData).Trim();
-#endif
+            return BuildUserAgentString(string.Empty, serviceSdkVersion);
         }
 
+        /// <summary>
+        /// Build user agent string statically. This method is currently used by the .NET SDK.
+        /// </summary>
+        /// <param name="serviceId"> Service id of the service being called </param>
+        /// <param name="serviceSdkVersion"> Version of the service </param>
+        /// <returns> User agent header string </returns>
+        public static string BuildUserAgentString(string serviceId, string serviceSdkVersion)
+        {
+            var sb = new StringBuilder();
+            sb.Append(_userAgentBaseName);
+            if (!string.IsNullOrEmpty(_overrideVersionNumber))
+            {
+                sb.AppendFormat("/{0}", _overrideVersionNumber);
+            }
+            else if(!string.IsNullOrEmpty(serviceSdkVersion))
+            {
+                sb.AppendFormat("/{0}", serviceSdkVersion);
+            }
+
+            sb.AppendFormat(" {0}", USER_AGENT_VERSION);
+
+            var environmentInfo = ServiceFactory.Instance.GetService<IEnvironmentInfo>();
+            sb.AppendFormat(" os/{0}", environmentInfo.PlatformUserAgent);
+            sb.AppendFormat(" lang/{0}", environmentInfo.FrameworkUserAgent);
+
+            var execEnv = GetExecutionEnvironmentUserAgentString();
+            if (!string.IsNullOrEmpty(execEnv))
+            {
+                sb.AppendFormat(" {0}", execEnv);
+            }
+
+            sb.AppendFormat(" md/aws-sdk-dotnet-core#{0}", CoreVersionNumber);
+
+            var internalUA = GetInternalUserAgentString();
+            if(!string.IsNullOrEmpty(internalUA))
+            {
+                sb.AppendFormat(" {0}", internalUA);
+            }
+
+            if(!string.IsNullOrEmpty(serviceId))
+            {
+                sb.AppendFormat(" api/{0}", serviceId);
+                if(!string.IsNullOrEmpty(serviceSdkVersion))
+                {
+                    sb.Append("#");
+                    sb.Append(serviceSdkVersion);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(_customData))
+            {
+                sb.AppendFormat(" {0}", _customData);
+            }
+
+            if (IsRunningNativeAot())
+            {
+                sb.Append(" ft/aot");
+            }
+
+            return sb.ToString();
+        }
 
         #endregion
 
+        [Obsolete("This method is not AOT safe and is no longer used in the SDK. Please use ApplyValuesV2 for AOT compatibility. This method is left here for backwards compatibility purposes")]
         public static void ApplyValues(object target, IDictionary<string, object> propertyValues)
         {
             if (propertyValues == null || propertyValues.Count == 0)
                 return;
-
-            var targetTypeInfo = TypeFactory.GetTypeInfo(target.GetType());
-            
+            var targetType = target.GetType();
             foreach(var kvp in propertyValues)
             {
-                var property = targetTypeInfo.GetProperty(kvp.Key);
+                var property = targetType.GetProperty(kvp.Key);
                 if (property == null)
-                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Unable to find property {0} on type {1}.", kvp.Key, targetTypeInfo.FullName));
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Unable to find property {0} on type {1}.", kvp.Key, targetType.FullName));
 
                 try
                 {
-                    var propertyTypeInfo = TypeFactory.GetTypeInfo(property.PropertyType);
+                    var propertyTypeInfo = property.PropertyType;
                     if (propertyTypeInfo.IsEnum)
                     {
-                        var enumValue = Enum.Parse(property.PropertyType, kvp.Value.ToString(), true);
+                        var enumValue = Enum.Parse(propertyTypeInfo, kvp.Value.ToString(), true);
                         property.SetValue(target, enumValue, null);
                     }
                     else
@@ -138,9 +171,61 @@ namespace Amazon.Util.Internal
                 }
                 catch(Exception e)
                 {
-                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Unable to set property {0} on type {1}: {2}", kvp.Key, targetTypeInfo.FullName, e.Message));
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Unable to set property {0} on type {1}: {2}", kvp.Key, targetType.FullName, e.Message));
                 }
             }
+        }
+
+#if NET8_0_OR_GREATER
+        public static void ApplyValuesV2<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(T target, IDictionary<string, object> propertyValues)
+#else
+        public static void ApplyValuesV2<T>(T target, IDictionary<string, object> propertyValues)
+#endif
+        {
+            if (propertyValues == null || propertyValues.Count == 0)
+                return;
+            var targetType = typeof(T);
+            foreach (var kvp in propertyValues)
+            {
+                var property = targetType.GetProperty(kvp.Key);
+                if (property == null)
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Unable to find property {0} on type {1}.", kvp.Key, targetType.FullName));
+
+                try
+                {
+                    var propertyTypeInfo = property.PropertyType;
+                    if (propertyTypeInfo.IsEnum)
+                    {
+                        var enumValue = Enum.Parse(propertyTypeInfo, kvp.Value.ToString(), true);
+                        property.SetValue(target, enumValue, null);
+                    }
+                    else
+                    {
+                        property.SetValue(target, kvp.Value, null);
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, "Unable to set property {0} on type {1}: {2}", kvp.Key, targetType.FullName, e.Message));
+                }
+            }
+        }
+
+        // Depending on how System.Types are loaded they are not guaranteed to be compare as equal even when they
+        // are the same type. In particular an interface loaded from a Type.GetInterfaces() call will not compare
+        // equal to the same interface loaded via typeof(<interface-name>).
+        //
+        // This method was needed a result of the removal of SDK's TypeInfo wrapper done as part of the trimmable work.
+        public static bool AreTypesEqual(Type type1, Type type2)
+        {
+            if (type1.Assembly != type2.Assembly)
+                return false;
+            if (type1.Namespace != type2.Namespace)
+                return false;
+            if (type1.Name != type2.Name)
+                return false;
+
+            return true;
         }
 
         public static void AddToDictionary<TKey, TValue>(Dictionary<TKey, TValue> dictionary, TKey key, TValue value)
@@ -182,13 +267,16 @@ namespace Amazon.Util.Internal
             IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> valueComparer,
             out TKey key)
         {
-            foreach (var kvp in dictionary)
+            if (dictionary != null)
             {
-                var candidateValue = kvp.Value;
-                if (valueComparer.Equals(value, candidateValue))
+                foreach (var kvp in dictionary)
                 {
-                    key = kvp.Key;
-                    return true;
+                    var candidateValue = kvp.Value;
+                    if (valueComparer.Equals(value, candidateValue))
+                    {
+                        key = kvp.Key;
+                        return true;
+                    }
                 }
             }
 
@@ -202,6 +290,12 @@ namespace Amazon.Util.Internal
             return Environment.GetEnvironmentVariable(EXECUTION_ENVIRONMENT_ENVVAR);
         }
 
+        internal static string INTERNAL_ENVIRONMENT_ENVVAR = "AWS_INTERNAL_ENV";
+        internal static string GetInternalEnvironment()
+        {
+            return Environment.GetEnvironmentVariable(INTERNAL_ENVIRONMENT_ENVVAR);
+        }
+
         private static string GetExecutionEnvironmentUserAgentString()
         {
             string userAgentString = "";
@@ -210,6 +304,19 @@ namespace Amazon.Util.Internal
             if (!string.IsNullOrEmpty(executionEnvValue))
             {
                 userAgentString = string.Format(CultureInfo.InvariantCulture, "exec-env/{0}", executionEnvValue);
+            }
+
+            return userAgentString;
+        }
+
+        private static string GetInternalUserAgentString()
+        {
+            string userAgentString = "";
+
+            string executionEnvValue = GetInternalEnvironment();
+            if (!string.IsNullOrEmpty(executionEnvValue))
+            {
+                userAgentString = string.Format(CultureInfo.InvariantCulture, "{0}", executionEnvValue);
             }
 
             return userAgentString;
@@ -243,6 +350,20 @@ namespace Amazon.Util.Internal
             return fileInfo.FullName.StartsWith(dirInfo.FullName);
         }
 
+        /// <summary>
+        /// Returns true if the SDK is being run in an NativeAOT environment.
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsRunningNativeAot()
+        {
+#if NET8_0_OR_GREATER
+            // If dynamic code is not supported we are most likely running in an AOT environment. 
+            return !RuntimeFeature.IsDynamicCodeSupported;
+#else
+            return false;
+#endif
+        }
+
         //Since .net 35 doesn't have Zip functionality, this is a custom implementation that does the same thing as LINQ's zip method.
         internal static IEnumerable<TResult> Zip<TFirst, TSecond, TResult>(IEnumerable<TFirst> first, IEnumerable<TSecond> second, Func<TFirst, TSecond, TResult> resultSelector)
         {
@@ -264,7 +385,7 @@ namespace Amazon.Util.Internal
                 True -> set to empty AlwaysSend*
                 False -> set to empty collection type
               Value type
-                True -> set to default(T)
+                True and field has no value -> set to default(T)
                 False -> set to null
 
             Get
@@ -280,9 +401,16 @@ namespace Amazon.Util.Internal
             where T : struct
         {
             if (isSet)
-                field = default(T);
+            {
+                if (!field.HasValue)
+                {
+                    field = default(T);
+                }
+            }
             else
+            {
                 field = null;
+            }
         }
         public static void SetIsSet<T>(bool isSet, ref List<T> field)
         {

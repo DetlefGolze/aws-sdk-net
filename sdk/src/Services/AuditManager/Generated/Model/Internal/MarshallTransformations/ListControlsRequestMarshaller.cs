@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AuditManager.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -58,6 +59,9 @@ namespace Amazon.AuditManager.Model.Internal.MarshallTransformations
             request.Headers[Amazon.Util.HeaderKeys.XAmzApiVersion] = "2017-07-25";
             request.HttpMethod = "GET";
 
+            
+            if (publicRequest.IsSetControlCatalogId())
+                request.Parameters.Add("controlCatalogId", StringUtils.FromString(publicRequest.ControlCatalogId));
             
             if (publicRequest.IsSetControlType())
                 request.Parameters.Add("controlType", StringUtils.FromString(publicRequest.ControlType));

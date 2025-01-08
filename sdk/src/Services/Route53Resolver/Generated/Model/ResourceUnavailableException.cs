@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
@@ -126,8 +127,7 @@ namespace Amazon.Route53Resolver.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// For a <code>ResourceUnavailableException</code> error, the type of resource that isn't
-        /// available.
+        /// For a <c>ResourceUnavailableException</c> error, the type of resource that isn't available.
         /// </para>
         /// </summary>
         public string ResourceType

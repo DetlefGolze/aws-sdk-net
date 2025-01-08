@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -40,8 +41,7 @@ namespace Amazon.Backup.Model
         /// <summary>
         /// Gets and sets the property LegalHoldId. 
         /// <para>
-        /// This is the ID required to use <code>GetLegalHold</code>. This unique ID is associated
-        /// with a specific legal hold.
+        /// The ID of the legal hold.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

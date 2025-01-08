@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostAndUsageReport.Model
 {
     /// <summary>
-    /// The input fails to satisfy the constraints specified by an AWS service.
+    /// The input fails to satisfy the constraints specified by an Amazon Web Services service.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

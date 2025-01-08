@@ -26,14 +26,15 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// Represents the output of a <code>PollForJobs</code> action.
+    /// Represents the output of a <c>PollForJobs</c> action.
     /// </summary>
     public partial class PollForJobsResponse : AmazonWebServiceResponse
     {
-        private List<Job> _jobs = new List<Job>();
+        private List<Job> _jobs = AWSConfigs.InitializeCollections ? new List<Job>() : null;
 
         /// <summary>
         /// Gets and sets the property Jobs. 
@@ -50,7 +51,7 @@ namespace Amazon.CodePipeline.Model
         // Check to see if Jobs property is set
         internal bool IsSetJobs()
         {
-            return this._jobs != null && this._jobs.Count > 0; 
+            return this._jobs != null && (this._jobs.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

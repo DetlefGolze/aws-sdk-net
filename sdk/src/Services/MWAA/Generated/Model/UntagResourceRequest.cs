@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
     /// Container for the parameters to the UntagResource operation.
     /// Removes key-value tag pairs associated to your Amazon Managed Workflows for Apache
-    /// Airflow (MWAA) environment. For example, <code>"Environment": "Staging"</code>.
+    /// Airflow (MWAA) environment. For example, <c>"Environment": "Staging"</c>.
     /// </summary>
     public partial class UntagResourceRequest : AmazonMWAARequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, <code>arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment</code>.
+        /// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, <c>arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1224)]
@@ -60,7 +61,7 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// The key-value tag pair you want to remove. For example, <code>"Environment": "Staging"</code>.
+        /// The key-value tag pair you want to remove. For example, <c>"Environment": "Staging"</c>.
         /// 
         /// </para>
         /// </summary>
@@ -74,7 +75,7 @@ namespace Amazon.MWAA.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

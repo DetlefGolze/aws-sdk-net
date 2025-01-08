@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MemoryDB.Model
 {
     /// <summary>
@@ -36,6 +37,7 @@ namespace Amazon.MemoryDB.Model
         private DateTime? _autoUpdateStartDate;
         private string _clusterName;
         private string _description;
+        private string _engine;
         private string _nodesUpdated;
         private DateTime? _releaseDate;
         private string _serviceUpdateName;
@@ -94,6 +96,24 @@ namespace Amazon.MemoryDB.Model
         internal bool IsSetDescription()
         {
             return this._description != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Engine. 
+        /// <para>
+        /// The name of the engine for which a service update is available.
+        /// </para>
+        /// </summary>
+        public string Engine
+        {
+            get { return this._engine; }
+            set { this._engine = value; }
+        }
+
+        // Check to see if Engine property is set
+        internal bool IsSetEngine()
+        {
+            return this._engine != null;
         }
 
         /// <summary>

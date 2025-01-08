@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -34,10 +35,10 @@ namespace Amazon.CodeArtifact.Model
     /// 
     ///  
     /// <para>
-    ///  When you call <code>PutDomainPermissionsPolicy</code>, the resource policy on the
-    /// domain is ignored when evaluting permissions. This ensures that the owner of a domain
-    /// cannot lock themselves out of the domain, which would prevent them from being able
-    /// to update the resource policy. 
+    ///  When you call <c>PutDomainPermissionsPolicy</c>, the resource policy on the domain
+    /// is ignored when evaluting permissions. This ensures that the owner of a domain cannot
+    /// lock themselves out of the domain, which would prevent them from being able to update
+    /// the resource policy. 
     /// </para>
     /// </summary>
     public partial class PutDomainPermissionsPolicyRequest : AmazonCodeArtifactRequest

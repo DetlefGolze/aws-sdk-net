@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptographyData.Model
 {
     /// <summary>
     /// Container for the parameters to the EncryptData operation.
-    /// Encrypts plaintext data to ciphertext using symmetric, asymmetric, or DUKPT data encryption
-    /// key. For more information, see <a href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/encrypt-data.html">Encrypt
+    /// Encrypts plaintext data to ciphertext using a symmetric (TDES, AES), asymmetric (RSA),
+    /// or derived (DUKPT or EMV) encryption key scheme. For more information, see <a href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/encrypt-data.html">Encrypt
     /// data</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.
     /// 
     ///  
@@ -39,19 +40,46 @@ namespace Amazon.PaymentCryptographyData.Model
     /// You can generate an encryption key within Amazon Web Services Payment Cryptography
     /// by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html">CreateKey</a>.
     /// You can import your own encryption key by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>.
-    /// For this operation, the key must have <code>KeyModesOfUse</code> set to <code>Encrypt</code>.
+    /// </para>
+    ///  
+    /// <para>
+    /// For this operation, the key must have <c>KeyModesOfUse</c> set to <c>Encrypt</c>.
     /// In asymmetric encryption, plaintext is encrypted using public component. You can import
     /// the public component of an asymmetric key pair created outside Amazon Web Services
-    /// Payment Cryptography by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>).
+    /// Payment Cryptography by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_ImportKey.html">ImportKey</a>.
     /// 
     /// </para>
     ///  
     /// <para>
-    /// for symmetric and DUKPT encryption, Amazon Web Services Payment Cryptography supports
-    /// <code>TDES</code> and <code>AES</code> algorithms. For asymmetric encryption, Amazon
-    /// Web Services Payment Cryptography supports <code>RSA</code>. To encrypt using DUKPT,
-    /// you must already have a DUKPT key in your account with <code>KeyModesOfUse</code>
-    /// set to <code>DeriveKey</code>, or you can generate a new DUKPT key by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html">CreateKey</a>.
+    /// This operation also supports dynamic keys, allowing you to pass a dynamic encryption
+    /// key as a TR-31 WrappedKeyBlock. This can be used when key material is frequently rotated,
+    /// such as during every card transaction, and there is need to avoid importing short-lived
+    /// keys into Amazon Web Services Payment Cryptography. To encrypt using dynamic keys,
+    /// the <c>keyARN</c> is the Key Encryption Key (KEK) of the TR-31 wrapped encryption
+    /// key material. The incoming wrapped key shall have a key purpose of D0 with a mode
+    /// of use of B or D. For more information, see <a href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/use-cases-acquirers-dynamickeys.html">Using
+    /// Dynamic Keys</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.
+    /// </para>
+    ///  
+    /// <para>
+    /// For symmetric and DUKPT encryption, Amazon Web Services Payment Cryptography supports
+    /// <c>TDES</c> and <c>AES</c> algorithms. For EMV encryption, Amazon Web Services Payment
+    /// Cryptography supports <c>TDES</c> algorithms.For asymmetric encryption, Amazon Web
+    /// Services Payment Cryptography supports <c>RSA</c>. 
+    /// </para>
+    ///  
+    /// <para>
+    /// When you use TDES or TDES DUKPT, the plaintext data length must be a multiple of 8
+    /// bytes. For AES or AES DUKPT, the plaintext data length must be a multiple of 16 bytes.
+    /// For RSA, it sould be equal to the key size unless padding is enabled.
+    /// </para>
+    ///  
+    /// <para>
+    /// To encrypt using DUKPT, you must already have a BDK (Base Derivation Key) key in your
+    /// account with <c>KeyModesOfUse</c> set to <c>DeriveKey</c>, or you can generate a new
+    /// DUKPT key by calling <a href="https://docs.aws.amazon.com/payment-cryptography/latest/APIReference/API_CreateKey.html">CreateKey</a>.
+    /// To encrypt using EMV, you must already have an IMK (Issuer Master Key) key in your
+    /// account with <c>KeyModesOfUse</c> set to <c>DeriveKey</c>.
     /// </para>
     ///  
     /// <para>
@@ -94,6 +122,7 @@ namespace Amazon.PaymentCryptographyData.Model
         private EncryptionDecryptionAttributes _encryptionAttributes;
         private string _keyIdentifier;
         private string _plainText;
+        private WrappedKey _wrappedKey;
 
         /// <summary>
         /// Gets and sets the property EncryptionAttributes. 
@@ -117,8 +146,13 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <summary>
         /// Gets and sets the property KeyIdentifier. 
         /// <para>
-        /// The <code>keyARN</code> of the encryption key that Amazon Web Services Payment Cryptography
+        /// The <c>keyARN</c> of the encryption key that Amazon Web Services Payment Cryptography
         /// uses for plaintext encryption.
+        /// </para>
+        ///  
+        /// <para>
+        /// When a WrappedKeyBlock is provided, this value will be the identifier to the key wrapping
+        /// key. Otherwise, it is the key identifier used to perform the operation.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=7, Max=322)]
@@ -139,8 +173,16 @@ namespace Amazon.PaymentCryptographyData.Model
         /// <para>
         /// The plaintext to be encrypted.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// For encryption using asymmetric keys, plaintext data length is constrained by encryption
+        /// key strength that you define in <c>KeyAlgorithm</c> and padding type that you define
+        /// in <c>AsymmetricEncryptionAttributes</c>. For more information, see <a href="https://docs.aws.amazon.com/payment-cryptography/latest/userguide/encrypt-data.html">Encrypt
+        /// data</a> in the <i>Amazon Web Services Payment Cryptography User Guide</i>.
+        /// </para>
+        ///  </note>
         /// </summary>
-        [AWSProperty(Required=true, Sensitive=true, Min=16, Max=4064)]
+        [AWSProperty(Required=true, Sensitive=true, Min=2, Max=4064)]
         public string PlainText
         {
             get { return this._plainText; }
@@ -151,6 +193,24 @@ namespace Amazon.PaymentCryptographyData.Model
         internal bool IsSetPlainText()
         {
             return this._plainText != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property WrappedKey. 
+        /// <para>
+        /// The WrappedKeyBlock containing the encryption key for plaintext encryption.
+        /// </para>
+        /// </summary>
+        public WrappedKey WrappedKey
+        {
+            get { return this._wrappedKey; }
+            set { this._wrappedKey = value; }
+        }
+
+        // Check to see if WrappedKey property is set
+        internal bool IsSetWrappedKey()
+        {
+            return this._wrappedKey != null;
         }
 
     }

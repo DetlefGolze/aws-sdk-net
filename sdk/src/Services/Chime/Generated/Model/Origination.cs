@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
@@ -41,14 +42,14 @@ namespace Amazon.Chime.Model
     public partial class Origination
     {
         private bool? _disabled;
-        private List<OriginationRoute> _routes = new List<OriginationRoute>();
+        private List<OriginationRoute> _routes = AWSConfigs.InitializeCollections ? new List<OriginationRoute>() : null;
 
         /// <summary>
         /// Gets and sets the property Disabled. 
         /// <para>
         /// When origination settings are disabled, inbound calls are not enabled for your Amazon
         /// Chime Voice Connector. This parameter is not required, but you must specify this parameter
-        /// or <code>Routes</code>.
+        /// or <c>Routes</c>.
         /// </para>
         /// </summary>
         public bool Disabled
@@ -68,7 +69,7 @@ namespace Amazon.Chime.Model
         /// <para>
         /// The call distribution properties defined for your SIP hosts. Valid range: Minimum
         /// value of 1. Maximum value of 20. This parameter is not required, but you must specify
-        /// this parameter or <code>Disabled</code>.
+        /// this parameter or <c>Disabled</c>.
         /// </para>
         /// </summary>
         public List<OriginationRoute> Routes
@@ -80,7 +81,7 @@ namespace Amazon.Chime.Model
         // Check to see if Routes property is set
         internal bool IsSetRoutes()
         {
-            return this._routes != null && this._routes.Count > 0; 
+            return this._routes != null && (this._routes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

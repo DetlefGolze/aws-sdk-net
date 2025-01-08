@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// The service is unable to resolve the routing for a particular alias because it has
-    /// a terminal <code>RoutingStrategy</code> associated with it. The message returned in
-    /// this exception is the message defined in the routing strategy itself. Such requests
-    /// should only be retried if the routing strategy for the specified alias is modified.
+    /// a terminal <c>RoutingStrategy</c> associated with it. The message returned in this
+    /// exception is the message defined in the routing strategy itself. Such requests should
+    /// only be retried if the routing strategy for the specified alias is modified.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

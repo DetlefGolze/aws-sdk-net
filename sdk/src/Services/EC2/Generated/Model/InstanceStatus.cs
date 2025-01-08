@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,13 +34,34 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class InstanceStatus
     {
+        private EbsStatusSummary _attachedEbsStatus;
         private string _availabilityZone;
-        private List<InstanceStatusEvent> _events = new List<InstanceStatusEvent>();
+        private List<InstanceStatusEvent> _events = AWSConfigs.InitializeCollections ? new List<InstanceStatusEvent>() : null;
         private string _instanceId;
         private InstanceState _instanceState;
+        private OperatorResponse _operator;
         private string _outpostArn;
         private InstanceStatusSummary _status;
         private InstanceStatusSummary _systemStatus;
+
+        /// <summary>
+        /// Gets and sets the property AttachedEbsStatus. 
+        /// <para>
+        /// Reports impaired functionality that stems from an attached Amazon EBS volume that
+        /// is unreachable and unable to complete I/O operations.
+        /// </para>
+        /// </summary>
+        public EbsStatusSummary AttachedEbsStatus
+        {
+            get { return this._attachedEbsStatus; }
+            set { this._attachedEbsStatus = value; }
+        }
+
+        // Check to see if AttachedEbsStatus property is set
+        internal bool IsSetAttachedEbsStatus()
+        {
+            return this._attachedEbsStatus != null;
+        }
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
@@ -74,7 +96,7 @@ namespace Amazon.EC2.Model
         // Check to see if Events property is set
         internal bool IsSetEvents()
         {
-            return this._events != null && this._events.Count > 0; 
+            return this._events != null && (this._events.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -99,7 +121,7 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property InstanceState. 
         /// <para>
         /// The intended state of the instance. <a>DescribeInstanceStatus</a> requires that an
-        /// instance be in the <code>running</code> state.
+        /// instance be in the <c>running</c> state.
         /// </para>
         /// </summary>
         public InstanceState InstanceState
@@ -112,6 +134,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetInstanceState()
         {
             return this._instanceState != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The service provider that manages the instance.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>

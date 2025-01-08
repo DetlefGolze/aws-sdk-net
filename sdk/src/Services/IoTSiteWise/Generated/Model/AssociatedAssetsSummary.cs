@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -37,7 +38,8 @@ namespace Amazon.IoTSiteWise.Model
         private string _assetModelId;
         private DateTime? _creationDate;
         private string _description;
-        private List<AssetHierarchy> _hierarchies = new List<AssetHierarchy>();
+        private string _externalId;
+        private List<AssetHierarchy> _hierarchies = AWSConfigs.InitializeCollections ? new List<AssetHierarchy>() : null;
         private string _id;
         private DateTime? _lastUpdateDate;
         private string _name;
@@ -51,7 +53,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</code> 
+        ///  <c>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1600)]
@@ -125,10 +127,30 @@ namespace Amazon.IoTSiteWise.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ExternalId. 
+        /// <para>
+        /// The external ID of the asset. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=2, Max=128)]
+        public string ExternalId
+        {
+            get { return this._externalId; }
+            set { this._externalId = value; }
+        }
+
+        // Check to see if ExternalId property is set
+        internal bool IsSetExternalId()
+        {
+            return this._externalId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Hierarchies. 
         /// <para>
-        /// A list of asset hierarchies that each contain a <code>hierarchyId</code>. A hierarchy
-        /// specifies allowed parent/child asset relationships.
+        /// A list of asset hierarchies that each contain a <c>hierarchyId</c>. A hierarchy specifies
+        /// allowed parent/child asset relationships.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -141,13 +163,13 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Hierarchies property is set
         internal bool IsSetHierarchies()
         {
-            return this._hierarchies != null && this._hierarchies.Count > 0; 
+            return this._hierarchies != null && (this._hierarchies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The ID of the asset.
+        /// The ID of the asset, in UUID format.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=36, Max=36)]

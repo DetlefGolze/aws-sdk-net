@@ -26,21 +26,21 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for the parameters received from the <code>DescribeInstanceTypeLimits</code>
-    /// operation.
+    /// Container for the parameters received from the <c>DescribeInstanceTypeLimits</c> operation.
     /// </summary>
     public partial class DescribeInstanceTypeLimitsResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, Limits> _limitsByRole = new Dictionary<string, Limits>();
+        private Dictionary<string, Limits> _limitsByRole = AWSConfigs.InitializeCollections ? new Dictionary<string, Limits>() : null;
 
         /// <summary>
         /// Gets and sets the property LimitsByRole. 
         /// <para>
-        /// Map that contains all applicable instance type limits.<code>data</code> refers to
-        /// data nodes.<code>master</code> refers to dedicated master nodes.
+        /// Map that contains all applicable instance type limits.<c>data</c> refers to data nodes.<c>master</c>
+        /// refers to dedicated master nodes.
         /// </para>
         /// </summary>
         public Dictionary<string, Limits> LimitsByRole
@@ -52,7 +52,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if LimitsByRole property is set
         internal bool IsSetLimitsByRole()
         {
-            return this._limitsByRole != null && this._limitsByRole.Count > 0; 
+            return this._limitsByRole != null && (this._limitsByRole.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

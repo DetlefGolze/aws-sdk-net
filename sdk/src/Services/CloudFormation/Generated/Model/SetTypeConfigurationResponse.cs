@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -42,8 +43,7 @@ namespace Amazon.CloudFormation.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: You must specify <code>ConfigurationArn</code>, or <code>Type</code>
-        /// and <code>TypeName</code>.
+        /// Conditional: You must specify <c>ConfigurationArn</c>, or <c>Type</c> and <c>TypeName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=1024)]

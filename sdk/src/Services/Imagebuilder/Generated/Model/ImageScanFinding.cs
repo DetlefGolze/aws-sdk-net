@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Imagebuilder.Model
 {
     /// <summary>
@@ -275,7 +276,7 @@ namespace Amazon.Imagebuilder.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of the finding. Image Builder looks for findings of the type <code>PACKAGE_VULNERABILITY</code>
+        /// The type of the finding. Image Builder looks for findings of the type <c>PACKAGE_VULNERABILITY</c>
         /// that apply to output images, and excludes other types.
         /// </para>
         /// </summary>

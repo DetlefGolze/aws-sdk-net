@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.RDS.Model
     public partial class DBClusterAutomatedBackup
     {
         private int? _allocatedStorage;
-        private List<string> _availabilityZones = new List<string>();
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _awsBackupRecoveryPointArn;
         private int? _backupRetentionPeriod;
         private DateTime? _clusterCreateTime;
@@ -57,16 +58,17 @@ namespace Amazon.RDS.Model
         private RestoreWindow _restoreWindow;
         private string _status;
         private bool? _storageEncrypted;
+        private int? _storageThroughput;
         private string _storageType;
         private string _vpcId;
 
         /// <summary>
         /// Gets and sets the property AllocatedStorage. 
         /// <para>
-        /// For all database engines except Amazon Aurora, <code>AllocatedStorage</code> specifies
-        /// the allocated storage size in gibibytes (GiB). For Aurora, <code>AllocatedStorage</code>
-        /// always returns 1, because Aurora DB cluster storage size isn't fixed, but instead
-        /// automatically adjusts as needed.
+        /// For all database engines except Amazon Aurora, <c>AllocatedStorage</c> specifies the
+        /// allocated storage size in gibibytes (GiB). For Aurora, <c>AllocatedStorage</c> always
+        /// returns 1, because Aurora DB cluster storage size isn't fixed, but instead automatically
+        /// adjusts as needed.
         /// </para>
         /// </summary>
         public int AllocatedStorage
@@ -98,7 +100,7 @@ namespace Amazon.RDS.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -394,7 +396,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>1150-65535</code> 
+        /// Valid Values: <c>1150-65535</c> 
         /// </para>
         /// </summary>
         public int Port
@@ -449,7 +451,7 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>retained</code> - Automated backups for deleted clusters.
+        ///  <c>retained</c> - Automated backups for deleted clusters.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -481,6 +483,29 @@ namespace Amazon.RDS.Model
         internal bool IsSetStorageEncrypted()
         {
             return this._storageEncrypted.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property StorageThroughput. 
+        /// <para>
+        /// The storage throughput for the automated backup. The throughput is automatically set
+        /// based on the IOPS that you provision, and is not configurable.
+        /// </para>
+        ///  
+        /// <para>
+        /// This setting is only for non-Aurora Multi-AZ DB clusters.
+        /// </para>
+        /// </summary>
+        public int StorageThroughput
+        {
+            get { return this._storageThroughput.GetValueOrDefault(); }
+            set { this._storageThroughput = value; }
+        }
+
+        // Check to see if StorageThroughput property is set
+        internal bool IsSetStorageThroughput()
+        {
+            return this._storageThroughput.HasValue; 
         }
 
         /// <summary>

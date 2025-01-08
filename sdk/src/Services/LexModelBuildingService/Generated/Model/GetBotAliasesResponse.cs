@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelBuildingService.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.LexModelBuildingService.Model
     /// </summary>
     public partial class GetBotAliasesResponse : AmazonWebServiceResponse
     {
-        private List<BotAliasMetadata> _botAliases = new List<BotAliasMetadata>();
+        private List<BotAliasMetadata> _botAliases = AWSConfigs.InitializeCollections ? new List<BotAliasMetadata>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property BotAliases. 
         /// <para>
-        /// An array of <code>BotAliasMetadata</code> objects, each describing a bot alias.
+        /// An array of <c>BotAliasMetadata</c> objects, each describing a bot alias.
         /// </para>
         /// </summary>
         public List<BotAliasMetadata> BotAliases
@@ -51,7 +52,7 @@ namespace Amazon.LexModelBuildingService.Model
         // Check to see if BotAliases property is set
         internal bool IsSetBotAliases()
         {
-            return this._botAliases != null && this._botAliases.Count > 0; 
+            return this._botAliases != null && (this._botAliases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

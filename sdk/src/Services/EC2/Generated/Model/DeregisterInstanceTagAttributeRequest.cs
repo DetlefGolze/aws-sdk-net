@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Information about the tag keys to deregister for the current Region. You can either
     /// specify individual tag keys or deregister all tag keys in the current Region. You
-    /// must specify either <code>IncludeAllTagsOfInstance</code> or <code>InstanceTagKeys</code>
-    /// in the request
+    /// must specify either <c>IncludeAllTagsOfInstance</c> or <c>InstanceTagKeys</c> in the
+    /// request
     /// </summary>
     public partial class DeregisterInstanceTagAttributeRequest
     {
         private bool? _includeAllTagsOfInstance;
-        private List<string> _instanceTagKeys = new List<string>();
+        private List<string> _instanceTagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property IncludeAllTagsOfInstance. 
         /// <para>
-        /// Indicates whether to deregister all tag keys in the current Region. Specify <code>false</code>
+        /// Indicates whether to deregister all tag keys in the current Region. Specify <c>false</c>
         /// to deregister all tag keys.
         /// </para>
         /// </summary>
@@ -73,7 +74,7 @@ namespace Amazon.EC2.Model
         // Check to see if InstanceTagKeys property is set
         internal bool IsSetInstanceTagKeys()
         {
-            return this._instanceTagKeys != null && this._instanceTagKeys.Count > 0; 
+            return this._instanceTagKeys != null && (this._instanceTagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

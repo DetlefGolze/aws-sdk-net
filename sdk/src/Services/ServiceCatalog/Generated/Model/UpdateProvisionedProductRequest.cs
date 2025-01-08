@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceCatalog.Model
 {
     /// <summary>
@@ -54,9 +55,9 @@ namespace Amazon.ServiceCatalog.Model
         private string _provisionedProductName;
         private string _provisioningArtifactId;
         private string _provisioningArtifactName;
-        private List<UpdateProvisioningParameter> _provisioningParameters = new List<UpdateProvisioningParameter>();
+        private List<UpdateProvisioningParameter> _provisioningParameters = AWSConfigs.InitializeCollections ? new List<UpdateProvisioningParameter>() : null;
         private UpdateProvisioningPreferences _provisioningPreferences;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _updateToken;
 
         /// <summary>
@@ -66,11 +67,11 @@ namespace Amazon.ServiceCatalog.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>jp</code> - Japanese
+        ///  <c>jp</c> - Japanese
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>zh</code> - Chinese
+        ///  <c>zh</c> - Chinese
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -188,8 +189,8 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property ProvisionedProductName. 
         /// <para>
-        /// The name of the provisioned product. You cannot specify both <code>ProvisionedProductName</code>
-        /// and <code>ProvisionedProductId</code>.
+        /// The name of the provisioned product. You cannot specify both <c>ProvisionedProductName</c>
+        /// and <c>ProvisionedProductId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1224)]
@@ -258,7 +259,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if ProvisioningParameters property is set
         internal bool IsSetProvisioningParameters()
         {
-            return this._provisioningParameters != null && this._provisioningParameters.Count > 0; 
+            return this._provisioningParameters != null && (this._provisioningParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -283,9 +284,8 @@ namespace Amazon.ServiceCatalog.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// One or more tags. Requires the product to have <code>RESOURCE_UPDATE</code> constraint
-        /// with <code>TagUpdatesOnProvisionedProduct</code> set to <code>ALLOWED</code> to allow
-        /// tag updates.
+        /// One or more tags. Requires the product to have <c>RESOURCE_UPDATE</c> constraint with
+        /// <c>TagUpdatesOnProvisionedProduct</c> set to <c>ALLOWED</c> to allow tag updates.
         /// </para>
         /// </summary>
         [AWSProperty(Max=50)]
@@ -298,7 +298,7 @@ namespace Amazon.ServiceCatalog.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

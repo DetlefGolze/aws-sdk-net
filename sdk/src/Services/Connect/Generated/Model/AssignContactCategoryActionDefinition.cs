@@ -26,17 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
-    /// This action must be set if <code>TriggerEventSource</code> is one of the following
-    /// values: <code>OnPostCallAnalysisAvailable</code> | <code>OnRealTimeCallAnalysisAvailable</code>
-    /// | <code>OnPostChatAnalysisAvailable</code>. Contact is categorized using the rule
-    /// name.
+    /// This action must be set if <c>TriggerEventSource</c> is one of the following values:
+    /// <c>OnPostCallAnalysisAvailable</c> | <c>OnRealTimeCallAnalysisAvailable</c> | <c>OnRealTimeChatAnalysisAvailable</c>
+    /// | <c>OnPostChatAnalysisAvailable</c>. Contact is categorized using the rule name.
     /// 
     ///  
     /// <para>
-    ///  <code>RuleName</code> is used as <code>ContactCategory</code>.
+    ///  <c>RuleName</c> is used as <c>ContactCategory</c>.
     /// </para>
     /// </summary>
     public partial class AssignContactCategoryActionDefinition

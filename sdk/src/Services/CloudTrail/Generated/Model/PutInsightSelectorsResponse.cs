@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrail.Model
 {
     /// <summary>
@@ -33,15 +34,55 @@ namespace Amazon.CloudTrail.Model
     /// </summary>
     public partial class PutInsightSelectorsResponse : AmazonWebServiceResponse
     {
-        private List<InsightSelector> _insightSelectors = new List<InsightSelector>();
+        private string _eventDataStoreArn;
+        private string _insightsDestination;
+        private List<InsightSelector> _insightSelectors = AWSConfigs.InitializeCollections ? new List<InsightSelector>() : null;
         private string _trailARN;
+
+        /// <summary>
+        /// Gets and sets the property EventDataStoreArn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the source event data store for which you want to
+        /// change or add Insights selectors.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=3, Max=256)]
+        public string EventDataStoreArn
+        {
+            get { return this._eventDataStoreArn; }
+            set { this._eventDataStoreArn = value; }
+        }
+
+        // Check to see if EventDataStoreArn property is set
+        internal bool IsSetEventDataStoreArn()
+        {
+            return this._eventDataStoreArn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InsightsDestination. 
+        /// <para>
+        ///  The ARN of the destination event data store that logs Insights events. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=3, Max=256)]
+        public string InsightsDestination
+        {
+            get { return this._insightsDestination; }
+            set { this._insightsDestination = value; }
+        }
+
+        // Check to see if InsightsDestination property is set
+        internal bool IsSetInsightsDestination()
+        {
+            return this._insightsDestination != null;
+        }
 
         /// <summary>
         /// Gets and sets the property InsightSelectors. 
         /// <para>
-        /// A JSON string that contains the Insights event types that you want to log on a trail.
-        /// The valid Insights types in this release are <code>ApiErrorRateInsight</code> and
-        /// <code>ApiCallRateInsight</code>.
+        /// A JSON string that contains the Insights event types that you want to log on a trail
+        /// or event data store. The valid Insights types are <c>ApiErrorRateInsight</c> and <c>ApiCallRateInsight</c>.
         /// </para>
         /// </summary>
         public List<InsightSelector> InsightSelectors
@@ -53,7 +94,7 @@ namespace Amazon.CloudTrail.Model
         // Check to see if InsightSelectors property is set
         internal bool IsSetInsightSelectors()
         {
-            return this._insightSelectors != null && this._insightSelectors.Count > 0; 
+            return this._insightSelectors != null && (this._insightSelectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

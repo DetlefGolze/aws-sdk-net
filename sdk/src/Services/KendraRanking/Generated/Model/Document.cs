@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KendraRanking.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.KendraRanking.Model
         private string _id;
         private float? _originalScore;
         private string _title;
-        private List<string> _tokenizedBody = new List<string>();
-        private List<string> _tokenizedTitle = new List<string>();
+        private List<string> _tokenizedBody = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _tokenizedTitle = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Body. 
@@ -144,8 +145,8 @@ namespace Amazon.KendraRanking.Model
         /// Gets and sets the property TokenizedBody. 
         /// <para>
         /// The body text of the search service's document represented as a list of tokens or
-        /// words. You must choose to provide <code>Body</code> or <code>TokenizedBody</code>.
-        /// You cannot provide both.
+        /// words. You must choose to provide <c>Body</c> or <c>TokenizedBody</c>. You cannot
+        /// provide both.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -158,15 +159,15 @@ namespace Amazon.KendraRanking.Model
         // Check to see if TokenizedBody property is set
         internal bool IsSetTokenizedBody()
         {
-            return this._tokenizedBody != null && this._tokenizedBody.Count > 0; 
+            return this._tokenizedBody != null && (this._tokenizedBody.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TokenizedTitle. 
         /// <para>
         /// The title of the search service's document represented as a list of tokens or words.
-        /// You must choose to provide <code>Title</code> or <code>TokenizedTitle</code>. You
-        /// cannot provide both.
+        /// You must choose to provide <c>Title</c> or <c>TokenizedTitle</c>. You cannot provide
+        /// both.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -179,7 +180,7 @@ namespace Amazon.KendraRanking.Model
         // Check to see if TokenizedTitle property is set
         internal bool IsSetTokenizedTitle()
         {
-            return this._tokenizedTitle != null && this._tokenizedTitle.Count > 0; 
+            return this._tokenizedTitle != null && (this._tokenizedTitle.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.CodePipeline.Model
     {
         private WebhookAuthenticationType _authentication;
         private WebhookAuthConfiguration _authenticationConfiguration;
-        private List<WebhookFilterRule> _filters = new List<WebhookFilterRule>();
+        private List<WebhookFilterRule> _filters = AWSConfigs.InitializeCollections ? new List<WebhookFilterRule>() : null;
         private string _name;
         private string _targetAction;
         private string _targetPipeline;
@@ -45,7 +46,21 @@ namespace Amazon.CodePipeline.Model
         /// <para>
         /// Supported options are GITHUB_HMAC, IP, and UNAUTHENTICATED.
         /// </para>
-        ///  <ul> <li> 
+        ///  <important> 
+        /// <para>
+        /// When creating CodePipeline webhooks, do not use your own credentials or reuse the
+        /// same secret token across multiple webhooks. For optimal security, generate a unique
+        /// secret token for each webhook you create. The secret token is an arbitrary string
+        /// that you provide, which GitHub uses to compute and sign the webhook payloads sent
+        /// to CodePipeline, for protecting the integrity and authenticity of the webhook payloads.
+        /// Using your own credentials or reusing the same token across multiple webhooks can
+        /// lead to security vulnerabilities.
+        /// </para>
+        ///  </important> <note> 
+        /// <para>
+        /// If a secret token was provided, it will be redacted in the response.
+        /// </para>
+        ///  </note> <ul> <li> 
         /// <para>
         /// For information about the authentication scheme implemented by GITHUB_HMAC, see <a
         /// href="https://developer.github.com/webhooks/securing/">Securing your webhooks</a>
@@ -80,9 +95,8 @@ namespace Amazon.CodePipeline.Model
         /// <para>
         /// Properties that configure the authentication applied to incoming webhook trigger requests.
         /// The required properties depend on the authentication type. For GITHUB_HMAC, only the
-        /// <code>SecretToken </code>property must be set. For IP, only the <code>AllowedIPRange
-        /// </code>property must be set to a valid CIDR range. For UNAUTHENTICATED, no properties
-        /// can be set.
+        /// <c>SecretToken </c>property must be set. For IP, only the <c>AllowedIPRange </c>property
+        /// must be set to a valid CIDR range. For UNAUTHENTICATED, no properties can be set.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -115,7 +129,7 @@ namespace Amazon.CodePipeline.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

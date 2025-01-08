@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,16 +35,22 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class CreateWorkflowRequest : AmazonGlueRequest
     {
-        private Dictionary<string, string> _defaultRunProperties = new Dictionary<string, string>();
+        private Dictionary<string, string> _defaultRunProperties = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _description;
         private int? _maxConcurrentRuns;
         private string _name;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DefaultRunProperties. 
         /// <para>
         /// A collection of properties to be used as part of each execution of the workflow.
+        /// </para>
+        ///  
+        /// <para>
+        /// Run properties may be logged. Do not pass plaintext secrets as properties. Retrieve
+        /// secrets from a Glue Connection, Amazon Web Services Secrets Manager or other secret
+        /// management mechanism if you intend to use them within the workflow run.
         /// </para>
         /// </summary>
         public Dictionary<string, string> DefaultRunProperties
@@ -55,7 +62,7 @@ namespace Amazon.Glue.Model
         // Check to see if DefaultRunProperties property is set
         internal bool IsSetDefaultRunProperties()
         {
-            return this._defaultRunProperties != null && this._defaultRunProperties.Count > 0; 
+            return this._defaultRunProperties != null && (this._defaultRunProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -132,7 +139,7 @@ namespace Amazon.Glue.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

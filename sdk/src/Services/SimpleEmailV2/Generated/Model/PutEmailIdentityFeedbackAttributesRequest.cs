@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleEmailV2.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.SimpleEmailV2.Model
     /// 
     ///  
     /// <para>
-    /// If the value is <code>true</code>, you receive email notifications when bounce or
-    /// complaint events occur. These notifications are sent to the address that you specified
-    /// in the <code>Return-Path</code> header of the original email.
+    /// If the value is <c>true</c>, you receive email notifications when bounce or complaint
+    /// events occur. These notifications are sent to the address that you specified in the
+    /// <c>Return-Path</c> header of the original email.
     /// </para>
     ///  
     /// <para>
@@ -60,9 +61,9 @@ namespace Amazon.SimpleEmailV2.Model
         /// </para>
         ///  
         /// <para>
-        /// If the value is <code>true</code>, you receive email notifications when bounce or
-        /// complaint events occur. These notifications are sent to the address that you specified
-        /// in the <code>Return-Path</code> header of the original email.
+        /// If the value is <c>true</c>, you receive email notifications when bounce or complaint
+        /// events occur. These notifications are sent to the address that you specified in the
+        /// <c>Return-Path</c> header of the original email.
         /// </para>
         ///  
         /// <para>

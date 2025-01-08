@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Backup.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Backup.Model
     /// </summary>
     public partial class DescribeGlobalSettingsResponse : AmazonWebServiceResponse
     {
-        private Dictionary<string, string> _globalSettings = new Dictionary<string, string>();
+        private Dictionary<string, string> _globalSettings = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private DateTime? _lastUpdateTime;
 
         /// <summary>
         /// Gets and sets the property GlobalSettings. 
         /// <para>
-        /// The status of the flag <code>isCrossAccountBackupEnabled</code>.
+        /// The status of the flag <c>isCrossAccountBackupEnabled</c>.
         /// </para>
         /// </summary>
         public Dictionary<string, string> GlobalSettings
@@ -51,16 +52,16 @@ namespace Amazon.Backup.Model
         // Check to see if GlobalSettings property is set
         internal bool IsSetGlobalSettings()
         {
-            return this._globalSettings != null && this._globalSettings.Count > 0; 
+            return this._globalSettings != null && (this._globalSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property LastUpdateTime. 
         /// <para>
-        /// The date and time that the flag <code>isCrossAccountBackupEnabled</code> was last
-        /// updated. This update is in Unix format and Coordinated Universal Time (UTC). The value
-        /// of <code>LastUpdateTime</code> is accurate to milliseconds. For example, the value
-        /// 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
+        /// The date and time that the flag <c>isCrossAccountBackupEnabled</c> was last updated.
+        /// This update is in Unix format and Coordinated Universal Time (UTC). The value of <c>LastUpdateTime</c>
+        /// is accurate to milliseconds. For example, the value 1516925490.087 represents Friday,
+        /// January 26, 2018 12:11:30.087 AM.
         /// </para>
         /// </summary>
         public DateTime LastUpdateTime

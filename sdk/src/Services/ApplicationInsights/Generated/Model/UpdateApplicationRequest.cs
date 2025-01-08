@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationInsights.Model
 {
     /// <summary>
@@ -34,12 +35,33 @@ namespace Amazon.ApplicationInsights.Model
     /// </summary>
     public partial class UpdateApplicationRequest : AmazonApplicationInsightsRequest
     {
+        private bool? _attachMissingPermission;
         private bool? _autoConfigEnabled;
         private bool? _cweMonitorEnabled;
         private bool? _opsCenterEnabled;
         private string _opsItemSNSTopicArn;
         private bool? _removeSNSTopic;
         private string _resourceGroupName;
+        private string _snsNotificationArn;
+
+        /// <summary>
+        /// Gets and sets the property AttachMissingPermission. 
+        /// <para>
+        /// If set to true, the managed policies for SSM and CW will be attached to the instance
+        /// roles if they are missing.
+        /// </para>
+        /// </summary>
+        public bool AttachMissingPermission
+        {
+            get { return this._attachMissingPermission.GetValueOrDefault(); }
+            set { this._attachMissingPermission = value; }
+        }
+
+        // Check to see if AttachMissingPermission property is set
+        internal bool IsSetAttachMissingPermission()
+        {
+            return this._attachMissingPermission.HasValue; 
+        }
 
         /// <summary>
         /// Gets and sets the property AutoConfigEnabled. 
@@ -63,8 +85,8 @@ namespace Amazon.ApplicationInsights.Model
         /// Gets and sets the property CWEMonitorEnabled. 
         /// <para>
         ///  Indicates whether Application Insights can listen to CloudWatch events for the application
-        /// resources, such as <code>instance terminated</code>, <code>failed deployment</code>,
-        /// and others. 
+        /// resources, such as <c>instance terminated</c>, <c>failed deployment</c>, and others.
+        /// 
         /// </para>
         /// </summary>
         public bool CWEMonitorEnabled
@@ -82,7 +104,7 @@ namespace Amazon.ApplicationInsights.Model
         /// <summary>
         /// Gets and sets the property OpsCenterEnabled. 
         /// <para>
-        ///  When set to <code>true</code>, creates opsItems for any problems detected on an application.
+        ///  When set to <c>true</c>, creates opsItems for any problems detected on an application.
         /// 
         /// </para>
         /// </summary>
@@ -153,6 +175,26 @@ namespace Amazon.ApplicationInsights.Model
         internal bool IsSetResourceGroupName()
         {
             return this._resourceGroupName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SNSNotificationArn. 
+        /// <para>
+        ///  The SNS topic ARN. Allows you to receive SNS notifications for updates and issues
+        /// with an application. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=300)]
+        public string SNSNotificationArn
+        {
+            get { return this._snsNotificationArn; }
+            set { this._snsNotificationArn = value; }
+        }
+
+        // Check to see if SNSNotificationArn property is set
+        internal bool IsSetSNSNotificationArn()
+        {
+            return this._snsNotificationArn != null;
         }
 
     }

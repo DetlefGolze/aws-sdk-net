@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Macie2.Model
 {
     /// <summary>
     /// Container for the parameters to the ListResourceProfileArtifacts operation.
-    /// Retrieves information about objects that were selected from an S3 bucket for automated
-    /// sensitive data discovery.
+    /// Retrieves information about objects that Amazon Macie selected from an S3 bucket for
+    /// automated sensitive data discovery.
     /// </summary>
     public partial class ListResourceProfileArtifactsRequest : AmazonMacie2Request
     {

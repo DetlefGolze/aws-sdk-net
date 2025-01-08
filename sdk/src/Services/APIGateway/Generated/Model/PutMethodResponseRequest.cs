@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.APIGateway.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.APIGateway.Model
     {
         private string _httpMethod;
         private string _resourceId;
-        private Dictionary<string, string> _responseModels = new Dictionary<string, string>();
-        private Dictionary<string, bool> _responseParameters = new Dictionary<string, bool>();
+        private Dictionary<string, string> _responseModels = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private Dictionary<string, bool> _responseParameters = AWSConfigs.InitializeCollections ? new Dictionary<string, bool>() : null;
         private string _restApiId;
         private string _statusCode;
 
@@ -96,7 +97,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if ResponseModels property is set
         internal bool IsSetResponseModels()
         {
-            return this._responseModels != null && this._responseModels.Count > 0; 
+            return this._responseModels != null && (this._responseModels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -105,14 +106,13 @@ namespace Amazon.APIGateway.Model
         /// A key-value map specifying required or optional response parameters that API Gateway
         /// can send back to the caller. A key defines a method response header name and the associated
         /// value is a Boolean flag indicating whether the method response parameter is required
-        /// or not. The method response header names must match the pattern of <code>method.response.header.{name}</code>,
-        /// where <code>name</code> is a valid and unique header name. The response parameter
-        /// names defined here are available in the integration response to be mapped from an
-        /// integration response header expressed in <code>integration.response.header.{name}</code>,
-        /// a static value enclosed within a pair of single quotes (e.g., <code>'application/json'</code>),
-        /// or a JSON expression from the back-end response payload in the form of <code>integration.response.body.{JSON-expression}</code>,
-        /// where <code>JSON-expression</code> is a valid JSON expression without the <code>$</code>
-        /// prefix.)
+        /// or not. The method response header names must match the pattern of <c>method.response.header.{name}</c>,
+        /// where <c>name</c> is a valid and unique header name. The response parameter names
+        /// defined here are available in the integration response to be mapped from an integration
+        /// response header expressed in <c>integration.response.header.{name}</c>, a static value
+        /// enclosed within a pair of single quotes (e.g., <c>'application/json'</c>), or a JSON
+        /// expression from the back-end response payload in the form of <c>integration.response.body.{JSON-expression}</c>,
+        /// where <c>JSON-expression</c> is a valid JSON expression without the <c>$</c> prefix.)
         /// </para>
         /// </summary>
         public Dictionary<string, bool> ResponseParameters
@@ -124,7 +124,7 @@ namespace Amazon.APIGateway.Model
         // Check to see if ResponseParameters property is set
         internal bool IsSetResponseParameters()
         {
-            return this._responseParameters != null && this._responseParameters.Count > 0; 
+            return this._responseParameters != null && (this._responseParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

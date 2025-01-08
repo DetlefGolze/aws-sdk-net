@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Macie2.Model
 {
     /// <summary>
@@ -57,6 +58,14 @@ namespace Amazon.Macie2.Model
         public IListAllowListsPaginator ListAllowLists(ListAllowListsRequest request) 
         {
             return new ListAllowListsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListAutomatedDiscoveryAccounts operation
+        ///</summary>
+        public IListAutomatedDiscoveryAccountsPaginator ListAutomatedDiscoveryAccounts(ListAutomatedDiscoveryAccountsRequest request) 
+        {
+            return new ListAutomatedDiscoveryAccountsPaginator(this.client, request);
         }
 
         /// <summary>

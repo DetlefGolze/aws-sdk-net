@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchainQuery.Model
 {
     /// <summary>
@@ -38,11 +39,11 @@ namespace Amazon.ManagedBlockchainQuery.Model
         /// <summary>
         /// Gets and sets the property Time. 
         /// <para>
-        /// The container of the <code>Timestamp</code> of the blockchain instant.
+        /// The container of the <c>Timestamp</c> of the blockchain instant.
         /// </para>
         ///  <note> 
         /// <para>
-        /// This <code>timestamp</code> will only be recorded up to the second.
+        /// This <c>timestamp</c> will only be recorded up to the second.
         /// </para>
         ///  </note>
         /// </summary>

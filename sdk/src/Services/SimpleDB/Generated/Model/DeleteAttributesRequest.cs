@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleDB.Model
 {
     /// <summary>
@@ -35,20 +36,20 @@ namespace Amazon.SimpleDB.Model
     /// 
     ///  
     /// <para>
-    ///  <code>DeleteAttributes</code> is an idempotent operation; running it multiple times
-    /// on the same item or attribute does not result in an error response. 
+    ///  <c>DeleteAttributes</c> is an idempotent operation; running it multiple times on
+    /// the same item or attribute does not result in an error response. 
     /// </para>
     ///  
     /// <para>
     ///  Because Amazon SimpleDB makes multiple copies of item data and uses an eventual consistency
     /// update model, performing a <a>GetAttributes</a> or <a>Select</a> operation (read)
-    /// immediately after a <code>DeleteAttributes</code> or <a>PutAttributes</a> operation
-    /// (write) might not return updated item data. 
+    /// immediately after a <c>DeleteAttributes</c> or <a>PutAttributes</a> operation (write)
+    /// might not return updated item data. 
     /// </para>
     /// </summary>
     public partial class DeleteAttributesRequest : AmazonSimpleDBRequest
     {
-        private List<Attribute> _attributes = new List<Attribute>();
+        private List<Attribute> _attributes = AWSConfigs.InitializeCollections ? new List<Attribute>() : null;
         private string _domainName;
         private UpdateCondition _expected;
         private string _itemName;
@@ -110,7 +111,7 @@ namespace Amazon.SimpleDB.Model
         // Check to see if Attributes property is set
         internal bool IsSetAttributes()
         {
-            return this._attributes != null && this._attributes.Count > 0; 
+            return this._attributes != null && (this._attributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.IoTAnalytics.Model
     /// </summary>
     public partial class ListDatasetsResponse : AmazonWebServiceResponse
     {
-        private List<DatasetSummary> _datasetSummaries = new List<DatasetSummary>();
+        private List<DatasetSummary> _datasetSummaries = AWSConfigs.InitializeCollections ? new List<DatasetSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property DatasetSummaries. 
         /// <para>
-        /// A list of <code>DatasetSummary</code> objects.
+        /// A list of <c>DatasetSummary</c> objects.
         /// </para>
         /// </summary>
         public List<DatasetSummary> DatasetSummaries
@@ -51,14 +52,14 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if DatasetSummaries property is set
         internal bool IsSetDatasetSummaries()
         {
-            return this._datasetSummaries != null && this._datasetSummaries.Count > 0; 
+            return this._datasetSummaries != null && (this._datasetSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to retrieve the next set of results, or <code>null</code> if there are no
-        /// more results.
+        /// The token to retrieve the next set of results, or <c>null</c> if there are no more
+        /// results.
         /// </para>
         /// </summary>
         public string NextToken

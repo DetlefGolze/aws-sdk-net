@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ECS.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetCapacityProviderStrategy())
@@ -83,6 +85,17 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                     context.Writer.WriteArrayEnd();
                 }
 
+                if(publicRequest.IsSetClientToken())
+                {
+                    context.Writer.WritePropertyName("clientToken");
+                    context.Writer.Write(publicRequest.ClientToken);
+                }
+
+                else if(!(publicRequest.IsSetClientToken()))
+                {
+                    context.Writer.WritePropertyName("clientToken");
+                    context.Writer.Write(Guid.NewGuid().ToString());
+                }
                 if(publicRequest.IsSetCluster())
                 {
                     context.Writer.WritePropertyName("cluster");
@@ -217,6 +230,22 @@ namespace Amazon.ECS.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("taskDefinition");
                     context.Writer.Write(publicRequest.TaskDefinition);
+                }
+
+                if(publicRequest.IsSetVolumeConfigurations())
+                {
+                    context.Writer.WritePropertyName("volumeConfigurations");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestVolumeConfigurationsListValue in publicRequest.VolumeConfigurations)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = TaskVolumeConfigurationMarshaller.Instance;
+                        marshaller.Marshall(publicRequestVolumeConfigurationsListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 writer.WriteObjectEnd();

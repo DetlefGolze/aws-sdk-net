@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -66,8 +67,8 @@ namespace Amazon.OpsWorksCM.Model
         /// <summary>
         /// Gets and sets the property DisableAutomatedBackup. 
         /// <para>
-        /// Setting DisableAutomatedBackup to <code>true</code> disables automated or scheduled
-        /// backups. Automated backups are enabled by default. 
+        /// Setting DisableAutomatedBackup to <c>true</c> disables automated or scheduled backups.
+        /// Automated backups are enabled by default. 
         /// </para>
         /// </summary>
         public bool DisableAutomatedBackup

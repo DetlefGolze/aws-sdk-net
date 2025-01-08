@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IdentityStore.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteGroup operation.
-    /// Delete a group within an identity store given <code>GroupId</code>.
+    /// Delete a group within an identity store given <c>GroupId</c>.
     /// </summary>
     public partial class DeleteGroupRequest : AmazonIdentityStoreRequest
     {

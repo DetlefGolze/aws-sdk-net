@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.SecurityHub.Model
     {
         private string _metricName;
         private string _name;
-        private List<AwsWafRulePredicateListDetails> _predicateList = new List<AwsWafRulePredicateListDetails>();
+        private List<AwsWafRulePredicateListDetails> _predicateList = AWSConfigs.InitializeCollections ? new List<AwsWafRulePredicateListDetails>() : null;
         private string _ruleId;
 
         /// <summary>
@@ -78,10 +79,10 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property PredicateList. 
         /// <para>
-        /// Specifies the <code>ByteMatchSet</code>, <code>IPSet</code>, <code>SqlInjectionMatchSet</code>,
-        /// <code>XssMatchSet</code>, <code>RegexMatchSet</code>, <code>GeoMatchSet</code>, and
-        /// <code>SizeConstraintSet</code> objects that you want to add to a rule and, for each
-        /// object, indicates whether you want to negate the settings. 
+        /// Specifies the <c>ByteMatchSet</c>, <c>IPSet</c>, <c>SqlInjectionMatchSet</c>, <c>XssMatchSet</c>,
+        /// <c>RegexMatchSet</c>, <c>GeoMatchSet</c>, and <c>SizeConstraintSet</c> objects that
+        /// you want to add to a rule and, for each object, indicates whether you want to negate
+        /// the settings. 
         /// </para>
         /// </summary>
         public List<AwsWafRulePredicateListDetails> PredicateList
@@ -93,7 +94,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if PredicateList property is set
         internal bool IsSetPredicateList()
         {
-            return this._predicateList != null && this._predicateList.Count > 0; 
+            return this._predicateList != null && (this._predicateList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

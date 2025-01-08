@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Batch.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public NodeRangeProperty Unmarshall(JsonUnmarshallerContext context)
         {
+            NodeRangeProperty unmarshalledObject = new NodeRangeProperty();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            NodeRangeProperty unmarshalledObject = new NodeRangeProperty();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -70,6 +72,24 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     unmarshalledObject.Container = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("ecsProperties", targetDepth))
+                {
+                    var unmarshaller = EcsPropertiesUnmarshaller.Instance;
+                    unmarshalledObject.EcsProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("eksProperties", targetDepth))
+                {
+                    var unmarshaller = EksPropertiesUnmarshaller.Instance;
+                    unmarshalledObject.EksProperties = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("instanceTypes", targetDepth))
+                {
+                    var unmarshaller = new ListUnmarshaller<string, StringUnmarshaller>(StringUnmarshaller.Instance);
+                    unmarshalledObject.InstanceTypes = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("targetNodes", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -77,7 +97,6 @@ namespace Amazon.Batch.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

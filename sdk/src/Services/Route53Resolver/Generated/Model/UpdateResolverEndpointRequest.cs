@@ -26,20 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateResolverEndpoint operation.
-    /// Updates the name, or enpoint type for an inbound or an outbound Resolver endpoint.
+    /// Updates the name, or endpoint type for an inbound or an outbound Resolver endpoint.
     /// You can only update between IPV4 and DUALSTACK, IPV6 endpoint type can't be updated
     /// to other type.
     /// </summary>
     public partial class UpdateResolverEndpointRequest : AmazonRoute53ResolverRequest
     {
         private string _name;
+        private List<string> _protocols = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resolverEndpointId;
         private ResolverEndpointType _resolverEndpointType;
-        private List<UpdateIpAddress> _updateIpAddresses = new List<UpdateIpAddress>();
+        private List<UpdateIpAddress> _updateIpAddresses = AWSConfigs.InitializeCollections ? new List<UpdateIpAddress>() : null;
 
         /// <summary>
         /// Gets and sets the property Name. 
@@ -58,6 +60,83 @@ namespace Amazon.Route53Resolver.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Protocols. 
+        /// <para>
+        ///  The protocols you want to use for the endpoint. DoH-FIPS is applicable for inbound
+        /// endpoints only. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For an inbound endpoint you can apply the protocols as follows:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  Do53 and DoH in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 and DoH-FIPS in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH-FIPS alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// None, which is treated as Do53.
+        /// </para>
+        ///  </li> </ul> 
+        /// <para>
+        /// For an outbound endpoint you can apply the protocols as follows:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  Do53 and DoH in combination.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Do53 alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DoH alone.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// None, which is treated as Do53.
+        /// </para>
+        ///  </li> </ul> <important> 
+        /// <para>
+        ///  You can't change the protocol of an inbound endpoint directly from only Do53 to only
+        /// DoH, or DoH-FIPS. This is to prevent a sudden disruption to incoming traffic that
+        /// relies on Do53. To change the protocol from Do53 to DoH, or DoH-FIPS, you must first
+        /// enable both Do53 and DoH, or Do53 and DoH-FIPS, to make sure that all incoming traffic
+        /// has transferred to using the DoH protocol, or DoH-FIPS, and then remove the Do53.
+        /// </para>
+        ///  </important>
+        /// </summary>
+        [AWSProperty(Min=1, Max=2)]
+        public List<string> Protocols
+        {
+            get { return this._protocols; }
+            set { this._protocols = value; }
+        }
+
+        // Check to see if Protocols property is set
+        internal bool IsSetProtocols()
+        {
+            return this._protocols != null && (this._protocols.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -87,7 +166,7 @@ namespace Amazon.Route53Resolver.Model
         /// </para>
         ///  
         /// <para>
-        /// Updating to <code>IPV6</code> type isn't currently supported.
+        /// Updating to <c>IPV6</c> type isn't currently supported.
         /// </para>
         /// </summary>
         public ResolverEndpointType ResolverEndpointType
@@ -120,7 +199,7 @@ namespace Amazon.Route53Resolver.Model
         // Check to see if UpdateIpAddresses property is set
         internal bool IsSetUpdateIpAddresses()
         {
-            return this._updateIpAddresses != null && this._updateIpAddresses.Count > 0; 
+            return this._updateIpAddresses != null && (this._updateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

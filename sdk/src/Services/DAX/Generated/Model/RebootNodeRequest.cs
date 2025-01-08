@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DAX.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.DAX.Model
     /// 
     ///  <note> 
     /// <para>
-    ///  <code>RebootNode</code> restarts the DAX engine process and does not remove the contents
+    ///  <c>RebootNode</c> restarts the DAX engine process and does not remove the contents
     /// of the cache. 
     /// </para>
     ///  </note>

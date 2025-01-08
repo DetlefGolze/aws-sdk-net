@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -41,14 +42,15 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     /// </para>
     ///  
     /// <para>
-    /// If you specify an opt-out list name that isn't valid, an Error is returned.
+    /// If you specify an opt-out list name that isn't valid, an error is returned.
     /// </para>
     /// </summary>
     public partial class DescribeOptOutListsRequest : AmazonPinpointSMSVoiceV2Request
     {
         private int? _maxResults;
         private string _nextToken;
-        private List<string> _optOutListNames = new List<string>();
+        private List<string> _optOutListNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Owner _owner;
 
         /// <summary>
         /// Gets and sets the property MaxResults. 
@@ -95,6 +97,12 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// The OptOutLists to show the details of. This is an array of strings that can be either
         /// the OptOutListName or OptOutListArn.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you are using a shared AWS End User Messaging SMS and Voice resource then you must
+        /// use the full Amazon Resource Name(ARN).
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=0, Max=5)]
         public List<string> OptOutListNames
@@ -106,7 +114,27 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if OptOutListNames property is set
         internal bool IsSetOptOutListNames()
         {
-            return this._optOutListNames != null && this._optOutListNames.Count > 0; 
+            return this._optOutListNames != null && (this._optOutListNames.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Owner. 
+        /// <para>
+        /// Use <c>SELF</c> to filter the list of Opt-Out List to ones your account owns or use
+        /// <c>SHARED</c> to filter on Opt-Out List shared with your account. The <c>Owner</c>
+        /// and <c>OptOutListNames</c> parameters can't be used at the same time.
+        /// </para>
+        /// </summary>
+        public Owner Owner
+        {
+            get { return this._owner; }
+            set { this._owner = value; }
+        }
+
+        // Check to see if Owner property is set
+        internal bool IsSetOwner()
+        {
+            return this._owner != null;
         }
 
     }

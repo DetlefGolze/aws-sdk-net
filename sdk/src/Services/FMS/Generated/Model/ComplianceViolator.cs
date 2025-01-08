@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FMS.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.FMS.Model
     /// </summary>
     public partial class ComplianceViolator
     {
-        private Dictionary<string, string> _metadata = new Dictionary<string, string>();
+        private Dictionary<string, string> _metadata = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _resourceId;
         private string _resourceType;
         private ViolationReason _violationReason;
@@ -53,7 +54,7 @@ namespace Amazon.FMS.Model
         // Check to see if Metadata property is set
         internal bool IsSetMetadata()
         {
-            return this._metadata != null && this._metadata.Count > 0; 
+            return this._metadata != null && (this._metadata.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -79,8 +80,8 @@ namespace Amazon.FMS.Model
         /// Gets and sets the property ResourceType. 
         /// <para>
         /// The resource type. This is in the format shown in the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon
-        /// Web Services Resource Types Reference</a>. For example: <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>,
-        /// <code>AWS::CloudFront::Distribution</code>, or <code>AWS::NetworkFirewall::FirewallPolicy</code>.
+        /// Web Services Resource Types Reference</a>. For example: <c>AWS::ElasticLoadBalancingV2::LoadBalancer</c>,
+        /// <c>AWS::CloudFront::Distribution</c>, or <c>AWS::NetworkFirewall::FirewallPolicy</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]

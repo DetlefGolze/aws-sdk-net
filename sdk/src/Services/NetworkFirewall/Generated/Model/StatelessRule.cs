@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkFirewall.Model
 {
     /// <summary>
@@ -46,11 +47,10 @@ namespace Amazon.NetworkFirewall.Model
         /// </para>
         ///  
         /// <para>
-        /// Each stateless rule group uses exactly one <code>StatelessRulesAndCustomActions</code>
-        /// object, and each <code>StatelessRulesAndCustomActions</code> contains exactly one
-        /// <code>StatelessRules</code> object. To ensure unique priority settings for your rule
-        /// groups, set unique priorities for the stateless rules that you define inside any single
-        /// <code>StatelessRules</code> object.
+        /// Each stateless rule group uses exactly one <c>StatelessRulesAndCustomActions</c> object,
+        /// and each <c>StatelessRulesAndCustomActions</c> contains exactly one <c>StatelessRules</c>
+        /// object. To ensure unique priority settings for your rule groups, set unique priorities
+        /// for the stateless rules that you define inside any single <c>StatelessRules</c> object.
         /// </para>
         ///  
         /// <para>

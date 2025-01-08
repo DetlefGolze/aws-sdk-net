@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Kendra.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Kendra
 {
     /// <summary>
-    /// Interface for accessing Kendra
+    /// <para>Interface for accessing Kendra</para>
     ///
     /// Amazon Kendra is a service for indexing large document sets.
     /// </summary>
@@ -142,20 +143,19 @@ namespace Amazon.Kendra
 
         /// <summary>
         /// Removes one or more documents from an index. The documents must have been added with
-        /// the <code>BatchPutDocument</code> API.
+        /// the <c>BatchPutDocument</c> API.
         /// 
         ///  
         /// <para>
         /// The documents are deleted asynchronously. You can see the progress of the deletion
         /// by using Amazon Web Services CloudWatch. Any error messages related to the processing
         /// of the batch are sent to your Amazon Web Services CloudWatch log. You can also use
-        /// the <code>BatchGetDocumentStatus</code> API to monitor the progress of deleting your
-        /// documents.
+        /// the <c>BatchGetDocumentStatus</c> API to monitor the progress of deleting your documents.
         /// </para>
         ///  
         /// <para>
-        /// Deleting documents from an index using <code>BatchDeleteDocument</code> could take
-        /// up to an hour or more, depending on the number of documents you want to delete.
+        /// Deleting documents from an index using <c>BatchDeleteDocument</c> could take up to
+        /// an hour or more, depending on the number of documents you want to delete.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchDeleteDocument service method.</param>
@@ -245,16 +245,16 @@ namespace Amazon.Kendra
         /// 
         ///  
         /// <para>
-        /// When you use the <code>BatchPutDocument</code> API, documents are indexed asynchronously.
-        /// You can use the <code>BatchGetDocumentStatus</code> API to get the current status
-        /// of a list of documents so that you can determine if they have been successfully indexed.
+        /// When you use the <c>BatchPutDocument</c> API, documents are indexed asynchronously.
+        /// You can use the <c>BatchGetDocumentStatus</c> API to get the current status of a list
+        /// of documents so that you can determine if they have been successfully indexed.
         /// </para>
         ///  
         /// <para>
-        /// You can also use the <code>BatchGetDocumentStatus</code> API to check the status of
-        /// the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html">
+        /// You can also use the <c>BatchGetDocumentStatus</c> API to check the status of the
+        /// <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html">
         /// BatchDeleteDocument</a> API. When a document is deleted from the index, Amazon Kendra
-        /// returns <code>NOT_FOUND</code> as the status.
+        /// returns <c>NOT_FOUND</c> as the status.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchGetDocumentStatus service method.</param>
@@ -302,16 +302,16 @@ namespace Amazon.Kendra
         /// 
         ///  
         /// <para>
-        /// The <code>BatchPutDocument</code> API enables you to ingest inline documents or a
-        /// set of documents stored in an Amazon S3 bucket. Use this API to ingest your text and
-        /// unstructured text into an index, add custom attributes to the documents, and to attach
-        /// an access control list to the documents added to the index.
+        /// The <c>BatchPutDocument</c> API enables you to ingest inline documents or a set of
+        /// documents stored in an Amazon S3 bucket. Use this API to ingest your text and unstructured
+        /// text into an index, add custom attributes to the documents, and to attach an access
+        /// control list to the documents added to the index.
         /// </para>
         ///  
         /// <para>
         /// The documents are indexed asynchronously. You can see the progress of the batch using
         /// Amazon Web Services CloudWatch. Any error messages related to processing the batch
-        /// are sent to your Amazon Web Services CloudWatch log. You can also use the <code>BatchGetDocumentStatus</code>
+        /// are sent to your Amazon Web Services CloudWatch log. You can also use the <c>BatchGetDocumentStatus</c>
         /// API to monitor the progress of indexing your documents.
         /// </para>
         ///  
@@ -378,7 +378,7 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>ClearQuerySuggestions</code> is currently not supported in the Amazon Web Services
+        ///  <c>ClearQuerySuggestions</c> is currently not supported in the Amazon Web Services
         /// GovCloud (US-West) region.
         /// </para>
         /// </summary>
@@ -443,12 +443,19 @@ namespace Amazon.Kendra
         ///  
         /// <para>
         /// To apply your access control configuration to certain documents, you call the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html">BatchPutDocument</a>
-        /// API with the <code>AccessControlConfigurationId</code> included in the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_Document.html">Document</a>
-        /// object. If you use an S3 bucket as a data source, you update the <code>.metadata.json</code>
-        /// with the <code>AccessControlConfigurationId</code> and synchronize your data source.
-        /// Amazon Kendra currently only supports access control configuration for S3 data sources
-        /// and documents indexed using the <code>BatchPutDocument</code> API.
+        /// API with the <c>AccessControlConfigurationId</c> included in the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_Document.html">Document</a>
+        /// object. If you use an S3 bucket as a data source, you update the <c>.metadata.json</c>
+        /// with the <c>AccessControlConfigurationId</c> and synchronize your data source. Amazon
+        /// Kendra currently only supports access control configuration for S3 data sources and
+        /// documents indexed using the <c>BatchPutDocument</c> API.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// You can't configure access control using <c>CreateAccessControlConfiguration</c> for
+        /// an Amazon Kendra Gen AI Enterprise Edition index. Amazon Kendra will return a <c>ValidationException</c>
+        /// error for a <c>Gen_AI_ENTERPRISE_EDITION</c> index.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateAccessControlConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -505,8 +512,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateDataSource</code> is a synchronous operation. The operation returns 200
-        /// if the data source was successfully created. Otherwise, an exception is raised.
+        ///  <c>CreateDataSource</c> is a synchronous operation. The operation returns 200 if
+        /// the data source was successfully created. Otherwise, an exception is raised.
         /// </para>
         ///  
         /// <para>
@@ -735,13 +742,13 @@ namespace Amazon.Kendra
 
         /// <summary>
         /// Creates an Amazon Kendra index. Index creation is an asynchronous API. To determine
-        /// if index creation has completed, check the <code>Status</code> field returned from
-        /// a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code>
-        /// when the index is ready to use.
+        /// if index creation has completed, check the <c>Status</c> field returned from a call
+        /// to <c>DescribeIndex</c>. The <c>Status</c> field is set to <c>ACTIVE</c> when the
+        /// index is ready to use.
         /// 
         ///  
         /// <para>
-        /// Once the index is active, you can index your documents using the <code>BatchPutDocument</code>
+        /// Once the index is active, you can index your documents using the <c>BatchPutDocument</c>
         /// API or using one of the supported <a href="https://docs.aws.amazon.com/kendra/latest/dg/data-sources.html">data
         /// sources</a>.
         /// </para>
@@ -818,8 +825,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>CreateQuerySuggestionsBlockList</code> is currently not supported in the Amazon
-        /// Web Services GovCloud (US-West) region.
+        ///  <c>CreateQuerySuggestionsBlockList</c> is currently not supported in the Amazon Web
+        /// Services GovCloud (US-West) region.
         /// </para>
         ///  
         /// <para>
@@ -977,8 +984,8 @@ namespace Amazon.Kendra
         /// <summary>
         /// Deletes an Amazon Kendra data source connector. An exception is not thrown if the
         /// data source is already being deleted. While the data source is being deleted, the
-        /// <code>Status</code> field returned by a call to the <code>DescribeDataSource</code>
-        /// API is set to <code>DELETING</code>. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html">Deleting
+        /// <c>Status</c> field returned by a call to the <c>DescribeDataSource</c> API is set
+        /// to <c>DELETING</c>. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html">Deleting
         /// Data Sources</a>.
         /// 
         ///  
@@ -1074,7 +1081,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Removes an FAQ from an index.
+        /// Removes a FAQ from an index.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFaq service method.</param>
         /// <param name="cancellationToken">
@@ -1117,9 +1124,9 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Deletes an existing Amazon Kendra index. An exception is not thrown if the index is
-        /// already being deleted. While the index is being deleted, the <code>Status</code> field
-        /// returned by a call to the <code>DescribeIndex</code> API is set to <code>DELETING</code>.
+        /// Deletes an Amazon Kendra index. An exception is not thrown if the index is already
+        /// being deleted. While the index is being deleted, the <c>Status</c> field returned
+        /// by a call to the <c>DescribeIndex</c> API is set to <c>DELETING</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteIndex service method.</param>
         /// <param name="cancellationToken">
@@ -1162,8 +1169,8 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Deletes a group so that all users and sub groups that belong to the group can no longer
-        /// access documents only available to that group.
+        /// Deletes a group so that all users that belong to the group can no longer access documents
+        /// only available to that group.
         /// 
         ///  
         /// <para>
@@ -1173,16 +1180,16 @@ namespace Amazon.Kendra
         ///  
         /// <para>
         /// If you want to delete or replace users or sub groups of a group, you need to use the
-        /// <code>PutPrincipalMapping</code> operation. For example, if a user in the group "Engineering"
+        /// <c>PutPrincipalMapping</c> operation. For example, if a user in the group "Engineering"
         /// leaves the engineering team and another user takes their place, you provide an updated
-        /// list of users or sub groups that belong to the "Engineering" group when calling <code>PutPrincipalMapping</code>.
+        /// list of users or sub groups that belong to the "Engineering" group when calling <c>PutPrincipalMapping</c>.
         /// You can update your internal list of users or sub groups and input this list when
-        /// calling <code>PutPrincipalMapping</code>.
+        /// calling <c>PutPrincipalMapping</c>.
         /// </para>
         ///  
         /// <para>
-        ///  <code>DeletePrincipalMapping</code> is currently not supported in the Amazon Web
-        /// Services GovCloud (US-West) region.
+        ///  <c>DeletePrincipalMapping</c> is currently not supported in the Amazon Web Services
+        /// GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeletePrincipalMapping service method.</param>
@@ -1235,8 +1242,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>DeleteQuerySuggestionsBlockList</code> is currently not supported in the Amazon
-        /// Web Services GovCloud (US-West) region.
+        ///  <c>DeleteQuerySuggestionsBlockList</c> is currently not supported in the Amazon Web
+        /// Services GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteQuerySuggestionsBlockList service method.</param>
@@ -1280,7 +1287,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Deletes an existing Amazon Kendra thesaurus.
+        /// Deletes an Amazon Kendra thesaurus.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteThesaurus service method.</param>
         /// <param name="cancellationToken">
@@ -1445,7 +1452,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Gets information about an FAQ list.
+        /// Gets information about a FAQ.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeFaq service method.</param>
         /// <param name="cancellationToken">
@@ -1525,7 +1532,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Gets information about an existing Amazon Kendra index.
+        /// Gets information about an Amazon Kendra index.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeIndex service method.</param>
         /// <param name="cancellationToken">
@@ -1564,16 +1571,16 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Describes the processing of <code>PUT</code> and <code>DELETE</code> actions for mapping
-        /// users to their groups. This includes information on the status of actions currently
-        /// processing or yet to be processed, when actions were last updated, when actions were
-        /// received by Amazon Kendra, the latest action that should process and apply after other
-        /// actions, and useful error messages if an action could not be processed.
+        /// Describes the processing of <c>PUT</c> and <c>DELETE</c> actions for mapping users
+        /// to their groups. This includes information on the status of actions currently processing
+        /// or yet to be processed, when actions were last updated, when actions were received
+        /// by Amazon Kendra, the latest action that should process and apply after other actions,
+        /// and useful error messages if an action could not be processed.
         /// 
         ///  
         /// <para>
-        ///  <code>DescribePrincipalMapping</code> is currently not supported in the Amazon Web
-        /// Services GovCloud (US-West) region.
+        ///  <c>DescribePrincipalMapping</c> is currently not supported in the Amazon Web Services
+        /// GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribePrincipalMapping service method.</param>
@@ -1621,8 +1628,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>DescribeQuerySuggestionsBlockList</code> is currently not supported in the
-        /// Amazon Web Services GovCloud (US-West) region.
+        ///  <c>DescribeQuerySuggestionsBlockList</c> is currently not supported in the Amazon
+        /// Web Services GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeQuerySuggestionsBlockList service method.</param>
@@ -1670,8 +1677,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>DescribeQuerySuggestionsConfig</code> is currently not supported in the Amazon
-        /// Web Services GovCloud (US-West) region.
+        ///  <c>DescribeQuerySuggestionsConfig</c> is currently not supported in the Amazon Web
+        /// Services GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeQuerySuggestionsConfig service method.</param>
@@ -1711,7 +1718,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Gets information about an existing Amazon Kendra thesaurus.
+        /// Gets information about an Amazon Kendra thesaurus.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeThesaurus service method.</param>
         /// <param name="cancellationToken">
@@ -1840,7 +1847,7 @@ namespace Amazon.Kendra
         /// 
         ///  
         /// <para>
-        ///  <code>GetQuerySuggestions</code> is currently not supported in the Amazon Web Services
+        ///  <c>GetQuerySuggestions</c> is currently not supported in the Amazon Web Services
         /// GovCloud (US-West) region.
         /// </para>
         /// </summary>
@@ -2172,7 +2179,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Gets a list of FAQ lists associated with an index.
+        /// Gets a list of FAQs associated with an index.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListFaqs service method.</param>
         /// <param name="cancellationToken">
@@ -2257,8 +2264,8 @@ namespace Amazon.Kendra
         /// 
         ///  
         /// <para>
-        ///  <code>ListGroupsOlderThanOrderingId</code> is currently not supported in the Amazon
-        /// Web Services GovCloud (US-West) region.
+        ///  <c>ListGroupsOlderThanOrderingId</c> is currently not supported in the Amazon Web
+        /// Services GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListGroupsOlderThanOrderingId service method.</param>
@@ -2346,8 +2353,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>ListQuerySuggestionsBlockLists</code> is currently not supported in the Amazon
-        /// Web Services GovCloud (US-West) region.
+        ///  <c>ListQuerySuggestionsBlockLists</c> is currently not supported in the Amazon Web
+        /// Services GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListQuerySuggestionsBlockLists service method.</param>
@@ -2387,8 +2394,8 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Gets a list of tags associated with a specified resource. Indexes, FAQs, and data
-        /// sources can have tags associated with them.
+        /// Gets a list of tags associated with a resource. Indexes, FAQs, data sources, and other
+        /// resources can have tags associated with them.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForResource service method.</param>
         /// <param name="cancellationToken">
@@ -2485,8 +2492,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        /// If more than five <code>PUT</code> actions for a group are currently processing, a
-        /// validation exception is thrown.
+        /// If more than five <c>PUT</c> actions for a group are currently processing, a validation
+        /// exception is thrown.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutPrincipalMapping service method.</param>
@@ -2537,7 +2544,15 @@ namespace Amazon.Kendra
         /// <summary>
         /// Searches an index given an input query.
         /// 
-        ///  
+        ///  <note> 
+        /// <para>
+        /// If you are working with large language models (LLMs) or implementing retrieval augmented
+        /// generation (RAG) systems, you can use Amazon Kendra's <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_Retrieve.html">Retrieve</a>
+        /// API, which can return longer semantically relevant passages. We recommend using the
+        /// <c>Retrieve</c> API instead of filing a service limit increase to increase the <c>Query</c>
+        /// API document excerpt length.
+        /// </para>
+        ///  </note> 
         /// <para>
         /// You can configure boosting or relevance tuning at the query level to override boosting
         /// at the index level, filter based on document fields/attributes and faceted search,
@@ -2564,11 +2579,20 @@ namespace Amazon.Kendra
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// You can specify that the query return only one type of result using the <code>QueryResultTypeFilter</code>
+        /// You can specify that the query return only one type of result using the <c>QueryResultTypeFilter</c>
         /// parameter. Each query returns the 100 most relevant results. If you filter result
         /// type to only question-answers, a maximum of four results are returned. If you filter
         /// result type to only answers, a maximum of three results are returned.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you're using an Amazon Kendra Gen AI Enterprise Edition index, you can only use
+        /// <c>ATTRIBUTE_FILTER</c> to filter search results by user context. If you're using
+        /// an Amazon Kendra Gen AI Enterprise Edition index and you try to use <c>USER_TOKEN</c>
+        /// to configure user context policy, Amazon Kendra returns a <c>ValidationException</c>
+        /// error.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the Query service method.</param>
         /// <param name="cancellationToken">
@@ -2621,14 +2645,14 @@ namespace Amazon.Kendra
         ///  
         /// <para>
         /// This API is similar to the <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_Query.html">Query</a>
-        /// API. However, by default, the <code>Query</code> API only returns excerpt passages
-        /// of up to 100 token words. With the <code>Retrieve</code> API, you can retrieve longer
-        /// passages of up to 200 token words and up to 100 semantically relevant passages. This
-        /// doesn't include question-answer or FAQ type responses from your index. The passages
-        /// are text excerpts that can be semantically extracted from multiple documents and multiple
-        /// parts of the same document. If in extreme cases your documents produce zero passages
-        /// using the <code>Retrieve</code> API, you can alternatively use the <code>Query</code>
-        /// API and its types of responses.
+        /// API. However, by default, the <c>Query</c> API only returns excerpt passages of up
+        /// to 100 token words. With the <c>Retrieve</c> API, you can retrieve longer passages
+        /// of up to 200 token words and up to 100 semantically relevant passages. This doesn't
+        /// include question-answer or FAQ type responses from your index. The passages are text
+        /// excerpts that can be semantically extracted from multiple documents and multiple parts
+        /// of the same document. If in extreme cases your documents produce zero passages using
+        /// the <c>Retrieve</c> API, you can alternatively use the <c>Query</c> API and its types
+        /// of responses.
         /// </para>
         ///  
         /// <para>
@@ -2646,18 +2670,37 @@ namespace Amazon.Kendra
         /// <para>
         /// Filter based on the user or their group access to documents
         /// </para>
-        ///  </li> </ul> 
+        ///  </li> <li> 
+        /// <para>
+        /// View the confidence score bucket for a retrieved passage result. The confidence bucket
+        /// provides a relative ranking that indicates how confident Amazon Kendra is that the
+        /// response is relevant to the query.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// Confidence score buckets are currently available only for English.
+        /// </para>
+        ///  </note> </li> </ul> 
         /// <para>
         /// You can also include certain fields in the response that might provide useful additional
         /// information.
         /// </para>
         ///  
         /// <para>
-        /// The <code>Retrieve</code> API shares the number of <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_CapacityUnitsConfiguration.html">query
+        /// The <c>Retrieve</c> API shares the number of <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_CapacityUnitsConfiguration.html">query
         /// capacity units</a> that you set for your index. For more information on what's included
         /// in a single capacity unit and the default base capacity for an index, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/adjusting-capacity.html">Adjusting
         /// capacity</a>.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// If you're using an Amazon Kendra Gen AI Enterprise Edition index, you can only use
+        /// <c>ATTRIBUTE_FILTER</c> to filter search results by user context. If you're using
+        /// an Amazon Kendra Gen AI Enterprise Edition index and you try to use <c>USER_TOKEN</c>
+        /// to configure user context policy, Amazon Kendra returns a <c>ValidationException</c>
+        /// error.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the Retrieve service method.</param>
         /// <param name="cancellationToken">
@@ -2706,8 +2749,7 @@ namespace Amazon.Kendra
 
         /// <summary>
         /// Starts a synchronization job for a data source connector. If a synchronization job
-        /// is already in progress, Amazon Kendra returns a <code>ResourceInUseException</code>
-        /// exception.
+        /// is already in progress, Amazon Kendra returns a <c>ResourceInUseException</c> exception.
         /// 
         ///  
         /// <para>
@@ -2806,8 +2848,8 @@ namespace Amazon.Kendra
         /// 
         ///  
         /// <para>
-        ///  <code>SubmitFeedback</code> is currently not supported in the Amazon Web Services
-        /// GovCloud (US-West) region.
+        ///  <c>SubmitFeedback</c> is currently not supported in the Amazon Web Services GovCloud
+        /// (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the SubmitFeedback service method.</param>
@@ -2851,8 +2893,8 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Adds the specified tag to the specified index, FAQ, or data source resource. If the
-        /// tag already exists, the existing value is replaced with the new value.
+        /// Adds the specified tag to the specified index, FAQ, data source, or other resource.
+        /// If the tag already exists, the existing value is replaced with the new value.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the TagResource service method.</param>
         /// <param name="cancellationToken">
@@ -2891,7 +2933,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Removes a tag from an index, FAQ, or a data source.
+        /// Removes a tag from an index, FAQ, data source, or other resource.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// <param name="cancellationToken">
@@ -2949,13 +2991,20 @@ namespace Amazon.Kendra
         ///  
         /// <para>
         /// You call the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html">BatchPutDocument</a>
-        /// API to apply the updated access control configuration, with the <code>AccessControlConfigurationId</code>
+        /// API to apply the updated access control configuration, with the <c>AccessControlConfigurationId</c>
         /// included in the <a href="https://docs.aws.amazon.com/kendra/latest/dg/API_Document.html">Document</a>
         /// object. If you use an S3 bucket as a data source, you synchronize your data source
-        /// to apply the <code>AccessControlConfigurationId</code> in the <code>.metadata.json</code>
-        /// file. Amazon Kendra currently only supports access control configuration for S3 data
-        /// sources and documents indexed using the <code>BatchPutDocument</code> API.
+        /// to apply the <c>AccessControlConfigurationId</c> in the <c>.metadata.json</c> file.
+        /// Amazon Kendra currently only supports access control configuration for S3 data sources
+        /// and documents indexed using the <c>BatchPutDocument</c> API.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// You can't configure access control using <c>CreateAccessControlConfiguration</c> for
+        /// an Amazon Kendra Gen AI Enterprise Edition index. Amazon Kendra will return a <c>ValidationException</c>
+        /// error for a <c>Gen_AI_ENTERPRISE_EDITION</c> index.
+        /// </para>
+        ///  </important>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateAccessControlConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -3003,7 +3052,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Updates an existing Amazon Kendra data source connector.
+        /// Updates an Amazon Kendra data source connector.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateDataSource service method.</param>
         /// <param name="cancellationToken">
@@ -3139,7 +3188,7 @@ namespace Amazon.Kendra
 
 
         /// <summary>
-        /// Updates an existing Amazon Kendra index.
+        /// Updates an Amazon Kendra index.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateIndex service method.</param>
         /// <param name="cancellationToken">
@@ -3207,8 +3256,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>UpdateQuerySuggestionsBlockList</code> is currently not supported in the Amazon
-        /// Web Services GovCloud (US-West) region.
+        ///  <c>UpdateQuerySuggestionsBlockList</c> is currently not supported in the Amazon Web
+        /// Services GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateQuerySuggestionsBlockList service method.</param>
@@ -3276,8 +3325,8 @@ namespace Amazon.Kendra
         /// </para>
         ///  
         /// <para>
-        ///  <code>UpdateQuerySuggestionsConfig</code> is currently not supported in the Amazon
-        /// Web Services GovCloud (US-West) region.
+        ///  <c>UpdateQuerySuggestionsConfig</c> is currently not supported in the Amazon Web
+        /// Services GovCloud (US-West) region.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateQuerySuggestionsConfig service method.</param>

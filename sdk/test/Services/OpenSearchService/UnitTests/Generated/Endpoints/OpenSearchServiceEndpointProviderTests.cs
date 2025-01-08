@@ -18,6 +18,7 @@
  */
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.OpenSearchService.Endpoints;
 using Amazon.OpenSearchService.Internal;
@@ -444,7 +445,7 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
             parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonOpenSearchServiceEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://es.us-east-1.api.aws", endpoint.URL);
+            Assert.AreEqual("https://aos.us-east-1.api.aws", endpoint.URL);
         }
 
         [TestMethod]
@@ -519,7 +520,7 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
             parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonOpenSearchServiceEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://es.cn-north-1.api.amazonwebservices.com.cn", endpoint.URL);
+            Assert.AreEqual("https://aos.cn-north-1.api.amazonwebservices.com.cn", endpoint.URL);
         }
 
         [TestMethod]
@@ -609,7 +610,7 @@ namespace AWSSDK_DotNet35.UnitTests.Endpoints
             parameters["UseFIPS"] = false;
             parameters["UseDualStack"] = true;
             var endpoint = new AmazonOpenSearchServiceEndpointProvider().ResolveEndpoint(parameters);
-            Assert.AreEqual("https://es.us-gov-east-1.api.aws", endpoint.URL);
+            Assert.AreEqual("https://aos.us-gov-east-1.api.aws", endpoint.URL);
         }
 
         [TestMethod]

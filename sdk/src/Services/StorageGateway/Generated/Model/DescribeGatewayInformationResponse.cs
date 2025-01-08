@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StorageGateway.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.StorageGateway.Model
         private GatewayCapacity _gatewayCapacity;
         private string _gatewayId;
         private string _gatewayName;
-        private List<NetworkInterface> _gatewayNetworkInterfaces = new List<NetworkInterface>();
+        private List<NetworkInterface> _gatewayNetworkInterfaces = AWSConfigs.InitializeCollections ? new List<NetworkInterface>() : null;
         private string _gatewayState;
         private string _gatewayTimezone;
         private string _gatewayType;
@@ -52,8 +53,8 @@ namespace Amazon.StorageGateway.Model
         private string _nextUpdateAvailabilityDate;
         private string _softwareUpdatesEndDate;
         private string _softwareVersion;
-        private List<string> _supportedGatewayCapacities = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _supportedGatewayCapacities = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcEndpoint;
 
         /// <summary>
@@ -140,7 +141,7 @@ namespace Amazon.StorageGateway.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid Values: <code>STANDARD</code> | <code>FIPS</code> 
+        /// Valid Values: <c>STANDARD</c> | <c>FIPS</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=4, Max=8)]
@@ -244,7 +245,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if GatewayNetworkInterfaces property is set
         internal bool IsSetGatewayNetworkInterfaces()
         {
-            return this._gatewayNetworkInterfaces != null && this._gatewayNetworkInterfaces.Count > 0; 
+            return this._gatewayNetworkInterfaces != null && (this._gatewayNetworkInterfaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -290,6 +291,14 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// The type of the gateway.
         /// </para>
+        ///  <important> 
+        /// <para>
+        /// Amazon FSx File Gateway is no longer available to new customers. Existing customers
+        /// of FSx File Gateway can continue to use the service normally. For capabilities similar
+        /// to FSx File Gateway, visit <a href="https://aws.amazon.com/blogs/storage/switch-your-file-share-access-from-amazon-fsx-file-gateway-to-amazon-fsx-for-windows-file-server/">this
+        /// blog post</a>.
+        /// </para>
+        ///  </important>
         /// </summary>
         [AWSProperty(Min=2, Max=20)]
         public string GatewayType
@@ -309,6 +318,11 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// The type of hardware or software platform on which the gateway is running.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Tape Gateway is no longer available on Snow Family devices.
+        /// </para>
+        ///  </note>
         /// </summary>
         public HostEnvironment HostEnvironment
         {
@@ -439,7 +453,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if SupportedGatewayCapacities property is set
         internal bool IsSetSupportedGatewayCapacities()
         {
-            return this._supportedGatewayCapacities != null && this._supportedGatewayCapacities.Count > 0; 
+            return this._supportedGatewayCapacities != null && (this._supportedGatewayCapacities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -447,7 +461,7 @@ namespace Amazon.StorageGateway.Model
         /// <para>
         /// A list of up to 50 tags assigned to the gateway, sorted alphabetically by key name.
         /// Each tag is a key-value pair. For a gateway with more than 10 tags assigned, you can
-        /// view all tags using the <code>ListTagsForResource</code> API operation.
+        /// view all tags using the <c>ListTagsForResource</c> API operation.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -459,7 +473,7 @@ namespace Amazon.StorageGateway.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

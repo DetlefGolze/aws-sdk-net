@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -43,14 +44,20 @@ namespace Amazon.EC2.Model
     /// </para>
     ///  
     /// <para>
-    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Reserved
-    /// Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.
+    /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html">Sell
+    /// in the Reserved Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// The order of the elements in the response, including those within nested structures,
+    /// might vary. Applications should not assume the elements appear in a particular order.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeReservedInstancesOfferingsRequest : AmazonEC2Request
     {
         private string _availabilityZone;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private bool? _includeMarketplace;
         private Tenancy _instanceTenancy;
         private InstanceType _instanceType;
@@ -62,7 +69,7 @@ namespace Amazon.EC2.Model
         private OfferingClassType _offeringClass;
         private OfferingTypeValues _offeringType;
         private RIProductDescription _productDescription;
-        private List<string> _reservedInstancesOfferingIds = new List<string>();
+        private List<string> _reservedInstancesOfferingIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AvailabilityZone. 
@@ -89,52 +96,48 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>availability-zone</code> - The Availability Zone where the Reserved Instance
-        /// can be used.
+        ///  <c>availability-zone</c> - The Availability Zone where the Reserved Instance can
+        /// be used.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>duration</code> - The duration of the Reserved Instance (for example, one year
-        /// or three years), in seconds (<code>31536000</code> | <code>94608000</code>).
+        ///  <c>duration</c> - The duration of the Reserved Instance (for example, one year or
+        /// three years), in seconds (<c>31536000</c> | <c>94608000</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>fixed-price</code> - The purchase price of the Reserved Instance (for example,
-        /// 9800.0).
+        ///  <c>fixed-price</c> - The purchase price of the Reserved Instance (for example, 9800.0).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>instance-type</code> - The instance type that is covered by the reservation.
+        ///  <c>instance-type</c> - The instance type that is covered by the reservation.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>marketplace</code> - Set to <code>true</code> to show only Reserved Instance
-        /// Marketplace offerings. When this filter is not used, which is the default behavior,
-        /// all offerings from both Amazon Web Services and the Reserved Instance Marketplace
-        /// are listed.
+        ///  <c>marketplace</c> - Set to <c>true</c> to show only Reserved Instance Marketplace
+        /// offerings. When this filter is not used, which is the default behavior, all offerings
+        /// from both Amazon Web Services and the Reserved Instance Marketplace are listed.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>product-description</code> - The Reserved Instance product platform description
-        /// (<code>Linux/UNIX</code> | <code>Linux with SQL Server Standard</code> | <code>Linux
-        /// with SQL Server Web</code> | <code>Linux with SQL Server Enterprise</code> | <code>SUSE
-        /// Linux</code> | <code>Red Hat Enterprise Linux</code> | <code>Red Hat Enterprise Linux
-        /// with HA</code> | <code>Windows</code> | <code>Windows with SQL Server Standard</code>
-        /// | <code>Windows with SQL Server Web</code> | <code>Windows with SQL Server Enterprise</code>).
+        ///  <c>product-description</c> - The Reserved Instance product platform description (<c>Linux/UNIX</c>
+        /// | <c>Linux with SQL Server Standard</c> | <c>Linux with SQL Server Web</c> | <c>Linux
+        /// with SQL Server Enterprise</c> | <c>SUSE Linux</c> | <c>Red Hat Enterprise Linux</c>
+        /// | <c>Red Hat Enterprise Linux with HA</c> | <c>Windows</c> | <c>Windows with SQL Server
+        /// Standard</c> | <c>Windows with SQL Server Web</c> | <c>Windows with SQL Server Enterprise</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>reserved-instances-offering-id</code> - The Reserved Instances offering ID.
+        ///  <c>reserved-instances-offering-id</c> - The Reserved Instances offering ID.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>scope</code> - The scope of the Reserved Instance (<code>Availability Zone</code>
-        /// or <code>Region</code>).
+        ///  <c>scope</c> - The scope of the Reserved Instance (<c>Availability Zone</c> or <c>Region</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>usage-price</code> - The usage price of the Reserved Instance, per hour (for
-        /// example, 0.84).
+        ///  <c>usage-price</c> - The usage price of the Reserved Instance, per hour (for example,
+        /// 0.84).
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -147,7 +150,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -172,17 +175,17 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property InstanceTenancy. 
         /// <para>
         /// The tenancy of the instances covered by the reservation. A Reserved Instance with
-        /// a tenancy of <code>dedicated</code> is applied to instances that run in a VPC on single-tenant
+        /// a tenancy of <c>dedicated</c> is applied to instances that run in a VPC on single-tenant
         /// hardware (i.e., Dedicated Instances).
         /// </para>
         ///  
         /// <para>
-        ///  <b>Important:</b> The <code>host</code> value cannot be used with this parameter.
-        /// Use the <code>default</code> or <code>dedicated</code> values only.
+        ///  <b>Important:</b> The <c>host</c> value cannot be used with this parameter. Use the
+        /// <c>default</c> or <c>dedicated</c> values only.
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>default</code> 
+        /// Default: <c>default</c> 
         /// </para>
         /// </summary>
         public Tenancy InstanceTenancy
@@ -200,9 +203,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The instance type that the reservation will cover (for example, <code>m1.small</code>).
-        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-        /// types</a> in the <i>Amazon EC2 User Guide</i>.
+        /// The instance type that the reservation will cover (for example, <c>m1.small</c>).
+        /// For more information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Amazon
+        /// EC2 instance types</a> in the <i>Amazon EC2 User Guide</i>.
         /// </para>
         /// </summary>
         public InstanceType InstanceType
@@ -266,7 +269,7 @@ namespace Amazon.EC2.Model
         /// <para>
         /// The maximum number of results to return for the request in a single page. The remaining
         /// results of the initial request can be seen by sending another request with the returned
-        /// <code>NextToken</code> value. The maximum is 100.
+        /// <c>NextToken</c> value. The maximum is 100.
         /// </para>
         ///  
         /// <para>
@@ -328,7 +331,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property OfferingClass. 
         /// <para>
-        /// The offering class of the Reserved Instance. Can be <code>standard</code> or <code>convertible</code>.
+        /// The offering class of the Reserved Instance. Can be <c>standard</c> or <c>convertible</c>.
         /// </para>
         /// </summary>
         public OfferingClassType OfferingClass
@@ -347,8 +350,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property OfferingType. 
         /// <para>
         /// The Reserved Instance offering type. If you are using tools that predate the 2011-11-01
-        /// API version, you only have access to the <code>Medium Utilization</code> Reserved
-        /// Instance offering type. 
+        /// API version, you only have access to the <c>Medium Utilization</c> Reserved Instance
+        /// offering type. 
         /// </para>
         /// </summary>
         public OfferingTypeValues OfferingType
@@ -366,8 +369,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property ProductDescription. 
         /// <para>
-        /// The Reserved Instance product platform description. Instances that include <code>(Amazon
-        /// VPC)</code> in the description are for use with Amazon VPC.
+        /// The Reserved Instance product platform description. Instances that include <c>(Amazon
+        /// VPC)</c> in the description are for use with Amazon VPC.
         /// </para>
         /// </summary>
         public RIProductDescription ProductDescription
@@ -397,7 +400,7 @@ namespace Amazon.EC2.Model
         // Check to see if ReservedInstancesOfferingIds property is set
         internal bool IsSetReservedInstancesOfferingIds()
         {
-            return this._reservedInstancesOfferingIds != null && this._reservedInstancesOfferingIds.Count > 0; 
+            return this._reservedInstancesOfferingIds != null && (this._reservedInstancesOfferingIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

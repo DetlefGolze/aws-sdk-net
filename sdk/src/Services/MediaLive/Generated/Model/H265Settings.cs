@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaLive.Model
 {
     /// <summary>
@@ -40,6 +41,7 @@ namespace Amazon.MediaLive.Model
         private int? _bufSize;
         private H265ColorMetadata _colorMetadata;
         private H265ColorSpaceSettings _colorSpaceSettings;
+        private H265Deblocking _deblocking;
         private H265FilterSettings _filterSettings;
         private FixedAfd _fixedAfd;
         private H265FlickerAq _flickerAq;
@@ -52,6 +54,9 @@ namespace Amazon.MediaLive.Model
         private H265LookAheadRateControl _lookAheadRateControl;
         private int? _maxBitrate;
         private int? _minIInterval;
+        private int? _minQp;
+        private H265MvOverPictureBoundaries _mvOverPictureBoundaries;
+        private H265MvTemporalPredictor _mvTemporalPredictor;
         private int? _parDenominator;
         private int? _parNumerator;
         private H265Profile _profile;
@@ -61,8 +66,12 @@ namespace Amazon.MediaLive.Model
         private H265SceneChangeDetect _sceneChangeDetect;
         private int? _slices;
         private H265Tier _tier;
+        private int? _tileHeight;
+        private H265TilePadding _tilePadding;
+        private int? _tileWidth;
         private TimecodeBurninSettings _timecodeBurninSettings;
         private H265TimecodeInsertionBehavior _timecodeInsertion;
+        private H265TreeblockSize _treeblockSize;
 
         /// <summary>
         /// Gets and sets the property AdaptiveQuantization. Adaptive quantization. Allows intra-frame
@@ -181,8 +190,33 @@ namespace Amazon.MediaLive.Model
         }
 
         /// <summary>
-        /// Gets and sets the property FilterSettings. Optional filters that you can apply to
-        /// an encode.
+        /// Gets and sets the property Deblocking. Enable or disable the deblocking filter for
+        /// this codec. The filter reduces blocking artifacts at block boundaries,which improves
+        /// overall video quality. If the filter is disabled, visible block edges might appear
+        /// in the output,especially at lower bitrates.
+        /// </summary>
+        public H265Deblocking Deblocking
+        {
+            get { return this._deblocking; }
+            set { this._deblocking = value; }
+        }
+
+        // Check to see if Deblocking property is set
+        internal bool IsSetDeblocking()
+        {
+            return this._deblocking != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FilterSettings. Optional. Both filters reduce bandwidth
+        /// by removing imperceptible details. You can enable one of the filters. Werecommend
+        /// that you try both filters and observe the results to decide which one to use.The Temporal
+        /// Filter reduces bandwidth by removing imperceptible details in the content. It combines
+        /// perceptualfiltering and motion compensated temporal filtering (MCTF). It operates
+        /// independently of the compression level.The Bandwidth Reduction filter is a perceptual
+        /// filter located within the encoding loop. It adapts to the currentcompression level
+        /// to filter imperceptible signals. This filter works only when the resolution is 1080p
+        /// or lower.
         /// </summary>
         public H265FilterSettings FilterSettings
         {
@@ -386,6 +420,58 @@ namespace Amazon.MediaLive.Model
         }
 
         /// <summary>
+        /// Gets and sets the property MinQp. Sets the minimum QP. If you aren't familiar with
+        /// quantization adjustment, leave the field empty. MediaLive willapply an appropriate
+        /// value.
+        /// </summary>
+        [AWSProperty(Min=1, Max=51)]
+        public int MinQp
+        {
+            get { return this._minQp.GetValueOrDefault(); }
+            set { this._minQp = value; }
+        }
+
+        // Check to see if MinQp property is set
+        internal bool IsSetMinQp()
+        {
+            return this._minQp.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property MvOverPictureBoundaries. If you are setting up the picture
+        /// as a tile, you must set this to "disabled". In all other configurations, you typically
+        /// enter "enabled".
+        /// </summary>
+        public H265MvOverPictureBoundaries MvOverPictureBoundaries
+        {
+            get { return this._mvOverPictureBoundaries; }
+            set { this._mvOverPictureBoundaries = value; }
+        }
+
+        // Check to see if MvOverPictureBoundaries property is set
+        internal bool IsSetMvOverPictureBoundaries()
+        {
+            return this._mvOverPictureBoundaries != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property MvTemporalPredictor. If you are setting up the picture
+        /// as a tile, you must set this to "disabled". In other configurations, you typically
+        /// enter "enabled".
+        /// </summary>
+        public H265MvTemporalPredictor MvTemporalPredictor
+        {
+            get { return this._mvTemporalPredictor; }
+            set { this._mvTemporalPredictor = value; }
+        }
+
+        // Check to see if MvTemporalPredictor property is set
+        internal bool IsSetMvTemporalPredictor()
+        {
+            return this._mvTemporalPredictor != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ParDenominator. Pixel Aspect Ratio denominator.
         /// </summary>
         [AWSProperty(Min=1)]
@@ -542,6 +628,62 @@ namespace Amazon.MediaLive.Model
         }
 
         /// <summary>
+        /// Gets and sets the property TileHeight. Set this field to set up the picture as a tile.
+        /// You must also set tileWidth.The tile height must result in 22 or fewer rows in the
+        /// frame. The tile widthmust result in 20 or fewer columns in the frame. And finally,
+        /// the product of thecolumn count and row count must be 64 of less.If the tile width
+        /// and height are specified, MediaLive will override the videocodec slices field with
+        /// a value that MediaLive calculates
+        /// </summary>
+        [AWSProperty(Min=64, Max=2160)]
+        public int TileHeight
+        {
+            get { return this._tileHeight.GetValueOrDefault(); }
+            set { this._tileHeight = value; }
+        }
+
+        // Check to see if TileHeight property is set
+        internal bool IsSetTileHeight()
+        {
+            return this._tileHeight.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TilePadding. Set to "padded" to force MediaLive to add
+        /// padding to the frame, to obtain a frame that is a whole multiple of the tile size.If
+        /// you are setting up the picture as a tile, you must enter "padded".In all other configurations,
+        /// you typically enter "none".
+        /// </summary>
+        public H265TilePadding TilePadding
+        {
+            get { return this._tilePadding; }
+            set { this._tilePadding = value; }
+        }
+
+        // Check to see if TilePadding property is set
+        internal bool IsSetTilePadding()
+        {
+            return this._tilePadding != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TileWidth. Set this field to set up the picture as a tile.
+        /// See tileHeight for more information.
+        /// </summary>
+        [AWSProperty(Min=256, Max=3840)]
+        public int TileWidth
+        {
+            get { return this._tileWidth.GetValueOrDefault(); }
+            set { this._tileWidth = value; }
+        }
+
+        // Check to see if TileWidth property is set
+        internal bool IsSetTileWidth()
+        {
+            return this._tileWidth.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property TimecodeBurninSettings. Timecode burn-in settings
         /// </summary>
         public TimecodeBurninSettings TimecodeBurninSettings
@@ -571,6 +713,24 @@ namespace Amazon.MediaLive.Model
         internal bool IsSetTimecodeInsertion()
         {
             return this._timecodeInsertion != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property TreeblockSize. Select the tree block size used for encoding.
+        /// If you enter "auto", the encoder will pick the best size. If you are setting up the
+        /// picture as a tile, you must set this to 32x32. In all other configurations, you typically
+        /// enter "auto".
+        /// </summary>
+        public H265TreeblockSize TreeblockSize
+        {
+            get { return this._treeblockSize; }
+            set { this._treeblockSize = value; }
+        }
+
+        // Check to see if TreeblockSize property is set
+        internal bool IsSetTreeblockSize()
+        {
+            return this._treeblockSize != null;
         }
 
     }

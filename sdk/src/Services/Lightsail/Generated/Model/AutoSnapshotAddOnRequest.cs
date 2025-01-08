@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -86,7 +87,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Must be in <code>HH:00</code> format, and in an hourly increment.
+        /// Must be in <c>HH:00</c> format, and in an hourly increment.
         /// </para>
         ///  </li> <li> 
         /// <para>

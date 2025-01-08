@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.RDS.Model
     public partial class DescribeDBClusterParametersRequest : AmazonRDSRequest
     {
         private string _dbClusterParameterGroupName;
-        private List<Filter> _filters = new List<Filter>();
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
         private string _marker;
         private int? _maxRecords;
         private string _source;
@@ -82,7 +83,12 @@ namespace Amazon.RDS.Model
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// This parameter isn't currently supported.
+        /// A filter that specifies one or more DB cluster parameters to describe.
+        /// </para>
+        ///  
+        /// <para>
+        /// The only supported filter is <c>parameter-name</c>. The results list only includes
+        /// information about the DB cluster parameters with these names.
         /// </para>
         /// </summary>
         public List<Filter> Filters
@@ -94,15 +100,15 @@ namespace Amazon.RDS.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Marker. 
         /// <para>
-        /// An optional pagination token provided by a previous <code>DescribeDBClusterParameters</code>
+        /// An optional pagination token provided by a previous <c>DescribeDBClusterParameters</c>
         /// request. If this parameter is specified, the response includes only records beyond
-        /// the marker, up to the value specified by <code>MaxRecords</code>.
+        /// the marker, up to the value specified by <c>MaxRecords</c>.
         /// </para>
         /// </summary>
         public string Marker
@@ -121,8 +127,8 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property MaxRecords. 
         /// <para>
         /// The maximum number of records to include in the response. If more records exist than
-        /// the specified <code>MaxRecords</code> value, a pagination token called a marker is
-        /// included in the response so you can retrieve the remaining results.
+        /// the specified <c>MaxRecords</c> value, a pagination token called a marker is included
+        /// in the response so you can retrieve the remaining results.
         /// </para>
         ///  
         /// <para>
@@ -156,15 +162,15 @@ namespace Amazon.RDS.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>customer</code> 
+        ///  <c>engine-default</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>engine</code> 
+        ///  <c>system</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>service</code> 
+        ///  <c>user</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

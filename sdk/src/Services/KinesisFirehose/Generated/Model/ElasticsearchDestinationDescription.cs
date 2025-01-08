@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisFirehose.Model
 {
     /// <summary>
@@ -87,9 +88,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property ClusterEndpoint. 
         /// <para>
-        /// The endpoint to use when communicating with the cluster. Kinesis Data Firehose uses
-        /// either this <code>ClusterEndpoint</code> or the <code>DomainARN</code> field to send
-        /// data to Amazon ES.
+        /// The endpoint to use when communicating with the cluster. Firehose uses either this
+        /// <c>ClusterEndpoint</c> or the <c>DomainARN</c> field to send data to Amazon ES.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]
@@ -108,8 +108,8 @@ namespace Amazon.KinesisFirehose.Model
         /// <summary>
         /// Gets and sets the property DocumentIdOptions. 
         /// <para>
-        /// Indicates the method for setting up document ID. The supported methods are Kinesis
-        /// Data Firehose generated document ID and OpenSearch Service generated document ID.
+        /// Indicates the method for setting up document ID. The supported methods are Firehose
+        /// generated document ID and OpenSearch Service generated document ID.
         /// </para>
         /// </summary>
         public DocumentIdOptions DocumentIdOptions
@@ -132,8 +132,8 @@ namespace Amazon.KinesisFirehose.Model
         /// </para>
         ///  
         /// <para>
-        /// Kinesis Data Firehose uses either <code>ClusterEndpoint</code> or <code>DomainARN</code>
-        /// to send data to Amazon ES.
+        /// Firehose uses either <c>ClusterEndpoint</c> or <c>DomainARN</c> to send data to Amazon
+        /// ES.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=512)]
@@ -283,7 +283,7 @@ namespace Amazon.KinesisFirehose.Model
         /// Gets and sets the property TypeName. 
         /// <para>
         /// The Elasticsearch type name. This applies to Elasticsearch 6.x and lower versions.
-        /// For Elasticsearch 7.x and OpenSearch Service 1.x, there's no value for <code>TypeName</code>.
+        /// For Elasticsearch 7.x and OpenSearch Service 1.x, there's no value for <c>TypeName</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]

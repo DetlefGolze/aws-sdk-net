@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BackupGateway.Model
 {
     /// <summary>
@@ -202,8 +203,7 @@ namespace Amazon.BackupGateway.Model
         /// </para>
         ///  
         /// <para>
-        /// The possible states are <code>PENDING</code>, <code>ONLINE</code>, <code>OFFLINE</code>,
-        /// or <code>ERROR</code>.
+        /// The possible states are <c>PENDING</c>, <c>ONLINE</c>, <c>OFFLINE</c>, or <c>ERROR</c>.
         /// </para>
         /// </summary>
         public HypervisorState State

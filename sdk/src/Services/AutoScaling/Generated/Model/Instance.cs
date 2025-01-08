@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -65,10 +66,9 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property HealthStatus. 
         /// <para>
-        /// The last reported health status of the instance. <code>Healthy</code> means that the
-        /// instance is healthy and should remain in service. <code>Unhealthy</code> means that
-        /// the instance is unhealthy and that Amazon EC2 Auto Scaling should terminate and replace
-        /// it.
+        /// The last reported health status of the instance. <c>Healthy</c> means that the instance
+        /// is healthy and should remain in service. <c>Unhealthy</c> means that the instance
+        /// is unhealthy and that Amazon EC2 Auto Scaling should terminate and replace it.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=32)]
@@ -162,9 +162,10 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property LifecycleState. 
         /// <para>
-        /// A description of the current lifecycle state. The <code>Quarantined</code> state is
-        /// not used. For information about lifecycle states, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html">Instance
-        /// lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. 
+        /// A description of the current lifecycle state. The <c>Quarantined</c> state is not
+        /// used. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html">Amazon
+        /// EC2 Auto Scaling instance lifecycle</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

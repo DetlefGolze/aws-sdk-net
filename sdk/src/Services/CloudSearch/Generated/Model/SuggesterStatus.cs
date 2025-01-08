@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The value of a <code>Suggester</code> and its current status.
+    /// The value of a <c>Suggester</c> and its current status.
     /// </summary>
     public partial class SuggesterStatus
     {

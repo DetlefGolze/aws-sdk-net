@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53.Model
 {
     /// <summary>
-    /// A traffic policy that has the same value for <code>Name</code> already exists.
+    /// A traffic policy that has the same value for <c>Name</c> already exists.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

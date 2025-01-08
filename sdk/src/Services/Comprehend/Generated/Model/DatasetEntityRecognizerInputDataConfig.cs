@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
-    /// Specifies the format and location of the input data. You must provide either the <code>Annotations</code>
-    /// parameter or the <code>EntityList</code> parameter.
+    /// Specifies the format and location of the input data. You must provide either the <c>Annotations</c>
+    /// parameter or the <c>EntityList</c> parameter.
     /// </summary>
     public partial class DatasetEntityRecognizerInputDataConfig
     {

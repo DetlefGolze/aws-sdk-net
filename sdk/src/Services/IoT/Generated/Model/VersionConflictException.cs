@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
-    /// An exception thrown when the version of an entity specified with the <code>expectedVersion</code>
+    /// An exception thrown when the version of an entity specified with the <c>expectedVersion</c>
     /// parameter does not match the latest version in the system.
     /// </summary>
     #if !NETSTANDARD

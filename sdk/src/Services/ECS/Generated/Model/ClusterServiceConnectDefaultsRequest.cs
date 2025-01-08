@@ -26,16 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
     /// Use this parameter to set a default Service Connect namespace. After you set a default
     /// Service Connect namespace, any new services with Service Connect turned on that are
     /// created in the cluster are added as client services in the namespace. This setting
-    /// only applies to new services that set the <code>enabled</code> parameter to <code>true</code>
-    /// in the <code>ServiceConnectConfiguration</code>. You can set the namespace of each
-    /// service individually in the <code>ServiceConnectConfiguration</code> to override this
-    /// default parameter.
+    /// only applies to new services that set the <c>enabled</c> parameter to <c>true</c>
+    /// in the <c>ServiceConnectConfiguration</c>. You can set the namespace of each service
+    /// individually in the <c>ServiceConnectConfiguration</c> to override this default parameter.
     /// 
     ///  
     /// <para>
@@ -75,9 +75,9 @@ namespace Amazon.ECS.Model
         /// </para>
         ///  
         /// <para>
-        /// If you update the service with an empty string <code>""</code> for the namespace name,
-        /// the cluster configuration for Service Connect is removed. Note that the namespace
-        /// will remain in Cloud Map and must be deleted separately.
+        /// If you update the cluster with an empty string <c>""</c> for the namespace name, the
+        /// cluster configuration for Service Connect is removed. Note that the namespace will
+        /// remain in Cloud Map and must be deleted separately.
         /// </para>
         ///  
         /// <para>

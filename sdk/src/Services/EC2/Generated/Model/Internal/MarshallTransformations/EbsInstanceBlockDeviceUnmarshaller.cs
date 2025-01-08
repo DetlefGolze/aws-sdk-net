@@ -29,6 +29,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -54,6 +55,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
             {
                 if (context.IsStartElement || context.IsAttribute)
                 {
+                    if (context.TestExpression("associatedResource", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.AssociatedResource = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("attachTime", targetDepth))
                     {
                         var unmarshaller = DateTimeUnmarshaller.Instance;
@@ -66,6 +73,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                         unmarshalledObject.DeleteOnTermination = unmarshaller.Unmarshall(context);
                         continue;
                     }
+                    if (context.TestExpression("operator", targetDepth))
+                    {
+                        var unmarshaller = OperatorResponseUnmarshaller.Instance;
+                        unmarshalledObject.Operator = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
                     if (context.TestExpression("status", targetDepth))
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
@@ -76,6 +89,12 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = StringUnmarshaller.Instance;
                         unmarshalledObject.VolumeId = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("volumeOwnerId", targetDepth))
+                    {
+                        var unmarshaller = StringUnmarshaller.Instance;
+                        unmarshalledObject.VolumeOwnerId = unmarshaller.Unmarshall(context);
                         continue;
                     }
                 }

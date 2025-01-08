@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// If query and calculation results are encrypted in Amazon S3, indicates the encryption
-    /// option used (for example, <code>SSE_KMS</code> or <code>CSE_KMS</code>) and key information.
+    /// option used (for example, <c>SSE_KMS</c> or <c>CSE_KMS</c>) and key information.
     /// </summary>
     public partial class EncryptionConfiguration
     {
@@ -40,9 +41,9 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property EncryptionOption. 
         /// <para>
-        /// Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (<code>SSE_S3</code>),
-        /// server-side encryption with KMS-managed keys (<code>SSE_KMS</code>), or client-side
-        /// encryption with KMS-managed keys (<code>CSE_KMS</code>) is used.
+        /// Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (<c>SSE_S3</c>),
+        /// server-side encryption with KMS-managed keys (<c>SSE_KMS</c>), or client-side encryption
+        /// with KMS-managed keys (<c>CSE_KMS</c>) is used.
         /// </para>
         ///  
         /// <para>
@@ -67,7 +68,7 @@ namespace Amazon.Athena.Model
         /// <summary>
         /// Gets and sets the property KmsKey. 
         /// <para>
-        /// For <code>SSE_KMS</code> and <code>CSE_KMS</code>, this is the KMS key ARN or ID.
+        /// For <c>SSE_KMS</c> and <c>CSE_KMS</c>, this is the KMS key ARN or ID.
         /// </para>
         /// </summary>
         public string KmsKey

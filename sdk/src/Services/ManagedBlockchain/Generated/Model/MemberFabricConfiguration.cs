@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ManagedBlockchain.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ManagedBlockchain.Model
         /// <summary>
         /// Gets and sets the property AdminPassword. 
         /// <para>
-        /// The password for the member's initial administrative user. The <code>AdminPassword</code>
+        /// The password for the member's initial administrative user. The <c>AdminPassword</c>
         /// must be at least 8 characters long and no more than 32 characters. It must contain
         /// at least one uppercase letter, one lowercase letter, and one digit. It cannot have
         /// a single quotation mark (‘), a double quotation marks (“), a forward slash(/), a backward

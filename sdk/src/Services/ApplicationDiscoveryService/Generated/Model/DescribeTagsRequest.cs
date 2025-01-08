@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ApplicationDiscoveryService.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeTags operation.
     /// Retrieves a list of configuration items that have tags as specified by the key-value
-    /// pairs, name and value, passed to the optional parameter <code>filters</code>.
+    /// pairs, name and value, passed to the optional parameter <c>filters</c>.
     /// 
     ///  
     /// <para>
@@ -52,12 +53,12 @@ namespace Amazon.ApplicationDiscoveryService.Model
     ///  </li> </ul> 
     /// <para>
     /// Also, all configuration items associated with your user that have tags can be listed
-    /// if you call <code>DescribeTags</code> as is without passing any parameters.
+    /// if you call <c>DescribeTags</c> as is without passing any parameters.
     /// </para>
     /// </summary>
     public partial class DescribeTagsRequest : AmazonApplicationDiscoveryServiceRequest
     {
-        private List<TagFilter> _filters = new List<TagFilter>();
+        private List<TagFilter> _filters = AWSConfigs.InitializeCollections ? new List<TagFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
@@ -65,8 +66,8 @@ namespace Amazon.ApplicationDiscoveryService.Model
         /// Gets and sets the property Filters. 
         /// <para>
         /// You can filter the list using a <i>key</i>-<i>value</i> format. You can separate these
-        /// items by using logical operators. Allowed filters include <code>tagKey</code>, <code>tagValue</code>,
-        /// and <code>configurationId</code>. 
+        /// items by using logical operators. Allowed filters include <c>tagKey</c>, <c>tagValue</c>,
+        /// and <c>configurationId</c>. 
         /// </para>
         /// </summary>
         public List<TagFilter> Filters
@@ -78,7 +79,7 @@ namespace Amazon.ApplicationDiscoveryService.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

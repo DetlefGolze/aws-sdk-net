@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -69,7 +70,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property Count. 
         /// <para>
-        /// The number of values in the field. If the response value is -1, refer to <code>CountLong</code>.
+        /// The number of values in the field. If the response value is -1, refer to <c>CountLong</c>.
         /// </para>
         /// </summary>
         public int Count
@@ -88,7 +89,7 @@ namespace Amazon.ForecastService.Model
         /// Gets and sets the property CountDistinct. 
         /// <para>
         /// The number of distinct values in the field. If the response value is -1, refer to
-        /// <code>CountDistinctLong</code>.
+        /// <c>CountDistinctLong</c>.
         /// </para>
         /// </summary>
         public int CountDistinct
@@ -106,8 +107,8 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property CountDistinctLong. 
         /// <para>
-        /// The number of distinct values in the field. <code>CountDistinctLong</code> is used
-        /// instead of <code>CountDistinct</code> if the value is greater than 2,147,483,647.
+        /// The number of distinct values in the field. <c>CountDistinctLong</c> is used instead
+        /// of <c>CountDistinct</c> if the value is greater than 2,147,483,647.
         /// </para>
         /// </summary>
         public long CountDistinctLong
@@ -125,7 +126,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property CountLong. 
         /// <para>
-        /// The number of values in the field. <code>CountLong</code> is used instead of <code>Count</code>
+        /// The number of values in the field. <c>CountLong</c> is used instead of <c>Count</c>
         /// if the value is greater than 2,147,483,647.
         /// </para>
         /// </summary>
@@ -145,7 +146,7 @@ namespace Amazon.ForecastService.Model
         /// Gets and sets the property CountNan. 
         /// <para>
         /// The number of NAN (not a number) values in the field. If the response value is -1,
-        /// refer to <code>CountNanLong</code>.
+        /// refer to <c>CountNanLong</c>.
         /// </para>
         /// </summary>
         public int CountNan
@@ -163,8 +164,8 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property CountNanLong. 
         /// <para>
-        /// The number of NAN (not a number) values in the field. <code>CountNanLong</code> is
-        /// used instead of <code>CountNan</code> if the value is greater than 2,147,483,647.
+        /// The number of NAN (not a number) values in the field. <c>CountNanLong</c> is used
+        /// instead of <c>CountNan</c> if the value is greater than 2,147,483,647.
         /// </para>
         /// </summary>
         public long CountNanLong
@@ -182,7 +183,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property CountNull. 
         /// <para>
-        /// The number of null values in the field. If the response value is -1, refer to <code>CountNullLong</code>.
+        /// The number of null values in the field. If the response value is -1, refer to <c>CountNullLong</c>.
         /// </para>
         /// </summary>
         public int CountNull
@@ -200,8 +201,8 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property CountNullLong. 
         /// <para>
-        /// The number of null values in the field. <code>CountNullLong</code> is used instead
-        /// of <code>CountNull</code> if the value is greater than 2,147,483,647.
+        /// The number of null values in the field. <c>CountNullLong</c> is used instead of <c>CountNull</c>
+        /// if the value is greater than 2,147,483,647.
         /// </para>
         /// </summary>
         public long CountNullLong

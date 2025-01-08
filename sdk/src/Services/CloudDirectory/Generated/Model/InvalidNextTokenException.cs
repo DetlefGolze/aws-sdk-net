@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudDirectory.Model
 {
     /// <summary>
-    /// Indicates that the <code>NextToken</code> value is not valid.
+    /// Indicates that the <c>NextToken</c> value is not valid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

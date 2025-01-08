@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,19 +34,20 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class ConnectionNotification
     {
-        private List<string> _connectionEvents = new List<string>();
+        private List<string> _connectionEvents = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _connectionNotificationArn;
         private string _connectionNotificationId;
         private ConnectionNotificationState _connectionNotificationState;
         private ConnectionNotificationType _connectionNotificationType;
         private string _serviceId;
+        private string _serviceRegion;
         private string _vpcEndpointId;
 
         /// <summary>
         /// Gets and sets the property ConnectionEvents. 
         /// <para>
-        /// The events for the notification. Valid values are <code>Accept</code>, <code>Connect</code>,
-        /// <code>Delete</code>, and <code>Reject</code>.
+        /// The events for the notification. Valid values are <c>Accept</c>, <c>Connect</c>, <c>Delete</c>,
+        /// and <c>Reject</c>.
         /// </para>
         /// </summary>
         public List<string> ConnectionEvents
@@ -57,7 +59,7 @@ namespace Amazon.EC2.Model
         // Check to see if ConnectionEvents property is set
         internal bool IsSetConnectionEvents()
         {
-            return this._connectionEvents != null && this._connectionEvents.Count > 0; 
+            return this._connectionEvents != null && (this._connectionEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -148,6 +150,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetServiceId()
         {
             return this._serviceId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ServiceRegion. 
+        /// <para>
+        /// The Region for the endpoint service.
+        /// </para>
+        /// </summary>
+        public string ServiceRegion
+        {
+            get { return this._serviceRegion; }
+            set { this._serviceRegion = value; }
+        }
+
+        // Check to see if ServiceRegion property is set
+        internal bool IsSetServiceRegion()
+        {
+            return this._serviceRegion != null;
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GreengrassV2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.GreengrassV2.Model
     public partial class ComponentConfigurationUpdate
     {
         private string _merge;
-        private List<string> _reset = new List<string>();
+        private List<string> _reset = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property Merge. 
@@ -68,9 +69,9 @@ namespace Amazon.GreengrassV2.Model
         /// <para>
         /// The list of configuration nodes to reset to default values on target devices. Use
         /// JSON pointers to specify each node to reset. JSON pointers start with a forward slash
-        /// (<code>/</code>) and use forward slashes to separate the key for each level in the
-        /// object. For more information, see the <a href="https://tools.ietf.org/html/rfc6901">JSON
-        /// pointer specification</a> and <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/update-component-configurations.html#reset-configuration-update">Reset
+        /// (<c>/</c>) and use forward slashes to separate the key for each level in the object.
+        /// For more information, see the <a href="https://tools.ietf.org/html/rfc6901">JSON pointer
+        /// specification</a> and <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/update-component-configurations.html#reset-configuration-update">Reset
         /// configuration updates</a> in the <i>IoT Greengrass V2 Developer Guide</i>.
         /// </para>
         /// </summary>
@@ -83,7 +84,7 @@ namespace Amazon.GreengrassV2.Model
         // Check to see if Reset property is set
         internal bool IsSetReset()
         {
-            return this._reset != null && this._reset.Count > 0; 
+            return this._reset != null && (this._reset.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

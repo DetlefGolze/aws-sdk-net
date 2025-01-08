@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataPipeline.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.DataPipeline.Model
         /// Gets and sets the property Marker. 
         /// <para>
         /// The starting point for the results to be returned. For the first call, this value
-        /// should be empty. As long as there are more results, continue to call <code>ListPipelines</code>
+        /// should be empty. As long as there are more results, continue to call <c>ListPipelines</c>
         /// with the marker value from the previous call to retrieve the next set of results.
         /// </para>
         /// </summary>

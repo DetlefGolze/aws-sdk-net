@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -60,42 +61,42 @@ namespace Amazon.AutoScaling.Model
     /// </para>
     ///  
     /// <para>
-    /// Note the following about changing <code>DesiredCapacity</code>, <code>MaxSize</code>,
-    /// or <code>MinSize</code>:
+    /// Note the following about changing <c>DesiredCapacity</c>, <c>MaxSize</c>, or <c>MinSize</c>:
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// If a scale-in activity occurs as a result of a new <code>DesiredCapacity</code> value
-    /// that is lower than the current size of the group, the Auto Scaling group uses its
-    /// termination policy to determine which instances to terminate.
+    /// If a scale-in activity occurs as a result of a new <c>DesiredCapacity</c> value that
+    /// is lower than the current size of the group, the Auto Scaling group uses its termination
+    /// policy to determine which instances to terminate.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If you specify a new value for <code>MinSize</code> without specifying a value for
-    /// <code>DesiredCapacity</code>, and the new <code>MinSize</code> is larger than the
-    /// current size of the group, this sets the group's <code>DesiredCapacity</code> to the
-    /// new <code>MinSize</code> value.
+    /// If you specify a new value for <c>MinSize</c> without specifying a value for <c>DesiredCapacity</c>,
+    /// and the new <c>MinSize</c> is larger than the current size of the group, this sets
+    /// the group's <c>DesiredCapacity</c> to the new <c>MinSize</c> value.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If you specify a new value for <code>MaxSize</code> without specifying a value for
-    /// <code>DesiredCapacity</code>, and the new <code>MaxSize</code> is smaller than the
-    /// current size of the group, this sets the group's <code>DesiredCapacity</code> to the
-    /// new <code>MaxSize</code> value.
+    /// If you specify a new value for <c>MaxSize</c> without specifying a value for <c>DesiredCapacity</c>,
+    /// and the new <c>MaxSize</c> is smaller than the current size of the group, this sets
+    /// the group's <c>DesiredCapacity</c> to the new <c>MaxSize</c> value.
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// To see which properties have been set, call the <a>DescribeAutoScalingGroups</a> API.
-    /// To view the scaling policies for an Auto Scaling group, call the <a>DescribePolicies</a>
-    /// API. If the group has scaling policies, you can update them by calling the <a>PutScalingPolicy</a>
+    /// To see which properties have been set, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribeAutoScalingGroups.html">DescribeAutoScalingGroups</a>
+    /// API. To view the scaling policies for an Auto Scaling group, call the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_DescribePolicies.html">DescribePolicies</a>
+    /// API. If the group has scaling policies, you can update them by calling the <a href="https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PutScalingPolicy.html">PutScalingPolicy</a>
     /// API.
     /// </para>
     /// </summary>
     public partial class UpdateAutoScalingGroupRequest : AmazonAutoScalingRequest
     {
         private string _autoScalingGroupName;
-        private List<string> _availabilityZones = new List<string>();
+        private AvailabilityZoneDistribution _availabilityZoneDistribution;
+        private AvailabilityZoneImpairmentPolicy _availabilityZoneImpairmentPolicy;
+        private List<string> _availabilityZones = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _capacityRebalance;
+        private CapacityReservationSpecification _capacityReservationSpecification;
         private string _context;
         private int? _defaultCooldown;
         private int? _defaultInstanceWarmup;
@@ -103,6 +104,7 @@ namespace Amazon.AutoScaling.Model
         private string _desiredCapacityType;
         private int? _healthCheckGracePeriod;
         private string _healthCheckType;
+        private InstanceMaintenancePolicy _instanceMaintenancePolicy;
         private string _launchConfigurationName;
         private LaunchTemplateSpecification _launchTemplate;
         private int? _maxInstanceLifetime;
@@ -112,7 +114,8 @@ namespace Amazon.AutoScaling.Model
         private bool? _newInstancesProtectedFromScaleIn;
         private string _placementGroup;
         private string _serviceLinkedRoleARN;
-        private List<string> _terminationPolicies = new List<string>();
+        private bool? _skipZonalShiftValidation;
+        private List<string> _terminationPolicies = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _vpcZoneIdentifier;
 
         /// <summary>
@@ -135,6 +138,42 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AvailabilityZoneDistribution. 
+        /// <para>
+        ///  The instance capacity distribution across Availability Zones. 
+        /// </para>
+        /// </summary>
+        public AvailabilityZoneDistribution AvailabilityZoneDistribution
+        {
+            get { return this._availabilityZoneDistribution; }
+            set { this._availabilityZoneDistribution = value; }
+        }
+
+        // Check to see if AvailabilityZoneDistribution property is set
+        internal bool IsSetAvailabilityZoneDistribution()
+        {
+            return this._availabilityZoneDistribution != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property AvailabilityZoneImpairmentPolicy. 
+        /// <para>
+        ///  The policy for Availability Zone impairment. 
+        /// </para>
+        /// </summary>
+        public AvailabilityZoneImpairmentPolicy AvailabilityZoneImpairmentPolicy
+        {
+            get { return this._availabilityZoneImpairmentPolicy; }
+            set { this._availabilityZoneImpairmentPolicy = value; }
+        }
+
+        // Check to see if AvailabilityZoneImpairmentPolicy property is set
+        internal bool IsSetAvailabilityZoneImpairmentPolicy()
+        {
+            return this._availabilityZoneImpairmentPolicy != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property AvailabilityZones. 
         /// <para>
         /// One or more Availability Zones for the group.
@@ -149,7 +188,7 @@ namespace Amazon.AutoScaling.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -170,6 +209,24 @@ namespace Amazon.AutoScaling.Model
         internal bool IsSetCapacityRebalance()
         {
             return this._capacityRebalance.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property CapacityReservationSpecification. 
+        /// <para>
+        ///  The capacity reservation specification for the Auto Scaling group. 
+        /// </para>
+        /// </summary>
+        public CapacityReservationSpecification CapacityReservationSpecification
+        {
+            get { return this._capacityReservationSpecification; }
+            set { this._capacityReservationSpecification = value; }
+        }
+
+        // Check to see if CapacityReservationSpecification property is set
+        internal bool IsSetCapacityReservationSpecification()
+        {
+            return this._capacityReservationSpecification != null;
         }
 
         /// <summary>
@@ -198,7 +255,7 @@ namespace Amazon.AutoScaling.Model
         ///  
         /// <para>
         /// The amount of time, in seconds, between one scaling activity ending and another one
-        /// starting due to simple scaling policies. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html">Scaling
+        /// starting due to simple scaling policies. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html">Scaling
         /// cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
@@ -218,7 +275,7 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property DefaultInstanceWarmup. 
         /// <para>
         /// The amount of time, in seconds, until a new instance is considered to have finished
-        /// initializing and resource consumption to become stable after it enters the <code>InService</code>
+        /// initializing and resource consumption to become stable after it enters the <c>InService</c>
         /// state. 
         /// </para>
         ///  
@@ -236,9 +293,9 @@ namespace Amazon.AutoScaling.Model
         /// <para>
         /// To manage various warm-up settings at the group level, we recommend that you set the
         /// default instance warmup, <i>even if it is set to 0 seconds</i>. To remove a value
-        /// that you previously set, include the property but specify <code>-1</code> for the
-        /// value. However, we strongly recommend keeping the default instance warmup enabled
-        /// by specifying a value of <code>0</code> or other nominal value.
+        /// that you previously set, include the property but specify <c>-1</c> for the value.
+        /// However, we strongly recommend keeping the default instance warmup enabled by specifying
+        /// a value of <c>0</c> or other nominal value.
         /// </para>
         ///  </important>
         /// </summary>
@@ -279,19 +336,19 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property DesiredCapacityType. 
         /// <para>
         /// The unit of measurement for the value specified for desired capacity. Amazon EC2 Auto
-        /// Scaling supports <code>DesiredCapacityType</code> for attribute-based instance type
-        /// selection only. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html">Creating
-        /// an Auto Scaling group using attribute-based instance type selection</a> in the <i>Amazon
+        /// Scaling supports <c>DesiredCapacityType</c> for attribute-based instance type selection
+        /// only. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-mixed-instances-group-attribute-based-instance-type-selection.html">Create
+        /// a mixed instances group using attribute-based instance type selection</a> in the <i>Amazon
         /// EC2 Auto Scaling User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// By default, Amazon EC2 Auto Scaling specifies <code>units</code>, which translates
-        /// into number of instances.
+        /// By default, Amazon EC2 Auto Scaling specifies <c>units</c>, which translates into
+        /// number of instances.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>units</code> | <code>vcpu</code> | <code>memory-mib</code> 
+        /// Valid values: <c>units</c> | <c>vcpu</c> | <c>memory-mib</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -313,8 +370,8 @@ namespace Amazon.AutoScaling.Model
         /// The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking
         /// the health status of an EC2 instance that has come into service and marking it unhealthy
         /// due to a failed health check. This is useful if your instances do not immediately
-        /// pass their health checks after they enter the <code>InService</code> state. For more
-        /// information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html">Set
+        /// pass their health checks after they enter the <c>InService</c> state. For more information,
+        /// see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/health-check-grace-period.html">Set
         /// the health check grace period for an Auto Scaling group</a> in the <i>Amazon EC2 Auto
         /// Scaling User Guide</i>.
         /// </para>
@@ -338,14 +395,14 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// The valid values are <code>EC2</code>, <code>ELB</code>, and <code>VPC_LATTICE</code>.
-        /// <code>EC2</code> is the default health check and cannot be disabled. For more information,
-        /// see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html">Health
-        /// checks for Auto Scaling instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// The valid values are <c>EC2</c>, <c>EBS</c>, <c>ELB</c>, and <c>VPC_LATTICE</c>. <c>EC2</c>
+        /// is the default health check and cannot be disabled. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-health-checks.html">Health
+        /// checks for instances in an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling
+        /// User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// Only specify <code>EC2</code> if you must clear a value that was previously set.
+        /// Only specify <c>EC2</c> if you must clear a value that was previously set.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=32)]
@@ -362,10 +419,29 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Gets and sets the property InstanceMaintenancePolicy. 
+        /// <para>
+        /// An instance maintenance policy. For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-maintenance-policy.html">Set
+        /// instance maintenance policy</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+        /// </para>
+        /// </summary>
+        public InstanceMaintenancePolicy InstanceMaintenancePolicy
+        {
+            get { return this._instanceMaintenancePolicy; }
+            set { this._instanceMaintenancePolicy = value; }
+        }
+
+        // Check to see if InstanceMaintenancePolicy property is set
+        internal bool IsSetInstanceMaintenancePolicy()
+        {
+            return this._instanceMaintenancePolicy != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property LaunchConfigurationName. 
         /// <para>
-        /// The name of the launch configuration. If you specify <code>LaunchConfigurationName</code>
-        /// in your update request, you can't specify <code>LaunchTemplate</code> or <code>MixedInstancesPolicy</code>.
+        /// The name of the launch configuration. If you specify <c>LaunchConfigurationName</c>
+        /// in your update request, you can't specify <c>LaunchTemplate</c> or <c>MixedInstancesPolicy</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]
@@ -384,9 +460,8 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property LaunchTemplate. 
         /// <para>
-        /// The launch template and version to use to specify the updates. If you specify <code>LaunchTemplate</code>
-        /// in your update request, you can't specify <code>LaunchConfigurationName</code> or
-        /// <code>MixedInstancesPolicy</code>.
+        /// The launch template and version to use to specify the updates. If you specify <c>LaunchTemplate</c>
+        /// in your update request, you can't specify <c>LaunchConfigurationName</c> or <c>MixedInstancesPolicy</c>.
         /// </para>
         /// </summary>
         public LaunchTemplateSpecification LaunchTemplate
@@ -432,10 +507,10 @@ namespace Amazon.AutoScaling.Model
         ///  <note> 
         /// <para>
         /// With a mixed instances policy that uses instance weighting, Amazon EC2 Auto Scaling
-        /// may need to go above <code>MaxSize</code> to meet your capacity requirements. In this
-        /// event, Amazon EC2 Auto Scaling will never go above <code>MaxSize</code> by more than
-        /// your largest instance weight (weights that define how many units each instance contributes
-        /// to the desired capacity of the group).
+        /// may need to go above <c>MaxSize</c> to meet your capacity requirements. In this event,
+        /// Amazon EC2 Auto Scaling will never go above <c>MaxSize</c> by more than your largest
+        /// instance weight (weights that define how many units each instance contributes to the
+        /// desired capacity of the group).
         /// </para>
         ///  </note>
         /// </summary>
@@ -494,7 +569,7 @@ namespace Amazon.AutoScaling.Model
         /// <para>
         /// Indicates whether newly launched instances are protected from termination by Amazon
         /// EC2 Auto Scaling when scaling in. For more information about preventing instances
-        /// from terminating on scale in, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html">Using
+        /// from terminating on scale in, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html">Use
         /// instance scale-in protection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
         /// </para>
         /// </summary>
@@ -513,8 +588,9 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property PlacementGroup. 
         /// <para>
-        /// The name of an existing placement group into which to launch your instances. For more
-        /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
+        /// The name of an existing placement group into which to launch your instances. To remove
+        /// the placement group setting, pass an empty string for <c>placement-group</c>. For
+        /// more information about placement groups, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html">Placement
         /// groups</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.
         /// </para>
         ///  <note> 
@@ -525,7 +601,7 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  </note>
         /// </summary>
-        [AWSProperty(Min=1, Max=255)]
+        [AWSProperty(Min=0, Max=255)]
         public string PlacementGroup
         {
             get { return this._placementGroup; }
@@ -561,19 +637,40 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Gets and sets the property SkipZonalShiftValidation. 
+        /// <para>
+        ///  If you enable zonal shift with cross-zone disabled load balancers, capacity could
+        /// become imbalanced across Availability Zones. To skip the validation, specify <c>true</c>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-zonal-shift.html">Auto
+        /// Scaling group zonal shift</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>. 
+        /// </para>
+        /// </summary>
+        public bool SkipZonalShiftValidation
+        {
+            get { return this._skipZonalShiftValidation.GetValueOrDefault(); }
+            set { this._skipZonalShiftValidation = value; }
+        }
+
+        // Check to see if SkipZonalShiftValidation property is set
+        internal bool IsSetSkipZonalShiftValidation()
+        {
+            return this._skipZonalShiftValidation.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property TerminationPolicies. 
         /// <para>
         /// A policy or a list of policies that are used to select the instances to terminate.
         /// The policies are executed in the order that you list them. For more information, see
-        /// <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html">Work
-        /// with Amazon EC2 Auto Scaling termination policies</a> in the <i>Amazon EC2 Auto Scaling
+        /// <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-termination-policies.html">Configure
+        /// termination policies for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling
         /// User Guide</i>.
         /// </para>
         ///  
         /// <para>
-        /// Valid values: <code>Default</code> | <code>AllocationStrategy</code> | <code>ClosestToNextInstanceHour</code>
-        /// | <code>NewestInstance</code> | <code>OldestInstance</code> | <code>OldestLaunchConfiguration</code>
-        /// | <code>OldestLaunchTemplate</code> | <code>arn:aws:lambda:region:account-id:function:my-function:my-alias</code>
+        /// Valid values: <c>Default</c> | <c>AllocationStrategy</c> | <c>ClosestToNextInstanceHour</c>
+        /// | <c>NewestInstance</c> | <c>OldestInstance</c> | <c>OldestLaunchConfiguration</c>
+        /// | <c>OldestLaunchTemplate</c> | <c>arn:aws:lambda:region:account-id:function:my-function:my-alias</c>
         /// 
         /// </para>
         /// </summary>
@@ -586,18 +683,18 @@ namespace Amazon.AutoScaling.Model
         // Check to see if TerminationPolicies property is set
         internal bool IsSetTerminationPolicies()
         {
-            return this._terminationPolicies != null && this._terminationPolicies.Count > 0; 
+            return this._terminationPolicies != null && (this._terminationPolicies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VPCZoneIdentifier. 
         /// <para>
         /// A comma-separated list of subnet IDs for a virtual private cloud (VPC). If you specify
-        /// <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, the subnets that
-        /// you specify must reside in those Availability Zones.
+        /// <c>VPCZoneIdentifier</c> with <c>AvailabilityZones</c>, the subnets that you specify
+        /// must reside in those Availability Zones.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=2047)]
+        [AWSProperty(Min=1, Max=5000)]
         public string VPCZoneIdentifier
         {
             get { return this._vpcZoneIdentifier; }

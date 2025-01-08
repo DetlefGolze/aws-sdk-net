@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the codestar-connections-2019-12-01.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeStarconnections.Model
 {
     /// <summary>
@@ -34,5 +35,15 @@ namespace Amazon.CodeStarconnections.Model
         /// Paginator for ListHosts operation
         ///</summary>
         IListHostsPaginator ListHosts(ListHostsRequest request);
+
+        /// <summary>
+        /// Paginator for ListRepositoryLinks operation
+        ///</summary>
+        IListRepositoryLinksPaginator ListRepositoryLinks(ListRepositoryLinksRequest request);
+
+        /// <summary>
+        /// Paginator for ListSyncConfigurations operation
+        ///</summary>
+        IListSyncConfigurationsPaginator ListSyncConfigurations(ListSyncConfigurationsRequest request);
     }
 }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.StepFunctions.Model
 {
     /// <summary>
@@ -37,6 +38,8 @@ namespace Amazon.StepFunctions.Model
         private int? _itemCount;
         private string _mapRunArn;
         private string _name;
+        private int? _redriveCount;
+        private DateTime? _redriveDate;
         private DateTime? _startDate;
         private string _stateMachineAliasArn;
         private string _stateMachineArn;
@@ -67,9 +70,9 @@ namespace Amazon.StepFunctions.Model
         /// Gets and sets the property ItemCount. 
         /// <para>
         /// The total number of items processed in a child workflow execution. This field is returned
-        /// only if <code>mapRunArn</code> was specified in the <code>ListExecutions</code> API
-        /// action. If <code>stateMachineArn</code> was specified in <code>ListExecutions</code>,
-        /// the <code>itemCount</code> field isn't returned.
+        /// only if <c>mapRunArn</c> was specified in the <c>ListExecutions</c> API action. If
+        /// <c>stateMachineArn</c> was specified in <c>ListExecutions</c>, the <c>itemCount</c>
+        /// field isn't returned.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -88,9 +91,9 @@ namespace Amazon.StepFunctions.Model
         /// <summary>
         /// Gets and sets the property MapRunArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of a Map Run. This field is returned only if <code>mapRunArn</code>
-        /// was specified in the <code>ListExecutions</code> API action. If <code>stateMachineArn</code>
-        /// was specified in <code>ListExecutions</code>, the <code>mapRunArn</code> isn't returned.
+        /// The Amazon Resource Name (ARN) of a Map Run. This field is returned only if <c>mapRunArn</c>
+        /// was specified in the <c>ListExecutions</c> API action. If <c>stateMachineArn</c> was
+        /// specified in <c>ListExecutions</c>, the <c>mapRunArn</c> isn't returned.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2000)]
@@ -121,19 +124,19 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// brackets <code>&lt; &gt; { } [ ]</code> 
+        /// brackets <c>&lt; &gt; { } [ ]</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// wildcard characters <code>? *</code> 
+        /// wildcard characters <c>? *</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// special characters <code>" # % \ ^ | ~ ` $ &amp; , ; : /</code> 
+        /// special characters <c>" # % \ ^ | ~ ` $ &amp; , ; : /</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)
+        /// control characters (<c>U+0000-001F</c>, <c>U+007F-009F</c>)
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -152,6 +155,44 @@ namespace Amazon.StepFunctions.Model
         internal bool IsSetName()
         {
             return this._name != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property RedriveCount. 
+        /// <para>
+        /// The number of times you've redriven an execution. If you have not yet redriven an
+        /// execution, the <c>redriveCount</c> is 0. This count is only updated when you successfully
+        /// redrive an execution.
+        /// </para>
+        /// </summary>
+        public int RedriveCount
+        {
+            get { return this._redriveCount.GetValueOrDefault(); }
+            set { this._redriveCount = value; }
+        }
+
+        // Check to see if RedriveCount property is set
+        internal bool IsSetRedriveCount()
+        {
+            return this._redriveCount.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RedriveDate. 
+        /// <para>
+        /// The date the execution was last redriven.
+        /// </para>
+        /// </summary>
+        public DateTime RedriveDate
+        {
+            get { return this._redriveDate.GetValueOrDefault(); }
+            set { this._redriveDate = value; }
+        }
+
+        // Check to see if RedriveDate property is set
+        internal bool IsSetRedriveDate()
+        {
+            return this._redriveDate.HasValue; 
         }
 
         /// <summary>
@@ -227,8 +268,8 @@ namespace Amazon.StepFunctions.Model
         /// </para>
         ///  
         /// <para>
-        /// If the execution was started using a <code>stateMachineAliasArn</code>, both the <code>stateMachineAliasArn</code>
-        /// and <code>stateMachineVersionArn</code> parameters contain the respective values.
+        /// If the execution was started using a <c>stateMachineAliasArn</c>, both the <c>stateMachineAliasArn</c>
+        /// and <c>stateMachineVersionArn</c> parameters contain the respective values.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]

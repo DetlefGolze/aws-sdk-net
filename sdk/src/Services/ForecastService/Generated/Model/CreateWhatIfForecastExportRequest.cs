@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ForecastService.Model
     /// 
     ///  
     /// <para>
-    ///  <code>≈&lt;ForecastExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;</code>
+    ///  <c>≈&lt;ForecastExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;</c>
     /// 
     /// </para>
     ///  
@@ -60,8 +61,8 @@ namespace Amazon.ForecastService.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before
-    /// you can access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeWhatIfForecastExport</a>
+    /// The <c>Status</c> of the forecast export job must be <c>ACTIVE</c> before you can
+    /// access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeWhatIfForecastExport</a>
     /// operation.
     /// </para>
     ///  </note>
@@ -70,8 +71,8 @@ namespace Amazon.ForecastService.Model
     {
         private DataDestination _destination;
         private string _format;
-        private List<Tag> _tags = new List<Tag>();
-        private List<string> _whatIfForecastArns = new List<string>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
+        private List<string> _whatIfForecastArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _whatIfForecastExportName;
 
         /// <summary>
@@ -83,8 +84,8 @@ namespace Amazon.ForecastService.Model
         /// </para>
         ///  
         /// <para>
-        /// If encryption is used, <code>Destination</code> must include an Key Management Service
-        /// (KMS) key. The IAM role must allow Amazon Forecast permission to access the key.
+        /// If encryption is used, <c>Destination</c> must include an Key Management Service (KMS)
+        /// key. The IAM role must allow Amazon Forecast permission to access the key.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -136,7 +137,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -155,7 +156,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if WhatIfForecastArns property is set
         internal bool IsSetWhatIfForecastArns()
         {
-            return this._whatIfForecastArns != null && this._whatIfForecastArns.Count > 0; 
+            return this._whatIfForecastArns != null && (this._whatIfForecastArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

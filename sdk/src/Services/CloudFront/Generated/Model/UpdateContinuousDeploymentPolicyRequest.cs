@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  <ol> <li> 
     /// <para>
-    /// Use <code>GetContinuousDeploymentPolicyConfig</code> to get the current configuration.
+    /// Use <c>GetContinuousDeploymentPolicyConfig</c> to get the current configuration.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -52,9 +53,8 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Use <code>UpdateContinuousDeploymentPolicy</code>, providing the entire continuous
-    /// deployment policy configuration, including the fields that you modified and those
-    /// that you didn't.
+    /// Use <c>UpdateContinuousDeploymentPolicy</c>, providing the entire continuous deployment
+    /// policy configuration, including the fields that you modified and those that you didn't.
     /// </para>
     ///  </li> </ol>
     /// </summary>
@@ -105,8 +105,8 @@ namespace Amazon.CloudFront.Model
         /// <summary>
         /// Gets and sets the property IfMatch. 
         /// <para>
-        /// The current version (<code>ETag</code> value) of the continuous deployment policy
-        /// that you are updating.
+        /// The current version (<c>ETag</c> value) of the continuous deployment policy that you
+        /// are updating.
         /// </para>
         /// </summary>
         public string IfMatch
@@ -118,7 +118,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if IfMatch property is set
         internal bool IsSetIfMatch()
         {
-            return this._ifMatch != null;
+            return !string.IsNullOrEmpty(this._ifMatch);
         }
 
     }

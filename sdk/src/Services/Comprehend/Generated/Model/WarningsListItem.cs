@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.Comprehend.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// The document to classify is plain text, but the classifier is a native model.
+    /// The document to classify is plain text, but the classifier is a native document model.
     /// </para>
     ///  </li> <li> 
     /// <para>

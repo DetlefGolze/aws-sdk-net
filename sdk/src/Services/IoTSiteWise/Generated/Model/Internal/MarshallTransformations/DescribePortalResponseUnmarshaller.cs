@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -133,6 +134,18 @@ namespace Amazon.IoTSiteWise.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = PortalStatusUnmarshaller.Instance;
                     response.PortalStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("portalType", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.PortalType = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("portalTypeConfiguration", targetDepth))
+                {
+                    var unmarshaller = new DictionaryUnmarshaller<string, PortalTypeEntry, StringUnmarshaller, PortalTypeEntryUnmarshaller>(StringUnmarshaller.Instance, PortalTypeEntryUnmarshaller.Instance);
+                    response.PortalTypeConfiguration = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("roleArn", targetDepth))

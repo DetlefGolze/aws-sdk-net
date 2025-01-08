@@ -26,22 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
-    /// Container for results from <code>DescribeReservedInstances</code>
+    /// Container for results from <c>DescribeReservedInstances</c>
     /// </summary>
     public partial class DescribeReservedInstancesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<ReservedInstance> _reservedInstances = new List<ReservedInstance>();
+        private List<ReservedInstance> _reservedInstances = AWSConfigs.InitializeCollections ? new List<ReservedInstance>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When <code>nextToken</code> is returned, there are more results available. The value
-        /// of <code>nextToken</code> is a unique pagination token for each page. Make the call
-        /// again using the returned token to retrieve the next page.
+        /// When <c>nextToken</c> is returned, there are more results available. The value of
+        /// <c>nextToken</c> is a unique pagination token for each page. Send the request again
+        /// using the returned token to retrieve the next page.
         /// </para>
         /// </summary>
         public string NextToken
@@ -71,7 +72,7 @@ namespace Amazon.OpenSearchService.Model
         // Check to see if ReservedInstances property is set
         internal bool IsSetReservedInstances()
         {
-            return this._reservedInstances != null && this._reservedInstances.Count > 0; 
+            return this._reservedInstances != null && (this._reservedInstances.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

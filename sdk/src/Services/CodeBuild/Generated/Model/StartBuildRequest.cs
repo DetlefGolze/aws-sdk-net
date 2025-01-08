@@ -26,15 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
     /// Container for the parameters to the StartBuild operation.
-    /// Starts running a build.
+    /// Starts running a build with the settings defined in the project. These setting include:
+    /// how to run a build, where to get the source code, which build environment to use,
+    /// which build commands to run, and where to store the build output.
+    /// 
+    ///  
+    /// <para>
+    /// You can also start a build run by overriding some of the build settings in the project.
+    /// The overrides only apply for that specific start build request. The settings in the
+    /// project are unaltered.
+    /// </para>
     /// </summary>
     public partial class StartBuildRequest : AmazonCodeBuildRequest
     {
         private ProjectArtifacts _artifactsOverride;
+        private int? _autoRetryLimitOverride;
         private string _buildspecOverride;
         private BuildStatusConfig _buildStatusConfigOverride;
         private ProjectCache _cacheOverride;
@@ -43,7 +54,8 @@ namespace Amazon.CodeBuild.Model
         private bool? _debugSessionEnabled;
         private string _encryptionKeyOverride;
         private EnvironmentType _environmentTypeOverride;
-        private List<EnvironmentVariable> _environmentVariablesOverride = new List<EnvironmentVariable>();
+        private List<EnvironmentVariable> _environmentVariablesOverride = AWSConfigs.InitializeCollections ? new List<EnvironmentVariable>() : null;
+        private ProjectFleet _fleetOverride;
         private int? _gitCloneDepthOverride;
         private GitSubmodulesConfig _gitSubmodulesConfigOverride;
         private string _idempotencyToken;
@@ -56,9 +68,9 @@ namespace Amazon.CodeBuild.Model
         private int? _queuedTimeoutInMinutesOverride;
         private RegistryCredential _registryCredentialOverride;
         private bool? _reportBuildStatusOverride;
-        private List<ProjectArtifacts> _secondaryArtifactsOverride = new List<ProjectArtifacts>();
-        private List<ProjectSource> _secondarySourcesOverride = new List<ProjectSource>();
-        private List<ProjectSourceVersion> _secondarySourcesVersionOverride = new List<ProjectSourceVersion>();
+        private List<ProjectArtifacts> _secondaryArtifactsOverride = AWSConfigs.InitializeCollections ? new List<ProjectArtifacts>() : null;
+        private List<ProjectSource> _secondarySourcesOverride = AWSConfigs.InitializeCollections ? new List<ProjectSource>() : null;
+        private List<ProjectSourceVersion> _secondarySourcesVersionOverride = AWSConfigs.InitializeCollections ? new List<ProjectSourceVersion>() : null;
         private string _serviceRoleOverride;
         private SourceAuth _sourceAuthOverride;
         private string _sourceLocationOverride;
@@ -86,22 +98,51 @@ namespace Amazon.CodeBuild.Model
         }
 
         /// <summary>
+        /// Gets and sets the property AutoRetryLimitOverride. 
+        /// <para>
+        /// The maximum number of additional automatic retries after a failed build. For example,
+        /// if the auto-retry limit is set to 2, CodeBuild will call the <c>RetryBuild</c> API
+        /// to automatically retry your build for up to 2 additional times.
+        /// </para>
+        /// </summary>
+        public int AutoRetryLimitOverride
+        {
+            get { return this._autoRetryLimitOverride.GetValueOrDefault(); }
+            set { this._autoRetryLimitOverride = value; }
+        }
+
+        // Check to see if AutoRetryLimitOverride property is set
+        internal bool IsSetAutoRetryLimitOverride()
+        {
+            return this._autoRetryLimitOverride.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property BuildspecOverride. 
         /// <para>
-        /// A buildspec file declaration that overrides, for this build only, the latest one already
-        /// defined in the build project.
+        /// A buildspec file declaration that overrides the latest one defined in the build project,
+        /// for this build only. The buildspec defined on the project is not changed.
         /// </para>
         ///  
         /// <para>
-        ///  If this value is set, it can be either an inline buildspec definition, the path to
-        /// an alternate buildspec file relative to the value of the built-in <code>CODEBUILD_SRC_DIR</code>
+        /// If this value is set, it can be either an inline buildspec definition, the path to
+        /// an alternate buildspec file relative to the value of the built-in <c>CODEBUILD_SRC_DIR</c>
         /// environment variable, or the path to an S3 bucket. The bucket must be in the same
         /// Amazon Web Services Region as the build project. Specify the buildspec file using
-        /// its ARN (for example, <code>arn:aws:s3:::my-codebuild-sample2/buildspec.yml</code>).
-        /// If this value is not provided or is set to an empty string, the source code must contain
+        /// its ARN (for example, <c>arn:aws:s3:::my-codebuild-sample2/buildspec.yml</c>). If
+        /// this value is not provided or is set to an empty string, the source code must contain
         /// a buildspec file in its root directory. For more information, see <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-name-storage">Buildspec
-        /// File Name and Storage Location</a>. 
+        /// File Name and Storage Location</a>.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// Since this property allows you to change the build commands that will run in the container,
+        /// you should note that an IAM principal with the ability to call this API and set this
+        /// parameter can override the default settings. Moreover, we encourage that you use a
+        /// trustworthy buildspec location like a file in your source repository or a Amazon S3
+        /// bucket.
+        /// </para>
+        ///  </note>
         /// </summary>
         public string BuildspecOverride
         {
@@ -119,8 +160,8 @@ namespace Amazon.CodeBuild.Model
         /// Gets and sets the property BuildStatusConfigOverride. 
         /// <para>
         /// Contains information that defines how the build project reports the build status to
-        /// the source provider. This option is only used when the source provider is <code>GITHUB</code>,
-        /// <code>GITHUB_ENTERPRISE</code>, or <code>BITBUCKET</code>.
+        /// the source provider. This option is only used when the source provider is <c>GITHUB</c>,
+        /// <c>GITHUB_ENTERPRISE</c>, or <c>BITBUCKET</c>.
         /// </para>
         /// </summary>
         public BuildStatusConfig BuildStatusConfigOverride
@@ -226,7 +267,7 @@ namespace Amazon.CodeBuild.Model
         ///  </note> 
         /// <para>
         /// You can specify either the Amazon Resource Name (ARN) of the CMK or, if available,
-        /// the CMK's alias (using the format <code>alias/&lt;alias-name&gt;</code>).
+        /// the CMK's alias (using the format <c>alias/&lt;alias-name&gt;</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -276,7 +317,26 @@ namespace Amazon.CodeBuild.Model
         // Check to see if EnvironmentVariablesOverride property is set
         internal bool IsSetEnvironmentVariablesOverride()
         {
-            return this._environmentVariablesOverride != null && this._environmentVariablesOverride.Count > 0; 
+            return this._environmentVariablesOverride != null && (this._environmentVariablesOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property FleetOverride. 
+        /// <para>
+        /// A ProjectFleet object specified for this build that overrides the one defined in the
+        /// build project.
+        /// </para>
+        /// </summary>
+        public ProjectFleet FleetOverride
+        {
+            get { return this._fleetOverride; }
+            set { this._fleetOverride = value; }
+        }
+
+        // Check to see if FleetOverride property is set
+        internal bool IsSetFleetOverride()
+        {
+            return this._fleetOverride != null;
         }
 
         /// <summary>
@@ -376,8 +436,8 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  </dd> </dl> 
         /// <para>
-        /// When using a cross-account or private registry image, you must use <code>SERVICE_ROLE</code>
-        /// credentials. When using an CodeBuild curated image, you must use <code>CODEBUILD</code>
+        /// When using a cross-account or private registry image, you must use <c>SERVICE_ROLE</c>
+        /// credentials. When using an CodeBuild curated image, you must use <c>CODEBUILD</c>
         /// credentials. 
         /// </para>
         /// </summary>
@@ -512,7 +572,7 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         ///  Set to true to report to your source provider the status of a build's start and completion.
         /// If you use this option with a source provider other than GitHub, GitHub Enterprise,
-        /// or Bitbucket, an <code>invalidInputException</code> is thrown. 
+        /// or Bitbucket, an <c>invalidInputException</c> is thrown. 
         /// </para>
         ///  
         /// <para>
@@ -544,7 +604,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property SecondaryArtifactsOverride. 
         /// <para>
-        ///  An array of <code>ProjectArtifacts</code> objects. 
+        ///  An array of <c>ProjectArtifacts</c> objects. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -557,13 +617,13 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondaryArtifactsOverride property is set
         internal bool IsSetSecondaryArtifactsOverride()
         {
-            return this._secondaryArtifactsOverride != null && this._secondaryArtifactsOverride.Count > 0; 
+            return this._secondaryArtifactsOverride != null && (this._secondaryArtifactsOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySourcesOverride. 
         /// <para>
-        ///  An array of <code>ProjectSource</code> objects. 
+        ///  An array of <c>ProjectSource</c> objects. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -576,13 +636,13 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySourcesOverride property is set
         internal bool IsSetSecondarySourcesOverride()
         {
-            return this._secondarySourcesOverride != null && this._secondarySourcesOverride.Count > 0; 
+            return this._secondarySourcesOverride != null && (this._secondarySourcesOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySourcesVersionOverride. 
         /// <para>
-        ///  An array of <code>ProjectSourceVersion</code> objects that specify one or more versions
+        ///  An array of <c>ProjectSourceVersion</c> objects that specify one or more versions
         /// of the project's secondary sources to be used for this build only. 
         /// </para>
         /// </summary>
@@ -596,7 +656,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySourcesVersionOverride property is set
         internal bool IsSetSecondarySourcesVersionOverride()
         {
-            return this._secondarySourcesVersionOverride != null && this._secondarySourcesVersionOverride.Count > 0; 
+            return this._secondarySourcesVersionOverride != null && (this._secondarySourcesVersionOverride.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -623,7 +683,8 @@ namespace Amazon.CodeBuild.Model
         /// Gets and sets the property SourceAuthOverride. 
         /// <para>
         /// An authorization type for this build that overrides the one defined in the build project.
-        /// This override applies only if the build project's source is BitBucket or GitHub.
+        /// This override applies only if the build project's source is BitBucket, GitHub, GitLab,
+        /// or GitLab Self Managed.
         /// </para>
         /// </summary>
         public SourceAuth SourceAuthOverride
@@ -690,9 +751,13 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         /// The commit ID, pull request ID, branch name, or tag name that corresponds to the version
         /// of the source code you want to build. If a pull request ID is specified, it must use
-        /// the format <code>pr/pull-request-ID</code> (for example <code>pr/25</code>). If a
-        /// branch name is specified, the branch's HEAD commit ID is used. If not specified, the
-        /// default branch's HEAD commit ID is used.
+        /// the format <c>pr/pull-request-ID</c> (for example <c>pr/25</c>). If a branch name
+        /// is specified, the branch's HEAD commit ID is used. If not specified, the default branch's
+        /// HEAD commit ID is used.
+        /// </para>
+        ///  </dd> <dt>GitLab</dt> <dd> 
+        /// <para>
+        /// The commit ID, branch, or Git tag to use.
         /// </para>
         ///  </dd> <dt>Bitbucket</dt> <dd> 
         /// <para>
@@ -706,7 +771,7 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  </dd> </dl> 
         /// <para>
-        /// If <code>sourceVersion</code> is specified at the project level, then this <code>sourceVersion</code>
+        /// If <c>sourceVersion</c> is specified at the project level, then this <c>sourceVersion</c>
         /// (at the build level) takes precedence. 
         /// </para>
         ///  
@@ -730,11 +795,11 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property TimeoutInMinutesOverride. 
         /// <para>
-        /// The number of build timeout minutes, from 5 to 480 (8 hours), that overrides, for
+        /// The number of build timeout minutes, from 5 to 2160 (36 hours), that overrides, for
         /// this build only, the latest setting already defined in the build project.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=5, Max=480)]
+        [AWSProperty(Min=5, Max=2160)]
         public int TimeoutInMinutesOverride
         {
             get { return this._timeoutInMinutesOverride.GetValueOrDefault(); }

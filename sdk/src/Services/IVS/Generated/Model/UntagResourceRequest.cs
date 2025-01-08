@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.IVS.Model
     public partial class UntagResourceRequest : AmazonIVSRequest
     {
         private string _resourceArn;
-        private List<string> _tagKeys = new List<string>();
+        private List<string> _tagKeys = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -59,11 +60,12 @@ namespace Amazon.IVS.Model
         /// <summary>
         /// Gets and sets the property TagKeys. 
         /// <para>
-        /// Array of tags to be removed. Array of maps, each of the form s<code>tring:string (key:value)</code>.
-        /// See <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
-        /// Amazon Web Services Resources</a> for more information, including restrictions that
-        /// apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific
-        /// constraints beyond what is documented there.
+        /// Array of tags to be removed. Array of maps, each of the form <c>string:string (key:value)</c>.
+        /// See <a href="https://docs.aws.amazon.com/tag-editor/latest/userguide/best-practices-and-strats.html">Best
+        /// practices and strategies</a> in <i>Tagging Amazon Web Services Resources and Tag Editor</i>
+        /// for details, including restrictions that apply to tags and "Tag naming limits and
+        /// requirements"; Amazon IVS has no service-specific constraints beyond what is documented
+        /// there.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0, Max=50)]
@@ -76,7 +78,7 @@ namespace Amazon.IVS.Model
         // Check to see if TagKeys property is set
         internal bool IsSetTagKeys()
         {
-            return this._tagKeys != null && this._tagKeys.Count > 0; 
+            return this._tagKeys != null && (this._tagKeys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

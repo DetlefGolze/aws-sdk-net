@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteLanguageModel operation.
     /// Deletes a custom language model. To use this operation, specify the name of the language
-    /// model you want to delete using <code>ModelName</code>. custom language model names
-    /// are case sensitive.
+    /// model you want to delete using <c>ModelName</c>. custom language model names are case
+    /// sensitive.
     /// </summary>
     public partial class DeleteLanguageModelRequest : AmazonTranscribeServiceRequest
     {

@@ -26,23 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeFleetPortSettings operation.
     /// Retrieves a fleet's inbound connection permissions. Connection permissions specify
-    /// the range of IP addresses and port settings that incoming traffic can use to access
-    /// server processes in the fleet. Game sessions that are running on instances in the
-    /// fleet must use connections that fall in this range.
+    /// IP addresses and port settings that incoming traffic can use to access server processes
+    /// in the fleet. Game server processes that are running in the fleet must use a port
+    /// that falls within this range. 
     /// 
     ///  
     /// <para>
-    /// This operation can be used in the following ways: 
+    /// Use this operation in the following ways: 
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// To retrieve the inbound connection permissions for a fleet, identify the fleet's unique
-    /// identifier. 
+    /// To retrieve the port settings for a fleet, identify the fleet's unique identifier.
+    /// 
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -52,9 +53,9 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// If successful, a set of <code>IpPermission</code> objects is returned for the requested
-    /// fleet ID. When a location is specified, a pending status is included. If the requested
-    /// fleet has been deleted, the result set is empty.
+    /// If successful, a set of <c>IpPermission</c> objects is returned for the requested
+    /// fleet ID. When specifying a location, this operation returns a pending status. If
+    /// the requested fleet has been deleted, the result set is empty.
     /// </para>
     ///  
     /// <para>
@@ -78,7 +79,7 @@ namespace Amazon.GameLift.Model
         /// the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -95,7 +96,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// A remote location to check for status of port setting updates. Use the Amazon Web
-        /// Services Region code format, such as <code>us-west-2</code>.
+        /// Services Region code format, such as <c>us-west-2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

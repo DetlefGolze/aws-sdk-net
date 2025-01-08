@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -40,14 +41,14 @@ namespace Amazon.IoT.Model
     /// </summary>
     public partial class StartOnDemandAuditTaskRequest : AmazonIoTRequest
     {
-        private List<string> _targetCheckNames = new List<string>();
+        private List<string> _targetCheckNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property TargetCheckNames. 
         /// <para>
         /// Which checks are performed during the audit. The checks you specify must be enabled
-        /// for your account or an exception occurs. Use <code>DescribeAccountAuditConfiguration</code>
-        /// to see the list of all checks, including those that are enabled or <code>UpdateAccountAuditConfiguration</code>
+        /// for your account or an exception occurs. Use <c>DescribeAccountAuditConfiguration</c>
+        /// to see the list of all checks, including those that are enabled or <c>UpdateAccountAuditConfiguration</c>
         /// to select which checks are enabled.
         /// </para>
         /// </summary>
@@ -61,7 +62,7 @@ namespace Amazon.IoT.Model
         // Check to see if TargetCheckNames property is set
         internal bool IsSetTargetCheckNames()
         {
-            return this._targetCheckNames != null && this._targetCheckNames.Count > 0; 
+            return this._targetCheckNames != null && (this._targetCheckNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

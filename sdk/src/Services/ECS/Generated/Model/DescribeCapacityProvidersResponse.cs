@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.ECS.Model
     /// </summary>
     public partial class DescribeCapacityProvidersResponse : AmazonWebServiceResponse
     {
-        private List<CapacityProvider> _capacityProviders = new List<CapacityProvider>();
-        private List<Failure> _failures = new List<Failure>();
+        private List<CapacityProvider> _capacityProviders = AWSConfigs.InitializeCollections ? new List<CapacityProvider>() : null;
+        private List<Failure> _failures = AWSConfigs.InitializeCollections ? new List<Failure>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Amazon.ECS.Model
         // Check to see if CapacityProviders property is set
         internal bool IsSetCapacityProviders()
         {
-            return this._capacityProviders != null && this._capacityProviders.Count > 0; 
+            return this._capacityProviders != null && (this._capacityProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -70,16 +71,16 @@ namespace Amazon.ECS.Model
         // Check to see if Failures property is set
         internal bool IsSetFailures()
         {
-            return this._failures != null && this._failures.Count > 0; 
+            return this._failures != null && (this._failures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> value to include in a future <code>DescribeCapacityProviders</code>
-        /// request. When the results of a <code>DescribeCapacityProviders</code> request exceed
-        /// <code>maxResults</code>, this value can be used to retrieve the next page of results.
-        /// This value is <code>null</code> when there are no more results to return.
+        /// The <c>nextToken</c> value to include in a future <c>DescribeCapacityProviders</c>
+        /// request. When the results of a <c>DescribeCapacityProviders</c> request exceed <c>maxResults</c>,
+        /// this value can be used to retrieve the next page of results. This value is <c>null</c>
+        /// when there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

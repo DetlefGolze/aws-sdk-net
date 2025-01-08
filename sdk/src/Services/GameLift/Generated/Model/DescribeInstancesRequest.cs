@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -33,8 +34,9 @@ namespace Amazon.GameLift.Model
     /// Retrieves information about the EC2 instances in an Amazon GameLift managed fleet,
     /// including instance ID, connection data, and status. You can use this operation with
     /// a multi-location fleet to get location-specific instance information. As an alternative,
-    /// use the operations <a>ListCompute</a> and <a>DescribeCompute</a> to retrieve information
-    /// for compute resources, including EC2 and Anywhere fleets.
+    /// use the operations <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListCompute">https://docs.aws.amazon.com/gamelift/latest/apireference/API_ListCompute</a>
+    /// and <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeCompute">https://docs.aws.amazon.com/gamelift/latest/apireference/API_DescribeCompute</a>
+    /// to retrieve information for compute resources, including EC2 and Anywhere fleets.
     /// 
     ///  
     /// <para>
@@ -60,9 +62,9 @@ namespace Amazon.GameLift.Model
     /// </para>
     ///  
     /// <para>
-    /// If successful, this operation returns <code>Instance</code> objects for each requested
-    /// instance, listed in no particular order. If you call this operation for an Anywhere
-    /// fleet, you receive an InvalidRequestException.
+    /// If successful, this operation returns <c>Instance</c> objects for each requested instance,
+    /// listed in no particular order. If you call this operation for an Anywhere fleet, you
+    /// receive an InvalidRequestException.
     /// </para>
     ///  
     /// <para>
@@ -103,7 +105,7 @@ namespace Amazon.GameLift.Model
         /// either the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -138,7 +140,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Limit. 
         /// <para>
-        /// The maximum number of results to return. Use this parameter with <code>NextToken</code>
+        /// The maximum number of results to return. Use this parameter with <c>NextToken</c>
         /// to get results as a set of sequential pages.
         /// </para>
         /// </summary>
@@ -159,7 +161,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The name of a location to retrieve instance information for, in the form of an Amazon
-        /// Web Services Region code such as <code>us-west-2</code>. 
+        /// Web Services Region code such as <c>us-west-2</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

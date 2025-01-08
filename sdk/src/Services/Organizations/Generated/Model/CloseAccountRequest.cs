@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.Organizations.Model
     /// an account when <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html">all
     /// features are enabled </a>. You can't close the management account with this API. This
     /// is an asynchronous request that Amazon Web Services performs in the background. Because
-    /// <code>CloseAccount</code> operates asynchronously, it can return a successful completion
+    /// <c>CloseAccount</c> operates asynchronously, it can return a successful completion
     /// message even though account closure might still be in progress. You need to wait a
     /// few minutes before the account is fully closed. To check the status of the request,
     /// do one of the following:
     /// 
     ///  <ul> <li> 
     /// <para>
-    /// Use the <code>AccountId</code> that you sent in the <code>CloseAccount</code> request
-    /// to provide as a parameter to the <a>DescribeAccount</a> operation. 
+    /// Use the <c>AccountId</c> that you sent in the <c>CloseAccount</c> request to provide
+    /// as a parameter to the <a>DescribeAccount</a> operation. 
     /// </para>
     ///  
     /// <para>
@@ -51,19 +52,19 @@ namespace Amazon.Organizations.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Check the CloudTrail log for the <code>CloseAccountResult</code> event that gets published
+    /// Check the CloudTrail log for the <c>CloseAccountResult</c> event that gets published
     /// after the account closes successfully. For information on using CloudTrail with Organizations,
     /// see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_security_incident-response.html#orgs_cloudtrail-integration">Logging
     /// and monitoring in Organizations</a> in the <i>Organizations User Guide</i>.
     /// </para>
     ///  </li> </ul> <note> <ul> <li> 
     /// <para>
-    /// You can close only 10% of member accounts, between 10 and 200, within a rolling 30
+    /// You can close only 10% of member accounts, between 10 and 1000, within a rolling 30
     /// day period. This quota is not bound by a calendar month, but starts when you close
-    /// an account. After you reach this limit, you can close additional accounts. For more
+    /// an account. After you reach this limit, you can't close additional accounts. For more
     /// information, see <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_close.html">Closing
-    /// a member account in your organization</a> in the <i>Organizations User Guide</i>.
-    /// 
+    /// a member account in your organization</a> and <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html">Quotas
+    /// for Organizations</a> in the <i>Organizations User Guide</i>. 
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -73,8 +74,8 @@ namespace Amazon.Organizations.Model
     ///  </li> <li> 
     /// <para>
     /// If the Amazon Web Services account you attempt to close is linked to an Amazon Web
-    /// Services GovCloud (US) account, the <code>CloseAccount</code> request will close both
-    /// accounts. To learn important pre-closure details, see <a href="https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/Closing-govcloud-account.html">
+    /// Services GovCloud (US) account, the <c>CloseAccount</c> request will close both accounts.
+    /// To learn important pre-closure details, see <a href="https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/Closing-govcloud-account.html">
     /// Closing an Amazon Web Services GovCloud (US) account</a> in the <i> Amazon Web Services
     /// GovCloud User Guide</i>.
     /// </para>
@@ -87,8 +88,8 @@ namespace Amazon.Organizations.Model
         /// <summary>
         /// Gets and sets the property AccountId. 
         /// <para>
-        /// Retrieves the Amazon Web Services account Id for the current <code>CloseAccount</code>
-        /// API request. 
+        /// Retrieves the Amazon Web Services account Id for the current <c>CloseAccount</c> API
+        /// request. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Max=12)]

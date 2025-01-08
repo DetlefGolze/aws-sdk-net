@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
@@ -42,9 +43,9 @@ namespace Amazon.QuickSight.Model
     /// </para>
     ///  
     /// <para>
-    /// The API caller must have the necessary <code>"create"</code>, <code>"describe"</code>,
-    /// and <code>"update"</code> permissions in their IAM role to access each resource type
-    /// that is contained in the bundle file before the resources can be imported.
+    /// The API caller must have the necessary <c>"create"</c>, <c>"describe"</c>, and <c>"update"</c>
+    /// permissions in their IAM role to access each resource type that is contained in the
+    /// bundle file before the resources can be imported.
     /// </para>
     /// </summary>
     public partial class StartAssetBundleImportJobRequest : AmazonQuickSightRequest
@@ -54,6 +55,9 @@ namespace Amazon.QuickSight.Model
         private string _awsAccountId;
         private AssetBundleImportFailureAction _failureAction;
         private AssetBundleImportJobOverrideParameters _overrideParameters;
+        private AssetBundleImportJobOverridePermissions _overridePermissions;
+        private AssetBundleImportJobOverrideTags _overrideTags;
+        private AssetBundleImportJobOverrideValidationStrategy _overrideValidationStrategy;
 
         /// <summary>
         /// Gets and sets the property AssetBundleImportJobId. 
@@ -79,7 +83,7 @@ namespace Amazon.QuickSight.Model
         /// Gets and sets the property AssetBundleImportSource. 
         /// <para>
         /// The source of the asset bundle zip file that contains the data that you want to import.
-        /// The file must be in <code>QUICKSIGHT_JSON</code> format. 
+        /// The file must be in <c>QUICKSIGHT_JSON</c> format. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -121,13 +125,13 @@ namespace Amazon.QuickSight.Model
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>ROLLBACK</code>, failed import jobs will attempt to undo any asset
-        /// changes caused by the failed job.
+        /// If you choose <c>ROLLBACK</c>, failed import jobs will attempt to undo any asset changes
+        /// caused by the failed job.
         /// </para>
         ///  
         /// <para>
-        /// If you choose <code>DO_NOTHING</code>, failed import jobs will not attempt to roll
-        /// back any asset changes caused by the failed job, possibly keeping the Amazon QuickSight
+        /// If you choose <c>DO_NOTHING</c>, failed import jobs will not attempt to roll back
+        /// any asset changes caused by the failed job, possibly keeping the Amazon QuickSight
         /// account in an inconsistent state.
         /// </para>
         /// </summary>
@@ -146,7 +150,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property OverrideParameters. 
         /// <para>
-        /// Optional overrides to be applied to the resource configuration before import.
+        /// Optional overrides that are applied to the resource configuration before import.
         /// </para>
         /// </summary>
         public AssetBundleImportJobOverrideParameters OverrideParameters
@@ -159,6 +163,62 @@ namespace Amazon.QuickSight.Model
         internal bool IsSetOverrideParameters()
         {
             return this._overrideParameters != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OverridePermissions. 
+        /// <para>
+        /// Optional permission overrides that are applied to the resource configuration before
+        /// import.
+        /// </para>
+        /// </summary>
+        public AssetBundleImportJobOverridePermissions OverridePermissions
+        {
+            get { return this._overridePermissions; }
+            set { this._overridePermissions = value; }
+        }
+
+        // Check to see if OverridePermissions property is set
+        internal bool IsSetOverridePermissions()
+        {
+            return this._overridePermissions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OverrideTags. 
+        /// <para>
+        /// Optional tag overrides that are applied to the resource configuration before import.
+        /// </para>
+        /// </summary>
+        public AssetBundleImportJobOverrideTags OverrideTags
+        {
+            get { return this._overrideTags; }
+            set { this._overrideTags = value; }
+        }
+
+        // Check to see if OverrideTags property is set
+        internal bool IsSetOverrideTags()
+        {
+            return this._overrideTags != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property OverrideValidationStrategy. 
+        /// <para>
+        /// An optional validation strategy override for all analyses and dashboards that is applied
+        /// to the resource configuration before import. 
+        /// </para>
+        /// </summary>
+        public AssetBundleImportJobOverrideValidationStrategy OverrideValidationStrategy
+        {
+            get { return this._overrideValidationStrategy; }
+            set { this._overrideValidationStrategy = value; }
+        }
+
+        // Check to see if OverrideValidationStrategy property is set
+        internal bool IsSetOverrideValidationStrategy()
+        {
+            return this._overrideValidationStrategy != null;
         }
 
     }

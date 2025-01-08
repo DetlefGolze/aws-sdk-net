@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DevOpsGuru.Model
 {
     /// <summary>
@@ -36,8 +37,8 @@ namespace Amazon.DevOpsGuru.Model
     /// </summary>
     public partial class NotificationFilterConfig
     {
-        private List<string> _messageTypes = new List<string>();
-        private List<string> _severities = new List<string>();
+        private List<string> _messageTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _severities = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property MessageTypes. 
@@ -57,14 +58,14 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if MessageTypes property is set
         internal bool IsSetMessageTypes()
         {
-            return this._messageTypes != null && this._messageTypes.Count > 0; 
+            return this._messageTypes != null && (this._messageTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Severities. 
         /// <para>
         ///  The severity levels that you want to receive notifications for. For example, you
-        /// can choose to receive notifications only for insights with <code>HIGH</code> and <code>MEDIUM</code>
+        /// can choose to receive notifications only for insights with <c>HIGH</c> and <c>MEDIUM</c>
         /// severity levels. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding
         /// insight severities</a>. 
         /// </para>
@@ -79,7 +80,7 @@ namespace Amazon.DevOpsGuru.Model
         // Check to see if Severities property is set
         internal bool IsSetSeverities()
         {
-            return this._severities != null && this._severities.Count > 0; 
+            return this._severities != null && (this._severities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

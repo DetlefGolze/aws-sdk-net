@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -62,8 +63,8 @@ namespace Amazon.PinpointEmail.Model
         /// Gets and sets the property EndDate. 
         /// <para>
         /// The last day (in Unix time) that you want to obtain domain deliverability metrics
-        /// for. The <code>EndDate</code> that you specify has to be less than or equal to 30
-        /// days after the <code>StartDate</code>.
+        /// for. The <c>EndDate</c> that you specify has to be less than or equal to 30 days after
+        /// the <c>StartDate</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

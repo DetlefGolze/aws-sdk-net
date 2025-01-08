@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
@@ -118,39 +119,11 @@ namespace Amazon.ACMPCA.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Basic constraints (<i>must</i> be marked critical)
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Subject alternative names
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Key usage
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Extended key usage
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
     /// Authority key identifier
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Subject key identifier
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Issuer alternative name
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Subject directory attributes
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Subject information access
+    /// Basic constraints (<i>must</i> be marked critical)
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -158,11 +131,43 @@ namespace Amazon.ACMPCA.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Policy mappings
+    /// Extended key usage
     /// </para>
     ///  </li> <li> 
     /// <para>
     /// Inhibit anyPolicy
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Issuer alternative name
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Key usage
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Name constraints
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Policy mappings
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Subject alternative name
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Subject directory attributes
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Subject key identifier
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// Subject information access
     /// </para>
     ///  </li> </ul> 
     /// <para>
@@ -171,11 +176,7 @@ namespace Amazon.ACMPCA.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// Name constraints
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Policy constraints
+    /// Authority information access
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -183,17 +184,17 @@ namespace Amazon.ACMPCA.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Authority information access
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
     /// Freshest CRL
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Any other extension
+    /// Policy constraints
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> 
+    /// <para>
+    /// Amazon Web Services Private Certificate Authority will also reject any other extension
+    /// marked as critical not contained on the preceding list of allowed extensions.
+    /// </para>
     /// </summary>
     public partial class ImportCertificateAuthorityCertificateRequest : AmazonACMPCARequest
     {
@@ -229,8 +230,8 @@ namespace Amazon.ACMPCA.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>
-        /// </code> 
+        ///  <c>arn:aws:acm-pca:<i>region</i>:<i>account</i>:certificate-authority/<i>12345678-1234-1234-1234-123456789012</i>
+        /// </c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=5, Max=200)]

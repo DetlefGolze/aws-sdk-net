@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Chime.Model
 {
     /// <summary>
-    /// Summary of the channel membership details of an <code>AppInstanceUser</code>.
+    /// Summary of the channel membership details of an <c>AppInstanceUser</c>.
     /// </summary>
     public partial class ChannelMembershipForAppInstanceUserSummary
     {
@@ -39,7 +40,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property AppInstanceUserMembershipSummary. 
         /// <para>
-        /// Summary of the membership details of an <code>AppInstanceUser</code>.
+        /// Summary of the membership details of an <c>AppInstanceUser</c>.
         /// </para>
         /// </summary>
         public AppInstanceUserMembershipSummary AppInstanceUserMembershipSummary
@@ -57,7 +58,7 @@ namespace Amazon.Chime.Model
         /// <summary>
         /// Gets and sets the property ChannelSummary. 
         /// <para>
-        /// Summary of the details of a <code>Channel</code>.
+        /// Summary of the details of a <c>Channel</c>.
         /// </para>
         /// </summary>
         public ChannelSummary ChannelSummary

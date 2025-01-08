@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,10 +46,18 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(DataQualityEvaluationRunAdditionalRunOptions requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetCloudWatchMetricsEnabled())
             {
                 context.Writer.WritePropertyName("CloudWatchMetricsEnabled");
                 context.Writer.Write(requestObject.CloudWatchMetricsEnabled);
+            }
+
+            if(requestObject.IsSetCompositeRuleEvaluationMethod())
+            {
+                context.Writer.WritePropertyName("CompositeRuleEvaluationMethod");
+                context.Writer.Write(requestObject.CompositeRuleEvaluationMethod);
             }
 
             if(requestObject.IsSetResultsS3Prefix())

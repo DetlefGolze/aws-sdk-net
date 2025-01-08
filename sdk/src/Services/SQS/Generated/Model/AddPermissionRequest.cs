@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.SQS.Model
     /// </para>
     ///  <note> <ul> <li> 
     /// <para>
-    ///  <code>AddPermission</code> generates a policy for you. You can use <code> <a>SetQueueAttributes</a>
-    /// </code> to upload your policy. For more information, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-creating-custom-policies.html">Using
+    ///  <c>AddPermission</c> generates a policy for you. You can use <c> <a>SetQueueAttributes</a>
+    /// </c> to upload your policy. For more information, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-creating-custom-policies.html">Using
     /// Custom Policies with the Amazon SQS Access Policy Language</a> in the <i>Amazon SQS
     /// Developer Guide</i>.
     /// </para>
@@ -55,12 +56,12 @@ namespace Amazon.SQS.Model
     ///  </li> <li> 
     /// <para>
     /// To remove the ability to change queue permissions, you must deny permission to the
-    /// <code>AddPermission</code>, <code>RemovePermission</code>, and <code>SetQueueAttributes</code>
-    /// actions in your IAM policy.
+    /// <c>AddPermission</c>, <c>RemovePermission</c>, and <c>SetQueueAttributes</c> actions
+    /// in your IAM policy.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Amazon SQS <code>AddPermission</code> does not support adding a non-account principal.
+    /// Amazon SQS <c>AddPermission</c> does not support adding a non-account principal.
     /// </para>
     ///  </li> </ul> </note> <note> 
     /// <para>
@@ -73,8 +74,8 @@ namespace Amazon.SQS.Model
     /// </summary>
     public partial class AddPermissionRequest : AmazonSQSRequest
     {
-        private List<string> _actions = new List<string>();
-        private List<string> _awsAccountIds = new List<string>();
+        private List<string> _actions = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _awsAccountIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _label;
         private string _queueUrl;
 
@@ -87,9 +88,9 @@ namespace Amazon.SQS.Model
         /// Instantiates AddPermissionRequest with the parameterized properties
         /// </summary>
         /// <param name="queueUrl">The URL of the Amazon SQS queue to which permissions are added. Queue URLs and names are case-sensitive.</param>
-        /// <param name="label">The unique identification of the permission you're setting (for example, <code>AliceSendMessage</code>). Maximum 80 characters. Allowed characters include alphanumeric characters, hyphens (<code>-</code>), and underscores (<code>_</code>).</param>
+        /// <param name="label">The unique identification of the permission you're setting (for example, <c>AliceSendMessage</c>). Maximum 80 characters. Allowed characters include alphanumeric characters, hyphens (<c>-</c>), and underscores (<c>_</c>).</param>
         /// <param name="awsAccountIds">The Amazon Web Services account numbers of the <a href="https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P">principals</a> who are to receive permission. For information about locating the Amazon Web Services account identification, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html#sqs-api-request-authentication">Your Amazon Web Services Identifiers</a> in the <i>Amazon SQS Developer Guide</i>.</param>
-        /// <param name="actions">The action the client wants to allow for the specified principal. Valid values: the name of any action or <code>*</code>. For more information about these actions, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-overview-of-managing-access.html">Overview of Managing Access Permissions to Your Amazon Simple Queue Service Resource</a> in the <i>Amazon SQS Developer Guide</i>. Specifying <code>SendMessage</code>, <code>DeleteMessage</code>, or <code>ChangeMessageVisibility</code> for <code>ActionName.n</code> also grants permissions for the corresponding batch versions of those actions: <code>SendMessageBatch</code>, <code>DeleteMessageBatch</code>, and <code>ChangeMessageVisibilityBatch</code>.</param>
+        /// <param name="actions">The action the client wants to allow for the specified principal. Valid values: the name of any action or <c>*</c>. For more information about these actions, see <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-overview-of-managing-access.html">Overview of Managing Access Permissions to Your Amazon Simple Queue Service Resource</a> in the <i>Amazon SQS Developer Guide</i>. Specifying <c>SendMessage</c>, <c>DeleteMessage</c>, or <c>ChangeMessageVisibility</c> for <c>ActionName.n</c> also grants permissions for the corresponding batch versions of those actions: <c>SendMessageBatch</c>, <c>DeleteMessageBatch</c>, and <c>ChangeMessageVisibilityBatch</c>.</param>
         public AddPermissionRequest(string queueUrl, string label, List<string> awsAccountIds, List<string> actions)
         {
             _queueUrl = queueUrl;
@@ -102,7 +103,7 @@ namespace Amazon.SQS.Model
         /// Gets and sets the property Actions. 
         /// <para>
         /// The action the client wants to allow for the specified principal. Valid values: the
-        /// name of any action or <code>*</code>.
+        /// name of any action or <c>*</c>.
         /// </para>
         ///  
         /// <para>
@@ -112,10 +113,9 @@ namespace Amazon.SQS.Model
         /// </para>
         ///  
         /// <para>
-        /// Specifying <code>SendMessage</code>, <code>DeleteMessage</code>, or <code>ChangeMessageVisibility</code>
-        /// for <code>ActionName.n</code> also grants permissions for the corresponding batch
-        /// versions of those actions: <code>SendMessageBatch</code>, <code>DeleteMessageBatch</code>,
-        /// and <code>ChangeMessageVisibilityBatch</code>.
+        /// Specifying <c>SendMessage</c>, <c>DeleteMessage</c>, or <c>ChangeMessageVisibility</c>
+        /// for <c>ActionName.n</c> also grants permissions for the corresponding batch versions
+        /// of those actions: <c>SendMessageBatch</c>, <c>DeleteMessageBatch</c>, and <c>ChangeMessageVisibilityBatch</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -128,7 +128,7 @@ namespace Amazon.SQS.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -150,15 +150,15 @@ namespace Amazon.SQS.Model
         // Check to see if AWSAccountIds property is set
         internal bool IsSetAWSAccountIds()
         {
-            return this._awsAccountIds != null && this._awsAccountIds.Count > 0; 
+            return this._awsAccountIds != null && (this._awsAccountIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Label. 
         /// <para>
-        /// The unique identification of the permission you're setting (for example, <code>AliceSendMessage</code>).
+        /// The unique identification of the permission you're setting (for example, <c>AliceSendMessage</c>).
         /// Maximum 80 characters. Allowed characters include alphanumeric characters, hyphens
-        /// (<code>-</code>), and underscores (<code>_</code>).
+        /// (<c>-</c>), and underscores (<c>_</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

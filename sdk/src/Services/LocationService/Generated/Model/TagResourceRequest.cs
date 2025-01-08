@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LocationService.Model
 {
     /// <summary>
@@ -41,11 +42,11 @@ namespace Amazon.LocationService.Model
     /// </para>
     ///  
     /// <para>
-    /// You can use the <code>TagResource</code> operation with an Amazon Location Service
-    /// resource that already has tags. If you specify a new tag key for the resource, this
-    /// tag is appended to the tags already associated with the resource. If you specify a
-    /// tag key that's already associated with the resource, the new tag value that you specify
-    /// replaces the previous value for that tag. 
+    /// You can use the <c>TagResource</c> operation with an Amazon Location Service resource
+    /// that already has tags. If you specify a new tag key for the resource, this tag is
+    /// appended to the tags already associated with the resource. If you specify a tag key
+    /// that's already associated with the resource, the new tag value that you specify replaces
+    /// the previous value for that tag. 
     /// </para>
     ///  
     /// <para>
@@ -55,7 +56,7 @@ namespace Amazon.LocationService.Model
     public partial class TagResourceRequest : AmazonLocationServiceRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -64,7 +65,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// Format example: <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+        /// Format example: <c>arn:aws:geo:region:account-id:resourcetype/ExampleResource</c>
         /// 
         /// </para>
         ///  </li> </ul>
@@ -90,7 +91,7 @@ namespace Amazon.LocationService.Model
         /// </para>
         ///  
         /// <para>
-        /// Format: <code>"key" : "value"</code> 
+        /// Format: <c>"key" : "value"</c> 
         /// </para>
         ///  
         /// <para>
@@ -133,7 +134,7 @@ namespace Amazon.LocationService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(ManagedScalingPolicy requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetComputeLimits())
             {
                 context.Writer.WritePropertyName("ComputeLimits");
@@ -54,6 +57,18 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.ComputeLimits, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetScalingStrategy())
+            {
+                context.Writer.WritePropertyName("ScalingStrategy");
+                context.Writer.Write(requestObject.ScalingStrategy);
+            }
+
+            if(requestObject.IsSetUtilizationPerformanceIndex())
+            {
+                context.Writer.WritePropertyName("UtilizationPerformanceIndex");
+                context.Writer.Write(requestObject.UtilizationPerformanceIndex);
             }
 
         }

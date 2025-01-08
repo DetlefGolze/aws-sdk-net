@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -45,9 +46,8 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// Gets and sets the property Aggregator. 
         /// <para>
         /// Returns inventory schemas that support aggregation. For example, this call returns
-        /// the <code>AWS:InstanceInformation</code> type, because it supports aggregation based
-        /// on the <code>PlatformName</code>, <code>PlatformType</code>, and <code>PlatformVersion</code>
-        /// attributes.
+        /// the <c>AWS:InstanceInformation</c> type, because it supports aggregation based on
+        /// the <c>PlatformName</c>, <c>PlatformType</c>, and <c>PlatformVersion</c> attributes.
         /// </para>
         /// </summary>
         public bool Aggregator

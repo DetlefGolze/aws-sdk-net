@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -35,10 +36,10 @@ namespace Amazon.CodeArtifact.Model
     /// 
     ///  
     /// <para>
-    ///  When you call <code>PutRepositoryPermissionsPolicy</code>, the resource policy on
-    /// the repository is ignored when evaluting permissions. This ensures that the owner
-    /// of a repository cannot lock themselves out of the repository, which would prevent
-    /// them from being able to update the resource policy. 
+    ///  When you call <c>PutRepositoryPermissionsPolicy</c>, the resource policy on the repository
+    /// is ignored when evaluting permissions. This ensures that the owner of a repository
+    /// cannot lock themselves out of the repository, which would prevent them from being
+    /// able to update the resource policy. 
     /// </para>
     /// </summary>
     public partial class PutRepositoryPermissionsPolicyRequest : AmazonCodeArtifactRequest

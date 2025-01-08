@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.Glue.Model
     /// </para>
     ///  
     /// <para>
-    /// Returns a unique identifier for the run. You can call <code>GetMLTaskRun</code> to
-    /// get more information about the stats of the <code>EvaluationTaskRun</code>.
+    /// Returns a unique identifier for the run. You can call <c>GetMLTaskRun</c> to get more
+    /// information about the stats of the <c>EvaluationTaskRun</c>.
     /// </para>
     /// </summary>
     public partial class StartMLEvaluationTaskRunRequest : AmazonGlueRequest

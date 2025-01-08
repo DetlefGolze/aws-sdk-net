@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancing.Model
 {
     /// <summary>
@@ -47,10 +48,9 @@ namespace Amazon.ElasticLoadBalancing.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>elb.http.desyncmitigationmode</code> - Determines how the load balancer handles
-        /// requests that might pose a security risk to your application. The possible values
-        /// are <code>monitor</code>, <code>defensive</code>, and <code>strictest</code>. The
-        /// default is <code>defensive</code>.
+        ///  <c>elb.http.desyncmitigationmode</c> - Determines how the load balancer handles requests
+        /// that might pose a security risk to your application. The possible values are <c>monitor</c>,
+        /// <c>defensive</c>, and <c>strictest</c>. The default is <c>defensive</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>

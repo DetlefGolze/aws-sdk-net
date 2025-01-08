@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -38,34 +39,33 @@ namespace Amazon.Lightsail.Model
     ///  
     /// <para>
     /// When you create a load balancer, you can specify a unique name and port settings.
-    /// To change additional load balancer settings, use the <code>UpdateLoadBalancerAttribute</code>
+    /// To change additional load balancer settings, use the <c>UpdateLoadBalancerAttribute</c>
     /// operation.
     /// </para>
     ///  
     /// <para>
-    /// The <code>create load balancer</code> operation supports tag-based access control
-    /// via request tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
+    /// The <c>create load balancer</c> operation supports tag-based access control via request
+    /// tags. For more information, see the <a href="https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-controlling-access-using-tags">Amazon
     /// Lightsail Developer Guide</a>.
     /// </para>
     /// </summary>
     public partial class CreateLoadBalancerRequest : AmazonLightsailRequest
     {
-        private List<string> _certificateAlternativeNames = new List<string>();
+        private List<string> _certificateAlternativeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _certificateDomainName;
         private string _certificateName;
         private string _healthCheckPath;
         private int? _instancePort;
         private IpAddressType _ipAddressType;
         private string _loadBalancerName;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _tlsPolicyName;
 
         /// <summary>
         /// Gets and sets the property CertificateAlternativeNames. 
         /// <para>
         /// The optional alternative domains and subdomains to use with your SSL/TLS certificate
-        /// (e.g., <code>www.example.com</code>, <code>example.com</code>, <code>m.example.com</code>,
-        /// <code>blog.example.com</code>).
+        /// (<c>www.example.com</c>, <c>example.com</c>, <c>m.example.com</c>, <c>blog.example.com</c>).
         /// </para>
         /// </summary>
         public List<string> CertificateAlternativeNames
@@ -77,18 +77,18 @@ namespace Amazon.Lightsail.Model
         // Check to see if CertificateAlternativeNames property is set
         internal bool IsSetCertificateAlternativeNames()
         {
-            return this._certificateAlternativeNames != null && this._certificateAlternativeNames.Count > 0; 
+            return this._certificateAlternativeNames != null && (this._certificateAlternativeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property CertificateDomainName. 
         /// <para>
-        /// The domain name with which your certificate is associated (e.g., <code>example.com</code>).
+        /// The domain name with which your certificate is associated (<c>example.com</c>).
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>certificateDomainName</code>, then <code>certificateName</code>
-        /// is required (and vice-versa).
+        /// If you specify <c>certificateDomainName</c>, then <c>certificateName</c> is required
+        /// (and vice-versa).
         /// </para>
         /// </summary>
         public string CertificateDomainName
@@ -110,8 +110,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>certificateName</code>, then <code>certificateDomainName</code>
-        /// is required (and vice-versa).
+        /// If you specify <c>certificateName</c>, then <c>certificateDomainName</c> is required
+        /// (and vice-versa).
         /// </para>
         /// </summary>
         public string CertificateName
@@ -130,7 +130,7 @@ namespace Amazon.Lightsail.Model
         /// Gets and sets the property HealthCheckPath. 
         /// <para>
         /// The path you provided to perform the load balancer health check. If you didn't specify
-        /// a health check path, Lightsail uses the root path of your website (e.g., <code>"/"</code>).
+        /// a health check path, Lightsail uses the root path of your website (<c>"/"</c>).
         /// </para>
         ///  
         /// <para>
@@ -176,12 +176,12 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// The possible values are <code>ipv4</code> for IPv4 only, and <code>dualstack</code>
-        /// for IPv4 and IPv6.
+        /// The possible values are <c>ipv4</c> for IPv4 only, <c>ipv6</c> for IPv6 only, and
+        /// <c>dualstack</c> for IPv4 and IPv6.
         /// </para>
         ///  
         /// <para>
-        /// The default value is <code>dualstack</code>.
+        /// The default value is <c>dualstack</c>.
         /// </para>
         /// </summary>
         public IpAddressType IpAddressType
@@ -222,7 +222,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>TagResource</code> action to tag a resource after it's created.
+        /// Use the <c>TagResource</c> action to tag a resource after it's created.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -234,7 +234,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

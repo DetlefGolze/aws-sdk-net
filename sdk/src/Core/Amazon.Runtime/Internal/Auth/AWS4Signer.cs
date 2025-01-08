@@ -56,6 +56,8 @@ namespace Amazon.Runtime.Internal.Auth
 
         const SigningAlgorithm SignerAlgorithm = SigningAlgorithm.HmacSHA256;
 
+        // If this list is updated to include new headers, the SigV4a signer (in "AWSSDK.Extensions.CrtIntegration\CrtAWS4aSigner.cs") may need to
+        // be updated as well.
         private static IEnumerable<string> _headersToIgnoreWhenSigning = new HashSet<string>(StringComparer.OrdinalIgnoreCase) {
             HeaderKeys.XAmznTraceIdHeader,
             HeaderKeys.TransferEncodingHeader,
@@ -224,7 +226,7 @@ namespace Amazon.Runtime.Internal.Auth
                                                        request.UseDoubleEncoding);
             if (metrics != null)
                 metrics.AddProperty(Metric.CanonicalRequest, canonicalRequest);
-
+            request.SignatureVersion = SignatureVersion.SigV4;
             return ComputeSignature(awsAccessKeyId,
                                     awsSecretAccessKey,
                                     request.DeterminedSigningRegion,
@@ -656,7 +658,9 @@ namespace Amazon.Runtime.Internal.Auth
             // client config properties.
             if (alternateEndpoint != null)
             {
+#pragma warning disable CS0612,CS0618
                 var serviceEndpoint = alternateEndpoint.GetEndpointForService(serviceName, clientConfig.ToGetEndpointForServiceOptions());
+#pragma warning restore CS0612,CS0618
                 if (serviceEndpoint.AuthRegion != null)
                     return serviceEndpoint.AuthRegion;
 
@@ -685,6 +689,7 @@ namespace Amazon.Runtime.Internal.Auth
             var endpoint = clientConfig.RegionEndpoint;
             if (endpoint != null)
             {
+#pragma warning disable CS0612,CS0618
                 var serviceEndpoint = endpoint.GetEndpointForService(serviceName, clientConfig.ToGetEndpointForServiceOptions());
                 if (!string.IsNullOrEmpty(serviceEndpoint.AuthRegion))
                     return serviceEndpoint.AuthRegion;
@@ -693,7 +698,7 @@ namespace Amazon.Runtime.Internal.Auth
                 var overrideRegion = RegionEndpoint.GetRegionEndpointOverride(endpoint);
                 if (overrideRegion != null)
                     return overrideRegion.SystemName;
-
+#pragma warning restore CS0612,CS0618
                 return endpoint.SystemName; 
             }
 
@@ -703,8 +708,10 @@ namespace Amazon.Runtime.Internal.Auth
         public static string DetermineService(IClientConfig clientConfig)
         {
             return (!string.IsNullOrEmpty(clientConfig.AuthenticationServiceName)) 
-                ? clientConfig.AuthenticationServiceName 
+                ? clientConfig.AuthenticationServiceName
+#pragma warning disable CS0612, CS0618
                 : AWSSDKUtils.DetermineService(clientConfig.DetermineServiceURL());
+#pragma warning restore CS0612,CS0618
         }
 
         /// <summary>
@@ -1046,7 +1053,8 @@ namespace Amazon.Runtime.Internal.Auth
         {
             "s3",
             "s3-object-lambda",
-            "s3-outposts"
+            "s3-outposts",
+            "s3express"
         };
 
         /// <summary>
@@ -1203,7 +1211,7 @@ namespace Amazon.Runtime.Internal.Auth
                                                  string service,
                                                  string overrideSigningRegion)
         {
-            if (service == "s3")
+            if (service == "s3" || service == "s3express")
             {
                 // Older versions of the S3 package can be used with newer versions of Core, this guarantees no double encoding will be used.
                 // The new behavior uses endpoint resolution rules, which are not present prior to 3.7.100
@@ -1221,6 +1229,7 @@ namespace Amazon.Runtime.Internal.Auth
             }
 
             var signedAt = CorrectClockSkew.GetCorrectedUtcNowForEndpoint(request.Endpoint.ToString());
+            request.SignedAt = signedAt;
             var region = overrideSigningRegion ?? DetermineSigningRegion(clientConfig, clientConfig.RegionEndpointServiceName, request.AlternateEndpoint, request);
 
             // AWS4 presigned urls got S3 are expected to contain a 'UNSIGNED-PAYLOAD' magic string

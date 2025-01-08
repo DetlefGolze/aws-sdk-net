@@ -26,24 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeFleetLocationCapacity operation.
     /// Retrieves the resource capacity settings for a fleet location. The data returned includes
     /// the current capacity (number of EC2 instances) and some scaling settings for the requested
-    /// fleet location. Use this operation to retrieve capacity information for a fleet's
-    /// remote location or home Region (you can also retrieve home Region capacity by calling
-    /// <code>DescribeFleetCapacity</code>).
+    /// fleet location. For a managed container fleet, this operation also returns counts
+    /// for game server container groups.
     /// 
+    ///  
+    /// <para>
+    /// Use this operation to retrieve capacity information for a fleet's remote location
+    /// or home Region (you can also retrieve home Region capacity by calling <c>DescribeFleetCapacity</c>).
+    /// </para>
     ///  
     /// <para>
     /// To retrieve capacity data, identify a fleet and location. 
     /// </para>
     ///  
     /// <para>
-    /// If successful, a <code>FleetCapacity</code> object is returned for the requested fleet
-    /// location. 
+    /// If successful, a <c>FleetCapacity</c> object is returned for the requested fleet location.
+    /// 
     /// </para>
     ///  
     /// <para>
@@ -53,6 +58,11 @@ namespace Amazon.GameLift.Model
     /// <para>
     ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/fleets-intro.html">Setting
     /// up Amazon GameLift fleets</a> 
+    /// </para>
+    ///  
+    /// <para>
+    ///  <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-regions.html">
+    /// Amazon GameLift service locations</a> for managed hosting
     /// </para>
     ///  
     /// <para>
@@ -72,7 +82,7 @@ namespace Amazon.GameLift.Model
         /// the fleet ID or ARN value.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=512)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -89,7 +99,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The fleet location to retrieve capacity information for. Specify a location in the
-        /// form of an Amazon Web Services Region code, such as <code>us-west-2</code>.
+        /// form of an Amazon Web Services Region code, such as <c>us-west-2</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

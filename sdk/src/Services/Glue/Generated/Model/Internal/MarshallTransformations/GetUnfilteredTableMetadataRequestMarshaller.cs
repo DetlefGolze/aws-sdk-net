@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Glue.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAuditContext())
@@ -94,6 +96,57 @@ namespace Amazon.Glue.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("Name");
                     context.Writer.Write(publicRequest.Name);
+                }
+
+                if(publicRequest.IsSetParentResourceArn())
+                {
+                    context.Writer.WritePropertyName("ParentResourceArn");
+                    context.Writer.Write(publicRequest.ParentResourceArn);
+                }
+
+                if(publicRequest.IsSetPermissions())
+                {
+                    context.Writer.WritePropertyName("Permissions");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestPermissionsListValue in publicRequest.Permissions)
+                    {
+                            context.Writer.Write(publicRequestPermissionsListValue);
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetQuerySessionContext())
+                {
+                    context.Writer.WritePropertyName("QuerySessionContext");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = QuerySessionContextMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.QuerySessionContext, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetRegion())
+                {
+                    context.Writer.WritePropertyName("Region");
+                    context.Writer.Write(publicRequest.Region);
+                }
+
+                if(publicRequest.IsSetRootResourceArn())
+                {
+                    context.Writer.WritePropertyName("RootResourceArn");
+                    context.Writer.Write(publicRequest.RootResourceArn);
+                }
+
+                if(publicRequest.IsSetSupportedDialect())
+                {
+                    context.Writer.WritePropertyName("SupportedDialect");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = SupportedDialectMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.SupportedDialect, context);
+
+                    context.Writer.WriteObjectEnd();
                 }
 
                 if(publicRequest.IsSetSupportedPermissionTypes())

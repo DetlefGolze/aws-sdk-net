@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeArtifact.Model
 {
     /// <summary>
@@ -36,9 +37,9 @@ namespace Amazon.CodeArtifact.Model
     /// 
     ///  <important> 
     /// <para>
-    ///  Use <code>DeleteRepositoryPermissionsPolicy</code> with caution. After a policy is
-    /// deleted, Amazon Web Services users, roles, and accounts lose permissions to perform
-    /// the repository actions granted by the deleted policy. 
+    ///  Use <c>DeleteRepositoryPermissionsPolicy</c> with caution. After a policy is deleted,
+    /// Amazon Web Services users, roles, and accounts lose permissions to perform the repository
+    /// actions granted by the deleted policy. 
     /// </para>
     ///  </important>
     /// </summary>

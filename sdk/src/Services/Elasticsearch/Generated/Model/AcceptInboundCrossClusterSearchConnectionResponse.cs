@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Elasticsearch.Model
 {
     /// <summary>
-    /// The result of a <code><a>AcceptInboundCrossClusterSearchConnection</a></code> operation.
+    /// The result of a <c><a>AcceptInboundCrossClusterSearchConnection</a></c> operation.
     /// Contains details of accepted inbound connection.
     /// </summary>
     public partial class AcceptInboundCrossClusterSearchConnectionResponse : AmazonWebServiceResponse
@@ -39,8 +40,8 @@ namespace Amazon.Elasticsearch.Model
         /// <summary>
         /// Gets and sets the property CrossClusterSearchConnection. 
         /// <para>
-        /// Specifies the <code><a>InboundCrossClusterSearchConnection</a></code> of accepted
-        /// inbound connection. 
+        /// Specifies the <c><a>InboundCrossClusterSearchConnection</a></c> of accepted inbound
+        /// connection. 
         /// </para>
         /// </summary>
         public InboundCrossClusterSearchConnection CrossClusterSearchConnection

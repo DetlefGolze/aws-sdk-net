@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.Connect.Model
     {
         private string _contactFlowArn;
         private string _contactFlowId;
+        private string _flowContentSha256;
 
         /// <summary>
         /// Gets and sets the property ContactFlowArn. 
@@ -71,6 +73,25 @@ namespace Amazon.Connect.Model
         internal bool IsSetContactFlowId()
         {
             return this._contactFlowId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property FlowContentSha256. 
+        /// <para>
+        /// Indicates the checksum value of the flow content.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string FlowContentSha256
+        {
+            get { return this._flowContentSha256; }
+            set { this._flowContentSha256 = value; }
+        }
+
+        // Check to see if FlowContentSha256 property is set
+        internal bool IsSetFlowContentSha256()
+        {
+            return this._flowContentSha256 != null;
         }
 
     }

@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// A custom SMS sender Lambda configuration type.
+    /// The properties of a custom SMS sender Lambda trigger.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request and response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html">CreateUserPool</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPool.html">UpdateUserPool</a>,
+    /// and a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html">DescribeUserPool</a>.
+    /// </para>
     /// </summary>
     public partial class CustomSMSLambdaVersionConfigType
     {
@@ -39,8 +47,8 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LambdaArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito activates
-        /// to send SMS notifications to users.
+        /// The Amazon Resource Name (ARN) of the function that you want to assign to your Lambda
+        /// trigger.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=20, Max=2048)]
@@ -59,8 +67,12 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LambdaVersion. 
         /// <para>
-        /// Signature of the "request" attribute in the "event" information that Amazon Cognito
-        /// passes to your custom SMS Lambda function. The only supported value is <code>V1_0</code>.
+        /// The user pool trigger version of the request that Amazon Cognito sends to your Lambda
+        /// function. Higher-numbered versions add fields that support new features.
+        /// </para>
+        ///  
+        /// <para>
+        /// You must use a <c>LambdaVersion</c> of <c>V1_0</c> with a custom sender function.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

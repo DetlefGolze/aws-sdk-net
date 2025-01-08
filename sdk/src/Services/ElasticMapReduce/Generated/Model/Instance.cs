@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.ElasticMapReduce.Model
     /// </summary>
     public partial class Instance
     {
-        private List<EbsVolume> _ebsVolumes = new List<EbsVolume>();
+        private List<EbsVolume> _ebsVolumes = AWSConfigs.InitializeCollections ? new List<EbsVolume>() : null;
         private string _ec2InstanceId;
         private string _id;
         private string _instanceFleetId;
@@ -61,7 +62,7 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if EbsVolumes property is set
         internal bool IsSetEbsVolumes()
         {
-            return this._ebsVolumes != null && this._ebsVolumes.Count > 0; 
+            return this._ebsVolumes != null && (this._ebsVolumes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -139,7 +140,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property InstanceType. 
         /// <para>
-        /// The Amazon EC2 instance type, for example <code>m3.xlarge</code>.
+        /// The Amazon EC2 instance type, for example <c>m3.xlarge</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
@@ -158,7 +159,7 @@ namespace Amazon.ElasticMapReduce.Model
         /// <summary>
         /// Gets and sets the property Market. 
         /// <para>
-        /// The instance purchasing option. Valid values are <code>ON_DEMAND</code> or <code>SPOT</code>.
+        /// The instance purchasing option. Valid values are <c>ON_DEMAND</c> or <c>SPOT</c>.
         /// 
         /// </para>
         /// </summary>

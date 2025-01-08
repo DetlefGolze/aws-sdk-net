@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  <ol> <li> 
     /// <para>
-    /// Use <code>GetResponseHeadersPolicyConfig</code> to get the current policy's configuration.
+    /// Use <c>GetResponseHeadersPolicyConfig</c> to get the current policy's configuration.
     /// </para>
     ///  </li> <li> 
     /// <para>
@@ -48,8 +49,8 @@ namespace Amazon.CloudFront.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Call <code>UpdateResponseHeadersPolicy</code>, providing the entire response headers
-    /// policy configuration, including the fields that you modified and those that you didn't.
+    /// Call <c>UpdateResponseHeadersPolicy</c>, providing the entire response headers policy
+    /// configuration, including the fields that you modified and those that you didn't.
     /// </para>
     ///  </li> </ol>
     /// </summary>
@@ -85,8 +86,8 @@ namespace Amazon.CloudFront.Model
         /// </para>
         ///  
         /// <para>
-        /// The version is returned in the cache policy's <code>ETag</code> field in the response
-        /// to <code>GetResponseHeadersPolicyConfig</code>.
+        /// The version is returned in the cache policy's <c>ETag</c> field in the response to
+        /// <c>GetResponseHeadersPolicyConfig</c>.
         /// </para>
         /// </summary>
         public string IfMatch
@@ -98,7 +99,7 @@ namespace Amazon.CloudFront.Model
         // Check to see if IfMatch property is set
         internal bool IsSetIfMatch()
         {
-            return this._ifMatch != null;
+            return !string.IsNullOrEmpty(this._ifMatch);
         }
 
         /// <summary>

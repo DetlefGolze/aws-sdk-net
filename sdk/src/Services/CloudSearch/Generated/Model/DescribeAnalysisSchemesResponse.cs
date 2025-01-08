@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code>DescribeAnalysisSchemes</code> request. Contains the analysis
-    /// schemes configured for the domain specified in the request.
+    /// The result of a <c>DescribeAnalysisSchemes</c> request. Contains the analysis schemes
+    /// configured for the domain specified in the request.
     /// </summary>
     public partial class DescribeAnalysisSchemesResponse : AmazonWebServiceResponse
     {
-        private List<AnalysisSchemeStatus> _analysisSchemes = new List<AnalysisSchemeStatus>();
+        private List<AnalysisSchemeStatus> _analysisSchemes = AWSConfigs.InitializeCollections ? new List<AnalysisSchemeStatus>() : null;
 
         /// <summary>
         /// Gets and sets the property AnalysisSchemes. 
@@ -52,7 +53,7 @@ namespace Amazon.CloudSearch.Model
         // Check to see if AnalysisSchemes property is set
         internal bool IsSetAnalysisSchemes()
         {
-            return this._analysisSchemes != null && this._analysisSchemes.Count > 0; 
+            return this._analysisSchemes != null && (this._analysisSchemes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

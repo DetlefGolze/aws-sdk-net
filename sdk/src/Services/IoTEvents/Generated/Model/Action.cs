@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTEvents.Model
 {
     /// <summary>
-    /// An action to be performed when the <code>condition</code> is TRUE.
+    /// An action to be performed when the <c>condition</c> is TRUE.
     /// </summary>
     public partial class Action
     {

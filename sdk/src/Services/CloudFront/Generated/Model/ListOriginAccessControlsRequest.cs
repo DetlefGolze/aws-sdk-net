@@ -26,20 +26,29 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
     /// Container for the parameters to the ListOriginAccessControls operation.
-    /// Gets the list of CloudFront origin access controls in this Amazon Web Services account.
+    /// Gets the list of CloudFront origin access controls (OACs) in this Amazon Web Services
+    /// account.
     /// 
     ///  
     /// <para>
     /// You can optionally specify the maximum number of items to receive in the response.
     /// If the total number of items in the list exceeds the maximum that you specify, or
     /// the default maximum, the response is paginated. To get the next page of items, send
-    /// another request that specifies the <code>NextMarker</code> value from the current
-    /// response as the <code>Marker</code> value in the next request.
+    /// another request that specifies the <c>NextMarker</c> value from the current response
+    /// as the <c>Marker</c> value in the next request.
     /// </para>
+    ///  <note> 
+    /// <para>
+    /// If you're not using origin access controls for your Amazon Web Services account, the
+    /// <c>ListOriginAccessControls</c> operation doesn't return the <c>Items</c> element
+    /// in the response.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class ListOriginAccessControlsRequest : AmazonCloudFrontRequest
     {
@@ -52,7 +61,7 @@ namespace Amazon.CloudFront.Model
         /// Use this field when paginating results to indicate where to begin in your list of
         /// origin access controls. The response includes the items in the list that occur after
         /// the marker. To get the next page of the list, set this field's value to the value
-        /// of <code>NextMarker</code> from the current page's response.
+        /// of <c>NextMarker</c> from the current page's response.
         /// </para>
         /// </summary>
         public string Marker

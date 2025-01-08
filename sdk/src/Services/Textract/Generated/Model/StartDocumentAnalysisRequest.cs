@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Textract.Model
 {
     /// <summary>
@@ -35,19 +36,19 @@ namespace Amazon.Textract.Model
     /// 
     ///  
     /// <para>
-    ///  <code>StartDocumentAnalysis</code> can analyze text in documents that are in JPEG,
-    /// PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
+    ///  <c>StartDocumentAnalysis</c> can analyze text in documents that are in JPEG, PNG,
+    /// TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a>
     /// to specify the bucket name and file name of the document. 
     /// </para>
     ///  
     /// <para>
-    ///  <code>StartDocumentAnalysis</code> returns a job identifier (<code>JobId</code>)
-    /// that you use to get the results of the operation. When text analysis is finished,
-    /// Amazon Textract publishes a completion status to the Amazon Simple Notification Service
-    /// (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the
-    /// results of the text analysis operation, first check that the status value published
-    /// to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentAnalysis</a>,
-    /// and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.
+    ///  <c>StartDocumentAnalysis</c> returns a job identifier (<c>JobId</c>) that you use
+    /// to get the results of the operation. When text analysis is finished, Amazon Textract
+    /// publishes a completion status to the Amazon Simple Notification Service (Amazon SNS)
+    /// topic that you specify in <c>NotificationChannel</c>. To get the results of the text
+    /// analysis operation, first check that the status value published to the Amazon SNS
+    /// topic is <c>SUCCEEDED</c>. If so, call <a>GetDocumentAnalysis</a>, and pass the job
+    /// identifier (<c>JobId</c>) from the initial call to <c>StartDocumentAnalysis</c>.
     /// </para>
     ///  
     /// <para>
@@ -57,9 +58,10 @@ namespace Amazon.Textract.Model
     /// </summary>
     public partial class StartDocumentAnalysisRequest : AmazonTextractRequest
     {
+        private AdaptersConfig _adaptersConfig;
         private string _clientRequestToken;
         private DocumentLocation _documentLocation;
-        private List<string> _featureTypes = new List<string>();
+        private List<string> _featureTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _jobTag;
         private string _kmsKeyId;
         private NotificationChannel _notificationChannel;
@@ -67,12 +69,30 @@ namespace Amazon.Textract.Model
         private QueriesConfig _queriesConfig;
 
         /// <summary>
+        /// Gets and sets the property AdaptersConfig. 
+        /// <para>
+        /// Specifies the adapter to be used when analyzing a document.
+        /// </para>
+        /// </summary>
+        public AdaptersConfig AdaptersConfig
+        {
+            get { return this._adaptersConfig; }
+            set { this._adaptersConfig = value; }
+        }
+
+        // Check to see if AdaptersConfig property is set
+        internal bool IsSetAdaptersConfig()
+        {
+            return this._adaptersConfig != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property ClientRequestToken. 
         /// <para>
         /// The idempotent token that you use to identify the start request. If you use the same
-        /// token with multiple <code>StartDocumentAnalysis</code> requests, the same <code>JobId</code>
-        /// is returned. Use <code>ClientRequestToken</code> to prevent the same job from being
-        /// accidentally started more than once. For more information, see <a href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html">Calling
+        /// token with multiple <c>StartDocumentAnalysis</c> requests, the same <c>JobId</c> is
+        /// returned. Use <c>ClientRequestToken</c> to prevent the same job from being accidentally
+        /// started more than once. For more information, see <a href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html">Calling
         /// Amazon Textract Asynchronous Operations</a>.
         /// </para>
         /// </summary>
@@ -113,9 +133,9 @@ namespace Amazon.Textract.Model
         /// <para>
         /// A list of the types of analysis to perform. Add TABLES to the list to return information
         /// about the tables that are detected in the input document. Add FORMS to return detected
-        /// form data. To perform both types of analysis, add TABLES and FORMS to <code>FeatureTypes</code>.
+        /// form data. To perform both types of analysis, add TABLES and FORMS to <c>FeatureTypes</c>.
         /// All lines and words detected in the document are included in the response (including
-        /// text that isn't related to the value of <code>FeatureTypes</code>). 
+        /// text that isn't related to the value of <c>FeatureTypes</c>). 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -128,16 +148,16 @@ namespace Amazon.Textract.Model
         // Check to see if FeatureTypes property is set
         internal bool IsSetFeatureTypes()
         {
-            return this._featureTypes != null && this._featureTypes.Count > 0; 
+            return this._featureTypes != null && (this._featureTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property JobTag. 
         /// <para>
         /// An identifier that you specify that's included in the completion notification published
-        /// to the Amazon SNS topic. For example, you can use <code>JobTag</code> to identify
-        /// the type of document that the completion notification corresponds to (such as a tax
-        /// form or a receipt).
+        /// to the Amazon SNS topic. For example, you can use <c>JobTag</c> to identify the type
+        /// of document that the completion notification corresponds to (such as a tax form or
+        /// a receipt).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]

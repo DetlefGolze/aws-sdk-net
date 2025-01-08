@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeVerifiedAccessInstanceLoggingConfigurationsResponse : AmazonWebServiceResponse
     {
-        private List<VerifiedAccessInstanceLoggingConfiguration> _loggingConfigurations = new List<VerifiedAccessInstanceLoggingConfiguration>();
+        private List<VerifiedAccessInstanceLoggingConfiguration> _loggingConfigurations = AWSConfigs.InitializeCollections ? new List<VerifiedAccessInstanceLoggingConfiguration>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property LoggingConfigurations. 
         /// <para>
-        /// The current logging configuration for the Verified Access instances.
+        /// The logging configuration for the Verified Access instances.
         /// </para>
         /// </summary>
         public List<VerifiedAccessInstanceLoggingConfiguration> LoggingConfigurations
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if LoggingConfigurations property is set
         internal bool IsSetLoggingConfigurations()
         {
-            return this._loggingConfigurations != null && this._loggingConfigurations.Count > 0; 
+            return this._loggingConfigurations != null && (this._loggingConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

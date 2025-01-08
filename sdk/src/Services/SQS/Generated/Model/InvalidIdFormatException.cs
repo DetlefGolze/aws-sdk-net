@@ -26,11 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SQS.Model
 {
     /// <summary>
     /// The specified receipt handle isn't valid for the current version.
     /// </summary>
+    [Obsolete("exception has been included in ReceiptHandleIsInvalid")]
     #if !NETSTANDARD
     [Serializable]
     #endif

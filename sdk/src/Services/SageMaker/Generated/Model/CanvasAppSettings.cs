@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,10 +34,68 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class CanvasAppSettings
     {
-        private List<IdentityProviderOAuthSetting> _identityProviderOAuthSettings = new List<IdentityProviderOAuthSetting>();
+        private DirectDeploySettings _directDeploySettings;
+        private EmrServerlessSettings _emrServerlessSettings;
+        private GenerativeAiSettings _generativeAiSettings;
+        private List<IdentityProviderOAuthSetting> _identityProviderOAuthSettings = AWSConfigs.InitializeCollections ? new List<IdentityProviderOAuthSetting>() : null;
+        private KendraSettings _kendraSettings;
         private ModelRegisterSettings _modelRegisterSettings;
         private TimeSeriesForecastingSettings _timeSeriesForecastingSettings;
         private WorkspaceSettings _workspaceSettings;
+
+        /// <summary>
+        /// Gets and sets the property DirectDeploySettings. 
+        /// <para>
+        /// The model deployment settings for the SageMaker Canvas application.
+        /// </para>
+        /// </summary>
+        public DirectDeploySettings DirectDeploySettings
+        {
+            get { return this._directDeploySettings; }
+            set { this._directDeploySettings = value; }
+        }
+
+        // Check to see if DirectDeploySettings property is set
+        internal bool IsSetDirectDeploySettings()
+        {
+            return this._directDeploySettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property EmrServerlessSettings. 
+        /// <para>
+        /// The settings for running Amazon EMR Serverless data processing jobs in SageMaker Canvas.
+        /// </para>
+        /// </summary>
+        public EmrServerlessSettings EmrServerlessSettings
+        {
+            get { return this._emrServerlessSettings; }
+            set { this._emrServerlessSettings = value; }
+        }
+
+        // Check to see if EmrServerlessSettings property is set
+        internal bool IsSetEmrServerlessSettings()
+        {
+            return this._emrServerlessSettings != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property GenerativeAiSettings. 
+        /// <para>
+        /// The generative AI settings for the SageMaker Canvas application.
+        /// </para>
+        /// </summary>
+        public GenerativeAiSettings GenerativeAiSettings
+        {
+            get { return this._generativeAiSettings; }
+            set { this._generativeAiSettings = value; }
+        }
+
+        // Check to see if GenerativeAiSettings property is set
+        internal bool IsSetGenerativeAiSettings()
+        {
+            return this._generativeAiSettings != null;
+        }
 
         /// <summary>
         /// Gets and sets the property IdentityProviderOAuthSettings. 
@@ -54,7 +113,25 @@ namespace Amazon.SageMaker.Model
         // Check to see if IdentityProviderOAuthSettings property is set
         internal bool IsSetIdentityProviderOAuthSettings()
         {
-            return this._identityProviderOAuthSettings != null && this._identityProviderOAuthSettings.Count > 0; 
+            return this._identityProviderOAuthSettings != null && (this._identityProviderOAuthSettings.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property KendraSettings. 
+        /// <para>
+        /// The settings for document querying.
+        /// </para>
+        /// </summary>
+        public KendraSettings KendraSettings
+        {
+            get { return this._kendraSettings; }
+            set { this._kendraSettings = value; }
+        }
+
+        // Check to see if KendraSettings property is set
+        internal bool IsSetKendraSettings()
+        {
+            return this._kendraSettings != null;
         }
 
         /// <summary>
@@ -78,7 +155,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property TimeSeriesForecastingSettings. 
         /// <para>
-        /// Time series forecast settings for the Canvas application.
+        /// Time series forecast settings for the SageMaker Canvas application.
         /// </para>
         /// </summary>
         public TimeSeriesForecastingSettings TimeSeriesForecastingSettings

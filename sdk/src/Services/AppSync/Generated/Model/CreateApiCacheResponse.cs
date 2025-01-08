@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppSync.Model
 {
     /// <summary>
-    /// Represents the output of a <code>CreateApiCache</code> operation.
+    /// Represents the output of a <c>CreateApiCache</c> operation.
     /// </summary>
     public partial class CreateApiCacheResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.AppSync.Model
         /// <summary>
         /// Gets and sets the property ApiCache. 
         /// <para>
-        /// The <code>ApiCache</code> object.
+        /// The <c>ApiCache</c> object.
         /// </para>
         /// </summary>
         public ApiCache ApiCache

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -34,13 +35,12 @@ namespace Amazon.GameLift.Model
     /// 
     ///  <note> 
     /// <para>
-    /// If the game session placement status is <code>PENDING</code>, the properties for game
-    /// session ID/ARN, region, IP address/DNS, and port aren't final. A game session is not
-    /// active and ready to accept players until placement status reaches <code>FULFILLED</code>.
-    /// When the placement is in <code>PENDING</code> status, Amazon GameLift may attempt
-    /// to place a game session multiple times before succeeding. With each attempt it creates
-    /// a <a>GameSession</a> object and updates this placement object with the new game session
-    /// properties..
+    /// If the game session placement status is <c>PENDING</c>, the properties for game session
+    /// ID/ARN, region, IP address/DNS, and port aren't final. A game session is not active
+    /// and ready to accept players until placement status reaches <c>FULFILLED</c>. When
+    /// the placement is in <c>PENDING</c> status, Amazon GameLift may attempt to place a
+    /// game session multiple times before succeeding. With each attempt it creates a <a href="https://docs.aws.amazon.com/gamelift/latest/apireference/API_GameSession">https://docs.aws.amazon.com/gamelift/latest/apireference/API_GameSession</a>
+    /// object and updates this placement object with the new game session properties..
     /// </para>
     ///  </note>
     /// </summary>
@@ -48,7 +48,7 @@ namespace Amazon.GameLift.Model
     {
         private string _dnsName;
         private DateTime? _endTime;
-        private List<GameProperty> _gameProperties = new List<GameProperty>();
+        private List<GameProperty> _gameProperties = AWSConfigs.InitializeCollections ? new List<GameProperty>() : null;
         private string _gameSessionArn;
         private string _gameSessionData;
         private string _gameSessionId;
@@ -58,9 +58,9 @@ namespace Amazon.GameLift.Model
         private string _ipAddress;
         private string _matchmakerData;
         private int? _maximumPlayerSessionCount;
-        private List<PlacedPlayerSession> _placedPlayerSessions = new List<PlacedPlayerSession>();
+        private List<PlacedPlayerSession> _placedPlayerSessions = AWSConfigs.InitializeCollections ? new List<PlacedPlayerSession>() : null;
         private string _placementId;
-        private List<PlayerLatency> _playerLatencies = new List<PlayerLatency>();
+        private List<PlayerLatency> _playerLatencies = AWSConfigs.InitializeCollections ? new List<PlayerLatency>() : null;
         private int? _port;
         private DateTime? _startTime;
         private GameSessionPlacementState _status;
@@ -73,11 +73,11 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// TLS-enabled fleets: <code>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</code>.
+        /// TLS-enabled fleets: <c>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Non-TLS-enabled fleets: <code>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</code>.
+        /// Non-TLS-enabled fleets: <c>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</c>.
         /// (See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-public-addresses">Amazon
         /// EC2 Instance IP Addressing</a>.)
         /// </para>
@@ -120,10 +120,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property GameProperties. 
         /// <para>
-        /// A set of custom properties for a game session, formatted as key:value pairs. These
-        /// properties are passed to a game server process with a request to start a new game
-        /// session (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// A set of key-value pairs that can store custom data in a game session. For example:
+        /// <c>{"Key": "difficulty", "Value": "novice"}</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=16)]
@@ -136,14 +134,14 @@ namespace Amazon.GameLift.Model
         // Check to see if GameProperties property is set
         internal bool IsSetGameProperties()
         {
-            return this._gameProperties != null && this._gameProperties.Count > 0; 
+            return this._gameProperties != null && (this._gameProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GameSessionArn. 
         /// <para>
         /// Identifier for the game session created by this placement request. This identifier
-        /// is unique across all Regions. This value isn't final until placement status is <code>FULFILLED</code>.
+        /// is unique across all Regions. This value isn't final until placement status is <c>FULFILLED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -163,9 +161,9 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property GameSessionData. 
         /// <para>
         /// A set of custom game session properties, formatted as a single string value. This
-        /// data is passed to a game server process in the <code>GameSession</code> object with
-        /// a request to start a new game session (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// data is passed to a game server process with a request to start a new game session.
+        /// For more information, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
+        /// a game session</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=262144)]
@@ -185,7 +183,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property GameSessionId. 
         /// <para>
         /// A unique identifier for the game session. This value isn't final until placement status
-        /// is <code>FULFILLED</code>.
+        /// is <c>FULFILLED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -245,7 +243,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property GameSessionRegion. 
         /// <para>
         /// Name of the Region where the game session created by this placement request is running.
-        /// This value isn't final until placement status is <code>FULFILLED</code>.
+        /// This value isn't final until placement status is <c>FULFILLED</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -266,10 +264,10 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The IP address of the game session. To connect to a Amazon GameLift game server, an
         /// app needs both the IP address and port number. This value isn't final until placement
-        /// status is <code>FULFILLED</code>. 
+        /// status is <c>FULFILLED</c>. 
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string IpAddress
         {
             get { return this._ipAddress; }
@@ -329,9 +327,9 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// A collection of information on player sessions created in response to the game session
         /// placement request. These player sessions are created only after a new game session
-        /// is successfully placed (placement status is <code>FULFILLED</code>). This information
-        /// includes the player ID, provided in the placement request, and a corresponding player
-        /// session ID.
+        /// is successfully placed (placement status is <c>FULFILLED</c>). This information includes
+        /// the player ID, provided in the placement request, and a corresponding player session
+        /// ID.
         /// </para>
         /// </summary>
         public List<PlacedPlayerSession> PlacedPlayerSessions
@@ -343,7 +341,7 @@ namespace Amazon.GameLift.Model
         // Check to see if PlacedPlayerSessions property is set
         internal bool IsSetPlacedPlayerSessions()
         {
-            return this._placedPlayerSessions != null && this._placedPlayerSessions.Count > 0; 
+            return this._placedPlayerSessions != null && (this._placedPlayerSessions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -369,7 +367,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property PlayerLatencies. 
         /// <para>
         /// A set of values, expressed in milliseconds, that indicates the amount of latency that
-        /// a player experiences when connected to Amazon Web Services Regions.
+        /// a player experiences when connected to @aws; Regions.
         /// </para>
         /// </summary>
         public List<PlayerLatency> PlayerLatencies
@@ -381,7 +379,7 @@ namespace Amazon.GameLift.Model
         // Check to see if PlayerLatencies property is set
         internal bool IsSetPlayerLatencies()
         {
-            return this._playerLatencies != null && this._playerLatencies.Count > 0; 
+            return this._playerLatencies != null && (this._playerLatencies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -389,10 +387,10 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The port number for the game session. To connect to a Amazon GameLift game server,
         /// an app needs both the IP address and port number. This value isn't final until placement
-        /// status is <code>FULFILLED</code>.
+        /// status is <c>FULFILLED</c>.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=60000)]
+        [AWSProperty(Sensitive=true, Min=1, Max=60000)]
         public int Port
         {
             get { return this._port.GetValueOrDefault(); }
@@ -409,7 +407,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property StartTime. 
         /// <para>
         /// Time stamp indicating when this request was placed in the queue. Format is a number
-        /// expressed in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// expressed in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime StartTime

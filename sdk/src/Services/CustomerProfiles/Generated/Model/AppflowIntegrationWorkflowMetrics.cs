@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
-    /// Workflow specific execution metrics for <code>APPFLOW_INTEGRATION</code> workflow.
+    /// Workflow specific execution metrics for <c>APPFLOW_INTEGRATION</c> workflow.
     /// </summary>
     public partial class AppflowIntegrationWorkflowMetrics
     {
@@ -40,7 +41,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property RecordsProcessed. 
         /// <para>
-        /// Number of records processed in <code>APPFLOW_INTEGRATION</code> workflow.
+        /// Number of records processed in <c>APPFLOW_INTEGRATION</c> workflow.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -59,7 +60,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property StepsCompleted. 
         /// <para>
-        /// Total steps completed in <code>APPFLOW_INTEGRATION</code> workflow.
+        /// Total steps completed in <c>APPFLOW_INTEGRATION</c> workflow.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -78,7 +79,7 @@ namespace Amazon.CustomerProfiles.Model
         /// <summary>
         /// Gets and sets the property TotalSteps. 
         /// <para>
-        /// Total steps in <code>APPFLOW_INTEGRATION</code> workflow.
+        /// Total steps in <c>APPFLOW_INTEGRATION</c> workflow.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

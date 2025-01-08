@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -35,39 +36,43 @@ namespace Amazon.EC2.Model
     /// 
     ///  <ul> <li> 
     /// <para>
-    ///  <code>default-vpc</code>: The ID of the default VPC for your account, or <code>none</code>.
+    ///  <c>default-vpc</c>: The ID of the default VPC for your account, or <c>none</c>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>max-instances</code>: This attribute is no longer supported. The returned value
-    /// does not reflect your actual vCPU limit for running On-Demand Instances. For more
-    /// information, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits">On-Demand
+    ///  <c>max-instances</c>: This attribute is no longer supported. The returned value does
+    /// not reflect your actual vCPU limit for running On-Demand Instances. For more information,
+    /// see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits">On-Demand
     /// Instance Limits</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>max-elastic-ips</code>: The maximum number of Elastic IP addresses that you
-    /// can allocate.
+    ///  <c>max-elastic-ips</c>: The maximum number of Elastic IP addresses that you can allocate.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>supported-platforms</code>: This attribute is deprecated.
+    ///  <c>supported-platforms</c>: This attribute is deprecated.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>vpc-max-elastic-ips</code>: The maximum number of Elastic IP addresses that
-    /// you can allocate.
+    ///  <c>vpc-max-elastic-ips</c>: The maximum number of Elastic IP addresses that you can
+    /// allocate.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>vpc-max-security-groups-per-interface</code>: The maximum number of security
-    /// groups that you can assign to a network interface.
+    ///  <c>vpc-max-security-groups-per-interface</c>: The maximum number of security groups
+    /// that you can assign to a network interface.
     /// </para>
-    ///  </li> </ul>
+    ///  </li> </ul> <note> 
+    /// <para>
+    /// The order of the elements in the response, including those within nested structures,
+    /// might vary. Applications should not assume the elements appear in a particular order.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeAccountAttributesRequest : AmazonEC2Request
     {
-        private List<string> _attributeNames = new List<string>();
+        private List<string> _attributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property AttributeNames. 
@@ -84,7 +89,7 @@ namespace Amazon.EC2.Model
         // Check to see if AttributeNames property is set
         internal bool IsSetAttributeNames()
         {
-            return this._attributeNames != null && this._attributeNames.Count > 0; 
+            return this._attributeNames != null && (this._attributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

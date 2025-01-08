@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CostExplorer.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.CostExplorer.Model
         private AccountScope _accountScope;
         private LookbackPeriodInDays _lookbackPeriodInDays;
         private PaymentOption _paymentOption;
-        private List<SavingsPlansPurchaseRecommendationDetail> _savingsPlansPurchaseRecommendationDetails = new List<SavingsPlansPurchaseRecommendationDetail>();
+        private List<SavingsPlansPurchaseRecommendationDetail> _savingsPlansPurchaseRecommendationDetails = AWSConfigs.InitializeCollections ? new List<SavingsPlansPurchaseRecommendationDetail>() : null;
         private SavingsPlansPurchaseRecommendationSummary _savingsPlansPurchaseRecommendationSummary;
         private SupportedSavingsPlansType _savingsPlansType;
         private TermInYears _termInYears;
@@ -46,8 +47,8 @@ namespace Amazon.CostExplorer.Model
         /// <para>
         /// The account scope that you want your recommendations for. Amazon Web Services calculates
         /// recommendations that include the management account and member accounts if the value
-        /// is set to <code>PAYER</code>. If the value is <code>LINKED</code>, recommendations
-        /// are calculated for individual member accounts only.
+        /// is set to <c>PAYER</c>. If the value is <c>LINKED</c>, recommendations are calculated
+        /// for individual member accounts only.
         /// </para>
         /// </summary>
         public AccountScope AccountScope
@@ -114,7 +115,7 @@ namespace Amazon.CostExplorer.Model
         // Check to see if SavingsPlansPurchaseRecommendationDetails property is set
         internal bool IsSetSavingsPlansPurchaseRecommendationDetails()
         {
-            return this._savingsPlansPurchaseRecommendationDetails != null && this._savingsPlansPurchaseRecommendationDetails.Count > 0; 
+            return this._savingsPlansPurchaseRecommendationDetails != null && (this._savingsPlansPurchaseRecommendationDetails.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

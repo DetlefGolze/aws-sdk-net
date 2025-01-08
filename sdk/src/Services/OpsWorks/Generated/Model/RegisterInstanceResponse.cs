@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
-    /// Contains the response to a <code>RegisterInstanceResult</code> request.
+    /// Contains the response to a <c>RegisterInstanceResult</c> request.
     /// </summary>
     public partial class RegisterInstanceResponse : AmazonWebServiceResponse
     {
@@ -38,7 +39,7 @@ namespace Amazon.OpsWorks.Model
         /// <summary>
         /// Gets and sets the property InstanceId. 
         /// <para>
-        /// The registered instance's AWS OpsWorks Stacks ID.
+        /// The registered instance's OpsWorks Stacks ID.
         /// </para>
         /// </summary>
         public string InstanceId

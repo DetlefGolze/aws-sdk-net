@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the license-manager-linux-subscriptions-2018-05-10.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LicenseManagerLinuxSubscriptions.Model
 {
     /// <summary>
@@ -34,5 +35,10 @@ namespace Amazon.LicenseManagerLinuxSubscriptions.Model
         /// Paginator for ListLinuxSubscriptions operation
         ///</summary>
         IListLinuxSubscriptionsPaginator ListLinuxSubscriptions(ListLinuxSubscriptionsRequest request);
+
+        /// <summary>
+        /// Paginator for ListRegisteredSubscriptionProviders operation
+        ///</summary>
+        IListRegisteredSubscriptionProvidersPaginator ListRegisteredSubscriptionProviders(ListRegisteredSubscriptionProvidersRequest request);
     }
 }

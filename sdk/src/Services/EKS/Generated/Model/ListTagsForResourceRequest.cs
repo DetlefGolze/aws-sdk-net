@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -39,9 +40,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) that identifies the resource for which to list the
-        /// tags. Currently, the supported resources are Amazon EKS clusters and managed node
-        /// groups.
+        /// The Amazon Resource Name (ARN) that identifies the resource to list tags for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

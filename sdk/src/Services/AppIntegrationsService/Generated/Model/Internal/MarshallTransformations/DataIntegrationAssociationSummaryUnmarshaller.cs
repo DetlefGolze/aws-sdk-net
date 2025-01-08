@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public DataIntegrationAssociationSummary Unmarshall(JsonUnmarshallerContext context)
         {
+            DataIntegrationAssociationSummary unmarshalledObject = new DataIntegrationAssociationSummary();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            DataIntegrationAssociationSummary unmarshalledObject = new DataIntegrationAssociationSummary();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -82,8 +84,25 @@ namespace Amazon.AppIntegrationsService.Model.Internal.MarshallTransformations
                     unmarshalledObject.DataIntegrationAssociationArn = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("DestinationURI", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.DestinationURI = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("ExecutionConfiguration", targetDepth))
+                {
+                    var unmarshaller = ExecutionConfigurationUnmarshaller.Instance;
+                    unmarshalledObject.ExecutionConfiguration = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("LastExecutionStatus", targetDepth))
+                {
+                    var unmarshaller = LastExecutionStatusUnmarshaller.Instance;
+                    unmarshalledObject.LastExecutionStatus = unmarshaller.Unmarshall(context);
+                    continue;
+                }
             }
-          
             return unmarshalledObject;
         }
 

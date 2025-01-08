@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.NetworkManager.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.NetworkManager.Model
         /// <para>
         /// Indicates whether appliance mode is supported. If enabled, traffic flow between a
         /// source and destination use the same Availability Zone for the VPC attachment for the
-        /// lifetime of that flow. The default value is <code>false</code>.
+        /// lifetime of that flow. The default value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool ApplianceModeSupport

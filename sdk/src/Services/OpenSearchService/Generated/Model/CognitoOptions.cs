@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -81,8 +82,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property RoleArn. 
         /// <para>
-        /// The <code>AmazonOpenSearchServiceCognitoAccess</code> role that allows OpenSearch
-        /// Service to configure your user pool and identity pool.
+        /// The <c>AmazonOpenSearchServiceCognitoAccess</c> role that allows OpenSearch Service
+        /// to configure your user pool and identity pool.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]

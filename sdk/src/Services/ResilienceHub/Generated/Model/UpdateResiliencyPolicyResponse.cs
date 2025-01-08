@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property Policy. 
         /// <para>
-        /// The type of resiliency policy that was updated, including the recovery time objective
-        /// (RTO) and recovery point objective (RPO) in seconds.
+        /// The resiliency policy that was updated, including the recovery time objective (RTO)
+        /// and recovery point objective (RPO) in seconds.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the RejectAssignment operation.
-    /// The <code>RejectAssignment</code> operation rejects the results of a completed assignment.
+    /// The <c>RejectAssignment</c> operation rejects the results of a completed assignment.
     /// 
     /// 
     ///  

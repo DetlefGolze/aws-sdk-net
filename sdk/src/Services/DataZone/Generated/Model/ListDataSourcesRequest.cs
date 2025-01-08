@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DataZone.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.DataZone.Model
     /// </summary>
     public partial class ListDataSourcesRequest : AmazonDataZoneRequest
     {
+        private string _connectionIdentifier;
         private string _domainIdentifier;
         private string _environmentIdentifier;
         private int? _maxResults;
@@ -42,6 +44,24 @@ namespace Amazon.DataZone.Model
         private string _projectIdentifier;
         private DataSourceStatus _status;
         private string _type;
+
+        /// <summary>
+        /// Gets and sets the property ConnectionIdentifier. 
+        /// <para>
+        /// The ID of the connection.
+        /// </para>
+        /// </summary>
+        public string ConnectionIdentifier
+        {
+            get { return this._connectionIdentifier; }
+            set { this._connectionIdentifier = value; }
+        }
+
+        // Check to see if ConnectionIdentifier property is set
+        internal bool IsSetConnectionIdentifier()
+        {
+            return this._connectionIdentifier != null;
+        }
 
         /// <summary>
         /// Gets and sets the property DomainIdentifier. 
@@ -83,10 +103,10 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property MaxResults. 
         /// <para>
-        /// The maximum number of data sources to return in a single call to <code>ListDataSources</code>.
-        /// When the number of data sources to be listed is greater than the value of <code>MaxResults</code>,
-        /// the response contains a <code>NextToken</code> value that you can use in a subsequent
-        /// call to <code>ListDataSources</code> to list the next set of data sources.
+        /// The maximum number of data sources to return in a single call to <c>ListDataSources</c>.
+        /// When the number of data sources to be listed is greater than the value of <c>MaxResults</c>,
+        /// the response contains a <c>NextToken</c> value that you can use in a subsequent call
+        /// to <c>ListDataSources</c> to list the next set of data sources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -124,11 +144,11 @@ namespace Amazon.DataZone.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// When the number of data sources is greater than the default value for the <code>MaxResults</code>
-        /// parameter, or if you explicitly specify a value for <code>MaxResults</code> that is
-        /// less than the number of data sources, the response includes a pagination token named
-        /// <code>NextToken</code>. You can specify this <code>NextToken</code> value in a subsequent
-        /// call to <code>ListDataSources</code> to list the next set of data sources.
+        /// When the number of data sources is greater than the default value for the <c>MaxResults</c>
+        /// parameter, or if you explicitly specify a value for <c>MaxResults</c> that is less
+        /// than the number of data sources, the response includes a pagination token named <c>NextToken</c>.
+        /// You can specify this <c>NextToken</c> value in a subsequent call to <c>ListDataSources</c>
+        /// to list the next set of data sources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=8192)]

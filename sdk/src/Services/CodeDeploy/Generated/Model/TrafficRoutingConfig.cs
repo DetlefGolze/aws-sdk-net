@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeDeploy.Model
 {
     /// <summary>
@@ -83,8 +84,8 @@ namespace Amazon.CodeDeploy.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of traffic shifting (<code>TimeBasedCanary</code> or <code>TimeBasedLinear</code>)
-        /// used by a deployment configuration.
+        /// The type of traffic shifting (<c>TimeBasedCanary</c> or <c>TimeBasedLinear</c>) used
+        /// by a deployment configuration.
         /// </para>
         /// </summary>
         public TrafficRoutingType Type

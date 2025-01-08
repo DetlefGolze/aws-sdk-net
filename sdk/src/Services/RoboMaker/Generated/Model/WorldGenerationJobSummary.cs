@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -115,8 +116,7 @@ namespace Amazon.RoboMaker.Model
         /// </para>
         ///  </dd> <dt>Failed</dt> <dd> 
         /// <para>
-        /// The world generator job failed. See <code>failureCode</code> for more information.
-        /// 
+        /// The world generator job failed. See <c>failureCode</c> for more information. 
         /// </para>
         ///  </dd> <dt>PartialFailed</dt> <dd> 
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LexModelsV2.Model
 {
     /// <summary>
@@ -48,7 +49,7 @@ namespace Amazon.LexModelsV2.Model
         private string _localeId;
         private string _parentSlotTypeSignature;
         private string _slotTypeName;
-        private List<SlotTypeValue> _slotTypeValues = new List<SlotTypeValue>();
+        private List<SlotTypeValue> _slotTypeValues = AWSConfigs.InitializeCollections ? new List<SlotTypeValue>() : null;
         private SlotValueSelectionSetting _valueSelectionSetting;
 
         /// <summary>
@@ -175,7 +176,7 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Only <code>AMAZON.AlphaNumeric</code> is supported.
+        /// Only <c>AMAZON.AlphaNumeric</c> is supported.
         /// </para>
         /// </summary>
         public string ParentSlotTypeSignature
@@ -212,9 +213,9 @@ namespace Amazon.LexModelsV2.Model
         /// <summary>
         /// Gets and sets the property SlotTypeValues. 
         /// <para>
-        /// A list of <code>SlotTypeValue</code> objects that defines the values that the slot
-        /// type can take. Each value can have a list of synonyms, additional values that help
-        /// train the machine learning model about the values that it resolves for a slot.
+        /// A list of <c>SlotTypeValue</c> objects that defines the values that the slot type
+        /// can take. Each value can have a list of synonyms, additional values that help train
+        /// the machine learning model about the values that it resolves for a slot.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10000)]
@@ -227,7 +228,7 @@ namespace Amazon.LexModelsV2.Model
         // Check to see if SlotTypeValues property is set
         internal bool IsSetSlotTypeValues()
         {
-            return this._slotTypeValues != null && this._slotTypeValues.Count > 0; 
+            return this._slotTypeValues != null && (this._slotTypeValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -238,18 +239,17 @@ namespace Amazon.LexModelsV2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ORIGINAL_VALUE</code> - Returns the value entered by the user, if the user
-        /// value is similar to the slot value.
+        ///  <c>ORIGINAL_VALUE</c> - Returns the value entered by the user, if the user value
+        /// is similar to the slot value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>TOP_RESOLUTION</code> - If there is a resolution list for the slot, return
-        /// the first value in the resolution list. If there is no resolution list, return null.
+        ///  <c>TOP_RESOLUTION</c> - If there is a resolution list for the slot, return the first
+        /// value in the resolution list. If there is no resolution list, return null.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// If you don't specify the <code>valueSelectionSetting</code> parameter, the default
-        /// is <code>ORIGINAL_VALUE</code>.
+        /// If you don't specify the <c>valueSelectionSetting</c> parameter, the default is <c>ORIGINAL_VALUE</c>.
         /// </para>
         /// </summary>
         public SlotValueSelectionSetting ValueSelectionSetting

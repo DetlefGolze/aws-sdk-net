@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
@@ -34,12 +35,12 @@ namespace Amazon.ForecastService.Model
     public partial class ListWhatIfForecastsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<WhatIfForecastSummary> _whatIfForecasts = new List<WhatIfForecastSummary>();
+        private List<WhatIfForecastSummary> _whatIfForecasts = AWSConfigs.InitializeCollections ? new List<WhatIfForecastSummary>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the result of the previous request was truncated, the response includes a <code>NextToken</code>.
+        /// If the result of the previous request was truncated, the response includes a <c>NextToken</c>.
         /// To retrieve the next set of results, use the token in the next&#x2028; request. Tokens
         /// expire after 24 hours.
         /// </para>
@@ -60,7 +61,7 @@ namespace Amazon.ForecastService.Model
         /// <summary>
         /// Gets and sets the property WhatIfForecasts. 
         /// <para>
-        /// An array of <code>WhatIfForecasts</code> objects that describe the matched forecasts.
+        /// An array of <c>WhatIfForecasts</c> objects that describe the matched forecasts.
         /// </para>
         /// </summary>
         public List<WhatIfForecastSummary> WhatIfForecasts
@@ -72,7 +73,7 @@ namespace Amazon.ForecastService.Model
         // Check to see if WhatIfForecasts property is set
         internal bool IsSetWhatIfForecasts()
         {
-            return this._whatIfForecasts != null && this._whatIfForecasts.Count > 0; 
+            return this._whatIfForecasts != null && (this._whatIfForecasts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

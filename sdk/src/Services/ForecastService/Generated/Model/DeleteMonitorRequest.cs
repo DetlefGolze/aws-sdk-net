@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ForecastService.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteMonitor operation.
     /// Deletes a monitor resource. You can only delete a monitor resource with a status of
-    /// <code>ACTIVE</code>, <code>ACTIVE_STOPPED</code>, <code>CREATE_FAILED</code>, or <code>CREATE_STOPPED</code>.
+    /// <c>ACTIVE</c>, <c>ACTIVE_STOPPED</c>, <c>CREATE_FAILED</c>, or <c>CREATE_STOPPED</c>.
     /// </summary>
     public partial class DeleteMonitorRequest : AmazonForecastServiceRequest
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.InternetMonitor.Model
 {
     /// <summary>
@@ -36,13 +37,13 @@ namespace Amazon.InternetMonitor.Model
     ///  
     /// <para>
     /// A minimum of one tag is required for this call. It returns an error if you use the
-    /// <code>TagResource</code> request with 0 tags.
+    /// <c>TagResource</c> request with 0 tags.
     /// </para>
     /// </summary>
     public partial class TagResourceRequest : AmazonInternetMonitorRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -80,7 +81,7 @@ namespace Amazon.InternetMonitor.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

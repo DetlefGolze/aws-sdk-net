@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -58,9 +59,9 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property ReadOnly. 
         /// <para>
-        /// If this value is <code>true</code>, the container has read-only access to the volume.
-        /// If this value is <code>false</code>, then the container can write to the volume. The
-        /// default value is <code>false</code>.
+        /// If this value is <c>true</c>, the container has read-only access to the volume. If
+        /// this value is <c>false</c>, then the container can write to the volume. The default
+        /// value is <c>false</c>.
         /// </para>
         /// </summary>
         public bool ReadOnly
@@ -78,8 +79,8 @@ namespace Amazon.ECS.Model
         /// <summary>
         /// Gets and sets the property SourceVolume. 
         /// <para>
-        /// The name of the volume to mount. Must be a volume name referenced in the <code>name</code>
-        /// parameter of task definition <code>volume</code>.
+        /// The name of the volume to mount. Must be a volume name referenced in the <c>name</c>
+        /// parameter of task definition <c>volume</c>.
         /// </para>
         /// </summary>
         public string SourceVolume

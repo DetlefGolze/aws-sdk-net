@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FinSpaceData.Model
 {
     /// <summary>
@@ -33,18 +34,18 @@ namespace Amazon.FinSpaceData.Model
     /// 
     ///  
     /// <para>
-    /// Here is an example of how you could specify the <code>PermissionGroupParams</code>:
+    /// Here is an example of how you could specify the <c>PermissionGroupParams</c>:
     /// </para>
     ///  
     /// <para>
-    ///  <code> { "permissionGroupId": "0r6fCRtSTUk4XPfXQe3M0g", "datasetPermissions": [ {"permission":
+    ///  <c> { "permissionGroupId": "0r6fCRtSTUk4XPfXQe3M0g", "datasetPermissions": [ {"permission":
     /// "ViewDatasetDetails"}, {"permission": "AddDatasetData"}, {"permission": "EditDatasetMetadata"},
-    /// {"permission": "DeleteDataset"} ] } </code> 
+    /// {"permission": "DeleteDataset"} ] } </c> 
     /// </para>
     /// </summary>
     public partial class PermissionGroupParams
     {
-        private List<ResourcePermission> _datasetPermissions = new List<ResourcePermission>();
+        private List<ResourcePermission> _datasetPermissions = AWSConfigs.InitializeCollections ? new List<ResourcePermission>() : null;
         private string _permissionGroupId;
 
         /// <summary>
@@ -62,13 +63,13 @@ namespace Amazon.FinSpaceData.Model
         // Check to see if DatasetPermissions property is set
         internal bool IsSetDatasetPermissions()
         {
-            return this._datasetPermissions != null && this._datasetPermissions.Count > 0; 
+            return this._datasetPermissions != null && (this._datasetPermissions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PermissionGroupId. 
         /// <para>
-        /// The unique identifier for the <code>PermissionGroup</code>.
+        /// The unique identifier for the <c>PermissionGroup</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=26)]

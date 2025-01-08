@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.XRay.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.XRay
 {
     /// <summary>
-    /// Interface for accessing XRay
+    /// <para>Interface for accessing XRay</para>
     ///
     /// Amazon Web Services X-Ray provides APIs for managing debug traces and retrieving service
     /// maps and other data created by processing those traces.
@@ -49,9 +50,17 @@ namespace Amazon.XRay
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// You cannot find traces through this API if Transaction Search is enabled since trace
+        /// is not indexed in X-Ray.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Retrieves a list of traces specified by ID. Each trace is a collection of segment
-        /// documents that originates from a single request. Use <code>GetTraceSummaries</code>
-        /// to get a list of trace IDs.
+        /// documents that originates from a single request. Use <c>GetTraceSummaries</c> to get
+        /// a list of trace IDs.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the BatchGetTraces service method.</param>
         /// 
@@ -90,6 +99,58 @@ namespace Amazon.XRay
         /// <returns>Returns a  BatchGetTracesResult from XRay.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/BatchGetTraces">REST API Reference for BatchGetTraces Operation</seealso>
         BatchGetTracesResponse EndBatchGetTraces(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  CancelTraceRetrieval
+
+
+        /// <summary>
+        /// Cancels an ongoing trace retrieval job initiated by <c>StartTraceRetrieval</c> using
+        /// the provided <c>RetrievalToken</c>. A successful cancellation will return an HTTP
+        /// 200 response.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CancelTraceRetrieval service method.</param>
+        /// 
+        /// <returns>The response from the CancelTraceRetrieval service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ResourceNotFoundException">
+        /// The resource was not found. Verify that the name or Amazon Resource Name (ARN) of
+        /// the resource is correct.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/CancelTraceRetrieval">REST API Reference for CancelTraceRetrieval Operation</seealso>
+        CancelTraceRetrievalResponse CancelTraceRetrieval(CancelTraceRetrievalRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CancelTraceRetrieval operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CancelTraceRetrieval operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCancelTraceRetrieval
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/CancelTraceRetrieval">REST API Reference for CancelTraceRetrieval Operation</seealso>
+        IAsyncResult BeginCancelTraceRetrieval(CancelTraceRetrievalRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CancelTraceRetrieval operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCancelTraceRetrieval.</param>
+        /// 
+        /// <returns>Returns a  CancelTraceRetrievalResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/CancelTraceRetrieval">REST API Reference for CancelTraceRetrieval Operation</seealso>
+        CancelTraceRetrievalResponse EndCancelTraceRetrieval(IAsyncResult asyncResult);
 
         #endregion
         
@@ -251,7 +312,7 @@ namespace Amazon.XRay
         /// <returns>The response from the DeleteResourcePolicy service method, as returned by XRay.</returns>
         /// <exception cref="Amazon.XRay.Model.InvalidPolicyRevisionIdException">
         /// A policy revision id was provided which does not match the latest policy revision.
-        /// This exception is also if a policy revision id of 0 is provided via <code>PutResourcePolicy</code>
+        /// This exception is also if a policy revision id of 0 is provided via <c>PutResourcePolicy</c>
         /// and a policy with the same name already exists.
         /// </exception>
         /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
@@ -475,6 +536,60 @@ namespace Amazon.XRay
 
         #endregion
         
+        #region  GetIndexingRules
+
+
+        /// <summary>
+        /// Retrieves all indexing rules.
+        /// 
+        ///  
+        /// <para>
+        /// Indexing rules are used to determine the server-side sampling rate for spans ingested
+        /// through the CloudWatchLogs destination and indexed by X-Ray. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Transaction-Search.html">Transaction
+        /// Search</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetIndexingRules service method.</param>
+        /// 
+        /// <returns>The response from the GetIndexingRules service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetIndexingRules">REST API Reference for GetIndexingRules Operation</seealso>
+        GetIndexingRulesResponse GetIndexingRules(GetIndexingRulesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetIndexingRules operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetIndexingRules operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetIndexingRules
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetIndexingRules">REST API Reference for GetIndexingRules Operation</seealso>
+        IAsyncResult BeginGetIndexingRules(GetIndexingRulesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetIndexingRules operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetIndexingRules.</param>
+        /// 
+        /// <returns>Returns a  GetIndexingRulesResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetIndexingRules">REST API Reference for GetIndexingRules Operation</seealso>
+        GetIndexingRulesResponse EndGetIndexingRules(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetInsight
 
 
@@ -663,6 +778,82 @@ namespace Amazon.XRay
         /// <returns>Returns a  GetInsightSummariesResult from XRay.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsightSummaries">REST API Reference for GetInsightSummaries Operation</seealso>
         GetInsightSummariesResponse EndGetInsightSummaries(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetRetrievedTracesGraph
+
+
+        /// <summary>
+        /// Retrieves a service graph for traces based on the specified <c>RetrievalToken</c>
+        /// from the CloudWatch log group generated by Transaction Search. This API does not initiate
+        /// a retrieval job. You must first execute <c>StartTraceRetrieval</c> to obtain the required
+        /// <c>RetrievalToken</c>. 
+        /// 
+        ///  
+        /// <para>
+        /// The trace graph describes services that process incoming requests and any downstream
+        /// services they call, which may include Amazon Web Services resources, external APIs,
+        /// or databases.
+        /// </para>
+        ///  
+        /// <para>
+        /// The response is empty until the <c>RetrievalStatus</c> is <i>COMPLETE</i>. Retry the
+        /// request after the status changes from <i>RUNNING</i> or <i>SCHEDULED</i> to <i>COMPLETE</i>
+        /// to access the full service graph.
+        /// </para>
+        ///  
+        /// <para>
+        ///  When CloudWatch log is the destination, this API can support cross-account observability
+        /// and service graph retrieval across linked accounts.
+        /// </para>
+        ///  
+        /// <para>
+        /// For retrieving graphs from X-Ray directly as opposed to the Transaction-Search Log
+        /// group, see <a href="https://docs.aws.amazon.com/xray/latest/api/API_GetTraceGraph.html">GetTraceGraph</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetRetrievedTracesGraph service method.</param>
+        /// 
+        /// <returns>The response from the GetRetrievedTracesGraph service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ResourceNotFoundException">
+        /// The resource was not found. Verify that the name or Amazon Resource Name (ARN) of
+        /// the resource is correct.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetRetrievedTracesGraph">REST API Reference for GetRetrievedTracesGraph Operation</seealso>
+        GetRetrievedTracesGraphResponse GetRetrievedTracesGraph(GetRetrievedTracesGraphRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetRetrievedTracesGraph operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetRetrievedTracesGraph operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetRetrievedTracesGraph
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetRetrievedTracesGraph">REST API Reference for GetRetrievedTracesGraph Operation</seealso>
+        IAsyncResult BeginGetRetrievedTracesGraph(GetRetrievedTracesGraphRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetRetrievedTracesGraph operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetRetrievedTracesGraph.</param>
+        /// 
+        /// <returns>Returns a  GetRetrievedTracesGraphResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetRetrievedTracesGraph">REST API Reference for GetRetrievedTracesGraph Operation</seealso>
+        GetRetrievedTracesGraphResponse EndGetRetrievedTracesGraph(IAsyncResult asyncResult);
 
         #endregion
         
@@ -946,37 +1137,86 @@ namespace Amazon.XRay
 
         #endregion
         
+        #region  GetTraceSegmentDestination
+
+
+        /// <summary>
+        /// Retrieves the current destination of data sent to <c>PutTraceSegments</c> and <i>OpenTelemetry</i>
+        /// API. The Transaction Search feature requires a CloudWatchLogs destination. For more
+        /// information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Transaction-Search.html">Transaction
+        /// Search</a> and <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-OpenTelemetry-Sections.html">OpenTelemetry</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTraceSegmentDestination service method.</param>
+        /// 
+        /// <returns>The response from the GetTraceSegmentDestination service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSegmentDestination">REST API Reference for GetTraceSegmentDestination Operation</seealso>
+        GetTraceSegmentDestinationResponse GetTraceSegmentDestination(GetTraceSegmentDestinationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetTraceSegmentDestination operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetTraceSegmentDestination operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetTraceSegmentDestination
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSegmentDestination">REST API Reference for GetTraceSegmentDestination Operation</seealso>
+        IAsyncResult BeginGetTraceSegmentDestination(GetTraceSegmentDestinationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetTraceSegmentDestination operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetTraceSegmentDestination.</param>
+        /// 
+        /// <returns>Returns a  GetTraceSegmentDestinationResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSegmentDestination">REST API Reference for GetTraceSegmentDestination Operation</seealso>
+        GetTraceSegmentDestinationResponse EndGetTraceSegmentDestination(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetTraceSummaries
 
 
         /// <summary>
         /// Retrieves IDs and annotations for traces available for a specified time frame using
-        /// an optional filter. To get the full traces, pass the trace IDs to <code>BatchGetTraces</code>.
+        /// an optional filter. To get the full traces, pass the trace IDs to <c>BatchGetTraces</c>.
         /// 
         ///  
         /// <para>
         /// A filter expression can target traced requests that hit specific service nodes or
         /// edges, have errors, or come from a known user. For example, the following filter expression
-        /// targets traces that pass through <code>api.example.com</code>:
+        /// targets traces that pass through <c>api.example.com</c>:
         /// </para>
         ///  
         /// <para>
-        ///  <code>service("api.example.com")</code> 
+        ///  <c>service("api.example.com")</c> 
         /// </para>
         ///  
         /// <para>
-        /// This filter expression finds traces that have an annotation named <code>account</code>
-        /// with the value <code>12345</code>:
+        /// This filter expression finds traces that have an annotation named <c>account</c> with
+        /// the value <c>12345</c>:
         /// </para>
         ///  
         /// <para>
-        ///  <code>annotation.account = "12345"</code> 
+        ///  <c>annotation.account = "12345"</c> 
         /// </para>
         ///  
         /// <para>
         /// For a full list of indexed fields and keywords that you can use in filter expressions,
-        /// see <a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html">Using
-        /// Filter Expressions</a> in the <i>Amazon Web Services X-Ray Developer Guide</i>.
+        /// see <a href="https://docs.aws.amazon.com/xray/latest/devguide/aws-xray-interface-console.html#xray-console-filters">Use
+        /// filter expressions</a> in the <i>Amazon Web Services X-Ray Developer Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetTraceSummaries service method.</param>
@@ -1062,6 +1302,83 @@ namespace Amazon.XRay
         /// <returns>Returns a  ListResourcePoliciesResult from XRay.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/ListResourcePolicies">REST API Reference for ListResourcePolicies Operation</seealso>
         ListResourcePoliciesResponse EndListResourcePolicies(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListRetrievedTraces
+
+
+        /// <summary>
+        /// Retrieves a list of traces for a given <c>RetrievalToken</c> from the CloudWatch
+        /// log group generated by Transaction Search. For information on what each trace returns,
+        /// see <a href="https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html">BatchGetTraces</a>.
+        /// 
+        /// 
+        ///  
+        /// <para>
+        /// This API does not initiate a retrieval job. To start a trace retrieval, use <c>StartTraceRetrieval</c>,
+        /// which generates the required <c>RetrievalToken</c>.
+        /// </para>
+        ///  
+        /// <para>
+        ///  When the <c>RetrievalStatus</c> is not <i>COMPLETE</i>, the API will return an empty
+        /// response. Retry the request once the retrieval has completed to access the full list
+        /// of traces.
+        /// </para>
+        ///  
+        /// <para>
+        /// For cross-account observability, this API can retrieve traces from linked accounts
+        /// when CloudWatch log is the destination across relevant accounts. For more details,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+        /// cross-account observability</a>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For retrieving data from X-Ray directly as opposed to the Transaction-Search Log group,
+        /// see <a href="https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html">BatchGetTraces</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListRetrievedTraces service method.</param>
+        /// 
+        /// <returns>The response from the ListRetrievedTraces service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ResourceNotFoundException">
+        /// The resource was not found. Verify that the name or Amazon Resource Name (ARN) of
+        /// the resource is correct.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/ListRetrievedTraces">REST API Reference for ListRetrievedTraces Operation</seealso>
+        ListRetrievedTracesResponse ListRetrievedTraces(ListRetrievedTracesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListRetrievedTraces operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListRetrievedTraces operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListRetrievedTraces
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/ListRetrievedTraces">REST API Reference for ListRetrievedTraces Operation</seealso>
+        IAsyncResult BeginListRetrievedTraces(ListRetrievedTracesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListRetrievedTraces operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListRetrievedTraces.</param>
+        /// 
+        /// <returns>Returns a  ListRetrievedTracesResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/ListRetrievedTraces">REST API Reference for ListRetrievedTraces Operation</seealso>
+        ListRetrievedTracesResponse EndListRetrievedTraces(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1177,7 +1494,7 @@ namespace Amazon.XRay
         /// <returns>The response from the PutResourcePolicy service method, as returned by XRay.</returns>
         /// <exception cref="Amazon.XRay.Model.InvalidPolicyRevisionIdException">
         /// A policy revision id was provided which does not match the latest policy revision.
-        /// This exception is also if a policy revision id of 0 is provided via <code>PutResourcePolicy</code>
+        /// This exception is also if a policy revision id of 0 is provided via <c>PutResourcePolicy</c>
         /// and a policy with the same name already exists.
         /// </exception>
         /// <exception cref="Amazon.XRay.Model.LockoutPreventionException">
@@ -1278,15 +1595,13 @@ namespace Amazon.XRay
 
 
         /// <summary>
-        /// Uploads segment documents to Amazon Web Services X-Ray. The <a href="https://docs.aws.amazon.com/xray/index.html">X-Ray
-        /// SDK</a> generates segment documents and sends them to the X-Ray daemon, which uploads
-        /// them in batches. A segment document can be a completed segment, an in-progress segment,
-        /// or an array of subsegments.
+        /// Uploads segment documents to Amazon Web Services X-Ray. A segment document can be
+        /// a completed segment, an in-progress segment, or an array of subsegments.
         /// 
         ///  
         /// <para>
         /// Segments must include the following fields. For the full segment document schema,
-        /// see <a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html">Amazon
+        /// see <a href="https://docs.aws.amazon.com/xray/latest/devguide/aws-xray-interface-api.html#xray-api-segmentdocuments.html">Amazon
         /// Web Services X-Ray Segment Documents</a> in the <i>Amazon Web Services X-Ray Developer
         /// Guide</i>.
         /// </para>
@@ -1296,32 +1611,32 @@ namespace Amazon.XRay
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>name</code> - The name of the service that handled the request.
+        ///  <c>name</c> - The name of the service that handled the request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>id</code> - A 64-bit identifier for the segment, unique among segments in the
-        /// same trace, in 16 hexadecimal digits.
+        ///  <c>id</c> - A 64-bit identifier for the segment, unique among segments in the same
+        /// trace, in 16 hexadecimal digits.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>trace_id</code> - A unique identifier that connects all segments and subsegments
+        ///  <c>trace_id</c> - A unique identifier that connects all segments and subsegments
         /// originating from a single client request.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>start_time</code> - Time the segment or subsegment was created, in floating
-        /// point seconds in epoch time, accurate to milliseconds. For example, <code>1480615200.010</code>
-        /// or <code>1.480615200010E9</code>.
+        ///  <c>start_time</c> - Time the segment or subsegment was created, in floating point
+        /// seconds in epoch time, accurate to milliseconds. For example, <c>1480615200.010</c>
+        /// or <c>1.480615200010E9</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>end_time</code> - Time the segment or subsegment was closed. For example, <code>1480615200.090</code>
-        /// or <code>1.480615200090E9</code>. Specify either an <code>end_time</code> or <code>in_progress</code>.
+        ///  <c>end_time</c> - Time the segment or subsegment was closed. For example, <c>1480615200.090</c>
+        /// or <c>1.480615200090E9</c>. Specify either an <c>end_time</c> or <c>in_progress</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>in_progress</code> - Set to <code>true</code> instead of specifying an <code>end_time</code>
+        ///  <c>in_progress</c> - Set to <c>true</c> instead of specifying an <c>end_time</c>
         /// to record that a segment has been started, but is not complete. Send an in-progress
         /// segment when your application receives a request that will take a long time to serve,
         /// to trace that the request was received. When the response is sent, send the complete
@@ -1329,8 +1644,9 @@ namespace Amazon.XRay
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// A <code>trace_id</code> consists of three numbers separated by hyphens. For example,
-        /// 1-58406520-a006649127e371903a2de979. This includes:
+        /// A <c>trace_id</c> consists of three numbers separated by hyphens. For example, 1-58406520-a006649127e371903a2de979.
+        /// For trace IDs created by an X-Ray SDK, or by Amazon Web Services services integrated
+        /// with X-Ray, a trace ID includes:
         /// </para>
         ///  
         /// <para>
@@ -1338,19 +1654,28 @@ namespace Amazon.XRay
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// The version number, for instance, <code>1</code>.
+        /// The version number, for instance, <c>1</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// The time of the original request, in Unix epoch time, in 8 hexadecimal digits. For
-        /// example, 10:00AM December 2nd, 2016 PST in epoch time is <code>1480615200</code> seconds,
-        /// or <code>58406520</code> in hexadecimal.
+        /// example, 10:00AM December 2nd, 2016 PST in epoch time is <c>1480615200</c> seconds,
+        /// or <c>58406520</c> in hexadecimal.
         /// </para>
         ///  </li> <li> 
         /// <para>
         /// A 96-bit identifier for the trace, globally unique, in 24 hexadecimal digits.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> <note> 
+        /// <para>
+        /// Trace IDs created via OpenTelemetry have a different format based on the <a href="https://www.w3.org/TR/trace-context/">W3C
+        /// Trace Context specification</a>. A W3C trace ID must be formatted in the X-Ray trace
+        /// ID format when sending to X-Ray. For example, a W3C trace ID <c>4efaaf4d1e8720b39541901950019ee5</c>
+        /// should be formatted as <c>1-4efaaf4d-1e8720b39541901950019ee5</c> when sending to
+        /// X-Ray. While X-Ray trace IDs include the original request timestamp in Unix epoch
+        /// time, this is not required or validated. 
+        /// </para>
+        ///  </note>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutTraceSegments service method.</param>
         /// 
@@ -1389,6 +1714,78 @@ namespace Amazon.XRay
         /// <returns>Returns a  PutTraceSegmentsResult from XRay.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegments">REST API Reference for PutTraceSegments Operation</seealso>
         PutTraceSegmentsResponse EndPutTraceSegments(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  StartTraceRetrieval
+
+
+        /// <summary>
+        /// Initiates a trace retrieval process using the specified time range and for the give
+        /// trace IDs on Transaction Search generated by the CloudWatch log group. For more information,
+        /// see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Transaction-Search.html">Transaction
+        /// Search</a>. 
+        /// 
+        ///  
+        /// <para>
+        /// API returns a <c>RetrievalToken</c>, which can be used with <c>ListRetrievedTraces</c>
+        /// or <c>GetRetrievedTracesGraph</c> to fetch results. Retrievals will time out after
+        /// 60 minutes. To execute long time ranges, consider segmenting into multiple retrievals.
+        /// </para>
+        ///  
+        /// <para>
+        /// If you are using <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html">CloudWatch
+        /// cross-account observability</a>, you can use this operation in a monitoring account
+        /// to retrieve data from a linked source account, as long as both accounts have transaction
+        /// search enabled.
+        /// </para>
+        ///  
+        /// <para>
+        /// For retrieving data from X-Ray directly as opposed to the Transaction-Search Log group,
+        /// see <a href="https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html">BatchGetTraces</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the StartTraceRetrieval service method.</param>
+        /// 
+        /// <returns>The response from the StartTraceRetrieval service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ResourceNotFoundException">
+        /// The resource was not found. Verify that the name or Amazon Resource Name (ARN) of
+        /// the resource is correct.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/StartTraceRetrieval">REST API Reference for StartTraceRetrieval Operation</seealso>
+        StartTraceRetrievalResponse StartTraceRetrieval(StartTraceRetrievalRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the StartTraceRetrieval operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the StartTraceRetrieval operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndStartTraceRetrieval
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/StartTraceRetrieval">REST API Reference for StartTraceRetrieval Operation</seealso>
+        IAsyncResult BeginStartTraceRetrieval(StartTraceRetrievalRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  StartTraceRetrieval operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginStartTraceRetrieval.</param>
+        /// 
+        /// <returns>Returns a  StartTraceRetrievalResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/StartTraceRetrieval">REST API Reference for StartTraceRetrieval Operation</seealso>
+        StartTraceRetrievalResponse EndStartTraceRetrieval(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1450,7 +1847,7 @@ namespace Amazon.XRay
 
         /// <summary>
         /// Removes tags from an Amazon Web Services X-Ray group or sampling rule. You cannot
-        /// edit or delete system tags (those with an <code>aws:</code> prefix).
+        /// edit or delete system tags (those with an <c>aws:</c> prefix).
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UntagResource service method.</param>
         /// 
@@ -1542,6 +1939,63 @@ namespace Amazon.XRay
 
         #endregion
         
+        #region  UpdateIndexingRule
+
+
+        /// <summary>
+        /// Modifies an indexing rule’s configuration. 
+        /// 
+        ///  
+        /// <para>
+        /// Indexing rules are used for determining the sampling rate for spans indexed from CloudWatch
+        /// Logs. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Transaction-Search.html">Transaction
+        /// Search</a>.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateIndexingRule service method.</param>
+        /// 
+        /// <returns>The response from the UpdateIndexingRule service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ResourceNotFoundException">
+        /// The resource was not found. Verify that the name or Amazon Resource Name (ARN) of
+        /// the resource is correct.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateIndexingRule">REST API Reference for UpdateIndexingRule Operation</seealso>
+        UpdateIndexingRuleResponse UpdateIndexingRule(UpdateIndexingRuleRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateIndexingRule operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateIndexingRule operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateIndexingRule
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateIndexingRule">REST API Reference for UpdateIndexingRule Operation</seealso>
+        IAsyncResult BeginUpdateIndexingRule(UpdateIndexingRuleRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateIndexingRule operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateIndexingRule.</param>
+        /// 
+        /// <returns>Returns a  UpdateIndexingRuleResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateIndexingRule">REST API Reference for UpdateIndexingRule Operation</seealso>
+        UpdateIndexingRuleResponse EndUpdateIndexingRule(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  UpdateSamplingRule
 
 
@@ -1585,6 +2039,55 @@ namespace Amazon.XRay
         /// <returns>Returns a  UpdateSamplingRuleResult from XRay.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateSamplingRule">REST API Reference for UpdateSamplingRule Operation</seealso>
         UpdateSamplingRuleResponse EndUpdateSamplingRule(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateTraceSegmentDestination
+
+
+        /// <summary>
+        /// Modifies the destination of data sent to <c>PutTraceSegments</c>. The Transaction
+        /// Search feature requires the CloudWatchLogs destination. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Transaction-Search.html">Transaction
+        /// Search</a>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateTraceSegmentDestination service method.</param>
+        /// 
+        /// <returns>The response from the UpdateTraceSegmentDestination service method, as returned by XRay.</returns>
+        /// <exception cref="Amazon.XRay.Model.InvalidRequestException">
+        /// The request is missing required parameters or has invalid parameters.
+        /// </exception>
+        /// <exception cref="Amazon.XRay.Model.ThrottledException">
+        /// The request exceeds the maximum number of requests per second.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateTraceSegmentDestination">REST API Reference for UpdateTraceSegmentDestination Operation</seealso>
+        UpdateTraceSegmentDestinationResponse UpdateTraceSegmentDestination(UpdateTraceSegmentDestinationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateTraceSegmentDestination operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateTraceSegmentDestination operation on AmazonXRayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateTraceSegmentDestination
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateTraceSegmentDestination">REST API Reference for UpdateTraceSegmentDestination Operation</seealso>
+        IAsyncResult BeginUpdateTraceSegmentDestination(UpdateTraceSegmentDestinationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateTraceSegmentDestination operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateTraceSegmentDestination.</param>
+        /// 
+        /// <returns>Returns a  UpdateTraceSegmentDestinationResult from XRay.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateTraceSegmentDestination">REST API Reference for UpdateTraceSegmentDestination Operation</seealso>
+        UpdateTraceSegmentDestinationResponse EndUpdateTraceSegmentDestination(IAsyncResult asyncResult);
 
         #endregion
                 

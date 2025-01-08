@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -36,28 +37,30 @@ namespace Amazon.EC2.Model
         private NetworkInterfaceAssociation _association;
         private NetworkInterfaceAttachment _attachment;
         private string _availabilityZone;
+        private ConnectionTrackingConfiguration _connectionTrackingConfiguration;
         private bool? _denyAllIgwTraffic;
         private string _description;
-        private List<GroupIdentifier> _groups = new List<GroupIdentifier>();
+        private List<GroupIdentifier> _groups = AWSConfigs.InitializeCollections ? new List<GroupIdentifier>() : null;
         private NetworkInterfaceType _interfaceType;
-        private List<Ipv4PrefixSpecification> _ipv4Prefixes = new List<Ipv4PrefixSpecification>();
+        private List<Ipv4PrefixSpecification> _ipv4Prefixes = AWSConfigs.InitializeCollections ? new List<Ipv4PrefixSpecification>() : null;
         private string _ipv6Address;
-        private List<NetworkInterfaceIpv6Address> _ipv6Addresses = new List<NetworkInterfaceIpv6Address>();
+        private List<NetworkInterfaceIpv6Address> _ipv6Addresses = AWSConfigs.InitializeCollections ? new List<NetworkInterfaceIpv6Address>() : null;
         private bool? _ipv6Native;
-        private List<Ipv6PrefixSpecification> _ipv6Prefixes = new List<Ipv6PrefixSpecification>();
+        private List<Ipv6PrefixSpecification> _ipv6Prefixes = AWSConfigs.InitializeCollections ? new List<Ipv6PrefixSpecification>() : null;
         private string _macAddress;
         private string _networkInterfaceId;
+        private OperatorResponse _operator;
         private string _outpostArn;
         private string _ownerId;
         private string _privateDnsName;
         private string _privateIpAddress;
-        private List<NetworkInterfacePrivateIpAddress> _privateIpAddresses = new List<NetworkInterfacePrivateIpAddress>();
+        private List<NetworkInterfacePrivateIpAddress> _privateIpAddresses = AWSConfigs.InitializeCollections ? new List<NetworkInterfacePrivateIpAddress>() : null;
         private string _requesterId;
         private bool? _requesterManaged;
         private bool? _sourceDestCheck;
         private NetworkInterfaceStatus _status;
         private string _subnetId;
-        private List<Tag> _tagSet = new List<Tag>();
+        private List<Tag> _tagSet = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _vpcId;
 
         /// <summary>
@@ -116,11 +119,32 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property ConnectionTrackingConfiguration. 
+        /// <para>
+        /// A security group connection tracking configuration that enables you to set the timeout
+        /// for connection tracking on an Elastic network interface. For more information, see
+        /// <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-connection-tracking.html#connection-tracking-timeouts">Connection
+        /// tracking timeouts</a> in the <i>Amazon EC2 User Guide</i>.
+        /// </para>
+        /// </summary>
+        public ConnectionTrackingConfiguration ConnectionTrackingConfiguration
+        {
+            get { return this._connectionTrackingConfiguration; }
+            set { this._connectionTrackingConfiguration = value; }
+        }
+
+        // Check to see if ConnectionTrackingConfiguration property is set
+        internal bool IsSetConnectionTrackingConfiguration()
+        {
+            return this._connectionTrackingConfiguration != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property DenyAllIgwTraffic. 
         /// <para>
         /// Indicates whether a network interface with an IPv6 address is unreachable from the
-        /// public internet. If the value is <code>true</code>, inbound traffic from the internet
-        /// is dropped and you cannot assign an elastic IP address to the network interface. The
+        /// public internet. If the value is <c>true</c>, inbound traffic from the internet is
+        /// dropped and you cannot assign an elastic IP address to the network interface. The
         /// network interface is reachable from peered VPCs and resources connected through a
         /// transit gateway, including on-premises networks.
         /// </para>
@@ -170,7 +194,7 @@ namespace Amazon.EC2.Model
         // Check to see if Groups property is set
         internal bool IsSetGroups()
         {
-            return this._groups != null && this._groups.Count > 0; 
+            return this._groups != null && (this._groups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -206,7 +230,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv4Prefixes property is set
         internal bool IsSetIpv4Prefixes()
         {
-            return this._ipv4Prefixes != null && this._ipv4Prefixes.Count > 0; 
+            return this._ipv4Prefixes != null && (this._ipv4Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -242,7 +266,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Addresses property is set
         internal bool IsSetIpv6Addresses()
         {
-            return this._ipv6Addresses != null && this._ipv6Addresses.Count > 0; 
+            return this._ipv6Addresses != null && (this._ipv6Addresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -278,7 +302,7 @@ namespace Amazon.EC2.Model
         // Check to see if Ipv6Prefixes property is set
         internal bool IsSetIpv6Prefixes()
         {
-            return this._ipv6Prefixes != null && this._ipv6Prefixes.Count > 0; 
+            return this._ipv6Prefixes != null && (this._ipv6Prefixes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -315,6 +339,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetNetworkInterfaceId()
         {
             return this._networkInterfaceId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property Operator. 
+        /// <para>
+        /// The service provider that manages the network interface.
+        /// </para>
+        /// </summary>
+        public OperatorResponse Operator
+        {
+            get { return this._operator; }
+            set { this._operator = value; }
+        }
+
+        // Check to see if Operator property is set
+        internal bool IsSetOperator()
+        {
+            return this._operator != null;
         }
 
         /// <summary>
@@ -404,7 +446,7 @@ namespace Amazon.EC2.Model
         // Check to see if PrivateIpAddresses property is set
         internal bool IsSetPrivateIpAddresses()
         {
-            return this._privateIpAddresses != null && this._privateIpAddresses.Count > 0; 
+            return this._privateIpAddresses != null && (this._privateIpAddresses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -513,7 +555,7 @@ namespace Amazon.EC2.Model
         // Check to see if TagSet property is set
         internal bool IsSetTagSet()
         {
-            return this._tagSet != null && this._tagSet.Count > 0; 
+            return this._tagSet != null && (this._tagSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

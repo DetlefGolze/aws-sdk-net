@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrailData.Model
 {
     /// <summary>
     /// Container for the parameters to the PutAuditEvents operation.
-    /// Ingests your application events into CloudTrail Lake. A required parameter, <code>auditEvents</code>,
+    /// Ingests your application events into CloudTrail Lake. A required parameter, <c>auditEvents</c>,
     /// accepts the JSON records (also called <i>payload</i>) of events that you want CloudTrail
-    /// to ingest. You can add up to 100 of these events (or up to 1 MB) per <code>PutAuditEvents</code>
+    /// to ingest. You can add up to 100 of these events (or up to 1 MB) per <c>PutAuditEvents</c>
     /// request.
     /// </summary>
     public partial class PutAuditEventsRequest : AmazonCloudTrailDataRequest
     {
-        private List<AuditEvent> _auditEvents = new List<AuditEvent>();
+        private List<AuditEvent> _auditEvents = AWSConfigs.InitializeCollections ? new List<AuditEvent>() : null;
         private string _channelArn;
         private string _externalId;
 
@@ -58,7 +59,7 @@ namespace Amazon.CloudTrailData.Model
         // Check to see if AuditEvents property is set
         internal bool IsSetAuditEvents()
         {
-            return this._auditEvents != null && this._auditEvents.Count > 0; 
+            return this._auditEvents != null && (this._auditEvents.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

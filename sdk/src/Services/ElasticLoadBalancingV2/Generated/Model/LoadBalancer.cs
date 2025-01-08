@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticLoadBalancingV2.Model
 {
     /// <summary>
@@ -33,17 +34,18 @@ namespace Amazon.ElasticLoadBalancingV2.Model
     /// </summary>
     public partial class LoadBalancer
     {
-        private List<AvailabilityZone> _availabilityZones = new List<AvailabilityZone>();
+        private List<AvailabilityZone> _availabilityZones = AWSConfigs.InitializeCollections ? new List<AvailabilityZone>() : null;
         private string _canonicalHostedZoneId;
         private DateTime? _createdTime;
         private string _customerOwnedIpv4Pool;
         private string _dnsName;
+        private EnablePrefixForIpv6SourceNatEnum _enablePrefixForIpv6SourceNat;
         private string _enforceSecurityGroupInboundRulesOnPrivateLinkTraffic;
         private IpAddressType _ipAddressType;
         private string _loadBalancerArn;
         private string _loadBalancerName;
         private LoadBalancerSchemeEnum _scheme;
-        private List<string> _securityGroups = new List<string>();
+        private List<string> _securityGroups = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private LoadBalancerState _state;
         private LoadBalancerTypeEnum _type;
         private string _vpcId;
@@ -63,7 +65,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,6 +142,26 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EnablePrefixForIpv6SourceNat. 
+        /// <para>
+        /// [Network Load Balancers with UDP listeners] Indicates whether to use an IPv6 prefix
+        /// from each subnet for source NAT. The IP address type must be <c>dualstack</c>. The
+        /// default value is <c>off</c>.
+        /// </para>
+        /// </summary>
+        public EnablePrefixForIpv6SourceNatEnum EnablePrefixForIpv6SourceNat
+        {
+            get { return this._enablePrefixForIpv6SourceNat; }
+            set { this._enablePrefixForIpv6SourceNat = value; }
+        }
+
+        // Check to see if EnablePrefixForIpv6SourceNat property is set
+        internal bool IsSetEnablePrefixForIpv6SourceNat()
+        {
+            return this._enablePrefixForIpv6SourceNat != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic. 
         /// <para>
         /// Indicates whether to evaluate inbound security group rules for traffic sent to a Network
@@ -161,9 +183,19 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         /// <summary>
         /// Gets and sets the property IpAddressType. 
         /// <para>
-        /// The type of IP addresses used by the subnets for your load balancer. The possible
-        /// values are <code>ipv4</code> (for IPv4 addresses) and <code>dualstack</code> (for
-        /// IPv4 and IPv6 addresses).
+        /// The type of IP addresses used for public or private connections by the subnets attached
+        /// to your load balancer.
+        /// </para>
+        ///  
+        /// <para>
+        /// [Application Load Balancers] The possible values are <c>ipv4</c> (IPv4 addresses),
+        /// <c>dualstack</c> (IPv4 and IPv6 addresses), and <c>dualstack-without-public-ipv4</c>
+        /// (public IPv6 addresses and private IPv4 and IPv6 addresses).
+        /// </para>
+        ///  
+        /// <para>
+        /// [Network Load Balancers and Gateway Load Balancers] The possible values are <c>ipv4</c>
+        /// (IPv4 addresses) and <c>dualstack</c> (IPv4 and IPv6 addresses).
         /// </para>
         /// </summary>
         public IpAddressType IpAddressType
@@ -257,7 +289,7 @@ namespace Amazon.ElasticLoadBalancingV2.Model
         // Check to see if SecurityGroups property is set
         internal bool IsSetSecurityGroups()
         {
-            return this._securityGroups != null && this._securityGroups.Count > 0; 
+            return this._securityGroups != null && (this._securityGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

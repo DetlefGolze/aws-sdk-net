@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Glue.Model
         /// Gets and sets the property SegmentNumber. 
         /// <para>
         /// The zero-based index number of the segment. For example, if the total number of segments
-        /// is 4, <code>SegmentNumber</code> values range from 0 through 3.
+        /// is 4, <c>SegmentNumber</c> values range from 0 through 3.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=0)]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DeviceFarm.Model
 {
     /// <summary>
@@ -36,16 +37,16 @@ namespace Amazon.DeviceFarm.Model
         private string _awsAccountNumber;
         private int? _defaultJobTimeoutMinutes;
         private int? _maxJobTimeoutMinutes;
-        private Dictionary<string, int> _maxSlots = new Dictionary<string, int>();
+        private Dictionary<string, int> _maxSlots = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
         private bool? _skipAppResign;
         private TrialMinutes _trialMinutes;
-        private Dictionary<string, int> _unmeteredDevices = new Dictionary<string, int>();
-        private Dictionary<string, int> _unmeteredRemoteAccessDevices = new Dictionary<string, int>();
+        private Dictionary<string, int> _unmeteredDevices = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
+        private Dictionary<string, int> _unmeteredRemoteAccessDevices = AWSConfigs.InitializeCollections ? new Dictionary<string, int>() : null;
 
         /// <summary>
         /// Gets and sets the property AwsAccountNumber. 
         /// <para>
-        /// The AWS account number specified in the <code>AccountSettings</code> container.
+        /// The AWS account number specified in the <c>AccountSettings</c> container.
         /// </para>
         /// </summary>
         [AWSProperty(Min=2, Max=16)]
@@ -102,8 +103,8 @@ namespace Amazon.DeviceFarm.Model
         /// Gets and sets the property MaxSlots. 
         /// <para>
         /// The maximum number of device slots that the AWS account can purchase. Each maximum
-        /// is expressed as an <code>offering-id:number</code> pair, where the <code>offering-id</code>
-        /// represents one of the IDs returned by the <code>ListOfferings</code> command.
+        /// is expressed as an <c>offering-id:number</c> pair, where the <c>offering-id</c> represents
+        /// one of the IDs returned by the <c>ListOfferings</c> command.
         /// </para>
         /// </summary>
         public Dictionary<string, int> MaxSlots
@@ -115,14 +116,14 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if MaxSlots property is set
         internal bool IsSetMaxSlots()
         {
-            return this._maxSlots != null && this._maxSlots.Count > 0; 
+            return this._maxSlots != null && (this._maxSlots.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SkipAppResign. 
         /// <para>
-        /// When set to <code>true</code>, for private devices, Device Farm does not sign your
-        /// app again. For public devices, Device Farm always signs your apps again.
+        /// When set to <c>true</c>, for private devices, Device Farm does not sign your app again.
+        /// For public devices, Device Farm always signs your apps again.
         /// </para>
         ///  
         /// <para>
@@ -175,7 +176,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if UnmeteredDevices property is set
         internal bool IsSetUnmeteredDevices()
         {
-            return this._unmeteredDevices != null && this._unmeteredDevices.Count > 0; 
+            return this._unmeteredDevices != null && (this._unmeteredDevices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -193,7 +194,7 @@ namespace Amazon.DeviceFarm.Model
         // Check to see if UnmeteredRemoteAccessDevices property is set
         internal bool IsSetUnmeteredRemoteAccessDevices()
         {
-            return this._unmeteredRemoteAccessDevices != null && this._unmeteredRemoteAccessDevices.Count > 0; 
+            return this._unmeteredRemoteAccessDevices != null && (this._unmeteredRemoteAccessDevices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

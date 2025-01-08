@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorks.Model
 {
     /// <summary>
@@ -230,51 +231,51 @@ namespace Amazon.OpsWorks.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>configure</code> 
+        ///  <c>configure</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>deploy</code> 
+        ///  <c>deploy</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>execute_recipes</code> 
+        ///  <c>execute_recipes</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>install_dependencies</code> 
+        ///  <c>install_dependencies</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>restart</code> 
+        ///  <c>restart</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>rollback</code> 
+        ///  <c>rollback</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>setup</code> 
+        ///  <c>setup</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>start</code> 
+        ///  <c>start</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>stop</code> 
+        ///  <c>stop</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>undeploy</code> 
+        ///  <c>undeploy</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>update_custom_cookbooks</code> 
+        ///  <c>update_custom_cookbooks</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>update_dependencies</code> 
+        ///  <c>update_dependencies</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

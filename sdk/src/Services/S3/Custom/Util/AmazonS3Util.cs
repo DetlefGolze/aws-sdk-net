@@ -26,6 +26,7 @@ using Amazon.S3.Model;
 using Amazon.S3.Model.Internal.MarshallTransformations;
 using Amazon.Util;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -35,6 +36,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Linq;
 using Amazon.Runtime.Internal.Util;
+using Amazon.Runtime.Endpoints;
 
 namespace Amazon.S3.Util
 {
@@ -67,6 +69,7 @@ namespace Amazon.S3.Util
             { ".cs", "text/plain" },
             { ".csh", "application/x-csh" },
             { ".css", "text/css" },
+            { ".csv", "text/csv" },
             { ".dcr", "application/x-director" },
             { ".dir", "application/x-director" },
             { ".dms", "application/octet-stream" },
@@ -360,6 +363,38 @@ namespace Amazon.S3.Util
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Check if the backend is S3Express
+        /// </summary>
+        /// <param name="request">The S3 request object</param>
+        /// <returns>True if the backend returns S3Express, false otherwise</returns>
+        public static bool IsDirectoryBucket(this IRequest request)
+        {
+            var backend = request.EndpointAttributes["backend"];
+            if (backend == null)
+                return false;
+
+            return (string)backend == "S3Express";
+        }
+
+        /// <summary>
+        /// Check if the request should use S3Express session authentication
+        /// </summary>
+        /// <param name="request">The S3 request object</param>
+        /// <returns>True if the request should use S3Express session authentication, false otherwise</returns>
+        public static bool UseS3ExpressSessionAuth(this IRequest request)
+        {
+            var authSchemes = (IList)request.EndpointAttributes["authSchemes"];
+            if (authSchemes != null)
+                foreach (PropertyBag schema in authSchemes)
+                {
+                    var schemaName = (string)schema["name"];
+                    if (schemaName == "sigv4-s3express")
+                        return true;
+                }
+            return false;
+        }
+
         internal static DateTime? ParseExpiresHeader(string rawValue, string requestId)
         {
             if (!string.IsNullOrEmpty(rawValue))
@@ -370,21 +405,15 @@ namespace Amazon.S3.Util
                 }
                 catch (FormatException e)
                 {
-                    throw new AmazonDateTimeUnmarshallingException(
-                        requestId,
-                        string.Empty,
-                        string.Empty,
-                        rawValue,
-                        message: string.Format(
-                            CultureInfo.InvariantCulture,
-                            "The value {0} cannot be converted to a DateTime instance.",
-                            rawValue),
-                        innerException: e);
+                    var logger = Logger.GetLogger(typeof(AmazonS3Util));
+                    logger.Error(e, "The value {0} cannot be converted to a DateTime instance.", rawValue);
+
+                    return null;
                 }
             }
             else
             {
-                return default(DateTime);
+                return null;
             }
         }
 
@@ -440,24 +469,37 @@ namespace Amazon.S3.Util
             }
 
             // Check not IPv4-like
-            Regex ipv4 = new Regex("^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$");
-            if (ipv4.IsMatch(bucketName))
+            if (IPv4Regex().IsMatch(bucketName))
             {
                 return false;
             }
 
             // Check each label
-            Regex v2Regex = new Regex("^[a-z0-9]([a-z0-9\\-]*[a-z0-9])?$");
             string[] labels = bucketName.Split("\\.".ToCharArray());
             foreach (string label in labels)
             {
-                if (!v2Regex.IsMatch(label))
+                if (!LabelRegex().IsMatch(label))
                 {
                     return false;
                 }
             }
             return true;
         }
+
+        private const string IPv4RegexPattern = "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$";
+        private const string LabelRegexPattern = "^[a-z0-9]([a-z0-9\\-]*[a-z0-9])?$";
+
+#if NET8_0_OR_GREATER
+        [GeneratedRegex(IPv4RegexPattern)]
+        private static partial Regex IPv4Regex();
+        [GeneratedRegex(LabelRegexPattern)]
+        private static partial Regex LabelRegex();
+#else
+        private static Regex IPv4Regex() => _ipV4Regex;
+        private static Regex LabelRegex() => _labelRegex;
+        private static readonly Regex _ipV4Regex = new Regex(IPv4RegexPattern);
+        private static readonly Regex _labelRegex = new Regex(LabelRegexPattern);
+#endif
 
         internal static void AddQueryStringParameter(StringBuilder queryString, string parameterName, string parameterValue)
         {
@@ -520,7 +562,10 @@ namespace Amazon.S3.Util
             {
                 xmlWriter.WriteStartElement("Tagging", S3Constants.S3RequestXmlNamespace);
 
-                SerializeTagSetToXml(xmlWriter, tagging.TagSet);
+                if (tagging.TagSet != null)
+                {
+                    SerializeTagSetToXml(xmlWriter, tagging.TagSet);
+                }
 
                 xmlWriter.WriteEndElement();
             }

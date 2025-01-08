@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -42,7 +43,6 @@ namespace Amazon.SageMaker.Model
         /// Specifies the S3 location of ML model data to deploy.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
         public S3ModelDataSource S3DataSource
         {
             get { return this._s3DataSource; }

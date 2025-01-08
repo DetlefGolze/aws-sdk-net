@@ -26,11 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
     /// Contextual data, such as the user's device fingerprint, IP address, or location, used
     /// for evaluating the risk of an unexpected event by Amazon Cognito advanced security.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a request parameter of public-client authentication operations like
+    /// <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html">InitiateAuth</a>
+    /// and <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RespondToAuthChallenge.html">RespondToAuthChallenge</a>.
+    /// </para>
     /// </summary>
     public partial class UserContextDataType
     {

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.FIS.Model
 {
     /// <summary>
@@ -33,18 +34,23 @@ namespace Amazon.FIS.Model
     /// </summary>
     public partial class Experiment
     {
-        private Dictionary<string, ExperimentAction> _actions = new Dictionary<string, ExperimentAction>();
+        private Dictionary<string, ExperimentAction> _actions = AWSConfigs.InitializeCollections ? new Dictionary<string, ExperimentAction>() : null;
+        private string _arn;
         private DateTime? _creationTime;
         private DateTime? _endTime;
+        private ExperimentOptions _experimentOptions;
+        private ExperimentReport _experimentReport;
+        private ExperimentReportConfiguration _experimentReportConfiguration;
         private string _experimentTemplateId;
         private string _id;
         private ExperimentLogConfiguration _logConfiguration;
         private string _roleArn;
         private DateTime? _startTime;
         private ExperimentState _state;
-        private List<ExperimentStopCondition> _stopConditions = new List<ExperimentStopCondition>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
-        private Dictionary<string, ExperimentTarget> _targets = new Dictionary<string, ExperimentTarget>();
+        private List<ExperimentStopCondition> _stopConditions = AWSConfigs.InitializeCollections ? new List<ExperimentStopCondition>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private long? _targetAccountConfigurationsCount;
+        private Dictionary<string, ExperimentTarget> _targets = AWSConfigs.InitializeCollections ? new Dictionary<string, ExperimentTarget>() : null;
 
         /// <summary>
         /// Gets and sets the property Actions. 
@@ -61,7 +67,26 @@ namespace Amazon.FIS.Model
         // Check to see if Actions property is set
         internal bool IsSetActions()
         {
-            return this._actions != null && this._actions.Count > 0; 
+            return this._actions != null && (this._actions.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Arn. 
+        /// <para>
+        /// The Amazon Resource Name (ARN) of the experiment.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=20, Max=2048)]
+        public string Arn
+        {
+            get { return this._arn; }
+            set { this._arn = value; }
+        }
+
+        // Check to see if Arn property is set
+        internal bool IsSetArn()
+        {
+            return this._arn != null;
         }
 
         /// <summary>
@@ -98,6 +123,60 @@ namespace Amazon.FIS.Model
         internal bool IsSetEndTime()
         {
             return this._endTime.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentOptions. 
+        /// <para>
+        /// The experiment options for the experiment.
+        /// </para>
+        /// </summary>
+        public ExperimentOptions ExperimentOptions
+        {
+            get { return this._experimentOptions; }
+            set { this._experimentOptions = value; }
+        }
+
+        // Check to see if ExperimentOptions property is set
+        internal bool IsSetExperimentOptions()
+        {
+            return this._experimentOptions != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentReport. 
+        /// <para>
+        /// The experiment report for the experiment.
+        /// </para>
+        /// </summary>
+        public ExperimentReport ExperimentReport
+        {
+            get { return this._experimentReport; }
+            set { this._experimentReport = value; }
+        }
+
+        // Check to see if ExperimentReport property is set
+        internal bool IsSetExperimentReport()
+        {
+            return this._experimentReport != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ExperimentReportConfiguration. 
+        /// <para>
+        /// The experiment report configuration for the experiment.
+        /// </para>
+        /// </summary>
+        public ExperimentReportConfiguration ExperimentReportConfiguration
+        {
+            get { return this._experimentReportConfiguration; }
+            set { this._experimentReportConfiguration = value; }
+        }
+
+        // Check to see if ExperimentReportConfiguration property is set
+        internal bool IsSetExperimentReportConfiguration()
+        {
+            return this._experimentReportConfiguration != null;
         }
 
         /// <summary>
@@ -227,7 +306,7 @@ namespace Amazon.FIS.Model
         // Check to see if StopConditions property is set
         internal bool IsSetStopConditions()
         {
-            return this._stopConditions != null && this._stopConditions.Count > 0; 
+            return this._stopConditions != null && (this._stopConditions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -246,7 +325,26 @@ namespace Amazon.FIS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property TargetAccountConfigurationsCount. 
+        /// <para>
+        /// The count of target account configurations for the experiment.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=0)]
+        public long TargetAccountConfigurationsCount
+        {
+            get { return this._targetAccountConfigurationsCount.GetValueOrDefault(); }
+            set { this._targetAccountConfigurationsCount = value; }
+        }
+
+        // Check to see if TargetAccountConfigurationsCount property is set
+        internal bool IsSetTargetAccountConfigurationsCount()
+        {
+            return this._targetAccountConfigurationsCount.HasValue; 
         }
 
         /// <summary>
@@ -264,7 +362,7 @@ namespace Amazon.FIS.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

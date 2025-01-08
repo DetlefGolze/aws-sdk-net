@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -41,14 +42,14 @@ namespace Amazon.SecurityHub.Model
         private string _firewallPolicyArn;
         private bool? _firewallPolicyChangeProtection;
         private bool? _subnetChangeProtection;
-        private List<AwsNetworkFirewallFirewallSubnetMappingsDetails> _subnetMappings = new List<AwsNetworkFirewallFirewallSubnetMappingsDetails>();
+        private List<AwsNetworkFirewallFirewallSubnetMappingsDetails> _subnetMappings = AWSConfigs.InitializeCollections ? new List<AwsNetworkFirewallFirewallSubnetMappingsDetails>() : null;
         private string _vpcId;
 
         /// <summary>
         /// Gets and sets the property DeleteProtection. 
         /// <para>
-        /// Whether the firewall is protected from deletion. If set to <code>true</code>, then
-        /// the firewall cannot be deleted.
+        /// Whether the firewall is protected from deletion. If set to <c>true</c>, then the firewall
+        /// cannot be deleted.
         /// </para>
         /// </summary>
         public bool DeleteProtection
@@ -157,7 +158,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property FirewallPolicyChangeProtection. 
         /// <para>
         /// Whether the firewall is protected from a change to the firewall policy. If set to
-        /// <code>true</code>, you cannot associate a different policy with the firewall.
+        /// <c>true</c>, you cannot associate a different policy with the firewall.
         /// </para>
         /// </summary>
         public bool FirewallPolicyChangeProtection
@@ -176,7 +177,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property SubnetChangeProtection. 
         /// <para>
         /// Whether the firewall is protected from a change to the subnet associations. If set
-        /// to <code>true</code>, you cannot map different subnets to the firewall.
+        /// to <c>true</c>, you cannot map different subnets to the firewall.
         /// </para>
         /// </summary>
         public bool SubnetChangeProtection
@@ -207,7 +208,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if SubnetMappings property is set
         internal bool IsSetSubnetMappings()
         {
-            return this._subnetMappings != null && this._subnetMappings.Count > 0; 
+            return this._subnetMappings != null && (this._subnetMappings.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

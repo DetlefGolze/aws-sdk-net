@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property DeadLetterTargetArn. 
         /// <para>
         /// The ARN of the dead-letter queue to which Amazon SQS moves messages after the value
-        /// of <code>maxReceiveCount</code> is exceeded. 
+        /// of <c>maxReceiveCount</c> is exceeded. 
         /// </para>
         /// </summary>
         public string DeadLetterTargetArn

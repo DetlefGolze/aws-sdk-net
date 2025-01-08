@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTFleetWise.Model
 {
     /// <summary>
@@ -46,7 +47,7 @@ namespace Amazon.IoTFleetWise.Model
         /// Gets and sets the property RoleArn. 
         /// <para>
         /// The Amazon Resource Name (ARN) of the IAM resource that allows Amazon Web Services
-        /// IoT FleetWise to send data to Amazon Timestream. For example, <code>arn:aws:iam::123456789012:role/SERVICE-ROLE-ARN</code>.
+        /// IoT FleetWise to send data to Amazon Timestream. For example, <c>arn:aws:iam::123456789012:role/SERVICE-ROLE-ARN</c>.
         /// 
         /// </para>
         /// </summary>

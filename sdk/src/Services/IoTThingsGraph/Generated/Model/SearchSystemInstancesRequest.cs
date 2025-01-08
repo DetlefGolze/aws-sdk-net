@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTThingsGraph.Model
 {
     /// <summary>
@@ -34,15 +35,15 @@ namespace Amazon.IoTThingsGraph.Model
     /// </summary>
     public partial class SearchSystemInstancesRequest : AmazonIoTThingsGraphRequest
     {
-        private List<SystemInstanceFilter> _filters = new List<SystemInstanceFilter>();
+        private List<SystemInstanceFilter> _filters = AWSConfigs.InitializeCollections ? new List<SystemInstanceFilter>() : null;
         private int? _maxResults;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Filters. 
         /// <para>
-        /// Optional filter to apply to the search. Valid filters are <code>SYSTEM_TEMPLATE_ID</code>,
-        /// <code>STATUS</code>, and <code>GREENGRASS_GROUP_NAME</code>.
+        /// Optional filter to apply to the search. Valid filters are <c>SYSTEM_TEMPLATE_ID</c>,
+        /// <c>STATUS</c>, and <c>GREENGRASS_GROUP_NAME</c>.
         /// </para>
         ///  
         /// <para>
@@ -59,7 +60,7 @@ namespace Amazon.IoTThingsGraph.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

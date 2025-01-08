@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
     /// Container for the parameters to the DeleteProfile operation.
-    /// Deletes the profile that's specified in the <code>ProfileId</code> parameter.
+    /// Deletes the profile that's specified in the <c>ProfileId</c> parameter.
     /// </summary>
     public partial class DeleteProfileRequest : AmazonTransferRequest
     {

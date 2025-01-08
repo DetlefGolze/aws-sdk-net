@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class JupyterServerAppSettings
     {
-        private List<CodeRepository> _codeRepositories = new List<CodeRepository>();
+        private List<CodeRepository> _codeRepositories = AWSConfigs.InitializeCollections ? new List<CodeRepository>() : null;
         private ResourceSpec _defaultResourceSpec;
-        private List<string> _lifecycleConfigArns = new List<string>();
+        private List<string> _lifecycleConfigArns = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property CodeRepositories. 
         /// <para>
-        /// A list of Git repositories that SageMaker automatically displays to users for cloning
+        /// A list of Git repositories that SageMaker AI automatically displays to users for cloning
         /// in the JupyterServer application.
         /// </para>
         /// </summary>
@@ -54,14 +55,14 @@ namespace Amazon.SageMaker.Model
         // Check to see if CodeRepositories property is set
         internal bool IsSetCodeRepositories()
         {
-            return this._codeRepositories != null && this._codeRepositories.Count > 0; 
+            return this._codeRepositories != null && (this._codeRepositories.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultResourceSpec. 
         /// <para>
         /// The default instance type and the Amazon Resource Name (ARN) of the default SageMaker
-        /// image used by the JupyterServer app. If you use the <code>LifecycleConfigArns</code>
+        /// AI image used by the JupyterServer app. If you use the <c>LifecycleConfigArns</c>
         /// parameter, then this parameter is also required.
         /// </para>
         /// </summary>
@@ -81,13 +82,12 @@ namespace Amazon.SageMaker.Model
         /// Gets and sets the property LifecycleConfigArns. 
         /// <para>
         ///  The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to the JupyterServerApp.
-        /// If you use this parameter, the <code>DefaultResourceSpec</code> parameter is also
-        /// required.
+        /// If you use this parameter, the <c>DefaultResourceSpec</c> parameter is also required.
         /// </para>
         ///  <note> 
         /// <para>
-        /// To remove a Lifecycle Config, you must set <code>LifecycleConfigArns</code> to an
-        /// empty list.
+        /// To remove a Lifecycle Config, you must set <c>LifecycleConfigArns</c> to an empty
+        /// list.
         /// </para>
         ///  </note>
         /// </summary>
@@ -100,7 +100,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if LifecycleConfigArns property is set
         internal bool IsSetLifecycleConfigArns()
         {
-            return this._lifecycleConfigArns != null && this._lifecycleConfigArns.Count > 0; 
+            return this._lifecycleConfigArns != null && (this._lifecycleConfigArns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

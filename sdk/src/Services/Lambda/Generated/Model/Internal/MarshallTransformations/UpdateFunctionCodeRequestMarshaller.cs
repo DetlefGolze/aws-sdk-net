@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Lambda.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -66,6 +67,7 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetArchitectures())
@@ -119,6 +121,12 @@ namespace Amazon.Lambda.Model.Internal.MarshallTransformations
                 {
                     context.Writer.WritePropertyName("S3ObjectVersion");
                     context.Writer.Write(publicRequest.S3ObjectVersion);
+                }
+
+                if(publicRequest.IsSetSourceKMSKeyArn())
+                {
+                    context.Writer.WritePropertyName("SourceKMSKeyArn");
+                    context.Writer.Write(publicRequest.SourceKMSKeyArn);
                 }
 
                 if(publicRequest.IsSetZipFile())

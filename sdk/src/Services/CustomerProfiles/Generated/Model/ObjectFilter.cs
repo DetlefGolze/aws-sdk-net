@@ -26,25 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
-    /// The filter applied to <code>ListProfileObjects</code> response to include profile
-    /// objects with the specified index values.
+    /// The filter applied to <c>ListProfileObjects</c> response to include profile objects
+    /// with the specified index values.
     /// </summary>
     public partial class ObjectFilter
     {
         private string _keyName;
-        private List<string> _values = new List<string>();
+        private List<string> _values = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property KeyName. 
         /// <para>
         /// A searchable identifier of a profile object. The predefined keys you can use to search
-        /// for <code>_asset</code> include: <code>_assetId</code>, <code>_assetName</code>, and
-        /// <code>_serialNumber</code>. The predefined keys you can use to search for <code>_case</code>
-        /// include: <code>_caseId</code>. The predefined keys you can use to search for <code>_order</code>
-        /// include: <code>_orderId</code>.
+        /// for <c>_asset</c> include: <c>_assetId</c>, <c>_assetName</c>, and <c>_serialNumber</c>.
+        /// The predefined keys you can use to search for <c>_case</c> include: <c>_caseId</c>.
+        /// The predefined keys you can use to search for <c>_order</c> include: <c>_orderId</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]
@@ -76,7 +76,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Values property is set
         internal bool IsSetValues()
         {
-            return this._values != null && this._values.Count > 0; 
+            return this._values != null && (this._values.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

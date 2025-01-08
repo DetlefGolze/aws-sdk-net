@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeGuruSecurity.Model
 {
     /// <summary>
@@ -38,7 +39,8 @@ namespace Amazon.CodeGuruSecurity.Model
         /// <summary>
         /// Gets and sets the property EncryptionConfig. 
         /// <para>
-        /// An <code>EncryptionConfig</code> object that contains the KMS key ARN to use for encryption.
+        /// An <c>EncryptionConfig</c> object that contains the KMS key ARN that is used for encryption.
+        /// If you did not specify a customer-managed KMS key in the request, returns empty. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

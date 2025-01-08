@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudTrailData.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.CloudTrailData.Model
         /// <summary>
         /// Gets and sets the property EventData. 
         /// <para>
-        /// The content of an audit event that comes from the event, such as <code>userIdentity</code>,
-        /// <code>userAgent</code>, and <code>eventSource</code>.
+        /// The content of an audit event that comes from the event, such as <c>userIdentity</c>,
+        /// <c>userAgent</c>, and <c>eventSource</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -67,8 +68,7 @@ namespace Amazon.CloudTrailData.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>printf %s <i>$eventdata</i> | openssl dgst -binary -sha256 | base64</code>
-        /// 
+        ///  <c>printf %s <i>$eventdata</i> | openssl dgst -binary -sha256 | base64</c> 
         /// </para>
         /// </summary>
         public string EventDataChecksum

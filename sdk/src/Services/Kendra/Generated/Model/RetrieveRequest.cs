@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -35,14 +36,14 @@ namespace Amazon.Kendra.Model
     ///  
     /// <para>
     /// This API is similar to the <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_Query.html">Query</a>
-    /// API. However, by default, the <code>Query</code> API only returns excerpt passages
-    /// of up to 100 token words. With the <code>Retrieve</code> API, you can retrieve longer
-    /// passages of up to 200 token words and up to 100 semantically relevant passages. This
-    /// doesn't include question-answer or FAQ type responses from your index. The passages
-    /// are text excerpts that can be semantically extracted from multiple documents and multiple
-    /// parts of the same document. If in extreme cases your documents produce zero passages
-    /// using the <code>Retrieve</code> API, you can alternatively use the <code>Query</code>
-    /// API and its types of responses.
+    /// API. However, by default, the <c>Query</c> API only returns excerpt passages of up
+    /// to 100 token words. With the <c>Retrieve</c> API, you can retrieve longer passages
+    /// of up to 200 token words and up to 100 semantically relevant passages. This doesn't
+    /// include question-answer or FAQ type responses from your index. The passages are text
+    /// excerpts that can be semantically extracted from multiple documents and multiple parts
+    /// of the same document. If in extreme cases your documents produce zero passages using
+    /// the <c>Retrieve</c> API, you can alternatively use the <c>Query</c> API and its types
+    /// of responses.
     /// </para>
     ///  
     /// <para>
@@ -60,42 +61,68 @@ namespace Amazon.Kendra.Model
     /// <para>
     /// Filter based on the user or their group access to documents
     /// </para>
-    ///  </li> </ul> 
+    ///  </li> <li> 
+    /// <para>
+    /// View the confidence score bucket for a retrieved passage result. The confidence bucket
+    /// provides a relative ranking that indicates how confident Amazon Kendra is that the
+    /// response is relevant to the query.
+    /// </para>
+    ///  <note> 
+    /// <para>
+    /// Confidence score buckets are currently available only for English.
+    /// </para>
+    ///  </note> </li> </ul> 
     /// <para>
     /// You can also include certain fields in the response that might provide useful additional
     /// information.
     /// </para>
     ///  
     /// <para>
-    /// The <code>Retrieve</code> API shares the number of <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_CapacityUnitsConfiguration.html">query
+    /// The <c>Retrieve</c> API shares the number of <a href="https://docs.aws.amazon.com/kendra/latest/APIReference/API_CapacityUnitsConfiguration.html">query
     /// capacity units</a> that you set for your index. For more information on what's included
     /// in a single capacity unit and the default base capacity for an index, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/adjusting-capacity.html">Adjusting
     /// capacity</a>.
     /// </para>
+    ///  <important> 
+    /// <para>
+    /// If you're using an Amazon Kendra Gen AI Enterprise Edition index, you can only use
+    /// <c>ATTRIBUTE_FILTER</c> to filter search results by user context. If you're using
+    /// an Amazon Kendra Gen AI Enterprise Edition index and you try to use <c>USER_TOKEN</c>
+    /// to configure user context policy, Amazon Kendra returns a <c>ValidationException</c>
+    /// error.
+    /// </para>
+    ///  </important>
     /// </summary>
     public partial class RetrieveRequest : AmazonKendraRequest
     {
         private AttributeFilter _attributeFilter;
-        private List<DocumentRelevanceConfiguration> _documentRelevanceOverrideConfigurations = new List<DocumentRelevanceConfiguration>();
+        private List<DocumentRelevanceConfiguration> _documentRelevanceOverrideConfigurations = AWSConfigs.InitializeCollections ? new List<DocumentRelevanceConfiguration>() : null;
         private string _indexId;
         private int? _pageNumber;
         private int? _pageSize;
         private string _queryText;
-        private List<string> _requestedDocumentAttributes = new List<string>();
+        private List<string> _requestedDocumentAttributes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private UserContext _userContext;
 
         /// <summary>
         /// Gets and sets the property AttributeFilter. 
         /// <para>
         /// Filters search results by document fields/attributes. You can only provide one attribute
-        /// filter; however, the <code>AndAllFilters</code>, <code>NotFilter</code>, and <code>OrAllFilters</code>
+        /// filter; however, the <c>AndAllFilters</c>, <c>NotFilter</c>, and <c>OrAllFilters</c>
         /// parameters contain a list of other filters.
         /// </para>
         ///  
         /// <para>
-        /// The <code>AttributeFilter</code> parameter means you can create a set of filtering
-        /// rules that a document must satisfy to be included in the query results.
+        /// The <c>AttributeFilter</c> parameter means you can create a set of filtering rules
+        /// that a document must satisfy to be included in the query results.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// For Amazon Kendra Gen AI Enterprise Edition indices use <c>AttributeFilter</c> to
+        /// enable document filtering for end users using <c>_email_id</c> or include public documents
+        /// (<c>_email_id=null</c>).
+        /// </para>
+        ///  </note>
         /// </summary>
         public AttributeFilter AttributeFilter
         {
@@ -137,7 +164,7 @@ namespace Amazon.Kendra.Model
         // Check to see if DocumentRelevanceOverrideConfigurations property is set
         internal bool IsSetDocumentRelevanceOverrideConfigurations()
         {
-            return this._documentRelevanceOverrideConfigurations != null && this._documentRelevanceOverrideConfigurations.Count > 0; 
+            return this._documentRelevanceOverrideConfigurations != null && (this._documentRelevanceOverrideConfigurations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -162,7 +189,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property PageNumber. 
         /// <para>
-        /// Retrieved relevant passages are returned in pages the size of the <code>PageSize</code>
+        /// Retrieved relevant passages are returned in pages the size of the <c>PageSize</c>
         /// parameter. By default, Amazon Kendra returns the first page of results. Use this parameter
         /// to get result pages after the first one.
         /// </para>
@@ -204,7 +231,10 @@ namespace Amazon.Kendra.Model
         /// <para>
         /// The input query text to retrieve relevant passages for the search. Amazon Kendra truncates
         /// queries at 30 token words, which excludes punctuation and stop words. Truncation still
-        /// applies if you use Boolean or more advanced, complex queries.
+        /// applies if you use Boolean or more advanced, complex queries. For example, <c>Timeoff
+        /// AND October AND Category:HR</c> is counted as 3 tokens: <c>timeoff</c>, <c>october</c>,
+        /// <c>hr</c>. For more information, see <a href="https://docs.aws.amazon.com/kendra/latest/dg/searching-example.html#searching-index-query-syntax">Searching
+        /// with advanced query syntax</a> in the Amazon Kendra Developer Guide. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -238,7 +268,7 @@ namespace Amazon.Kendra.Model
         // Check to see if RequestedDocumentAttributes property is set
         internal bool IsSetRequestedDocumentAttributes()
         {
-            return this._requestedDocumentAttributes != null && this._requestedDocumentAttributes.Count > 0; 
+            return this._requestedDocumentAttributes != null && (this._requestedDocumentAttributes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

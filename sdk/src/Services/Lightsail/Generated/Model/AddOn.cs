@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -89,8 +90,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// The time shown is in <code>HH:00</code> format, and in Coordinated Universal Time
-        /// (UTC).
+        /// The time shown is in <c>HH:00</c> format, and in Coordinated Universal Time (UTC).
         /// </para>
         ///  
         /// <para>
@@ -117,8 +117,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// The time shown is in <code>HH:00</code> format, and in Coordinated Universal Time
-        /// (UTC).
+        /// The time shown is in <c>HH:00</c> format, and in Coordinated Universal Time (UTC).
         /// </para>
         ///  
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpsWorksCM.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.OpsWorksCM.Model
         /// <summary>
         /// Gets and sets the property Server. 
         /// <para>
-        /// Contains the response to an <code>UpdateServerEngineAttributes</code> request. 
+        /// Contains the response to an <c>UpdateServerEngineAttributes</c> request. 
         /// </para>
         /// </summary>
         public CMServer Server

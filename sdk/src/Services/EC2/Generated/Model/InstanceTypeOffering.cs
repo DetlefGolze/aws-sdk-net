@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -60,8 +61,8 @@ namespace Amazon.EC2.Model
         /// Gets and sets the property Location. 
         /// <para>
         /// The identifier for the location. This depends on the location type. For example, if
-        /// the location type is <code>region</code>, the location is the Region code (for example,
-        /// <code>us-east-2</code>.)
+        /// the location type is <c>region</c>, the location is the Region code (for example,
+        /// <c>us-east-2</c>.)
         /// </para>
         /// </summary>
         public string Location

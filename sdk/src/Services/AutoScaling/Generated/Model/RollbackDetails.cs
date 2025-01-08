@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property InstancesToUpdateOnRollback. 
         /// <para>
-        /// Indicates the value of <code>InstancesToUpdate</code> at the time the rollback started.
+        /// Indicates the value of <c>InstancesToUpdate</c> at the time the rollback started.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0)]
@@ -61,7 +62,7 @@ namespace Amazon.AutoScaling.Model
         /// <summary>
         /// Gets and sets the property PercentageCompleteOnRollback. 
         /// <para>
-        /// Indicates the value of <code>PercentageComplete</code> at the time the rollback started.
+        /// Indicates the value of <c>PercentageComplete</c> at the time the rollback started.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=100)]

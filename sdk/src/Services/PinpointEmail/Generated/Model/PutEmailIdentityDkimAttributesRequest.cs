@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -63,9 +64,9 @@ namespace Amazon.PinpointEmail.Model
         /// </para>
         ///  
         /// <para>
-        /// When you set this value <code>true</code>, then the messages that Amazon Pinpoint
-        /// sends from the identity are DKIM-signed. When you set this value to <code>false</code>,
-        /// then the messages that Amazon Pinpoint sends from the identity aren't DKIM-signed.
+        /// When you set this value <c>true</c>, then the messages that Amazon Pinpoint sends
+        /// from the identity are DKIM-signed. When you set this value to <c>false</c>, then the
+        /// messages that Amazon Pinpoint sends from the identity aren't DKIM-signed.
         /// </para>
         /// </summary>
         public bool SigningEnabled

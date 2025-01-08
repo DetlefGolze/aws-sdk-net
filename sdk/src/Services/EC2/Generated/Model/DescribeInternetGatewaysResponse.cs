@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeInternetGatewaysResponse : AmazonWebServiceResponse
     {
-        private List<InternetGateway> _internetGateways = new List<InternetGateway>();
+        private List<InternetGateway> _internetGateways = AWSConfigs.InitializeCollections ? new List<InternetGateway>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property InternetGateways. 
         /// <para>
-        /// Information about one or more internet gateways.
+        /// Information about the internet gateways.
         /// </para>
         /// </summary>
         public List<InternetGateway> InternetGateways
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if InternetGateways property is set
         internal bool IsSetInternetGateways()
         {
-            return this._internetGateways != null && this._internetGateways.Count > 0; 
+            return this._internetGateways != null && (this._internetGateways.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The token to include in another request to get the next page of items. This value
-        /// is <code>null</code> when there are no more items to return.
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken

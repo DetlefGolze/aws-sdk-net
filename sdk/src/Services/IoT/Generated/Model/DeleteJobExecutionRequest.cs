@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -49,13 +50,13 @@ namespace Amazon.IoT.Model
         /// <summary>
         /// Gets and sets the property ExecutionNumber. 
         /// <para>
-        /// The ID of the job execution to be deleted. The <code>executionNumber</code> refers
-        /// to the execution of a particular job on a particular device.
+        /// The ID of the job execution to be deleted. The <c>executionNumber</c> refers to the
+        /// execution of a particular job on a particular device.
         /// </para>
         ///  
         /// <para>
-        /// Note that once a job execution is deleted, the <code>executionNumber</code> may be
-        /// reused by IoT, so be sure you get and use the correct value here.
+        /// Note that once a job execution is deleted, the <c>executionNumber</c> may be reused
+        /// by IoT, so be sure you get and use the correct value here.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -129,12 +130,14 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+        ///  <c>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</c>
         /// 
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>namespaceId</code> feature is in public preview.
+        /// The <c>namespaceId</c> feature is only supported by IoT Greengrass at this time. For
+        /// more information, see <a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/setting-up.html">Setting
+        /// up IoT Greengrass core devices.</a> 
         /// </para>
         ///  </note>
         /// </summary>

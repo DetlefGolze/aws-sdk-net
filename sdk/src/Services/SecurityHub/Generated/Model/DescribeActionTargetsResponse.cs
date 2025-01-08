@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.SecurityHub.Model
     /// </summary>
     public partial class DescribeActionTargetsResponse : AmazonWebServiceResponse
     {
-        private List<ActionTarget> _actionTargets = new List<ActionTarget>();
+        private List<ActionTarget> _actionTargets = AWSConfigs.InitializeCollections ? new List<ActionTarget>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property ActionTargets. 
         /// <para>
-        /// A list of <code>ActionTarget</code> objects. Each object includes the <code>ActionTargetArn</code>,
-        /// <code>Description</code>, and <code>Name</code> of a custom action target available
-        /// in Security Hub.
+        /// A list of <c>ActionTarget</c> objects. Each object includes the <c>ActionTargetArn</c>,
+        /// <c>Description</c>, and <c>Name</c> of a custom action target available in Security
+        /// Hub.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -54,7 +55,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if ActionTargets property is set
         internal bool IsSetActionTargets()
         {
-            return this._actionTargets != null && this._actionTargets.Count > 0; 
+            return this._actionTargets != null && (this._actionTargets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
-    /// The <code>NextToken</code> parameter that was passed is invalid.
+    /// The <c>NextToken</c> parameter that was passed is invalid.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

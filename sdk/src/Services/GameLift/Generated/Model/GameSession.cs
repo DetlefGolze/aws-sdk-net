@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GameLift.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.GameLift.Model
     ///  
     /// <para>
     /// A game session in ACTIVE status can host players. When a game session ends, its status
-    /// is set to <code>TERMINATED</code>. 
+    /// is set to <c>TERMINATED</c>. 
     /// </para>
     ///  
     /// <para>
@@ -56,7 +57,7 @@ namespace Amazon.GameLift.Model
         private string _dnsName;
         private string _fleetArn;
         private string _fleetId;
-        private List<GameProperty> _gameProperties = new List<GameProperty>();
+        private List<GameProperty> _gameProperties = AWSConfigs.InitializeCollections ? new List<GameProperty>() : null;
         private string _gameSessionData;
         private string _gameSessionId;
         private string _ipAddress;
@@ -74,7 +75,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property CreationTime. 
         /// <para>
         /// A time stamp indicating when this data object was created. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime CreationTime
@@ -136,11 +137,11 @@ namespace Amazon.GameLift.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// TLS-enabled fleets: <code>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</code>.
+        /// TLS-enabled fleets: <c>&lt;unique identifier&gt;.&lt;region identifier&gt;.amazongamelift.com</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Non-TLS-enabled fleets: <code>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</code>.
+        /// Non-TLS-enabled fleets: <c>ec2-&lt;unique identifier&gt;.compute.amazonaws.com</c>.
         /// (See <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-instance-addressing.html#concepts-public-addresses">Amazon
         /// EC2 Instance IP Addressing</a>.)
         /// </para>
@@ -169,6 +170,7 @@ namespace Amazon.GameLift.Model
         /// associated with the GameLift fleet that this game session is running on. 
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=512)]
         public string FleetArn
         {
             get { return this._fleetArn; }
@@ -187,6 +189,7 @@ namespace Amazon.GameLift.Model
         /// A unique identifier for the fleet that the game session is running on.
         /// </para>
         /// </summary>
+        [AWSProperty(Min=1, Max=128)]
         public string FleetId
         {
             get { return this._fleetId; }
@@ -202,10 +205,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property GameProperties. 
         /// <para>
-        /// A set of custom properties for a game session, formatted as key:value pairs. These
-        /// properties are passed to a game server process with a request to start a new game
-        /// session (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// A set of key-value pairs that can store custom data in a game session. For example:
+        /// <c>{"Key": "difficulty", "Value": "novice"}</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Max=16)]
@@ -218,16 +219,16 @@ namespace Amazon.GameLift.Model
         // Check to see if GameProperties property is set
         internal bool IsSetGameProperties()
         {
-            return this._gameProperties != null && this._gameProperties.Count > 0; 
+            return this._gameProperties != null && (this._gameProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property GameSessionData. 
         /// <para>
         /// A set of custom game session properties, formatted as a single string value. This
-        /// data is passed to a game server process with a request to start a new game session
-        /// (see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
-        /// a Game Session</a>).
+        /// data is passed to a game server process with a request to start a new game session.
+        /// For more information, see <a href="https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession">Start
+        /// a game session</a>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=262144)]
@@ -247,8 +248,8 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property GameSessionId. 
         /// <para>
         /// A unique identifier for the game session. A game session ARN has the following format:
-        /// <code>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet ID&gt;/&lt;custom ID
-        /// string or idempotency token&gt;</code>.
+        /// <c>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet ID&gt;/&lt;custom ID string
+        /// or idempotency token&gt;</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -271,7 +272,7 @@ namespace Amazon.GameLift.Model
         /// app needs both the IP address and port number.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=128)]
+        [AWSProperty(Sensitive=true, Min=1, Max=128)]
         public string IpAddress
         {
             get { return this._ipAddress; }
@@ -289,7 +290,7 @@ namespace Amazon.GameLift.Model
         /// <para>
         /// The fleet location where the game session is running. This value might specify the
         /// fleet's home Region or a remote location. Location is expressed as an Amazon Web Services
-        /// Region code such as <code>us-west-2</code>. 
+        /// Region code such as <c>us-west-2</c>. 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=64)]
@@ -372,7 +373,7 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property PlayerSessionCreationPolicy. 
         /// <para>
-        /// Indicates whether or not the game session is accepting new players.
+        /// Indicates whether the game session is accepting new players.
         /// </para>
         /// </summary>
         public PlayerSessionCreationPolicy PlayerSessionCreationPolicy
@@ -394,7 +395,7 @@ namespace Amazon.GameLift.Model
         /// an app needs both the IP address and port number.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=60000)]
+        [AWSProperty(Sensitive=true, Min=1, Max=60000)]
         public int Port
         {
             get { return this._port.GetValueOrDefault(); }
@@ -410,8 +411,8 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// Current status of the game session. A game session must have an <code>ACTIVE</code>
-        /// status to have player sessions.
+        /// Current status of the game session. A game session must have an <c>ACTIVE</c> status
+        /// to have player sessions.
         /// </para>
         /// </summary>
         public GameSessionStatus Status
@@ -429,10 +430,24 @@ namespace Amazon.GameLift.Model
         /// <summary>
         /// Gets and sets the property StatusReason. 
         /// <para>
-        /// Provides additional information about game session status. <code>INTERRUPTED</code>
-        /// indicates that the game session was hosted on a spot instance that was reclaimed,
-        /// causing the active game session to be terminated.
+        /// Provides additional information about game session status. 
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>INTERRUPTED</c> -- The game session was hosted on an EC2 Spot instance that was
+        /// reclaimed, causing the active game session to be stopped.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>TRIGGERED_ON_PROCESS_TERMINATE</c> – The game session was stopped by calling <c>TerminateGameSession</c>
+        /// with the termination mode <c>TRIGGER_ON_PROCESS_TERMINATE</c>. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>FORCE_TERMINATED</c> – The game session was stopped by calling <c>TerminateGameSession</c>
+        /// with the termination mode <c>FORCE_TERMINATE</c>. 
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public GameSessionStatusReason StatusReason
         {
@@ -450,7 +465,7 @@ namespace Amazon.GameLift.Model
         /// Gets and sets the property TerminationTime. 
         /// <para>
         /// A time stamp indicating when this data object was terminated. Format is a number expressed
-        /// in Unix time as milliseconds (for example <code>"1469498468.057"</code>).
+        /// in Unix time as milliseconds (for example <c>"1469498468.057"</c>).
         /// </para>
         /// </summary>
         public DateTime TerminationTime

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.ResilienceHub.Model
         private string _assessmentArn;
         private string _assessmentName;
         private AssessmentStatus _assessmentStatus;
-        private Dictionary<string, DisruptionCompliance> _compliance = new Dictionary<string, DisruptionCompliance>();
+        private Dictionary<string, DisruptionCompliance> _compliance = AWSConfigs.InitializeCollections ? new Dictionary<string, DisruptionCompliance>() : null;
         private ComplianceStatus _complianceStatus;
         private Cost _cost;
         private DriftStatus _driftStatus;
@@ -49,16 +50,18 @@ namespace Amazon.ResilienceHub.Model
         private ResiliencyScore _resiliencyScore;
         private ResourceErrorsDetails _resourceErrorsDetails;
         private DateTime? _startTime;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private AssessmentSummary _summary;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _versionName;
 
         /// <summary>
         /// Gets and sets the property AppArn. 
         /// <para>
         /// Amazon Resource Name (ARN) of the Resilience Hub application. The format for this
-        /// ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app/<code>app-id</code>.
+        /// ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         public string AppArn
@@ -94,9 +97,10 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property AssessmentArn. 
         /// <para>
-        /// Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<code>partition</code>:resiliencehub:<code>region</code>:<code>account</code>:app-assessment/<code>app-id</code>.
+        /// Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:<c>partition</c>:resiliencehub:<c>region</c>:<c>account</c>:app-assessment/<c>app-id</c>.
         /// For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">
-        /// Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i> guide.
+        /// Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General Reference</i>
+        /// guide.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -164,7 +168,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Compliance property is set
         internal bool IsSetCompliance()
         {
-            return this._compliance != null && this._compliance.Count > 0; 
+            return this._compliance != null && (this._compliance.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -352,6 +356,30 @@ namespace Amazon.ResilienceHub.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Summary. 
+        /// <para>
+        /// Indicates the AI-generated summary for the Resilience Hub assessment, providing a
+        /// concise overview that highlights the top risks and recommendations.
+        /// </para>
+        ///  <note> 
+        /// <para>
+        /// This property is available only in the US East (N. Virginia) Region.
+        /// </para>
+        ///  </note>
+        /// </summary>
+        public AssessmentSummary Summary
+        {
+            get { return this._summary; }
+            set { this._summary = value; }
+        }
+
+        // Check to see if Summary property is set
+        internal bool IsSetSummary()
+        {
+            return this._summary != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// Tags assigned to the resource. A tag is a label that you assign to an Amazon Web Services
@@ -368,7 +396,7 @@ namespace Amazon.ResilienceHub.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

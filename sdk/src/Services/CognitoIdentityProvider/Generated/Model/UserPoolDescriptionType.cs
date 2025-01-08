@@ -26,10 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CognitoIdentityProvider.Model
 {
     /// <summary>
-    /// A user pool description.
+    /// A short description of a user pool.
+    /// 
+    ///  
+    /// <para>
+    /// This data type is a response parameter of <a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUserPools.html">ListUserPools</a>.
+    /// 
+    /// </para>
     /// </summary>
     public partial class UserPoolDescriptionType
     {
@@ -43,8 +50,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property CreationDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was created.
+        /// The date and time when the item was created. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime CreationDate
@@ -62,7 +70,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The ID in a user pool description.
+        /// The user pool ID.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=55)]
@@ -81,7 +89,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LambdaConfig. 
         /// <para>
-        /// The Lambda configuration information in a user pool description.
+        /// A collection of user pool Lambda triggers. Amazon Cognito invokes triggers at several
+        /// possible stages of user pool operations. Triggers can modify the outcome of the operations
+        /// that invoked them.
         /// </para>
         /// </summary>
         public LambdaConfigType LambdaConfig
@@ -99,8 +109,9 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property LastModifiedDate. 
         /// <para>
-        /// The date and time, in <a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-        /// 8601</a> format, when the item was modified.
+        /// The date and time when the item was modified. Amazon Cognito returns this timestamp
+        /// in UNIX epoch time format. Your SDK might render the output in a human-readable format
+        /// like ISO 8601 or a Java <c>Date</c> object.
         /// </para>
         /// </summary>
         public DateTime LastModifiedDate
@@ -118,7 +129,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name in a user pool description.
+        /// The user pool name.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=128)]
@@ -137,7 +148,7 @@ namespace Amazon.CognitoIdentityProvider.Model
         /// <summary>
         /// Gets and sets the property Status. 
         /// <para>
-        /// The user pool status in a user pool description.
+        /// The user pool status.
         /// </para>
         /// </summary>
         [Obsolete("This property is no longer available.")]

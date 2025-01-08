@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class ListCrawlsResponse : AmazonWebServiceResponse
     {
-        private List<CrawlerHistory> _crawls = new List<CrawlerHistory>();
+        private List<CrawlerHistory> _crawls = AWSConfigs.InitializeCollections ? new List<CrawlerHistory>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Crawls. 
         /// <para>
-        /// A list of <code>CrawlerHistory</code> objects representing the crawl runs that meet
-        /// your criteria.
+        /// A list of <c>CrawlerHistory</c> objects representing the crawl runs that meet your
+        /// criteria.
         /// </para>
         /// </summary>
         public List<CrawlerHistory> Crawls
@@ -52,7 +53,7 @@ namespace Amazon.Glue.Model
         // Check to see if Crawls property is set
         internal bool IsSetCrawls()
         {
-            return this._crawls != null && this._crawls.Count > 0; 
+            return this._crawls != null && (this._crawls.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

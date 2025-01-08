@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -69,7 +70,7 @@ namespace Amazon.KeyManagementService.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// When used with the <code>ECDSA_SHA_256</code>, <code>ECDSA_SHA_384</code>, or <code>ECDSA_SHA_512</code>
+        /// When used with the <c>ECDSA_SHA_256</c>, <c>ECDSA_SHA_384</c>, or <c>ECDSA_SHA_512</c>
         /// signing algorithms, this value is a DER-encoded object as defined by ANSI X9.62–2005
         /// and <a href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC 3279 Section 2.2.3</a>.
         /// This is the most commonly used signature format and is appropriate for most uses.

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DirectoryService.Model
 {
     /// <summary>
@@ -34,9 +35,9 @@ namespace Amazon.DirectoryService.Model
     /// 
     ///  
     /// <para>
-    /// Before you call <code>ConnectDirectory</code>, ensure that all of the required permissions
+    /// Before you call <c>ConnectDirectory</c>, ensure that all of the required permissions
     /// have been explicitly granted through a policy. For details about what permissions
-    /// are required to run the <code>ConnectDirectory</code> operation, see <a href="http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html">Directory
+    /// are required to run the <c>ConnectDirectory</c> operation, see <a href="http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html">Directory
     /// Service API Permissions: Actions, Resources, and Conditions Reference</a>.
     /// </para>
     /// </summary>
@@ -48,7 +49,7 @@ namespace Amazon.DirectoryService.Model
         private string _password;
         private string _shortName;
         private DirectorySize _size;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property ConnectSettings. 
@@ -92,7 +93,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The fully qualified name of your self-managed directory, such as <code>corp.example.com</code>.
+        /// The fully qualified name of your self-managed directory, such as <c>corp.example.com</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -130,7 +131,7 @@ namespace Amazon.DirectoryService.Model
         /// <summary>
         /// Gets and sets the property ShortName. 
         /// <para>
-        /// The NetBIOS name of your self-managed directory, such as <code>CORP</code>.
+        /// The NetBIOS name of your self-managed directory, such as <c>CORP</c>.
         /// </para>
         /// </summary>
         public string ShortName
@@ -179,7 +180,7 @@ namespace Amazon.DirectoryService.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

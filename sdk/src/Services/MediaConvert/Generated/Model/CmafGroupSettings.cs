@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MediaConvert.Model
 {
     /// <summary>
@@ -33,10 +34,11 @@ namespace Amazon.MediaConvert.Model
     /// </summary>
     public partial class CmafGroupSettings
     {
-        private List<CmafAdditionalManifest> _additionalManifests = new List<CmafAdditionalManifest>();
+        private List<CmafAdditionalManifest> _additionalManifests = AWSConfigs.InitializeCollections ? new List<CmafAdditionalManifest>() : null;
         private string _baseUrl;
         private CmafClientCache _clientCache;
         private CmafCodecSpecification _codecSpecification;
+        private string _dashIFrameTrickPlayNameModifier;
         private DashManifestStyle _dashManifestStyle;
         private string _destination;
         private DestinationSettings _destinationSettings;
@@ -78,7 +80,7 @@ namespace Amazon.MediaConvert.Model
         // Check to see if AdditionalManifests property is set
         internal bool IsSetAdditionalManifests()
         {
-            return this._additionalManifests != null && this._additionalManifests.Count > 0; 
+            return this._additionalManifests != null && (this._additionalManifests.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -130,6 +132,30 @@ namespace Amazon.MediaConvert.Model
         internal bool IsSetCodecSpecification()
         {
             return this._codecSpecification != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property DashIFrameTrickPlayNameModifier. Specify whether MediaConvert
+        /// generates I-frame only video segments for DASH trick play, also known as trick mode.
+        /// When specified, the I-frame only video segments are included within an additional
+        /// AdaptationSet in your DASH output manifest. To generate I-frame only video segments:
+        /// Enter a name as a text string, up to 256 character long. This name is appended to
+        /// the end of this output group's base filename, that you specify as part of your destination
+        /// URI, and used for the I-frame only video segment files. You may also include format
+        /// identifiers. For more information, see: https://docs.aws.amazon.com/mediaconvert/latest/ug/using-variables-in-your-job-settings.html#using-settings-variables-with-streaming-outputs
+        /// To not generate I-frame only video segments: Leave blank.
+        /// </summary>
+        [AWSProperty(Min=1, Max=256)]
+        public string DashIFrameTrickPlayNameModifier
+        {
+            get { return this._dashIFrameTrickPlayNameModifier; }
+            set { this._dashIFrameTrickPlayNameModifier = value; }
+        }
+
+        // Check to see if DashIFrameTrickPlayNameModifier property is set
+        internal bool IsSetDashIFrameTrickPlayNameModifier()
+        {
+            return this._dashIFrameTrickPlayNameModifier != null;
         }
 
         /// <summary>

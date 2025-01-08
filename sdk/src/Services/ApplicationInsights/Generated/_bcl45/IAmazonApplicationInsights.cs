@@ -26,10 +26,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ApplicationInsights.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ApplicationInsights
 {
     /// <summary>
-    /// Interface for accessing ApplicationInsights
+    /// <para>Interface for accessing ApplicationInsights</para>
     ///
     /// Amazon CloudWatch Application Insights 
     /// <para>
@@ -230,7 +231,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Adds an log pattern to a <code>LogPatternSet</code>.
+        /// Adds an log pattern to a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLogPattern service method.</param>
         /// 
@@ -253,7 +254,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Adds an log pattern to a <code>LogPatternSet</code>.
+        /// Adds an log pattern to a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateLogPattern service method.</param>
         /// <param name="cancellationToken">
@@ -384,7 +385,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Removes the specified log pattern from a <code>LogPatternSet</code>.
+        /// Removes the specified log pattern from a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteLogPattern service method.</param>
         /// 
@@ -407,7 +408,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Removes the specified log pattern from a <code>LogPatternSet</code>.
+        /// Removes the specified log pattern from a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteLogPattern service method.</param>
         /// <param name="cancellationToken">
@@ -620,7 +621,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Describe a specific log pattern from a <code>LogPatternSet</code>.
+        /// Describe a specific log pattern from a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLogPattern service method.</param>
         /// 
@@ -640,7 +641,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Describe a specific log pattern from a <code>LogPatternSet</code>.
+        /// Describe a specific log pattern from a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DescribeLogPattern service method.</param>
         /// <param name="cancellationToken">
@@ -1012,7 +1013,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Lists the log patterns in the specific log <code>LogPatternSet</code>.
+        /// Lists the log patterns in the specific log <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListLogPatterns service method.</param>
         /// 
@@ -1032,7 +1033,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Lists the log patterns in the specific log <code>LogPatternSet</code>.
+        /// Lists the log patterns in the specific log <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListLogPatterns service method.</param>
         /// <param name="cancellationToken">
@@ -1498,13 +1499,16 @@ namespace Amazon.ApplicationInsights
         /// <summary>
         /// Updates the monitoring configurations for the component. The configuration input parameter
         /// is an escaped JSON of the configuration and should match the schema of what is returned
-        /// by <code>DescribeComponentConfigurationRecommendation</code>.
+        /// by <c>DescribeComponentConfigurationRecommendation</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateComponentConfiguration service method.</param>
         /// 
         /// <returns>The response from the UpdateComponentConfiguration service method, as returned by ApplicationInsights.</returns>
         /// <exception cref="Amazon.ApplicationInsights.Model.InternalServerException">
         /// The server encountered an internal error and is unable to complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationInsights.Model.ResourceInUseException">
+        /// The resource is already created or in use.
         /// </exception>
         /// <exception cref="Amazon.ApplicationInsights.Model.ResourceNotFoundException">
         /// The resource does not exist in the customer account.
@@ -1520,7 +1524,7 @@ namespace Amazon.ApplicationInsights
         /// <summary>
         /// Updates the monitoring configurations for the component. The configuration input parameter
         /// is an escaped JSON of the configuration and should match the schema of what is returned
-        /// by <code>DescribeComponentConfigurationRecommendation</code>.
+        /// by <c>DescribeComponentConfigurationRecommendation</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateComponentConfiguration service method.</param>
         /// <param name="cancellationToken">
@@ -1530,6 +1534,9 @@ namespace Amazon.ApplicationInsights
         /// <returns>The response from the UpdateComponentConfiguration service method, as returned by ApplicationInsights.</returns>
         /// <exception cref="Amazon.ApplicationInsights.Model.InternalServerException">
         /// The server encountered an internal error and is unable to complete the request.
+        /// </exception>
+        /// <exception cref="Amazon.ApplicationInsights.Model.ResourceInUseException">
+        /// The resource is already created or in use.
         /// </exception>
         /// <exception cref="Amazon.ApplicationInsights.Model.ResourceNotFoundException">
         /// The resource does not exist in the customer account.
@@ -1546,7 +1553,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Adds a log pattern to a <code>LogPatternSet</code>.
+        /// Adds a log pattern to a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLogPattern service method.</param>
         /// 
@@ -1569,7 +1576,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Adds a log pattern to a <code>LogPatternSet</code>.
+        /// Adds a log pattern to a <c>LogPatternSet</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateLogPattern service method.</param>
         /// <param name="cancellationToken">
@@ -1598,7 +1605,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Updates the visibility of the problem or specifies the problem as <code>RESOLVED</code>.
+        /// Updates the visibility of the problem or specifies the problem as <c>RESOLVED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateProblem service method.</param>
         /// 
@@ -1618,7 +1625,7 @@ namespace Amazon.ApplicationInsights
 
 
         /// <summary>
-        /// Updates the visibility of the problem or specifies the problem as <code>RESOLVED</code>.
+        /// Updates the visibility of the problem or specifies the problem as <c>RESOLVED</c>.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateProblem service method.</param>
         /// <param name="cancellationToken">

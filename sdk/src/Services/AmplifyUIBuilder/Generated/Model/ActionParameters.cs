@@ -26,18 +26,19 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AmplifyUIBuilder.Model
 {
     /// <summary>
-    /// Represents the event action configuration for an element of a <code>Component</code>
-    /// or <code>ComponentChild</code>. Use for the workflow feature in Amplify Studio that
-    /// allows you to bind events and actions to components. <code>ActionParameters</code>
-    /// defines the action that is performed when an event occurs on the component.
+    /// Represents the event action configuration for an element of a <c>Component</c> or
+    /// <c>ComponentChild</c>. Use for the workflow feature in Amplify Studio that allows
+    /// you to bind events and actions to components. <c>ActionParameters</c> defines the
+    /// action that is performed when an event occurs on the component.
     /// </summary>
     public partial class ActionParameters
     {
         private ComponentProperty _anchor;
-        private Dictionary<string, ComponentProperty> _fields = new Dictionary<string, ComponentProperty>();
+        private Dictionary<string, ComponentProperty> _fields = AWSConfigs.InitializeCollections ? new Dictionary<string, ComponentProperty>() : null;
         private ComponentProperty _global;
         private ComponentProperty _id;
         private string _model;
@@ -81,7 +82,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Amazon.AmplifyUIBuilder.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// The unique ID of the component that the <code>ActionParameters</code> apply to.
+        /// The unique ID of the component that the <c>ActionParameters</c> apply to.
         /// </para>
         /// </summary>
         public ComponentProperty Id
@@ -179,8 +180,8 @@ namespace Amazon.AmplifyUIBuilder.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of navigation action. Valid values are <code>url</code> and <code>anchor</code>.
-        /// This value is required for a navigation action.
+        /// The type of navigation action. Valid values are <c>url</c> and <c>anchor</c>. This
+        /// value is required for a navigation action.
         /// </para>
         /// </summary>
         public ComponentProperty Type

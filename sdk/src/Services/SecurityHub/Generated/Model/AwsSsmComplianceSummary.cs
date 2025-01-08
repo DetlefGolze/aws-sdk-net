@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -55,8 +56,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property ComplianceType. 
         /// <para>
-        /// The type of resource for which the compliance was determined. For <code>AwsSsmPatchCompliance</code>,
-        /// <code>ComplianceType</code> is <code>Patch</code>. 
+        /// The type of resource for which the compliance was determined. For <c>AwsSsmPatchCompliance</c>,
+        /// <c>ComplianceType</c> is <c>Patch</c>. 
         /// </para>
         /// </summary>
         public string ComplianceType
@@ -74,7 +75,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CompliantCriticalCount. 
         /// <para>
-        /// For the patches that are compliant, the number that have a severity of <code>CRITICAL</code>.
+        /// For the patches that are compliant, the number that have a severity of <c>CRITICAL</c>.
         /// </para>
         /// </summary>
         public int CompliantCriticalCount
@@ -92,7 +93,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CompliantHighCount. 
         /// <para>
-        /// For the patches that are compliant, the number that have a severity of <code>HIGH</code>.
+        /// For the patches that are compliant, the number that have a severity of <c>HIGH</c>.
         /// </para>
         /// </summary>
         public int CompliantHighCount
@@ -110,7 +111,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CompliantInformationalCount. 
         /// <para>
-        /// For the patches that are compliant, the number that have a severity of <code>INFORMATIONAL</code>.
+        /// For the patches that are compliant, the number that have a severity of <c>INFORMATIONAL</c>.
         /// </para>
         /// </summary>
         public int CompliantInformationalCount
@@ -128,7 +129,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CompliantLowCount. 
         /// <para>
-        /// For the patches that are compliant, the number that have a severity of <code>LOW</code>.
+        /// For the patches that are compliant, the number that have a severity of <c>LOW</c>.
         /// </para>
         /// </summary>
         public int CompliantLowCount
@@ -146,7 +147,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CompliantMediumCount. 
         /// <para>
-        /// For the patches that are compliant, the number that have a severity of <code>MEDIUM</code>.
+        /// For the patches that are compliant, the number that have a severity of <c>MEDIUM</c>.
         /// </para>
         /// </summary>
         public int CompliantMediumCount
@@ -164,7 +165,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property CompliantUnspecifiedCount. 
         /// <para>
-        /// For the patches that are compliant, the number that have a severity of <code>UNSPECIFIED</code>.
+        /// For the patches that are compliant, the number that have a severity of <c>UNSPECIFIED</c>.
         /// </para>
         /// </summary>
         public int CompliantUnspecifiedCount
@@ -201,7 +202,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property NonCompliantCriticalCount. 
         /// <para>
         /// For the patch items that are noncompliant, the number of items that have a severity
-        /// of <code>CRITICAL</code>.
+        /// of <c>CRITICAL</c>.
         /// </para>
         /// </summary>
         public int NonCompliantCriticalCount
@@ -219,7 +220,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NonCompliantHighCount. 
         /// <para>
-        /// For the patches that are noncompliant, the number that have a severity of <code>HIGH</code>.
+        /// For the patches that are noncompliant, the number that have a severity of <c>HIGH</c>.
         /// </para>
         /// </summary>
         public int NonCompliantHighCount
@@ -237,7 +238,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NonCompliantInformationalCount. 
         /// <para>
-        /// For the patches that are noncompliant, the number that have a severity of <code>INFORMATIONAL</code>.
+        /// For the patches that are noncompliant, the number that have a severity of <c>INFORMATIONAL</c>.
         /// </para>
         /// </summary>
         public int NonCompliantInformationalCount
@@ -255,7 +256,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NonCompliantLowCount. 
         /// <para>
-        /// For the patches that are noncompliant, the number that have a severity of <code>LOW</code>.
+        /// For the patches that are noncompliant, the number that have a severity of <c>LOW</c>.
         /// </para>
         /// </summary>
         public int NonCompliantLowCount
@@ -273,7 +274,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NonCompliantMediumCount. 
         /// <para>
-        /// For the patches that are noncompliant, the number that have a severity of <code>MEDIUM</code>.
+        /// For the patches that are noncompliant, the number that have a severity of <c>MEDIUM</c>.
         /// </para>
         /// </summary>
         public int NonCompliantMediumCount
@@ -291,7 +292,7 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property NonCompliantUnspecifiedCount. 
         /// <para>
-        /// For the patches that are noncompliant, the number that have a severity of <code>UNSPECIFIED</code>.
+        /// For the patches that are noncompliant, the number that have a severity of <c>UNSPECIFIED</c>.
         /// </para>
         /// </summary>
         public int NonCompliantUnspecifiedCount
@@ -313,27 +314,27 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>CRITICAL</code> 
+        ///  <c>CRITICAL</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HIGH</code> 
+        ///  <c>HIGH</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MEDIUM</code> 
+        ///  <c>MEDIUM</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>LOW</code> 
+        ///  <c>LOW</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INFORMATIONAL</code> 
+        ///  <c>INFORMATIONAL</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNSPECIFIED</code> 
+        ///  <c>UNSPECIFIED</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -394,15 +395,15 @@ namespace Amazon.SecurityHub.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>COMPLIANT</code> 
+        ///  <c>COMPLIANT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NON_COMPLIANT</code> 
+        ///  <c>NON_COMPLIANT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>UNSPECIFIED_DATA</code> 
+        ///  <c>UNSPECIFIED_DATA</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>

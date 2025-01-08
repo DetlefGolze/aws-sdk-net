@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.TranscribeService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.TranscribeService.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(CallAnalyticsJobSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetContentRedaction())
             {
                 context.Writer.WritePropertyName("ContentRedaction");
@@ -90,6 +93,17 @@ namespace Amazon.TranscribeService.Model.Internal.MarshallTransformations
                         context.Writer.Write(requestObjectLanguageOptionsListValue);
                 }
                 context.Writer.WriteArrayEnd();
+            }
+
+            if(requestObject.IsSetSummarization())
+            {
+                context.Writer.WritePropertyName("Summarization");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = SummarizationMarshaller.Instance;
+                marshaller.Marshall(requestObject.Summarization, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetVocabularyFilterMethod())

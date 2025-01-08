@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CustomerProfiles.Model
 {
     /// <summary>
@@ -34,8 +35,8 @@ namespace Amazon.CustomerProfiles.Model
     public partial class GetProfileObjectTypeTemplateResponse : AmazonWebServiceResponse
     {
         private bool? _allowProfileCreation;
-        private Dictionary<string, ObjectTypeField> _fields = new Dictionary<string, ObjectTypeField>();
-        private Dictionary<string, List<ObjectTypeKey>> _keys = new Dictionary<string, List<ObjectTypeKey>>();
+        private Dictionary<string, ObjectTypeField> _fields = AWSConfigs.InitializeCollections ? new Dictionary<string, ObjectTypeField>() : null;
+        private Dictionary<string, List<ObjectTypeKey>> _keys = AWSConfigs.InitializeCollections ? new Dictionary<string, List<ObjectTypeKey>>() : null;
         private string _sourceLastUpdatedTimestampFormat;
         private string _sourceName;
         private string _sourceObject;
@@ -45,10 +46,10 @@ namespace Amazon.CustomerProfiles.Model
         /// Gets and sets the property AllowProfileCreation. 
         /// <para>
         /// Indicates whether a profile should be created when data is received if one doesn’t
-        /// exist for an object of this type. The default is <code>FALSE</code>. If the AllowProfileCreation
-        /// flag is set to <code>FALSE</code>, then the service tries to fetch a standard profile
-        /// and associate this object with the profile. If it is set to <code>TRUE</code>, and
-        /// if no match is found, then the service creates a new standard profile.
+        /// exist for an object of this type. The default is <c>FALSE</c>. If the AllowProfileCreation
+        /// flag is set to <c>FALSE</c>, then the service tries to fetch a standard profile and
+        /// associate this object with the profile. If it is set to <c>TRUE</c>, and if no match
+        /// is found, then the service creates a new standard profile.
         /// </para>
         /// </summary>
         public bool AllowProfileCreation
@@ -79,7 +80,7 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Fields property is set
         internal bool IsSetFields()
         {
-            return this._fields != null && this._fields.Count > 0; 
+            return this._fields != null && (this._fields.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -98,14 +99,13 @@ namespace Amazon.CustomerProfiles.Model
         // Check to see if Keys property is set
         internal bool IsSetKeys()
         {
-            return this._keys != null && this._keys.Count > 0; 
+            return this._keys != null && (this._keys.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceLastUpdatedTimestampFormat. 
         /// <para>
-        /// The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set
-        /// up.
+        /// The format of your <c>sourceLastUpdatedTimestamp</c> that was previously set up.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=255)]

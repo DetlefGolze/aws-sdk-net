@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleSystemsManagement.Model
 {
     /// <summary>
@@ -74,15 +75,15 @@ namespace Amazon.SimpleSystemsManagement.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// Labels can't begin with a number, "<code>aws</code>" or "<code>ssm</code>" (not case
-    /// sensitive). If a label fails to meet these requirements, then the label isn't associated
-    /// with a parameter and the system displays it in the list of InvalidLabels.
+    /// Labels can't begin with a number, "<c>aws</c>" or "<c>ssm</c>" (not case sensitive).
+    /// If a label fails to meet these requirements, then the label isn't associated with
+    /// a parameter and the system displays it in the list of InvalidLabels.
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class LabelParameterVersionRequest : AmazonSimpleSystemsManagementRequest
     {
-        private List<string> _labels = new List<string>();
+        private List<string> _labels = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private long? _parameterVersion;
 
@@ -102,7 +103,7 @@ namespace Amazon.SimpleSystemsManagement.Model
         // Check to see if Labels property is set
         internal bool IsSetLabels()
         {
-            return this._labels != null && this._labels.Count > 0; 
+            return this._labels != null && (this._labels.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -110,6 +111,12 @@ namespace Amazon.SimpleSystemsManagement.Model
         /// <para>
         /// The parameter name on which you want to attach one or more labels.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// You can't enter the Amazon Resource Name (ARN) for a parameter, only the parameter
+        /// name itself.
+        /// </para>
+        ///  </note>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=2048)]
         public string Name

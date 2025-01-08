@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Tnb.Model
 {
     /// <summary>
     /// Container for the parameters to the GetSolFunctionInstance operation.
-    /// Gets the details of a network function instance, including the instantation state
+    /// Gets the details of a network function instance, including the instantiation state
     /// and metadata from the function package descriptor in the network function package.
     /// 
     ///  

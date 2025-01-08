@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
     /// Container for the parameters to the StartDBCluster operation.
     /// Starts an Amazon Aurora DB cluster that was stopped using the Amazon Web Services
-    /// console, the stop-db-cluster CLI command, or the StopDBCluster action.
+    /// console, the stop-db-cluster CLI command, or the <c>StopDBCluster</c> operation.
     /// 
     ///  
     /// <para>
@@ -40,7 +41,7 @@ namespace Amazon.RDS.Model
     /// </para>
     ///  <note> 
     /// <para>
-    /// This action only applies to Aurora DB clusters.
+    /// This operation only applies to Aurora DB clusters.
     /// </para>
     ///  </note>
     /// </summary>

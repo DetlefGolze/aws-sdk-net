@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SimpleWorkflow.Model
 {
     /// <summary>
@@ -34,18 +35,18 @@ namespace Amazon.SimpleWorkflow.Model
     public partial class WorkflowTypeInfos
     {
         private string _nextPageToken;
-        private List<WorkflowTypeInfo> _typeInfos = new List<WorkflowTypeInfo>();
+        private List<WorkflowTypeInfo> _typeInfos = AWSConfigs.InitializeCollections ? new List<WorkflowTypeInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property NextPageToken. 
         /// <para>
-        /// If a <code>NextPageToken</code> was returned by a previous call, there are more results
+        /// If a <c>NextPageToken</c> was returned by a previous call, there are more results
         /// available. To retrieve the next page of results, make the call again using the returned
-        /// token in <code>nextPageToken</code>. Keep all other arguments unchanged.
+        /// token in <c>nextPageToken</c>. Keep all other arguments unchanged.
         /// </para>
         ///  
         /// <para>
-        /// The configured <code>maximumPageSize</code> determines how many results can be returned
+        /// The configured <c>maximumPageSize</c> determines how many results can be returned
         /// in a single call.
         /// </para>
         /// </summary>
@@ -78,7 +79,7 @@ namespace Amazon.SimpleWorkflow.Model
         // Check to see if TypeInfos property is set
         internal bool IsSetTypeInfos()
         {
-            return this._typeInfos != null && this._typeInfos.Count > 0; 
+            return this._typeInfos != null && (this._typeInfos.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

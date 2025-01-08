@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
@@ -37,188 +38,100 @@ namespace Amazon.EventBridge.Model
     /// <para>
     /// Targets are the resources that are invoked when a rule is triggered.
     /// </para>
+    ///  
+    /// <para>
+    /// The maximum number of entries per request is 10.
+    /// </para>
     ///  <note> 
     /// <para>
     /// Each rule can have up to five (5) targets associated with it at one time.
     /// </para>
     ///  </note> 
     /// <para>
-    /// You can configure the following as targets for Events:
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html">API
-    /// destination</a> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-gateway-target.html">API
-    /// Gateway</a> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Batch job queue
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// CloudWatch group
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// CodeBuild project
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// CodePipeline
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// EC2 <code>CreateSnapshot</code> API call
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// EC2 Image Builder
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// EC2 <code>RebootInstances</code> API call
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// EC2 <code>StopInstances</code> API call
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// EC2 <code>TerminateInstances</code> API call
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// ECS task
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html">Event
-    /// bus in a different account or Region</a> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-bus-to-bus.html">Event
-    /// bus in the same account and Region</a> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Firehose delivery stream
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Glue workflow
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    ///  <a href="https://docs.aws.amazon.com/incident-manager/latest/userguide/incident-creation.html#incident-tracking-auto-eventbridge">Incident
-    /// Manager response plan</a> 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Inspector assessment template
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Kinesis stream
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Lambda function
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Redshift cluster
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Redshift Serverless workgroup
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// SageMaker Pipeline
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// SNS topic
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// SQS queue
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Step Functions state machine
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Systems Manager Automation
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Systems Manager OpsItem
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// Systems Manager Run Command
-    /// </para>
-    ///  </li> </ul> 
-    /// <para>
-    /// Creating rules with built-in targets is supported only in the Amazon Web Services
-    /// Management Console. The built-in targets are <code>EC2 CreateSnapshot API call</code>,
-    /// <code>EC2 RebootInstances API call</code>, <code>EC2 StopInstances API call</code>,
-    /// and <code>EC2 TerminateInstances API call</code>. 
+    /// For a list of services you can configure as targets for events, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-targets.html">EventBridge
+    /// targets</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
     /// </para>
     ///  
     /// <para>
-    /// For some target types, <code>PutTargets</code> provides target-specific parameters.
-    /// If the target is a Kinesis data stream, you can optionally specify which shard the
-    /// event goes to by using the <code>KinesisParameters</code> argument. To invoke a command
-    /// on multiple EC2 instances with one rule, you can use the <code>RunCommandParameters</code>
-    /// field.
+    /// Creating rules with built-in targets is supported only in the Amazon Web Services
+    /// Management Console. The built-in targets are:
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    ///  <c>Amazon EBS CreateSnapshot API call</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>Amazon EC2 RebootInstances API call</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>Amazon EC2 StopInstances API call</c> 
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    ///  <c>Amazon EC2 TerminateInstances API call</c> 
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// For some target types, <c>PutTargets</c> provides target-specific parameters. If the
+    /// target is a Kinesis data stream, you can optionally specify which shard the event
+    /// goes to by using the <c>KinesisParameters</c> argument. To invoke a command on multiple
+    /// EC2 instances with one rule, you can use the <c>RunCommandParameters</c> field.
     /// </para>
     ///  
     /// <para>
     /// To be able to make API calls against the resources that you own, Amazon EventBridge
-    /// needs the appropriate permissions. For Lambda and Amazon SNS resources, EventBridge
-    /// relies on resource-based policies. For EC2 instances, Kinesis Data Streams, Step Functions
-    /// state machines and API Gateway APIs, EventBridge relies on IAM roles that you specify
-    /// in the <code>RoleARN</code> argument in <code>PutTargets</code>. For more information,
-    /// see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html">Authentication
-    /// and Access Control</a> in the <i>Amazon EventBridge User Guide</i>.
+    /// needs the appropriate permissions: 
+    /// </para>
+    ///  <ul> <li> 
+    /// <para>
+    /// For Lambda and Amazon SNS resources, EventBridge relies on resource-based policies.
+    /// </para>
+    ///  </li> <li> 
+    /// <para>
+    /// For EC2 instances, Kinesis Data Streams, Step Functions state machines and API Gateway
+    /// APIs, EventBridge relies on IAM roles that you specify in the <c>RoleARN</c> argument
+    /// in <c>PutTargets</c>.
+    /// </para>
+    ///  </li> </ul> 
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html">Authentication
+    /// and Access Control</a> in the <i> <i>Amazon EventBridge User Guide</i> </i>.
     /// </para>
     ///  
     /// <para>
     /// If another Amazon Web Services account is in the same region and has granted you permission
-    /// (using <code>PutPermission</code>), you can send events to that account. Set that
-    /// account's event bus as a target of the rules in your account. To send the matched
-    /// events to the other account, specify that account's event bus as the <code>Arn</code>
-    /// value when you run <code>PutTargets</code>. If your account sends events to another
-    /// account, your account is charged for each sent event. Each event sent to another account
-    /// is charged as a custom event. The account receiving the event is not charged. For
-    /// more information, see <a href="http://aws.amazon.com/eventbridge/pricing/">Amazon
-    /// EventBridge Pricing</a>.
+    /// (using <c>PutPermission</c>), you can send events to that account. Set that account's
+    /// event bus as a target of the rules in your account. To send the matched events to
+    /// the other account, specify that account's event bus as the <c>Arn</c> value when you
+    /// run <c>PutTargets</c>. If your account sends events to another account, your account
+    /// is charged for each sent event. Each event sent to another account is charged as a
+    /// custom event. The account receiving the event is not charged. For more information,
+    /// see <a href="http://aws.amazon.com/eventbridge/pricing/">Amazon EventBridge Pricing</a>.
     /// </para>
     ///  <note> 
     /// <para>
-    ///  <code>Input</code>, <code>InputPath</code>, and <code>InputTransformer</code> are
-    /// not available with <code>PutTarget</code> if the target is an event bus of a different
-    /// Amazon Web Services account.
+    ///  <c>Input</c>, <c>InputPath</c>, and <c>InputTransformer</c> are not available with
+    /// <c>PutTarget</c> if the target is an event bus of a different Amazon Web Services
+    /// account.
     /// </para>
     ///  </note> 
     /// <para>
     /// If you are setting the event bus of another account as the target, and that account
     /// granted permission to your account through an organization instead of directly by
-    /// the account ID, then you must specify a <code>RoleArn</code> with proper permissions
-    /// in the <code>Target</code> structure. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
+    /// the account ID, then you must specify a <c>RoleArn</c> with proper permissions in
+    /// the <c>Target</c> structure. For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html">Sending
     /// and Receiving Events Between Amazon Web Services Accounts</a> in the <i>Amazon EventBridge
     /// User Guide</i>.
     /// </para>
-    ///  
+    ///  <note> 
+    /// <para>
+    /// If you have an IAM role on a cross-account event bus target, a <c>PutTargets</c> call
+    /// without a role on the same target (same <c>Id</c> and <c>Arn</c>) will not remove
+    /// the role.
+    /// </para>
+    ///  </note> 
     /// <para>
     /// For more information about enabling cross-account events, see <a href="https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutPermission.html">PutPermission</a>.
     /// </para>
@@ -240,7 +153,7 @@ namespace Amazon.EventBridge.Model
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// If <b>InputPath</b> is specified in the form of JSONPath (for example, <code>$.detail</code>),
+    /// If <b>InputPath</b> is specified in the form of JSONPath (for example, <c>$.detail</c>),
     /// then only the part of the event specified in the path is passed to the target (for
     /// example, only the detail part of the event is passed).
     /// </para>
@@ -252,8 +165,8 @@ namespace Amazon.EventBridge.Model
     /// </para>
     ///  </li> </ul> 
     /// <para>
-    /// When you specify <code>InputPath</code> or <code>InputTransformer</code>, you must
-    /// use JSON dot notation, not bracket notation.
+    /// When you specify <c>InputPath</c> or <c>InputTransformer</c>, you must use JSON dot
+    /// notation, not bracket notation.
     /// </para>
     ///  
     /// <para>
@@ -264,15 +177,15 @@ namespace Amazon.EventBridge.Model
     ///  
     /// <para>
     /// This action can partially fail if too many requests are made at the same time. If
-    /// that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry
-    /// in <code>FailedEntries</code> provides the ID of the failed target and the error code.
+    /// that happens, <c>FailedEntryCount</c> is non-zero in the response and each entry in
+    /// <c>FailedEntries</c> provides the ID of the failed target and the error code.
     /// </para>
     /// </summary>
     public partial class PutTargetsRequest : AmazonEventBridgeRequest
     {
         private string _eventBusName;
         private string _rule;
-        private List<Target> _targets = new List<Target>();
+        private List<Target> _targets = AWSConfigs.InitializeCollections ? new List<Target>() : null;
 
         /// <summary>
         /// Gets and sets the property EventBusName. 
@@ -329,7 +242,7 @@ namespace Amazon.EventBridge.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

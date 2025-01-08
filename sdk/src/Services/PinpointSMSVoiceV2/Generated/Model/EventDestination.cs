@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointSMSVoiceV2.Model
 {
     /// <summary>
@@ -34,8 +35,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
     ///  
     /// <para>
     /// Event destinations are associated with configuration sets, which enable you to publish
-    /// message sending events to Amazon CloudWatch, Amazon Kinesis Data Firehose, or Amazon
-    /// SNS.
+    /// message sending events to CloudWatch, Firehose, or Amazon SNS.
     /// </para>
     /// </summary>
     public partial class EventDestination
@@ -44,7 +44,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         private bool? _enabled;
         private string _eventDestinationName;
         private KinesisFirehoseDestination _kinesisFirehoseDestination;
-        private List<string> _matchingEventTypes = new List<string>();
+        private List<string> _matchingEventTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private SnsDestination _snsDestination;
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// Gets and sets the property KinesisFirehoseDestination. 
         /// <para>
         /// An object that contains information about an event destination for logging to Amazon
-        /// Kinesis Data Firehose.
+        /// Data Firehose.
         /// </para>
         /// </summary>
         public KinesisFirehoseDestination KinesisFirehoseDestination
@@ -128,8 +128,13 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         /// <para>
         /// An array of event types that determine which events to log.
         /// </para>
+        ///  <note> 
+        /// <para>
+        /// The <c>TEXT_SENT</c> event type is not supported.
+        /// </para>
+        ///  </note>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=25)]
+        [AWSProperty(Required=true, Min=1, Max=43)]
         public List<string> MatchingEventTypes
         {
             get { return this._matchingEventTypes; }
@@ -139,7 +144,7 @@ namespace Amazon.PinpointSMSVoiceV2.Model
         // Check to see if MatchingEventTypes property is set
         internal bool IsSetMatchingEventTypes()
         {
-            return this._matchingEventTypes != null && this._matchingEventTypes.Count > 0; 
+            return this._matchingEventTypes != null && (this._matchingEventTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

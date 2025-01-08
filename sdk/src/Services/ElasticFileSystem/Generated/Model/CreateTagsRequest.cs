@@ -26,33 +26,33 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticFileSystem.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateTags operation.
     /// <note> 
     /// <para>
-    /// DEPRECATED - <code>CreateTags</code> is deprecated and not maintained. To create tags
-    /// for EFS resources, use the API action.
+    /// DEPRECATED - <c>CreateTags</c> is deprecated and not maintained. To create tags for
+    /// EFS resources, use the API action.
     /// </para>
     ///  </note> 
     /// <para>
     /// Creates or overwrites tags associated with a file system. Each tag is a key-value
     /// pair. If a tag key specified in the request already exists on the file system, this
     /// operation overwrites its value with the value provided in the request. If you add
-    /// the <code>Name</code> tag to your file system, Amazon EFS returns it in the response
-    /// to the <a>DescribeFileSystems</a> operation. 
+    /// the <c>Name</c> tag to your file system, Amazon EFS returns it in the response to
+    /// the <a>DescribeFileSystems</a> operation. 
     /// </para>
     ///  
     /// <para>
-    /// This operation requires permission for the <code>elasticfilesystem:CreateTags</code>
-    /// action.
+    /// This operation requires permission for the <c>elasticfilesystem:CreateTags</c> action.
     /// </para>
     /// </summary>
     public partial class CreateTagsRequest : AmazonElasticFileSystemRequest
     {
         private string _fileSystemId;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property FileSystemId. 
@@ -77,8 +77,8 @@ namespace Amazon.ElasticFileSystem.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// An array of <code>Tag</code> objects to add. Each <code>Tag</code> object is a key-value
-        /// pair. 
+        /// An array of <c>Tag</c> objects to add. Each <c>Tag</c> object is a key-value pair.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -91,7 +91,7 @@ namespace Amazon.ElasticFileSystem.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,10 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// A destination for events that were processed successfully.
+    /// 
+    ///  
+    /// <para>
+    /// To retain records of successful <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations">asynchronous
+    /// invocations</a>, you can configure an Amazon SNS topic, Amazon SQS queue, Lambda function,
+    /// or Amazon EventBridge event bus as the destination.
+    /// </para>
     /// </summary>
     public partial class OnSuccess
     {

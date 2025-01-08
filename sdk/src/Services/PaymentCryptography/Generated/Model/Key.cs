@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PaymentCryptography.Model
 {
     /// <summary>
@@ -70,7 +71,7 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property DeletePendingTimestamp. 
         /// <para>
         /// The date and time after which Amazon Web Services Payment Cryptography will delete
-        /// the key. This value is present only when <code>KeyState</code> is <code>DELETE_PENDING</code>
+        /// the key. This value is present only when <c>KeyState</c> is <c>DELETE_PENDING</c>
         /// and the key is scheduled for deletion.
         /// </para>
         /// </summary>
@@ -90,7 +91,7 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property DeleteTimestamp. 
         /// <para>
         /// The date and time after which Amazon Web Services Payment Cryptography will delete
-        /// the key. This value is present only when when the <code>KeyState</code> is <code>DELETE_COMPLETE</code>
+        /// the key. This value is present only when when the <c>KeyState</c> is <c>DELETE_COMPLETE</c>
         /// and the Amazon Web Services Payment Cryptography key is deleted.
         /// </para>
         /// </summary>
@@ -187,10 +188,7 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property KeyCheckValue. 
         /// <para>
         /// The key check value (KCV) is used to check if all parties holding a given key have
-        /// the same key or to detect that a key has changed. Amazon Web Services Payment Cryptography
-        /// calculates the KCV by using standard algorithms, typically by encrypting 8 or 16 bytes
-        /// or "00" or "01" and then truncating the result to the first 3 bytes, or 6 hex digits,
-        /// of the resulting cryptogram.
+        /// the same key or to detect that a key has changed.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=4, Max=16)]
@@ -209,12 +207,15 @@ namespace Amazon.PaymentCryptography.Model
         /// <summary>
         /// Gets and sets the property KeyCheckValueAlgorithm. 
         /// <para>
-        /// The algorithm used for calculating key check value (KCV) for DES and AES keys. For
-        /// a DES key, Amazon Web Services Payment Cryptography computes the KCV by encrypting
-        /// 8 bytes, each with value '00', with the key to be checked and retaining the 3 highest
-        /// order bytes of the encrypted result. For an AES key, Amazon Web Services Payment Cryptography
-        /// computes the KCV by encrypting 8 bytes, each with value '01', with the key to be checked
-        /// and retaining the 3 highest order bytes of the encrypted result.
+        /// The algorithm that Amazon Web Services Payment Cryptography uses to calculate the
+        /// key check value (KCV). It is used to validate the key integrity.
+        /// </para>
+        ///  
+        /// <para>
+        /// For TDES keys, the KCV is computed by encrypting 8 bytes, each with value of zero,
+        /// with the key to be checked and retaining the 3 highest order bytes of the encrypted
+        /// result. For AES keys, the KCV is computed using a CMAC algorithm where the input data
+        /// is 16 bytes of zero and retaining the 3 highest order bytes of the encrypted result.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -234,8 +235,8 @@ namespace Amazon.PaymentCryptography.Model
         /// Gets and sets the property KeyOrigin. 
         /// <para>
         /// The source of the key material. For keys created within Amazon Web Services Payment
-        /// Cryptography, the value is <code>AWS_PAYMENT_CRYPTOGRAPHY</code>. For keys imported
-        /// into Amazon Web Services Payment Cryptography, the value is <code>EXTERNAL</code>.
+        /// Cryptography, the value is <c>AWS_PAYMENT_CRYPTOGRAPHY</c>. For keys imported into
+        /// Amazon Web Services Payment Cryptography, the value is <c>EXTERNAL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

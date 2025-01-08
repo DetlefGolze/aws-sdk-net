@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -46,8 +47,8 @@ namespace Amazon.Lightsail.Model
     ///  </note> 
     /// <para>
     /// After you push your container images to the container image registry of your Lightsail
-    /// account, use the <code>RegisterContainerImage</code> action to register the pushed
-    /// images to a specific Lightsail container service.
+    /// account, use the <c>RegisterContainerImage</c> action to register the pushed images
+    /// to a specific Lightsail container service.
     /// </para>
     ///  <note> 
     /// <para>

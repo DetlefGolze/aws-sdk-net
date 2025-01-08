@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.Inspector2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.Inspector2.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public PackageFilter Unmarshall(JsonUnmarshallerContext context)
         {
+            PackageFilter unmarshalledObject = new PackageFilter();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            PackageFilter unmarshalledObject = new PackageFilter();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -74,6 +76,12 @@ namespace Amazon.Inspector2.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = NumberFilterUnmarshaller.Instance;
                     unmarshalledObject.Epoch = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("filePath", targetDepth))
+                {
+                    var unmarshaller = StringFilterUnmarshaller.Instance;
+                    unmarshalledObject.FilePath = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("name", targetDepth))
@@ -107,7 +115,6 @@ namespace Amazon.Inspector2.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

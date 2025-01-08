@@ -26,15 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateUser operation.
     /// Creates a user account for the specified Amazon Connect instance.
     /// 
-    ///  
+    ///  <important> 
     /// <para>
-    /// For information about how to create user accounts using the Amazon Connect console,
+    /// Certain <a href="https://docs.aws.amazon.com/connect/latest/APIReference/API_UserIdentityInfo.html">UserIdentityInfo</a>
+    /// parameters are required in some situations. For example, <c>Email</c> is required
+    /// if you are using SAML for identity management. <c>FirstName</c> and <c>LastName</c>
+    /// are required if you are using Amazon Connect or SAML for identity management.
+    /// </para>
+    ///  </important> 
+    /// <para>
+    /// For information about how to create users using the Amazon Connect admin website,
     /// see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html">Add
     /// Users</a> in the <i>Amazon Connect Administrator Guide</i>.
     /// </para>
@@ -48,8 +56,8 @@ namespace Amazon.Connect.Model
         private string _password;
         private UserPhoneConfig _phoneConfig;
         private string _routingProfileId;
-        private List<string> _securityProfileIds = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<string> _securityProfileIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _username;
 
         /// <summary>
@@ -144,6 +152,7 @@ namespace Amazon.Connect.Model
         /// Connect for identity management. Otherwise, it is an error to include a password.
         /// </para>
         /// </summary>
+        [AWSProperty(Sensitive=true)]
         public string Password
         {
             get { return this._password; }
@@ -210,14 +219,14 @@ namespace Amazon.Connect.Model
         // Check to see if SecurityProfileIds property is set
         internal bool IsSetSecurityProfileIds()
         {
-            return this._securityProfileIds != null && this._securityProfileIds.Count > 0; 
+            return this._securityProfileIds != null && (this._securityProfileIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
         /// The tags used to organize, track, or control access for this resource. For example,
-        /// { "tags": {"key1":"value1", "key2":"value2"} }.
+        /// { "Tags": {"key1":"value1", "key2":"value2"} }.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -230,7 +239,7 @@ namespace Amazon.Connect.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -240,6 +249,23 @@ namespace Amazon.Connect.Model
         /// the user name can include up to 20 characters. If you are using SAML for identity
         /// management, the user name can include up to 64 characters from [a-zA-Z0-9_-.\@]+.
         /// </para>
+        ///  
+        /// <para>
+        /// Username can include @ only if used in an email format. For example:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// Correct: testuser
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Correct: testuser@example.com
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Incorrect: testuser@example
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
         public string Username

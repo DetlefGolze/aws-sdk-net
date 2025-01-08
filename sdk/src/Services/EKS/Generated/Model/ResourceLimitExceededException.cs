@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -38,6 +39,7 @@ namespace Amazon.EKS.Model
     {
         private string _clusterName;
         private string _nodegroupName;
+        private string _subscriptionId;
 
         /// <summary>
         /// Constructs a new ResourceLimitExceededException with the specified error
@@ -101,6 +103,7 @@ namespace Amazon.EKS.Model
         {
             this.ClusterName = (string)info.GetValue("ClusterName", typeof(string));
             this.NodegroupName = (string)info.GetValue("NodegroupName", typeof(string));
+            this.SubscriptionId = (string)info.GetValue("SubscriptionId", typeof(string));
         }
 
         /// <summary>
@@ -123,6 +126,7 @@ namespace Amazon.EKS.Model
             base.GetObjectData(info, context);
             info.AddValue("ClusterName", this.ClusterName);
             info.AddValue("NodegroupName", this.NodegroupName);
+            info.AddValue("SubscriptionId", this.SubscriptionId);
         }
 #endif
 
@@ -160,6 +164,24 @@ namespace Amazon.EKS.Model
         internal bool IsSetNodegroupName()
         {
             return this._nodegroupName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property SubscriptionId. 
+        /// <para>
+        /// The Amazon EKS subscription ID with the exception.
+        /// </para>
+        /// </summary>
+        public string SubscriptionId
+        {
+            get { return this._subscriptionId; }
+            set { this._subscriptionId = value; }
+        }
+
+        // Check to see if SubscriptionId property is set
+        internal bool IsSetSubscriptionId()
+        {
+            return this._subscriptionId != null;
         }
 
     }

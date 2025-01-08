@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.LakeFormation.Model
     /// </summary>
     public partial class StorageOptimizer
     {
-        private Dictionary<string, string> _config = new Dictionary<string, string>();
+        private Dictionary<string, string> _config = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _errorMessage;
         private string _lastRunDetails;
         private OptimizerType _storageOptimizerType;
@@ -43,7 +44,7 @@ namespace Amazon.LakeFormation.Model
         /// Gets and sets the property Config. 
         /// <para>
         /// A map of the storage optimizer configuration. Currently contains only one key-value
-        /// pair: <code>is_enabled</code> indicates true or false for acceleration.
+        /// pair: <c>is_enabled</c> indicates true or false for acceleration.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Config
@@ -55,7 +56,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if Config property is set
         internal bool IsSetConfig()
         {
-            return this._config != null && this._config.Count > 0; 
+            return this._config != null && (this._config.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace Amazon.LakeFormation.Model
         /// <summary>
         /// Gets and sets the property StorageOptimizerType. 
         /// <para>
-        /// The specific type of storage optimizer. The supported value is <code>compaction</code>.
+        /// The specific type of storage optimizer. The supported value is <c>compaction</c>.
         /// </para>
         /// </summary>
         public OptimizerType StorageOptimizerType

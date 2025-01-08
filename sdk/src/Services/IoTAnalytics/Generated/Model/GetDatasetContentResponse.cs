@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.IoTAnalytics.Model
     /// </summary>
     public partial class GetDatasetContentResponse : AmazonWebServiceResponse
     {
-        private List<DatasetEntry> _entries = new List<DatasetEntry>();
+        private List<DatasetEntry> _entries = AWSConfigs.InitializeCollections ? new List<DatasetEntry>() : null;
         private DatasetContentStatus _status;
         private DateTime? _timestamp;
 
         /// <summary>
         /// Gets and sets the property Entries. 
         /// <para>
-        /// A list of <code>DatasetEntry</code> objects.
+        /// A list of <c>DatasetEntry</c> objects.
         /// </para>
         /// </summary>
         public List<DatasetEntry> Entries
@@ -52,7 +53,7 @@ namespace Amazon.IoTAnalytics.Model
         // Check to see if Entries property is set
         internal bool IsSetEntries()
         {
-            return this._entries != null && this._entries.Count > 0; 
+            return this._entries != null && (this._entries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

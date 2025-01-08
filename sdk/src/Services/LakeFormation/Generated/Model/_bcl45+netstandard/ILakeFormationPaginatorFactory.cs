@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the lakeformation-2017-03-31.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -49,6 +50,11 @@ namespace Amazon.LakeFormation.Model
         /// Paginator for ListLakeFormationOptIns operation
         ///</summary>
         IListLakeFormationOptInsPaginator ListLakeFormationOptIns(ListLakeFormationOptInsRequest request);
+
+        /// <summary>
+        /// Paginator for ListLFTagExpressions operation
+        ///</summary>
+        IListLFTagExpressionsPaginator ListLFTagExpressions(ListLFTagExpressionsRequest request);
 
         /// <summary>
         /// Paginator for ListLFTags operation

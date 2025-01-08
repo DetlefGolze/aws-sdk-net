@@ -80,7 +80,7 @@ namespace Amazon.Runtime.Internal.Util
                 // The header key is required upfront for calculating the total length of
                 // the wrapper stream, which we need to send as the Content-Length header
                 // before the wrapper stream is transmitted.
-                request.TrailingHeaders.Add(checksumHeaderKey, string.Empty);
+                request.TrailingHeaders[checksumHeaderKey] = string.Empty;
                 request.SelectedChecksum = coreChecksumAlgoritm;
             }
             else // calculate and set the checksum in the request headers
@@ -287,16 +287,16 @@ namespace Amazon.Runtime.Internal.Util
         /// <summary>
         /// Checksum algorithm to use, specified on the request using a service-specific enum
         /// </summary>
-        public string SelectedChecksum { get; }
+        public string SelectedChecksum { get; set; }
         /// <summary>
         /// Flag to check if we want to call method <see cref="ChecksumUtils.SetRequestChecksumMD5"/>
         /// </summary>
-        public bool IsMD5Checksum { get; }
+        public bool IsMD5Checksum { get; set; }
         /// <summary>
         /// This flag controls whether or not to fallback to using a MD5 to generate a checksum if
         /// <see cref="SelectedChecksum"/> is not set to NONE
         /// </summary>
-        public bool? FallbackToMD5 { get; }
+        public bool? FallbackToMD5 { get; set;  }
 
         public ChecksumData(string selectedChecksum, bool MD5Checksum, bool? fallbackToMD5)
         {

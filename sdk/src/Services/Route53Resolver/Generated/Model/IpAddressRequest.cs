@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Route53Resolver.Model
 {
     /// <summary>
     /// In a <a href="https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html">CreateResolverEndpoint</a>
     /// request, the IP address that DNS queries originate from (for outbound endpoints) or
-    /// that you forward DNS queries to (for inbound endpoints). <code>IpAddressRequest</code>
-    /// also includes the ID of the subnet that contains the IP address.
+    /// that you forward DNS queries to (for inbound endpoints). <c>IpAddressRequest</c> also
+    /// includes the ID of the subnet that contains the IP address.
     /// </summary>
     public partial class IpAddressRequest
     {

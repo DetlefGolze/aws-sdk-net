@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DatabaseMigrationService.Model
 {
     /// <summary>
@@ -108,10 +109,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property Engine. 
         /// <para>
-        /// The type of database engine for the data provider. Valid values include <code>"aurora"</code>,
-        /// <code>"aurora_postgresql"</code>, <code>"mysql"</code>, <code>"oracle"</code>, <code>"postgres"</code>,
-        /// and <code>"sqlserver"</code>. A value of <code>"aurora"</code> represents Amazon Aurora
-        /// MySQL-Compatible Edition.
+        /// The type of database engine for the data provider. Valid values include <c>"aurora"</c>,
+        /// <c>"aurora-postgresql"</c>, <c>"mysql"</c>, <c>"oracle"</c>, <c>"postgres"</c>, <c>"sqlserver"</c>,
+        /// <c>redshift</c>, <c>mariadb</c>, <c>mongodb</c>, and <c>docdb</c>. A value of <c>"aurora"</c>
+        /// represents Amazon Aurora MySQL-Compatible Edition.
         /// </para>
         /// </summary>
         public string Engine
@@ -129,10 +130,10 @@ namespace Amazon.DatabaseMigrationService.Model
         /// <summary>
         /// Gets and sets the property ExactSettings. 
         /// <para>
-        /// If this attribute is Y, the current call to <code>ModifyDataProvider</code> replaces
-        /// all existing data provider settings with the exact settings that you specify in this
-        /// call. If this attribute is N, the current call to <code>ModifyDataProvider</code>
-        /// does two things: 
+        /// If this attribute is Y, the current call to <c>ModifyDataProvider</c> replaces all
+        /// existing data provider settings with the exact settings that you specify in this call.
+        /// If this attribute is N, the current call to <c>ModifyDataProvider</c> does two things:
+        /// 
         /// </para>
         ///  <ul> <li> 
         /// <para>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoT.Model
 {
     /// <summary>
@@ -139,9 +140,9 @@ namespace Amazon.IoT.Model
         /// </para>
         ///  <important> 
         /// <para>
-        /// The type <code>number</code> only takes a single metric value as an input, but while
-        /// submitting the metrics value in the DeviceMetrics report, it must be passed as an
-        /// array with a single value.
+        /// The type <c>number</c> only takes a single metric value as an input, but while submitting
+        /// the metrics value in the DeviceMetrics report, it must be passed as an array with
+        /// a single value.
         /// </para>
         ///  </important>
         /// </summary>

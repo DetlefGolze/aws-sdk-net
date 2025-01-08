@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SSMIncidents.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SSMIncidents.Model
     /// </summary>
     public partial class ListIncidentRecordsResponse : AmazonWebServiceResponse
     {
-        private List<IncidentRecordSummary> _incidentRecordSummaries = new List<IncidentRecordSummary>();
+        private List<IncidentRecordSummary> _incidentRecordSummaries = AWSConfigs.InitializeCollections ? new List<IncidentRecordSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,13 +53,14 @@ namespace Amazon.SSMIncidents.Model
         // Check to see if IncidentRecordSummaries property is set
         internal bool IsSetIncidentRecordSummaries()
         {
-            return this._incidentRecordSummaries != null && this._incidentRecordSummaries.Count > 0; 
+            return this._incidentRecordSummaries != null && (this._incidentRecordSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The pagination token to continue to the next page of results.
+        /// The pagination token to use when requesting the next set of items. If there are no
+        /// additional items to return, the string is null.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=2000)]

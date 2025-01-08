@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ACMPCA.Model
 {
     /// <summary>
     /// Specifies additional purposes for which the certified public key may be used other
-    /// than basic purposes indicated in the <code>KeyUsage</code> extension.
+    /// than basic purposes indicated in the <c>KeyUsage</c> extension.
     /// </summary>
     public partial class ExtendedKeyUsage
     {
@@ -40,7 +41,7 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property ExtendedKeyUsageObjectIdentifier. 
         /// <para>
-        /// Specifies a custom <code>ExtendedKeyUsage</code> with an object identifier (OID).
+        /// Specifies a custom <c>ExtendedKeyUsage</c> with an object identifier (OID).
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=64)]
@@ -59,7 +60,7 @@ namespace Amazon.ACMPCA.Model
         /// <summary>
         /// Gets and sets the property ExtendedKeyUsageType. 
         /// <para>
-        /// Specifies a standard <code>ExtendedKeyUsage</code> as defined as in <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.12">RFC
+        /// Specifies a standard <c>ExtendedKeyUsage</c> as defined as in <a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.1.12">RFC
         /// 5280</a>.
         /// </para>
         /// </summary>

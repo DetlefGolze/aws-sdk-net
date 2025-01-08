@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -38,29 +39,29 @@ namespace Amazon.ConfigService.Model
     ///  
     /// <para>
     /// Only a management account and a delegated administrator can call this API. When calling
-    /// this API with a delegated administrator, you must ensure Organizations <code>ListDelegatedAdministrator</code>
+    /// this API with a delegated administrator, you must ensure Organizations <c>ListDelegatedAdministrator</c>
     /// permissions are added. An organization can have up to 3 delegated administrators.
     /// </para>
     ///  
     /// <para>
-    /// This API enables organization service access for <code>config-multiaccountsetup.amazonaws.com</code>
-    /// through the <code>EnableAWSServiceAccess</code> action and creates a service-linked
-    /// role <code>AWSServiceRoleForConfigMultiAccountSetup</code> in the management or delegated
-    /// administrator account of your organization. The service-linked role is created only
-    /// when the role does not exist in the caller account. To use this API with delegated
-    /// administrator, register a delegated administrator by calling Amazon Web Services Organization
-    /// <code>register-delegate-admin</code> for <code>config-multiaccountsetup.amazonaws.com</code>.
+    /// This API enables organization service access for <c>config-multiaccountsetup.amazonaws.com</c>
+    /// through the <c>EnableAWSServiceAccess</c> action and creates a service-linked role
+    /// <c>AWSServiceRoleForConfigMultiAccountSetup</c> in the management or delegated administrator
+    /// account of your organization. The service-linked role is created only when the role
+    /// does not exist in the caller account. To use this API with delegated administrator,
+    /// register a delegated administrator by calling Amazon Web Services Organization <c>register-delegate-admin</c>
+    /// for <c>config-multiaccountsetup.amazonaws.com</c>.
     /// </para>
     ///  <note> 
     /// <para>
-    /// Prerequisite: Ensure you call <code>EnableAllFeatures</code> API to enable all features
+    /// Prerequisite: Ensure you call <c>EnableAllFeatures</c> API to enable all features
     /// in an organization.
     /// </para>
     ///  
     /// <para>
-    /// You must specify either the <code>TemplateS3Uri</code> or the <code>TemplateBody</code>
-    /// parameter, but not both. If you provide both Config uses the <code>TemplateS3Uri</code>
-    /// parameter and ignores the <code>TemplateBody</code> parameter.
+    /// You must specify either the <c>TemplateS3Uri</c> or the <c>TemplateBody</c> parameter,
+    /// but not both. If you provide both Config uses the <c>TemplateS3Uri</c> parameter and
+    /// ignores the <c>TemplateBody</c> parameter.
     /// </para>
     ///  
     /// <para>
@@ -72,10 +73,10 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class PutOrganizationConformancePackRequest : AmazonConfigServiceRequest
     {
-        private List<ConformancePackInputParameter> _conformancePackInputParameters = new List<ConformancePackInputParameter>();
+        private List<ConformancePackInputParameter> _conformancePackInputParameters = AWSConfigs.InitializeCollections ? new List<ConformancePackInputParameter>() : null;
         private string _deliveryS3Bucket;
         private string _deliveryS3KeyPrefix;
-        private List<string> _excludedAccounts = new List<string>();
+        private List<string> _excludedAccounts = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _organizationConformancePackName;
         private string _templateBody;
         private string _templateS3Uri;
@@ -83,7 +84,7 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ConformancePackInputParameters. 
         /// <para>
-        /// A list of <code>ConformancePackInputParameter</code> objects.
+        /// A list of <c>ConformancePackInputParameter</c> objects.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=60)]
@@ -96,7 +97,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ConformancePackInputParameters property is set
         internal bool IsSetConformancePackInputParameters()
         {
-            return this._conformancePackInputParameters != null && this._conformancePackInputParameters.Count > 0; 
+            return this._conformancePackInputParameters != null && (this._conformancePackInputParameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// This field is optional. If used, it must be prefixed with <code>awsconfigconforms</code>.
+        /// This field is optional. If used, it must be prefixed with <c>awsconfigconforms</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -164,7 +165,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if ExcludedAccounts property is set
         internal bool IsSetExcludedAccounts()
         {
-            return this._excludedAccounts != null && this._excludedAccounts.Count > 0; 
+            return this._excludedAccounts != null && (this._excludedAccounts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -214,7 +215,9 @@ namespace Amazon.ConfigService.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// You must have access to read Amazon S3 bucket.
+        /// You must have access to read Amazon S3 bucket. In addition, in order to ensure a successful
+        /// deployment, the template object must not be in an <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html">archived
+        /// storage class</a> if this parameter is passed.
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ElasticMapReduce.Model
 {
     /// <summary>
@@ -39,12 +40,11 @@ namespace Amazon.ElasticMapReduce.Model
     /// </para>
     ///  </important> 
     /// <para>
-    /// Sets the <a>Cluster$VisibleToAllUsers</a> value for an Amazon EMR cluster. When <code>true</code>,
+    /// Sets the <a>Cluster$VisibleToAllUsers</a> value for an Amazon EMR cluster. When <c>true</c>,
     /// IAM principals in the Amazon Web Services account can perform Amazon EMR cluster actions
-    /// that their IAM policies allow. When <code>false</code>, only the IAM principal that
-    /// created the cluster and the Amazon Web Services account root user can perform Amazon
-    /// EMR actions on the cluster, regardless of IAM permissions policies attached to other
-    /// IAM principals.
+    /// that their IAM policies allow. When <c>false</c>, only the IAM principal that created
+    /// the cluster and the Amazon Web Services account root user can perform Amazon EMR actions
+    /// on the cluster, regardless of IAM permissions policies attached to other IAM principals.
     /// </para>
     ///  
     /// <para>
@@ -60,7 +60,7 @@ namespace Amazon.ElasticMapReduce.Model
     /// </summary>
     public partial class SetVisibleToAllUsersRequest : AmazonElasticMapReduceRequest
     {
-        private List<string> _jobFlowIds = new List<string>();
+        private List<string> _jobFlowIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _visibleToAllUsers;
 
         /// <summary>
@@ -79,17 +79,17 @@ namespace Amazon.ElasticMapReduce.Model
         // Check to see if JobFlowIds property is set
         internal bool IsSetJobFlowIds()
         {
-            return this._jobFlowIds != null && this._jobFlowIds.Count > 0; 
+            return this._jobFlowIds != null && (this._jobFlowIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property VisibleToAllUsers. 
         /// <para>
-        /// A value of <code>true</code> indicates that an IAM principal in the Amazon Web Services
+        /// A value of <c>true</c> indicates that an IAM principal in the Amazon Web Services
         /// account can perform Amazon EMR actions on the cluster that the IAM policies attached
-        /// to the principal allow. A value of <code>false</code> indicates that only the IAM
-        /// principal that created the cluster and the Amazon Web Services root user can perform
-        /// Amazon EMR actions on the cluster.
+        /// to the principal allow. A value of <c>false</c> indicates that only the IAM principal
+        /// that created the cluster and the Amazon Web Services root user can perform Amazon
+        /// EMR actions on the cluster.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

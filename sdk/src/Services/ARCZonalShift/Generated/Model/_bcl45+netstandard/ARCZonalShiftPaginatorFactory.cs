@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ARCZonalShift.Model
 {
     /// <summary>
@@ -33,6 +34,14 @@ namespace Amazon.ARCZonalShift.Model
         internal ARCZonalShiftPaginatorFactory(IAmazonARCZonalShift client) 
         {
             this.client = client;
+        }
+
+        /// <summary>
+        /// Paginator for ListAutoshifts operation
+        ///</summary>
+        public IListAutoshiftsPaginator ListAutoshifts(ListAutoshiftsRequest request) 
+        {
+            return new ListAutoshiftsPaginator(this.client, request);
         }
 
         /// <summary>

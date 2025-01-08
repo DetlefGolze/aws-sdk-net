@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Omics.Model
 {
     /// <summary>
@@ -34,6 +35,7 @@ namespace Amazon.Omics.Model
     public partial class GetReadSetMetadataResponse : AmazonWebServiceResponse
     {
         private string _arn;
+        private string _creationJobId;
         private DateTime? _creationTime;
         private CreationType _creationType;
         private string _description;
@@ -67,6 +69,25 @@ namespace Amazon.Omics.Model
         internal bool IsSetArn()
         {
             return this._arn != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property CreationJobId. 
+        /// <para>
+        /// The read set's creation job ID.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1, Max=127)]
+        public string CreationJobId
+        {
+            get { return this._creationJobId; }
+            set { this._creationJobId = value; }
+        }
+
+        // Check to see if CreationJobId property is set
+        internal bool IsSetCreationJobId()
+        {
+            return this._creationJobId != null;
         }
 
         /// <summary>
@@ -128,8 +149,7 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property Etag. 
         /// <para>
-        ///  The entity tag (ETag) is a hash of the object meant to represent its semantic content.
-        /// 
+        /// The entity tag (ETag) is a hash of the object meant to represent its semantic content.
         /// </para>
         /// </summary>
         public ETag Etag
@@ -316,7 +336,7 @@ namespace Amazon.Omics.Model
         /// <summary>
         /// Gets and sets the property StatusMessage. 
         /// <para>
-        ///  The status message for a read set. It provides more detail as to why the read set
+        /// The status message for a read set. It provides more detail as to why the read set
         /// has a status. 
         /// </para>
         /// </summary>

@@ -26,11 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Container for the parameters to the GetJobRuns operation.
     /// Retrieves metadata for all runs of a given job definition.
+    /// 
+    ///  
+    /// <para>
+    ///  <c>GetJobRuns</c> returns the job runs in chronological order, with the newest jobs
+    /// returned first.
+    /// </para>
     /// </summary>
     public partial class GetJobRunsRequest : AmazonGlueRequest
     {
@@ -63,7 +70,7 @@ namespace Amazon.Glue.Model
         /// The maximum size of the response.
         /// </para>
         /// </summary>
-        [AWSProperty(Min=1, Max=1000)]
+        [AWSProperty(Min=1, Max=200)]
         public int MaxResults
         {
             get { return this._maxResults.GetValueOrDefault(); }

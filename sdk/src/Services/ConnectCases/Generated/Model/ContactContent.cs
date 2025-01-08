@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConnectCases.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property Channel. 
         /// <para>
-        /// A list of channels to filter on for related items of type <code>Contact</code>.
+        /// A list of channels to filter on for related items of type <c>Contact</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=100)]
@@ -59,7 +60,7 @@ namespace Amazon.ConnectCases.Model
         /// <summary>
         /// Gets and sets the property ConnectedToSystemTime. 
         /// <para>
-        /// The difference between the <code>InitiationTimestamp</code> and the <code>DisconnectTimestamp</code>
+        /// The difference between the <c>InitiationTimestamp</c> and the <c>DisconnectTimestamp</c>
         /// of the contact.
         /// </para>
         /// </summary>

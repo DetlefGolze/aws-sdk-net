@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.EC2.Model
     public partial class DescribeStaleSecurityGroupsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<StaleSecurityGroup> _staleSecurityGroupSet = new List<StaleSecurityGroup>();
+        private List<StaleSecurityGroup> _staleSecurityGroupSet = AWSConfigs.InitializeCollections ? new List<StaleSecurityGroup>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to include in another request to get the next page of items. If there are
-        /// no additional items to return, the string is empty.
+        /// The token to include in another request to get the next page of items. This value
+        /// is <c>null</c> when there are no more items to return.
         /// </para>
         /// </summary>
         public string NextToken
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         // Check to see if StaleSecurityGroupSet property is set
         internal bool IsSetStaleSecurityGroupSet()
         {
-            return this._staleSecurityGroupSet != null && this._staleSecurityGroupSet.Count > 0; 
+            return this._staleSecurityGroupSet != null && (this._staleSecurityGroupSet.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

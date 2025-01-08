@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetAuthMode())
@@ -85,10 +87,28 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.Description);
                 }
 
+                if(publicRequest.IsSetEncryptionKeyArn())
+                {
+                    context.Writer.WritePropertyName("EncryptionKeyArn");
+                    context.Writer.Write(publicRequest.EncryptionKeyArn);
+                }
+
                 if(publicRequest.IsSetEngineSecurityGroupId())
                 {
                     context.Writer.WritePropertyName("EngineSecurityGroupId");
                     context.Writer.Write(publicRequest.EngineSecurityGroupId);
+                }
+
+                if(publicRequest.IsSetIdcInstanceArn())
+                {
+                    context.Writer.WritePropertyName("IdcInstanceArn");
+                    context.Writer.Write(publicRequest.IdcInstanceArn);
+                }
+
+                if(publicRequest.IsSetIdcUserAssignment())
+                {
+                    context.Writer.WritePropertyName("IdcUserAssignment");
+                    context.Writer.Write(publicRequest.IdcUserAssignment);
                 }
 
                 if(publicRequest.IsSetIdpAuthUrl())
@@ -140,6 +160,12 @@ namespace Amazon.ElasticMapReduce.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetTrustedIdentityPropagationEnabled())
+                {
+                    context.Writer.WritePropertyName("TrustedIdentityPropagationEnabled");
+                    context.Writer.Write(publicRequest.TrustedIdentityPropagationEnabled);
                 }
 
                 if(publicRequest.IsSetUserRole())

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class QueryLineageResponse : AmazonWebServiceResponse
     {
-        private List<Edge> _edges = new List<Edge>();
+        private List<Edge> _edges = AWSConfigs.InitializeCollections ? new List<Edge>() : null;
         private string _nextToken;
-        private List<Vertex> _vertices = new List<Vertex>();
+        private List<Vertex> _vertices = AWSConfigs.InitializeCollections ? new List<Vertex>() : null;
 
         /// <summary>
         /// Gets and sets the property Edges. 
@@ -52,14 +53,14 @@ namespace Amazon.SageMaker.Model
         // Check to see if Edges property is set
         internal bool IsSetEdges()
         {
-            return this._edges != null && this._edges.Count > 0; 
+            return this._edges != null && (this._edges.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// Limits the number of vertices in the response. Use the <code>NextToken</code> in a
-        /// response to to retrieve the next page of results.
+        /// Limits the number of vertices in the response. Use the <c>NextToken</c> in a response
+        /// to to retrieve the next page of results.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]
@@ -90,7 +91,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if Vertices property is set
         internal bool IsSetVertices()
         {
-            return this._vertices != null && this._vertices.Count > 0; 
+            return this._vertices != null && (this._vertices.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

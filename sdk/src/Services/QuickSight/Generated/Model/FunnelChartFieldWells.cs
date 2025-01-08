@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The field well configuration of a <code>FunnelChartVisual</code>.
+    /// The field well configuration of a <c>FunnelChartVisual</c>.
     /// 
     ///  
     /// <para>
@@ -44,7 +45,7 @@ namespace Amazon.QuickSight.Model
         /// <summary>
         /// Gets and sets the property FunnelChartAggregatedFieldWells. 
         /// <para>
-        /// The field well configuration of a <code>FunnelChartVisual</code>.
+        /// The field well configuration of a <c>FunnelChartVisual</c>.
         /// </para>
         /// </summary>
         public FunnelChartAggregatedFieldWells FunnelChartAggregatedFieldWells

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ECS.Model
 {
     /// <summary>
@@ -39,24 +40,24 @@ namespace Amazon.ECS.Model
     /// strategy for the cluster. If the specified cluster has existing capacity providers
     /// associated with it, you must specify all existing capacity providers in addition to
     /// any new ones you want to add. Any existing capacity providers that are associated
-    /// with a cluster that are omitted from a <a>PutClusterCapacityProviders</a> API call
-    /// will be disassociated with the cluster. You can only disassociate an existing capacity
-    /// provider from a cluster if it's not being used by any existing tasks.
+    /// with a cluster that are omitted from a <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html">PutClusterCapacityProviders</a>
+    /// API call will be disassociated with the cluster. You can only disassociate an existing
+    /// capacity provider from a cluster if it's not being used by any existing tasks.
     /// </para>
     ///  
     /// <para>
     /// When creating a service or running a task on a cluster, if no capacity provider or
     /// launch type is specified, then the cluster's default capacity provider strategy is
     /// used. We recommend that you define a default capacity provider strategy for your cluster.
-    /// However, you must specify an empty array (<code>[]</code>) to bypass defining a default
+    /// However, you must specify an empty array (<c>[]</c>) to bypass defining a default
     /// strategy.
     /// </para>
     /// </summary>
     public partial class PutClusterCapacityProvidersRequest : AmazonECSRequest
     {
-        private List<string> _capacityProviders = new List<string>();
+        private List<string> _capacityProviders = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _cluster;
-        private List<CapacityProviderStrategyItem> _defaultCapacityProviderStrategy = new List<CapacityProviderStrategyItem>();
+        private List<CapacityProviderStrategyItem> _defaultCapacityProviderStrategy = AWSConfigs.InitializeCollections ? new List<CapacityProviderStrategyItem>() : null;
 
         /// <summary>
         /// Gets and sets the property CapacityProviders. 
@@ -66,12 +67,12 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// If specifying a capacity provider that uses an Auto Scaling group, the capacity provider
-        /// must already be created. New capacity providers can be created with the <a>CreateCapacityProvider</a>
+        /// must already be created. New capacity providers can be created with the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCapacityProvider.html">CreateCapacityProvider</a>
         /// API operation.
         /// </para>
         ///  
         /// <para>
-        /// To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+        /// To use a Fargate capacity provider, specify either the <c>FARGATE</c> or <c>FARGATE_SPOT</c>
         /// capacity providers. The Fargate capacity providers are available to all accounts and
         /// only need to be associated with a cluster to be used.
         /// </para>
@@ -86,7 +87,7 @@ namespace Amazon.ECS.Model
         // Check to see if CapacityProviders property is set
         internal bool IsSetCapacityProviders()
         {
-            return this._capacityProviders != null && this._capacityProviders.Count > 0; 
+            return this._capacityProviders != null && (this._capacityProviders.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -123,21 +124,20 @@ namespace Amazon.ECS.Model
         ///  
         /// <para>
         /// A capacity provider strategy consists of one or more capacity providers along with
-        /// the <code>base</code> and <code>weight</code> to assign to them. A capacity provider
-        /// must be associated with the cluster to be used in a capacity provider strategy. The
-        /// <a>PutClusterCapacityProviders</a> API is used to associate a capacity provider with
-        /// a cluster. Only capacity providers with an <code>ACTIVE</code> or <code>UPDATING</code>
-        /// status can be used.
+        /// the <c>base</c> and <c>weight</c> to assign to them. A capacity provider must be associated
+        /// with the cluster to be used in a capacity provider strategy. The <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_PutClusterCapacityProviders.html">PutClusterCapacityProviders</a>
+        /// API is used to associate a capacity provider with a cluster. Only capacity providers
+        /// with an <c>ACTIVE</c> or <c>UPDATING</c> status can be used.
         /// </para>
         ///  
         /// <para>
         /// If specifying a capacity provider that uses an Auto Scaling group, the capacity provider
-        /// must already be created. New capacity providers can be created with the <a>CreateCapacityProvider</a>
+        /// must already be created. New capacity providers can be created with the <a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCapacityProvider.html">CreateCapacityProvider</a>
         /// API operation.
         /// </para>
         ///  
         /// <para>
-        /// To use a Fargate capacity provider, specify either the <code>FARGATE</code> or <code>FARGATE_SPOT</code>
+        /// To use a Fargate capacity provider, specify either the <c>FARGATE</c> or <c>FARGATE_SPOT</c>
         /// capacity providers. The Fargate capacity providers are available to all accounts and
         /// only need to be associated with a cluster to be used.
         /// </para>
@@ -152,7 +152,7 @@ namespace Amazon.ECS.Model
         // Check to see if DefaultCapacityProviderStrategy property is set
         internal bool IsSetDefaultCapacityProviderStrategy()
         {
-            return this._defaultCapacityProviderStrategy != null && this._defaultCapacityProviderStrategy.Count > 0; 
+            return this._defaultCapacityProviderStrategy != null && (this._defaultCapacityProviderStrategy.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

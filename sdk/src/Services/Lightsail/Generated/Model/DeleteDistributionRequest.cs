@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -43,8 +44,8 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>GetDistributions</code> action to get a list of distribution names that
-        /// you can specify.
+        /// Use the <c>GetDistributions</c> action to get a list of distribution names that you
+        /// can specify.
         /// </para>
         /// </summary>
         public string DistributionName

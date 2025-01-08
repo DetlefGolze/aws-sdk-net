@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ListModelQualityJobDefinitionsResponse : AmazonWebServiceResponse
     {
-        private List<MonitoringJobDefinitionSummary> _jobDefinitionSummaries = new List<MonitoringJobDefinitionSummary>();
+        private List<MonitoringJobDefinitionSummary> _jobDefinitionSummaries = AWSConfigs.InitializeCollections ? new List<MonitoringJobDefinitionSummary>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -52,14 +53,14 @@ namespace Amazon.SageMaker.Model
         // Check to see if JobDefinitionSummaries property is set
         internal bool IsSetJobDefinitionSummaries()
         {
-            return this._jobDefinitionSummaries != null && this._jobDefinitionSummaries.Count > 0; 
+            return this._jobDefinitionSummaries != null && (this._jobDefinitionSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response is truncated, Amazon SageMaker returns this token. To retrieve the
-        /// next set of model quality monitoring job definitions, use it in the next request.
+        /// If the response is truncated, Amazon SageMaker AI returns this token. To retrieve
+        /// the next set of model quality monitoring job definitions, use it in the next request.
         /// </para>
         /// </summary>
         [AWSProperty(Max=8192)]

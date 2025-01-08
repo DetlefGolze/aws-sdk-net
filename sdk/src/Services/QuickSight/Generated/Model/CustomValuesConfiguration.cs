@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.QuickSight.Model
 {
     /// <summary>
-    /// The configuration of custom values for the destination parameter in <code>DestinationParameterValueConfiguration</code>.
+    /// The configuration of custom values for the destination parameter in <c>DestinationParameterValueConfiguration</c>.
     /// </summary>
     public partial class CustomValuesConfiguration
     {

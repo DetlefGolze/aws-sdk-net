@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -52,15 +53,16 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
         /// Unmarshaller the response from the service to the response class.
         /// </summary>  
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>The unmarshalled object</returns>
         public BaseConfigurationItem Unmarshall(JsonUnmarshallerContext context)
         {
+            BaseConfigurationItem unmarshalledObject = new BaseConfigurationItem();
+            if (context.IsEmptyResponse)
+                return null;
             context.Read();
             if (context.CurrentTokenType == JsonToken.Null) 
                 return null;
 
-            BaseConfigurationItem unmarshalledObject = new BaseConfigurationItem();
-        
             int targetDepth = context.CurrentDepth;
             while (context.ReadAtDepth(targetDepth))
             {
@@ -100,6 +102,12 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
                     unmarshalledObject.ConfigurationItemCaptureTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("configurationItemDeliveryTime", targetDepth))
+                {
+                    var unmarshaller = DateTimeUnmarshaller.Instance;
+                    unmarshalledObject.ConfigurationItemDeliveryTime = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("configurationItemStatus", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
@@ -110,6 +118,12 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     unmarshalledObject.ConfigurationStateId = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("recordingFrequency", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    unmarshalledObject.RecordingFrequency = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("resourceCreationTime", targetDepth))
@@ -149,7 +163,6 @@ namespace Amazon.ConfigService.Model.Internal.MarshallTransformations
                     continue;
                 }
             }
-          
             return unmarshalledObject;
         }
 

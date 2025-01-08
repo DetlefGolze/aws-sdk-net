@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Detective.Model
 {
     /// <summary>
@@ -35,32 +36,24 @@ namespace Amazon.Detective.Model
     /// 
     ///  
     /// <para>
-    /// Before you try to enable Detective, make sure that your account has been enrolled
-    /// in Amazon GuardDuty for at least 48 hours. If you do not meet this requirement, you
-    /// cannot enable Detective. If you do meet the GuardDuty prerequisite, then when you
-    /// make the request to enable Detective, it checks whether your data volume is within
-    /// the Detective quota. If it exceeds the quota, then you cannot enable Detective. 
-    /// </para>
-    ///  
-    /// <para>
     /// The operation also enables Detective for the calling account in the currently selected
     /// Region. It returns the ARN of the new behavior graph.
     /// </para>
     ///  
     /// <para>
-    ///  <code>CreateGraph</code> triggers a process to create the corresponding data tables
-    /// for the new behavior graph.
+    ///  <c>CreateGraph</c> triggers a process to create the corresponding data tables for
+    /// the new behavior graph.
     /// </para>
     ///  
     /// <para>
     /// An account can only be the administrator account for one behavior graph within a Region.
-    /// If the same account calls <code>CreateGraph</code> with the same administrator account,
+    /// If the same account calls <c>CreateGraph</c> with the same administrator account,
     /// it always returns the same behavior graph ARN. It does not create a new behavior graph.
     /// </para>
     /// </summary>
     public partial class CreateGraphRequest : AmazonDetectiveRequest
     {
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Tags. 
@@ -80,7 +73,7 @@ namespace Amazon.Detective.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

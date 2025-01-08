@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -63,8 +64,20 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
+                if(publicRequest.IsSetAnywhereSettings())
+                {
+                    context.Writer.WritePropertyName("anywhereSettings");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = AnywhereSettingsMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.AnywhereSettings, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetCdiInputSpecification())
                 {
                     context.Writer.WritePropertyName("cdiInputSpecification");
@@ -82,6 +95,17 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.ChannelClass);
                 }
 
+                if(publicRequest.IsSetChannelEngineVersion())
+                {
+                    context.Writer.WritePropertyName("channelEngineVersion");
+                    context.Writer.WriteObjectStart();
+
+                    var marshaller = ChannelEngineVersionRequestMarshaller.Instance;
+                    marshaller.Marshall(publicRequest.ChannelEngineVersion, context);
+
+                    context.Writer.WriteObjectEnd();
+                }
+
                 if(publicRequest.IsSetDestinations())
                 {
                     context.Writer.WritePropertyName("destinations");
@@ -96,6 +120,12 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
                         context.Writer.WriteObjectEnd();
                     }
                     context.Writer.WriteArrayEnd();
+                }
+
+                if(publicRequest.IsSetDryRun())
+                {
+                    context.Writer.WritePropertyName("dryRun");
+                    context.Writer.Write(publicRequest.DryRun);
                 }
 
                 if(publicRequest.IsSetEncoderSettings())

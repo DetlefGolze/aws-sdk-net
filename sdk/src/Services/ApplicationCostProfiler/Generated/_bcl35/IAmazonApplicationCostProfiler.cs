@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.ApplicationCostProfiler.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.ApplicationCostProfiler
 {
     /// <summary>
-    /// Interface for accessing ApplicationCostProfiler
+    /// <para>Interface for accessing ApplicationCostProfiler</para>
     ///
     /// This reference provides descriptions of the AWS Application Cost Profiler API.
     /// 

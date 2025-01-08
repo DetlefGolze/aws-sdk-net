@@ -28,6 +28,7 @@ using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
+#pragma warning disable CS0612,CS0618
 namespace Amazon.EC2.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -144,6 +145,24 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                 request.Parameters.Add("InstanceRequirementsWithMetadata" + "." + "InstanceRequirements" + "." + "BaselineEbsBandwidthMbps" + "." + "Min", StringUtils.FromInt(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.BaselineEbsBandwidthMbps.Min));
                             }
                         }
+                        if(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.IsSetBaselinePerformanceFactors())
+                        {
+                            if(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.BaselinePerformanceFactors.IsSetCpu())
+                            {
+                                if(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.BaselinePerformanceFactors.Cpu.IsSetReferences())
+                                {
+                                    int publicRequestInstanceRequirementsWithMetadataInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex = 1;
+                                    foreach(var publicRequestInstanceRequirementsWithMetadataInstanceRequirementsBaselinePerformanceFactorsCpulistValue in publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.BaselinePerformanceFactors.Cpu.References)
+                                    {
+                                        if(publicRequestInstanceRequirementsWithMetadataInstanceRequirementsBaselinePerformanceFactorsCpulistValue.IsSetInstanceFamily())
+                                        {
+                                            request.Parameters.Add("InstanceRequirementsWithMetadata" + "." + "InstanceRequirements" + "." + "BaselinePerformanceFactors" + "." + "Cpu" + "." + "Reference" + "." + publicRequestInstanceRequirementsWithMetadataInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex + "." + "InstanceFamily", StringUtils.FromString(publicRequestInstanceRequirementsWithMetadataInstanceRequirementsBaselinePerformanceFactorsCpulistValue.InstanceFamily));
+                                        }
+                                        publicRequestInstanceRequirementsWithMetadataInstanceRequirementsBaselinePerformanceFactorsCpulistValueIndex++;
+                                    }
+                                }
+                            }
+                        }
                         if(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.IsSetBurstablePerformance())
                         {
                             request.Parameters.Add("InstanceRequirementsWithMetadata" + "." + "InstanceRequirements" + "." + "BurstablePerformance", StringUtils.FromString(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.BurstablePerformance));
@@ -187,6 +206,10 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                                 request.Parameters.Add("InstanceRequirementsWithMetadata" + "." + "InstanceRequirements" + "." + "LocalStorageType" + "." + publicRequestInstanceRequirementsWithMetadataInstanceRequirementslistValueIndex, StringUtils.FromString(publicRequestInstanceRequirementsWithMetadataInstanceRequirementslistValue));
                                 publicRequestInstanceRequirementsWithMetadataInstanceRequirementslistValueIndex++;
                             }
+                        }
+                        if(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.IsSetMaxSpotPriceAsPercentageOfOptimalOnDemandPrice())
+                        {
+                            request.Parameters.Add("InstanceRequirementsWithMetadata" + "." + "InstanceRequirements" + "." + "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice", StringUtils.FromInt(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.MaxSpotPriceAsPercentageOfOptimalOnDemandPrice));
                         }
                         if(publicRequest.InstanceRequirementsWithMetadata.InstanceRequirements.IsSetMemoryGiBPerVCpu())
                         {

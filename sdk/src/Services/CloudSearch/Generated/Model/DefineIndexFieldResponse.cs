@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
-    /// The result of a <code><a>DefineIndexField</a></code> request. Contains the status
-    /// of the newly-configured index field.
+    /// The result of a <c><a>DefineIndexField</a></c> request. Contains the status of the
+    /// newly-configured index field.
     /// </summary>
     public partial class DefineIndexFieldResponse : AmazonWebServiceResponse
     {

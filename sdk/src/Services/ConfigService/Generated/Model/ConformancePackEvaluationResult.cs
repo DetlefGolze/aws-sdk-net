@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -63,8 +64,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property ComplianceType. 
         /// <para>
-        /// The compliance type. The allowed values are <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>.
-        /// <code>INSUFFICIENT_DATA</code> is not supported.
+        /// The compliance type. The allowed values are <c>COMPLIANT</c> and <c>NON_COMPLIANT</c>.
+        /// <c>INSUFFICIENT_DATA</c> is not supported.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

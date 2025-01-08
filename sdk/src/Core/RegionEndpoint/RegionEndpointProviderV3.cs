@@ -325,8 +325,7 @@ namespace Amazon.Internal
         /// <summary>
         /// Builds the set used to identify a specific endpoint variant
         /// </summary>
-        /// <param name="dualStack">Whether to use a dualstack (IPv6 enabled) endpoint</param>
-        /// <param name="fips">Whether to use a FIPS-compliant endpoint</param>
+        /// <param name="options"></param>
         /// <returns>Set used to identify the combined variant in endpoints.json</returns>
         private static HashSet<string> BuildVariantHashSet(GetEndpointForServiceOptions options)
         {
@@ -442,10 +441,18 @@ namespace Amazon.Internal
             //
             // If the endpoints.json file has been provided next to the assembly:
             //
+#if NET8_0_OR_GREATER
+            string assemblyLocation = System.AppContext.BaseDirectory;
+#else
             string assemblyLocation = typeof(RegionEndpointProviderV3).Assembly.Location;
+#endif
             if (!string.IsNullOrEmpty(assemblyLocation))
             {
-                string endpointsPath = Path.Combine(Path.GetDirectoryName(assemblyLocation), ENDPOINT_JSON);
+                // If the application is deployed to the root directory (e.g. "/" in a container), GetDirectoryName will return null (which Path.Combine does not allow).
+                // In that case, we'll use an empty string and look for an endpoints.json file in the current folder.
+                var directoryName = Path.GetDirectoryName(assemblyLocation) ?? string.Empty;
+
+                string endpointsPath = Path.Combine(directoryName, ENDPOINT_JSON);
                 if (File.Exists(endpointsPath))
                 {
                     return File.Open(endpointsPath, FileMode.Open, FileAccess.Read);
@@ -455,7 +462,7 @@ namespace Amazon.Internal
             //
             // Default to endpoints.json file provided in the resource manifest:
             //
-            return Amazon.Util.Internal.TypeFactory.GetTypeInfo(typeof(RegionEndpointProviderV3)).Assembly.GetManifestResourceStream(ENDPOINT_JSON_RESOURCE);
+            return typeof(RegionEndpointProviderV3).Assembly.GetManifestResourceStream(ENDPOINT_JSON_RESOURCE);
         }
 
         private IEnumerable<IRegionEndpoint> _allRegionEndpoints;

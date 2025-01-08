@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ConfigService.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.ConfigService.Model
     /// </summary>
     public partial class GetAggregateConformancePackComplianceSummaryResponse : AmazonWebServiceResponse
     {
-        private List<AggregateConformancePackComplianceSummary> _aggregateConformancePackComplianceSummaries = new List<AggregateConformancePackComplianceSummary>();
+        private List<AggregateConformancePackComplianceSummary> _aggregateConformancePackComplianceSummaries = AWSConfigs.InitializeCollections ? new List<AggregateConformancePackComplianceSummary>() : null;
         private string _groupByKey;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property AggregateConformancePackComplianceSummaries. 
         /// <para>
-        /// Returns a list of <code>AggregateConformancePackComplianceSummary</code> object.
+        /// Returns a list of <c>AggregateConformancePackComplianceSummary</c> object.
         /// </para>
         /// </summary>
         public List<AggregateConformancePackComplianceSummary> AggregateConformancePackComplianceSummaries
@@ -52,7 +53,7 @@ namespace Amazon.ConfigService.Model
         // Check to see if AggregateConformancePackComplianceSummaries property is set
         internal bool IsSetAggregateConformancePackComplianceSummaries()
         {
-            return this._aggregateConformancePackComplianceSummaries != null && this._aggregateConformancePackComplianceSummaries.Count > 0; 
+            return this._aggregateConformancePackComplianceSummaries != null && (this._aggregateConformancePackComplianceSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -77,8 +78,8 @@ namespace Amazon.ConfigService.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The <code>nextToken</code> string returned on a previous page that you use to get
-        /// the next page of results in a paginated response.
+        /// The <c>nextToken</c> string returned on a previous page that you use to get the next
+        /// page of results in a paginated response.
         /// </para>
         /// </summary>
         public string NextToken

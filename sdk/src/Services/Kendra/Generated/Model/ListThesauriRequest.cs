@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -81,7 +82,7 @@ namespace Amazon.Kendra.Model
         /// <para>
         /// If the previous response was incomplete (because there is more data to retrieve),
         /// Amazon Kendra returns a pagination token in the response. You can use this pagination
-        /// token to retrieve the next set of thesauri (<code>ThesaurusSummaryItems</code>). 
+        /// token to retrieve the next set of thesauri (<c>ThesaurusSummaryItems</c>). 
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=800)]

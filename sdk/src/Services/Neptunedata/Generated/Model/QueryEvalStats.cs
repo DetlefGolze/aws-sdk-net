@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Neptunedata.Model
 {
     /// <summary>
@@ -42,7 +43,7 @@ namespace Amazon.Neptunedata.Model
         /// <summary>
         /// Gets and sets the property Cancelled. 
         /// <para>
-        /// Set to <code>TRUE</code> if the query was cancelled, or FALSE otherwise.
+        /// Set to <c>TRUE</c> if the query was cancelled, or FALSE otherwise.
         /// </para>
         /// </summary>
         public bool Cancelled

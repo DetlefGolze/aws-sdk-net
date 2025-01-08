@@ -26,15 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Athena.Model
 {
     /// <summary>
     /// The metadata that describes the column structure and data types of a table of query
-    /// results. To return a <code>ResultSetMetadata</code> object, use <a>GetQueryResults</a>.
+    /// results. To return a <c>ResultSetMetadata</c> object, use <a>GetQueryResults</a>.
     /// </summary>
     public partial class ResultSetMetadata
     {
-        private List<ColumnInfo> _columnInfo = new List<ColumnInfo>();
+        private List<ColumnInfo> _columnInfo = AWSConfigs.InitializeCollections ? new List<ColumnInfo>() : null;
 
         /// <summary>
         /// Gets and sets the property ColumnInfo. 
@@ -51,7 +52,7 @@ namespace Amazon.Athena.Model
         // Check to see if ColumnInfo property is set
         internal bool IsSetColumnInfo()
         {
-            return this._columnInfo != null && this._columnInfo.Count > 0; 
+            return this._columnInfo != null && (this._columnInfo.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

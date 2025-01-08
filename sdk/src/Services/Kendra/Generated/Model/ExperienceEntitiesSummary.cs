@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kendra.Model
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Amazon.Kendra.Model
         /// <summary>
         /// Gets and sets the property EntityType. 
         /// <para>
-        /// Shows the type as <code>User</code> or <code>Group</code>.
+        /// Shows the type as <c>User</c> or <c>Group</c>.
         /// </para>
         /// </summary>
         public EntityType EntityType

@@ -30,10 +30,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.APIGateway
 {
     /// <summary>
-    /// Implementation for accessing APIGateway
+    /// <para>Implementation for accessing APIGateway</para>
     ///
     /// Amazon API Gateway 
     /// <para>
@@ -778,6 +779,77 @@ namespace Amazon.APIGateway
         public virtual CreateDomainNameResponse EndCreateDomainName(IAsyncResult asyncResult)
         {
             return EndInvoke<CreateDomainNameResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  CreateDomainNameAccessAssociation
+
+        /// <summary>
+        /// Creates a domain name access association resource between an access association source
+        /// and a private custom domain name.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateDomainNameAccessAssociation service method.</param>
+        /// 
+        /// <returns>The response from the CreateDomainNameAccessAssociation service method, as returned by APIGateway.</returns>
+        /// <exception cref="Amazon.APIGateway.Model.BadRequestException">
+        /// The submitted request is not valid, for example, the input is incomplete or incorrect.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.ConflictException">
+        /// The request configuration has conflicts. For details, see the accompanying error message.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.LimitExceededException">
+        /// The request exceeded the rate limit. Retry after the specified time period.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.TooManyRequestsException">
+        /// The request has reached its throttling limit. Retry after the specified time period.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.UnauthorizedException">
+        /// The request is denied because the caller has insufficient permissions.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDomainNameAccessAssociation">REST API Reference for CreateDomainNameAccessAssociation Operation</seealso>
+        public virtual CreateDomainNameAccessAssociationResponse CreateDomainNameAccessAssociation(CreateDomainNameAccessAssociationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDomainNameAccessAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDomainNameAccessAssociationResponseUnmarshaller.Instance;
+
+            return Invoke<CreateDomainNameAccessAssociationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateDomainNameAccessAssociation operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateDomainNameAccessAssociation operation on AmazonAPIGatewayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateDomainNameAccessAssociation
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDomainNameAccessAssociation">REST API Reference for CreateDomainNameAccessAssociation Operation</seealso>
+        public virtual IAsyncResult BeginCreateDomainNameAccessAssociation(CreateDomainNameAccessAssociationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = CreateDomainNameAccessAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = CreateDomainNameAccessAssociationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateDomainNameAccessAssociation operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateDomainNameAccessAssociation.</param>
+        /// 
+        /// <returns>Returns a  CreateDomainNameAccessAssociationResult from APIGateway.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDomainNameAccessAssociation">REST API Reference for CreateDomainNameAccessAssociation Operation</seealso>
+        public virtual CreateDomainNameAccessAssociationResponse EndCreateDomainNameAccessAssociation(IAsyncResult asyncResult)
+        {
+            return EndInvoke<CreateDomainNameAccessAssociationResponse>(asyncResult);
         }
 
         #endregion
@@ -1923,6 +1995,83 @@ namespace Amazon.APIGateway
         public virtual DeleteDomainNameResponse EndDeleteDomainName(IAsyncResult asyncResult)
         {
             return EndInvoke<DeleteDomainNameResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  DeleteDomainNameAccessAssociation
+
+        /// <summary>
+        /// Deletes the DomainNameAccessAssociation resource.
+        /// 
+        ///  
+        /// <para>
+        /// Only the AWS account that created the DomainNameAccessAssociation resource can delete
+        /// it. To stop an access association source in another AWS account from accessing your
+        /// private custom domain name, use the RejectDomainNameAccessAssociation operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDomainNameAccessAssociation service method.</param>
+        /// 
+        /// <returns>The response from the DeleteDomainNameAccessAssociation service method, as returned by APIGateway.</returns>
+        /// <exception cref="Amazon.APIGateway.Model.BadRequestException">
+        /// The submitted request is not valid, for example, the input is incomplete or incorrect.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.ConflictException">
+        /// The request configuration has conflicts. For details, see the accompanying error message.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.NotFoundException">
+        /// The requested resource is not found. Make sure that the request URI is correct.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.TooManyRequestsException">
+        /// The request has reached its throttling limit. Retry after the specified time period.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.UnauthorizedException">
+        /// The request is denied because the caller has insufficient permissions.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDomainNameAccessAssociation">REST API Reference for DeleteDomainNameAccessAssociation Operation</seealso>
+        public virtual DeleteDomainNameAccessAssociationResponse DeleteDomainNameAccessAssociation(DeleteDomainNameAccessAssociationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDomainNameAccessAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDomainNameAccessAssociationResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteDomainNameAccessAssociationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteDomainNameAccessAssociation operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteDomainNameAccessAssociation operation on AmazonAPIGatewayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteDomainNameAccessAssociation
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDomainNameAccessAssociation">REST API Reference for DeleteDomainNameAccessAssociation Operation</seealso>
+        public virtual IAsyncResult BeginDeleteDomainNameAccessAssociation(DeleteDomainNameAccessAssociationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteDomainNameAccessAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteDomainNameAccessAssociationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteDomainNameAccessAssociation operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteDomainNameAccessAssociation.</param>
+        /// 
+        /// <returns>Returns a  DeleteDomainNameAccessAssociationResult from APIGateway.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDomainNameAccessAssociation">REST API Reference for DeleteDomainNameAccessAssociation Operation</seealso>
+        public virtual DeleteDomainNameAccessAssociationResponse EndDeleteDomainNameAccessAssociation(IAsyncResult asyncResult)
+        {
+            return EndInvoke<DeleteDomainNameAccessAssociationResponse>(asyncResult);
         }
 
         #endregion
@@ -4127,6 +4276,73 @@ namespace Amazon.APIGateway
         public virtual GetDomainNameResponse EndGetDomainName(IAsyncResult asyncResult)
         {
             return EndInvoke<GetDomainNameResponse>(asyncResult);
+        }
+
+        #endregion
+        
+        #region  GetDomainNameAccessAssociations
+
+        /// <summary>
+        /// Represents a collection on DomainNameAccessAssociations resources.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetDomainNameAccessAssociations service method.</param>
+        /// 
+        /// <returns>The response from the GetDomainNameAccessAssociations service method, as returned by APIGateway.</returns>
+        /// <exception cref="Amazon.APIGateway.Model.BadRequestException">
+        /// The submitted request is not valid, for example, the input is incomplete or incorrect.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.NotFoundException">
+        /// The requested resource is not found. Make sure that the request URI is correct.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.TooManyRequestsException">
+        /// The request has reached its throttling limit. Retry after the specified time period.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.UnauthorizedException">
+        /// The request is denied because the caller has insufficient permissions.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDomainNameAccessAssociations">REST API Reference for GetDomainNameAccessAssociations Operation</seealso>
+        public virtual GetDomainNameAccessAssociationsResponse GetDomainNameAccessAssociations(GetDomainNameAccessAssociationsRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDomainNameAccessAssociationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDomainNameAccessAssociationsResponseUnmarshaller.Instance;
+
+            return Invoke<GetDomainNameAccessAssociationsResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetDomainNameAccessAssociations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetDomainNameAccessAssociations operation on AmazonAPIGatewayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetDomainNameAccessAssociations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDomainNameAccessAssociations">REST API Reference for GetDomainNameAccessAssociations Operation</seealso>
+        public virtual IAsyncResult BeginGetDomainNameAccessAssociations(GetDomainNameAccessAssociationsRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = GetDomainNameAccessAssociationsRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = GetDomainNameAccessAssociationsResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetDomainNameAccessAssociations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetDomainNameAccessAssociations.</param>
+        /// 
+        /// <returns>Returns a  GetDomainNameAccessAssociationsResult from APIGateway.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDomainNameAccessAssociations">REST API Reference for GetDomainNameAccessAssociations Operation</seealso>
+        public virtual GetDomainNameAccessAssociationsResponse EndGetDomainNameAccessAssociations(IAsyncResult asyncResult)
+        {
+            return EndInvoke<GetDomainNameAccessAssociationsResponse>(asyncResult);
         }
 
         #endregion
@@ -6818,6 +7034,84 @@ namespace Amazon.APIGateway
 
         #endregion
         
+        #region  RejectDomainNameAccessAssociation
+
+        /// <summary>
+        /// Rejects a domain name access association with a private custom domain name.
+        /// 
+        ///  
+        /// <para>
+        /// To reject a domain name access association with an access association source in another
+        /// AWS account, use this operation. To remove a domain name access association with an
+        /// access association source in your own account, use the DeleteDomainNameAccessAssociation
+        /// operation.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the RejectDomainNameAccessAssociation service method.</param>
+        /// 
+        /// <returns>The response from the RejectDomainNameAccessAssociation service method, as returned by APIGateway.</returns>
+        /// <exception cref="Amazon.APIGateway.Model.BadRequestException">
+        /// The submitted request is not valid, for example, the input is incomplete or incorrect.
+        /// See the accompanying error message for details.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.ConflictException">
+        /// The request configuration has conflicts. For details, see the accompanying error message.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.NotFoundException">
+        /// The requested resource is not found. Make sure that the request URI is correct.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.TooManyRequestsException">
+        /// The request has reached its throttling limit. Retry after the specified time period.
+        /// </exception>
+        /// <exception cref="Amazon.APIGateway.Model.UnauthorizedException">
+        /// The request is denied because the caller has insufficient permissions.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/RejectDomainNameAccessAssociation">REST API Reference for RejectDomainNameAccessAssociation Operation</seealso>
+        public virtual RejectDomainNameAccessAssociationResponse RejectDomainNameAccessAssociation(RejectDomainNameAccessAssociationRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RejectDomainNameAccessAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RejectDomainNameAccessAssociationResponseUnmarshaller.Instance;
+
+            return Invoke<RejectDomainNameAccessAssociationResponse>(request, options);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the RejectDomainNameAccessAssociation operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the RejectDomainNameAccessAssociation operation on AmazonAPIGatewayClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndRejectDomainNameAccessAssociation
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/RejectDomainNameAccessAssociation">REST API Reference for RejectDomainNameAccessAssociation Operation</seealso>
+        public virtual IAsyncResult BeginRejectDomainNameAccessAssociation(RejectDomainNameAccessAssociationRequest request, AsyncCallback callback, object state)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = RejectDomainNameAccessAssociationRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = RejectDomainNameAccessAssociationResponseUnmarshaller.Instance;
+
+            return BeginInvoke(request, options, callback, state);
+        }
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  RejectDomainNameAccessAssociation operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginRejectDomainNameAccessAssociation.</param>
+        /// 
+        /// <returns>Returns a  RejectDomainNameAccessAssociationResult from APIGateway.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/RejectDomainNameAccessAssociation">REST API Reference for RejectDomainNameAccessAssociation Operation</seealso>
+        public virtual RejectDomainNameAccessAssociationResponse EndRejectDomainNameAccessAssociation(IAsyncResult asyncResult)
+        {
+            return EndInvoke<RejectDomainNameAccessAssociationResponse>(asyncResult);
+        }
+
+        #endregion
+        
         #region  TagResource
 
         /// <summary>
@@ -8126,7 +8420,7 @@ namespace Amazon.APIGateway
         #region  UpdateModel
 
         /// <summary>
-        /// Changes information about a model.
+        /// Changes information about a model. The maximum size of the model is 400 KB.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateModel service method.</param>
         /// 
@@ -8714,11 +9008,11 @@ namespace Amazon.APIGateway
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

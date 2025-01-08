@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Organizations.Model
 {
     /// <summary>
@@ -43,7 +44,7 @@ namespace Amazon.Organizations.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>ActionType</code>, you cannot also specify <code>ParentHandshakeId</code>.
+        /// If you specify <c>ActionType</c>, you cannot also specify <c>ParentHandshakeId</c>.
         /// </para>
         /// </summary>
         public ActionType ActionType
@@ -66,7 +67,7 @@ namespace Amazon.Organizations.Model
         /// </para>
         ///  
         /// <para>
-        /// If you specify <code>ParentHandshakeId</code>, you cannot also specify <code>ActionType</code>.
+        /// If you specify <c>ParentHandshakeId</c>, you cannot also specify <c>ActionType</c>.
         /// </para>
         ///  
         /// <para>

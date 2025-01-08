@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResilienceHub.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.ResilienceHub.Model
         /// Gets and sets the property MaxResults. 
         /// <para>
         /// Maximum number of results to include in the response. If more results exist than the
-        /// specified <code>MaxResults</code> value, a token is included in the response so that
-        /// the remaining results can be retrieved.
+        /// specified <c>MaxResults</c> value, a token is included in the response so that the
+        /// remaining results can be retrieved.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=100)]
@@ -80,7 +81,7 @@ namespace Amazon.ResilienceHub.Model
         /// <summary>
         /// Gets and sets the property PolicyName. 
         /// <para>
-        /// The name of the policy
+        /// Name of the resiliency policy.
         /// </para>
         /// </summary>
         public string PolicyName

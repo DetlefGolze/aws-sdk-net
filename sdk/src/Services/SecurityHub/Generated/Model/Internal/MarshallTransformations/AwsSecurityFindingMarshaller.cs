@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,8 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(AwsSecurityFinding requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
             if(requestObject.IsSetAction())
             {
                 context.Writer.WritePropertyName("Action");
@@ -60,6 +63,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("AwsAccountId");
                 context.Writer.Write(requestObject.AwsAccountId);
+            }
+
+            if(requestObject.IsSetAwsAccountName())
+            {
+                context.Writer.WritePropertyName("AwsAccountName");
+                context.Writer.Write(requestObject.AwsAccountName);
             }
 
             if(requestObject.IsSetCompanyName())
@@ -101,6 +110,17 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
             {
                 context.Writer.WritePropertyName("Description");
                 context.Writer.Write(requestObject.Description);
+            }
+
+            if(requestObject.IsSetDetection())
+            {
+                context.Writer.WritePropertyName("Detection");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = DetectionMarshaller.Instance;
+                marshaller.Marshall(requestObject.Detection, context);
+
+                context.Writer.WriteObjectEnd();
             }
 
             if(requestObject.IsSetFindingProviderFields())
@@ -223,6 +243,12 @@ namespace Amazon.SecurityHub.Model.Internal.MarshallTransformations
                 marshaller.Marshall(requestObject.Process, context);
 
                 context.Writer.WriteObjectEnd();
+            }
+
+            if(requestObject.IsSetProcessedAt())
+            {
+                context.Writer.WritePropertyName("ProcessedAt");
+                context.Writer.Write(requestObject.ProcessedAt);
             }
 
             if(requestObject.IsSetProductArn())

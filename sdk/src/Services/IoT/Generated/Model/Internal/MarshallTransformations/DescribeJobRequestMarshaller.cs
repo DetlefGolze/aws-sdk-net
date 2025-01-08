@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.IoT.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -61,7 +62,11 @@ namespace Amazon.IoT.Model.Internal.MarshallTransformations
             if (!publicRequest.IsSetJobId())
                 throw new AmazonIoTException("Request object does not have required field JobId set");
             request.AddPathResource("{jobId}", StringUtils.FromString(publicRequest.JobId));
+            
+            if (publicRequest.IsSetBeforeSubstitution())
+                request.Parameters.Add("beforeSubstitution", StringUtils.FromBool(publicRequest.BeforeSubstitution));
             request.ResourcePath = "/jobs/{jobId}";
+            request.UseQueryString = true;
 
             return request;
         }

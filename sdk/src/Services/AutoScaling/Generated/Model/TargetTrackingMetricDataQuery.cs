@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AutoScaling.Model
 {
     /// <summary>
@@ -40,20 +41,21 @@ namespace Amazon.AutoScaling.Model
         private string _id;
         private string _label;
         private TargetTrackingMetricStat _metricStat;
+        private int? _period;
         private bool? _returnData;
 
         /// <summary>
         /// Gets and sets the property Expression. 
         /// <para>
         /// The math expression to perform on the returned data, if this object is performing
-        /// a math expression. This expression can use the <code>Id</code> of the other metrics
-        /// to refer to those metrics, and can also use the <code>Id</code> of other expressions
-        /// to use the result of those expressions. 
+        /// a math expression. This expression can use the <c>Id</c> of the other metrics to refer
+        /// to those metrics, and can also use the <c>Id</c> of other expressions to use the result
+        /// of those expressions. 
         /// </para>
         ///  
         /// <para>
-        /// Conditional: Within each <code>TargetTrackingMetricDataQuery</code> object, you must
-        /// specify either <code>Expression</code> or <code>MetricStat</code>, but not both.
+        /// Conditional: Within each <c>TargetTrackingMetricDataQuery</c> object, you must specify
+        /// either <c>Expression</c> or <c>MetricStat</c>, but not both.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=2047)]
@@ -73,14 +75,14 @@ namespace Amazon.AutoScaling.Model
         /// Gets and sets the property Id. 
         /// <para>
         /// A short name that identifies the object's results in the response. This name must
-        /// be unique among all <code>TargetTrackingMetricDataQuery</code> objects specified for
-        /// a single scaling policy. If you are performing math expressions on this set of data,
-        /// this name represents that data and can serve as a variable in the mathematical expression.
-        /// The valid characters are letters, numbers, and underscores. The first character must
-        /// be a lowercase letter. 
+        /// be unique among all <c>TargetTrackingMetricDataQuery</c> objects specified for a single
+        /// scaling policy. If you are performing math expressions on this set of data, this name
+        /// represents that data and can serve as a variable in the mathematical expression. The
+        /// valid characters are letters, numbers, and underscores. The first character must be
+        /// a lowercase letter. 
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=255)]
+        [AWSProperty(Required=true, Min=1, Max=64)]
         public string Id
         {
             get { return this._id; }
@@ -120,8 +122,8 @@ namespace Amazon.AutoScaling.Model
         /// </para>
         ///  
         /// <para>
-        /// Conditional: Within each <code>TargetTrackingMetricDataQuery</code> object, you must
-        /// specify either <code>Expression</code> or <code>MetricStat</code>, but not both.
+        /// Conditional: Within each <c>TargetTrackingMetricDataQuery</c> object, you must specify
+        /// either <c>Expression</c> or <c>MetricStat</c>, but not both.
         /// </para>
         /// </summary>
         public TargetTrackingMetricStat MetricStat
@@ -137,21 +139,43 @@ namespace Amazon.AutoScaling.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Period. 
+        /// <para>
+        ///  The period of the metric in seconds. The default value is 60. Accepted values are
+        /// 10, 30, and 60. For high resolution metric, set the value to less than 60. For more
+        /// information, see <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/policy-creating-high-resolution-metrics.html">Create
+        /// a target tracking policy using high-resolution metrics for faster response</a>. 
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public int Period
+        {
+            get { return this._period.GetValueOrDefault(); }
+            set { this._period = value; }
+        }
+
+        // Check to see if Period property is set
+        internal bool IsSetPeriod()
+        {
+            return this._period.HasValue; 
+        }
+
+        /// <summary>
         /// Gets and sets the property ReturnData. 
         /// <para>
         /// Indicates whether to return the timestamps and raw data values of this metric. 
         /// </para>
         ///  
         /// <para>
-        /// If you use any math expressions, specify <code>true</code> for this value for only
-        /// the final math expression that the metric specification is based on. You must specify
-        /// <code>false</code> for <code>ReturnData</code> for all the other metrics and expressions
-        /// used in the metric specification.
+        /// If you use any math expressions, specify <c>true</c> for this value for only the final
+        /// math expression that the metric specification is based on. You must specify <c>false</c>
+        /// for <c>ReturnData</c> for all the other metrics and expressions used in the metric
+        /// specification.
         /// </para>
         ///  
         /// <para>
         /// If you are only retrieving metrics and not performing any math expressions, do not
-        /// specify anything for <code>ReturnData</code>. This sets it to its default (<code>true</code>).
+        /// specify anything for <c>ReturnData</c>. This sets it to its default (<c>true</c>).
         /// </para>
         /// </summary>
         public bool ReturnData

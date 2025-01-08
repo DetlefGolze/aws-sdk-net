@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property State. 
         /// <para>
-        /// The current state of the attachment. For an internet gateway, the state is <code>available</code>
+        /// The current state of the attachment. For an internet gateway, the state is <c>available</c>
         /// when attached to a VPC; otherwise, this value is not returned.
         /// </para>
         /// </summary>

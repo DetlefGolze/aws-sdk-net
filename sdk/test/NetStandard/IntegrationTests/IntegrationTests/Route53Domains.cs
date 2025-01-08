@@ -45,11 +45,11 @@ namespace Amazon.DNXCore.IntegrationTests
             var domains = (await Client.ListDomainsAsync()).Domains;
             if (domains.Count > 0)
             {
-                await TestTagging(Client, domains[0].DomainName);
+                await TestTaggingAsync(Client, domains[0].DomainName);
             }
         }
 
-        private async Task TestTagging(AmazonRoute53DomainsClient client, string domain)
+        private async Task TestTaggingAsync(AmazonRoute53DomainsClient client, string domain)
         {
             var existingTags = (await client.ListTagsForDomainAsync(domain)).TagList;
 
@@ -67,8 +67,7 @@ namespace Amazon.DNXCore.IntegrationTests
             await client.DeleteTagsForDomainAsync(domain, new List<string> { "tag1" });
 
             tags = (await client.ListTagsForDomainAsync(domain)).TagList;
-            count = tags.Count;
-            Assert.Equal(1, count);
+            Assert.Single(tags);
 
             // Restore previous tags
             if (existingTags.Count > 0)

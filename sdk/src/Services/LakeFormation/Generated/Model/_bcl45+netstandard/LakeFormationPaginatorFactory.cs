@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
@@ -73,6 +74,14 @@ namespace Amazon.LakeFormation.Model
         public IListLakeFormationOptInsPaginator ListLakeFormationOptIns(ListLakeFormationOptInsRequest request) 
         {
             return new ListLakeFormationOptInsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListLFTagExpressions operation
+        ///</summary>
+        public IListLFTagExpressionsPaginator ListLFTagExpressions(ListLFTagExpressionsRequest request) 
+        {
+            return new ListLFTagExpressionsPaginator(this.client, request);
         }
 
         /// <summary>

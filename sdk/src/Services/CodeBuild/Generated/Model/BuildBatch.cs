@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodeBuild.Model
 {
     /// <summary>
@@ -38,7 +39,7 @@ namespace Amazon.CodeBuild.Model
         private ProjectBuildBatchConfig _buildBatchConfig;
         private long? _buildBatchNumber;
         private StatusType _buildBatchStatus;
-        private List<BuildGroup> _buildGroups = new List<BuildGroup>();
+        private List<BuildGroup> _buildGroups = AWSConfigs.InitializeCollections ? new List<BuildGroup>() : null;
         private int? _buildTimeoutInMinutes;
         private ProjectCache _cache;
         private bool? _complete;
@@ -47,17 +48,17 @@ namespace Amazon.CodeBuild.Model
         private string _encryptionKey;
         private DateTime? _endTime;
         private ProjectEnvironment _environment;
-        private List<ProjectFileSystemLocation> _fileSystemLocations = new List<ProjectFileSystemLocation>();
+        private List<ProjectFileSystemLocation> _fileSystemLocations = AWSConfigs.InitializeCollections ? new List<ProjectFileSystemLocation>() : null;
         private string _id;
         private string _initiator;
         private LogsConfig _logConfig;
-        private List<BuildBatchPhase> _phases = new List<BuildBatchPhase>();
+        private List<BuildBatchPhase> _phases = AWSConfigs.InitializeCollections ? new List<BuildBatchPhase>() : null;
         private string _projectName;
         private int? _queuedTimeoutInMinutes;
         private string _resolvedSourceVersion;
-        private List<BuildArtifacts> _secondaryArtifacts = new List<BuildArtifacts>();
-        private List<ProjectSource> _secondarySources = new List<ProjectSource>();
-        private List<ProjectSourceVersion> _secondarySourceVersions = new List<ProjectSourceVersion>();
+        private List<BuildArtifacts> _secondaryArtifacts = AWSConfigs.InitializeCollections ? new List<BuildArtifacts>() : null;
+        private List<ProjectSource> _secondarySources = AWSConfigs.InitializeCollections ? new List<ProjectSource>() : null;
+        private List<ProjectSourceVersion> _secondarySourceVersions = AWSConfigs.InitializeCollections ? new List<ProjectSourceVersion>() : null;
         private string _serviceRole;
         private ProjectSource _source;
         private string _sourceVersion;
@@ -86,8 +87,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property Artifacts. 
         /// <para>
-        /// A <code>BuildArtifacts</code> object the defines the build artifacts for this batch
-        /// build.
+        /// A <c>BuildArtifacts</c> object the defines the build artifacts for this batch build.
         /// </para>
         /// </summary>
         public BuildArtifacts Artifacts
@@ -120,10 +120,10 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property BuildBatchNumber. 
         /// <para>
-        /// The number of the batch build. For each project, the <code>buildBatchNumber</code>
-        /// of its first batch build is <code>1</code>. The <code>buildBatchNumber</code> of each
-        /// subsequent batch build is incremented by <code>1</code>. If a batch build is deleted,
-        /// the <code>buildBatchNumber</code> of other batch builds does not change.
+        /// The number of the batch build. For each project, the <c>buildBatchNumber</c> of its
+        /// first batch build is <c>1</c>. The <c>buildBatchNumber</c> of each subsequent batch
+        /// build is incremented by <c>1</c>. If a batch build is deleted, the <c>buildBatchNumber</c>
+        /// of other batch builds does not change.
         /// </para>
         /// </summary>
         public long BuildBatchNumber
@@ -159,8 +159,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property BuildGroups. 
         /// <para>
-        /// An array of <code>BuildGroup</code> objects that define the build groups for the batch
-        /// build.
+        /// An array of <c>BuildGroup</c> objects that define the build groups for the batch build.
         /// </para>
         /// </summary>
         public List<BuildGroup> BuildGroups
@@ -172,7 +171,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if BuildGroups property is set
         internal bool IsSetBuildGroups()
         {
-            return this._buildGroups != null && this._buildGroups.Count > 0; 
+            return this._buildGroups != null && (this._buildGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -280,7 +279,7 @@ namespace Amazon.CodeBuild.Model
         ///  </note> 
         /// <para>
         /// You can specify either the Amazon Resource Name (ARN) of the CMK or, if available,
-        /// the CMK's alias (using the format <code>alias/&lt;alias-name&gt;</code>).
+        /// the CMK's alias (using the format <c>alias/&lt;alias-name&gt;</c>).
         /// </para>
         /// </summary>
         [AWSProperty(Min=1)]
@@ -332,10 +331,10 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property FileSystemLocations. 
         /// <para>
-        /// An array of <code>ProjectFileSystemLocation</code> objects for the batch build project.
-        /// A <code>ProjectFileSystemLocation</code> object specifies the <code>identifier</code>,
-        /// <code>location</code>, <code>mountOptions</code>, <code>mountPoint</code>, and <code>type</code>
-        /// of a file system created using Amazon Elastic File System. 
+        /// An array of <c>ProjectFileSystemLocation</c> objects for the batch build project.
+        /// A <c>ProjectFileSystemLocation</c> object specifies the <c>identifier</c>, <c>location</c>,
+        /// <c>mountOptions</c>, <c>mountPoint</c>, and <c>type</c> of a file system created using
+        /// Amazon Elastic File System. 
         /// </para>
         /// </summary>
         public List<ProjectFileSystemLocation> FileSystemLocations
@@ -347,7 +346,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if FileSystemLocations property is set
         internal bool IsSetFileSystemLocations()
         {
-            return this._fileSystemLocations != null && this._fileSystemLocations.Count > 0; 
+            return this._fileSystemLocations != null && (this._fileSystemLocations.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -376,15 +375,15 @@ namespace Amazon.CodeBuild.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If CodePipeline started the build, the pipeline's name (for example, <code>codepipeline/my-demo-pipeline</code>).
+        /// If CodePipeline started the build, the pipeline's name (for example, <c>codepipeline/my-demo-pipeline</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If an IAM user started the build, the user's name.
+        /// If a user started the build, the user's name.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If the Jenkins plugin for CodeBuild started the build, the string <code>CodeBuild-Jenkins-Plugin</code>.
+        /// If the Jenkins plugin for CodeBuild started the build, the string <c>CodeBuild-Jenkins-Plugin</c>.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -418,8 +417,7 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property Phases. 
         /// <para>
-        /// An array of <code>BuildBatchPhase</code> objects the specify the phases of the batch
-        /// build.
+        /// An array of <c>BuildBatchPhase</c> objects the specify the phases of the batch build.
         /// </para>
         /// </summary>
         public List<BuildBatchPhase> Phases
@@ -431,7 +429,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if Phases property is set
         internal bool IsSetPhases()
         {
-            return this._phases != null && this._phases.Count > 0; 
+            return this._phases != null && (this._phases.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -507,8 +505,8 @@ namespace Amazon.CodeBuild.Model
         /// <summary>
         /// Gets and sets the property SecondaryArtifacts. 
         /// <para>
-        /// An array of <code>BuildArtifacts</code> objects the define the build artifacts for
-        /// this batch build.
+        /// An array of <c>BuildArtifacts</c> objects the define the build artifacts for this
+        /// batch build.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -521,14 +519,13 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondaryArtifacts property is set
         internal bool IsSetSecondaryArtifacts()
         {
-            return this._secondaryArtifacts != null && this._secondaryArtifacts.Count > 0; 
+            return this._secondaryArtifacts != null && (this._secondaryArtifacts.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySources. 
         /// <para>
-        /// An array of <code>ProjectSource</code> objects that define the sources for the batch
-        /// build.
+        /// An array of <c>ProjectSource</c> objects that define the sources for the batch build.
         /// </para>
         /// </summary>
         [AWSProperty(Min=0, Max=12)]
@@ -541,13 +538,13 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySources property is set
         internal bool IsSetSecondarySources()
         {
-            return this._secondarySources != null && this._secondarySources.Count > 0; 
+            return this._secondarySources != null && (this._secondarySources.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SecondarySourceVersions. 
         /// <para>
-        /// An array of <code>ProjectSourceVersion</code> objects. Each <code>ProjectSourceVersion</code>
+        /// An array of <c>ProjectSourceVersion</c> objects. Each <c>ProjectSourceVersion</c>
         /// must be one of: 
         /// </para>
         ///  <ul> <li> 
@@ -558,9 +555,9 @@ namespace Amazon.CodeBuild.Model
         /// <para>
         /// For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds
         /// to the version of the source code you want to build. If a pull request ID is specified,
-        /// it must use the format <code>pr/pull-request-ID</code> (for example, <code>pr/25</code>).
-        /// If a branch name is specified, the branch's HEAD commit ID is used. If not specified,
-        /// the default branch's HEAD commit ID is used.
+        /// it must use the format <c>pr/pull-request-ID</c> (for example, <c>pr/25</c>). If a
+        /// branch name is specified, the branch's HEAD commit ID is used. If not specified, the
+        /// default branch's HEAD commit ID is used.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -585,7 +582,7 @@ namespace Amazon.CodeBuild.Model
         // Check to see if SecondarySourceVersions property is set
         internal bool IsSetSecondarySourceVersions()
         {
-            return this._secondarySourceVersions != null && this._secondarySourceVersions.Count > 0; 
+            return this._secondarySourceVersions != null && (this._secondarySourceVersions.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

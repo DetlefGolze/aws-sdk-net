@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Batch.Model
 {
     /// <summary>
@@ -35,26 +36,27 @@ namespace Amazon.Batch.Model
     {
         private OrchestrationType _containerOrchestrationType;
         private ContainerProperties _containerProperties;
+        private EcsProperties _ecsProperties;
         private EksProperties _eksProperties;
         private string _jobDefinitionArn;
         private string _jobDefinitionName;
         private NodeProperties _nodeProperties;
-        private Dictionary<string, string> _parameters = new Dictionary<string, string>();
-        private List<string> _platformCapabilities = new List<string>();
+        private Dictionary<string, string> _parameters = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
+        private List<string> _platformCapabilities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _propagateTags;
         private RetryStrategy _retryStrategy;
         private int? _revision;
         private int? _schedulingPriority;
         private string _status;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private JobTimeout _timeout;
         private string _type;
 
         /// <summary>
         /// Gets and sets the property ContainerOrchestrationType. 
         /// <para>
-        /// The orchestration type of the compute environment. The valid values are <code>ECS</code>
-        /// (default) or <code>EKS</code>.
+        /// The orchestration type of the compute environment. The valid values are <c>ECS</c>
+        /// (default) or <c>EKS</c>.
         /// </para>
         /// </summary>
         public OrchestrationType ContainerOrchestrationType
@@ -72,9 +74,9 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property ContainerProperties. 
         /// <para>
-        /// An object with various properties specific to Amazon ECS based jobs. Valid values
-        /// are <code>containerProperties</code>, <code>eksProperties</code>, and <code>nodeProperties</code>.
-        /// Only one can be specified.
+        /// An object with properties specific to Amazon ECS-based jobs. When <c>containerProperties</c>
+        /// is used in the job definition, it can't be used in addition to <c>eksProperties</c>,
+        /// <c>ecsProperties</c>, or <c>nodeProperties</c>.
         /// </para>
         /// </summary>
         public ContainerProperties ContainerProperties
@@ -90,11 +92,31 @@ namespace Amazon.Batch.Model
         }
 
         /// <summary>
+        /// Gets and sets the property EcsProperties. 
+        /// <para>
+        /// An object that contains the properties for the Amazon ECS resources of a job.When
+        /// <c>ecsProperties</c> is used in the job definition, it can't be used in addition to
+        /// <c>containerProperties</c>, <c>eksProperties</c>, or <c>nodeProperties</c>.
+        /// </para>
+        /// </summary>
+        public EcsProperties EcsProperties
+        {
+            get { return this._ecsProperties; }
+            set { this._ecsProperties = value; }
+        }
+
+        // Check to see if EcsProperties property is set
+        internal bool IsSetEcsProperties()
+        {
+            return this._ecsProperties != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property EksProperties. 
         /// <para>
-        /// An object with various properties that are specific to Amazon EKS based jobs. Valid
-        /// values are <code>containerProperties</code>, <code>eksProperties</code>, and <code>nodeProperties</code>.
-        /// Only one can be specified.
+        /// An object with properties that are specific to Amazon EKS-based jobs. When <c>eksProperties</c>
+        /// is used in the job definition, it can't be used in addition to <c>containerProperties</c>,
+        /// <c>ecsProperties</c>, or <c>nodeProperties</c>.
         /// </para>
         /// </summary>
         public EksProperties EksProperties
@@ -150,14 +172,14 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property NodeProperties. 
         /// <para>
-        /// An object with various properties that are specific to multi-node parallel jobs. Valid
-        /// values are <code>containerProperties</code>, <code>eksProperties</code>, and <code>nodeProperties</code>.
-        /// Only one can be specified.
+        /// An object with properties that are specific to multi-node parallel jobs. When <c>nodeProperties</c>
+        /// is used in the job definition, it can't be used in addition to <c>containerProperties</c>,
+        /// <c>ecsProperties</c>, or <c>eksProperties</c>.
         /// </para>
         ///  <note> 
         /// <para>
-        /// If the job runs on Fargate resources, don't specify <code>nodeProperties</code>. Use
-        /// <code>containerProperties</code> instead.
+        /// If the job runs on Fargate resources, don't specify <c>nodeProperties</c>. Use <c>containerProperties</c>
+        /// instead.
         /// </para>
         ///  </note>
         /// </summary>
@@ -178,8 +200,8 @@ namespace Amazon.Batch.Model
         /// <para>
         /// Default parameters or parameter substitution placeholders that are set in the job
         /// definition. Parameters are specified as a key-value pair mapping. Parameters in a
-        /// <code>SubmitJob</code> request override any corresponding parameter defaults from
-        /// the job definition. For more information about specifying parameters, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/job_definition_parameters.html">Job
+        /// <c>SubmitJob</c> request override any corresponding parameter defaults from the job
+        /// definition. For more information about specifying parameters, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/job_definition_parameters.html">Job
         /// definition parameters</a> in the <i>Batch User Guide</i>.
         /// </para>
         /// </summary>
@@ -192,14 +214,14 @@ namespace Amazon.Batch.Model
         // Check to see if Parameters property is set
         internal bool IsSetParameters()
         {
-            return this._parameters != null && this._parameters.Count > 0; 
+            return this._parameters != null && (this._parameters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property PlatformCapabilities. 
         /// <para>
         /// The platform capabilities required by the job definition. If no value is specified,
-        /// it defaults to <code>EC2</code>. Jobs run on Fargate resources specify <code>FARGATE</code>.
+        /// it defaults to <c>EC2</c>. Jobs run on Fargate resources specify <c>FARGATE</c>.
         /// </para>
         /// </summary>
         public List<string> PlatformCapabilities
@@ -211,7 +233,7 @@ namespace Amazon.Batch.Model
         // Check to see if PlatformCapabilities property is set
         internal bool IsSetPlatformCapabilities()
         {
-            return this._platformCapabilities != null && this._platformCapabilities.Count > 0; 
+            return this._platformCapabilities != null && (this._platformCapabilities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -221,7 +243,7 @@ namespace Amazon.Batch.Model
         /// Amazon ECS task. If no value is specified, the tags aren't propagated. Tags can only
         /// be propagated to the tasks when the tasks are created. For tags with the same name,
         /// job tags are given priority over job definitions tags. If the total number of combined
-        /// tags from the job and job definition is over 50, the job is moved to the <code>FAILED</code>
+        /// tags from the job and job definition is over 50, the job is moved to the <c>FAILED</c>
         /// state.
         /// </para>
         /// </summary>
@@ -328,7 +350,7 @@ namespace Amazon.Batch.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -353,9 +375,9 @@ namespace Amazon.Batch.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of job definition. It's either <code>container</code> or <code>multinode</code>.
-        /// If the job is run on Fargate resources, then <code>multinode</code> isn't supported.
-        /// For more information about multi-node parallel jobs, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/multi-node-job-def.html">Creating
+        /// The type of job definition. It's either <c>container</c> or <c>multinode</c>. If the
+        /// job is run on Fargate resources, then <c>multinode</c> isn't supported. For more information
+        /// about multi-node parallel jobs, see <a href="https://docs.aws.amazon.com/batch/latest/userguide/multi-node-job-def.html">Creating
         /// a multi-node parallel job definition</a> in the <i>Batch User Guide</i>.
         /// </para>
         /// </summary>

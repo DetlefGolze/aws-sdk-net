@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.Glue.Model
     public partial class SearchTablesResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<Table> _tableList = new List<Table>();
+        private List<Table> _tableList = AWSConfigs.InitializeCollections ? new List<Table>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -57,8 +58,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property TableList. 
         /// <para>
-        /// A list of the requested <code>Table</code> objects. The <code>SearchTables</code>
-        /// response returns only the tables that you have access to.
+        /// A list of the requested <c>Table</c> objects. The <c>SearchTables</c> response returns
+        /// only the tables that you have access to.
         /// </para>
         /// </summary>
         public List<Table> TableList
@@ -70,7 +71,7 @@ namespace Amazon.Glue.Model
         // Check to see if TableList property is set
         internal bool IsSetTableList()
         {
-            return this._tableList != null && this._tableList.Count > 0; 
+            return this._tableList != null && (this._tableList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

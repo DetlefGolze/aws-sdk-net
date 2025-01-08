@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -33,13 +34,13 @@ namespace Amazon.Glue.Model
     /// </summary>
     public partial class GetBlueprintRunsResponse : AmazonWebServiceResponse
     {
-        private List<BlueprintRun> _blueprintRuns = new List<BlueprintRun>();
+        private List<BlueprintRun> _blueprintRuns = AWSConfigs.InitializeCollections ? new List<BlueprintRun>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property BlueprintRuns. 
         /// <para>
-        /// Returns a list of <code>BlueprintRun</code> objects.
+        /// Returns a list of <c>BlueprintRun</c> objects.
         /// </para>
         /// </summary>
         public List<BlueprintRun> BlueprintRuns
@@ -51,7 +52,7 @@ namespace Amazon.Glue.Model
         // Check to see if BlueprintRuns property is set
         internal bool IsSetBlueprintRuns()
         {
-            return this._blueprintRuns != null && this._blueprintRuns.Count > 0; 
+            return this._blueprintRuns != null && (this._blueprintRuns.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

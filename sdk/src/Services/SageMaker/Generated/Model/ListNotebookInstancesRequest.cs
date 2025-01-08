@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
     /// Container for the parameters to the ListNotebookInstances operation.
-    /// Returns a list of the SageMaker notebook instances in the requester's account in an
-    /// Amazon Web Services Region.
+    /// Returns a list of the SageMaker AI notebook instances in the requester's account in
+    /// an Amazon Web Services Region.
     /// </summary>
     public partial class ListNotebookInstancesRequest : AmazonSageMakerRequest
     {
@@ -208,10 +209,9 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        ///  If the previous call to the <code>ListNotebookInstances</code> is truncated, the
-        /// response includes a <code>NextToken</code>. You can use this token in your subsequent
-        /// <code>ListNotebookInstances</code> request to fetch the next set of notebook instances.
-        /// 
+        ///  If the previous call to the <c>ListNotebookInstances</c> is truncated, the response
+        /// includes a <c>NextToken</c>. You can use this token in your subsequent <c>ListNotebookInstances</c>
+        /// request to fetch the next set of notebook instances. 
         /// </para>
         ///  <note> 
         /// <para>
@@ -257,7 +257,7 @@ namespace Amazon.SageMaker.Model
         /// <summary>
         /// Gets and sets the property SortBy. 
         /// <para>
-        /// The field to sort results by. The default is <code>Name</code>.
+        /// The field to sort results by. The default is <c>Name</c>.
         /// </para>
         /// </summary>
         public NotebookInstanceSortKey SortBy

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.BackupGateway.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.BackupGateway.Model
     /// </summary>
     public partial class ListGatewaysResponse : AmazonWebServiceResponse
     {
-        private List<Gateway> _gateways = new List<Gateway>();
+        private List<Gateway> _gateways = AWSConfigs.InitializeCollections ? new List<Gateway>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,16 +52,16 @@ namespace Amazon.BackupGateway.Model
         // Check to see if Gateways property is set
         internal bool IsSetGateways()
         {
-            return this._gateways != null && this._gateways.Count > 0; 
+            return this._gateways != null && (this._gateways.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
         /// The next item following a partial list of returned resources. For example, if a request
-        /// is made to return <code>maxResults</code> number of resources, <code>NextToken</code>
-        /// allows you to return more items in your list starting at the location pointed to by
-        /// the next token.
+        /// is made to return <c>maxResults</c> number of resources, <c>NextToken</c> allows you
+        /// to return more items in your list starting at the location pointed to by the next
+        /// token.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1000)]

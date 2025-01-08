@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
-    /// The details of a job sent in response to a <code>GetThirdPartyJobDetails</code> request.
+    /// The details of a job sent in response to a <c>GetThirdPartyJobDetails</c> request.
     /// </summary>
     public partial class ThirdPartyJobDetails
     {

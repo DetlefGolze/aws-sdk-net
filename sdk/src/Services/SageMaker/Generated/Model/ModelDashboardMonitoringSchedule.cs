@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SageMaker.Model
 {
     /// <summary>
@@ -33,17 +34,33 @@ namespace Amazon.SageMaker.Model
     /// </summary>
     public partial class ModelDashboardMonitoringSchedule
     {
+        private BatchTransformInput _batchTransformInput;
         private DateTime? _creationTime;
         private string _endpointName;
         private string _failureReason;
         private DateTime? _lastModifiedTime;
         private MonitoringExecutionSummary _lastMonitoringExecutionSummary;
-        private List<MonitoringAlertSummary> _monitoringAlertSummaries = new List<MonitoringAlertSummary>();
+        private List<MonitoringAlertSummary> _monitoringAlertSummaries = AWSConfigs.InitializeCollections ? new List<MonitoringAlertSummary>() : null;
         private string _monitoringScheduleArn;
         private MonitoringScheduleConfig _monitoringScheduleConfig;
         private string _monitoringScheduleName;
         private ScheduleStatus _monitoringScheduleStatus;
         private MonitoringType _monitoringType;
+
+        /// <summary>
+        /// Gets and sets the property BatchTransformInput.
+        /// </summary>
+        public BatchTransformInput BatchTransformInput
+        {
+            get { return this._batchTransformInput; }
+            set { this._batchTransformInput = value; }
+        }
+
+        // Check to see if BatchTransformInput property is set
+        internal bool IsSetBatchTransformInput()
+        {
+            return this._batchTransformInput != null;
+        }
 
         /// <summary>
         /// Gets and sets the property CreationTime. 
@@ -150,7 +167,7 @@ namespace Amazon.SageMaker.Model
         // Check to see if MonitoringAlertSummaries property is set
         internal bool IsSetMonitoringAlertSummaries()
         {
-            return this._monitoringAlertSummaries != null && this._monitoringAlertSummaries.Count > 0; 
+            return this._monitoringAlertSummaries != null && (this._monitoringAlertSummaries.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

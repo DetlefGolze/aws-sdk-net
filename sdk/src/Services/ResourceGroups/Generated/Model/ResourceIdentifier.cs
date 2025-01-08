@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceGroups.Model
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The ARN of a resource.
+        /// The Amazon resource name (ARN) of a resource.
         /// </para>
         /// </summary>
         public string ResourceArn
@@ -57,7 +58,7 @@ namespace Amazon.ResourceGroups.Model
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The resource type of a resource, such as <code>AWS::EC2::Instance</code>.
+        /// The resource type of a resource, such as <c>AWS::EC2::Instance</c>.
         /// </para>
         /// </summary>
         public string ResourceType

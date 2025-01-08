@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -39,24 +40,24 @@ namespace Amazon.IoTSiteWise.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    /// The <code>assetId</code> and <code>propertyId</code> of an asset property.
+    /// The <c>assetId</c> and <c>propertyId</c> of an asset property.
     /// </para>
     ///  </li> <li> 
     /// <para>
-    /// A <code>propertyAlias</code>, which is a data stream alias (for example, <code>/company/windfarm/3/turbine/7/temperature</code>).
+    /// A <c>propertyAlias</c>, which is a data stream alias (for example, <c>/company/windfarm/3/turbine/7/temperature</c>).
     /// To define an asset property's alias, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html">UpdateAssetProperty</a>.
     /// </para>
     ///  </li> </ul>
     /// </summary>
     public partial class BatchGetAssetPropertyAggregatesEntry
     {
-        private List<string> _aggregateTypes = new List<string>();
+        private List<string> _aggregateTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _assetId;
         private DateTime? _endDate;
         private string _entryId;
         private string _propertyAlias;
         private string _propertyId;
-        private List<string> _qualities = new List<string>();
+        private List<string> _qualities = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resolution;
         private DateTime? _startDate;
         private TimeOrdering _timeOrdering;
@@ -77,7 +78,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if AggregateTypes property is set
         internal bool IsSetAggregateTypes()
         {
-            return this._aggregateTypes != null && this._aggregateTypes.Count > 0; 
+            return this._aggregateTypes != null && (this._aggregateTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -142,7 +143,7 @@ namespace Amazon.IoTSiteWise.Model
         /// Gets and sets the property PropertyAlias. 
         /// <para>
         /// The alias that identifies the property, such as an OPC-UA server data stream path
-        /// (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). For more information,
+        /// (for example, <c>/company/windfarm/3/turbine/7/temperature</c>). For more information,
         /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html">Mapping
         /// industrial data streams to asset properties</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
@@ -163,7 +164,7 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property PropertyId. 
         /// <para>
-        /// The ID of the asset property.
+        /// The ID of the asset property, in UUID format.
         /// </para>
         /// </summary>
         [AWSProperty(Min=36, Max=36)]
@@ -195,7 +196,7 @@ namespace Amazon.IoTSiteWise.Model
         // Check to see if Qualities property is set
         internal bool IsSetQualities()
         {
-            return this._qualities != null && this._qualities.Count > 0; 
+            return this._qualities != null && (this._qualities.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -244,7 +245,7 @@ namespace Amazon.IoTSiteWise.Model
         /// </para>
         ///  
         /// <para>
-        /// Default: <code>ASCENDING</code> 
+        /// Default: <c>ASCENDING</c> 
         /// </para>
         /// </summary>
         public TimeOrdering TimeOrdering

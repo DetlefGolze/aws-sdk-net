@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PinpointEmail.Model
 {
     /// <summary>
@@ -40,7 +41,7 @@ namespace Amazon.PinpointEmail.Model
         private CloudWatchDestination _cloudWatchDestination;
         private bool? _enabled;
         private KinesisFirehoseDestination _kinesisFirehoseDestination;
-        private List<string> _matchingEventTypes = new List<string>();
+        private List<string> _matchingEventTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _name;
         private PinpointDestination _pinpointDestination;
         private SnsDestination _snsDestination;
@@ -67,13 +68,13 @@ namespace Amazon.PinpointEmail.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        /// If <code>true</code>, the event destination is enabled. When the event destination
-        /// is enabled, the specified event types are sent to the destinations in this <code>EventDestinationDefinition</code>.
+        /// If <c>true</c>, the event destination is enabled. When the event destination is enabled,
+        /// the specified event types are sent to the destinations in this <c>EventDestinationDefinition</c>.
         /// </para>
         ///  
         /// <para>
-        /// If <code>false</code>, the event destination is disabled. When the event destination
-        /// is disabled, events aren't sent to the specified destinations.
+        /// If <c>false</c>, the event destination is disabled. When the event destination is
+        /// disabled, events aren't sent to the specified destinations.
         /// </para>
         /// </summary>
         public bool Enabled
@@ -124,7 +125,7 @@ namespace Amazon.PinpointEmail.Model
         // Check to see if MatchingEventTypes property is set
         internal bool IsSetMatchingEventTypes()
         {
-            return this._matchingEventTypes != null && this._matchingEventTypes.Count > 0; 
+            return this._matchingEventTypes != null && (this._matchingEventTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

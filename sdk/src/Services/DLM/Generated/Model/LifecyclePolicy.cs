@@ -26,16 +26,17 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DLM.Model
 {
     /// <summary>
-    /// <b>[All policy types]</b> Detailed information about a snapshot, AMI, or event-based
-    /// lifecycle policy.
+    /// Information about a lifecycle policy.
     /// </summary>
     public partial class LifecyclePolicy
     {
         private DateTime? _dateCreated;
         private DateTime? _dateModified;
+        private bool? _defaultPolicy;
         private string _description;
         private string _executionRoleArn;
         private string _policyArn;
@@ -43,7 +44,7 @@ namespace Amazon.DLM.Model
         private string _policyId;
         private GettablePolicyStateValues _state;
         private string _statusMessage;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property DateCreated. 
@@ -79,6 +80,33 @@ namespace Amazon.DLM.Model
         internal bool IsSetDateModified()
         {
             return this._dateModified.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property DefaultPolicy. 
+        /// <para>
+        /// Indicates whether the policy is a default lifecycle policy or a custom lifecycle policy.
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        ///  <c>true</c> - the policy is a default policy.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        ///  <c>false</c> - the policy is a custom policy.
+        /// </para>
+        ///  </li> </ul>
+        /// </summary>
+        public bool DefaultPolicy
+        {
+            get { return this._defaultPolicy.GetValueOrDefault(); }
+            set { this._defaultPolicy = value; }
+        }
+
+        // Check to see if DefaultPolicy property is set
+        internal bool IsSetDefaultPolicy()
+        {
+            return this._defaultPolicy.HasValue; 
         }
 
         /// <summary>
@@ -229,7 +257,7 @@ namespace Amazon.DLM.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

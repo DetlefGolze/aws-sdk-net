@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LakeFormation.Model
 {
     /// <summary>
-    /// A structure containing the additional details to be returned in the <code>AdditionalDetails</code>
-    /// attribute of <code>PrincipalResourcePermissions</code>.
+    /// A structure containing the additional details to be returned in the <c>AdditionalDetails</c>
+    /// attribute of <c>PrincipalResourcePermissions</c>.
     /// 
     ///  
     /// <para>
@@ -40,7 +41,7 @@ namespace Amazon.LakeFormation.Model
     /// </summary>
     public partial class DetailsMap
     {
-        private List<string> _resourceShare = new List<string>();
+        private List<string> _resourceShare = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceShare. 
@@ -57,7 +58,7 @@ namespace Amazon.LakeFormation.Model
         // Check to see if ResourceShare property is set
         internal bool IsSetResourceShare()
         {
-            return this._resourceShare != null && this._resourceShare.Count > 0; 
+            return this._resourceShare != null && (this._resourceShare.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,12 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeImageAttribute operation.
     /// Describes the specified attribute of the specified AMI. You can specify only one attribute
     /// at a time.
+    /// 
+    ///  <note> 
+    /// <para>
+    /// The order of the elements in the response, including those within nested structures,
+    /// might vary. Applications should not assume the elements appear in a particular order.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class DescribeImageAttributeRequest : AmazonEC2Request
     {
@@ -47,7 +55,7 @@ namespace Amazon.EC2.Model
         /// Instantiates DescribeImageAttributeRequest with the parameterized properties
         /// </summary>
         /// <param name="imageId">The ID of the AMI.</param>
-        /// <param name="attribute">The AMI attribute.  <b>Note</b>: The <code>blockDeviceMapping</code> attribute is deprecated. Using this attribute returns the <code>Client.AuthFailure</code> error. To get information about the block device mappings for an AMI, use the <a>DescribeImages</a> action.</param>
+        /// <param name="attribute">The AMI attribute.  <b>Note</b>: The <c>blockDeviceMapping</c> attribute is deprecated. Using this attribute returns the <c>Client.AuthFailure</c> error. To get information about the block device mappings for an AMI, use the <a>DescribeImages</a> action.</param>
         public DescribeImageAttributeRequest(string imageId, ImageAttributeName attribute)
         {
             _imageId = imageId;
@@ -61,9 +69,9 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <b>Note</b>: The <code>blockDeviceMapping</code> attribute is deprecated. Using this
-        /// attribute returns the <code>Client.AuthFailure</code> error. To get information about
-        /// the block device mappings for an AMI, use the <a>DescribeImages</a> action.
+        ///  <b>Note</b>: The <c>blockDeviceMapping</c> attribute is deprecated. Using this attribute
+        /// returns the <c>Client.AuthFailure</c> error. To get information about the block device
+        /// mappings for an AMI, use the <a>DescribeImages</a> action.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

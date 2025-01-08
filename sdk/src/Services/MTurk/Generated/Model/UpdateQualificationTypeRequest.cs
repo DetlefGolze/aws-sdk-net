@@ -26,13 +26,14 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MTurk.Model
 {
     /// <summary>
     /// Container for the parameters to the UpdateQualificationType operation.
-    /// The <code>UpdateQualificationType</code> operation modifies the attributes of an
-    /// existing Qualification type, which is represented by a QualificationType data structure.
-    /// Only the owner of a Qualification type can modify its attributes. 
+    /// The <c>UpdateQualificationType</c> operation modifies the attributes of an existing
+    /// Qualification type, which is represented by a QualificationType data structure. Only
+    /// the owner of a Qualification type can modify its attributes. 
     /// 
     ///  
     /// <para>
@@ -230,7 +231,7 @@ namespace Amazon.MTurk.Model
         /// Gets and sets the property Test. 
         /// <para>
         /// The questions for the Qualification test a Worker must answer correctly to obtain
-        /// a Qualification of this type. If this parameter is specified, <code>TestDurationInSeconds</code>
+        /// a Qualification of this type. If this parameter is specified, <c>TestDurationInSeconds</c>
         /// must also be specified.
         /// </para>
         ///  

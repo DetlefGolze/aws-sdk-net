@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTAnalytics.Model
 {
     /// <summary>
@@ -39,8 +40,8 @@ namespace Amazon.IoTAnalytics.Model
         /// <summary>
         /// Gets and sets the property MessageId. 
         /// <para>
-        /// The ID you want to assign to the message. Each <code>messageId</code> must be unique
-        /// within each batch sent.
+        /// The ID you want to assign to the message. Each <c>messageId</c> must be unique within
+        /// each batch sent.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=128)]

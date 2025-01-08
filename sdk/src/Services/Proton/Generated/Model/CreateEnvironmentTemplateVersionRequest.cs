@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Proton.Model
 {
     /// <summary>
@@ -41,7 +42,7 @@ namespace Amazon.Proton.Model
         private string _description;
         private string _majorVersion;
         private TemplateVersionSourceInput _source;
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private string _templateName;
 
         /// <summary>
@@ -86,12 +87,12 @@ namespace Amazon.Proton.Model
         /// <summary>
         /// Gets and sets the property MajorVersion. 
         /// <para>
-        /// To create a new minor version of the environment template, include <code>major Version</code>.
+        /// To create a new minor version of the environment template, include <c>major Version</c>.
         /// </para>
         ///  
         /// <para>
-        /// To create a new major and minor version of the environment template, exclude <code>major
-        /// Version</code>.
+        /// To create a new major and minor version of the environment template, exclude <c>major
+        /// Version</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=20)]
@@ -149,7 +150,7 @@ namespace Amazon.Proton.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

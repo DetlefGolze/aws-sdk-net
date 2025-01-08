@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IoTSiteWise.Model
 {
     /// <summary>
@@ -35,19 +36,22 @@ namespace Amazon.IoTSiteWise.Model
     {
         private string _hierarchyId;
         private string _propertyId;
+        private List<AssetModelPropertyPathSegment> _propertyPath = AWSConfigs.InitializeCollections ? new List<AssetModelPropertyPathSegment>() : null;
 
         /// <summary>
         /// Gets and sets the property HierarchyId. 
         /// <para>
         /// The ID of the hierarchy to query for the property ID. You can use the hierarchy's
-        /// name instead of the hierarchy's ID.
+        /// name instead of the hierarchy's ID. If the hierarchy has an external ID, you can specify
+        /// <c>externalId:</c> followed by the external ID. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         ///  
         /// <para>
         /// You use a hierarchy ID instead of a model ID because you can have several hierarchies
-        /// using the same model and therefore the same <code>propertyId</code>. For example,
-        /// you might have separately grouped assets that come from the same asset model. For
-        /// more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
+        /// using the same model and therefore the same <c>propertyId</c>. For example, you might
+        /// have separately grouped assets that come from the same asset model. For more information,
+        /// see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html">Asset
         /// hierarchies</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
@@ -67,11 +71,13 @@ namespace Amazon.IoTSiteWise.Model
         /// <summary>
         /// Gets and sets the property PropertyId. 
         /// <para>
-        /// The ID of the property to use as the variable. You can use the property <code>name</code>
-        /// if it's from the same asset model.
+        /// The ID of the property to use as the variable. You can use the property <c>name</c>
+        /// if it's from the same asset model. If the property has an external ID, you can specify
+        /// <c>externalId:</c> followed by the external ID. For more information, see <a href="https://docs.aws.amazon.com/iot-sitewise/latest/userguide/object-ids.html#external-ids">Using
+        /// external IDs</a> in the <i>IoT SiteWise User Guide</i>.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=256)]
+        [AWSProperty(Min=1, Max=256)]
         public string PropertyId
         {
             get { return this._propertyId; }
@@ -82,6 +88,24 @@ namespace Amazon.IoTSiteWise.Model
         internal bool IsSetPropertyId()
         {
             return this._propertyId != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property PropertyPath. 
+        /// <para>
+        /// The path of the property.
+        /// </para>
+        /// </summary>
+        public List<AssetModelPropertyPathSegment> PropertyPath
+        {
+            get { return this._propertyPath; }
+            set { this._propertyPath = value; }
+        }
+
+        // Check to see if PropertyPath property is set
+        internal bool IsSetPropertyPath()
+        {
+            return this._propertyPath != null && (this._propertyPath.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

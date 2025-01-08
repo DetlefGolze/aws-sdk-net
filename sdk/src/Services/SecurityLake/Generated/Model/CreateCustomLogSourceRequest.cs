@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityLake.Model
 {
     /// <summary>
@@ -41,16 +42,17 @@ namespace Amazon.SecurityLake.Model
     public partial class CreateCustomLogSourceRequest : AmazonSecurityLakeRequest
     {
         private CustomLogSourceConfiguration _configuration;
-        private List<string> _eventClasses = new List<string>();
+        private List<string> _eventClasses = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _sourceName;
         private string _sourceVersion;
 
         /// <summary>
         /// Gets and sets the property Configuration. 
         /// <para>
-        /// The configuration for the third-party custom source.
+        /// The configuration used for the third-party custom source.
         /// </para>
         /// </summary>
+        [AWSProperty(Required=true)]
         public CustomLogSourceConfiguration Configuration
         {
             get { return this._configuration; }
@@ -72,119 +74,119 @@ namespace Amazon.SecurityLake.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>ACCESS_ACTIVITY</code> 
+        ///  <c>ACCESS_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FILE_ACTIVITY</code> 
+        ///  <c>FILE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KERNEL_ACTIVITY</code> 
+        ///  <c>KERNEL_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>KERNEL_EXTENSION</code> 
+        ///  <c>KERNEL_EXTENSION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MEMORY_ACTIVITY</code> 
+        ///  <c>MEMORY_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MODULE_ACTIVITY</code> 
+        ///  <c>MODULE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>PROCESS_ACTIVITY</code> 
+        ///  <c>PROCESS_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REGISTRY_KEY_ACTIVITY</code> 
+        ///  <c>REGISTRY_KEY_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>REGISTRY_VALUE_ACTIVITY</code> 
+        ///  <c>REGISTRY_VALUE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RESOURCE_ACTIVITY</code> 
+        ///  <c>RESOURCE_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SCHEDULED_JOB_ACTIVITY</code> 
+        ///  <c>SCHEDULED_JOB_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SECURITY_FINDING</code> 
+        ///  <c>SECURITY_FINDING</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ACCOUNT_CHANGE</code> 
+        ///  <c>ACCOUNT_CHANGE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AUTHENTICATION</code> 
+        ///  <c>AUTHENTICATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>AUTHORIZATION</code> 
+        ///  <c>AUTHORIZATION</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ENTITY_MANAGEMENT_AUDIT</code> 
+        ///  <c>ENTITY_MANAGEMENT_AUDIT</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DHCP_ACTIVITY</code> 
+        ///  <c>DHCP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>NETWORK_ACTIVITY</code> 
+        ///  <c>NETWORK_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DNS_ACTIVITY</code> 
+        ///  <c>DNS_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>FTP_ACTIVITY</code> 
+        ///  <c>FTP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>HTTP_ACTIVITY</code> 
+        ///  <c>HTTP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>RDP_ACTIVITY</code> 
+        ///  <c>RDP_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SMB_ACTIVITY</code> 
+        ///  <c>SMB_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SSH_ACTIVITY</code> 
+        ///  <c>SSH_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CONFIG_STATE</code> 
+        ///  <c>CONFIG_STATE</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>INVENTORY_INFO</code> 
+        ///  <c>INVENTORY_INFO</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>EMAIL_ACTIVITY</code> 
+        ///  <c>EMAIL_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>API_ACTIVITY</code> 
+        ///  <c>API_ACTIVITY</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>CLOUD_API</code> 
+        ///  <c>CLOUD_API</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -197,14 +199,18 @@ namespace Amazon.SecurityLake.Model
         // Check to see if EventClasses property is set
         internal bool IsSetEventClasses()
         {
-            return this._eventClasses != null && this._eventClasses.Count > 0; 
+            return this._eventClasses != null && (this._eventClasses.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SourceName. 
         /// <para>
         /// Specify the name for a third-party custom source. This must be a Regionally unique
-        /// value.
+        /// value. The <c>sourceName</c> you enter here, is used in the <c>LogProviderRole</c>
+        /// name which follows the convention <c>AmazonSecurityLake-Provider-{name of the custom
+        /// source}-{region}</c>. You must use a <c>CustomLogSource</c> name that is shorter than
+        /// or equal to 20 characters. This ensures that the <c>LogProviderRole</c> name is below
+        /// the 64 character limit.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=64)]

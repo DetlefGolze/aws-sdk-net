@@ -26,17 +26,24 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.S3Control.Model
 {
     /// <summary>
     /// Container for the parameters to the SubmitMultiRegionAccessPointRoutes operation.
+    /// <note> 
+    /// <para>
+    /// This operation is not supported by directory buckets.
+    /// </para>
+    ///  </note> 
+    /// <para>
     /// Submits an updated route configuration for a Multi-Region Access Point. This API operation
     /// updates the routing status for the specified Regions from active to passive, or from
-    /// passive to active. A value of <code>0</code> indicates a passive status, which means
-    /// that traffic won't be routed to the specified Region. A value of <code>100</code>
-    /// indicates an active status, which means that traffic will be routed to the specified
-    /// Region. At least one Region must be active at all times.
-    /// 
+    /// passive to active. A value of <c>0</c> indicates a passive status, which means that
+    /// traffic won't be routed to the specified Region. A value of <c>100</c> indicates an
+    /// active status, which means that traffic will be routed to the specified Region. At
+    /// least one Region must be active at all times.
+    /// </para>
     ///  
     /// <para>
     /// When the routing configuration is changed, any in-progress operations (uploads, copies,
@@ -56,35 +63,31 @@ namespace Amazon.S3Control.Model
     /// </para>
     ///  <ul> <li> 
     /// <para>
-    ///  <code>us-east-1</code> 
+    ///  <c>us-east-1</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>us-west-2</code> 
+    ///  <c>us-west-2</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ap-southeast-2</code> 
+    ///  <c>ap-southeast-2</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>ap-northeast-1</code> 
+    ///  <c>ap-northeast-1</c> 
     /// </para>
     ///  </li> <li> 
     /// <para>
-    ///  <code>eu-west-1</code> 
+    ///  <c>eu-west-1</c> 
     /// </para>
-    ///  </li> </ul> <note> 
-    /// <para>
-    /// Your Amazon S3 bucket does not need to be in these five Regions.
-    /// </para>
-    ///  </note>
+    ///  </li> </ul>
     /// </summary>
     public partial class SubmitMultiRegionAccessPointRoutesRequest : AmazonS3ControlRequest
     {
         private string _accountId;
         private string _mrap;
-        private List<MultiRegionAccessPointRoute> _routeUpdates = new List<MultiRegionAccessPointRoute>();
+        private List<MultiRegionAccessPointRoute> _routeUpdates = AWSConfigs.InitializeCollections ? new List<MultiRegionAccessPointRoute>() : null;
 
         /// <summary>
         /// Gets and sets the property AccountId. 
@@ -102,7 +105,7 @@ namespace Amazon.S3Control.Model
         // Check to see if AccountId property is set
         internal bool IsSetAccountId()
         {
-            return this._accountId != null;
+            return !string.IsNullOrEmpty(this._accountId);
         }
 
         /// <summary>
@@ -128,7 +131,7 @@ namespace Amazon.S3Control.Model
         /// Gets and sets the property RouteUpdates. 
         /// <para>
         /// The different routes that make up the new route configuration. Active routes return
-        /// a value of <code>100</code>, and passive routes return a value of <code>0</code>.
+        /// a value of <c>100</c>, and passive routes return a value of <c>0</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -141,7 +144,7 @@ namespace Amazon.S3Control.Model
         // Check to see if RouteUpdates property is set
         internal bool IsSetRouteUpdates()
         {
-            return this._routeUpdates != null && this._routeUpdates.Count > 0; 
+            return this._routeUpdates != null && (this._routeUpdates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

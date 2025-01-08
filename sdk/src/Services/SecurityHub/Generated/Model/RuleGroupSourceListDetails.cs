@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -34,13 +35,13 @@ namespace Amazon.SecurityHub.Model
     public partial class RuleGroupSourceListDetails
     {
         private string _generatedRulesType;
-        private List<string> _targets = new List<string>();
-        private List<string> _targetTypes = new List<string>();
+        private List<string> _targets = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _targetTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property GeneratedRulesType. 
         /// <para>
-        /// Indicates whether to allow or deny access to the domains listed in <code>Targets</code>.
+        /// Indicates whether to allow or deny access to the domains listed in <c>Targets</c>.
         /// </para>
         /// </summary>
         public string GeneratedRulesType
@@ -59,8 +60,8 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property Targets. 
         /// <para>
         /// The domains that you want to inspect for in your traffic flows. You can provide full
-        /// domain names, or use the '.' prefix as a wildcard. For example, <code>.example.com</code>
-        /// matches all domains that end with <code>example.com</code>.
+        /// domain names, or use the '.' prefix as a wildcard. For example, <c>.example.com</c>
+        /// matches all domains that end with <c>example.com</c>.
         /// </para>
         /// </summary>
         public List<string> Targets
@@ -72,14 +73,14 @@ namespace Amazon.SecurityHub.Model
         // Check to see if Targets property is set
         internal bool IsSetTargets()
         {
-            return this._targets != null && this._targets.Count > 0; 
+            return this._targets != null && (this._targets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property TargetTypes. 
         /// <para>
-        /// The protocols that you want to inspect. Specify <code>LS_SNI</code> for HTTPS. Specify
-        /// <code>HTTP_HOST</code> for HTTP. You can specify either or both.
+        /// The protocols that you want to inspect. Specify <c>LS_SNI</c> for HTTPS. Specify <c>HTTP_HOST</c>
+        /// for HTTP. You can specify either or both.
         /// </para>
         /// </summary>
         public List<string> TargetTypes
@@ -91,7 +92,7 @@ namespace Amazon.SecurityHub.Model
         // Check to see if TargetTypes property is set
         internal bool IsSetTargetTypes()
         {
-            return this._targetTypes != null && this._targetTypes.Count > 0; 
+            return this._targetTypes != null && (this._targetTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RoboMaker.Model
 {
     /// <summary>
@@ -33,8 +34,8 @@ namespace Amazon.RoboMaker.Model
     /// </summary>
     public partial class LaunchConfig
     {
-        private List<string> _command = new List<string>();
-        private Dictionary<string, string> _environmentVariables = new Dictionary<string, string>();
+        private List<string> _command = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _environmentVariables = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _launchFile;
         private string _packageName;
         private PortForwardingConfig _portForwardingConfig;
@@ -43,12 +44,12 @@ namespace Amazon.RoboMaker.Model
         /// <summary>
         /// Gets and sets the property Command. 
         /// <para>
-        /// If you've specified <code>General</code> as the value for your <code>RobotSoftwareSuite</code>,
+        /// If you've specified <c>General</c> as the value for your <c>RobotSoftwareSuite</c>,
         /// you can use this field to specify a list of commands for your container image.
         /// </para>
         ///  
         /// <para>
-        /// If you've specified <code>SimulationRuntime</code> as the value for your <code>SimulationSoftwareSuite</code>,
+        /// If you've specified <c>SimulationRuntime</c> as the value for your <c>SimulationSoftwareSuite</c>,
         /// you can use this field to specify a list of commands for your container image.
         /// </para>
         /// </summary>
@@ -61,7 +62,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if Command property is set
         internal bool IsSetCommand()
         {
-            return this._command != null && this._command.Count > 0; 
+            return this._command != null && (this._command.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Amazon.RoboMaker.Model
         // Check to see if EnvironmentVariables property is set
         internal bool IsSetEnvironmentVariables()
         {
-            return this._environmentVariables != null && this._environmentVariables.Count > 0; 
+            return this._environmentVariables != null && (this._environmentVariables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -143,8 +144,8 @@ namespace Amazon.RoboMaker.Model
         /// Gets and sets the property StreamUI. 
         /// <para>
         /// Boolean indicating whether a streaming session will be configured for the application.
-        /// If <code>True</code>, AWS RoboMaker will configure a connection so you can interact
-        /// with your application as it is running in the simulation. You must configure and launch
+        /// If <c>True</c>, AWS RoboMaker will configure a connection so you can interact with
+        /// your application as it is running in the simulation. You must configure and launch
         /// the component. It must have a graphical user interface. 
         /// </para>
         /// </summary>

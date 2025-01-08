@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.ComputeOptimizer.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -65,6 +66,7 @@ namespace Amazon.ComputeOptimizer.Model.Internal.MarshallTransformations
             using (StringWriter stringWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 JsonWriter writer = new JsonWriter(stringWriter);
+                writer.Validate = false;
                 writer.WriteObjectStart();
                 var context = new JsonMarshallerContext(request, writer);
                 if(publicRequest.IsSetEnhancedInfrastructureMetrics())
@@ -90,10 +92,38 @@ namespace Amazon.ComputeOptimizer.Model.Internal.MarshallTransformations
                     context.Writer.Write(publicRequest.InferredWorkloadTypes);
                 }
 
+                if(publicRequest.IsSetLookBackPeriod())
+                {
+                    context.Writer.WritePropertyName("lookBackPeriod");
+                    context.Writer.Write(publicRequest.LookBackPeriod);
+                }
+
+                if(publicRequest.IsSetPreferredResources())
+                {
+                    context.Writer.WritePropertyName("preferredResources");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestPreferredResourcesListValue in publicRequest.PreferredResources)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = PreferredResourceMarshaller.Instance;
+                        marshaller.Marshall(publicRequestPreferredResourcesListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
+                }
+
                 if(publicRequest.IsSetResourceType())
                 {
                     context.Writer.WritePropertyName("resourceType");
                     context.Writer.Write(publicRequest.ResourceType);
+                }
+
+                if(publicRequest.IsSetSavingsEstimationMode())
+                {
+                    context.Writer.WritePropertyName("savingsEstimationMode");
+                    context.Writer.Write(publicRequest.SavingsEstimationMode);
                 }
 
                 if(publicRequest.IsSetScope())
@@ -105,6 +135,22 @@ namespace Amazon.ComputeOptimizer.Model.Internal.MarshallTransformations
                     marshaller.Marshall(publicRequest.Scope, context);
 
                     context.Writer.WriteObjectEnd();
+                }
+
+                if(publicRequest.IsSetUtilizationPreferences())
+                {
+                    context.Writer.WritePropertyName("utilizationPreferences");
+                    context.Writer.WriteArrayStart();
+                    foreach(var publicRequestUtilizationPreferencesListValue in publicRequest.UtilizationPreferences)
+                    {
+                        context.Writer.WriteObjectStart();
+
+                        var marshaller = UtilizationPreferenceMarshaller.Instance;
+                        marshaller.Marshall(publicRequestUtilizationPreferencesListValue, context);
+
+                        context.Writer.WriteObjectEnd();
+                    }
+                    context.Writer.WriteArrayEnd();
                 }
 
                 writer.WriteObjectEnd();

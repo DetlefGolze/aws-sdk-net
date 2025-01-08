@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.RDS.Model
 {
     /// <summary>
@@ -33,15 +34,15 @@ namespace Amazon.RDS.Model
     /// 
     ///  
     /// <para>
-    /// This data type is used as a response element in the <code>DescribeOrderableDBInstanceOptions</code>
+    /// This data type is used as a response element in the <c>DescribeOrderableDBInstanceOptions</c>
     /// action.
     /// </para>
     /// </summary>
     public partial class OrderableDBInstanceOption
     {
         private string _availabilityZoneGroup;
-        private List<AvailabilityZone> _availabilityZones = new List<AvailabilityZone>();
-        private List<AvailableProcessorFeature> _availableProcessorFeatures = new List<AvailableProcessorFeature>();
+        private List<AvailabilityZone> _availabilityZones = AWSConfigs.InitializeCollections ? new List<AvailabilityZone>() : null;
+        private List<AvailableProcessorFeature> _availableProcessorFeatures = AWSConfigs.InitializeCollections ? new List<AvailableProcessorFeature>() : null;
         private string _dbInstanceClass;
         private string _engine;
         private string _engineVersion;
@@ -60,10 +61,11 @@ namespace Amazon.RDS.Model
         private bool? _outpostCapable;
         private bool? _readReplicaCapable;
         private string _storageType;
-        private List<string> _supportedActivityStreamModes = new List<string>();
-        private List<string> _supportedEngineModes = new List<string>();
-        private List<string> _supportedNetworkTypes = new List<string>();
+        private List<string> _supportedActivityStreamModes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedEngineModes = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _supportedNetworkTypes = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _supportsClusters;
+        private bool? _supportsDedicatedLogVolume;
         private bool? _supportsEnhancedMonitoring;
         private bool? _supportsGlobalDatabases;
         private bool? _supportsIAMDatabaseAuthentication;
@@ -108,7 +110,7 @@ namespace Amazon.RDS.Model
         // Check to see if AvailabilityZones property is set
         internal bool IsSetAvailabilityZones()
         {
-            return this._availabilityZones != null && this._availabilityZones.Count > 0; 
+            return this._availabilityZones != null && (this._availabilityZones.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -126,7 +128,7 @@ namespace Amazon.RDS.Model
         // Check to see if AvailableProcessorFeatures property is set
         internal bool IsSetAvailableProcessorFeatures()
         {
-            return this._availableProcessorFeatures != null && this._availableProcessorFeatures.Count > 0; 
+            return this._availableProcessorFeatures != null && (this._availableProcessorFeatures.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -462,7 +464,7 @@ namespace Amazon.RDS.Model
         /// Gets and sets the property SupportedActivityStreamModes. 
         /// <para>
         /// The list of supported modes for Database Activity Streams. Aurora PostgreSQL returns
-        /// the value <code>[sync, async]</code>. Aurora MySQL and RDS for Oracle return <code>[async]</code>
+        /// the value <c>[sync, async]</c>. Aurora MySQL and RDS for Oracle return <c>[async]</c>
         /// only. If Database Activity Streams isn't supported, the return value is an empty list.
         /// </para>
         /// </summary>
@@ -475,7 +477,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedActivityStreamModes property is set
         internal bool IsSetSupportedActivityStreamModes()
         {
-            return this._supportedActivityStreamModes != null && this._supportedActivityStreamModes.Count > 0; 
+            return this._supportedActivityStreamModes != null && (this._supportedActivityStreamModes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -493,18 +495,18 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedEngineModes property is set
         internal bool IsSetSupportedEngineModes()
         {
-            return this._supportedEngineModes != null && this._supportedEngineModes.Count > 0; 
+            return this._supportedEngineModes != null && (this._supportedEngineModes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property SupportedNetworkTypes. 
         /// <para>
-        /// The network types supported by the DB instance (<code>IPV4</code> or <code>DUAL</code>).
+        /// The network types supported by the DB instance (<c>IPV4</c> or <c>DUAL</c>).
         /// </para>
         ///  
         /// <para>
         /// A DB instance can support only the IPv4 protocol or the IPv4 and the IPv6 protocols
-        /// (<code>DUAL</code>).
+        /// (<c>DUAL</c>).
         /// </para>
         ///  
         /// <para>
@@ -521,7 +523,7 @@ namespace Amazon.RDS.Model
         // Check to see if SupportedNetworkTypes property is set
         internal bool IsSetSupportedNetworkTypes()
         {
-            return this._supportedNetworkTypes != null && this._supportedNetworkTypes.Count > 0; 
+            return this._supportedNetworkTypes != null && (this._supportedNetworkTypes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -546,6 +548,24 @@ namespace Amazon.RDS.Model
         internal bool IsSetSupportsClusters()
         {
             return this._supportsClusters.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property SupportsDedicatedLogVolume. 
+        /// <para>
+        /// Indicates whether a DB instance supports using a dedicated log volume (DLV).
+        /// </para>
+        /// </summary>
+        public bool SupportsDedicatedLogVolume
+        {
+            get { return this._supportsDedicatedLogVolume.GetValueOrDefault(); }
+            set { this._supportsDedicatedLogVolume = value; }
+        }
+
+        // Check to see if SupportsDedicatedLogVolume property is set
+        internal bool IsSetSupportsDedicatedLogVolume()
+        {
+            return this._supportsDedicatedLogVolume.HasValue; 
         }
 
         /// <summary>

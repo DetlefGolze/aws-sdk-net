@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
@@ -67,13 +68,13 @@ namespace Amazon.Lambda.Model
         // Check to see if ClientContext property is set
         internal bool IsSetClientContext()
         {
-            return this._clientContext != null;
+            return !string.IsNullOrEmpty(this._clientContext);
         }
 
         /// <summary>
         /// Gets and sets the property FunctionName. 
         /// <para>
-        /// The name of the Lambda function.
+        /// The name or ARN of the Lambda function.
         /// </para>
         ///  
         /// <para>
@@ -81,15 +82,15 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <b>Function name</b> – <code>my-function</code>.
+        ///  <b>Function name</b> – <c>my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Function ARN</b> – <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
+        ///  <b>Function ARN</b> – <c>arn:aws:lambda:us-west-2:123456789012:function:my-function</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
+        ///  <b>Partial ARN</b> – <c>123456789012:function:my-function</c>.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -117,14 +118,14 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>RequestResponse</code> (default) – Invoke the function synchronously. Keep
-        /// the connection open until the function returns a response or times out. The API operation
-        /// response includes the function response and additional data.
+        ///  <c>RequestResponse</c> (default) – Invoke the function synchronously. Keep the connection
+        /// open until the function returns a response or times out. The API operation response
+        /// includes the function response and additional data.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>DryRun</code> – Validate parameter values and verify that the IAM user or role
-        /// has permission to invoke the function.
+        ///  <c>DryRun</c> – Validate parameter values and verify that the IAM user or role has
+        /// permission to invoke the function.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -137,14 +138,14 @@ namespace Amazon.Lambda.Model
         // Check to see if InvocationType property is set
         internal bool IsSetInvocationType()
         {
-            return this._invocationType != null;
+            return !string.IsNullOrEmpty(this._invocationType);
         }
 
         /// <summary>
         /// Gets and sets the property LogType. 
         /// <para>
-        /// Set to <code>Tail</code> to include the execution log in the response. Applies to
-        /// synchronously invoked functions only.
+        /// Set to <c>Tail</c> to include the execution log in the response. Applies to synchronously
+        /// invoked functions only.
         /// </para>
         /// </summary>
         public LogType LogType
@@ -156,7 +157,7 @@ namespace Amazon.Lambda.Model
         // Check to see if LogType property is set
         internal bool IsSetLogType()
         {
-            return this._logType != null;
+            return !string.IsNullOrEmpty(this._logType);
         }
 
         /// <summary>
@@ -166,8 +167,8 @@ namespace Amazon.Lambda.Model
         /// </para>
         ///  
         /// <para>
-        /// You can enter the JSON directly. For example, <code>--payload '{ "key": "value" }'</code>.
-        /// You can also specify a file path. For example, <code>--payload file://payload.json</code>.
+        /// You can enter the JSON directly. For example, <c>--payload '{ "key": "value" }'</c>.
+        /// You can also specify a file path. For example, <c>--payload file://payload.json</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true)]

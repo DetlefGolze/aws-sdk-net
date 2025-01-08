@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Glue.Model
     ///  
     /// <para>
     /// The Identity and Access Management (IAM) permission required for this operation is
-    /// <code>DeleteTable</code>.
+    /// <c>DeleteTable</c>.
     /// </para>
     /// </summary>
     public partial class DeleteColumnStatisticsForTableRequest : AmazonGlueRequest

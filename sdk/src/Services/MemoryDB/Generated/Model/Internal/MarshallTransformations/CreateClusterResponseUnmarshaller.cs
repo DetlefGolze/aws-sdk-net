@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -104,6 +105,10 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
                 {
                     return InvalidCredentialsExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidMultiRegionClusterStateFault"))
+                {
+                    return InvalidMultiRegionClusterStateExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidParameterCombinationException"))
                 {
                     return InvalidParameterCombinationExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
@@ -115,6 +120,10 @@ namespace Amazon.MemoryDB.Model.Internal.MarshallTransformations
                 if (errorResponse.Code != null && errorResponse.Code.Equals("InvalidVPCNetworkStateFault"))
                 {
                     return InvalidVPCNetworkStateExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
+                }
+                if (errorResponse.Code != null && errorResponse.Code.Equals("MultiRegionClusterNotFoundFault"))
+                {
+                    return MultiRegionClusterNotFoundExceptionUnmarshaller.Instance.Unmarshall(contextCopy, errorResponse);
                 }
                 if (errorResponse.Code != null && errorResponse.Code.Equals("NodeQuotaForClusterExceededFault"))
                 {

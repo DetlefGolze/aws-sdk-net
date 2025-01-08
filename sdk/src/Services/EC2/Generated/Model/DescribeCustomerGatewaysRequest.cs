@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -41,8 +42,8 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeCustomerGatewaysRequest : AmazonEC2Request
     {
-        private List<string> _customerGatewayIds = new List<string>();
-        private List<Filter> _filters = new List<Filter>();
+        private List<string> _customerGatewayIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Filter> _filters = AWSConfigs.InitializeCollections ? new List<Filter>() : null;
 
         /// <summary>
         /// Gets and sets the property CustomerGatewayIds. 
@@ -63,7 +64,7 @@ namespace Amazon.EC2.Model
         // Check to see if CustomerGatewayIds property is set
         internal bool IsSetCustomerGatewayIds()
         {
-            return this._customerGatewayIds != null && this._customerGatewayIds.Count > 0; 
+            return this._customerGatewayIds != null && (this._customerGatewayIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -73,40 +74,38 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>bgp-asn</code> - The customer gateway's Border Gateway Protocol (BGP) Autonomous
+        ///  <c>bgp-asn</c> - The customer gateway's Border Gateway Protocol (BGP) Autonomous
         /// System Number (ASN).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>customer-gateway-id</code> - The ID of the customer gateway.
+        ///  <c>customer-gateway-id</c> - The ID of the customer gateway.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>ip-address</code> - The IP address of the customer gateway device's external
-        /// interface.
+        ///  <c>ip-address</c> - The IP address of the customer gateway device's external interface.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>state</code> - The state of the customer gateway (<code>pending</code> | <code>available</code>
-        /// | <code>deleting</code> | <code>deleted</code>).
+        ///  <c>state</c> - The state of the customer gateway (<c>pending</c> | <c>available</c>
+        /// | <c>deleting</c> | <c>deleted</c>).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>type</code> - The type of customer gateway. Currently, the only supported type
-        /// is <code>ipsec.1</code>.
+        ///  <c>type</c> - The type of customer gateway. Currently, the only supported type is
+        /// <c>ipsec.1</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the
-        /// resource. Use the tag key in the filter name and the tag value as the filter value.
-        /// For example, to find all resources that have a tag with the key <code>Owner</code>
-        /// and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name
-        /// and <code>TeamA</code> for the filter value.
+        ///  <c>tag</c>:&lt;key&gt; - The key/value combination of a tag assigned to the resource.
+        /// Use the tag key in the filter name and the tag value as the filter value. For example,
+        /// to find all resources that have a tag with the key <c>Owner</c> and the value <c>TeamA</c>,
+        /// specify <c>tag:Owner</c> for the filter name and <c>TeamA</c> for the filter value.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter
-        /// to find all resources assigned a tag with a specific key, regardless of the tag value.
+        ///  <c>tag-key</c> - The key of a tag assigned to the resource. Use this filter to find
+        /// all resources assigned a tag with a specific key, regardless of the tag value.
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -119,7 +118,7 @@ namespace Amazon.EC2.Model
         // Check to see if Filters property is set
         internal bool IsSetFilters()
         {
-            return this._filters != null && this._filters.Count > 0; 
+            return this._filters != null && (this._filters.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

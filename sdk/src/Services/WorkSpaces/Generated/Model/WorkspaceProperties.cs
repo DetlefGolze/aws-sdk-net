@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WorkSpaces.Model
 {
     /// <summary>
@@ -34,8 +35,9 @@ namespace Amazon.WorkSpaces.Model
     public partial class WorkspaceProperties
     {
         private Compute _computeTypeName;
+        private GlobalAcceleratorForWorkSpace _globalAccelerator;
         private OperatingSystemName _operatingSystemName;
-        private List<string> _protocols = new List<string>();
+        private List<string> _protocols = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private int? _rootVolumeSizeGib;
         private RunningMode _runningMode;
         private int? _runningModeAutoStopTimeoutInMinutes;
@@ -58,6 +60,24 @@ namespace Amazon.WorkSpaces.Model
         internal bool IsSetComputeTypeName()
         {
             return this._computeTypeName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property GlobalAccelerator. 
+        /// <para>
+        /// Indicates the Global Accelerator properties.
+        /// </para>
+        /// </summary>
+        public GlobalAcceleratorForWorkSpace GlobalAccelerator
+        {
+            get { return this._globalAccelerator; }
+            set { this._globalAccelerator = value; }
+        }
+
+        // Check to see if GlobalAccelerator property is set
+        internal bool IsSetGlobalAccelerator()
+        {
+            return this._globalAccelerator != null;
         }
 
         /// <summary>
@@ -90,8 +110,8 @@ namespace Amazon.WorkSpaces.Model
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The <code>Protocols</code> property is case sensitive. Ensure you use <code>PCOIP</code>
-        /// or <code>WSP</code>.
+        /// The <c>Protocols</c> property is case sensitive. Ensure you use <c>PCOIP</c> or <c>DCV</c>
+        /// (formerly WSP).
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -109,7 +129,7 @@ namespace Amazon.WorkSpaces.Model
         // Check to see if Protocols property is set
         internal bool IsSetProtocols()
         {
-            return this._protocols != null && this._protocols.Count > 0; 
+            return this._protocols != null && (this._protocols.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -140,11 +160,16 @@ namespace Amazon.WorkSpaces.Model
         /// </para>
         ///  <note> 
         /// <para>
-        /// The <code>MANUAL</code> value is only supported by Amazon WorkSpaces Core. Contact
-        /// your account team to be allow-listed to use this value. For more information, see
-        /// <a href="http://aws.amazon.com/workspaces/core/">Amazon WorkSpaces Core</a>.
+        /// The <c>MANUAL</c> value is only supported by Amazon WorkSpaces Core. Contact your
+        /// account team to be allow-listed to use this value. For more information, see <a href="http://aws.amazon.com/workspaces/core/">Amazon
+        /// WorkSpaces Core</a>.
         /// </para>
-        ///  </note>
+        ///  </note> 
+        /// <para>
+        /// Review your running mode to ensure you are using one that is optimal for your needs
+        /// and budget. For more information on switching running modes, see <a href="http://aws.amazon.com/workspaces-family/workspaces/faqs/#:~:text=Can%20I%20switch%20between%20hourly%20and%20monthly%20billing%20on%20WorkSpaces%20Personal%3F">
+        /// Can I switch between hourly and monthly billing?</a> 
+        /// </para>
         /// </summary>
         public RunningMode RunningMode
         {

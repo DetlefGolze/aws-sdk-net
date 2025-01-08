@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFront.Model
 {
     /// <summary>
-    /// The value of <code>Quantity</code> and the size of <code>Items</code> don't match.
+    /// The value of <c>Quantity</c> and the size of <c>Items</c> don't match.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

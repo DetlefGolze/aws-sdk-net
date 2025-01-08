@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Comprehend.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.Comprehend.Model
     public partial class AugmentedManifestsListItem
     {
         private string _annotationDataS3Uri;
-        private List<string> _attributeNames = new List<string>();
+        private List<string> _attributeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private AugmentedManifestsDocumentTypeFormat _documentType;
         private string _s3Uri;
         private string _sourceDocumentsS3Uri;
@@ -90,7 +91,7 @@ namespace Amazon.Comprehend.Model
         // Check to see if AttributeNames property is set
         internal bool IsSetAttributeNames()
         {
-            return this._attributeNames != null && this._attributeNames.Count > 0; 
+            return this._attributeNames != null && (this._attributeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -101,14 +102,14 @@ namespace Amazon.Comprehend.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        ///  <code>PLAIN_TEXT_DOCUMENT</code> A document type that represents any unicode text
-        /// that is encoded in UTF-8.
+        ///  <c>PLAIN_TEXT_DOCUMENT</c> A document type that represents any unicode text that
+        /// is encoded in UTF-8.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>SEMI_STRUCTURED_DOCUMENT</code> A document type with positional and structural
-        /// context, like a PDF. For training with Amazon Comprehend, only PDFs are supported.
-        /// For inference, Amazon Comprehend support PDFs, DOCX and TXT.
+        ///  <c>SEMI_STRUCTURED_DOCUMENT</c> A document type with positional and structural context,
+        /// like a PDF. For training with Amazon Comprehend, only PDFs are supported. For inference,
+        /// Amazon Comprehend support PDFs, DOCX and TXT.
         /// </para>
         ///  </li> </ul>
         /// </summary>

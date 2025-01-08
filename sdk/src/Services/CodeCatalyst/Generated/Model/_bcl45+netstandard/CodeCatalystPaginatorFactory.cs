@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CodeCatalyst.Model
 {
     /// <summary>
@@ -97,6 +98,22 @@ namespace Amazon.CodeCatalyst.Model
         public IListSpacesPaginator ListSpaces(ListSpacesRequest request) 
         {
             return new ListSpacesPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListWorkflowRuns operation
+        ///</summary>
+        public IListWorkflowRunsPaginator ListWorkflowRuns(ListWorkflowRunsRequest request) 
+        {
+            return new ListWorkflowRunsPaginator(this.client, request);
+        }
+
+        /// <summary>
+        /// Paginator for ListWorkflows operation
+        ///</summary>
+        public IListWorkflowsPaginator ListWorkflows(ListWorkflowsRequest request) 
+        {
+            return new ListWorkflowsPaginator(this.client, request);
         }
     }
 }

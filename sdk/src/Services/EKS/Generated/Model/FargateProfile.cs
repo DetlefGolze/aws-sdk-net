@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EKS.Model
 {
     /// <summary>
@@ -37,16 +38,17 @@ namespace Amazon.EKS.Model
         private DateTime? _createdAt;
         private string _fargateProfileArn;
         private string _fargateProfileName;
+        private FargateProfileHealth _health;
         private string _podExecutionRoleArn;
-        private List<FargateProfileSelector> _selectors = new List<FargateProfileSelector>();
+        private List<FargateProfileSelector> _selectors = AWSConfigs.InitializeCollections ? new List<FargateProfileSelector>() : null;
         private FargateProfileStatus _status;
-        private List<string> _subnets = new List<string>();
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private List<string> _subnets = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ClusterName. 
         /// <para>
-        /// The name of the Amazon EKS cluster that the Fargate profile belongs to.
+        /// The name of your cluster.
         /// </para>
         /// </summary>
         public string ClusterName
@@ -64,7 +66,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property CreatedAt. 
         /// <para>
-        /// The Unix epoch timestamp in seconds for when the Fargate profile was created.
+        /// The Unix epoch timestamp at object creation.
         /// </para>
         /// </summary>
         public DateTime CreatedAt
@@ -116,11 +118,30 @@ namespace Amazon.EKS.Model
         }
 
         /// <summary>
+        /// Gets and sets the property Health. 
+        /// <para>
+        /// The health status of the Fargate profile. If there are issues with your Fargate profile's
+        /// health, they are listed here.
+        /// </para>
+        /// </summary>
+        public FargateProfileHealth Health
+        {
+            get { return this._health; }
+            set { this._health = value; }
+        }
+
+        // Check to see if Health property is set
+        internal bool IsSetHealth()
+        {
+            return this._health != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property PodExecutionRoleArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the pod execution role to use for pods that match
-        /// the selectors in the Fargate profile. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html">Pod
-        /// Execution Role</a> in the <i>Amazon EKS User Guide</i>.
+        /// The Amazon Resource Name (ARN) of the <c>Pod</c> execution role to use for any <c>Pod</c>
+        /// that matches the selectors in the Fargate profile. For more information, see <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-execution-role.html">
+        /// <c>Pod</c> execution role</a> in the <i>Amazon EKS User Guide</i>.
         /// </para>
         /// </summary>
         public string PodExecutionRoleArn
@@ -138,7 +159,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Selectors. 
         /// <para>
-        /// The selectors to match for pods to use this Fargate profile.
+        /// The selectors to match for a <c>Pod</c> to use this Fargate profile.
         /// </para>
         /// </summary>
         public List<FargateProfileSelector> Selectors
@@ -150,7 +171,7 @@ namespace Amazon.EKS.Model
         // Check to see if Selectors property is set
         internal bool IsSetSelectors()
         {
-            return this._selectors != null && this._selectors.Count > 0; 
+            return this._selectors != null && (this._selectors.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -174,7 +195,7 @@ namespace Amazon.EKS.Model
         /// <summary>
         /// Gets and sets the property Subnets. 
         /// <para>
-        /// The IDs of subnets to launch pods into.
+        /// The IDs of subnets to launch a <c>Pod</c> into.
         /// </para>
         /// </summary>
         public List<string> Subnets
@@ -186,16 +207,15 @@ namespace Amazon.EKS.Model
         // Check to see if Subnets property is set
         internal bool IsSetSubnets()
         {
-            return this._subnets != null && this._subnets.Count > 0; 
+            return this._subnets != null && (this._subnets.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// The metadata applied to the Fargate profile to assist with categorization and organization.
-        /// Each tag consists of a key and an optional value. You define both. Fargate profile
-        /// tags do not propagate to any other resources associated with the Fargate profile,
-        /// such as the pods that are scheduled with it.
+        /// Metadata that assists with categorization and organization. Each tag consists of a
+        /// key and an optional value. You define both. Tags don't propagate to any other cluster
+        /// or Amazon Web Services resources.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=50)]
@@ -208,7 +228,7 @@ namespace Amazon.EKS.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

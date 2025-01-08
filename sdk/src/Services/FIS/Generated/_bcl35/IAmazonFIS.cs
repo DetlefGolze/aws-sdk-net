@@ -24,15 +24,16 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.FIS.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.FIS
 {
     /// <summary>
-    /// Interface for accessing FIS
+    /// <para>Interface for accessing FIS</para>
     ///
-    /// Fault Injection Simulator is a managed service that enables you to perform fault injection
-    /// experiments on your Amazon Web Services workloads. For more information, see the <a
-    /// href="https://docs.aws.amazon.com/fis/latest/userguide/">Fault Injection Simulator
-    /// User Guide</a>.
+    /// Amazon Web Services Fault Injection Service is a managed service that enables you
+    /// to perform fault injection experiments on your Amazon Web Services workloads. For
+    /// more information, see the <a href="https://docs.aws.amazon.com/fis/latest/userguide/">Fault
+    /// Injection Service User Guide</a>.
     /// </summary>
     public partial interface IAmazonFIS : IAmazonService, IDisposable
     {
@@ -76,8 +77,8 @@ namespace Amazon.FIS
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// For more information, see <a href="https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html">Experiment
-        /// templates</a> in the <i>Fault Injection Simulator User Guide</i>.
+        /// For more information, see <a href="https://docs.aws.amazon.com/fis/latest/userguide/experiment-templates.html">experiment
+        /// templates</a> in the <i>Fault Injection Service User Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateExperimentTemplate service method.</param>
@@ -126,6 +127,61 @@ namespace Amazon.FIS
 
         #endregion
         
+        #region  CreateTargetAccountConfiguration
+
+
+        /// <summary>
+        /// Creates a target account configuration for the experiment template. A target account
+        /// configuration is required when <c>accountTargeting</c> of <c>experimentOptions</c>
+        /// is set to <c>multi-account</c>. For more information, see <a href="https://docs.aws.amazon.com/fis/latest/userguide/experiment-options.html">experiment
+        /// options</a> in the <i>Fault Injection Service User Guide</i>.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateTargetAccountConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the CreateTargetAccountConfiguration service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ConflictException">
+        /// The request could not be processed because of a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ServiceQuotaExceededException">
+        /// You have exceeded your service quota.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/CreateTargetAccountConfiguration">REST API Reference for CreateTargetAccountConfiguration Operation</seealso>
+        CreateTargetAccountConfigurationResponse CreateTargetAccountConfiguration(CreateTargetAccountConfigurationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateTargetAccountConfiguration operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateTargetAccountConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/CreateTargetAccountConfiguration">REST API Reference for CreateTargetAccountConfiguration Operation</seealso>
+        IAsyncResult BeginCreateTargetAccountConfiguration(CreateTargetAccountConfigurationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateTargetAccountConfiguration.</param>
+        /// 
+        /// <returns>Returns a  CreateTargetAccountConfigurationResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/CreateTargetAccountConfiguration">REST API Reference for CreateTargetAccountConfiguration Operation</seealso>
+        CreateTargetAccountConfigurationResponse EndCreateTargetAccountConfiguration(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DeleteExperimentTemplate
 
 
@@ -169,6 +225,52 @@ namespace Amazon.FIS
         /// <returns>Returns a  DeleteExperimentTemplateResult from FIS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteExperimentTemplate">REST API Reference for DeleteExperimentTemplate Operation</seealso>
         DeleteExperimentTemplateResponse EndDeleteExperimentTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteTargetAccountConfiguration
+
+
+        /// <summary>
+        /// Deletes the specified target account configuration of the experiment template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTargetAccountConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the DeleteTargetAccountConfiguration service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteTargetAccountConfiguration">REST API Reference for DeleteTargetAccountConfiguration Operation</seealso>
+        DeleteTargetAccountConfigurationResponse DeleteTargetAccountConfiguration(DeleteTargetAccountConfigurationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteTargetAccountConfiguration operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteTargetAccountConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteTargetAccountConfiguration">REST API Reference for DeleteTargetAccountConfiguration Operation</seealso>
+        IAsyncResult BeginDeleteTargetAccountConfiguration(DeleteTargetAccountConfigurationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteTargetAccountConfiguration.</param>
+        /// 
+        /// <returns>Returns a  DeleteTargetAccountConfigurationResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/DeleteTargetAccountConfiguration">REST API Reference for DeleteTargetAccountConfiguration Operation</seealso>
+        DeleteTargetAccountConfigurationResponse EndDeleteTargetAccountConfiguration(IAsyncResult asyncResult);
 
         #endregion
         
@@ -264,6 +366,52 @@ namespace Amazon.FIS
 
         #endregion
         
+        #region  GetExperimentTargetAccountConfiguration
+
+
+        /// <summary>
+        /// Gets information about the specified target account configuration of the experiment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetExperimentTargetAccountConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the GetExperimentTargetAccountConfiguration service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTargetAccountConfiguration">REST API Reference for GetExperimentTargetAccountConfiguration Operation</seealso>
+        GetExperimentTargetAccountConfigurationResponse GetExperimentTargetAccountConfiguration(GetExperimentTargetAccountConfigurationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetExperimentTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetExperimentTargetAccountConfiguration operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetExperimentTargetAccountConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTargetAccountConfiguration">REST API Reference for GetExperimentTargetAccountConfiguration Operation</seealso>
+        IAsyncResult BeginGetExperimentTargetAccountConfiguration(GetExperimentTargetAccountConfigurationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetExperimentTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetExperimentTargetAccountConfiguration.</param>
+        /// 
+        /// <returns>Returns a  GetExperimentTargetAccountConfigurationResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTargetAccountConfiguration">REST API Reference for GetExperimentTargetAccountConfiguration Operation</seealso>
+        GetExperimentTargetAccountConfigurationResponse EndGetExperimentTargetAccountConfiguration(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetExperimentTemplate
 
 
@@ -307,6 +455,96 @@ namespace Amazon.FIS
         /// <returns>Returns a  GetExperimentTemplateResult from FIS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetExperimentTemplate">REST API Reference for GetExperimentTemplate Operation</seealso>
         GetExperimentTemplateResponse EndGetExperimentTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetSafetyLever
+
+
+        /// <summary>
+        /// Gets information about the specified safety lever.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetSafetyLever service method.</param>
+        /// 
+        /// <returns>The response from the GetSafetyLever service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetSafetyLever">REST API Reference for GetSafetyLever Operation</seealso>
+        GetSafetyLeverResponse GetSafetyLever(GetSafetyLeverRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetSafetyLever operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetSafetyLever operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetSafetyLever
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetSafetyLever">REST API Reference for GetSafetyLever Operation</seealso>
+        IAsyncResult BeginGetSafetyLever(GetSafetyLeverRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetSafetyLever operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetSafetyLever.</param>
+        /// 
+        /// <returns>Returns a  GetSafetyLeverResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetSafetyLever">REST API Reference for GetSafetyLever Operation</seealso>
+        GetSafetyLeverResponse EndGetSafetyLever(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetTargetAccountConfiguration
+
+
+        /// <summary>
+        /// Gets information about the specified target account configuration of the experiment
+        /// template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetTargetAccountConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the GetTargetAccountConfiguration service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetAccountConfiguration">REST API Reference for GetTargetAccountConfiguration Operation</seealso>
+        GetTargetAccountConfigurationResponse GetTargetAccountConfiguration(GetTargetAccountConfigurationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetTargetAccountConfiguration operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetTargetAccountConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetAccountConfiguration">REST API Reference for GetTargetAccountConfiguration Operation</seealso>
+        IAsyncResult BeginGetTargetAccountConfiguration(GetTargetAccountConfigurationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetTargetAccountConfiguration.</param>
+        /// 
+        /// <returns>Returns a  GetTargetAccountConfigurationResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/GetTargetAccountConfiguration">REST API Reference for GetTargetAccountConfiguration Operation</seealso>
+        GetTargetAccountConfigurationResponse EndGetTargetAccountConfiguration(IAsyncResult asyncResult);
 
         #endregion
         
@@ -399,6 +637,52 @@ namespace Amazon.FIS
 
         #endregion
         
+        #region  ListExperimentResolvedTargets
+
+
+        /// <summary>
+        /// Lists the resolved targets information of the specified experiment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListExperimentResolvedTargets service method.</param>
+        /// 
+        /// <returns>The response from the ListExperimentResolvedTargets service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentResolvedTargets">REST API Reference for ListExperimentResolvedTargets Operation</seealso>
+        ListExperimentResolvedTargetsResponse ListExperimentResolvedTargets(ListExperimentResolvedTargetsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListExperimentResolvedTargets operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListExperimentResolvedTargets operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListExperimentResolvedTargets
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentResolvedTargets">REST API Reference for ListExperimentResolvedTargets Operation</seealso>
+        IAsyncResult BeginListExperimentResolvedTargets(ListExperimentResolvedTargetsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListExperimentResolvedTargets operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListExperimentResolvedTargets.</param>
+        /// 
+        /// <returns>Returns a  ListExperimentResolvedTargetsResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentResolvedTargets">REST API Reference for ListExperimentResolvedTargets Operation</seealso>
+        ListExperimentResolvedTargetsResponse EndListExperimentResolvedTargets(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListExperiments
 
 
@@ -439,6 +723,52 @@ namespace Amazon.FIS
         /// <returns>Returns a  ListExperimentsResult from FIS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperiments">REST API Reference for ListExperiments Operation</seealso>
         ListExperimentsResponse EndListExperiments(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListExperimentTargetAccountConfigurations
+
+
+        /// <summary>
+        /// Lists the target account configurations of the specified experiment.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListExperimentTargetAccountConfigurations service method.</param>
+        /// 
+        /// <returns>The response from the ListExperimentTargetAccountConfigurations service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentTargetAccountConfigurations">REST API Reference for ListExperimentTargetAccountConfigurations Operation</seealso>
+        ListExperimentTargetAccountConfigurationsResponse ListExperimentTargetAccountConfigurations(ListExperimentTargetAccountConfigurationsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListExperimentTargetAccountConfigurations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListExperimentTargetAccountConfigurations operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListExperimentTargetAccountConfigurations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentTargetAccountConfigurations">REST API Reference for ListExperimentTargetAccountConfigurations Operation</seealso>
+        IAsyncResult BeginListExperimentTargetAccountConfigurations(ListExperimentTargetAccountConfigurationsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListExperimentTargetAccountConfigurations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListExperimentTargetAccountConfigurations.</param>
+        /// 
+        /// <returns>Returns a  ListExperimentTargetAccountConfigurationsResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListExperimentTargetAccountConfigurations">REST API Reference for ListExperimentTargetAccountConfigurations Operation</seealso>
+        ListExperimentTargetAccountConfigurationsResponse EndListExperimentTargetAccountConfigurations(IAsyncResult asyncResult);
 
         #endregion
         
@@ -522,6 +852,52 @@ namespace Amazon.FIS
         /// <returns>Returns a  ListTagsForResourceResult from FIS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTagsForResource">REST API Reference for ListTagsForResource Operation</seealso>
         ListTagsForResourceResponse EndListTagsForResource(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  ListTargetAccountConfigurations
+
+
+        /// <summary>
+        /// Lists the target account configurations of the specified experiment template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListTargetAccountConfigurations service method.</param>
+        /// 
+        /// <returns>The response from the ListTargetAccountConfigurations service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetAccountConfigurations">REST API Reference for ListTargetAccountConfigurations Operation</seealso>
+        ListTargetAccountConfigurationsResponse ListTargetAccountConfigurations(ListTargetAccountConfigurationsRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListTargetAccountConfigurations operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListTargetAccountConfigurations operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListTargetAccountConfigurations
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetAccountConfigurations">REST API Reference for ListTargetAccountConfigurations Operation</seealso>
+        IAsyncResult BeginListTargetAccountConfigurations(ListTargetAccountConfigurationsRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListTargetAccountConfigurations operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListTargetAccountConfigurations.</param>
+        /// 
+        /// <returns>Returns a  ListTargetAccountConfigurationsResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/ListTargetAccountConfigurations">REST API Reference for ListTargetAccountConfigurations Operation</seealso>
+        ListTargetAccountConfigurationsResponse EndListTargetAccountConfigurations(IAsyncResult asyncResult);
 
         #endregion
         
@@ -792,6 +1168,101 @@ namespace Amazon.FIS
         /// <returns>Returns a  UpdateExperimentTemplateResult from FIS.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateExperimentTemplate">REST API Reference for UpdateExperimentTemplate Operation</seealso>
         UpdateExperimentTemplateResponse EndUpdateExperimentTemplate(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateSafetyLeverState
+
+
+        /// <summary>
+        /// Updates the specified safety lever state.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSafetyLeverState service method.</param>
+        /// 
+        /// <returns>The response from the UpdateSafetyLeverState service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ConflictException">
+        /// The request could not be processed because of a conflict.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateSafetyLeverState">REST API Reference for UpdateSafetyLeverState Operation</seealso>
+        UpdateSafetyLeverStateResponse UpdateSafetyLeverState(UpdateSafetyLeverStateRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateSafetyLeverState operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSafetyLeverState operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateSafetyLeverState
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateSafetyLeverState">REST API Reference for UpdateSafetyLeverState Operation</seealso>
+        IAsyncResult BeginUpdateSafetyLeverState(UpdateSafetyLeverStateRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateSafetyLeverState operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateSafetyLeverState.</param>
+        /// 
+        /// <returns>Returns a  UpdateSafetyLeverStateResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateSafetyLeverState">REST API Reference for UpdateSafetyLeverState Operation</seealso>
+        UpdateSafetyLeverStateResponse EndUpdateSafetyLeverState(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateTargetAccountConfiguration
+
+
+        /// <summary>
+        /// Updates the target account configuration for the specified experiment template.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateTargetAccountConfiguration service method.</param>
+        /// 
+        /// <returns>The response from the UpdateTargetAccountConfiguration service method, as returned by FIS.</returns>
+        /// <exception cref="Amazon.FIS.Model.ResourceNotFoundException">
+        /// The specified resource cannot be found.
+        /// </exception>
+        /// <exception cref="Amazon.FIS.Model.ValidationException">
+        /// The specified input is not valid, or fails to satisfy the constraints for the request.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateTargetAccountConfiguration">REST API Reference for UpdateTargetAccountConfiguration Operation</seealso>
+        UpdateTargetAccountConfigurationResponse UpdateTargetAccountConfiguration(UpdateTargetAccountConfigurationRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateTargetAccountConfiguration operation on AmazonFISClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateTargetAccountConfiguration
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateTargetAccountConfiguration">REST API Reference for UpdateTargetAccountConfiguration Operation</seealso>
+        IAsyncResult BeginUpdateTargetAccountConfiguration(UpdateTargetAccountConfigurationRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateTargetAccountConfiguration operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateTargetAccountConfiguration.</param>
+        /// 
+        /// <returns>Returns a  UpdateTargetAccountConfigurationResult from FIS.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/fis-2020-12-01/UpdateTargetAccountConfiguration">REST API Reference for UpdateTargetAccountConfiguration Operation</seealso>
+        UpdateTargetAccountConfigurationResponse EndUpdateTargetAccountConfiguration(IAsyncResult asyncResult);
 
         #endregion
                 

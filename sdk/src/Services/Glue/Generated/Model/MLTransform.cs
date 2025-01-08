@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -37,7 +38,7 @@ namespace Amazon.Glue.Model
         private string _description;
         private EvaluationMetrics _evaluationMetrics;
         private string _glueVersion;
-        private List<GlueTable> _inputRecordTables = new List<GlueTable>();
+        private List<GlueTable> _inputRecordTables = AWSConfigs.InitializeCollections ? new List<GlueTable>() : null;
         private int? _labelCount;
         private DateTime? _lastModifiedOn;
         private double? _maxCapacity;
@@ -46,7 +47,7 @@ namespace Amazon.Glue.Model
         private int? _numberOfWorkers;
         private TransformParameters _parameters;
         private string _role;
-        private List<SchemaColumn> _schema = new List<SchemaColumn>();
+        private List<SchemaColumn> _schema = AWSConfigs.InitializeCollections ? new List<SchemaColumn>() : null;
         private TransformStatusType _status;
         private int? _timeout;
         private TransformEncryption _transformEncryption;
@@ -94,8 +95,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property EvaluationMetrics. 
         /// <para>
-        /// An <code>EvaluationMetrics</code> object. Evaluation metrics provide an estimate of
-        /// the quality of your machine learning transform.
+        /// An <c>EvaluationMetrics</c> object. Evaluation metrics provide an estimate of the
+        /// quality of your machine learning transform.
         /// </para>
         /// </summary>
         public EvaluationMetrics EvaluationMetrics
@@ -148,7 +149,7 @@ namespace Amazon.Glue.Model
         // Check to see if InputRecordTables property is set
         internal bool IsSetInputRecordTables()
         {
-            return this._inputRecordTables != null && this._inputRecordTables.Count > 0; 
+            return this._inputRecordTables != null && (this._inputRecordTables.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -200,32 +201,31 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code>
-        /// and <code>WorkerType</code>.
+        ///  <c>MaxCapacity</c> is a mutually exclusive option with <c>NumberOfWorkers</c> and
+        /// <c>WorkerType</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code>
+        /// If either <c>NumberOfWorkers</c> or <c>WorkerType</c> is set, then <c>MaxCapacity</c>
         /// cannot be set.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code>
+        /// If <c>MaxCapacity</c> is set then neither <c>NumberOfWorkers</c> or <c>WorkerType</c>
         /// can be set.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and
-        /// vice versa).
+        /// If <c>WorkerType</c> is set, then <c>NumberOfWorkers</c> is required (and vice versa).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.
+        ///  <c>MaxCapacity</c> and <c>NumberOfWorkers</c> must both be at least 1.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        /// When the <code>WorkerType</code> field is set to a value other than <code>Standard</code>,
-        /// the <code>MaxCapacity</code> field is set automatically and becomes read-only.
+        /// When the <c>WorkerType</c> field is set to a value other than <c>Standard</c>, the
+        /// <c>MaxCapacity</c> field is set automatically and becomes read-only.
         /// </para>
         /// </summary>
         public double MaxCapacity
@@ -243,8 +243,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property MaxRetries. 
         /// <para>
-        /// The maximum number of times to retry after an <code>MLTaskRun</code> of the machine
-        /// learning transform fails.
+        /// The maximum number of times to retry after an <c>MLTaskRun</c> of the machine learning
+        /// transform fails.
         /// </para>
         /// </summary>
         public int MaxRetries
@@ -282,13 +282,12 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property NumberOfWorkers. 
         /// <para>
-        /// The number of workers of a defined <code>workerType</code> that are allocated when
-        /// a task of the transform runs.
+        /// The number of workers of a defined <c>workerType</c> that are allocated when a task
+        /// of the transform runs.
         /// </para>
         ///  
         /// <para>
-        /// If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and
-        /// vice versa).
+        /// If <c>WorkerType</c> is set, then <c>NumberOfWorkers</c> is required (and vice versa).
         /// </para>
         /// </summary>
         public int NumberOfWorkers
@@ -306,8 +305,8 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property Parameters. 
         /// <para>
-        /// A <code>TransformParameters</code> object. You can use parameters to tune (customize)
-        /// the behavior of the machine learning transform by specifying what data it learns from
+        /// A <c>TransformParameters</c> object. You can use parameters to tune (customize) the
+        /// behavior of the machine learning transform by specifying what data it learns from
         /// and your preference on various tradeoffs (such as precious vs. recall, or accuracy
         /// vs. cost).
         /// </para>
@@ -374,7 +373,7 @@ namespace Amazon.Glue.Model
         // Check to see if Schema property is set
         internal bool IsSetSchema()
         {
-            return this._schema != null && this._schema.Count > 0; 
+            return this._schema != null && (this._schema.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -461,42 +460,41 @@ namespace Amazon.Glue.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// For the <code>Standard</code> worker type, each worker provides 4 vCPU, 16 GB of memory
+        /// For the <c>Standard</c> worker type, each worker provides 4 vCPU, 16 GB of memory
         /// and a 50GB disk, and 2 executors per worker.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.1X</code> worker type, each worker provides 4 vCPU, 16 GB of memory
-        /// and a 64GB disk, and 1 executor per worker.
+        /// For the <c>G.1X</c> worker type, each worker provides 4 vCPU, 16 GB of memory and
+        /// a 64GB disk, and 1 executor per worker.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For the <code>G.2X</code> worker type, each worker provides 8 vCPU, 32 GB of memory
-        /// and a 128GB disk, and 1 executor per worker.
+        /// For the <c>G.2X</c> worker type, each worker provides 8 vCPU, 32 GB of memory and
+        /// a 128GB disk, and 1 executor per worker.
         /// </para>
         ///  </li> </ul> 
         /// <para>
-        ///  <code>MaxCapacity</code> is a mutually exclusive option with <code>NumberOfWorkers</code>
-        /// and <code>WorkerType</code>.
+        ///  <c>MaxCapacity</c> is a mutually exclusive option with <c>NumberOfWorkers</c> and
+        /// <c>WorkerType</c>.
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// If either <code>NumberOfWorkers</code> or <code>WorkerType</code> is set, then <code>MaxCapacity</code>
+        /// If either <c>NumberOfWorkers</c> or <c>WorkerType</c> is set, then <c>MaxCapacity</c>
         /// cannot be set.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>MaxCapacity</code> is set then neither <code>NumberOfWorkers</code> or <code>WorkerType</code>
+        /// If <c>MaxCapacity</c> is set then neither <c>NumberOfWorkers</c> or <c>WorkerType</c>
         /// can be set.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// If <code>WorkerType</code> is set, then <code>NumberOfWorkers</code> is required (and
-        /// vice versa).
+        /// If <c>WorkerType</c> is set, then <c>NumberOfWorkers</c> is required (and vice versa).
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>MaxCapacity</code> and <code>NumberOfWorkers</code> must both be at least 1.
+        ///  <c>MaxCapacity</c> and <c>NumberOfWorkers</c> must both be at least 1.
         /// </para>
         ///  </li> </ul>
         /// </summary>

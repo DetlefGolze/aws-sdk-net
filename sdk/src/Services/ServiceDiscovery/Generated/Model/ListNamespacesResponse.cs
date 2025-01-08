@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ServiceDiscovery.Model
 {
     /// <summary>
@@ -33,14 +34,14 @@ namespace Amazon.ServiceDiscovery.Model
     /// </summary>
     public partial class ListNamespacesResponse : AmazonWebServiceResponse
     {
-        private List<NamespaceSummary> _namespaces = new List<NamespaceSummary>();
+        private List<NamespaceSummary> _namespaces = AWSConfigs.InitializeCollections ? new List<NamespaceSummary>() : null;
         private string _nextToken;
 
         /// <summary>
         /// Gets and sets the property Namespaces. 
         /// <para>
-        /// An array that contains one <code>NamespaceSummary</code> object for each namespace
-        /// that matches the specified filter criteria.
+        /// An array that contains one <c>NamespaceSummary</c> object for each namespace that
+        /// matches the specified filter criteria.
         /// </para>
         /// </summary>
         public List<NamespaceSummary> Namespaces
@@ -52,22 +53,22 @@ namespace Amazon.ServiceDiscovery.Model
         // Check to see if Namespaces property is set
         internal bool IsSetNamespaces()
         {
-            return this._namespaces != null && this._namespaces.Count > 0; 
+            return this._namespaces != null && (this._namespaces.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// If the response contains <code>NextToken</code>, submit another <code>ListNamespaces</code>
-        /// request to get the next group of results. Specify the value of <code>NextToken</code>
-        /// from the previous response in the next request.
+        /// If the response contains <c>NextToken</c>, submit another <c>ListNamespaces</c> request
+        /// to get the next group of results. Specify the value of <c>NextToken</c> from the previous
+        /// response in the next request.
         /// </para>
         ///  <note> 
         /// <para>
-        /// Cloud Map gets <code>MaxResults</code> namespaces and then filters them based on the
-        /// specified criteria. It's possible that no namespaces in the first <code>MaxResults</code>
-        /// namespaces matched the specified criteria but that subsequent groups of <code>MaxResults</code>
-        /// namespaces do contain namespaces that match the criteria.
+        /// Cloud Map gets <c>MaxResults</c> namespaces and then filters them based on the specified
+        /// criteria. It's possible that no namespaces in the first <c>MaxResults</c> namespaces
+        /// matched the specified criteria but that subsequent groups of <c>MaxResults</c> namespaces
+        /// do contain namespaces that match the criteria.
         /// </para>
         ///  </note>
         /// </summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -58,7 +59,7 @@ namespace Amazon.SecurityHub.Model
         /// Gets and sets the property SSEAlgorithm. 
         /// <para>
         /// Server-side encryption algorithm to use for the default encryption. Valid values are
-        /// <code>aws: kms</code> or <code>AES256</code>.
+        /// <c>aws: kms</c> or <c>AES256</c>.
         /// </para>
         /// </summary>
         public string SSEAlgorithm

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CodePipeline.Model
 {
     /// <summary>
@@ -37,10 +38,26 @@ namespace Amazon.CodePipeline.Model
     /// and filtering requirements supplied when defining the webhook. RegisterWebhookWithThirdParty
     /// and DeregisterWebhookWithThirdParty APIs can be used to automatically configure supported
     /// third parties to call the generated webhook URL.
+    /// 
+    ///  <important> 
+    /// <para>
+    /// When creating CodePipeline webhooks, do not use your own credentials or reuse the
+    /// same secret token across multiple webhooks. For optimal security, generate a unique
+    /// secret token for each webhook you create. The secret token is an arbitrary string
+    /// that you provide, which GitHub uses to compute and sign the webhook payloads sent
+    /// to CodePipeline, for protecting the integrity and authenticity of the webhook payloads.
+    /// Using your own credentials or reusing the same token across multiple webhooks can
+    /// lead to security vulnerabilities.
+    /// </para>
+    ///  </important> <note> 
+    /// <para>
+    /// If a secret token was provided, it will be redacted in the response.
+    /// </para>
+    ///  </note>
     /// </summary>
     public partial class PutWebhookRequest : AmazonCodePipelineRequest
     {
-        private List<Tag> _tags = new List<Tag>();
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
         private WebhookDefinition _webhook;
 
         /// <summary>
@@ -58,7 +75,7 @@ namespace Amazon.CodePipeline.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KinesisAnalyticsV2.Model
 {
     /// <summary>
@@ -33,6 +34,24 @@ namespace Amazon.KinesisAnalyticsV2.Model
     /// </summary>
     public partial class StopApplicationResponse : AmazonWebServiceResponse
     {
+        private string _operationId;
+
+        /// <summary>
+        /// Gets and sets the property OperationId. Operation ID for tracking StopApplication
+        /// request
+        /// </summary>
+        [AWSProperty(Min=1, Max=64)]
+        public string OperationId
+        {
+            get { return this._operationId; }
+            set { this._operationId = value; }
+        }
+
+        // Check to see if OperationId property is set
+        internal bool IsSetOperationId()
+        {
+            return this._operationId != null;
+        }
 
     }
 }

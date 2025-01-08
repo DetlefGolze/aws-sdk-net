@@ -26,17 +26,18 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Connect.Model
 {
     /// <summary>
-    /// Contains information about the filter used when retrieving metrics. <code>MetricFiltersV2</code>
-    /// can be used on the following metrics: <code>AVG_AGENT_CONNECTING_TIME</code>, <code>CONTACTS_CREATED</code>,
-    /// <code>CONTACTS_HANDLED</code>, <code>SUM_CONTACTS_DISCONNECTED</code>.
+    /// Contains information about the filter used when retrieving metrics. <c>MetricFiltersV2</c>
+    /// can be used on the following metrics: <c>AVG_AGENT_CONNECTING_TIME</c>, <c>CONTACTS_CREATED</c>,
+    /// <c>CONTACTS_HANDLED</c>, <c>SUM_CONTACTS_DISCONNECTED</c>.
     /// </summary>
     public partial class MetricFilterV2
     {
         private string _metricFilterKey;
-        private List<string> _metricFilterValues = new List<string>();
+        private List<string> _metricFilterValues = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _negate;
 
         /// <summary>
@@ -46,11 +47,41 @@ namespace Amazon.Connect.Model
         /// </para>
         ///  
         /// <para>
-        /// Valid metric filter keys: <code>INITIATION_METHOD</code>, <code>DISCONNECT_REASON</code>.
-        /// These are the same values as the <code>InitiationMethod</code> and <code>DisconnectReason</code>
-        /// in the contact record. For more information, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord">ContactTraceRecord</a>
-        /// in the <i>Amazon Connect Administrator's Guide</i>. 
+        /// Valid metric filter keys: 
         /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// ANSWERING_MACHINE_DETECTION_STATUS
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// CASE_STATUS
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// DISCONNECT_REASON
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// FLOWS_ACTION_IDENTIFIER
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// FLOWS_NEXT_ACTION_IDENTIFIER
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// FLOWS_OUTCOME_TYPE
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// FLOWS_RESOURCE_TYPE
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// INITIATION_METHOD
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         public string MetricFilterKey
         {
@@ -67,20 +98,32 @@ namespace Amazon.Connect.Model
         /// <summary>
         /// Gets and sets the property MetricFilterValues. 
         /// <para>
-        /// The values to use for filtering data. 
+        /// The values to use for filtering data. Values for metric-level filters can be either
+        /// a fixed set of values or a customized list, depending on the use case.
         /// </para>
         ///  
         /// <para>
-        /// Valid metric filter values for <code>INITIATION_METHOD</code>: <code>INBOUND</code>
-        /// | <code>OUTBOUND</code> | <code>TRANSFER</code> | <code>QUEUE_TRANSFER</code> | <code>CALLBACK</code>
-        /// | <code>API</code> 
+        /// For valid values of metric-level filters <c>INITIATION_METHOD</c>, <c>DISCONNECT_REASON</c>,
+        /// and <c>ANSWERING_MACHINE_DETECTION_STATUS</c>, see <a href="https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord">ContactTraceRecord</a>
+        /// in the <i>Amazon Connect Administrator Guide</i>. 
         /// </para>
         ///  
         /// <para>
-        /// Valid metric filter values for <code>DISCONNECT_REASON</code>: <code>CUSTOMER_DISCONNECT</code>
-        /// | <code>AGENT_DISCONNECT</code> | <code>THIRD_PARTY_DISCONNECT</code> | <code>TELECOM_PROBLEM</code>
-        /// | <code>BARGED</code> | <code>CONTACT_FLOW_DISCONNECT</code> | <code>OTHER</code>
-        /// | <code>EXPIRED</code> | <code>API</code> 
+        /// For valid values of the metric-level filter <c>FLOWS_OUTCOME_TYPE</c>, see the description
+        /// for the <a href="https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html#flows-outcome-historical">Flow
+        /// outcome</a> metric in the <i>Amazon Connect Administrator Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For valid values of the metric-level filter <c>BOT_CONVERSATION_OUTCOME_TYPE</c>,
+        /// see the description for the <a href="https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#bot-conversations-completed-metric">Bot
+        /// conversations completed</a> in the <i>Amazon Connect Administrator Guide</i>.
+        /// </para>
+        ///  
+        /// <para>
+        /// For valid values of the metric-level filter <c>BOT_INTENT_OUTCOME_TYPE</c>, see the
+        /// description for the <a href="https://docs.aws.amazon.com/connect/latest/adminguide/bot-metrics.html#bot-intents-completed-metric">Bot
+        /// intents completed</a> metric in the <i>Amazon Connect Administrator Guide</i>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=10)]
@@ -93,15 +136,15 @@ namespace Amazon.Connect.Model
         // Check to see if MetricFilterValues property is set
         internal bool IsSetMetricFilterValues()
         {
-            return this._metricFilterValues != null && this._metricFilterValues.Count > 0; 
+            return this._metricFilterValues != null && (this._metricFilterValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Negate. 
         /// <para>
-        /// The flag to use to filter on requested metric filter values or to not filter on requested
-        /// metric filter values. By default the negate is <code>false</code>, which indicates
-        /// to filter on the requested metric filter. 
+        /// If set to <c>true</c>, the API response contains results that filter out the results
+        /// matched by the metric-level filters condition. By default, <c>Negate</c> is set to
+        /// <c>false</c>. 
         /// </para>
         /// </summary>
         public bool Negate

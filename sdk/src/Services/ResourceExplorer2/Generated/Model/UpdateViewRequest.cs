@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.ResourceExplorer2.Model
     public partial class UpdateViewRequest : AmazonResourceExplorer2Request
     {
         private SearchFilter _filters;
-        private List<IncludedProperty> _includedProperties = new List<IncludedProperty>();
+        private List<IncludedProperty> _includedProperties = AWSConfigs.InitializeCollections ? new List<IncludedProperty>() : null;
         private string _viewArn;
 
         /// <summary>
@@ -44,8 +45,8 @@ namespace Amazon.ResourceExplorer2.Model
         /// <para>
         /// An array of strings that specify which resources are included in the results of queries
         /// made using this view. When you use this view in a <a>Search</a> operation, the filter
-        /// string is combined with the search's <code>QueryString</code> parameter using a logical
-        /// <code>AND</code> operator.
+        /// string is combined with the search's <c>QueryString</c> parameter using a logical
+        /// <c>AND</c> operator.
         /// </para>
         ///  
         /// <para>
@@ -57,10 +58,10 @@ namespace Amazon.ResourceExplorer2.Model
         /// <para>
         /// This query string in the context of this operation supports only <a href="https://docs.aws.amazon.com/resource-explorer/latest/userguide/using-search-query-syntax.html#query-syntax-filters">filter
         /// prefixes</a> with optional <a href="https://docs.aws.amazon.com/resource-explorer/latest/userguide/using-search-query-syntax.html#query-syntax-operators">operators</a>.
-        /// It doesn't support free-form text. For example, the string <code>region:us* service:ec2
-        /// -tag:stage=prod</code> includes all Amazon EC2 resources in any Amazon Web Services
-        /// Region that begins with the letters <code>us</code> and is <i>not</i> tagged with
-        /// a key <code>Stage</code> that has the value <code>prod</code>.
+        /// It doesn't support free-form text. For example, the string <c>region:us* service:ec2
+        /// -tag:stage=prod</c> includes all Amazon EC2 resources in any Amazon Web Services Region
+        /// that begins with the letters <c>us</c> and is <i>not</i> tagged with a key <c>Stage</c>
+        /// that has the value <c>prod</c>.
         /// </para>
         ///  </important>
         /// </summary>
@@ -97,7 +98,7 @@ namespace Amazon.ResourceExplorer2.Model
         // Check to see if IncludedProperties property is set
         internal bool IsSetIncludedProperties()
         {
-            return this._includedProperties != null && this._includedProperties.Count > 0; 
+            return this._includedProperties != null && (this._includedProperties.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

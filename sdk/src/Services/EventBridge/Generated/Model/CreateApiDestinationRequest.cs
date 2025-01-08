@@ -26,12 +26,23 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EventBridge.Model
 {
     /// <summary>
     /// Container for the parameters to the CreateApiDestination operation.
     /// Creates an API destination, which is an HTTP invocation endpoint configured as a target
     /// for events.
+    /// 
+    ///  
+    /// <para>
+    /// API destinations do not support private destinations, such as interface VPC endpoints.
+    /// </para>
+    ///  
+    /// <para>
+    /// For more information, see <a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destinations.html">API
+    /// destinations</a> in the <i>EventBridge User Guide</i>.
+    /// </para>
     /// </summary>
     public partial class CreateApiDestinationRequest : AmazonEventBridgeRequest
     {

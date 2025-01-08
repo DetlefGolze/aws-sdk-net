@@ -26,14 +26,16 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.DynamoDBv2.Model
 {
     /// <summary>
     /// Container for the parameters to the BatchExecuteStatement operation.
     /// This operation allows you to perform batch reads or writes on data stored in DynamoDB,
-    /// using PartiQL. Each read statement in a <code>BatchExecuteStatement</code> must specify
-    /// an equality condition on all key attributes. This enforces that each <code>SELECT</code>
-    /// statement in a batch returns at most a single item.
+    /// using PartiQL. Each read statement in a <c>BatchExecuteStatement</c> must specify
+    /// an equality condition on all key attributes. This enforces that each <c>SELECT</c>
+    /// statement in a batch returns at most a single item. For more information, see <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.multiplestatements.batching.html">Running
+    /// batch operations with PartiQL for DynamoDB </a>.
     /// 
     ///  <note> 
     /// <para>
@@ -44,14 +46,14 @@ namespace Amazon.DynamoDBv2.Model
     /// <para>
     /// A HTTP 200 response does not mean that all statements in the BatchExecuteStatement
     /// succeeded. Error details for individual statements can be found under the <a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchStatementResponse.html#DDB-Type-BatchStatementResponse-Error">Error</a>
-    /// field of the <code>BatchStatementResponse</code> for each statement.
+    /// field of the <c>BatchStatementResponse</c> for each statement.
     /// </para>
     ///  </important>
     /// </summary>
     public partial class BatchExecuteStatementRequest : AmazonDynamoDBRequest
     {
         private ReturnConsumedCapacity _returnConsumedCapacity;
-        private List<BatchStatementRequest> _statements = new List<BatchStatementRequest>();
+        private List<BatchStatementRequest> _statements = AWSConfigs.InitializeCollections ? new List<BatchStatementRequest>() : null;
 
         /// <summary>
         /// Gets and sets the property ReturnConsumedCapacity.
@@ -84,7 +86,7 @@ namespace Amazon.DynamoDBv2.Model
         // Check to see if Statements property is set
         internal bool IsSetStatements()
         {
-            return this._statements != null && this._statements.Count > 0; 
+            return this._statements != null && (this._statements.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

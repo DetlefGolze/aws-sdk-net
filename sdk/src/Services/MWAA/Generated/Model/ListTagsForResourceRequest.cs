@@ -26,12 +26,13 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MWAA.Model
 {
     /// <summary>
     /// Container for the parameters to the ListTagsForResource operation.
     /// Lists the key-value tag pairs associated to the Amazon Managed Workflows for Apache
-    /// Airflow (MWAA) environment. For example, <code>"Environment": "Staging"</code>.
+    /// Airflow (MWAA) environment. For example, <c>"Environment": "Staging"</c>.
     /// </summary>
     public partial class ListTagsForResourceRequest : AmazonMWAARequest
     {
@@ -40,7 +41,7 @@ namespace Amazon.MWAA.Model
         /// <summary>
         /// Gets and sets the property ResourceArn. 
         /// <para>
-        /// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, <code>arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment</code>.
+        /// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, <c>arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=1224)]

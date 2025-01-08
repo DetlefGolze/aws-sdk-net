@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecurityHub.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.SecurityHub.Model
         /// <summary>
         /// Gets and sets the property Enabled. 
         /// <para>
-        ///  If this parameter is set to <code>true</code>, the instance is enabled for Amazon
-        /// Web Services Nitro Enclaves. 
+        ///  If this parameter is set to <c>true</c>, the instance is enabled for Amazon Web Services
+        /// Nitro Enclaves. 
         /// </para>
         /// </summary>
         public bool Enabled

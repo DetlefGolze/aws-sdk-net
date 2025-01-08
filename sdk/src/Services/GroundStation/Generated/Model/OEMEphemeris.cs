@@ -26,10 +26,20 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Ephemeris data in Orbit Ephemeris Message (OEM) format.
+    /// Ephemeris data in Orbit Ephemeris Message (OEM) format. 
+    /// 
+    ///  
+    /// <para>
+    ///  AWS Ground Station processes OEM Customer Provided Ephemerides according to the <a
+    /// href="https://public.ccsds.org/Pubs/502x0b3e1.pdf">CCSDS standard</a> with some extra
+    /// restrictions. OEM files should be in KVN format. For more detail about the OEM format
+    /// that AWS Ground Station supports, see <a href="https://docs.aws.amazon.com/ground-station/latest/ug/providing-custom-ephemeris-data.html#oem-ephemeris-format">OEM
+    /// ephemeris format</a> in the AWS Ground Station user guide. 
+    /// </para>
     /// </summary>
     public partial class OEMEphemeris
     {

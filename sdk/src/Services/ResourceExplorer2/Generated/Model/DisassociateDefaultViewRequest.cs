@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ResourceExplorer2.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.ResourceExplorer2.Model
     ///  
     /// <para>
     /// If an Amazon Web Services Region doesn't have a default view configured, then users
-    /// must explicitly specify a view with every <code>Search</code> operation performed
-    /// in that Region.
+    /// must explicitly specify a view with every <c>Search</c> operation performed in that
+    /// Region.
     /// </para>
     /// </summary>
     public partial class DisassociateDefaultViewRequest : AmazonResourceExplorer2Request

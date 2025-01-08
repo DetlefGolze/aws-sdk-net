@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.SnowDeviceManagement
 {
     /// <summary>
-    /// Implementation for accessing SnowDeviceManagement
+    /// <para>Implementation for accessing SnowDeviceManagement</para>
     ///
     /// Amazon Web Services Snow Device Management documentation.
     /// </summary>
@@ -268,11 +269,11 @@ namespace Amazon.SnowDeviceManagement
 
         /// <summary>
         /// Sends a cancel request for a specified task. You can cancel a task only if it's still
-        /// in a <code>QUEUED</code> state. Tasks that are already running can't be cancelled.
+        /// in a <c>QUEUED</c> state. Tasks that are already running can't be cancelled.
         /// 
         ///  <note> 
         /// <para>
-        /// A task might still run if it's processed from the queue before the <code>CancelTask</code>
+        /// A task might still run if it's processed from the queue before the <c>CancelTask</c>
         /// operation changes the task's state.
         /// </para>
         ///  </note>
@@ -308,11 +309,11 @@ namespace Amazon.SnowDeviceManagement
 
         /// <summary>
         /// Sends a cancel request for a specified task. You can cancel a task only if it's still
-        /// in a <code>QUEUED</code> state. Tasks that are already running can't be cancelled.
+        /// in a <c>QUEUED</c> state. Tasks that are already running can't be cancelled.
         /// 
         ///  <note> 
         /// <para>
-        /// A task might still run if it's processed from the queue before the <code>CancelTask</code>
+        /// A task might still run if it's processed from the queue before the <c>CancelTask</c>
         /// operation changes the task's state.
         /// </para>
         ///  </note>
@@ -504,7 +505,7 @@ namespace Amazon.SnowDeviceManagement
 
 
         /// <summary>
-        /// Checks the current state of the Amazon EC2 instances. The output is similar to <code>describeDevice</code>,
+        /// Checks the current state of the Amazon EC2 instances. The output is similar to <c>describeDevice</c>,
         /// but the results are sourced from the device cache in the Amazon Web Services Cloud
         /// and include a subset of the available fields.
         /// </summary>
@@ -538,7 +539,7 @@ namespace Amazon.SnowDeviceManagement
 
 
         /// <summary>
-        /// Checks the current state of the Amazon EC2 instances. The output is similar to <code>describeDevice</code>,
+        /// Checks the current state of the Amazon EC2 instances. The output is similar to <c>describeDevice</c>,
         /// but the results are sourced from the device cache in the Amazon Web Services Cloud
         /// and include a subset of the available fields.
         /// </summary>
@@ -1181,11 +1182,11 @@ namespace Amazon.SnowDeviceManagement
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

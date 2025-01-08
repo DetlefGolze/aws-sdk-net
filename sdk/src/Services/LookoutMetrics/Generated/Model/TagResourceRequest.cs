@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.LookoutMetrics.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.LookoutMetrics.Model
     public partial class TagResourceRequest : AmazonLookoutMetricsRequest
     {
         private string _resourceArn;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property ResourceArn. 
@@ -61,7 +62,7 @@ namespace Amazon.LookoutMetrics.Model
         /// Gets and sets the property Tags. 
         /// <para>
         /// Tags to apply to the resource. Tag keys and values can contain letters, numbers, spaces,
-        /// and the following symbols: <code>_.:/=+@-</code> 
+        /// and the following symbols: <c>_.:/=+@-</c> 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=50)]
@@ -74,7 +75,7 @@ namespace Amazon.LookoutMetrics.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

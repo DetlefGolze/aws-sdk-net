@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.KeyManagementService.Model
 {
     /// <summary>
@@ -34,14 +35,14 @@ namespace Amazon.KeyManagementService.Model
     public partial class ListKeyPoliciesResponse : AmazonWebServiceResponse
     {
         private string _nextMarker;
-        private List<string> _policyNames = new List<string>();
+        private List<string> _policyNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _truncated;
 
         /// <summary>
         /// Gets and sets the property NextMarker. 
         /// <para>
-        /// When <code>Truncated</code> is true, this element is present and contains the value
-        /// to use for the <code>Marker</code> parameter in a subsequent request.
+        /// When <c>Truncated</c> is true, this element is present and contains the value to use
+        /// for the <c>Marker</c> parameter in a subsequent request.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=1024)]
@@ -60,7 +61,7 @@ namespace Amazon.KeyManagementService.Model
         /// <summary>
         /// Gets and sets the property PolicyNames. 
         /// <para>
-        /// A list of key policy names. The only valid value is <code>default</code>.
+        /// A list of key policy names. The only valid value is <c>default</c>.
         /// </para>
         /// </summary>
         public List<string> PolicyNames
@@ -72,7 +73,7 @@ namespace Amazon.KeyManagementService.Model
         // Check to see if PolicyNames property is set
         internal bool IsSetPolicyNames()
         {
-            return this._policyNames != null && this._policyNames.Count > 0; 
+            return this._policyNames != null && (this._policyNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -80,8 +81,8 @@ namespace Amazon.KeyManagementService.Model
         /// <para>
         /// A flag that indicates whether there are more items in the list. When this value is
         /// true, the list in this response is truncated. To get more items, pass the value of
-        /// the <code>NextMarker</code> element in thisresponse to the <code>Marker</code> parameter
-        /// in a subsequent request.
+        /// the <c>NextMarker</c> element in this response to the <c>Marker</c> parameter in a
+        /// subsequent request.
         /// </para>
         /// </summary>
         public bool Truncated

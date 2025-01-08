@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.GroundStation.Model
 {
     /// <summary>
-    /// Information about the decode <code>Config</code>.
+    /// Information about the decode <c>Config</c>.
     /// </summary>
     public partial class DecodeConfig
     {
@@ -38,7 +39,7 @@ namespace Amazon.GroundStation.Model
         /// <summary>
         /// Gets and sets the property UnvalidatedJSON. 
         /// <para>
-        /// Unvalidated JSON of a decode <code>Config</code>.
+        /// Unvalidated JSON of a decode <c>Config</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=2, Max=8192)]

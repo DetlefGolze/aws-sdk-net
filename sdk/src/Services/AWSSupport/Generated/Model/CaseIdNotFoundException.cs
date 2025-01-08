@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AWSSupport.Model
 {
     /// <summary>
-    /// The requested <code>caseId</code> couldn't be located.
+    /// The requested <c>caseId</c> couldn't be located.
     /// </summary>
     #if !NETSTANDARD
     [Serializable]

@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.TranscribeService.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.TranscribeService.Model
     /// 
     ///  
     /// <para>
-    /// Rules using <code>InterruptionFilter</code> are designed to match:
+    /// Rules using <c>InterruptionFilter</c> are designed to match:
     /// </para>
     ///  <ul> <li> 
     /// <para>
@@ -88,8 +89,8 @@ namespace Amazon.TranscribeService.Model
         /// <summary>
         /// Gets and sets the property Negate. 
         /// <para>
-        /// Set to <code>TRUE</code> to flag speech that does not contain interruptions. Set to
-        /// <code>FALSE</code> to flag speech that contains interruptions.
+        /// Set to <c>TRUE</c> to flag speech that does not contain interruptions. Set to <c>FALSE</c>
+        /// to flag speech that contains interruptions.
         /// </para>
         /// </summary>
         public bool Negate

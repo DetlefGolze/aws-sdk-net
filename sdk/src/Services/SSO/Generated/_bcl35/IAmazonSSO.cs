@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.SSO.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.SSO
 {
     /// <summary>
-    /// Interface for accessing SSO
+    /// <para>Interface for accessing SSO</para>
     ///
     /// AWS IAM Identity Center (successor to AWS Single Sign-On) Portal is a web service
     /// that makes it easy for you to assign user access to IAM Identity Center resources
@@ -36,8 +37,8 @@ namespace Amazon.SSO
     /// 
     ///  <note> 
     /// <para>
-    /// Although AWS Single Sign-On was renamed, the <code>sso</code> and <code>identitystore</code>
-    /// API namespaces will continue to retain their original name for backward compatibility
+    /// Although AWS Single Sign-On was renamed, the <c>sso</c> and <c>identitystore</c> API
+    /// namespaces will continue to retain their original name for backward compatibility
     /// purposes. For more information, see <a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html#renamed">IAM
     /// Identity Center rename</a>.
     /// </para>

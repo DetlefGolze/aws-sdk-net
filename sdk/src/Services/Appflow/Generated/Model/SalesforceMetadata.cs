@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Appflow.Model
 {
     /// <summary>
@@ -33,9 +34,9 @@ namespace Amazon.Appflow.Model
     /// </summary>
     public partial class SalesforceMetadata
     {
-        private List<string> _dataTransferApis = new List<string>();
-        private List<string> _oauth2GrantTypesSupported = new List<string>();
-        private List<string> _oAuthScopes = new List<string>();
+        private List<string> _dataTransferApis = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _oauth2GrantTypesSupported = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _oAuthScopes = AWSConfigs.InitializeCollections ? new List<string>() : null;
 
         /// <summary>
         /// Gets and sets the property DataTransferApis. 
@@ -53,7 +54,7 @@ namespace Amazon.Appflow.Model
         // Check to see if DataTransferApis property is set
         internal bool IsSetDataTransferApis()
         {
-            return this._dataTransferApis != null && this._dataTransferApis.Count > 0; 
+            return this._dataTransferApis != null && (this._dataTransferApis.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -69,12 +70,6 @@ namespace Amazon.Appflow.Model
         /// Salesforce. Amazon AppFlow receives the authorization code from Salesforce after you
         /// log in to your Salesforce account and authorize Amazon AppFlow to access your records.
         /// </para>
-        ///  </dd> <dt>CLIENT_CREDENTIALS</dt> <dd> 
-        /// <para>
-        /// Amazon AppFlow passes client credentials (a client ID and client secret) when it requests
-        /// the access token from Salesforce. You provide these credentials to Amazon AppFlow
-        /// when you define the connection to your Salesforce account.
-        /// </para>
         ///  </dd> <dt>JWT_BEARER</dt> <dd> 
         /// <para>
         /// Amazon AppFlow passes a JSON web token (JWT) when it requests the access token from
@@ -82,7 +77,11 @@ namespace Amazon.Appflow.Model
         /// your Salesforce account. When you use this grant type, you don't need to log in to
         /// your Salesforce account to authorize Amazon AppFlow to access your records.
         /// </para>
-        ///  </dd> </dl>
+        ///  </dd> </dl> <note> 
+        /// <para>
+        /// The CLIENT_CREDENTIALS value is not supported for Salesforce.
+        /// </para>
+        ///  </note>
         /// </summary>
         public List<string> Oauth2GrantTypesSupported
         {
@@ -93,7 +92,7 @@ namespace Amazon.Appflow.Model
         // Check to see if Oauth2GrantTypesSupported property is set
         internal bool IsSetOauth2GrantTypesSupported()
         {
-            return this._oauth2GrantTypesSupported != null && this._oauth2GrantTypesSupported.Count > 0; 
+            return this._oauth2GrantTypesSupported != null && (this._oauth2GrantTypesSupported.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -111,7 +110,7 @@ namespace Amazon.Appflow.Model
         // Check to see if OAuthScopes property is set
         internal bool IsSetOAuthScopes()
         {
-            return this._oAuthScopes != null && this._oAuthScopes.Count > 0; 
+            return this._oAuthScopes != null && (this._oAuthScopes.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

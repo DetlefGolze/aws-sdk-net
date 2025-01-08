@@ -22,69 +22,33 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Amazon.Util.Internal
-{
+{        
+    /// <summary>
+    /// An interface for <see cref="RuntimeInformationWrapper"/> which allows for mocking the <see cref="RuntimeInformation"/> class.
+    /// A wrapper is necessary because the class is static.
+    /// </summary>
+    internal interface IRuntimeInformationWrapper
+    {
+        string FrameworkDescription { get; }
+    }
+
+    internal class RuntimeInformationWrapper : IRuntimeInformationWrapper
+    {
+        public string FrameworkDescription => RuntimeInformation.FrameworkDescription;
+    }
+
     public static partial class InternalSDKUtils
     {
         private const string UnknownPlaceholder = "Unknown";
         private const string UnknownPlatform = "unknown_platform";
 
         private static string _userAgentBaseName = "aws-sdk-dotnet-coreclr";
-        private static readonly string SpecialPlatformInformation;
 
-#pragma warning disable CA1810 // Initialize reference type static fields inline
-        static InternalSDKUtils()
-#pragma warning restore CA1810 // Initialize reference type static fields inline
-        {
-            if (GetExecutionEnvironment() == null)
-            {
-                try
-                {
-                    SpecialPlatformInformation = GetXamarinInformation() ?? GetUnityInformation();
-                }
-#pragma warning disable CA1031 // Do not catch general exception types
-                catch
-#pragma warning restore CA1031 // Do not catch general exception types
-                {
-                    SpecialPlatformInformation = null;
-                }
-            }
-        }
+        private static IRuntimeInformationWrapper _runtimeInformationWrapper = new RuntimeInformationWrapper();
 
-        private static string GetXamarinInformation()
-        {
-            var xamarinDevice = Type.GetType("Xamarin.Forms.Device, Xamarin.Forms.Core");
-            if (xamarinDevice == null)
-            {
-                return null;
-            }
-
-            var runtime = xamarinDevice.GetProperty("RuntimePlatform")?.GetValue(null)?.ToString() ?? "";
-            var idiom = xamarinDevice.GetProperty("Idiom")?.GetValue(null)?.ToString() ?? "";
-
-            var platform = runtime + idiom;
-
-            if (string.IsNullOrEmpty(platform))
-            {
-                platform = UnknownPlatform;
-            }
-
-            return string.Format(CultureInfo.InvariantCulture, "Xamarin_{0}", "Xamarin");
-        }
-
-        private static string GetUnityInformation()
-        {
-            var unityApplication = Type.GetType("UnityEngine.Application, UnityEngine.CoreModule");
-            if (unityApplication == null)
-            {
-                return null;
-            }
-
-            var platform = unityApplication.GetProperty("platform")?.GetValue(null)?.ToString() ?? UnknownPlatform;
-
-            return string.Format(CultureInfo.InvariantCulture, "Unity_{0}", platform);
-        }
 
         private static string GetValidSubstringOrUnknown(string str, int start, int end)
         {
@@ -102,27 +66,20 @@ namespace Amazon.Util.Internal
         }
 
         /// <summary>
-        /// Returns the type of platform and version.!-- If on a special platform, a static "0" is used as the version since
-        /// we have nothing more specific that actually means anything. Otherwise, asks InteropServices RuntimeInformation for
+        /// Returns the type of platform and version using the InteropServices RuntimeInformation for
         /// the OSDescription and trims off the OS name.
         /// </summary>
         public static string DetermineFramework()
         {
-            if (SpecialPlatformInformation != null)
-            {
-                if(SpecialPlatformInformation.StartsWith("Xamarin"))
-                {
-                    return "Xamarin/0";
-                }
-                if (SpecialPlatformInformation.StartsWith("Unity"))
-                {
-                    return "Unity/0";
-                }
-            }
             try
             {
-                var desc = RuntimeInformation.FrameworkDescription.Trim();
-                return string.Format(CultureInfo.InvariantCulture, ".NET_Core/{0}", GetValidSubstringOrUnknown(desc, desc.LastIndexOf(' ') + 1, desc.Length));
+                var desc = _runtimeInformationWrapper.FrameworkDescription.Trim();
+                var version = GetValidSubstringOrUnknown(desc, desc.LastIndexOf(' ') + 1, desc.Length);
+                if (!Version.TryParse(version, out var _))
+                {
+                    return "Unknown" + $" md/framework-raw-version#{desc.Replace(' ', '_')}";
+                }
+                return string.Format(CultureInfo.InvariantCulture, ".NET_Core#{0}", version);
             }
             catch
             {
@@ -132,16 +89,10 @@ namespace Amazon.Util.Internal
 
 
         /// <summary>
-        /// Returns the special platform information (e.g. Unity_OSXEditor, Xamarin_AndroidTablet) if
-        /// on those platforms, otherwise asks InteropServices RuntimeInformation for the OSDescription
-        /// and trims off the version.
+        /// Returns the OS.
         /// </summary>
         public static string DetermineOS()
         {
-            if (SpecialPlatformInformation != null)
-            {
-                return SpecialPlatformInformation;
-            }
             try
             {
                 var desc = RuntimeInformation.OSDescription.Trim();
@@ -154,25 +105,48 @@ namespace Amazon.Util.Internal
         }
 
         /// <summary>
-        /// Returns the special platform information (e.g. Unity_OSXEditor, Xamarin_AndroidTablet) if
-        /// on those platforms, otherwise asks InteropServices RuntimeInformation for the OSDescription,
-        /// keeping the version tail.
+        /// Returns the platform description that should be added to the user agent.
         /// </summary>
         public static string PlatformUserAgent()
         {
             try
             {
-                var desc = SpecialPlatformInformation ?? RuntimeInformation.OSDescription;
-                if (!string.IsNullOrWhiteSpace(desc))
+                StringBuilder sb = new StringBuilder();
+                if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
-                    return desc.Trim().Replace(' ', '_');
+                    sb.AppendFormat("linux#{0}", Environment.OSVersion.Version);
                 }
-                return UnknownPlaceholder;
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    sb.AppendFormat("windows#{0}", Environment.OSVersion.Version);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    sb.AppendFormat("macos#{0}", Environment.OSVersion.Version);
+                }
+                else
+                {
+                    sb.AppendFormat("other md/{0}#{1}", RuntimeInformation.OSDescription, Environment.OSVersion.Version);
+                }
+
+                sb.AppendFormat(" md/ARCH#{0}", RuntimeInformation.OSArchitecture);
+
+                return sb.ToString();
             }
             catch
             {
                 return UnknownPlaceholder;
             }
+        }
+        // Method to set the runtime information wrapper for testing
+        internal static void SetRuntimeInformationWrapper(IRuntimeInformationWrapper wrapper)
+        {
+            _runtimeInformationWrapper = wrapper;
+        }
+
+        internal static void ResetRuntimeInformationWrapper()
+        {
+            _runtimeInformationWrapper = new RuntimeInformationWrapper();
         }
     }
 }

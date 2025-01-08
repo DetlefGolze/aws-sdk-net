@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Pipes.Model
 {
     /// <summary>
-    /// The parameters for using a Kinesis stream as a source.
+    /// The parameters for using a Kinesis stream as a target.
     /// </summary>
     public partial class PipeTargetKinesisStreamParameters
     {

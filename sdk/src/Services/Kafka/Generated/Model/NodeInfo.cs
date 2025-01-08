@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Kafka.Model
 {
     /// <summary>
@@ -35,6 +36,7 @@ namespace Amazon.Kafka.Model
     {
         private string _addedToClusterTime;
         private BrokerNodeInfo _brokerNodeInfo;
+        private ControllerNodeInfo _controllerNodeInfo;
         private string _instanceType;
         private string _nodeARN;
         private NodeType _nodeType;
@@ -74,6 +76,24 @@ namespace Amazon.Kafka.Model
         internal bool IsSetBrokerNodeInfo()
         {
             return this._brokerNodeInfo != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property ControllerNodeInfo.             
+        /// <para>
+        /// The ControllerNodeInfo.
+        /// </para>
+        /// </summary>
+        public ControllerNodeInfo ControllerNodeInfo
+        {
+            get { return this._controllerNodeInfo; }
+            set { this._controllerNodeInfo = value; }
+        }
+
+        // Check to see if ControllerNodeInfo property is set
+        internal bool IsSetControllerNodeInfo()
+        {
+            return this._controllerNodeInfo != null;
         }
 
         /// <summary>

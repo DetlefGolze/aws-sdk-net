@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AugmentedAIRuntime.Model
 {
     /// <summary>
@@ -68,8 +69,7 @@ namespace Amazon.AugmentedAIRuntime.Model
         /// </para>
         ///  
         /// <para>
-        /// Possible values: <code>ValidationError</code>, <code>Expired</code>, <code>InternalError</code>
-        /// 
+        /// Possible values: <c>ValidationError</c>, <c>Expired</c>, <c>InternalError</c> 
         /// </para>
         /// </summary>
         public string FailureCode
@@ -88,7 +88,7 @@ namespace Amazon.AugmentedAIRuntime.Model
         /// Gets and sets the property FailureReason. 
         /// <para>
         /// The reason why a human loop failed. The failure reason is returned when the status
-        /// of the human loop is <code>Failed</code>.
+        /// of the human loop is <c>Failed</c>.
         /// </para>
         /// </summary>
         public string FailureReason

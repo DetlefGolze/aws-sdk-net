@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.AppStream.Model
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Amazon.AppStream.Model
     {
         private AuthenticationType _authenticationType;
         private string _fleetName;
+        private string _instanceId;
         private int? _limit;
         private string _nextToken;
         private string _stackName;
@@ -47,9 +49,9 @@ namespace Amazon.AppStream.Model
         /// <summary>
         /// Gets and sets the property AuthenticationType. 
         /// <para>
-        /// The authentication method. Specify <code>API</code> for a user authenticated using
-        /// a streaming URL or <code>SAML</code> for a SAML federated user. The default is to
-        /// authenticate users using a streaming URL.
+        /// The authentication method. Specify <c>API</c> for a user authenticated using a streaming
+        /// URL or <c>SAML</c> for a SAML federated user. The default is to authenticate users
+        /// using a streaming URL.
         /// </para>
         /// </summary>
         public AuthenticationType AuthenticationType
@@ -70,7 +72,7 @@ namespace Amazon.AppStream.Model
         /// The name of the fleet. This value is case-sensitive.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1)]
+        [AWSProperty(Required=true)]
         public string FleetName
         {
             get { return this._fleetName; }
@@ -81,6 +83,25 @@ namespace Amazon.AppStream.Model
         internal bool IsSetFleetName()
         {
             return this._fleetName != null;
+        }
+
+        /// <summary>
+        /// Gets and sets the property InstanceId. 
+        /// <para>
+        /// The identifier for the instance hosting the session.
+        /// </para>
+        /// </summary>
+        [AWSProperty(Min=1)]
+        public string InstanceId
+        {
+            get { return this._instanceId; }
+            set { this._instanceId = value; }
+        }
+
+        // Check to see if InstanceId property is set
+        internal bool IsSetInstanceId()
+        {
+            return this._instanceId != null;
         }
 
         /// <summary>
@@ -128,7 +149,7 @@ namespace Amazon.AppStream.Model
         /// The name of the stack. This value is case-sensitive.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1)]
+        [AWSProperty(Required=true)]
         public string StackName
         {
             get { return this._stackName; }

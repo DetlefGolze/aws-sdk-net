@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
@@ -33,7 +34,7 @@ namespace Amazon.EC2.Model
     /// </summary>
     public partial class DescribeLaunchTemplatesResponse : AmazonWebServiceResponse
     {
-        private List<LaunchTemplate> _launchTemplates = new List<LaunchTemplate>();
+        private List<LaunchTemplate> _launchTemplates = AWSConfigs.InitializeCollections ? new List<LaunchTemplate>() : null;
         private string _nextToken;
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace Amazon.EC2.Model
         // Check to see if LaunchTemplates property is set
         internal bool IsSetLaunchTemplates()
         {
-            return this._launchTemplates != null && this._launchTemplates.Count > 0; 
+            return this._launchTemplates != null && (this._launchTemplates.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property NextToken. 
         /// <para>
-        /// The token to use to retrieve the next page of results. This value is <code>null</code>
-        /// when there are no more results to return.
+        /// The token to use to retrieve the next page of results. This value is <c>null</c> when
+        /// there are no more results to return.
         /// </para>
         /// </summary>
         public string NextToken

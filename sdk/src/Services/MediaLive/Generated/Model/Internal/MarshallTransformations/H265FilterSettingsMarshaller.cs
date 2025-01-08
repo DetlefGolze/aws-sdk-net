@@ -30,6 +30,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -45,6 +46,19 @@ namespace Amazon.MediaLive.Model.Internal.MarshallTransformations
         /// <returns></returns>
         public void Marshall(H265FilterSettings requestObject, JsonMarshallerContext context)
         {
+            if(requestObject == null)
+                return;
+            if(requestObject.IsSetBandwidthReductionFilterSettings())
+            {
+                context.Writer.WritePropertyName("bandwidthReductionFilterSettings");
+                context.Writer.WriteObjectStart();
+
+                var marshaller = BandwidthReductionFilterSettingsMarshaller.Instance;
+                marshaller.Marshall(requestObject.BandwidthReductionFilterSettings, context);
+
+                context.Writer.WriteObjectEnd();
+            }
+
             if(requestObject.IsSetTemporalFilterSettings())
             {
                 context.Writer.WritePropertyName("temporalFilterSettings");

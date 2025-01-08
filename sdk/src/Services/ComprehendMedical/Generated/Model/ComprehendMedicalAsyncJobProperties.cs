@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ComprehendMedical.Model
 {
     /// <summary>
@@ -91,7 +92,7 @@ namespace Amazon.ComprehendMedical.Model
         /// <para>
         /// The date and time that job metadata is deleted from the server. Output files in your
         /// S3 bucket will not be deleted. After the metadata is deleted, the job will no longer
-        /// appear in the results of the <code>ListEntitiesDetectionV2Job</code> or the <code>ListPHIDetectionJobs</code>
+        /// appear in the results of the <c>ListEntitiesDetectionV2Job</c> or the <c>ListPHIDetectionJobs</c>
         /// operation.
         /// </para>
         /// </summary>
@@ -166,8 +167,8 @@ namespace Amazon.ComprehendMedical.Model
         /// <summary>
         /// Gets and sets the property JobStatus. 
         /// <para>
-        /// The current status of the detection job. If the status is <code>FAILED</code>, the
-        /// <code>Message</code> field shows the reason for the failure.
+        /// The current status of the detection job. If the status is <c>FAILED</c>, the <c>Message</c>
+        /// field shows the reason for the failure.
         /// </para>
         /// </summary>
         public JobStatus JobStatus

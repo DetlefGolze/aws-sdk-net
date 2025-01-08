@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.WAFV2
 {
     /// <summary>
-    /// Implementation for accessing WAFV2
+    /// <para>Implementation for accessing WAFV2</para>
     ///
     /// WAF <note> 
     /// <para>
@@ -49,14 +50,13 @@ namespace Amazon.WAFV2
     ///  
     /// <para>
     /// If you used WAF prior to this release, you can't use this WAFV2 API to access any
-    /// WAF resources that you created before. You can access your old rules, web ACLs, and
-    /// other WAF resources only through the WAF Classic APIs. The WAF Classic APIs have retained
-    /// the prior names, endpoints, and namespaces. 
+    /// WAF resources that you created before. WAF Classic support will end on September 30,
+    /// 2025. 
     /// </para>
     ///  
     /// <para>
-    /// For information, including how to migrate your WAF resources to this version, see
-    /// the <a href="https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html">WAF
+    /// For information about WAF, including how to migrate your WAF Classic resources to
+    /// this version, see the <a href="https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html">WAF
     /// Developer Guide</a>. 
     /// </para>
     ///  </note> 
@@ -101,31 +101,6 @@ namespace Amazon.WAFV2
     /// tailored to the programming language or platform that you're using. For more information,
     /// see <a href="http://aws.amazon.com/tools/#SDKs">Amazon Web Services SDKs</a>.
     /// </para>
-    ///  
-    /// <para>
-    /// We currently provide two versions of the WAF API: this API and the prior versions,
-    /// the classic WAF APIs. This new API provides the same functionality as the older versions,
-    /// with the following major improvements:
-    /// </para>
-    ///  <ul> <li> 
-    /// <para>
-    /// You use one API for both global and regional applications. Where you need to distinguish
-    /// the scope, you specify a <code>Scope</code> parameter and set it to <code>CLOUDFRONT</code>
-    /// or <code>REGIONAL</code>. 
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// You can define a web ACL or rule group with a single call, and update it with a single
-    /// call. You define all rule specifications in JSON format, and pass them to your rule
-    /// group or web ACL calls.
-    /// </para>
-    ///  </li> <li> 
-    /// <para>
-    /// The limits WAF places on the use of rules more closely reflects the cost of running
-    /// each type of rule. Rule groups include capacity settings, so you know the maximum
-    /// cost of a rule group when you use it.
-    /// </para>
-    ///  </li> </ul>
     /// </summary>
     public partial class AmazonWAFV2Client : AmazonServiceClient, IAmazonWAFV2
     {
@@ -358,25 +333,57 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// For Amazon CloudFront, don't use this call. Instead, use your CloudFront distribution
-        /// configuration. To associate a web ACL, in the CloudFront call <code>UpdateDistribution</code>,
+        /// configuration. To associate a web ACL, in the CloudFront call <c>UpdateDistribution</c>,
         /// set the web ACL ID to the Amazon Resource Name (ARN) of the web ACL. For information,
         /// see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
         /// in the <i>Amazon CloudFront Developer Guide</i>. 
         /// </para>
         ///  
         /// <para>
-        /// When you make changes to web ACLs or web ACL components, like rules and rule groups,
-        /// WAF propagates the changes everywhere that the web ACL and its components are stored
-        /// and used. Your changes are applied within seconds, but there might be a brief period
-        /// of inconsistency when the changes have arrived in some places and not in others. So,
-        /// for example, if you change a rule action setting, the action might be the old action
-        /// in one area and the new action in another area. Or if you add an IP address to an
-        /// IP set used in a blocking rule, the new address might briefly be blocked in one area
-        /// while still allowed in another. This temporary inconsistency can occur when you first
-        /// associate a web ACL with an Amazon Web Services resource and when you change a web
-        /// ACL that is already associated with a resource. Generally, any inconsistencies of
-        /// this type last only a few seconds.
+        ///  <b>Required permissions for customer-managed IAM policies</b> 
         /// </para>
+        ///  
+        /// <para>
+        /// This call requires permissions that are specific to the protected resource type. For
+        /// details, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-AssociateWebACL">Permissions
+        /// for AssociateWebACL</a> in the <i>WAF Developer Guide</i>. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Temporary inconsistencies during updates</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// When you create or change a web ACL or other WAF resources, the changes take a small
+        /// amount of time to propagate to all areas where the resources are stored. The propagation
+        /// time can be from a few seconds to a number of minutes. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The following are examples of the temporary inconsistencies that you might notice
+        /// during change propagation: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// After you create a web ACL, if you try to associate it with a resource, you might
+        /// get an exception indicating that the web ACL is unavailable. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add a rule group to a web ACL, the new rule group rules might be in effect
+        /// in one area where the web ACL is used and not in another.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you change a rule action setting, you might see the old action in some places
+        /// and the new action in others. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add an IP address to an IP set that is in use in a blocking rule, the new
+        /// address might be blocked in one area while still allowed in another.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AssociateWebACL service method.</param>
         /// <param name="cancellationToken">
@@ -406,8 +413,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -503,8 +510,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -519,8 +526,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -610,8 +617,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -622,8 +629,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CreateAPIKey">REST API Reference for CreateAPIKey Operation</seealso>
@@ -689,8 +696,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -701,8 +708,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFOptimisticLockException">
@@ -778,8 +785,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -790,8 +797,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFOptimisticLockException">
@@ -875,8 +882,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -887,8 +894,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -971,9 +978,9 @@ namespace Amazon.WAFV2
         /// <exception cref="Amazon.WAFV2.Model.WAFConfigurationWarningException">
         /// The operation failed because you are inspecting the web request body, headers, or
         /// cookies without specifying how to handle oversize components. Rules that inspect the
-        /// body must either provide an <code>OversizeHandling</code> configuration or they must
-        /// be preceded by a <code>SizeConstraintStatement</code> that blocks the body content
-        /// from being too large. Rules that inspect the headers or cookies must provide an <code>OversizeHandling</code>
+        /// body must either provide an <c>OversizeHandling</c> configuration or they must be
+        /// preceded by a <c>SizeConstraintStatement</c> that blocks the body content from being
+        /// too large. Rules that inspect the headers or cookies must provide an <c>OversizeHandling</c>
         /// configuration. 
         /// 
         ///  
@@ -983,8 +990,8 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// Alternately, you can suppress this warning by adding the following tag to the resource
-        /// that you provide to this operation: <code>Tag</code> (key:<code>WAF:OversizeFieldsHandlingConstraintOptOut</code>,
-        /// value:<code>true</code>).
+        /// that you provide to this operation: <c>Tag</c> (key:<c>WAF:OversizeFieldsHandlingConstraintOptOut</c>,
+        /// value:<c>true</c>).
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFDuplicateItemException">
@@ -1018,8 +1025,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1034,8 +1041,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -1079,6 +1086,89 @@ namespace Amazon.WAFV2
 
         #endregion
         
+        #region  DeleteAPIKey
+
+        internal virtual DeleteAPIKeyResponse DeleteAPIKey(DeleteAPIKeyRequest request)
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAPIKeyRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAPIKeyResponseUnmarshaller.Instance;
+
+            return Invoke<DeleteAPIKeyResponse>(request, options);
+        }
+
+
+
+        /// <summary>
+        /// Deletes the specified API key. 
+        /// 
+        ///  
+        /// <para>
+        /// After you delete a key, it can take up to 24 hours for WAF to disallow use of the
+        /// key in all regions. 
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteAPIKey service method.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// 
+        /// <returns>The response from the DeleteAPIKey service method, as returned by WAFV2.</returns>
+        /// <exception cref="Amazon.WAFV2.Model.WAFInternalErrorException">
+        /// Your request is valid, but WAF couldn’t perform the operation because of a system
+        /// problem. Retry your request.
+        /// </exception>
+        /// <exception cref="Amazon.WAFV2.Model.WAFInvalidOperationException">
+        /// The operation isn't valid.
+        /// </exception>
+        /// <exception cref="Amazon.WAFV2.Model.WAFInvalidParameterException">
+        /// The operation failed because WAF didn't recognize a parameter in the request. For
+        /// example: 
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// You specified a parameter name or value that isn't valid.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Your nested statement isn't valid. You might have tried to nest a statement that can’t
+        /// be nested. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Your request references an ARN that is malformed, or corresponds to a resource with
+        /// which a web ACL can't be associated.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
+        /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
+        /// WAF couldn’t perform the operation because your resource doesn't exist. If you've
+        /// just created a resource that you're using in this operation, you might just need to
+        /// wait a few minutes. It can take from a few seconds to a number of minutes for changes
+        /// to propagate.
+        /// </exception>
+        /// <exception cref="Amazon.WAFV2.Model.WAFOptimisticLockException">
+        /// WAF couldn’t save your changes because you tried to update or delete a resource that
+        /// has changed since you last retrieved it. Get the resource again, make any changes
+        /// you need to make to the new copy, and retry your operation.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DeleteAPIKey">REST API Reference for DeleteAPIKey Operation</seealso>
+        public virtual Task<DeleteAPIKeyResponse> DeleteAPIKeyAsync(DeleteAPIKeyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var options = new InvokeOptions();
+            options.RequestMarshaller = DeleteAPIKeyRequestMarshaller.Instance;
+            options.ResponseUnmarshaller = DeleteAPIKeyResponseUnmarshaller.Instance;
+
+            return InvokeAsync<DeleteAPIKeyResponse>(request, options, cancellationToken);
+        }
+
+        #endregion
+        
         #region  DeleteFirewallManagerRuleGroups
 
         internal virtual DeleteFirewallManagerRuleGroupsResponse DeleteFirewallManagerRuleGroups(DeleteFirewallManagerRuleGroupsRequest request)
@@ -1093,13 +1183,13 @@ namespace Amazon.WAFV2
 
 
         /// <summary>
-        /// Deletes all rule groups that are managed by Firewall Manager for the specified web
-        /// ACL. 
+        /// Deletes all rule groups that are managed by Firewall Manager from the specified <a>WebACL</a>.
+        /// 
         /// 
         ///  
         /// <para>
-        /// You can only use this if <code>ManagedByFirewallManager</code> is false in the specified
-        /// <a>WebACL</a>. 
+        /// You can only use this if <c>ManagedByFirewallManager</c> and <c>RetrofittedByFirewallManager</c>
+        /// are both false in the web ACL. 
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteFirewallManagerRuleGroups service method.</param>
@@ -1130,8 +1220,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1211,8 +1301,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1295,8 +1385,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1374,8 +1464,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1450,8 +1540,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1538,8 +1628,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1596,8 +1686,8 @@ namespace Amazon.WAFV2
         /// 
         ///  
         /// <para>
-        /// You can only use this if <code>ManagedByFirewallManager</code> is false in the specified
-        /// <a>WebACL</a>. 
+        /// You can only use this if <c>ManagedByFirewallManager</c> is false in the web ACL.
+        /// 
         /// </para>
         ///  <note> 
         /// <para>
@@ -1614,7 +1704,7 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// For Amazon CloudFront distributions, use the CloudFront call <code>ListDistributionsByWebACLId</code>.
+        /// For Amazon CloudFront distributions, use the CloudFront call <c>ListDistributionsByWebACLId</c>.
         /// For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByWebACLId.html">ListDistributionsByWebACLId</a>
         /// in the <i>Amazon CloudFront API Reference</i>. 
         /// </para>
@@ -1629,7 +1719,7 @@ namespace Amazon.WAFV2
         ///  </li> <li> 
         /// <para>
         /// For Amazon CloudFront distributions, provide an empty web ACL ID in the CloudFront
-        /// call <code>UpdateDistribution</code>. For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
+        /// call <c>UpdateDistribution</c>. For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
         /// in the <i>Amazon CloudFront API Reference</i>. 
         /// </para>
         ///  </li> </ul> </li> </ul> </note>
@@ -1666,8 +1756,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1736,6 +1826,31 @@ namespace Amazon.WAFV2
         /// <exception cref="Amazon.WAFV2.Model.WAFInvalidOperationException">
         /// The operation isn't valid.
         /// </exception>
+        /// <exception cref="Amazon.WAFV2.Model.WAFInvalidParameterException">
+        /// The operation failed because WAF didn't recognize a parameter in the request. For
+        /// example: 
+        /// 
+        ///  <ul> <li> 
+        /// <para>
+        /// You specified a parameter name or value that isn't valid.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Your nested statement isn't valid. You might have tried to nest a statement that can’t
+        /// be nested. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Your request references an ARN that is malformed, or corresponds to a resource with
+        /// which a web ACL can't be associated.
+        /// </para>
+        ///  </li> </ul>
+        /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeAllManagedProducts">REST API Reference for DescribeAllManagedProducts Operation</seealso>
         public virtual Task<DescribeAllManagedProductsResponse> DescribeAllManagedProductsAsync(DescribeAllManagedProductsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -1792,8 +1907,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1864,8 +1979,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -1920,8 +2035,18 @@ namespace Amazon.WAFV2
         /// <para>
         /// For Amazon CloudFront, don't use this call. Instead, use your CloudFront distribution
         /// configuration. To disassociate a web ACL, provide an empty web ACL ID in the CloudFront
-        /// call <code>UpdateDistribution</code>. For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
+        /// call <c>UpdateDistribution</c>. For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_UpdateDistribution.html">UpdateDistribution</a>
         /// in the <i>Amazon CloudFront API Reference</i>. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Required permissions for customer-managed IAM policies</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// This call requires permissions that are specific to the protected resource type. For
+        /// details, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-DisassociateWebACL">Permissions
+        /// for DisassociateWebACL</a> in the <i>WAF Developer Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DisassociateWebACL service method.</param>
@@ -1952,8 +2077,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2032,8 +2157,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2114,8 +2239,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2127,6 +2252,12 @@ namespace Amazon.WAFV2
         /// <exception cref="Amazon.WAFV2.Model.WAFInvalidResourceException">
         /// WAF couldn’t perform the operation because the resource that you requested isn’t valid.
         /// Check the resource, and try again.
+        /// </exception>
+        /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
+        /// WAF couldn’t perform the operation because your resource doesn't exist. If you've
+        /// just created a resource that you're using in this operation, you might just need to
+        /// wait a few minutes. It can take from a few seconds to a number of minutes for changes
+        /// to propagate.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetDecryptedAPIKey">REST API Reference for GetDecryptedAPIKey Operation</seealso>
         public virtual Task<GetDecryptedAPIKeyResponse> GetDecryptedAPIKeyAsync(GetDecryptedAPIKeyRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2184,8 +2315,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2256,8 +2387,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2308,8 +2439,8 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// Vendors, you can use the managed rule set APIs to provide controlled rollout of your
-        /// versioned managed rule group offerings for your customers. The APIs are <code>ListManagedRuleSets</code>,
-        /// <code>GetManagedRuleSet</code>, <code>PutManagedRuleSetVersions</code>, and <code>UpdateManagedRuleSetVersionExpiryDate</code>.
+        /// versioned managed rule group offerings for your customers. The APIs are <c>ListManagedRuleSets</c>,
+        /// <c>GetManagedRuleSet</c>, <c>PutManagedRuleSetVersions</c>, and <c>UpdateManagedRuleSetVersionExpiryDate</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -2341,8 +2472,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2422,8 +2553,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2496,8 +2627,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2593,8 +2724,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2612,7 +2743,7 @@ namespace Amazon.WAFV2
         /// <exception cref="Amazon.WAFV2.Model.WAFUnsupportedAggregateKeyTypeException">
         /// The rule that you've named doesn't aggregate solely on the IP address or solely on
         /// the forwarded IP address. This call is only available for rate-based rules with an
-        /// <code>AggregateKeyType</code> setting of <code>IP</code> or <code>FORWARDED_IP</code>.
+        /// <c>AggregateKeyType</c> setting of <c>IP</c> or <c>FORWARDED_IP</c>.
         /// </exception>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetRateBasedStatementManagedKeys">REST API Reference for GetRateBasedStatementManagedKeys Operation</seealso>
         public virtual Task<GetRateBasedStatementManagedKeysResponse> GetRateBasedStatementManagedKeysAsync(GetRateBasedStatementManagedKeysRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
@@ -2670,8 +2801,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2742,8 +2873,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2791,9 +2922,9 @@ namespace Amazon.WAFV2
         /// 
         ///  
         /// <para>
-        ///  <code>GetSampledRequests</code> returns a time range, which is usually the time range
-        /// that you specified. However, if your resource (such as a CloudFront distribution)
-        /// received 5,000 requests before the specified time range elapsed, <code>GetSampledRequests</code>
+        ///  <c>GetSampledRequests</c> returns a time range, which is usually the time range that
+        /// you specified. However, if your resource (such as a CloudFront distribution) received
+        /// 5,000 requests before the specified time range elapsed, <c>GetSampledRequests</c>
         /// returns an updated time range. This new time range indicates the actual period during
         /// which WAF selected the requests in the sample.
         /// </para>
@@ -2823,8 +2954,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2895,8 +3026,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -2937,7 +3068,31 @@ namespace Amazon.WAFV2
 
 
         /// <summary>
-        /// Retrieves the <a>WebACL</a> for the specified resource.
+        /// Retrieves the <a>WebACL</a> for the specified resource. 
+        /// 
+        ///  
+        /// <para>
+        /// This call uses <c>GetWebACL</c>, to verify that your account has permission to access
+        /// the retrieved web ACL. If you get an error that indicates that your account isn't
+        /// authorized to perform <c>wafv2:GetWebACL</c> on the resource, that error won't be
+        /// included in your CloudTrail event history. 
+        /// </para>
+        ///  
+        /// <para>
+        /// For Amazon CloudFront, don't use this call. Instead, call the CloudFront action <c>GetDistributionConfig</c>.
+        /// For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistributionConfig.html">GetDistributionConfig</a>
+        /// in the <i>Amazon CloudFront API Reference</i>. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Required permissions for customer-managed IAM policies</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// This call requires permissions that are specific to the protected resource type. For
+        /// details, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-GetWebACLForResource">Permissions
+        /// for GetWebACLForResource</a> in the <i>WAF Developer Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetWebACLForResource service method.</param>
         /// <param name="cancellationToken">
@@ -2967,8 +3122,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3055,8 +3210,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3127,8 +3282,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3193,8 +3348,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3265,8 +3420,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3331,8 +3486,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3377,8 +3532,8 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// Vendors, you can use the managed rule set APIs to provide controlled rollout of your
-        /// versioned managed rule group offerings for your customers. The APIs are <code>ListManagedRuleSets</code>,
-        /// <code>GetManagedRuleSet</code>, <code>PutManagedRuleSetVersions</code>, and <code>UpdateManagedRuleSetVersionExpiryDate</code>.
+        /// versioned managed rule group offerings for your customers. The APIs are <c>ListManagedRuleSets</c>,
+        /// <c>GetManagedRuleSet</c>, <c>PutManagedRuleSetVersions</c>, and <c>UpdateManagedRuleSetVersionExpiryDate</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -3410,8 +3565,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3485,8 +3640,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3552,8 +3707,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3589,8 +3744,24 @@ namespace Amazon.WAFV2
 
         /// <summary>
         /// Retrieves an array of the Amazon Resource Names (ARNs) for the regional resources
-        /// that are associated with the specified web ACL. If you want the list of Amazon CloudFront
-        /// resources, use the CloudFront call <code>ListDistributionsByWebACLId</code>.
+        /// that are associated with the specified web ACL. 
+        /// 
+        ///  
+        /// <para>
+        /// For Amazon CloudFront, don't use this call. Instead, use the CloudFront call <c>ListDistributionsByWebACLId</c>.
+        /// For information, see <a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListDistributionsByWebACLId.html">ListDistributionsByWebACLId</a>
+        /// in the <i>Amazon CloudFront API Reference</i>. 
+        /// </para>
+        ///  
+        /// <para>
+        ///  <b>Required permissions for customer-managed IAM policies</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// This call requires permissions that are specific to the protected resource type. For
+        /// details, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/security_iam_service-with-iam.html#security_iam_action-ListResourcesForWebACL">Permissions
+        /// for ListResourcesForWebACL</a> in the <i>WAF Developer Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListResourcesForWebACL service method.</param>
         /// <param name="cancellationToken">
@@ -3620,8 +3791,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3693,8 +3864,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3770,8 +3941,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3849,8 +4020,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3926,9 +4097,9 @@ namespace Amazon.WAFV2
         /// </para>
         ///  
         /// <para>
-        /// The name that you give the destination must start with <code>aws-waf-logs-</code>.
-        /// Depending on the type of destination, you might need to configure additional settings
-        /// or permissions. 
+        /// The name that you give the destination must start with <c>aws-waf-logs-</c>. Depending
+        /// on the type of destination, you might need to configure additional settings or permissions.
+        /// 
         /// </para>
         ///  
         /// <para>
@@ -3938,16 +4109,16 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// Associate your logging destination to your web ACL using a <code>PutLoggingConfiguration</code>
+        /// Associate your logging destination to your web ACL using a <c>PutLoggingConfiguration</c>
         /// request.
         /// </para>
         ///  </li> </ol> 
         /// <para>
-        /// When you successfully enable logging using a <code>PutLoggingConfiguration</code>
-        /// request, WAF creates an additional role or policy that is required to write logs to
-        /// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates a resource
-        /// policy on the log group. For an Amazon S3 bucket, WAF creates a bucket policy. For
-        /// an Amazon Kinesis Data Firehose, WAF creates a service-linked role.
+        /// When you successfully enable logging using a <c>PutLoggingConfiguration</c> request,
+        /// WAF creates an additional role or policy that is required to write logs to the logging
+        /// destination. For an Amazon CloudWatch Logs log group, WAF creates a resource policy
+        /// on the log group. For an Amazon S3 bucket, WAF creates a bucket policy. For an Amazon
+        /// Kinesis Data Firehose, WAF creates a service-linked role.
         /// </para>
         ///  
         /// <para>
@@ -3983,8 +4154,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -3995,8 +4166,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLogDestinationPermissionIssueException">
@@ -4017,10 +4188,10 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFServiceLinkedRoleErrorException">
         /// WAF is not able to access the service linked role. This can be caused by a previous
-        /// <code>PutLoggingConfiguration</code> request, which can lock the service linked role
-        /// for about 20 seconds. Please try your request again. The service linked role can also
-        /// be locked by a previous <code>DeleteServiceLinkedRole</code> request, which can lock
-        /// the role for 15 minutes or more. If you recently made a call to <code>DeleteServiceLinkedRole</code>,
+        /// <c>PutLoggingConfiguration</c> request, which can lock the service linked role for
+        /// about 20 seconds. Please try your request again. The service linked role can also
+        /// be locked by a previous <c>DeleteServiceLinkedRole</c> request, which can lock the
+        /// role for 15 minutes or more. If you recently made a call to <c>DeleteServiceLinkedRole</c>,
         /// wait at least 15 minutes and try the request again. If you receive this same exception
         /// again, you will have to wait additional time until the role is unlocked.
         /// </exception>
@@ -4061,8 +4232,8 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// Vendors, you can use the managed rule set APIs to provide controlled rollout of your
-        /// versioned managed rule group offerings for your customers. The APIs are <code>ListManagedRuleSets</code>,
-        /// <code>GetManagedRuleSet</code>, <code>PutManagedRuleSetVersions</code>, and <code>UpdateManagedRuleSetVersionExpiryDate</code>.
+        /// versioned managed rule group offerings for your customers. The APIs are <c>ListManagedRuleSets</c>,
+        /// <c>GetManagedRuleSet</c>, <c>PutManagedRuleSetVersions</c>, and <c>UpdateManagedRuleSetVersionExpiryDate</c>.
         /// </para>
         ///  </note> 
         /// <para>
@@ -4106,8 +4277,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4153,12 +4324,12 @@ namespace Amazon.WAFV2
 
 
         /// <summary>
-        /// Attaches an IAM policy to the specified resource. Use this to share a rule group across
-        /// accounts.
+        /// Use this to share a rule group with other accounts.
         /// 
         ///  
         /// <para>
-        /// You must be the owner of the rule group to perform this operation.
+        /// This action attaches an IAM policy to the specified resource. You must be the owner
+        /// of the rule group to perform this operation.
         /// </para>
         ///  
         /// <para>
@@ -4166,7 +4337,7 @@ namespace Amazon.WAFV2
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// You can attach only one policy with each <code>PutPermissionPolicy</code> request.
+        /// You can attach only one policy with each <c>PutPermissionPolicy</c> request.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4177,7 +4348,13 @@ namespace Amazon.WAFV2
         /// <para>
         /// The user making the request must be the owner of the rule group.
         /// </para>
-        ///  </li> </ul>
+        ///  </li> </ul> 
+        /// <para>
+        /// If a rule group has been shared with your account, you can access it through the call
+        /// <c>GetRuleGroup</c>, and you can reference it in <c>CreateWebACL</c> and <c>UpdateWebACL</c>.
+        /// Rule groups that are shared with you don't appear in your WAF console rule groups
+        /// listing. 
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the PutPermissionPolicy service method.</param>
         /// <param name="cancellationToken">
@@ -4204,8 +4381,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4227,22 +4404,21 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must include specifications for <code>Effect</code>, <code>Action</code>,
-        /// and <code>Principal</code>.
+        /// The policy must include specifications for <c>Effect</c>, <c>Action</c>, and <c>Principal</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Effect</code> must specify <code>Allow</code>.
+        ///  <c>Effect</c> must specify <c>Allow</c>.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        ///  <code>Action</code> must specify <code>wafv2:CreateWebACL</code>, <code>wafv2:UpdateWebACL</code>,
-        /// and <code>wafv2:PutFirewallManagerRuleGroups</code> and may optionally specify <code>wafv2:GetRuleGroup</code>.
+        ///  <c>Action</c> must specify <c>wafv2:CreateWebACL</c>, <c>wafv2:UpdateWebACL</c>,
+        /// and <c>wafv2:PutFirewallManagerRuleGroups</c> and may optionally specify <c>wafv2:GetRuleGroup</c>.
         /// WAF rejects any extra actions or wildcard actions in the policy.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// The policy must not include a <code>Resource</code> parameter.
+        /// The policy must not include a <c>Resource</c> parameter.
         /// </para>
         ///  </li> </ul> 
         /// <para>
@@ -4323,8 +4499,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4335,8 +4511,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -4412,8 +4588,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4486,18 +4662,40 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> </ol> </note> 
         /// <para>
-        /// When you make changes to web ACLs or web ACL components, like rules and rule groups,
-        /// WAF propagates the changes everywhere that the web ACL and its components are stored
-        /// and used. Your changes are applied within seconds, but there might be a brief period
-        /// of inconsistency when the changes have arrived in some places and not in others. So,
-        /// for example, if you change a rule action setting, the action might be the old action
-        /// in one area and the new action in another area. Or if you add an IP address to an
-        /// IP set used in a blocking rule, the new address might briefly be blocked in one area
-        /// while still allowed in another. This temporary inconsistency can occur when you first
-        /// associate a web ACL with an Amazon Web Services resource and when you change a web
-        /// ACL that is already associated with a resource. Generally, any inconsistencies of
-        /// this type last only a few seconds.
+        ///  <b>Temporary inconsistencies during updates</b> 
         /// </para>
+        ///  
+        /// <para>
+        /// When you create or change a web ACL or other WAF resources, the changes take a small
+        /// amount of time to propagate to all areas where the resources are stored. The propagation
+        /// time can be from a few seconds to a number of minutes. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The following are examples of the temporary inconsistencies that you might notice
+        /// during change propagation: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// After you create a web ACL, if you try to associate it with a resource, you might
+        /// get an exception indicating that the web ACL is unavailable. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add a rule group to a web ACL, the new rule group rules might be in effect
+        /// in one area where the web ACL is used and not in another.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you change a rule action setting, you might see the old action in some places
+        /// and the new action in others. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add an IP address to an IP set that is in use in a blocking rule, the new
+        /// address might be blocked in one area while still allowed in another.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateIPSet service method.</param>
         /// <param name="cancellationToken">
@@ -4531,8 +4729,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4543,8 +4741,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -4597,8 +4795,8 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// Vendors, you can use the managed rule set APIs to provide controlled rollout of your
-        /// versioned managed rule group offerings for your customers. The APIs are <code>ListManagedRuleSets</code>,
-        /// <code>GetManagedRuleSet</code>, <code>PutManagedRuleSetVersions</code>, and <code>UpdateManagedRuleSetVersionExpiryDate</code>.
+        /// versioned managed rule group offerings for your customers. The APIs are <c>ListManagedRuleSets</c>,
+        /// <c>GetManagedRuleSet</c>, <c>PutManagedRuleSetVersions</c>, and <c>UpdateManagedRuleSetVersionExpiryDate</c>.
         /// </para>
         ///  </note>
         /// </summary>
@@ -4630,8 +4828,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4702,18 +4900,40 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> </ol> </note> 
         /// <para>
-        /// When you make changes to web ACLs or web ACL components, like rules and rule groups,
-        /// WAF propagates the changes everywhere that the web ACL and its components are stored
-        /// and used. Your changes are applied within seconds, but there might be a brief period
-        /// of inconsistency when the changes have arrived in some places and not in others. So,
-        /// for example, if you change a rule action setting, the action might be the old action
-        /// in one area and the new action in another area. Or if you add an IP address to an
-        /// IP set used in a blocking rule, the new address might briefly be blocked in one area
-        /// while still allowed in another. This temporary inconsistency can occur when you first
-        /// associate a web ACL with an Amazon Web Services resource and when you change a web
-        /// ACL that is already associated with a resource. Generally, any inconsistencies of
-        /// this type last only a few seconds.
+        ///  <b>Temporary inconsistencies during updates</b> 
         /// </para>
+        ///  
+        /// <para>
+        /// When you create or change a web ACL or other WAF resources, the changes take a small
+        /// amount of time to propagate to all areas where the resources are stored. The propagation
+        /// time can be from a few seconds to a number of minutes. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The following are examples of the temporary inconsistencies that you might notice
+        /// during change propagation: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// After you create a web ACL, if you try to associate it with a resource, you might
+        /// get an exception indicating that the web ACL is unavailable. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add a rule group to a web ACL, the new rule group rules might be in effect
+        /// in one area where the web ACL is used and not in another.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you change a rule action setting, you might see the old action in some places
+        /// and the new action in others. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add an IP address to an IP set that is in use in a blocking rule, the new
+        /// address might be blocked in one area while still allowed in another.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRegexPatternSet service method.</param>
         /// <param name="cancellationToken">
@@ -4747,8 +4967,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4759,8 +4979,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -4825,26 +5045,48 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> </ol> </note> 
         /// <para>
-        /// When you make changes to web ACLs or web ACL components, like rules and rule groups,
-        /// WAF propagates the changes everywhere that the web ACL and its components are stored
-        /// and used. Your changes are applied within seconds, but there might be a brief period
-        /// of inconsistency when the changes have arrived in some places and not in others. So,
-        /// for example, if you change a rule action setting, the action might be the old action
-        /// in one area and the new action in another area. Or if you add an IP address to an
-        /// IP set used in a blocking rule, the new address might briefly be blocked in one area
-        /// while still allowed in another. This temporary inconsistency can occur when you first
-        /// associate a web ACL with an Amazon Web Services resource and when you change a web
-        /// ACL that is already associated with a resource. Generally, any inconsistencies of
-        /// this type last only a few seconds.
-        /// </para>
-        ///  
-        /// <para>
         ///  A rule group defines a collection of rules to inspect and control web requests that
         /// you can use in a <a>WebACL</a>. When you create a rule group, you define an immutable
         /// capacity limit. If you update a rule group, you must stay within the capacity. This
         /// allows others to reuse the rule group with confidence in its capacity requirements.
         /// 
         /// </para>
+        ///  
+        /// <para>
+        ///  <b>Temporary inconsistencies during updates</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// When you create or change a web ACL or other WAF resources, the changes take a small
+        /// amount of time to propagate to all areas where the resources are stored. The propagation
+        /// time can be from a few seconds to a number of minutes. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The following are examples of the temporary inconsistencies that you might notice
+        /// during change propagation: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// After you create a web ACL, if you try to associate it with a resource, you might
+        /// get an exception indicating that the web ACL is unavailable. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add a rule group to a web ACL, the new rule group rules might be in effect
+        /// in one area where the web ACL is used and not in another.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you change a rule action setting, you might see the old action in some places
+        /// and the new action in others. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add an IP address to an IP set that is in use in a blocking rule, the new
+        /// address might be blocked in one area while still allowed in another.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateRuleGroup service method.</param>
         /// <param name="cancellationToken">
@@ -4855,9 +5097,9 @@ namespace Amazon.WAFV2
         /// <exception cref="Amazon.WAFV2.Model.WAFConfigurationWarningException">
         /// The operation failed because you are inspecting the web request body, headers, or
         /// cookies without specifying how to handle oversize components. Rules that inspect the
-        /// body must either provide an <code>OversizeHandling</code> configuration or they must
-        /// be preceded by a <code>SizeConstraintStatement</code> that blocks the body content
-        /// from being too large. Rules that inspect the headers or cookies must provide an <code>OversizeHandling</code>
+        /// body must either provide an <c>OversizeHandling</c> configuration or they must be
+        /// preceded by a <c>SizeConstraintStatement</c> that blocks the body content from being
+        /// too large. Rules that inspect the headers or cookies must provide an <c>OversizeHandling</c>
         /// configuration. 
         /// 
         ///  
@@ -4867,8 +5109,8 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// Alternately, you can suppress this warning by adding the following tag to the resource
-        /// that you provide to this operation: <code>Tag</code> (key:<code>WAF:OversizeFieldsHandlingConstraintOptOut</code>,
-        /// value:<code>true</code>).
+        /// that you provide to this operation: <c>Tag</c> (key:<c>WAF:OversizeFieldsHandlingConstraintOptOut</c>,
+        /// value:<c>true</c>).
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFDuplicateItemException">
@@ -4897,8 +5139,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -4909,8 +5151,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -4987,20 +5229,6 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> </ol> </note> 
         /// <para>
-        /// When you make changes to web ACLs or web ACL components, like rules and rule groups,
-        /// WAF propagates the changes everywhere that the web ACL and its components are stored
-        /// and used. Your changes are applied within seconds, but there might be a brief period
-        /// of inconsistency when the changes have arrived in some places and not in others. So,
-        /// for example, if you change a rule action setting, the action might be the old action
-        /// in one area and the new action in another area. Or if you add an IP address to an
-        /// IP set used in a blocking rule, the new address might briefly be blocked in one area
-        /// while still allowed in another. This temporary inconsistency can occur when you first
-        /// associate a web ACL with an Amazon Web Services resource and when you change a web
-        /// ACL that is already associated with a resource. Generally, any inconsistencies of
-        /// this type last only a few seconds.
-        /// </para>
-        ///  
-        /// <para>
         ///  A web ACL defines a collection of rules to use to inspect and control web requests.
         /// Each rule has a statement that defines what to look for in web requests and an action
         /// that WAF applies to requests that match the statement. In the web ACL, you assign
@@ -5012,6 +5240,42 @@ namespace Amazon.WAFV2
         /// Cognito user pool, an App Runner service, or an Amazon Web Services Verified Access
         /// instance. 
         /// </para>
+        ///  
+        /// <para>
+        ///  <b>Temporary inconsistencies during updates</b> 
+        /// </para>
+        ///  
+        /// <para>
+        /// When you create or change a web ACL or other WAF resources, the changes take a small
+        /// amount of time to propagate to all areas where the resources are stored. The propagation
+        /// time can be from a few seconds to a number of minutes. 
+        /// </para>
+        ///  
+        /// <para>
+        /// The following are examples of the temporary inconsistencies that you might notice
+        /// during change propagation: 
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// After you create a web ACL, if you try to associate it with a resource, you might
+        /// get an exception indicating that the web ACL is unavailable. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add a rule group to a web ACL, the new rule group rules might be in effect
+        /// in one area where the web ACL is used and not in another.
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you change a rule action setting, you might see the old action in some places
+        /// and the new action in others. 
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// After you add an IP address to an IP set that is in use in a blocking rule, the new
+        /// address might be blocked in one area while still allowed in another.
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the UpdateWebACL service method.</param>
         /// <param name="cancellationToken">
@@ -5022,9 +5286,9 @@ namespace Amazon.WAFV2
         /// <exception cref="Amazon.WAFV2.Model.WAFConfigurationWarningException">
         /// The operation failed because you are inspecting the web request body, headers, or
         /// cookies without specifying how to handle oversize components. Rules that inspect the
-        /// body must either provide an <code>OversizeHandling</code> configuration or they must
-        /// be preceded by a <code>SizeConstraintStatement</code> that blocks the body content
-        /// from being too large. Rules that inspect the headers or cookies must provide an <code>OversizeHandling</code>
+        /// body must either provide an <c>OversizeHandling</c> configuration or they must be
+        /// preceded by a <c>SizeConstraintStatement</c> that blocks the body content from being
+        /// too large. Rules that inspect the headers or cookies must provide an <c>OversizeHandling</c>
         /// configuration. 
         /// 
         ///  
@@ -5034,8 +5298,8 @@ namespace Amazon.WAFV2
         ///  
         /// <para>
         /// Alternately, you can suppress this warning by adding the following tag to the resource
-        /// that you provide to this operation: <code>Tag</code> (key:<code>WAF:OversizeFieldsHandlingConstraintOptOut</code>,
-        /// value:<code>true</code>).
+        /// that you provide to this operation: <c>Tag</c> (key:<c>WAF:OversizeFieldsHandlingConstraintOptOut</c>,
+        /// value:<c>true</c>).
         /// </para>
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFDuplicateItemException">
@@ -5069,8 +5333,8 @@ namespace Amazon.WAFV2
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// You tried to update a <code>WebACL</code> with a <code>DefaultAction</code> that isn't
-        /// among the types available at <a>DefaultAction</a>.
+        /// You tried to update a <c>WebACL</c> with a <c>DefaultAction</c> that isn't among the
+        /// types available at <a>DefaultAction</a>.
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -5085,8 +5349,8 @@ namespace Amazon.WAFV2
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFLimitsExceededException">
         /// WAF couldn’t perform the operation because you exceeded your resource limit. For example,
-        /// the maximum number of <code>WebACL</code> objects that you can create for an Amazon
-        /// Web Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
+        /// the maximum number of <c>WebACL</c> objects that you can create for an Amazon Web
+        /// Services account. For more information, see <a href="https://docs.aws.amazon.com/waf/latest/developerguide/limits.html">WAF
         /// quotas</a> in the <i>WAF Developer Guide</i>.
         /// </exception>
         /// <exception cref="Amazon.WAFV2.Model.WAFNonexistentItemException">
@@ -5132,11 +5396,11 @@ namespace Amazon.WAFV2
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

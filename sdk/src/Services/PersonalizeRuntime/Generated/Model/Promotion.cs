@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.PersonalizeRuntime.Model
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace Amazon.PersonalizeRuntime.Model
     public partial class Promotion
     {
         private string _filterArn;
-        private Dictionary<string, string> _filterValues = new Dictionary<string, string>();
+        private Dictionary<string, string> _filterValues = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
         private string _name;
         private int? _percentPromotedItems;
 
@@ -70,11 +71,11 @@ namespace Amazon.PersonalizeRuntime.Model
         /// </para>
         ///  
         /// <para>
-        /// For filter expressions that use an <code>INCLUDE</code> element to include items,
-        /// you must provide values for all parameters that are defined in the expression. For
-        /// filters with expressions that use an <code>EXCLUDE</code> element to exclude items,
-        /// you can omit the <code>filter-values</code>. In this case, Amazon Personalize doesn't
-        /// use that portion of the expression to filter recommendations.
+        /// For filter expressions that use an <c>INCLUDE</c> element to include items, you must
+        /// provide values for all parameters that are defined in the expression. For filters
+        /// with expressions that use an <c>EXCLUDE</c> element to exclude items, you can omit
+        /// the <c>filter-values</c>. In this case, Amazon Personalize doesn't use that portion
+        /// of the expression to filter recommendations.
         /// </para>
         ///  
         /// <para>
@@ -92,7 +93,7 @@ namespace Amazon.PersonalizeRuntime.Model
         // Check to see if FilterValues property is set
         internal bool IsSetFilterValues()
         {
-            return this._filterValues != null && this._filterValues.Count > 0; 
+            return this._filterValues != null && (this._filterValues.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

@@ -26,10 +26,11 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.ChimeSDKIdentity.Model
 {
     /// <summary>
-    /// The details of an <code>AppInstanceUser</code>.
+    /// The details of an <c>AppInstanceUser</c>.
     /// </summary>
     public partial class AppInstanceUser
     {
@@ -43,7 +44,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property AppInstanceUserArn. 
         /// <para>
-        /// The ARN of the <code>AppInstanceUser</code>.
+        /// The ARN of the <c>AppInstanceUser</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=5, Max=1600)]
@@ -62,7 +63,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property CreatedTimestamp. 
         /// <para>
-        /// The time at which the <code>AppInstanceUser</code> was created.
+        /// The time at which the <c>AppInstanceUser</c> was created.
         /// </para>
         /// </summary>
         public DateTime CreatedTimestamp
@@ -80,7 +81,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property ExpirationSettings. 
         /// <para>
-        /// The interval after which an <code>AppInstanceUser</code> is automatically deleted.
+        /// The interval after which an <c>AppInstanceUser</c> is automatically deleted.
         /// </para>
         /// </summary>
         public ExpirationSettings ExpirationSettings
@@ -98,7 +99,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property LastUpdatedTimestamp. 
         /// <para>
-        /// The time at which the <code>AppInstanceUser</code> was last updated.
+        /// The time at which the <c>AppInstanceUser</c> was last updated.
         /// </para>
         /// </summary>
         public DateTime LastUpdatedTimestamp
@@ -116,7 +117,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property Metadata. 
         /// <para>
-        /// The metadata of the <code>AppInstanceUser</code>.
+        /// The metadata of the <c>AppInstanceUser</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=0, Max=1024)]
@@ -135,7 +136,7 @@ namespace Amazon.ChimeSDKIdentity.Model
         /// <summary>
         /// Gets and sets the property Name. 
         /// <para>
-        /// The name of the <code>AppInstanceUser</code>.
+        /// The name of the <c>AppInstanceUser</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=100)]

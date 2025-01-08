@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Transfer.Model
 {
     /// <summary>
@@ -38,8 +39,8 @@ namespace Amazon.Transfer.Model
         /// <summary>
         /// Gets and sets the property UserDetails. 
         /// <para>
-        /// The Server ID (<code>ServerId</code>), Session ID (<code>SessionId</code>) and user
-        /// (<code>UserName</code>) make up the <code>UserDetails</code>.
+        /// The Server ID (<c>ServerId</c>), Session ID (<c>SessionId</c>) and user (<c>UserName</c>)
+        /// make up the <c>UserDetails</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

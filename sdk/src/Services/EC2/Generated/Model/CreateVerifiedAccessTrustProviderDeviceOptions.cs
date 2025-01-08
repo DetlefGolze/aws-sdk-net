@@ -26,15 +26,36 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.EC2.Model
 {
     /// <summary>
     /// Describes the options when creating an Amazon Web Services Verified Access trust provider
-    /// using the <code>device</code> type.
+    /// using the <c>device</c> type.
     /// </summary>
     public partial class CreateVerifiedAccessTrustProviderDeviceOptions
     {
+        private string _publicSigningKeyUrl;
         private string _tenantId;
+
+        /// <summary>
+        /// Gets and sets the property PublicSigningKeyUrl. 
+        /// <para>
+        ///  The URL Amazon Web Services Verified Access will use to verify the authenticity of
+        /// the device tokens. 
+        /// </para>
+        /// </summary>
+        public string PublicSigningKeyUrl
+        {
+            get { return this._publicSigningKeyUrl; }
+            set { this._publicSigningKeyUrl = value; }
+        }
+
+        // Check to see if PublicSigningKeyUrl property is set
+        internal bool IsSetPublicSigningKeyUrl()
+        {
+            return this._publicSigningKeyUrl != null;
+        }
 
         /// <summary>
         /// Gets and sets the property TenantId. 

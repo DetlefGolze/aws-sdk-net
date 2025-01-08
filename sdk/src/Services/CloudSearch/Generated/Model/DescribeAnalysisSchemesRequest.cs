@@ -26,22 +26,22 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudSearch.Model
 {
     /// <summary>
     /// Container for the parameters to the DescribeAnalysisSchemes operation.
     /// Gets the analysis schemes configured for a domain. An analysis scheme defines language-specific
-    /// text processing options for a <code>text</code> field. Can be limited to specific
-    /// analysis schemes by name. By default, shows all analysis schemes and includes any
-    /// pending changes to the configuration. Set the <code>Deployed</code> option to <code>true</code>
-    /// to show the active configuration and exclude pending changes. For more information,
-    /// see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
+    /// text processing options for a <c>text</c> field. Can be limited to specific analysis
+    /// schemes by name. By default, shows all analysis schemes and includes any pending changes
+    /// to the configuration. Set the <c>Deployed</c> option to <c>true</c> to show the active
+    /// configuration and exclude pending changes. For more information, see <a href="http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
     /// target="_blank">Configuring Analysis Schemes</a> in the <i>Amazon CloudSearch Developer
     /// Guide</i>.
     /// </summary>
     public partial class DescribeAnalysisSchemesRequest : AmazonCloudSearchRequest
     {
-        private List<string> _analysisSchemeNames = new List<string>();
+        private List<string> _analysisSchemeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private bool? _deployed;
         private string _domainName;
 
@@ -60,14 +60,14 @@ namespace Amazon.CloudSearch.Model
         // Check to see if AnalysisSchemeNames property is set
         internal bool IsSetAnalysisSchemeNames()
         {
-            return this._analysisSchemeNames != null && this._analysisSchemeNames.Count > 0; 
+            return this._analysisSchemeNames != null && (this._analysisSchemeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property Deployed. 
         /// <para>
-        /// Whether to display the deployed configuration (<code>true</code>) or include any pending
-        /// changes (<code>false</code>). Defaults to <code>false</code>.
+        /// Whether to display the deployed configuration (<c>true</c>) or include any pending
+        /// changes (<c>false</c>). Defaults to <c>false</c>.
         /// </para>
         /// </summary>
         public bool Deployed

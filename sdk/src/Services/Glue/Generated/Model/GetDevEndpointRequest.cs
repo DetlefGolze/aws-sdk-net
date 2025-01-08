@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
@@ -47,7 +48,7 @@ namespace Amazon.Glue.Model
         /// <summary>
         /// Gets and sets the property EndpointName. 
         /// <para>
-        /// Name of the <code>DevEndpoint</code> to retrieve information for.
+        /// Name of the <c>DevEndpoint</c> to retrieve information for.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

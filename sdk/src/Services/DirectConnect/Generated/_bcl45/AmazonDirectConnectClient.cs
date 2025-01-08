@@ -33,10 +33,11 @@ using Amazon.Runtime.Internal;
 using Amazon.Runtime.Internal.Auth;
 using Amazon.Runtime.Internal.Transform;
 
+#pragma warning disable CS1570
 namespace Amazon.DirectConnect
 {
     /// <summary>
-    /// Implementation for accessing DirectConnect
+    /// <para>Implementation for accessing DirectConnect</para>
     ///
     /// Direct Connect links your internal network to an Direct Connect location over a standard
     /// Ethernet fiber-optic cable. One end of the cable is connected to your router, the
@@ -313,9 +314,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>AllocateHostedConnection</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Creates a hosted connection on an interconnect.
         /// </para>
@@ -352,9 +355,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>AllocateHostedConnection</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Creates a hosted connection on an interconnect.
         /// </para>
@@ -498,7 +503,7 @@ namespace Amazon.DirectConnect
         /// <para>
         /// Virtual interfaces created using this action must be confirmed by the owner using
         /// <a>ConfirmPrivateVirtualInterface</a>. Until then, the virtual interface is in the
-        /// <code>Confirming</code> state and is not available to handle traffic.
+        /// <c>Confirming</c> state and is not available to handle traffic.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AllocatePrivateVirtualInterface service method.</param>
@@ -535,7 +540,7 @@ namespace Amazon.DirectConnect
         /// <para>
         /// Virtual interfaces created using this action must be confirmed by the owner using
         /// <a>ConfirmPrivateVirtualInterface</a>. Until then, the virtual interface is in the
-        /// <code>Confirming</code> state and is not available to handle traffic.
+        /// <c>Confirming</c> state and is not available to handle traffic.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AllocatePrivateVirtualInterface service method.</param>
@@ -584,7 +589,7 @@ namespace Amazon.DirectConnect
         /// <para>
         /// Virtual interfaces created using this function must be confirmed by the owner using
         /// <a>ConfirmPublicVirtualInterface</a>. Until this step has been completed, the virtual
-        /// interface is in the <code>confirming</code> state and is not available to handle traffic.
+        /// interface is in the <c>confirming</c> state and is not available to handle traffic.
         /// </para>
         ///  
         /// <para>
@@ -632,7 +637,7 @@ namespace Amazon.DirectConnect
         /// <para>
         /// Virtual interfaces created using this function must be confirmed by the owner using
         /// <a>ConfirmPublicVirtualInterface</a>. Until this step has been completed, the virtual
-        /// interface is in the <code>confirming</code> state and is not available to handle traffic.
+        /// interface is in the <c>confirming</c> state and is not available to handle traffic.
         /// </para>
         ///  
         /// <para>
@@ -688,7 +693,7 @@ namespace Amazon.DirectConnect
         /// <para>
         /// After you create a transit virtual interface, it must be confirmed by the owner using
         /// <a>ConfirmTransitVirtualInterface</a>. Until this step has been completed, the transit
-        /// virtual interface is in the <code>requested</code> state and is not available to handle
+        /// virtual interface is in the <c>requested</c> state and is not available to handle
         /// traffic.
         /// </para>
         /// </summary>
@@ -732,7 +737,7 @@ namespace Amazon.DirectConnect
         /// <para>
         /// After you create a transit virtual interface, it must be confirmed by the owner using
         /// <a>ConfirmTransitVirtualInterface</a>. Until this step has been completed, the transit
-        /// virtual interface is in the <code>requested</code> state and is not available to handle
+        /// virtual interface is in the <c>requested</c> state and is not available to handle
         /// traffic.
         /// </para>
         /// </summary>
@@ -939,8 +944,8 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// You must supply either the <code>secretARN,</code> or the CKN/CAK (<code>ckn</code>
-        /// and <code>cak</code>) pair in the request.
+        /// You must supply either the <c>secretARN,</c> or the CKN/CAK (<c>ckn</c> and <c>cak</c>)
+        /// pair in the request.
         /// </para>
         ///  
         /// <para>
@@ -974,8 +979,8 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// You must supply either the <code>secretARN,</code> or the CKN/CAK (<code>ckn</code>
-        /// and <code>cak</code>) pair in the request.
+        /// You must supply either the <c>secretARN,</c> or the CKN/CAK (<c>ckn</c> and <c>cak</c>)
+        /// pair in the request.
         /// </para>
         ///  
         /// <para>
@@ -1102,8 +1107,8 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// Upon creation, the hosted connection is initially in the <code>Ordering</code> state,
-        /// and remains in this state until the owner confirms creation of the hosted connection.
+        /// Upon creation, the hosted connection is initially in the <c>Ordering</c> state, and
+        /// remains in this state until the owner confirms creation of the hosted connection.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ConfirmConnection service method.</param>
@@ -1131,8 +1136,8 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// Upon creation, the hosted connection is initially in the <code>Ordering</code> state,
-        /// and remains in this state until the owner confirms creation of the hosted connection.
+        /// Upon creation, the hosted connection is initially in the <c>Ordering</c> state, and
+        /// remains in this state until the owner confirms creation of the hosted connection.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ConfirmConnection service method.</param>
@@ -1960,14 +1965,14 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// All connections in a LAG must use the same bandwidth (either 1Gbps or 10Gbps) and
-        /// must terminate at the same Direct Connect endpoint.
+        /// All connections in a LAG must use the same bandwidth (either 1Gbps, 10Gbps, 100Gbps,
+        /// or 400Gbps) and must terminate at the same Direct Connect endpoint.
         /// </para>
         ///  
         /// <para>
-        /// You can have up to 10 dedicated connections per LAG. Regardless of this limit, if
-        /// you request more connections for the LAG than Direct Connect can allocate on a single
-        /// endpoint, no LAG is created.
+        /// You can have up to 10 dedicated connections per location. Regardless of this limit,
+        /// if you request more connections for the LAG than Direct Connect can allocate on a
+        /// single endpoint, no LAG is created..
         /// </para>
         ///  
         /// <para>
@@ -2020,14 +2025,14 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// All connections in a LAG must use the same bandwidth (either 1Gbps or 10Gbps) and
-        /// must terminate at the same Direct Connect endpoint.
+        /// All connections in a LAG must use the same bandwidth (either 1Gbps, 10Gbps, 100Gbps,
+        /// or 400Gbps) and must terminate at the same Direct Connect endpoint.
         /// </para>
         ///  
         /// <para>
-        /// You can have up to 10 dedicated connections per LAG. Regardless of this limit, if
-        /// you request more connections for the LAG than Direct Connect can allocate on a single
-        /// endpoint, no LAG is created.
+        /// You can have up to 10 dedicated connections per location. Regardless of this limit,
+        /// if you request more connections for the LAG than Direct Connect can allocate on a
+        /// single endpoint, no LAG is created..
         /// </para>
         ///  
         /// <para>
@@ -2089,7 +2094,7 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update
+        /// Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an update
         /// to the underlying physical connection if it wasn't updated to support jumbo frames.
         /// Updating the connection disrupts network connectivity for all virtual interfaces associated
         /// with the connection for up to 30 seconds. To check whether your connection supports
@@ -2133,7 +2138,7 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update
+        /// Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an update
         /// to the underlying physical connection if it wasn't updated to support jumbo frames.
         /// Updating the connection disrupts network connectivity for all virtual interfaces associated
         /// with the connection for up to 30 seconds. To check whether your connection supports
@@ -2181,9 +2186,9 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// When creating an IPv6 public virtual interface (<code>addressFamily</code> is <code>ipv6</code>),
-        /// leave the <code>customer</code> and <code>amazon</code> address fields blank to use
-        /// auto-assigned IPv6 space. Custom IPv6 addresses are not supported.
+        /// When creating an IPv6 public virtual interface (<c>addressFamily</c> is <c>ipv6</c>),
+        /// leave the <c>customer</c> and <c>amazon</c> address fields blank to use auto-assigned
+        /// IPv6 space. Custom IPv6 addresses are not supported.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePublicVirtualInterface service method.</param>
@@ -2219,9 +2224,9 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// When creating an IPv6 public virtual interface (<code>addressFamily</code> is <code>ipv6</code>),
-        /// leave the <code>customer</code> and <code>amazon</code> address fields blank to use
-        /// auto-assigned IPv6 space. Custom IPv6 addresses are not supported.
+        /// When creating an IPv6 public virtual interface (<c>addressFamily</c> is <c>ipv6</c>),
+        /// leave the <c>customer</c> and <c>amazon</c> address fields blank to use auto-assigned
+        /// IPv6 space. Custom IPv6 addresses are not supported.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreatePublicVirtualInterface service method.</param>
@@ -2559,10 +2564,10 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// We recommend that you specify the <code>associationID</code> to delete the association.
+        /// We recommend that you specify the <c>associationID</c> to delete the association.
         /// Alternatively, if you own virtual gateway and a Direct Connect gateway association,
-        /// you can specify the <code>virtualGatewayId</code> and <code>directConnectGatewayId</code>
-        /// to delete an association.
+        /// you can specify the <c>virtualGatewayId</c> and <c>directConnectGatewayId</c> to delete
+        /// an association.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDirectConnectGatewayAssociation service method.</param>
@@ -2591,10 +2596,10 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// We recommend that you specify the <code>associationID</code> to delete the association.
+        /// We recommend that you specify the <c>associationID</c> to delete the association.
         /// Alternatively, if you own virtual gateway and a Direct Connect gateway association,
-        /// you can specify the <code>virtualGatewayId</code> and <code>directConnectGatewayId</code>
-        /// to delete an association.
+        /// you can specify the <c>virtualGatewayId</c> and <c>directConnectGatewayId</c> to delete
+        /// an association.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteDirectConnectGatewayAssociation service method.</param>
@@ -2853,9 +2858,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>DescribeLoa</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Gets the LOA-CFA for a connection.
         /// </para>
@@ -2889,9 +2896,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>DescribeLoa</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Gets the LOA-CFA for a connection.
         /// </para>
@@ -3023,9 +3032,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>DescribeHostedConnections</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Lists the connections that have been provisioned on the specified interconnect.
         /// </para>
@@ -3057,9 +3068,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>DescribeHostedConnections</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Lists the connections that have been provisioned on the specified interconnect.
         /// </para>
@@ -3540,9 +3553,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>DescribeLoa</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Gets the LOA-CFA for the specified interconnect.
         /// </para>
@@ -3576,9 +3591,11 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
         /// Deprecated. Use <a>DescribeLoa</a> instead.
-        /// 
-        ///  
+        /// </para>
+        ///  </note> 
         /// <para>
         /// Gets the LOA-CFA for the specified interconnect.
         /// </para>
@@ -4037,8 +4054,15 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// Deprecated. Use <c>DescribeVpnGateways</c> instead. See <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html">DescribeVPNGateways</a>
+        /// in the <i>Amazon Elastic Compute Cloud API Reference</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Lists the virtual private gateways owned by the Amazon Web Services account.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// You can create one or more Direct Connect private virtual interfaces linked to a virtual
@@ -4061,8 +4085,15 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// Deprecated. Use <c>DescribeVpnGateways</c> instead. See <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html">DescribeVPNGateways</a>
+        /// in the <i>Amazon Elastic Compute Cloud API Reference</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Lists the virtual private gateways owned by the Amazon Web Services account.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// You can create one or more Direct Connect private virtual interfaces linked to a virtual
@@ -4090,8 +4121,15 @@ namespace Amazon.DirectConnect
 
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// Deprecated. Use <c>DescribeVpnGateways</c> instead. See <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html">DescribeVPNGateways</a>
+        /// in the <i>Amazon Elastic Compute Cloud API Reference</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Lists the virtual private gateways owned by the Amazon Web Services account.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// You can create one or more Direct Connect private virtual interfaces linked to a virtual
@@ -4116,8 +4154,15 @@ namespace Amazon.DirectConnect
         }
 
         /// <summary>
+        /// <note> 
+        /// <para>
+        /// Deprecated. Use <c>DescribeVpnGateways</c> instead. See <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnGateways.html">DescribeVPNGateways</a>
+        /// in the <i>Amazon Elastic Compute Cloud API Reference</i>.
+        /// </para>
+        ///  </note> 
+        /// <para>
         /// Lists the virtual private gateways owned by the Amazon Web Services account.
-        /// 
+        /// </para>
         ///  
         /// <para>
         /// You can create one or more Direct Connect private virtual interfaces linked to a virtual
@@ -5060,7 +5105,7 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update
+        /// Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an update
         /// to the underlying physical connection if it wasn't updated to support jumbo frames.
         /// Updating the connection disrupts network connectivity for all virtual interfaces associated
         /// with the connection for up to 30 seconds. To check whether your connection supports
@@ -5093,7 +5138,7 @@ namespace Amazon.DirectConnect
         /// 
         ///  
         /// <para>
-        /// Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an update
+        /// Setting the MTU of a virtual interface to 8500 (jumbo frames) can cause an update
         /// to the underlying physical connection if it wasn't updated to support jumbo frames.
         /// Updating the connection disrupts network connectivity for all virtual interfaces associated
         /// with the connection for up to 30 seconds. To check whether your connection supports
@@ -5134,11 +5179,11 @@ namespace Amazon.DirectConnect
         /// <returns>The resolved endpoint for the given request.</returns>
         public Amazon.Runtime.Endpoints.Endpoint DetermineServiceOperationEndpoint(AmazonWebServiceRequest request)
         {
-            var requestContext = new RequestContext(false, CreateSigner())
+            var requestContext = new Amazon.Runtime.Internal.RequestContext(false, CreateSigner())
             {
                 ClientConfig = Config,
                 OriginalRequest = request,
-                Request = new DefaultRequest(request, ServiceMetadata.ServiceId)
+                Request = new Amazon.Runtime.Internal.DefaultRequest(request, ServiceMetadata.ServiceId)
             };
 
             var executionContext = new Amazon.Runtime.Internal.ExecutionContext(requestContext, null);

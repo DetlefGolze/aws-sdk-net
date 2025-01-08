@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.IVS.Model
 {
     /// <summary>
@@ -36,7 +37,7 @@ namespace Amazon.IVS.Model
     /// <para>
     /// If you try to delete a recording configuration that is associated with a channel,
     /// you will get an error (409 ConflictException). To avoid this, for all channels that
-    /// reference the recording configuration, first use <a>UpdateChannel</a> to set the <code>recordingConfigurationArn</code>
+    /// reference the recording configuration, first use <a>UpdateChannel</a> to set the <c>recordingConfigurationArn</c>
     /// field to an empty string, then use DeleteRecordingConfiguration.
     /// </para>
     /// </summary>

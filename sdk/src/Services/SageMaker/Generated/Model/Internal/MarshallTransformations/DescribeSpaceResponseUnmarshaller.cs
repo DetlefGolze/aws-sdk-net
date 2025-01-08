@@ -31,6 +31,7 @@ using Amazon.Runtime.Internal.Transform;
 using Amazon.Runtime.Internal.Util;
 using ThirdParty.Json.LitJson;
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
 {
     /// <summary>
@@ -81,10 +82,22 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     response.LastModifiedTime = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("OwnershipSettings", targetDepth))
+                {
+                    var unmarshaller = OwnershipSettingsUnmarshaller.Instance;
+                    response.OwnershipSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("SpaceArn", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.SpaceArn = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("SpaceDisplayName", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.SpaceDisplayName = unmarshaller.Unmarshall(context);
                     continue;
                 }
                 if (context.TestExpression("SpaceName", targetDepth))
@@ -99,10 +112,22 @@ namespace Amazon.SageMaker.Model.Internal.MarshallTransformations
                     response.SpaceSettings = unmarshaller.Unmarshall(context);
                     continue;
                 }
+                if (context.TestExpression("SpaceSharingSettings", targetDepth))
+                {
+                    var unmarshaller = SpaceSharingSettingsUnmarshaller.Instance;
+                    response.SpaceSharingSettings = unmarshaller.Unmarshall(context);
+                    continue;
+                }
                 if (context.TestExpression("Status", targetDepth))
                 {
                     var unmarshaller = StringUnmarshaller.Instance;
                     response.Status = unmarshaller.Unmarshall(context);
+                    continue;
+                }
+                if (context.TestExpression("Url", targetDepth))
+                {
+                    var unmarshaller = StringUnmarshaller.Instance;
+                    response.Url = unmarshaller.Unmarshall(context);
                     continue;
                 }
             }

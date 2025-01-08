@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.MigrationHubRefactorSpaces.Model
 {
     /// <summary>
@@ -42,8 +43,8 @@ namespace Amazon.MigrationHubRefactorSpaces.Model
         /// <summary>
         /// Gets and sets the property ActivationState. 
         /// <para>
-        ///  If set to <code>ACTIVE</code>, traffic is forwarded to this route’s service after
-        /// the route is updated. 
+        ///  If set to <c>ACTIVE</c>, traffic is forwarded to this route’s service after the route
+        /// is updated. 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]

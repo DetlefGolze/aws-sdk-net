@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lightsail.Model
 {
     /// <summary>
@@ -35,17 +36,16 @@ namespace Amazon.Lightsail.Model
     /// 
     ///  
     /// <para>
-    /// After the certificate is valid, use the <code>AttachCertificateToDistribution</code>
-    /// action to use the certificate and its domains with your distribution. Or use the <code>UpdateContainerService</code>
+    /// After the certificate is valid, use the <c>AttachCertificateToDistribution</c> action
+    /// to use the certificate and its domains with your distribution. Or use the <c>UpdateContainerService</c>
     /// action to use the certificate and its domains with your container service.
     /// </para>
     ///  <important> 
     /// <para>
-    /// Only certificates created in the <code>us-east-1</code> Amazon Web Services Region
-    /// can be attached to Lightsail distributions. Lightsail distributions are global resources
+    /// Only certificates created in the <c>us-east-1</c> Amazon Web Services Region can be
+    /// attached to Lightsail distributions. Lightsail distributions are global resources
     /// that can reference an origin in any Amazon Web Services Region, and distribute its
-    /// content globally. However, all distributions are located in the <code>us-east-1</code>
-    /// Region.
+    /// content globally. However, all distributions are located in the <c>us-east-1</c> Region.
     /// </para>
     ///  </important>
     /// </summary>
@@ -53,8 +53,8 @@ namespace Amazon.Lightsail.Model
     {
         private string _certificateName;
         private string _domainName;
-        private List<string> _subjectAlternativeNames = new List<string>();
-        private List<Tag> _tags = new List<Tag>();
+        private List<string> _subjectAlternativeNames = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<Tag> _tags = AWSConfigs.InitializeCollections ? new List<Tag>() : null;
 
         /// <summary>
         /// Gets and sets the property CertificateName. 
@@ -78,7 +78,7 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property DomainName. 
         /// <para>
-        /// The domain name (e.g., <code>example.com</code>) for the certificate.
+        /// The domain name (<c>example.com</c>) for the certificate.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -97,8 +97,8 @@ namespace Amazon.Lightsail.Model
         /// <summary>
         /// Gets and sets the property SubjectAlternativeNames. 
         /// <para>
-        /// An array of strings that specify the alternate domains (e.g., <code>example2.com</code>)
-        /// and subdomains (e.g., <code>blog.example.com</code>) for the certificate.
+        /// An array of strings that specify the alternate domains (<c>example2.com</c>) and subdomains
+        /// (<c>blog.example.com</c>) for the certificate.
         /// </para>
         ///  
         /// <para>
@@ -107,7 +107,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Wildcard domain entries (e.g., <code>*.example.com</code>) are not supported.
+        /// Wildcard domain entries (<c>*.example.com</c>) are not supported.
         /// </para>
         /// </summary>
         public List<string> SubjectAlternativeNames
@@ -119,7 +119,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if SubjectAlternativeNames property is set
         internal bool IsSetSubjectAlternativeNames()
         {
-            return this._subjectAlternativeNames != null && this._subjectAlternativeNames.Count > 0; 
+            return this._subjectAlternativeNames != null && (this._subjectAlternativeNames.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Amazon.Lightsail.Model
         /// </para>
         ///  
         /// <para>
-        /// Use the <code>TagResource</code> action to tag a resource after it's created.
+        /// Use the <c>TagResource</c> action to tag a resource after it's created.
         /// </para>
         /// </summary>
         public List<Tag> Tags
@@ -141,7 +141,7 @@ namespace Amazon.Lightsail.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

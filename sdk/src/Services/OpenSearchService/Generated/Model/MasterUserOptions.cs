@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.OpenSearchService.Model
 {
     /// <summary>
@@ -40,8 +41,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property MasterUserARN. 
         /// <para>
-        /// Amazon Resource Name (ARN) for the master user. Only specify if <code>InternalUserDatabaseEnabled</code>
-        /// is <code>false</code>.
+        /// Amazon Resource Name (ARN) for the master user. Only specify if <c>InternalUserDatabaseEnabled</c>
+        /// is <c>false</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=20, Max=2048)]
@@ -60,8 +61,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property MasterUserName. 
         /// <para>
-        /// User name for the master user. Only specify if <code>InternalUserDatabaseEnabled</code>
-        /// is <code>true</code>.
+        /// User name for the master user. Only specify if <c>InternalUserDatabaseEnabled</c>
+        /// is <c>true</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=1, Max=64)]
@@ -80,8 +81,8 @@ namespace Amazon.OpenSearchService.Model
         /// <summary>
         /// Gets and sets the property MasterUserPassword. 
         /// <para>
-        /// Password for the master user. Only specify if <code>InternalUserDatabaseEnabled</code>
-        /// is <code>true</code>.
+        /// Password for the master user. Only specify if <c>InternalUserDatabaseEnabled</c> is
+        /// <c>true</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Sensitive=true, Min=8, Max=128)]

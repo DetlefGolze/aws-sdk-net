@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Bedrock.Model
 {
     /// <summary>
@@ -33,7 +34,26 @@ namespace Amazon.Bedrock.Model
     /// </summary>
     public partial class TrainingDataConfig
     {
+        private InvocationLogsConfig _invocationLogsConfig;
         private string _s3Uri;
+
+        /// <summary>
+        /// Gets and sets the property InvocationLogsConfig. 
+        /// <para>
+        /// Settings for using invocation logs to customize a model.
+        /// </para>
+        /// </summary>
+        public InvocationLogsConfig InvocationLogsConfig
+        {
+            get { return this._invocationLogsConfig; }
+            set { this._invocationLogsConfig = value; }
+        }
+
+        // Check to see if InvocationLogsConfig property is set
+        internal bool IsSetInvocationLogsConfig()
+        {
+            return this._invocationLogsConfig != null;
+        }
 
         /// <summary>
         /// Gets and sets the property S3Uri. 
@@ -41,7 +61,7 @@ namespace Amazon.Bedrock.Model
         /// The S3 URI where the training data is stored.
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true, Min=1, Max=1024)]
+        [AWSProperty(Min=1, Max=1024)]
         public string S3Uri
         {
             get { return this._s3Uri; }

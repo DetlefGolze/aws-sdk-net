@@ -24,10 +24,11 @@ using System.Collections.Generic;
 using Amazon.Runtime;
 using Amazon.Omics.Model;
 
+#pragma warning disable CS1570
 namespace Amazon.Omics
 {
     /// <summary>
-    /// Interface for accessing Omics
+    /// <para>Interface for accessing Omics</para>
     ///
     /// This is the <i>AWS HealthOmics API Reference</i>. For an introduction to the service,
     /// see <a href="https://docs.aws.amazon.com/omics/latest/dev/">What is AWS HealthOmics?</a>
@@ -114,7 +115,7 @@ namespace Amazon.Omics
 
 
         /// <summary>
-        /// Accepts a share for an analytics store.
+        /// Accept a resource share request.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the AcceptShare service method.</param>
         /// 
@@ -711,11 +712,86 @@ namespace Amazon.Omics
 
         #endregion
         
+        #region  CreateRunCache
+
+
+        /// <summary>
+        /// You can create a run cache to save the task outputs from completed tasks in a run
+        /// for a private workflow. Subsequent runs use the task outputs from the cache, rather
+        /// than computing the task outputs again. You specify an Amazon S3 location where HealthOmics
+        /// saves the cached data. This data must be immediately accessible (not in an archived
+        /// state).
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/omics/latest/dev/workflow-cache-create.html">Creating
+        /// a run cache</a> in the AWS HealthOmics User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the CreateRunCache service method.</param>
+        /// 
+        /// <returns>The response from the CreateRunCache service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ConflictException">
+        /// The request cannot be applied to the target resource in its current state.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ServiceQuotaExceededException">
+        /// The request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/CreateRunCache">REST API Reference for CreateRunCache Operation</seealso>
+        CreateRunCacheResponse CreateRunCache(CreateRunCacheRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the CreateRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the CreateRunCache operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndCreateRunCache
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/CreateRunCache">REST API Reference for CreateRunCache Operation</seealso>
+        IAsyncResult BeginCreateRunCache(CreateRunCacheRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  CreateRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginCreateRunCache.</param>
+        /// 
+        /// <returns>Returns a  CreateRunCacheResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/CreateRunCache">REST API Reference for CreateRunCache Operation</seealso>
+        CreateRunCacheResponse EndCreateRunCache(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  CreateRunGroup
 
 
         /// <summary>
-        /// Creates a run group.
+        /// You can optionally create a run group to limit the compute resources for the runs
+        /// that you add to the group.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateRunGroup service method.</param>
         /// 
@@ -837,8 +913,27 @@ namespace Amazon.Omics
 
 
         /// <summary>
-        /// Creates a share offer that can be accepted outside the account by a subscriber. The
-        /// share is created by the owner and accepted by the principal subscriber.
+        /// Creates a cross-account shared resource. The resource owner makes an offer to share
+        /// the resource with the principal subscriber (an AWS user with a different account than
+        /// the resource owner).
+        /// 
+        ///  
+        /// <para>
+        /// The following resources support cross-account sharing:
+        /// </para>
+        ///  <ul> <li> 
+        /// <para>
+        /// HealthOmics variant stores
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// HealthOmics annotation stores
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
+        /// Private workflows
+        /// </para>
+        ///  </li> </ul>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the CreateShare service method.</param>
         /// 
@@ -1322,6 +1417,79 @@ namespace Amazon.Omics
 
         #endregion
         
+        #region  DeleteRunCache
+
+
+        /// <summary>
+        /// Delete a run cache. This action removes the cache metadata stored in the service account,
+        /// but doesn't delete the data in Amazon S3. You can access the cache data in Amazon
+        /// S3, for inspection or to troubleshoot issues. You can remove old cache data using
+        /// standard S3 <c>Delete</c> operations. 
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/omics/latest/dev/workflow-cache-delete.html">Deleting
+        /// a run cache</a> in the AWS HealthOmics User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteRunCache service method.</param>
+        /// 
+        /// <returns>The response from the DeleteRunCache service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ConflictException">
+        /// The request cannot be applied to the target resource in its current state.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ServiceQuotaExceededException">
+        /// The request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/DeleteRunCache">REST API Reference for DeleteRunCache Operation</seealso>
+        DeleteRunCacheResponse DeleteRunCache(DeleteRunCacheRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteRunCache operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteRunCache
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/DeleteRunCache">REST API Reference for DeleteRunCache Operation</seealso>
+        IAsyncResult BeginDeleteRunCache(DeleteRunCacheRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteRunCache.</param>
+        /// 
+        /// <returns>Returns a  DeleteRunCacheResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/DeleteRunCache">REST API Reference for DeleteRunCache Operation</seealso>
+        DeleteRunCacheResponse EndDeleteRunCache(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  DeleteRunGroup
 
 
@@ -1383,6 +1551,67 @@ namespace Amazon.Omics
         /// <returns>Returns a  DeleteRunGroupResult from Omics.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/DeleteRunGroup">REST API Reference for DeleteRunGroup Operation</seealso>
         DeleteRunGroupResponse EndDeleteRunGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  DeleteS3AccessPolicy
+
+
+        /// <summary>
+        /// Deletes an access policy for the specified store.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the DeleteS3AccessPolicy service method.</param>
+        /// 
+        /// <returns>The response from the DeleteS3AccessPolicy service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.NotSupportedOperationException">
+        /// The operation is not supported by Amazon Omics, or the API does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/DeleteS3AccessPolicy">REST API Reference for DeleteS3AccessPolicy Operation</seealso>
+        DeleteS3AccessPolicyResponse DeleteS3AccessPolicy(DeleteS3AccessPolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the DeleteS3AccessPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the DeleteS3AccessPolicy operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndDeleteS3AccessPolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/DeleteS3AccessPolicy">REST API Reference for DeleteS3AccessPolicy Operation</seealso>
+        IAsyncResult BeginDeleteS3AccessPolicy(DeleteS3AccessPolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  DeleteS3AccessPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginDeleteS3AccessPolicy.</param>
+        /// 
+        /// <returns>Returns a  DeleteS3AccessPolicyResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/DeleteS3AccessPolicy">REST API Reference for DeleteS3AccessPolicy Operation</seealso>
+        DeleteS3AccessPolicyResponse EndDeleteS3AccessPolicy(IAsyncResult asyncResult);
 
         #endregion
         
@@ -1451,7 +1680,9 @@ namespace Amazon.Omics
 
 
         /// <summary>
-        /// Deletes a share of an analytics store.
+        /// Deletes a resource share. If you are the resource owner, the subscriber will no longer
+        /// have access to the shared resource. If you are the subscriber, this operation deletes
+        /// your access to the share.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the DeleteShare service method.</param>
         /// 
@@ -2331,6 +2562,18 @@ namespace Amazon.Omics
 
         /// <summary>
         /// Gets information about a workflow run.
+        /// 
+        ///  
+        /// <para>
+        /// If a workflow is shared with you, you cannot export information about the run.
+        /// </para>
+        ///  
+        /// <para>
+        /// HealthOmics stores a fixed number of runs that are available to the console and API.
+        /// If GetRun doesn't return the requested run, you can find run logs for all runs in
+        /// the CloudWatch logs. For more information about viewing the run logs, see <a href="https://docs.aws.amazon.com/omics/latest/dev/cloudwatch-logs.html">CloudWatch
+        /// logs</a> in the <i>AWS HealthOmics User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetRun service method.</param>
         /// 
@@ -2387,6 +2630,76 @@ namespace Amazon.Omics
         /// <returns>Returns a  GetRunResult from Omics.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/GetRun">REST API Reference for GetRun Operation</seealso>
         GetRunResponse EndGetRun(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  GetRunCache
+
+
+        /// <summary>
+        /// Retrieve the details for the specified run cache.
+        /// 
+        ///  
+        /// <para>
+        /// For more information, see <a href="https://docs.aws.amazon.com/omics/latest/dev/workflow-call-caching.html">Call
+        /// caching for HealthOmics runs</a> in the AWS HealthOmics User Guide.
+        /// </para>
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetRunCache service method.</param>
+        /// 
+        /// <returns>The response from the GetRunCache service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ConflictException">
+        /// The request cannot be applied to the target resource in its current state.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ServiceQuotaExceededException">
+        /// The request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/GetRunCache">REST API Reference for GetRunCache Operation</seealso>
+        GetRunCacheResponse GetRunCache(GetRunCacheRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetRunCache operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetRunCache
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/GetRunCache">REST API Reference for GetRunCache Operation</seealso>
+        IAsyncResult BeginGetRunCache(GetRunCacheRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetRunCache.</param>
+        /// 
+        /// <returns>Returns a  GetRunCacheResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/GetRunCache">REST API Reference for GetRunCache Operation</seealso>
+        GetRunCacheResponse EndGetRunCache(IAsyncResult asyncResult);
 
         #endregion
         
@@ -2518,6 +2831,70 @@ namespace Amazon.Omics
 
         #endregion
         
+        #region  GetS3AccessPolicy
+
+
+        /// <summary>
+        /// Retrieves details about an access policy on a given store.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the GetS3AccessPolicy service method.</param>
+        /// 
+        /// <returns>The response from the GetS3AccessPolicy service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.NotSupportedOperationException">
+        /// The operation is not supported by Amazon Omics, or the API does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ServiceQuotaExceededException">
+        /// The request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/GetS3AccessPolicy">REST API Reference for GetS3AccessPolicy Operation</seealso>
+        GetS3AccessPolicyResponse GetS3AccessPolicy(GetS3AccessPolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the GetS3AccessPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the GetS3AccessPolicy operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndGetS3AccessPolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/GetS3AccessPolicy">REST API Reference for GetS3AccessPolicy Operation</seealso>
+        IAsyncResult BeginGetS3AccessPolicy(GetS3AccessPolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  GetS3AccessPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginGetS3AccessPolicy.</param>
+        /// 
+        /// <returns>Returns a  GetS3AccessPolicyResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/GetS3AccessPolicy">REST API Reference for GetS3AccessPolicy Operation</seealso>
+        GetS3AccessPolicyResponse EndGetS3AccessPolicy(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  GetSequenceStore
 
 
@@ -2580,7 +2957,7 @@ namespace Amazon.Omics
 
 
         /// <summary>
-        /// Retrieves the metadata for a share.
+        /// Retrieves the metadata for the specified resource share.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetShare service method.</param>
         /// 
@@ -2752,6 +3129,11 @@ namespace Amazon.Omics
 
         /// <summary>
         /// Gets information about a workflow.
+        /// 
+        ///  
+        /// <para>
+        /// If a workflow is shared with you, you cannot export the workflow.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the GetWorkflow service method.</param>
         /// 
@@ -2980,7 +3362,8 @@ namespace Amazon.Omics
 
 
         /// <summary>
-        /// Lists all multipart read set uploads and their statuses.
+        /// Lists multipart read set uploads and for in progress uploads. Once the upload is completed,
+        /// a read set is created and the upload will no longer be returned in the response.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListMultipartReadSetUploads service method.</param>
         /// 
@@ -3508,6 +3891,70 @@ namespace Amazon.Omics
 
         #endregion
         
+        #region  ListRunCaches
+
+
+        /// <summary>
+        /// Retrieves a list of your run caches.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the ListRunCaches service method.</param>
+        /// 
+        /// <returns>The response from the ListRunCaches service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ConflictException">
+        /// The request cannot be applied to the target resource in its current state.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ServiceQuotaExceededException">
+        /// The request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListRunCaches">REST API Reference for ListRunCaches Operation</seealso>
+        ListRunCachesResponse ListRunCaches(ListRunCachesRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the ListRunCaches operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the ListRunCaches operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndListRunCaches
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListRunCaches">REST API Reference for ListRunCaches Operation</seealso>
+        IAsyncResult BeginListRunCaches(ListRunCachesRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  ListRunCaches operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginListRunCaches.</param>
+        /// 
+        /// <returns>Returns a  ListRunCachesResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListRunCaches">REST API Reference for ListRunCaches Operation</seealso>
+        ListRunCachesResponse EndListRunCaches(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  ListRunGroups
 
 
@@ -3577,6 +4024,15 @@ namespace Amazon.Omics
 
         /// <summary>
         /// Retrieves a list of runs.
+        /// 
+        ///  
+        /// <para>
+        /// HealthOmics stores a fixed number of runs that are available to the console and API.
+        /// If the ListRuns response doesn't include specific runs that you expected, you can
+        /// find run logs for all runs in the CloudWatch logs. For more information about viewing
+        /// the run logs, see <a href="https://docs.aws.amazon.com/omics/latest/dev/cloudwatch-logs.html">CloudWatch
+        /// logs</a> in the <i>AWS HealthOmics User Guide</i>.
+        /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListRuns service method.</param>
         /// 
@@ -3759,7 +4215,8 @@ namespace Amazon.Omics
 
 
         /// <summary>
-        /// Lists all shares associated with an account.
+        /// Retrieves the resource shares associated with an account. Use the filter parameter
+        /// to retrieve a specific subset of the shares.
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the ListShares service method.</param>
         /// 
@@ -4051,6 +4508,67 @@ namespace Amazon.Omics
         /// <returns>Returns a  ListWorkflowsResult from Omics.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/ListWorkflows">REST API Reference for ListWorkflows Operation</seealso>
         ListWorkflowsResponse EndListWorkflows(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  PutS3AccessPolicy
+
+
+        /// <summary>
+        /// Adds an access policy to the specified store.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the PutS3AccessPolicy service method.</param>
+        /// 
+        /// <returns>The response from the PutS3AccessPolicy service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.NotSupportedOperationException">
+        /// The operation is not supported by Amazon Omics, or the API does not exist.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/PutS3AccessPolicy">REST API Reference for PutS3AccessPolicy Operation</seealso>
+        PutS3AccessPolicyResponse PutS3AccessPolicy(PutS3AccessPolicyRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the PutS3AccessPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the PutS3AccessPolicy operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndPutS3AccessPolicy
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/PutS3AccessPolicy">REST API Reference for PutS3AccessPolicy Operation</seealso>
+        IAsyncResult BeginPutS3AccessPolicy(PutS3AccessPolicyRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  PutS3AccessPolicy operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginPutS3AccessPolicy.</param>
+        /// 
+        /// <returns>Returns a  PutS3AccessPolicyResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/PutS3AccessPolicy">REST API Reference for PutS3AccessPolicy Operation</seealso>
+        PutS3AccessPolicyResponse EndPutS3AccessPolicy(IAsyncResult asyncResult);
 
         #endregion
         
@@ -4366,9 +4884,22 @@ namespace Amazon.Omics
         /// 
         ///  
         /// <para>
-        /// The total number of runs in your account is subject to a quota per Region. To avoid
-        /// needing to delete runs manually, you can set the retention mode to <code>REMOVE</code>.
-        /// Runs with this setting are deleted automatically when the run quoata is exceeded.
+        /// StartRun will not support re-run for a workflow that is shared with you.
+        /// </para>
+        ///  
+        /// <para>
+        /// HealthOmics stores a fixed number of runs that are available to the console and API.
+        /// By default, HealthOmics doesn't any remove any runs. If HealthOmics reaches the maximum
+        /// number of runs, you must manually remove runs. To have older runs removed automatically,
+        /// set the retention mode to <c>REMOVE</c>.
+        /// </para>
+        ///  
+        /// <para>
+        /// By default, the run uses STATIC storage. For STATIC storage, set the <c>storageCapacity</c>
+        /// field. You can set the storage type to DYNAMIC. You do not set <c>storageCapacity</c>,
+        /// because HealthOmics dynamically scales the storage up or down as required. For more
+        /// information about static and dynamic storage, see <a href="https://docs.aws.amazon.com/omics/latest/dev/Using-workflows.html">Running
+        /// workflows</a> in the <i>AWS HealthOmics User Guide</i>.
         /// </para>
         /// </summary>
         /// <param name="request">Container for the necessary parameters to execute the StartRun service method.</param>
@@ -4725,6 +5256,70 @@ namespace Amazon.Omics
 
         #endregion
         
+        #region  UpdateRunCache
+
+
+        /// <summary>
+        /// Update a run cache.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateRunCache service method.</param>
+        /// 
+        /// <returns>The response from the UpdateRunCache service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ConflictException">
+        /// The request cannot be applied to the target resource in its current state.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ServiceQuotaExceededException">
+        /// The request exceeds a service quota.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UpdateRunCache">REST API Reference for UpdateRunCache Operation</seealso>
+        UpdateRunCacheResponse UpdateRunCache(UpdateRunCacheRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateRunCache operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateRunCache
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UpdateRunCache">REST API Reference for UpdateRunCache Operation</seealso>
+        IAsyncResult BeginUpdateRunCache(UpdateRunCacheRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateRunCache operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateRunCache.</param>
+        /// 
+        /// <returns>Returns a  UpdateRunCacheResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UpdateRunCache">REST API Reference for UpdateRunCache Operation</seealso>
+        UpdateRunCacheResponse EndUpdateRunCache(IAsyncResult asyncResult);
+
+        #endregion
+        
         #region  UpdateRunGroup
 
 
@@ -4786,6 +5381,67 @@ namespace Amazon.Omics
         /// <returns>Returns a  UpdateRunGroupResult from Omics.</returns>
         /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UpdateRunGroup">REST API Reference for UpdateRunGroup Operation</seealso>
         UpdateRunGroupResponse EndUpdateRunGroup(IAsyncResult asyncResult);
+
+        #endregion
+        
+        #region  UpdateSequenceStore
+
+
+        /// <summary>
+        /// Update one or more parameters for the sequence store.
+        /// </summary>
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSequenceStore service method.</param>
+        /// 
+        /// <returns>The response from the UpdateSequenceStore service method, as returned by Omics.</returns>
+        /// <exception cref="Amazon.Omics.Model.AccessDeniedException">
+        /// You do not have sufficient access to perform this action.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ConflictException">
+        /// The request cannot be applied to the target resource in its current state.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.InternalServerException">
+        /// An unexpected error occurred. Try the request again.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.RequestTimeoutException">
+        /// The request timed out.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ResourceNotFoundException">
+        /// The target resource was not found in the current Region.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ThrottlingException">
+        /// The request was denied due to request throttling.
+        /// </exception>
+        /// <exception cref="Amazon.Omics.Model.ValidationException">
+        /// The input fails to satisfy the constraints specified by an AWS service.
+        /// </exception>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UpdateSequenceStore">REST API Reference for UpdateSequenceStore Operation</seealso>
+        UpdateSequenceStoreResponse UpdateSequenceStore(UpdateSequenceStoreRequest request);
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the UpdateSequenceStore operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the UpdateSequenceStore operation on AmazonOmicsClient.</param>
+        /// <param name="callback">An AsyncCallback delegate that is invoked when the operation completes.</param>
+        /// <param name="state">A user-defined state object that is passed to the callback procedure. Retrieve this object from within the callback
+        ///          procedure using the AsyncState property.</param>
+        /// 
+        /// <returns>An IAsyncResult that can be used to poll or wait for results, or both; this value is also needed when invoking EndUpdateSequenceStore
+        ///         operation.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UpdateSequenceStore">REST API Reference for UpdateSequenceStore Operation</seealso>
+        IAsyncResult BeginUpdateSequenceStore(UpdateSequenceStoreRequest request, AsyncCallback callback, object state);
+
+
+
+        /// <summary>
+        /// Finishes the asynchronous execution of the  UpdateSequenceStore operation.
+        /// </summary>
+        /// 
+        /// <param name="asyncResult">The IAsyncResult returned by the call to BeginUpdateSequenceStore.</param>
+        /// 
+        /// <returns>Returns a  UpdateSequenceStoreResult from Omics.</returns>
+        /// <seealso href="http://docs.aws.amazon.com/goto/WebAPI/omics-2022-11-28/UpdateSequenceStore">REST API Reference for UpdateSequenceStore Operation</seealso>
+        UpdateSequenceStoreResponse EndUpdateSequenceStore(IAsyncResult asyncResult);
 
         #endregion
         

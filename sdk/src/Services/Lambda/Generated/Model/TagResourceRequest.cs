@@ -26,25 +26,26 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Lambda.Model
 {
     /// <summary>
     /// Container for the parameters to the TagResource operation.
     /// Adds <a href="https://docs.aws.amazon.com/lambda/latest/dg/tagging.html">tags</a>
-    /// to a function.
+    /// to a function, event source mapping, or code signing configuration.
     /// </summary>
     public partial class TagResourceRequest : AmazonLambdaRequest
     {
         private string _resource;
-        private Dictionary<string, string> _tags = new Dictionary<string, string>();
+        private Dictionary<string, string> _tags = AWSConfigs.InitializeCollections ? new Dictionary<string, string>() : null;
 
         /// <summary>
         /// Gets and sets the property Resource. 
         /// <para>
-        /// The function's Amazon Resource Name (ARN).
+        /// The resource's Amazon Resource Name (ARN).
         /// </para>
         /// </summary>
-        [AWSProperty(Required=true)]
+        [AWSProperty(Required=true, Min=1, Max=256)]
         public string Resource
         {
             get { return this._resource; }
@@ -60,7 +61,7 @@ namespace Amazon.Lambda.Model
         /// <summary>
         /// Gets and sets the property Tags. 
         /// <para>
-        /// A list of tags to apply to the function.
+        /// A list of tags to apply to the resource.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -73,7 +74,7 @@ namespace Amazon.Lambda.Model
         // Check to see if Tags property is set
         internal bool IsSetTags()
         {
-            return this._tags != null && this._tags.Count > 0; 
+            return this._tags != null && (this._tags.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

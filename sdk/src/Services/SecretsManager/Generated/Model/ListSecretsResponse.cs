@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.SecretsManager.Model
 {
     /// <summary>
@@ -34,7 +35,7 @@ namespace Amazon.SecretsManager.Model
     public partial class ListSecretsResponse : AmazonWebServiceResponse
     {
         private string _nextToken;
-        private List<SecretListEntry> _secretList = new List<SecretListEntry>();
+        private List<SecretListEntry> _secretList = AWSConfigs.InitializeCollections ? new List<SecretListEntry>() : null;
 
         /// <summary>
         /// Gets and sets the property NextToken. 
@@ -42,7 +43,7 @@ namespace Amazon.SecretsManager.Model
         /// Secrets Manager includes this value if there's more output available than what is
         /// included in the current response. This can occur even when the response includes no
         /// values at all, such as when you ask for a filtered view of a long list. To get the
-        /// next results, call <code>ListSecrets</code> again with this value.
+        /// next results, call <c>ListSecrets</c> again with this value.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=4096)]
@@ -73,7 +74,7 @@ namespace Amazon.SecretsManager.Model
         // Check to see if SecretList property is set
         internal bool IsSetSecretList()
         {
-            return this._secretList != null && this._secretList.Count > 0; 
+            return this._secretList != null && (this._secretList.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
     }

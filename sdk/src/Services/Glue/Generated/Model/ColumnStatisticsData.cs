@@ -26,11 +26,12 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.Glue.Model
 {
     /// <summary>
     /// Contains the individual types of column statistics data. Only one data object should
-    /// be set and indicated by the <code>Type</code> attribute.
+    /// be set and indicated by the <c>Type</c> attribute.
     /// </summary>
     public partial class ColumnStatisticsData
     {

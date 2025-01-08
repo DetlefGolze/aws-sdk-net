@@ -26,6 +26,7 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.WAFV2.Model
 {
     /// <summary>
@@ -47,17 +48,18 @@ namespace Amazon.WAFV2.Model
         private long? _capacity;
         private CaptchaConfig _captchaConfig;
         private ChallengeConfig _challengeConfig;
-        private Dictionary<string, CustomResponseBody> _customResponseBodies = new Dictionary<string, CustomResponseBody>();
+        private Dictionary<string, CustomResponseBody> _customResponseBodies = AWSConfigs.InitializeCollections ? new Dictionary<string, CustomResponseBody>() : null;
         private DefaultAction _defaultAction;
         private string _description;
         private string _id;
         private string _labelNamespace;
         private bool? _managedByFirewallManager;
         private string _name;
-        private List<FirewallManagerRuleGroup> _postProcessFirewallManagerRuleGroups = new List<FirewallManagerRuleGroup>();
-        private List<FirewallManagerRuleGroup> _preProcessFirewallManagerRuleGroups = new List<FirewallManagerRuleGroup>();
-        private List<Rule> _rules = new List<Rule>();
-        private List<string> _tokenDomains = new List<string>();
+        private List<FirewallManagerRuleGroup> _postProcessFirewallManagerRuleGroups = AWSConfigs.InitializeCollections ? new List<FirewallManagerRuleGroup>() : null;
+        private List<FirewallManagerRuleGroup> _preProcessFirewallManagerRuleGroups = AWSConfigs.InitializeCollections ? new List<FirewallManagerRuleGroup>() : null;
+        private bool? _retrofittedByFirewallManager;
+        private List<Rule> _rules = AWSConfigs.InitializeCollections ? new List<Rule>() : null;
+        private List<string> _tokenDomains = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private VisibilityConfig _visibilityConfig;
 
         /// <summary>
@@ -88,9 +90,10 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        /// Use this to customize the maximum size of the request body that your protected CloudFront
-        /// distributions forward to WAF for inspection. The default is 16 KB (16,384 bytes).
-        /// 
+        /// Use this to customize the maximum size of the request body that your protected resources
+        /// forward to WAF for inspection. You can customize this setting for CloudFront, API
+        /// Gateway, Amazon Cognito, App Runner, or Verified Access resources. The default setting
+        /// is 16 KB (16,384 bytes). 
         /// </para>
         ///  <note> 
         /// <para>
@@ -98,7 +101,10 @@ namespace Amazon.WAFV2.Model
         /// are larger than the default. For more information, see <a href="http://aws.amazon.com/waf/pricing/">WAF
         /// Pricing</a>.
         /// </para>
-        ///  </note>
+        ///  </note> 
+        /// <para>
+        /// For Application Load Balancer and AppSync, the limit is fixed at 8 KB (8,192 bytes).
+        /// </para>
         /// </summary>
         public AssociationConfig AssociationConfig
         {
@@ -144,9 +150,9 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property CaptchaConfig. 
         /// <para>
-        /// Specifies how WAF should handle <code>CAPTCHA</code> evaluations for rules that don't
-        /// have their own <code>CaptchaConfig</code> settings. If you don't specify this, WAF
-        /// uses its default settings for <code>CaptchaConfig</code>. 
+        /// Specifies how WAF should handle <c>CAPTCHA</c> evaluations for rules that don't have
+        /// their own <c>CaptchaConfig</c> settings. If you don't specify this, WAF uses its default
+        /// settings for <c>CaptchaConfig</c>. 
         /// </para>
         /// </summary>
         public CaptchaConfig CaptchaConfig
@@ -165,8 +171,8 @@ namespace Amazon.WAFV2.Model
         /// Gets and sets the property ChallengeConfig. 
         /// <para>
         /// Specifies how WAF should handle challenge evaluations for rules that don't have their
-        /// own <code>ChallengeConfig</code> settings. If you don't specify this, WAF uses its
-        /// default settings for <code>ChallengeConfig</code>. 
+        /// own <c>ChallengeConfig</c> settings. If you don't specify this, WAF uses its default
+        /// settings for <c>ChallengeConfig</c>. 
         /// </para>
         /// </summary>
         public ChallengeConfig ChallengeConfig
@@ -211,14 +217,14 @@ namespace Amazon.WAFV2.Model
         // Check to see if CustomResponseBodies property is set
         internal bool IsSetCustomResponseBodies()
         {
-            return this._customResponseBodies != null && this._customResponseBodies.Count > 0; 
+            return this._customResponseBodies != null && (this._customResponseBodies.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property DefaultAction. 
         /// <para>
-        /// The action to perform if none of the <code>Rules</code> contained in the <code>WebACL</code>
-        /// match. 
+        /// The action to perform if none of the <c>Rules</c> contained in the <c>WebACL</c> match.
+        /// 
         /// </para>
         /// </summary>
         [AWSProperty(Required=true)]
@@ -256,9 +262,9 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property Id. 
         /// <para>
-        /// A unique identifier for the <code>WebACL</code>. This ID is returned in the responses
-        /// to create and list commands. You use this ID to do things like get, update, and delete
-        /// a <code>WebACL</code>.
+        /// A unique identifier for the <c>WebACL</c>. This ID is returned in the responses to
+        /// create and list commands. You use this ID to do things like get, update, and delete
+        /// a <c>WebACL</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Required=true, Min=1, Max=36)]
@@ -286,7 +292,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>awswaf:&lt;account ID&gt;:webacl:&lt;web ACL name&gt;:</code> 
+        ///  <c>awswaf:&lt;account ID&gt;:webacl:&lt;web ACL name&gt;:</c> 
         /// </para>
         ///  </li> <li> 
         /// <para>
@@ -297,7 +303,7 @@ namespace Amazon.WAFV2.Model
         /// </para>
         ///  
         /// <para>
-        ///  <code>&lt;label namespace&gt;:&lt;label from rule&gt;</code> 
+        ///  <c>&lt;label namespace&gt;:&lt;label from rule&gt;</c> 
         /// </para>
         ///  </li> </ul>
         /// </summary>
@@ -317,9 +323,11 @@ namespace Amazon.WAFV2.Model
         /// <summary>
         /// Gets and sets the property ManagedByFirewallManager. 
         /// <para>
-        /// Indicates whether this web ACL is managed by Firewall Manager. If true, then only
-        /// Firewall Manager can delete the web ACL or any Firewall Manager rule groups in the
-        /// web ACL. 
+        /// Indicates whether this web ACL was created by Firewall Manager and is being managed
+        /// by Firewall Manager. If true, then only Firewall Manager can delete the web ACL or
+        /// any Firewall Manager rule groups in the web ACL. See also the properties <c>RetrofittedByFirewallManager</c>,
+        /// <c>PreProcessFirewallManagerRuleGroups</c>, and <c>PostProcessFirewallManagerRuleGroups</c>.
+        /// 
         /// </para>
         /// </summary>
         public bool ManagedByFirewallManager
@@ -379,7 +387,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if PostProcessFirewallManagerRuleGroups property is set
         internal bool IsSetPostProcessFirewallManagerRuleGroups()
         {
-            return this._postProcessFirewallManagerRuleGroups != null && this._postProcessFirewallManagerRuleGroups.Count > 0; 
+            return this._postProcessFirewallManagerRuleGroups != null && (this._postProcessFirewallManagerRuleGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -407,7 +415,29 @@ namespace Amazon.WAFV2.Model
         // Check to see if PreProcessFirewallManagerRuleGroups property is set
         internal bool IsSetPreProcessFirewallManagerRuleGroups()
         {
-            return this._preProcessFirewallManagerRuleGroups != null && this._preProcessFirewallManagerRuleGroups.Count > 0; 
+            return this._preProcessFirewallManagerRuleGroups != null && (this._preProcessFirewallManagerRuleGroups.Count > 0 || !AWSConfigs.InitializeCollections); 
+        }
+
+        /// <summary>
+        /// Gets and sets the property RetrofittedByFirewallManager. 
+        /// <para>
+        /// Indicates whether this web ACL was created by a customer account and then retrofitted
+        /// by Firewall Manager. If true, then the web ACL is currently being managed by a Firewall
+        /// Manager WAF policy, and only Firewall Manager can manage any Firewall Manager rule
+        /// groups in the web ACL. See also the properties <c>ManagedByFirewallManager</c>, <c>PreProcessFirewallManagerRuleGroups</c>,
+        /// and <c>PostProcessFirewallManagerRuleGroups</c>. 
+        /// </para>
+        /// </summary>
+        public bool RetrofittedByFirewallManager
+        {
+            get { return this._retrofittedByFirewallManager.GetValueOrDefault(); }
+            set { this._retrofittedByFirewallManager = value; }
+        }
+
+        // Check to see if RetrofittedByFirewallManager property is set
+        internal bool IsSetRetrofittedByFirewallManager()
+        {
+            return this._retrofittedByFirewallManager.HasValue; 
         }
 
         /// <summary>
@@ -427,7 +457,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if Rules property is set
         internal bool IsSetRules()
         {
-            return this._rules != null && this._rules.Count > 0; 
+            return this._rules != null && (this._rules.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
@@ -450,7 +480,7 @@ namespace Amazon.WAFV2.Model
         // Check to see if TokenDomains property is set
         internal bool IsSetTokenDomains()
         {
-            return this._tokenDomains != null && this._tokenDomains.Count > 0; 
+            return this._tokenDomains != null && (this._tokenDomains.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>

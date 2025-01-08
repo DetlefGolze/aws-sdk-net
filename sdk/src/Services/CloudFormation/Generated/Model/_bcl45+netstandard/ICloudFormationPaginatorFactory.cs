@@ -17,6 +17,7 @@
  * Do not modify this file. This file is generated from the cloudformation-2010-05-15.normal.json service model.
  */
 
+#pragma warning disable CS0612,CS0618
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
@@ -56,9 +57,29 @@ namespace Amazon.CloudFormation.Model
         IListExportsPaginator ListExports(ListExportsRequest request);
 
         /// <summary>
+        /// Paginator for ListGeneratedTemplates operation
+        ///</summary>
+        IListGeneratedTemplatesPaginator ListGeneratedTemplates(ListGeneratedTemplatesRequest request);
+
+        /// <summary>
         /// Paginator for ListImports operation
         ///</summary>
         IListImportsPaginator ListImports(ListImportsRequest request);
+
+        /// <summary>
+        /// Paginator for ListResourceScanRelatedResources operation
+        ///</summary>
+        IListResourceScanRelatedResourcesPaginator ListResourceScanRelatedResources(ListResourceScanRelatedResourcesRequest request);
+
+        /// <summary>
+        /// Paginator for ListResourceScanResources operation
+        ///</summary>
+        IListResourceScanResourcesPaginator ListResourceScanResources(ListResourceScanResourcesRequest request);
+
+        /// <summary>
+        /// Paginator for ListResourceScans operation
+        ///</summary>
+        IListResourceScansPaginator ListResourceScans(ListResourceScansRequest request);
 
         /// <summary>
         /// Paginator for ListStackInstances operation

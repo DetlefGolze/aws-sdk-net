@@ -26,24 +26,25 @@ using System.Net;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 
+#pragma warning disable CS0612,CS0618,CS1570
 namespace Amazon.CloudFormation.Model
 {
     /// <summary>
     /// Describes the target resources of a specific type in your import template (for example,
-    /// all <code>AWS::S3::Bucket</code> resources) and the properties you can provide during
-    /// the import to identify resources of that type.
+    /// all <c>AWS::S3::Bucket</c> resources) and the properties you can provide during the
+    /// import to identify resources of that type.
     /// </summary>
     public partial class ResourceIdentifierSummary
     {
-        private List<string> _logicalResourceIds = new List<string>();
-        private List<string> _resourceIdentifiers = new List<string>();
+        private List<string> _logicalResourceIds = AWSConfigs.InitializeCollections ? new List<string>() : null;
+        private List<string> _resourceIdentifiers = AWSConfigs.InitializeCollections ? new List<string>() : null;
         private string _resourceType;
 
         /// <summary>
         /// Gets and sets the property LogicalResourceIds. 
         /// <para>
-        /// The logical IDs of the target resources of the specified <code>ResourceType</code>,
-        /// as defined in the import template.
+        /// The logical IDs of the target resources of the specified <c>ResourceType</c>, as defined
+        /// in the import template.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=200)]
@@ -56,15 +57,15 @@ namespace Amazon.CloudFormation.Model
         // Check to see if LogicalResourceIds property is set
         internal bool IsSetLogicalResourceIds()
         {
-            return this._logicalResourceIds != null && this._logicalResourceIds.Count > 0; 
+            return this._logicalResourceIds != null && (this._logicalResourceIds.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceIdentifiers. 
         /// <para>
         /// The resource properties you can provide during the import to identify your target
-        /// resources. For example, <code>BucketName</code> is a possible identifier property
-        /// for <code>AWS::S3::Bucket</code> resources.
+        /// resources. For example, <c>BucketName</c> is a possible identifier property for <c>AWS::S3::Bucket</c>
+        /// resources.
         /// </para>
         /// </summary>
         public List<string> ResourceIdentifiers
@@ -76,13 +77,13 @@ namespace Amazon.CloudFormation.Model
         // Check to see if ResourceIdentifiers property is set
         internal bool IsSetResourceIdentifiers()
         {
-            return this._resourceIdentifiers != null && this._resourceIdentifiers.Count > 0; 
+            return this._resourceIdentifiers != null && (this._resourceIdentifiers.Count > 0 || !AWSConfigs.InitializeCollections); 
         }
 
         /// <summary>
         /// Gets and sets the property ResourceType. 
         /// <para>
-        /// The template resource type of the target resources, such as <code>AWS::S3::Bucket</code>.
+        /// The template resource type of the target resources, such as <c>AWS::S3::Bucket</c>.
         /// </para>
         /// </summary>
         [AWSProperty(Min=1, Max=256)]
